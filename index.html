@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>小学奥数学习系统</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">本地可用 · 小学奥数</p>
+        <h1>小学奥数学习系统</h1>
+        <p class="hero__text">
+          先学典型题，再做闯关练习，自动记录错题，家长也能快速查看学习进度。
+        </p>
+        <div class="hero__actions">
+          <a href="#modules" class="button button--primary">开始学习</a>
+          <a href="#parent-dashboard" class="button button--ghost">查看家长视图</a>
+        </div>
+      </div>
+      <div class="hero__stats" id="hero-stats"></div>
+    </header>
+
+    <main class="page">
+      <section class="panel" id="modules">
+        <div class="panel__header">
+          <div>
+            <p class="section-tag">学习地图</p>
+            <h2>典型题型</h2>
+          </div>
+          <p class="panel__hint">点击模块即可切换内容。</p>
+        </div>
+        <div class="grade-filter" id="grade-filter"></div>
+        <div class="difficulty-filter" id="difficulty-filter"></div>
+        <div class="module-grid" id="module-list"></div>
+      </section>
+
+      <section class="panel" id="daily-practice-panel">
+        <div class="panel__header">
+          <div>
+            <p class="section-tag">今日任务</p>
+            <h2>每日一练</h2>
+            <p id="daily-practice-date" class="muted"></p>
+          </div>
+        </div>
+        <div id="daily-practice-list" class="stack"></div>
+      </section>
+
+      <section class="panel" id="paper-generator-panel">
+        <div class="panel__header">
+          <div>
+            <p class="section-tag">自定义训练</p>
+            <h2>随机组卷</h2>
+            <p class="muted">按当前年级和难度范围生成一份练习卷。</p>
+          </div>
+        </div>
+        <div class="paper-controls">
+          <label class="muted" for="paper-count">题量</label>
+          <select id="paper-count" class="paper-select">
+            <option value="3">3 题</option>
+            <option value="5" selected>5 题</option>
+            <option value="8">8 题</option>
+          </select>
+          <button id="generate-paper" class="button button--primary" type="button">生成试卷</button>
+          <button id="generate-wrong-paper" class="button button--ghost" type="button">错题重新组卷</button>
+        </div>
+        <div id="paper-generator-tip" class="muted"></div>
+        <div id="paper-summary" class="stack"></div>
+        <div id="paper-list" class="stack"></div>
+      </section>
+
+      <section class="content-grid">
+        <section class="panel panel--main" id="lesson-panel">
+          <div class="panel__header">
+            <div>
+              <p class="section-tag">模块学习</p>
+              <h2 id="module-title"></h2>
+              <p id="module-description" class="muted"></p>
+              <div id="module-grades" class="grade-tags"></div>
+            </div>
+            <span class="badge" id="module-progress"></span>
+          </div>
+
+          <div class="subsection">
+            <div class="subsection__header">
+              <h3>例题讲解</h3>
+              <p class="muted">先看思路，再开始练习。</p>
+            </div>
+            <div id="examples"></div>
+          </div>
+
+          <div class="subsection">
+            <div class="subsection__header">
+              <h3>闯关练习</h3>
+              <p class="muted">每题答完都会即时反馈。</p>
+            </div>
+            <div id="practice-list"></div>
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <section class="panel" id="wrong-book">
+            <div class="panel__header">
+              <div>
+                <p class="section-tag">复习专区</p>
+                <h2>错题本</h2>
+              </div>
+              <button id="clear-wrong-book" class="button button--small button--ghost" type="button">
+                清空
+              </button>
+            </div>
+            <div id="wrong-book-list" class="stack"></div>
+          </section>
+
+          <section class="panel" id="parent-dashboard">
+            <div class="panel__header">
+              <div>
+                <p class="section-tag">学习概览</p>
+                <h2>家长视图</h2>
+              </div>
+            </div>
+            <div class="dashboard-grid" id="dashboard-cards"></div>
+            <div id="recent-paper-summary" class="stack"></div>
+            <div class="panel__divider"></div>
+            <div id="mastery-ranking" class="stack"></div>
+            <div class="panel__divider"></div>
+            <div id="module-summary" class="stack"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <template id="example-template">
+      <article class="card card--example">
+        <div class="card__header">
+          <h4 class="card__title"></h4>
+          <span class="difficulty"></span>
+        </div>
+        <p class="card__question"></p>
+        <button class="button button--small button--ghost answer-toggle" type="button">显示答案</button>
+        <div class="answer-panel hidden">
+          <p class="answer-text"></p>
+          <p class="analysis-text muted"></p>
+        </div>
+      </article>
+    </template>
+
+    <template id="practice-template">
+      <article class="card card--practice">
+        <div class="card__header">
+          <div>
+            <h4 class="card__title"></h4>
+            <p class="muted"></p>
+          </div>
+          <span class="difficulty"></span>
+        </div>
+        <p class="card__question"></p>
+        <div class="answer-row">
+          <input class="answer-input" type="text" placeholder="输入答案" />
+          <button class="button button--small button--primary submit-answer" type="button">提交</button>
+        </div>
+        <p class="feedback hidden"></p>
+      </article>
+    </template>
+
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
