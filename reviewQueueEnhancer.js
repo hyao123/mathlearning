@@ -29,27 +29,6 @@
     return getPracticePool().find((practice) => practice.prompt === prompt);
   }
 
-  function findWrongItem(state, practiceId) {
-    return (state.wrongBook || []).find((item) => item.id === practiceId);
-  }
-
-  function createWrongItem(practice) {
-    return {
-      id: practice.id,
-      moduleId: practice.moduleId,
-      moduleTitle: practice.moduleTitle,
-      title: practice.title,
-      prompt: practice.prompt,
-      answer: practice.answer,
-      explanation: practice.explanation,
-      difficulty: practice.difficulty
-    };
-  }
-
-  function getReview(item) {
-    return item.review || window.ReviewScheduler.scheduleWrongAttempt({}, todayKey());
-  }
-
   function updateReviewFromAnswer(card, isCorrect) {
     const prompt = card.querySelector(".card__question")?.textContent?.trim();
     const practice = findPracticeByPrompt(prompt);
@@ -57,63 +36,56 @@
       return;
     }
 
-    const state = loadState();
-    state.wrongBook = Array.isArray(state.wrongBook) ? state.wrongBook : [];
-    const existing = findWrongItem(state, practice.id);
-    const baseItem = existing || createWrongItem(practice);
-    const nextReview = isCorrect
-      ? window.ReviewScheduler.scheduleCorrectAttempt(baseItem.review || {}, todayKey())
-      : window.ReviewScheduler.scheduleWrongAttempt(baseItem.review || {}, todayKey());
+    const nextState = window.ReviewQueueModel.updateWrongBookAfterAnswer({
+      state: loadState(),
+      practice,
+      isCorrect,
+      todayKey: todayKey()
+    });
 
-    if (isCorrect && nextReview.correctStreak >= 2) {
-      state.wrongBook = state.wrongBook.filter((item) => item.id !== practice.id);
-    } else {
-      const nextItem = { ...baseItem, review: nextReview };
-      state.wrongBook = [nextItem, ...state.wrongBook.filter((item) => item.id !== practice.id)];
-    }
-
-    saveState(state);
+    saveState(nextState);
     decorateWrongBook();
   }
 
-  function getDueWrongBookItems(state) {
-    return (state.wrongBook || []).filter((item) => window.ReviewScheduler.isDue(getReview(item), todayKey()));
+  function showEmptyDueMessage(tip, summary, list) {
+    if (tip) {
+      tip.textContent = "今天没有到期错题；可继续做新题，或等下次复习日期。";
+    }
+    if (summary) {
+      summary.textContent = "";
+      const box = document.createElement("div");
+      box.className = "empty-state-box";
+      box.textContent = "复习队列会优先抽取“今日待复习”的错题。";
+      summary.appendChild(box);
+    }
+    if (list) {
+      list.textContent = "";
+    }
   }
 
   function generateDueWrongPaper(event) {
     const state = loadState();
-    const dueItems = getDueWrongBookItems(state);
+    const dueItems = window.ReviewQueueModel.getDueWrongBookItems(state, todayKey());
     const tip = document.getElementById("paper-generator-tip");
     const summary = document.getElementById("paper-summary");
     const list = document.getElementById("paper-list");
 
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
     if (dueItems.length === 0) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      if (tip) {
-        tip.textContent = "今天没有到期错题；可继续做新题，或等下次复习日期。";
-      }
-      if (summary) {
-        summary.innerHTML = '<div class="empty-state-box">复习队列会优先抽取“今日待复习”的错题。</div>';
-      }
-      if (list) {
-        list.innerHTML = "";
-      }
+      showEmptyDueMessage(tip, summary, list);
       return;
     }
 
-    event.preventDefault();
-    event.stopImmediatePropagation();
     const requestedCount = Number(document.getElementById("paper-count")?.value || 5);
-    state.paperGenerator = {
-      grade: "全部",
-      difficulty: "全部",
-      count: requestedCount,
-      source: "wrongBook",
-      practiceIds: dueItems.slice(0, Math.min(requestedCount, dueItems.length)).map((item) => item.id),
-      answers: {}
-    };
-    saveState(state);
+    saveState(
+      window.ReviewQueueModel.buildWrongPaperState({
+        state,
+        dueItems,
+        requestedCount
+      })
+    );
     window.location.reload();
   }
 
@@ -129,10 +101,9 @@
       if (!item) {
         return;
       }
-      const review = getReview(item);
       const status = document.createElement("p");
       status.className = "muted review-status";
-      status.textContent = `复习状态：${window.ReviewScheduler.getReviewStatus(review, todayKey())} · 已错 ${review.wrongCount || 0} 次 · 连续答对 ${review.correctStreak || 0} 次`;
+      status.textContent = window.ReviewQueueModel.getReviewStatusText(item, todayKey());
       card.appendChild(status);
     });
   }
