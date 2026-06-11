@@ -238,6 +238,21 @@ function renderDifficultyFilter() {
   });
 }
 
+function getPrimaryGrade(module) {
+  return module.grades.find((grade) => gradeOptions.includes(grade)) || "其他";
+}
+
+function groupModulesByPrimaryGrade(visibleModules) {
+  return visibleModules.reduce((groups, module) => {
+    const grade = activeGrade === "全部" ? getPrimaryGrade(module) : activeGrade;
+    if (!groups.has(grade)) {
+      groups.set(grade, []);
+    }
+    groups.get(grade).push(module);
+    return groups;
+  }, new Map());
+}
+
 function renderModuleList() {
   moduleList.innerHTML = "";
   const visibleModules = getVisibleModules();
@@ -247,22 +262,60 @@ function renderModuleList() {
     return;
   }
 
-  visibleModules.forEach((module) => {
-    const visiblePractices = getModulePractices(module);
-    const card = document.createElement("button");
-    card.type = "button";
-    card.className = `module-card${module.id === activeModuleId ? " is-active" : ""}`;
-    card.innerHTML = `
-      <strong>${module.title}</strong>
-      <p>${module.description}</p>
-      <div class="module-card__meta">${module.grades.map((grade) => `<span class="grade-tag">${grade}</span>`).join("")}</div>
-      <p>已完成 ${getModuleCompletedCount(module.id, visiblePractices)}/${visiblePractices.length} 题</p>
+  const overview = document.createElement("div");
+  overview.className = "module-map__overview";
+  overview.innerHTML = `
+    <div>
+      <strong>${activeGrade === "全部" ? "全部年级" : activeGrade} · ${activeDifficulty === "全部" ? "全部难度" : activeDifficulty}</strong>
+      <p class="muted">共 ${visibleModules.length} 个可学模块，建议从上到下依次学习，也可以点击薄弱模块直接跳转。</p>
+    </div>
+    <span class="badge">${getPracticePool().length} 道可练习题</span>
+  `;
+  moduleList.appendChild(overview);
+
+  const groupedModules = groupModulesByPrimaryGrade(visibleModules);
+  const orderedGrades = gradeOptions.filter((grade) => grade !== "全部" && groupedModules.has(grade));
+  const extraGrades = [...groupedModules.keys()].filter((grade) => !orderedGrades.includes(grade));
+
+  [...orderedGrades, ...extraGrades].forEach((grade) => {
+    const group = document.createElement("section");
+    group.className = "module-group";
+    group.innerHTML = `
+      <div class="module-group__header">
+        <span>${grade}</span>
+        <small>${groupedModules.get(grade).length} 个模块</small>
+      </div>
     `;
-    card.addEventListener("click", () => {
-      activeModuleId = module.id;
-      render();
+
+    const list = document.createElement("div");
+    list.className = "module-path";
+
+    groupedModules.get(grade).forEach((module, index) => {
+      const visiblePractices = getModulePractices(module);
+      const completedCount = getModuleCompletedCount(module.id, visiblePractices);
+      const completionText = `${completedCount}/${visiblePractices.length}`;
+      const item = document.createElement("button");
+      item.type = "button";
+      item.className = `module-path__item${module.id === activeModuleId ? " is-active" : ""}`;
+      item.innerHTML = `
+        <span class="module-path__step">${index + 1}</span>
+        <span class="module-path__content">
+          <strong>${module.title}</strong>
+          <span>${module.description}</span>
+          <span class="module-path__tags">${module.grades.map((moduleGrade) => `<em>${moduleGrade}</em>`).join("")}</span>
+        </span>
+        <span class="module-path__progress">${completionText}</span>
+      `;
+      item.addEventListener("click", () => {
+        activeModuleId = module.id;
+        render();
+        document.getElementById("lesson-panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      list.appendChild(item);
     });
-    moduleList.appendChild(card);
+
+    group.appendChild(list);
+    moduleList.appendChild(group);
   });
 }
 
