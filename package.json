@@ -1,0 +1,15 @@
+{
+  "name": "mathlearning",
+  "version": "0.1.0",
+  "private": true,
+  "description": "本地可用的小学奥数学习系统。",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check answerMatcher.js && node --check app.js"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,5 +1,6 @@
 const modules = window.MATH_LEARNING_DATA;
-const storageKey = "mathlearning-progress-v1";
+const storageKey = "mathlearning-progress-v2";
+const legacyStorageKey = "mathlearning-progress-v1";
 
 const gradeFilter = document.getElementById("grade-filter");
 const difficultyFilter = document.getElementById("difficulty-filter");
@@ -40,6 +41,7 @@ const defaultState = {
     practiceIds: [],
     answers: {}
   },
+  answerHistory: {},
   stats: {
     attempts: 0,
     correct: 0
@@ -54,38 +56,79 @@ let activeGrade = "全部";
 let activeDifficulty = "全部";
 let activeModuleId = modules[0].id;
 
+function cloneDefaultState() {
+  return structuredClone(defaultState);
+}
+
+function migrateLegacyState(parsed) {
+  const nextState = cloneDefaultState();
+  nextState.completed = parsed.completed || {};
+  nextState.wrongBook = Array.isArray(parsed.wrongBook) ? parsed.wrongBook : [];
+  nextState.dailyPractice = parsed.dailyPractice || {};
+  nextState.paperGenerator = {
+    grade: parsed.paperGenerator?.grade || "全部",
+    difficulty: parsed.paperGenerator?.difficulty || "全部",
+    count: Number(parsed.paperGenerator?.count || 5),
+    source: parsed.paperGenerator?.source || "random",
+    practiceIds: Array.isArray(parsed.paperGenerator?.practiceIds) ? parsed.paperGenerator.practiceIds : [],
+    answers: parsed.paperGenerator?.answers || {}
+  };
+  nextState.answerHistory = parsed.answerHistory || {};
+
+  if (Object.keys(nextState.answerHistory).length === 0) {
+    Object.entries(nextState.completed).forEach(([practiceId, completed]) => {
+      if (completed) {
+        nextState.answerHistory[practiceId] = {
+          attempts: 1,
+          correct: 1,
+          latestCorrect: true,
+          firstCorrect: true
+        };
+      }
+    });
+    nextState.wrongBook.forEach((item) => {
+      if (!nextState.answerHistory[item.id]) {
+        nextState.answerHistory[item.id] = {
+          attempts: 1,
+          correct: 0,
+          latestCorrect: false,
+          firstCorrect: false
+        };
+      }
+    });
+  }
+
+  nextState.stats = calculateStats(nextState.answerHistory);
+  return nextState;
+}
+
 function loadState() {
   try {
-    const saved = localStorage.getItem(storageKey);
+    const saved = localStorage.getItem(storageKey) || localStorage.getItem(legacyStorageKey);
     if (!saved) {
-      return structuredClone(defaultState);
+      return cloneDefaultState();
     }
 
-    const parsed = JSON.parse(saved);
-    return {
-      completed: parsed.completed || {},
-      wrongBook: Array.isArray(parsed.wrongBook) ? parsed.wrongBook : [],
-      dailyPractice: parsed.dailyPractice || {},
-      paperGenerator: {
-        grade: parsed.paperGenerator?.grade || "全部",
-        difficulty: parsed.paperGenerator?.difficulty || "全部",
-        count: Number(parsed.paperGenerator?.count || 5),
-        source: parsed.paperGenerator?.source || "random",
-        practiceIds: Array.isArray(parsed.paperGenerator?.practiceIds) ? parsed.paperGenerator.practiceIds : [],
-        answers: parsed.paperGenerator?.answers || {}
-      },
-      stats: {
-        attempts: Number(parsed.stats?.attempts || 0),
-        correct: Number(parsed.stats?.correct || 0)
-      }
-    };
+    return migrateLegacyState(JSON.parse(saved));
   } catch (error) {
-    return structuredClone(defaultState);
+    return cloneDefaultState();
   }
 }
 
 function saveState() {
+  appState.stats = calculateStats(appState.answerHistory);
   localStorage.setItem(storageKey, JSON.stringify(appState));
+}
+
+function calculateStats(answerHistory) {
+  return Object.values(answerHistory || {}).reduce(
+    (stats, record) => {
+      stats.attempts += Number(record.attempts || 0);
+      stats.correct += Number(record.correct || 0);
+      return stats;
+    },
+    { attempts: 0, correct: 0 }
+  );
 }
 
 function getTodayKey() {
@@ -119,7 +162,6 @@ function getModulePractices(module) {
 
 function getVisibleModules() {
   const gradeMatchedModules = activeGrade === "全部" ? modules : modules.filter((module) => module.grades.includes(activeGrade));
-
   return gradeMatchedModules.filter((module) => getModuleExamples(module).length > 0 || getModulePractices(module).length > 0);
 }
 
@@ -131,22 +173,46 @@ function getPracticePool() {
 
 function getDailyPracticeItems() {
   const pool = getPracticePool();
-
   const seed = hashString(getDailyStorageKey());
-  const ranked = [...pool]
+  return [...pool]
     .map((item, index) => ({ item, score: hashString(`${seed}-${item.id}-${index}`) }))
     .sort((left, right) => left.score - right.score)
     .slice(0, Math.min(3, pool.length))
     .map((entry) => entry.item);
-
-  return ranked;
 }
 
-function updatePracticeResult(practice, module, isCorrect) {
-  appState.stats.attempts += 1;
+function isCorrectAnswer(userAnswer, practice) {
+  return window.AnswerMatcher.isAnswerCorrect(userAnswer, practice.answer, {
+    acceptedAnswers: practice.acceptedAnswers || []
+  });
+}
+
+function getAnswerRecord(practiceId) {
+  if (!appState.answerHistory[practiceId]) {
+    appState.answerHistory[practiceId] = {
+      attempts: 0,
+      correct: 0,
+      latestCorrect: false,
+      firstCorrect: null,
+      lastAnswer: ""
+    };
+  }
+  return appState.answerHistory[practiceId];
+}
+
+function updatePracticeResult(practice, module, isCorrect, userAnswer) {
+  const record = getAnswerRecord(practice.id);
+  record.attempts += 1;
+  record.lastAnswer = userAnswer;
+  record.latestCorrect = isCorrect;
+  record.lastAnsweredAt = new Date().toISOString();
+
+  if (record.firstCorrect === null) {
+    record.firstCorrect = isCorrect;
+  }
 
   if (isCorrect) {
-    appState.stats.correct += 1;
+    record.correct += 1;
     appState.completed[practice.id] = true;
     appState.wrongBook = appState.wrongBook.filter((item) => item.id !== practice.id);
     return `回答正确：${practice.explanation}`;
@@ -154,8 +220,8 @@ function updatePracticeResult(practice, module, isCorrect) {
 
   const wrongItem = {
     id: practice.id,
-    moduleId: module.id,
-    moduleTitle: module.title,
+    moduleId: module?.id || practice.moduleId,
+    moduleTitle: module?.title || practice.moduleTitle || "综合练习",
     title: practice.title,
     prompt: practice.prompt,
     answer: practice.answer,
@@ -202,9 +268,29 @@ function getCorrectRate() {
   return `${Math.round((appState.stats.correct / appState.stats.attempts) * 100)}%`;
 }
 
+function setChildrenText(element, values, className) {
+  element.innerHTML = "";
+  values.forEach((value) => {
+    const span = document.createElement("span");
+    span.className = className;
+    span.textContent = value;
+    element.appendChild(span);
+  });
+}
+
+function updateProgressViews() {
+  renderDashboard();
+  renderHeroStats();
+  renderWrongBook();
+  const module = getActiveModule();
+  if (module) {
+    const visiblePractices = getModulePractices(module);
+    moduleProgress.textContent = `已完成 ${getModuleCompletedCount(module.id, visiblePractices)}/${visiblePractices.length} 题`;
+  }
+}
+
 function renderGradeFilter() {
   gradeFilter.innerHTML = "";
-
   gradeOptions.forEach((grade) => {
     const button = document.createElement("button");
     button.type = "button";
@@ -222,7 +308,6 @@ function renderGradeFilter() {
 
 function renderDifficultyFilter() {
   difficultyFilter.innerHTML = "";
-
   difficultyOptions.forEach((difficulty) => {
     const button = document.createElement("button");
     button.type = "button";
@@ -266,11 +351,14 @@ function renderModuleList() {
   overview.className = "module-map__overview";
   overview.innerHTML = `
     <div>
-      <strong>${activeGrade === "全部" ? "全部年级" : activeGrade} · ${activeDifficulty === "全部" ? "全部难度" : activeDifficulty}</strong>
-      <p class="muted">共 ${visibleModules.length} 个可学模块，建议从上到下依次学习，也可以点击薄弱模块直接跳转。</p>
+      <strong></strong>
+      <p class="muted"></p>
     </div>
-    <span class="badge">${getPracticePool().length} 道可练习题</span>
+    <span class="badge"></span>
   `;
+  overview.querySelector("strong").textContent = `${activeGrade === "全部" ? "全部年级" : activeGrade} · ${activeDifficulty === "全部" ? "全部难度" : activeDifficulty}`;
+  overview.querySelector("p").textContent = `共 ${visibleModules.length} 个可学模块，建议从上到下依次学习，也可以点击薄弱模块直接跳转。`;
+  overview.querySelector(".badge").textContent = `${getPracticePool().length} 道可练习题`;
   moduleList.appendChild(overview);
 
   const groupedModules = groupModulesByPrimaryGrade(visibleModules);
@@ -280,12 +368,15 @@ function renderModuleList() {
   [...orderedGrades, ...extraGrades].forEach((grade) => {
     const group = document.createElement("section");
     group.className = "module-group";
-    group.innerHTML = `
-      <div class="module-group__header">
-        <span>${grade}</span>
-        <small>${groupedModules.get(grade).length} 个模块</small>
-      </div>
-    `;
+
+    const header = document.createElement("div");
+    header.className = "module-group__header";
+    const title = document.createElement("span");
+    title.textContent = grade;
+    const count = document.createElement("small");
+    count.textContent = `${groupedModules.get(grade).length} 个模块`;
+    header.append(title, count);
+    group.appendChild(header);
 
     const list = document.createElement("div");
     list.className = "module-path";
@@ -293,19 +384,28 @@ function renderModuleList() {
     groupedModules.get(grade).forEach((module, index) => {
       const visiblePractices = getModulePractices(module);
       const completedCount = getModuleCompletedCount(module.id, visiblePractices);
-      const completionText = `${completedCount}/${visiblePractices.length}`;
       const item = document.createElement("button");
       item.type = "button";
       item.className = `module-path__item${module.id === activeModuleId ? " is-active" : ""}`;
       item.innerHTML = `
-        <span class="module-path__step">${index + 1}</span>
+        <span class="module-path__step"></span>
         <span class="module-path__content">
-          <strong>${module.title}</strong>
-          <span>${module.description}</span>
-          <span class="module-path__tags">${module.grades.map((moduleGrade) => `<em>${moduleGrade}</em>`).join("")}</span>
+          <strong></strong>
+          <span></span>
+          <span class="module-path__tags"></span>
         </span>
-        <span class="module-path__progress">${completionText}</span>
+        <span class="module-path__progress"></span>
       `;
+      item.querySelector(".module-path__step").textContent = index + 1;
+      item.querySelector("strong").textContent = module.title;
+      item.querySelector(".module-path__content > span:not(.module-path__tags)").textContent = module.description;
+      const tagContainer = item.querySelector(".module-path__tags");
+      module.grades.forEach((moduleGrade) => {
+        const tag = document.createElement("em");
+        tag.textContent = moduleGrade;
+        tagContainer.appendChild(tag);
+      });
+      item.querySelector(".module-path__progress").textContent = `${completedCount}/${visiblePractices.length}`;
       item.addEventListener("click", () => {
         activeModuleId = module.id;
         render();
@@ -322,7 +422,6 @@ function renderModuleList() {
 function renderExamples(module) {
   examplesContainer.innerHTML = "";
   const examples = getModuleExamples(module);
-
   if (examples.length === 0) {
     examplesContainer.innerHTML = '<div class="empty-state-box">当前难度下暂时没有例题讲解。</div>';
     return;
@@ -330,7 +429,6 @@ function renderExamples(module) {
 
   examples.forEach((example, index) => {
     const fragment = exampleTemplate.content.cloneNode(true);
-    const card = fragment.querySelector(".card");
     const title = fragment.querySelector(".card__title");
     const difficulty = fragment.querySelector(".difficulty");
     const question = fragment.querySelector(".card__question");
@@ -344,20 +442,17 @@ function renderExamples(module) {
     question.textContent = example.question;
     answerText.textContent = `答案：${example.answer}`;
     analysisText.textContent = `解析：${example.analysis}`;
-
     toggle.addEventListener("click", () => {
       answerPanel.classList.toggle("hidden");
       toggle.textContent = answerPanel.classList.contains("hidden") ? "显示答案" : "收起答案";
     });
-
-    examplesContainer.appendChild(card);
+    examplesContainer.appendChild(fragment);
   });
 }
 
 function renderPractice(module) {
   practiceList.innerHTML = "";
   const practices = getModulePractices(module);
-
   if (practices.length === 0) {
     practiceList.innerHTML = '<div class="empty-state-box">当前难度下暂时没有闯关练习。</div>';
     return;
@@ -386,21 +481,12 @@ function renderPractice(module) {
         return;
       }
 
-      const normalizedUserAnswer = userAnswer.replace(/\s+/g, "").toLowerCase();
-      const normalizedAnswer = practice.answer.replace(/\s+/g, "").toLowerCase();
-      const isCorrect = normalizedUserAnswer === normalizedAnswer;
-      const message = updatePracticeResult(practice, module, isCorrect);
-
-      if (isCorrect) {
-        feedback.textContent = message;
-        feedback.className = createFeedbackClass(true);
-      } else {
-        feedback.textContent = message;
-        feedback.className = createFeedbackClass(false);
-      }
-
+      const isCorrect = isCorrectAnswer(userAnswer, practice);
+      feedback.textContent = updatePracticeResult(practice, module, isCorrect, userAnswer);
+      feedback.className = createFeedbackClass(isCorrect);
+      subtitle.textContent = appState.completed[practice.id] ? "已完成" : "待挑战";
       saveState();
-      render();
+      updateProgressViews();
     });
 
     practiceList.appendChild(fragment);
@@ -418,7 +504,6 @@ function getFilteredWrongBookItems() {
 
 function renderWrongBook() {
   wrongBookList.innerHTML = "";
-
   if (appState.wrongBook.length === 0) {
     wrongBookList.innerHTML = '<p class="empty-state">暂时没有错题，继续加油。</p>';
     return;
@@ -438,24 +523,30 @@ function renderWrongBook() {
     return groups;
   }, {});
 
-  Object.entries(groupedWrongBook).forEach(([moduleTitle, items]) => {
+  Object.entries(groupedWrongBook).forEach(([groupTitle, items]) => {
     const groupWrapper = document.createElement("section");
     groupWrapper.className = "wrong-group";
-
     const heading = document.createElement("h3");
-    heading.textContent = moduleTitle;
+    heading.textContent = groupTitle;
     groupWrapper.appendChild(heading);
 
     items.forEach((item) => {
       const wrapper = document.createElement("article");
       wrapper.className = "wrong-item";
-      wrapper.innerHTML = `
-        <h4>${item.title}</h4>
-        <p>${item.prompt}</p>
-        <p class="muted">难度：${item.difficulty || "未标注"}</p>
-        <p class="muted">答案：${item.answer}</p>
-        <p class="muted">解析：${item.explanation}</p>
-      `;
+      const title = document.createElement("h4");
+      const prompt = document.createElement("p");
+      const difficulty = document.createElement("p");
+      const answer = document.createElement("p");
+      const explanation = document.createElement("p");
+      difficulty.className = "muted";
+      answer.className = "muted";
+      explanation.className = "muted";
+      title.textContent = item.title;
+      prompt.textContent = item.prompt;
+      difficulty.textContent = `难度：${item.difficulty || "未标注"}`;
+      answer.textContent = `答案：${item.answer}`;
+      explanation.textContent = `解析：${item.explanation}`;
+      wrapper.append(title, prompt, difficulty, answer, explanation);
       groupWrapper.appendChild(wrapper);
     });
 
@@ -466,7 +557,6 @@ function renderWrongBook() {
 function renderRecentPaperSummary() {
   recentPaperSummary.innerHTML = "";
   const generatedItems = getGeneratedPaperItems();
-
   if (generatedItems.length === 0) {
     recentPaperSummary.innerHTML = '<div class="summary-row"><h4>最近试卷成绩</h4><p class="muted">还没有可展示的最近试卷。</p></div>';
     return;
@@ -476,13 +566,18 @@ function renderRecentPaperSummary() {
   const summary = getPaperSummaryData(generatedItems);
   const wrapper = document.createElement("div");
   wrapper.className = "summary-row";
-  wrapper.innerHTML = `
-    <h4>最近试卷成绩</h4>
-    <p class="muted">来源：${sourceLabel}</p>
-    <p class="muted">筛选：${appState.paperGenerator.grade} · ${appState.paperGenerator.difficulty}</p>
-    <p class="muted">总题数：${summary.total} · 已作答：${summary.answered}</p>
-    <p class="muted">答对：${summary.correct} · 正确率：${summary.accuracy}</p>
-  `;
+  wrapper.innerHTML = "<h4>最近试卷成绩</h4>";
+  [
+    `来源：${sourceLabel}`,
+    `筛选：${appState.paperGenerator.grade} · ${appState.paperGenerator.difficulty}`,
+    `总题数：${summary.total} · 已作答：${summary.answered}`,
+    `答对：${summary.correct} · 正确率：${summary.accuracy}`
+  ].forEach((text) => {
+    const row = document.createElement("p");
+    row.className = "muted";
+    row.textContent = text;
+    wrapper.appendChild(row);
+  });
   recentPaperSummary.appendChild(wrapper);
 }
 
@@ -491,41 +586,20 @@ function getMasteryRankingData() {
     .map((module) => {
       const visiblePractices = getModulePractices(module);
       const total = visiblePractices.length;
-
       if (total === 0) {
         return null;
       }
-
       const completed = getModuleCompletedCount(module.id, visiblePractices);
       const completionRate = completed / total;
-
-      return {
-        id: module.id,
-        title: module.title,
-        completed,
-        total,
-        completionRate,
-        completionRateText: `${Math.round(completionRate * 100)}%`
-      };
+      return { id: module.id, title: module.title, completed, total, completionRate, completionRateText: `${Math.round(completionRate * 100)}%` };
     })
     .filter(Boolean)
-    .sort((left, right) => {
-      if (right.completionRate !== left.completionRate) {
-        return right.completionRate - left.completionRate;
-      }
-
-      if (right.completed !== left.completed) {
-        return right.completed - left.completed;
-      }
-
-      return left.title.localeCompare(right.title, "zh-CN");
-    });
+    .sort((left, right) => right.completionRate - left.completionRate || right.completed - left.completed || left.title.localeCompare(right.title, "zh-CN"));
 }
 
 function renderMasteryRanking() {
   masteryRanking.innerHTML = "";
   const rankingData = getMasteryRankingData();
-
   if (rankingData.length === 0) {
     masteryRanking.innerHTML = '<div class="summary-row"><h4>模块掌握度排行</h4><p class="muted">当前筛选下还没有可统计的模块。</p></div>';
     return;
@@ -533,16 +607,19 @@ function renderMasteryRanking() {
 
   const intro = document.createElement("div");
   intro.className = "summary-row";
-
   const topCount = Math.min(3, rankingData.length);
   const supportStartIndex = Math.max(rankingData.length - 3, topCount);
   const supportModules = rankingData.slice(supportStartIndex).map((item) => item.title).join("、");
-
-  intro.innerHTML = `
-    <h4>模块掌握度排行</h4>
-    <p class="muted">按当前筛选条件统计：${activeGrade} · ${activeDifficulty}</p>
-    <p class="muted">领先模块：前 ${topCount} 名优先展示；待加强：${supportModules || "暂无"}</p>
-  `;
+  intro.innerHTML = "<h4>模块掌握度排行</h4>";
+  [
+    `按当前筛选条件统计：${activeGrade} · ${activeDifficulty}`,
+    `领先模块：前 ${topCount} 名优先展示；待加强：${supportModules || "暂无"}`
+  ].forEach((text) => {
+    const row = document.createElement("p");
+    row.className = "muted";
+    row.textContent = text;
+    intro.appendChild(row);
+  });
   masteryRanking.appendChild(intro);
 
   rankingData.forEach((item, index) => {
@@ -550,20 +627,19 @@ function renderMasteryRanking() {
     const isTop = index < 3;
     const isSupport = index >= rankingData.length - 3 && index >= 3;
     row.type = "button";
-    row.className = `summary-row mastery-row${isTop ? " mastery-row--top" : ""}${isSupport ? " mastery-row--support" : ""}${isSupport ? " mastery-row--jump" : ""}`;
+    row.className = `summary-row mastery-row${isTop ? " mastery-row--top" : ""}${isSupport ? " mastery-row--support mastery-row--jump" : ""}`;
     row.innerHTML = `
       <div class="mastery-row__main">
-        <span class="mastery-rank${isTop ? " mastery-rank--top" : isSupport ? " mastery-rank--support" : ""}">#${index + 1}</span>
-        <div>
-          <h4>${item.title}</h4>
-          <p class="muted">已完成 ${item.completed}/${item.total} 题</p>
-        </div>
+        <span class="mastery-rank${isTop ? " mastery-rank--top" : isSupport ? " mastery-rank--support" : ""}"></span>
+        <div><h4></h4><p class="muted"></p></div>
       </div>
-      <div class="mastery-row__aside">
-        <div class="mastery-row__score">${item.completionRateText}</div>
-        <p class="muted mastery-row__label">${isTop ? "掌握领先" : isSupport ? "点击跳转" : "持续练习"}</p>
-      </div>
+      <div class="mastery-row__aside"><div class="mastery-row__score"></div><p class="muted mastery-row__label"></p></div>
     `;
+    row.querySelector(".mastery-rank").textContent = `#${index + 1}`;
+    row.querySelector("h4").textContent = item.title;
+    row.querySelector(".mastery-row__main .muted").textContent = `已完成 ${item.completed}/${item.total} 题`;
+    row.querySelector(".mastery-row__score").textContent = item.completionRateText;
+    row.querySelector(".mastery-row__label").textContent = isTop ? "掌握领先" : isSupport ? "点击跳转" : "持续练习";
 
     if (isSupport) {
       row.addEventListener("click", () => {
@@ -574,7 +650,6 @@ function renderMasteryRanking() {
     } else {
       row.disabled = true;
     }
-
     masteryRanking.appendChild(row);
   });
 }
@@ -594,7 +669,11 @@ function renderDashboard() {
   dashboardData.forEach((item) => {
     const card = document.createElement("div");
     card.className = "dashboard-card";
-    card.innerHTML = `<span>${item.label}</span><strong>${item.value}</strong>`;
+    const label = document.createElement("span");
+    const value = document.createElement("strong");
+    label.textContent = item.label;
+    value.textContent = item.value;
+    card.append(label, value);
     dashboardCards.appendChild(card);
   });
 
@@ -604,10 +683,12 @@ function renderDashboard() {
     const completedCount = getModuleCompletedCount(module.id, visiblePractices);
     const summary = document.createElement("div");
     summary.className = "summary-row";
-    summary.innerHTML = `
-      <h4>${module.title}</h4>
-      <p class="muted">${completedCount}/${visiblePractices.length} 题已完成</p>
-    `;
+    const title = document.createElement("h4");
+    const progress = document.createElement("p");
+    progress.className = "muted";
+    title.textContent = module.title;
+    progress.textContent = `${completedCount}/${visiblePractices.length} 题已完成`;
+    summary.append(title, progress);
     moduleSummary.appendChild(summary);
   });
 }
@@ -615,7 +696,6 @@ function renderDashboard() {
 function renderHeroStats() {
   const totalCompleted = Object.values(appState.completed).filter(Boolean).length;
   heroStats.innerHTML = "";
-
   [
     { label: "已完成题目", value: `${totalCompleted}/${getTotalPracticeCount()}` },
     { label: "当前正确率", value: getCorrectRate() },
@@ -623,7 +703,11 @@ function renderHeroStats() {
   ].forEach((item) => {
     const stat = document.createElement("div");
     stat.className = "stat-row";
-    stat.innerHTML = `<span>${item.label}</span><strong>${item.value}</strong>`;
+    const label = document.createElement("span");
+    const value = document.createElement("strong");
+    label.textContent = item.label;
+    value.textContent = item.value;
+    stat.append(label, value);
     heroStats.appendChild(stat);
   });
 }
@@ -670,7 +754,6 @@ function generateWrongPaper() {
     paperList.innerHTML = "";
     return;
   }
-
   generatePaperFromPool(wrongPool, "wrongBook");
 }
 
@@ -678,11 +761,8 @@ function getGeneratedPaperItems() {
   if (appState.paperGenerator.grade !== activeGrade || appState.paperGenerator.difficulty !== activeDifficulty) {
     return [];
   }
-
   const pool = getPracticePool();
-  return appState.paperGenerator.practiceIds
-    .map((id) => pool.find((item) => item.id === id))
-    .filter(Boolean);
+  return appState.paperGenerator.practiceIds.map((id) => pool.find((item) => item.id === id)).filter(Boolean);
 }
 
 function getPaperSummaryData(generatedItems) {
@@ -690,7 +770,6 @@ function getPaperSummaryData(generatedItems) {
   const answeredItems = generatedItems.filter((item) => answers[item.id]);
   const correctItems = generatedItems.filter((item) => answers[item.id]?.correct);
   const wrongItems = generatedItems.filter((item) => answers[item.id] && !answers[item.id].correct);
-
   return {
     total: generatedItems.length,
     answered: answeredItems.length,
@@ -702,7 +781,6 @@ function getPaperSummaryData(generatedItems) {
 
 function renderPaperSummary(generatedItems) {
   paperSummary.innerHTML = "";
-
   if (generatedItems.length === 0) {
     paperSummary.innerHTML = '<div class="empty-state-box">生成试卷后，这里会自动显示判卷汇总。</div>';
     return;
@@ -714,25 +792,49 @@ function renderPaperSummary(generatedItems) {
   const correctItems = generatedItems.filter((item) => answers[item.id]?.correct);
   const wrongItems = generatedItems.filter((item) => answers[item.id] && !answers[item.id].correct);
   const accuracy = answeredItems.length === 0 ? "0%" : `${Math.round((correctItems.length / answeredItems.length) * 100)}%`;
-
   const summaryCard = document.createElement("div");
   summaryCard.className = "paper-summary-card";
   summaryCard.innerHTML = `
     <h3>自动判卷汇总</h3>
-    <p class="muted">当前来源：${sourceLabel}</p>
-    <p class="muted">当前筛选：${activeGrade} · ${activeDifficulty}</p>
-    <div class="paper-summary-grid">
-      <div class="paper-summary-stat"><span>总题数</span><strong>${generatedItems.length}</strong></div>
-      <div class="paper-summary-stat"><span>已作答</span><strong>${answeredItems.length}</strong></div>
-      <div class="paper-summary-stat"><span>答对</span><strong>${correctItems.length}</strong></div>
-      <div class="paper-summary-stat"><span>答错</span><strong>${wrongItems.length}</strong></div>
-      <div class="paper-summary-stat"><span>正确率</span><strong>${accuracy}</strong></div>
-    </div>
-    <div class="paper-summary-list">
-      ${wrongItems.length === 0 ? `<p class="muted">${answeredItems.length === 0 ? "还没开始答题。" : "太棒了，这份试卷目前全部答对。"}</p>` : wrongItems.map((item, index) => `<p class="muted">错题 ${index + 1}：${item.title}</p>`).join("")}
-    </div>
+    <p class="muted"></p>
+    <p class="muted"></p>
+    <div class="paper-summary-grid"></div>
+    <div class="paper-summary-list"></div>
   `;
-
+  const metaRows = summaryCard.querySelectorAll(".muted");
+  metaRows[0].textContent = `当前来源：${sourceLabel}`;
+  metaRows[1].textContent = `当前筛选：${activeGrade} · ${activeDifficulty}`;
+  const grid = summaryCard.querySelector(".paper-summary-grid");
+  [
+    ["总题数", generatedItems.length],
+    ["已作答", answeredItems.length],
+    ["答对", correctItems.length],
+    ["答错", wrongItems.length],
+    ["正确率", accuracy]
+  ].forEach(([label, value]) => {
+    const stat = document.createElement("div");
+    stat.className = "paper-summary-stat";
+    const labelElement = document.createElement("span");
+    const valueElement = document.createElement("strong");
+    labelElement.textContent = label;
+    valueElement.textContent = value;
+    stat.append(labelElement, valueElement);
+    grid.appendChild(stat);
+  });
+  const list = summaryCard.querySelector(".paper-summary-list");
+  if (wrongItems.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "muted";
+    empty.textContent = answeredItems.length === 0 ? "还没开始答题。" : "太棒了，这份试卷目前全部答对。";
+    list.appendChild(empty);
+  } else {
+    wrongItems.forEach((item, index) => {
+      const wrong = document.createElement("p");
+      wrong.className = "muted";
+      wrong.textContent = `错题 ${index + 1}：${item.title}`;
+      list.appendChild(wrong);
+    });
+  }
   paperSummary.appendChild(summaryCard);
 }
 
@@ -762,25 +864,14 @@ function renderPaperGenerator() {
 
   generatedItems.forEach((practice, index) => {
     const saved = appState.paperGenerator.answers[practice.id];
-    const wrapper = document.createElement("article");
-    wrapper.className = "paper-card";
-    wrapper.innerHTML = `
-      <div class="card__header">
-        <div>
-          <h4 class="card__title">${index + 1}. ${practice.title}</h4>
-          <p class="muted">${practice.moduleTitle}</p>
-        </div>
-        <span class="difficulty">${practice.difficulty}</span>
-      </div>
-      <div class="daily-card__meta">${practice.grades.map((grade) => `<span class="grade-tag">${grade}</span>`).join("")}</div>
-      <p class="card__question">${practice.prompt}</p>
-      <div class="answer-row">
-        <input class="answer-input" type="text" placeholder="输入答案" value="${saved?.answer || ""}" />
-        <button class="button button--small button--primary submit-paper-answer" type="button">提交</button>
-      </div>
-      <p class="feedback${saved ? ` ${saved.correct ? "is-correct" : "is-wrong"}` : " hidden"}">${saved ? saved.message : ""}</p>
-    `;
-
+    const wrapper = createAnswerCard({
+      practice,
+      index,
+      subtitle: practice.moduleTitle,
+      grades: practice.grades,
+      saved,
+      buttonClass: "submit-paper-answer"
+    });
     const input = wrapper.querySelector(".answer-input");
     const button = wrapper.querySelector(".submit-paper-answer");
     const feedback = wrapper.querySelector(".feedback");
@@ -793,28 +884,55 @@ function renderPaperGenerator() {
         return;
       }
 
-      const isCorrect = userAnswer.replace(/\s+/g, "").toLowerCase() === practice.answer.replace(/\s+/g, "").toLowerCase();
-      const message = updatePracticeResult(practice, { id: practice.moduleId, title: practice.moduleTitle }, isCorrect);
-      appState.paperGenerator.answers[practice.id] = {
-        answer: userAnswer,
-        correct: isCorrect,
-        message
-      };
+      const isCorrect = isCorrectAnswer(userAnswer, practice);
+      const message = updatePracticeResult(practice, { id: practice.moduleId, title: practice.moduleTitle }, isCorrect, userAnswer);
+      appState.paperGenerator.answers[practice.id] = { answer: userAnswer, correct: isCorrect, message };
       feedback.textContent = message;
       feedback.className = createFeedbackClass(isCorrect);
       saveState();
-      render();
+      renderPaperGenerator();
+      updateProgressViews();
     });
 
     paperList.appendChild(wrapper);
   });
 }
 
+function createAnswerCard({ practice, index, subtitle, grades = [], saved, buttonClass }) {
+  const wrapper = document.createElement("article");
+  wrapper.className = buttonClass === "submit-paper-answer" ? "paper-card" : "daily-card";
+  wrapper.innerHTML = `
+    <div class="card__header">
+      <div><h4 class="card__title"></h4><p class="muted"></p></div>
+      <span class="difficulty"></span>
+    </div>
+    <div class="daily-card__meta"></div>
+    <p class="card__question"></p>
+    <div class="answer-row">
+      <input class="answer-input" type="text" placeholder="输入答案" />
+      <button class="button button--small button--primary ${buttonClass}" type="button">提交</button>
+    </div>
+    <p class="feedback hidden"></p>
+  `;
+  wrapper.querySelector(".card__title").textContent = `${index + 1}. ${practice.title}`;
+  wrapper.querySelector(".muted").textContent = subtitle;
+  wrapper.querySelector(".difficulty").textContent = practice.difficulty;
+  wrapper.querySelector(".card__question").textContent = practice.prompt;
+  setChildrenText(wrapper.querySelector(".daily-card__meta"), grades, "grade-tag");
+  if (saved) {
+    const input = wrapper.querySelector(".answer-input");
+    const feedback = wrapper.querySelector(".feedback");
+    input.value = saved.answer;
+    feedback.textContent = saved.message;
+    feedback.className = createFeedbackClass(saved.correct);
+  }
+  return wrapper;
+}
+
 function renderDailyPractice() {
   const todayKey = getTodayKey();
   dailyPracticeDate.textContent = `今天的练习日期：${todayKey}`;
   dailyPracticeList.innerHTML = "";
-
   const dailyItems = getDailyPracticeItems();
   const dailyStorageKey = getDailyStorageKey();
   if (!appState.dailyPractice[dailyStorageKey]) {
@@ -829,25 +947,14 @@ function renderDailyPractice() {
   dailyItems.forEach((practice, index) => {
     const module = getModuleByPracticeId(practice.id);
     const saved = appState.dailyPractice[dailyStorageKey][practice.id];
-    const wrapper = document.createElement("article");
-    wrapper.className = "daily-card";
-    wrapper.innerHTML = `
-      <div class="card__header">
-        <div>
-          <h4 class="card__title">${index + 1}. ${practice.title}</h4>
-          <p class="muted">${module?.title || "综合练习"}</p>
-        </div>
-        <span class="difficulty">${practice.difficulty}</span>
-      </div>
-      <div class="daily-card__meta">${(module?.grades || []).map((grade) => `<span class="grade-tag">${grade}</span>`).join("")}</div>
-      <p class="card__question">${practice.prompt}</p>
-      <div class="answer-row">
-        <input class="answer-input" type="text" placeholder="输入答案" value="${saved?.answer || ""}" />
-        <button class="button button--small button--primary submit-daily-answer" type="button">提交</button>
-      </div>
-      <p class="feedback${saved ? ` ${saved.correct ? "is-correct" : "is-wrong"}` : " hidden"}">${saved ? saved.message : ""}</p>
-    `;
-
+    const wrapper = createAnswerCard({
+      practice,
+      index,
+      subtitle: module?.title || "综合练习",
+      grades: module?.grades || [],
+      saved,
+      buttonClass: "submit-daily-answer"
+    });
     const input = wrapper.querySelector(".answer-input");
     const button = wrapper.querySelector(".submit-daily-answer");
     const feedback = wrapper.querySelector(".feedback");
@@ -860,17 +967,13 @@ function renderDailyPractice() {
         return;
       }
 
-      const isCorrect = userAnswer.replace(/\s+/g, "").toLowerCase() === practice.answer.replace(/\s+/g, "").toLowerCase();
-      const message = updatePracticeResult(practice, module, isCorrect);
-      appState.dailyPractice[dailyStorageKey][practice.id] = {
-        answer: userAnswer,
-        correct: isCorrect,
-        message
-      };
+      const isCorrect = isCorrectAnswer(userAnswer, practice);
+      const message = updatePracticeResult(practice, module, isCorrect, userAnswer);
+      appState.dailyPractice[dailyStorageKey][practice.id] = { answer: userAnswer, correct: isCorrect, message };
       feedback.textContent = message;
       feedback.className = createFeedbackClass(isCorrect);
       saveState();
-      render();
+      updateProgressViews();
     });
 
     dailyPracticeList.appendChild(wrapper);
@@ -879,7 +982,6 @@ function renderDailyPractice() {
 
 function renderModuleDetail() {
   const module = getActiveModule();
-
   if (!module) {
     moduleTitle.textContent = "当前筛选暂无内容";
     moduleDescription.textContent = "请切换其他年级或难度查看现有学习模块。";
@@ -892,17 +994,16 @@ function renderModuleDetail() {
 
   const visiblePractices = getModulePractices(module);
   const completedCount = getModuleCompletedCount(module.id, visiblePractices);
-
   moduleTitle.textContent = module.title;
   moduleDescription.textContent = module.description;
-  moduleGrades.innerHTML = module.grades.map((grade) => `<span class="grade-tag">${grade}</span>`).join("");
+  setChildrenText(moduleGrades, module.grades, "grade-tag");
   moduleProgress.textContent = `已完成 ${completedCount}/${visiblePractices.length} 题`;
-
   renderExamples(module);
   renderPractice(module);
 }
 
 function render() {
+  appState.stats = calculateStats(appState.answerHistory);
   const visibleModules = getVisibleModules();
   if (visibleModules.length > 0 && !visibleModules.some((module) => module.id === activeModuleId)) {
     activeModuleId = visibleModules[0].id;
@@ -921,7 +1022,6 @@ function render() {
 
 generatePaperButton.addEventListener("click", generatePaper);
 generateWrongPaperButton.addEventListener("click", generateWrongPaper);
-
 clearWrongBookButton.addEventListener("click", () => {
   appState.wrongBook = [];
   saveState();
@@ -929,4 +1029,3 @@ clearWrongBookButton.addEventListener("click", () => {
 });
 
 render();
-
