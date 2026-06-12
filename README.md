@@ -22,6 +22,7 @@
 - 按知识点内在逻辑组织学习谱系，展示先修知识和后续连接
 - 为核心知识点提供可播放的动画讲解，帮助学生看见模型变化过程
 - 为每个知识点生成“未开始 / 学习中 / 需复习 / 已掌握”的掌握度状态
+- 为题目和错题记录生成错因标签，让错题本升级为错因诊断
 
 ## 本地运行
 
@@ -87,6 +88,15 @@ npm run check
 }
 ```
 
+练习题也可以显式提供 `mistakeTags`，用于标注常见错因；未显式配置时，`mistakeDiagnosis.js` 会按模块和题目关键词自动推断：
+
+```js
+{
+  id: "tree-planting-1",
+  mistakeTags: ["point-interval", "remainder-position"]
+}
+```
+
 `contentExpansion.js` 会在 `data.js` 加载后追加扩展知识模块，适合继续分批增加题库而不直接改动原始大题库。
 
 `knowledgeContinuityExpansion.js` 会继续追加承上启下的桥梁模块，例如周期、枚举、容斥、归一归总和盈亏问题。
@@ -113,6 +123,8 @@ npm run check
 `conceptAnimations.js` 会为知识点补充动画讲解脚本，包含动画标题、场景类型、分步旁白和每一步的可视化数据。
 
 `masteryModel.js` 会根据完成率、正确率、错题本、今日待复习错题和最近答错情况，为每个知识点生成掌握度状态和掌握分。
+
+`mistakeDiagnosis.js` 会为题目和错题记录补充错因标签，并按错因汇总错题本，常见标签包括 `point-interval`、`motion-relative`、`overlap`、`average-total`、`assumption-gap` 等。
 
 ## 第一阶段可用性改进
 
@@ -256,6 +268,16 @@ npm run check
 - 同时生成掌握分、完成率、正确率、错题数、待复习数和状态原因
 - 新增 `masteryView.js`，在按年级学习地图、按知识点学习地图、模块详情页和家长视图展示掌握度
 - 新增 `mastery.css` 和 `tests/masteryModel.test.js`
+
+## 第十四阶段错因标签系统
+
+错题本现在从“题目列表”升级为“错因诊断”：
+
+- 新增 `mistakeDiagnosis.js`，定义错因标签字典、模块默认标签、关键词推断和错题汇总逻辑
+- 题目会自动补充 `mistakeTags`，也支持在题目数据中显式配置错因标签
+- `reviewQueueModel.js` 会在错题入本时写入 `mistakeTags`
+- 新增 `mistakeDiagnosisView.js`，在错题本中展示错因诊断、在单个错题上显示“可能错因”、在家长视图展示错因排行
+- 新增 `mistakeDiagnosis.css` 和 `tests/mistakeDiagnosis.test.js`
 
 ## 后续方向
 
