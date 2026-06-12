@@ -1,0 +1,252 @@
+(function attachQuestMapView(root) {
+  const progressStorageKey = "mathlearning-progress-v2";
+  let scheduled = false;
+
+  function safeParse(value, fallback) {
+    try {
+      return value ? JSON.parse(value) : fallback;
+    } catch (error) {
+      return fallback;
+    }
+  }
+
+  function readState() {
+    try {
+      return safeParse(root.localStorage?.getItem(progressStorageKey), {});
+    } catch (error) {
+      return {};
+    }
+  }
+
+  function getTodayKey() {
+    if (root.ReviewScheduler?.toDateKey) {
+      return root.ReviewScheduler.toDateKey(new Date());
+    }
+    const date = new Date();
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+  }
+
+  function getMasteries(state) {
+    if (!root.MasteryModel || !Array.isArray(root.MATH_LEARNING_DATA)) {
+      return [];
+    }
+    return root.MasteryModel.calculateAllMastery(root.MATH_LEARNING_DATA, state, { todayKey: getTodayKey() });
+  }
+
+  function getModuleByTitle(title) {
+    return (root.MATH_LEARNING_DATA || []).find((module) => module.title === title) || null;
+  }
+
+  function getCardTitle(card) {
+    return card.querySelector("strong")?.textContent?.trim() || "";
+  }
+
+  function createStatusPill(state) {
+    const pill = document.createElement("span");
+    pill.className = `quest-map__status quest-map__status--${state.status.id}`;
+    pill.textContent = `${state.status.emoji} ${state.status.label}`;
+    pill.title = state.hint;
+    return pill;
+  }
+
+  function upsertStatusPill(card, state) {
+    const target = card.querySelector(".module-path__tags") || card.querySelector(".knowledge-mode-card__links") || card;
+    let pill = target.querySelector(".quest-map__status");
+    if (!pill) {
+      pill = createStatusPill(state);
+      target.appendChild(pill);
+      return;
+    }
+    pill.className = `quest-map__status quest-map__status--${state.status.id}`;
+    pill.textContent = `${state.status.emoji} ${state.status.label}`;
+    pill.title = state.hint;
+  }
+
+  function updateStepBadge(card, state) {
+    const step = card.querySelector(".module-path__step") || card.querySelector(".knowledge-mode-card__step");
+    if (!step) {
+      return;
+    }
+    step.textContent = state.status.emoji;
+    step.dataset.level = `第 ${state.levelNumber} 关`;
+    step.title = `第 ${state.levelNumber} 关 · ${state.status.label}`;
+  }
+
+  function getStatusClasses() {
+    return Object.values(root.QuestMap.questStatuses).map((status) => `is-quest-${status.id}`);
+  }
+
+  function decorateCard(card, state) {
+    card.dataset.questStatus = state.status.id;
+    card.dataset.questLevel = String(state.levelNumber);
+    card.classList.add("quest-map-node");
+    card.classList.remove(...getStatusClasses(), "is-quest-shaking");
+    card.classList.add(`is-quest-${state.status.id}`);
+    updateStepBadge(card, state);
+    upsertStatusPill(card, state);
+    bindLockedHint(card);
+  }
+
+  function createToast(message) {
+    const toast = document.createElement("div");
+    toast.className = "quest-map-toast";
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    root.setTimeout(() => toast.classList.add("is-visible"), 20);
+    root.setTimeout(() => {
+      toast.classList.remove("is-visible");
+      root.setTimeout(() => toast.remove(), 240);
+    }, 2600);
+  }
+
+  function scrollToRecommended() {
+    const target = document.querySelector(".quest-map-node.is-quest-needs-review, .quest-map-node.is-quest-current");
+    target?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function bindLockedHint(card) {
+    if (card.dataset.questBound === "true") {
+      return;
+    }
+    card.dataset.questBound = "true";
+    card.addEventListener(
+      "click",
+      (event) => {
+        if (card.dataset.questStatus !== root.QuestMap.questStatuses.locked.id) {
+          return;
+        }
+        event.preventDefault();
+        event.stopPropagation();
+        card.classList.add("is-quest-shaking");
+        root.setTimeout(() => card.classList.remove("is-quest-shaking"), 420);
+        const status = card.querySelector(".quest-map__status")?.title || "建议先完成前面的关卡。";
+        createToast(status);
+        scrollToRecommended();
+      },
+      true
+    );
+  }
+
+  function decoratePath(pathElement, cardSelector) {
+    const cards = Array.from(pathElement.querySelectorAll(cardSelector));
+    const modules = cards.map((card) => getModuleByTitle(getCardTitle(card))).filter(Boolean);
+    if (modules.length === 0) {
+      return [];
+    }
+    const state = readState();
+    const masteries = getMasteries(state);
+    const states = root.QuestMap.calculateQuestStates(modules, state, masteries);
+    cards.forEach((card, index) => {
+      const questState = states[index];
+      if (questState) {
+        decorateCard(card, questState);
+      }
+    });
+    pathElement.classList.add("quest-map-path");
+    return states;
+  }
+
+  function createSummaryContent(summary) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "quest-map-summary__content";
+    const title = document.createElement("strong");
+    const text = document.createElement("p");
+    const badge = document.createElement("span");
+    const currentText = summary.current ? `下一步：${summary.current.status.emoji} ${summary.current.moduleTitle}` : "所有关卡都已通关";
+    title.textContent = "闯关地图";
+    text.className = "muted";
+    text.textContent = `${summary.progressText} · ${currentText}`;
+    badge.className = "badge";
+    badge.textContent = `${summary.counts["needs-review"] || 0} 个回访关`;
+    wrapper.append(title, text, badge);
+    return wrapper;
+  }
+
+  function renderQuestSummary(allStates) {
+    const modulesPanel = document.getElementById("modules");
+    const anchor = document.querySelector(".learning-mode-switcher") || document.getElementById("grade-filter");
+    if (!modulesPanel || !anchor) {
+      return;
+    }
+    let panel = document.getElementById("quest-map-summary");
+    if (!panel) {
+      panel = document.createElement("section");
+      panel.id = "quest-map-summary";
+      panel.className = "quest-map-summary";
+      anchor.insertAdjacentElement("beforebegin", panel);
+    }
+    panel.innerHTML = "";
+    panel.appendChild(createSummaryContent(root.QuestMap.summarizeQuest(allStates)));
+  }
+
+  function updateOverviewText() {
+    const gradeOverview = document.querySelector("#module-list .module-map__overview .muted");
+    if (gradeOverview) {
+      gradeOverview.textContent = "像闯关地图一样从当前推荐关开始推进；已通关会点亮，需复习会变成回访关。";
+    }
+    const knowledgeOverview = document.querySelector("#knowledge-mode-list .knowledge-mode-overview .muted");
+    if (knowledgeOverview) {
+      knowledgeOverview.textContent = "沿知识主线循序闯关，先打通前置模型，再挑战后续综合关。";
+    }
+  }
+
+  function renderQuestMap() {
+    if (!root.QuestMap || typeof document === "undefined") {
+      return;
+    }
+    const allStates = [];
+    document.querySelectorAll("#module-list .module-path").forEach((path) => {
+      allStates.push(...decoratePath(path, ".module-path__item"));
+    });
+    document.querySelectorAll("#knowledge-mode-list .knowledge-strand-path").forEach((path) => {
+      allStates.push(...decoratePath(path, ".knowledge-mode-card"));
+    });
+    updateOverviewText();
+    if (allStates.length > 0) {
+      renderQuestSummary(allStates);
+    }
+  }
+
+  function scheduleRender() {
+    if (scheduled) {
+      return;
+    }
+    scheduled = true;
+    const callback = () => {
+      scheduled = false;
+      renderQuestMap();
+    };
+    if (root.requestAnimationFrame) {
+      root.requestAnimationFrame(callback);
+    } else {
+      root.setTimeout(callback, 0);
+    }
+  }
+
+  function observe() {
+    if (!("MutationObserver" in root)) {
+      return;
+    }
+    ["module-list", "knowledge-mode-list", "grade-filter", "difficulty-filter"].forEach((id) => {
+      const element = document.getElementById(id);
+      if (!element) {
+        return;
+      }
+      const observer = new MutationObserver(scheduleRender);
+      observer.observe(element, { childList: true, subtree: true, characterData: true });
+    });
+  }
+
+  function boot() {
+    renderQuestMap();
+    observe();
+  }
+
+  if (typeof document !== "undefined") {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", boot);
+    } else {
+      boot();
+    }
+  }
+})(typeof window !== "undefined" ? window : globalThis);
