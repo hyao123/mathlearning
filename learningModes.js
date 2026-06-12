@@ -60,6 +60,33 @@
     return getOriginalModuleButton(moduleTitle)?.querySelector(".module-path__progress")?.textContent?.trim() || "";
   }
 
+  function scrollToLessonPanel() {
+    document.getElementById("lesson-panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function openOriginalModule(moduleTitle) {
+    const originalButton = getOriginalModuleButton(moduleTitle);
+    if (!originalButton) {
+      return false;
+    }
+
+    root.setTimeout(() => originalButton.click(), 0);
+    return true;
+  }
+
+  function openKnowledgeModule(module) {
+    const appNavigator = root.MathLearningApp;
+    if (typeof appNavigator?.openModule === "function" && appNavigator.openModule(module.id)) {
+      return;
+    }
+
+    if (openOriginalModule(module.title)) {
+      return;
+    }
+
+    scrollToLessonPanel();
+  }
+
   function clickGradeAllIfNeeded() {
     const gradeFilter = document.getElementById("grade-filter");
     const activeGrade = getActiveChipText(gradeFilter);
@@ -162,6 +189,7 @@
     const card = document.createElement("button");
     card.type = "button";
     card.className = "knowledge-mode-card";
+    card.dataset.moduleId = module.id;
     card.innerHTML = `
       <span class="knowledge-mode-card__step"></span>
       <span class="knowledge-mode-card__content">
@@ -181,11 +209,9 @@
     const next = module.knowledgeTopology?.nextTitles || [];
     links.textContent = `先修：${prerequisites.length ? prerequisites.join("、") : "可直接开始"} · 后续：${next.length ? next.join("、") : "阶段终点"}`;
     card.querySelector(".knowledge-mode-card__progress").textContent = getOriginalProgress(module.title);
-    card.addEventListener("click", () => {
-      const originalButton = getOriginalModuleButton(module.title);
-      if (originalButton) {
-        originalButton.click();
-      }
+    card.addEventListener("click", (event) => {
+      event.preventDefault();
+      openKnowledgeModule(module);
     });
     return card;
   }
