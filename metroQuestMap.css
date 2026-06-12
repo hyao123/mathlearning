@@ -1,0 +1,112 @@
+.metro-quest-summary {
+  border-color: rgba(14, 165, 233, 0.28);
+  background: linear-gradient(135deg, #ecfeff, #ffffff 50%, #eff6ff);
+}
+
+.metro-quest-summary strong {
+  color: #0369a1;
+}
+
+.metro-quest-line {
+  position: relative;
+  background:
+    radial-gradient(circle at 24px 24px, rgba(14, 165, 233, 0.09) 0 3px, transparent 3px),
+    linear-gradient(180deg, #ffffff, #f8fbff) !important;
+  background-size: 42px 42px, auto !important;
+}
+
+.metro-quest-line::before {
+  width: 8px !important;
+  left: 40px !important;
+  background: linear-gradient(180deg, #0284c7, #f59e0b, #16a34a) !important;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.12);
+}
+
+.metro-quest-node::before {
+  content: attr(data-station-code);
+  position: absolute;
+  top: -10px;
+  left: 78px;
+  z-index: 2;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.metro-quest-node::after {
+  content: attr(data-station-points) " 积分";
+  position: absolute;
+  top: -10px;
+  right: 18px;
+  z-index: 2;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.metro-quest-station-meta {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 3px;
+  border-radius: 999px;
+  padding: 5px 10px;
+  background: #ecfeff;
+  color: #0369a1 !important;
+  border: 1px solid rgba(14, 165, 233, 0.18);
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.metro-quest-node .module-path__step,
+.metro-quest-node .knowledge-mode-card__step {
+  border-color: #0ea5e9;
+  box-shadow: 0 8px 18px rgba(14, 165, 233, 0.18), 0 0 0 5px rgba(14, 165, 233, 0.1);
+}
+
+.metro-quest-node.is-quest-cleared .metro-quest-station-meta {
+  background: #f0fdf4;
+  color: #166534 !important;
+  border-color: rgba(22, 163, 74, 0.22);
+}
+
+.metro-quest-node.is-quest-current .metro-quest-station-meta {
+  background: #dbeafe;
+  color: #1d4ed8 !important;
+  border-color: rgba(37, 99, 235, 0.24);
+}
+
+.metro-quest-node.is-quest-needs-review .metro-quest-station-meta {
+  background: #fff7ed;
+  color: #c2410c !important;
+  border-color: rgba(245, 158, 11, 0.24);
+}
+
+.metro-quest-node.is-quest-locked .metro-quest-station-meta {
+  background: #f3f4f6;
+  color: #6b7280 !important;
+  border-color: rgba(107, 114, 128, 0.16);
+}
+
+@media (max-width: 620px) {
+  .metro-quest-node::before,
+  .metro-quest-node::after {
+    position: static;
+    display: inline-flex;
+    width: fit-content;
+    margin: 0 0 8px 12px;
+  }
+
+  .metro-quest-station-meta {
+    white-space: normal;
+  }
+}
