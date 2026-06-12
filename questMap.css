@@ -1,0 +1,288 @@
+.quest-map-summary {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  border-radius: 20px;
+  background: linear-gradient(135deg, #eff6ff, #ffffff 52%, #fff7ed);
+}
+
+.quest-map-summary__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 12px;
+  align-items: center;
+}
+
+.quest-map-summary__content strong {
+  color: var(--primary-dark);
+  font-size: 18px;
+}
+
+.quest-map-summary__content p {
+  grid-column: 1;
+  line-height: 1.7;
+}
+
+.quest-map-summary__content .badge {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+}
+
+.quest-map-path {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 16px 16px, rgba(37, 99, 235, 0.08) 0 3px, transparent 3px),
+    linear-gradient(180deg, #ffffff, #f8fbff);
+  background-size: 34px 34px, auto;
+}
+
+.quest-map-path::before {
+  content: "";
+  position: absolute;
+  top: 34px;
+  bottom: 34px;
+  left: 42px;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.18), rgba(245, 158, 11, 0.34), rgba(22, 163, 74, 0.22));
+}
+
+.quest-map-node {
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(219, 228, 240, 0.98) !important;
+  border-radius: 24px !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+  overflow: visible;
+}
+
+.quest-map-node:nth-child(even) {
+  transform: translateX(26px);
+}
+
+.quest-map-node:hover,
+.quest-map-node.is-active {
+  transform: translateY(-2px) translateX(0);
+}
+
+.quest-map-node:nth-child(even):hover,
+.quest-map-node:nth-child(even).is-active {
+  transform: translateY(-2px) translateX(26px);
+}
+
+.quest-map-node.is-quest-cleared {
+  border-color: rgba(22, 163, 74, 0.34) !important;
+  background: linear-gradient(135deg, #f0fdf4, #ffffff) !important;
+}
+
+.quest-map-node.is-quest-needs-review {
+  border-color: rgba(245, 158, 11, 0.44) !important;
+  background: linear-gradient(135deg, #fff7ed, #ffffff) !important;
+}
+
+.quest-map-node.is-quest-current {
+  border-color: rgba(37, 99, 235, 0.48) !important;
+  background: linear-gradient(135deg, #eff6ff, #ffffff) !important;
+  box-shadow: 0 16px 34px rgba(37, 99, 235, 0.14), 0 0 0 6px rgba(37, 99, 235, 0.08);
+}
+
+.quest-map-node.is-quest-unlocked {
+  border-color: rgba(124, 58, 237, 0.26) !important;
+}
+
+.quest-map-node.is-quest-locked {
+  opacity: 0.66;
+  cursor: not-allowed;
+  filter: grayscale(0.15);
+}
+
+.quest-map-node.is-quest-shaking {
+  animation: quest-shake 420ms ease both;
+}
+
+.module-path__step,
+.knowledge-mode-card__step {
+  position: relative;
+  flex: 0 0 auto;
+  width: 48px !important;
+  height: 48px !important;
+  border: 3px solid #fff;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.13);
+  font-size: 20px;
+}
+
+.module-path__step::after,
+.knowledge-mode-card__step::after {
+  content: attr(data-level);
+  position: absolute;
+  left: 50%;
+  bottom: -24px;
+  transform: translateX(-50%);
+  min-width: 58px;
+  border-radius: 999px;
+  padding: 3px 7px;
+  background: #fff;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 900;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.is-quest-cleared .module-path__step,
+.is-quest-cleared .knowledge-mode-card__step {
+  background: #16a34a;
+  color: #fff;
+}
+
+.is-quest-needs-review .module-path__step,
+.is-quest-needs-review .knowledge-mode-card__step {
+  background: #f59e0b;
+  color: #fff;
+}
+
+.is-quest-current .module-path__step,
+.is-quest-current .knowledge-mode-card__step {
+  background: #2563eb;
+  color: #fff;
+  animation: quest-pulse 1.4s ease-in-out infinite alternate;
+}
+
+.is-quest-unlocked .module-path__step,
+.is-quest-unlocked .knowledge-mode-card__step {
+  background: #7c3aed;
+  color: #fff;
+}
+
+.is-quest-locked .module-path__step,
+.is-quest-locked .knowledge-mode-card__step {
+  background: #e5e7eb;
+  color: #6b7280;
+}
+
+.quest-map__status {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.quest-map__status--cleared {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.quest-map__status--needs-review {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.quest-map__status--current {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.quest-map__status--unlocked {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+.quest-map__status--locked {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.quest-map-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 110;
+  width: min(420px, calc(100% - 32px));
+  padding: 14px 16px;
+  border: 1px solid rgba(37, 99, 235, 0.24);
+  border-radius: 18px;
+  background: #fff;
+  color: var(--text);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  transition: opacity 220ms ease, transform 220ms ease;
+  text-align: center;
+  font-weight: 800;
+}
+
+.quest-map-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@keyframes quest-pulse {
+  from {
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18), 0 0 0 0 rgba(37, 99, 235, 0.18);
+  }
+  to {
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18), 0 0 0 8px rgba(37, 99, 235, 0.08);
+  }
+}
+
+@keyframes quest-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+}
+
+@media (max-width: 860px) {
+  .quest-map-summary__content {
+    grid-template-columns: 1fr;
+  }
+
+  .quest-map-summary__content .badge,
+  .quest-map-summary__content p {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .quest-map-path::before {
+    left: 42px;
+  }
+
+  .quest-map-node:nth-child(even),
+  .quest-map-node:nth-child(even):hover,
+  .quest-map-node:nth-child(even).is-active {
+    transform: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .quest-map-path {
+    padding: 12px;
+  }
+
+  .module-path__item,
+  .knowledge-mode-card {
+    grid-template-columns: auto 1fr !important;
+  }
+
+  .module-path__progress,
+  .knowledge-mode-card__progress {
+    grid-column: 2;
+    width: fit-content;
+  }
+}
