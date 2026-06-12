@@ -1,0 +1,68 @@
+.math-essence {
+  margin: 18px 0 22px;
+  padding: 18px;
+  border: 1px solid rgba(37, 99, 235, 0.16);
+  border-radius: 20px;
+  background: linear-gradient(135deg, #f8fbff, #ffffff);
+}
+
+.math-essence__header {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.math-essence__header h3 {
+  margin: 0;
+  color: var(--primary-dark);
+}
+
+.math-essence__big-idea {
+  margin: 0 0 10px;
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.math-essence__question {
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: #eef4ff;
+  color: var(--primary-dark);
+  line-height: 1.7;
+}
+
+.math-essence__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.math-essence__group {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.math-essence__group h4 {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.math-essence__group ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+@media (max-width: 760px) {
+  .math-essence__grid {
+    grid-template-columns: 1fr;
+  }
+}
