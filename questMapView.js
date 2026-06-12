@@ -45,6 +45,23 @@
     return Boolean(element) && !element.closest("[hidden]");
   }
 
+  function findModuleCardByTitle(moduleTitle) {
+    const cards = Array.from(document.querySelectorAll("#knowledge-mode-list .knowledge-mode-card, #module-list .module-path__item"));
+    return cards.find((card) => getCardTitle(card) === moduleTitle && isVisible(card)) || cards.find((card) => getCardTitle(card) === moduleTitle) || null;
+  }
+
+  function openModuleFromSummary(state) {
+    if (!state) {
+      return;
+    }
+    const card = findModuleCardByTitle(state.moduleTitle);
+    if (card) {
+      card.click();
+      return;
+    }
+    document.getElementById("lesson-panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   function createStatusPill(state) {
     const pill = document.createElement("span");
     pill.className = `quest-map__status quest-map__status--${state.status.id}`;
@@ -175,6 +192,14 @@
     badge.className = "badge";
     badge.textContent = `${summary.counts["needs-review"] || 0} 个回访关`;
     wrapper.append(title, text, badge);
+    if (summary.current) {
+      const action = document.createElement("button");
+      action.type = "button";
+      action.className = "button button--small button--primary quest-map-summary__action";
+      action.textContent = "进入当前知识点";
+      action.addEventListener("click", () => openModuleFromSummary(summary.current));
+      wrapper.appendChild(action);
+    }
     return wrapper;
   }
 
@@ -263,7 +288,7 @@
         return;
       }
       const observer = new MutationObserver(scheduleRender);
-      observer.observe(element, { childList: true, subtree: true, characterData: true });
+      observer.observe(element, { childList: true, subtree: true, attributes: true, attributeFilter: ["class", "hidden"] });
     });
   }
 
