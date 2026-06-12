@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "test": "node --test",
-    "check": "node --check answerMatcher.js && node --check reviewScheduler.js && node --check reviewQueueModel.js && node --check learningSupport.js && node --check learningSupportView.js && node --check productExperience.js && node --check app.js"
+    "check": "node --check answerMatcher.js && node --check reviewScheduler.js && node --check reviewQueueModel.js && node --check learningSupport.js && node --check learningSupportView.js && node --check productExperience.js && node --check adaptivePractice.js && node --check app.js"
   },
   "devDependencies": {},
   "engines": {
