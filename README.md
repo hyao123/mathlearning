@@ -23,6 +23,7 @@
 - 为核心知识点提供可播放的动画讲解，帮助学生看见模型变化过程
 - 为每个知识点生成“未开始 / 学习中 / 需复习 / 已掌握”的掌握度状态
 - 为题目和错题记录生成错因标签，让错题本升级为错因诊断
+- 提供成长值、等级、徽章墙和下一目标，增强学生学习成就感
 
 ## 本地运行
 
@@ -125,6 +126,8 @@ npm run check
 `masteryModel.js` 会根据完成率、正确率、错题本、今日待复习错题和最近答错情况，为每个知识点生成掌握度状态和掌握分。
 
 `mistakeDiagnosis.js` 会为题目和错题记录补充错因标签，并按错因汇总错题本，常见标签包括 `point-interval`、`motion-relative`、`overlap`、`average-total`、`assumption-gap` 等。
+
+`rewardSystem.js` 会根据作答、完成、掌握、纠错、连续学习和跨知识主线探索情况计算成长值、等级、徽章和下一目标。
 
 ## 第一阶段可用性改进
 
@@ -278,6 +281,17 @@ npm run check
 - `reviewQueueModel.js` 会在错题入本时写入 `mistakeTags`
 - 新增 `mistakeDiagnosisView.js`，在错题本中展示错因诊断、在单个错题上显示“可能错因”、在家长视图展示错因排行
 - 新增 `mistakeDiagnosis.css` 和 `tests/mistakeDiagnosis.test.js`
+
+## 第十五阶段成长奖励系统
+
+系统现在提供更强的学习成就感：
+
+- 新增 `rewardSystem.js`，根据作答、答对、完成题数、连续学习、知识点掌握、错题修复和跨知识主线探索计算成长值
+- 设计 7 个成长等级，例如“小小探索者”“模型建造师”“思维小达人”“数学小导师”
+- 设计徽章墙，包含勇敢开始、首胜达成、三日连学、错题修复、掌握一城、跨域探索等徽章
+- 新增 `rewardSystemView.js`，在首页展示等级、成长值、连续学习、下一目标和徽章墙，在家长视图展示成长奖励概览
+- 新增升级和新徽章奖励提示，让学生每次进步都有即时反馈
+- 新增 `rewardSystem.css` 和 `tests/rewardSystem.test.js`
 
 ## 后续方向
 
