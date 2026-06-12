@@ -136,6 +136,10 @@
     explicitSupport
   };
 
+  if (Array.isArray(root.MATH_LEARNING_DATA)) {
+    root.MATH_LEARNING_DATA = applySupportToModules(root.MATH_LEARNING_DATA);
+  }
+
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
   }
