@@ -54,13 +54,13 @@ const difficultyOptions = ["全部", "基础", "进阶", "提高", "挑战"];
 let appState = loadState();
 let activeGrade = "全部";
 let activeDifficulty = "全部";
-let activeModuleId = modules[0].id;
+let activeModuleId = modules[0]?.id || "";
 
 function cloneDefaultState() {
   return structuredClone(defaultState);
 }
 
-function migrateLegacyState(parsed) {
+function migrateLegacyState(parsed = {}) {
   const nextState = cloneDefaultState();
   nextState.completed = parsed.completed || {};
   nextState.wrongBook = Array.isArray(parsed.wrongBook) ? parsed.wrongBook : [];
@@ -105,11 +105,7 @@ function migrateLegacyState(parsed) {
 function loadState() {
   try {
     const saved = localStorage.getItem(storageKey) || localStorage.getItem(legacyStorageKey);
-    if (!saved) {
-      return cloneDefaultState();
-    }
-
-    return migrateLegacyState(JSON.parse(saved));
+    return saved ? migrateLegacyState(JSON.parse(saved)) : cloneDefaultState();
   } catch (error) {
     return cloneDefaultState();
   }
@@ -132,8 +128,11 @@ function calculateStats(answerHistory) {
 }
 
 function getTodayKey() {
-  const now = new Date();
-  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  return window.ReviewScheduler?.toDateKey ? window.ReviewScheduler.toDateKey(new Date()) : formatDateKey(new Date());
+}
+
+function formatDateKey(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
 
 function getDailyStorageKey() {
@@ -200,6 +199,28 @@ function getAnswerRecord(practiceId) {
   return appState.answerHistory[practiceId];
 }
 
+function getPracticeForReview(practice, module) {
+  return {
+    ...practice,
+    moduleId: module?.id || practice.moduleId,
+    moduleTitle: module?.title || practice.moduleTitle || "综合练习"
+  };
+}
+
+function updateReviewQueue(practice, module, isCorrect) {
+  const wasInWrongBook = appState.wrongBook.some((item) => item.id === practice.id);
+  if (isCorrect && !wasInWrongBook) {
+    return;
+  }
+
+  appState = window.ReviewQueueModel.updateWrongBookAfterAnswer({
+    state: appState,
+    practice: getPracticeForReview(practice, module),
+    isCorrect,
+    todayKey: getTodayKey()
+  });
+}
+
 function updatePracticeResult(practice, module, isCorrect, userAnswer) {
   const record = getAnswerRecord(practice.id);
   record.attempts += 1;
@@ -214,25 +235,11 @@ function updatePracticeResult(practice, module, isCorrect, userAnswer) {
   if (isCorrect) {
     record.correct += 1;
     appState.completed[practice.id] = true;
-    appState.wrongBook = appState.wrongBook.filter((item) => item.id !== practice.id);
+    updateReviewQueue(practice, module, true);
     return `回答正确：${practice.explanation}`;
   }
 
-  const wrongItem = {
-    id: practice.id,
-    moduleId: module?.id || practice.moduleId,
-    moduleTitle: module?.title || practice.moduleTitle || "综合练习",
-    title: practice.title,
-    prompt: practice.prompt,
-    answer: practice.answer,
-    explanation: practice.explanation,
-    difficulty: practice.difficulty
-  };
-
-  if (!appState.wrongBook.some((item) => item.id === practice.id)) {
-    appState.wrongBook.unshift(wrongItem);
-  }
-
+  updateReviewQueue(practice, module, false);
   return `这题答错了。正确答案：${practice.answer}。${practice.explanation}`;
 }
 
@@ -276,6 +283,14 @@ function setChildrenText(element, values, className) {
     span.textContent = value;
     element.appendChild(span);
   });
+}
+
+function renderEmptyBox(container, text) {
+  container.innerHTML = "";
+  const box = document.createElement("div");
+  box.className = "empty-state-box";
+  box.textContent = text;
+  container.appendChild(box);
 }
 
 function updateProgressViews() {
@@ -343,7 +358,7 @@ function renderModuleList() {
   const visibleModules = getVisibleModules();
 
   if (visibleModules.length === 0) {
-    moduleList.innerHTML = '<div class="empty-state-box">当前年级和难度下暂时还没有模块，试试切换筛选条件。</div>';
+    renderEmptyBox(moduleList, "当前年级和难度下暂时还没有模块，试试切换筛选条件。");
     return;
   }
 
@@ -423,7 +438,7 @@ function renderExamples(module) {
   examplesContainer.innerHTML = "";
   const examples = getModuleExamples(module);
   if (examples.length === 0) {
-    examplesContainer.innerHTML = '<div class="empty-state-box">当前难度下暂时没有例题讲解。</div>';
+    renderEmptyBox(examplesContainer, "当前难度下暂时没有例题讲解。");
     return;
   }
 
@@ -454,7 +469,7 @@ function renderPractice(module) {
   practiceList.innerHTML = "";
   const practices = getModulePractices(module);
   if (practices.length === 0) {
-    practiceList.innerHTML = '<div class="empty-state-box">当前难度下暂时没有闯关练习。</div>';
+    renderEmptyBox(practiceList, "当前难度下暂时没有闯关练习。");
     return;
   }
 
@@ -505,13 +520,16 @@ function getFilteredWrongBookItems() {
 function renderWrongBook() {
   wrongBookList.innerHTML = "";
   if (appState.wrongBook.length === 0) {
-    wrongBookList.innerHTML = '<p class="empty-state">暂时没有错题，继续加油。</p>';
+    const empty = document.createElement("p");
+    empty.className = "empty-state";
+    empty.textContent = "暂时没有错题，继续加油。";
+    wrongBookList.appendChild(empty);
     return;
   }
 
   const visibleWrongBookItems = getFilteredWrongBookItems();
   if (visibleWrongBookItems.length === 0) {
-    wrongBookList.innerHTML = '<div class="empty-state-box">当前年级和难度下没有可复习的错题，试试切换筛选条件。</div>';
+    renderEmptyBox(wrongBookList, "当前年级和难度下没有可复习的错题，试试切换筛选条件。");
     return;
   }
 
@@ -538,15 +556,18 @@ function renderWrongBook() {
       const difficulty = document.createElement("p");
       const answer = document.createElement("p");
       const explanation = document.createElement("p");
+      const reviewStatus = document.createElement("p");
       difficulty.className = "muted";
       answer.className = "muted";
       explanation.className = "muted";
+      reviewStatus.className = "muted review-status";
       title.textContent = item.title;
       prompt.textContent = item.prompt;
       difficulty.textContent = `难度：${item.difficulty || "未标注"}`;
       answer.textContent = `答案：${item.answer}`;
       explanation.textContent = `解析：${item.explanation}`;
-      wrapper.append(title, prompt, difficulty, answer, explanation);
+      reviewStatus.textContent = window.ReviewQueueModel.getReviewStatusText(item, getTodayKey());
+      wrapper.append(title, prompt, difficulty, answer, explanation, reviewStatus);
       groupWrapper.appendChild(wrapper);
     });
 
@@ -558,7 +579,15 @@ function renderRecentPaperSummary() {
   recentPaperSummary.innerHTML = "";
   const generatedItems = getGeneratedPaperItems();
   if (generatedItems.length === 0) {
-    recentPaperSummary.innerHTML = '<div class="summary-row"><h4>最近试卷成绩</h4><p class="muted">还没有可展示的最近试卷。</p></div>';
+    const wrapper = document.createElement("div");
+    wrapper.className = "summary-row";
+    const title = document.createElement("h4");
+    const text = document.createElement("p");
+    text.className = "muted";
+    title.textContent = "最近试卷成绩";
+    text.textContent = "还没有可展示的最近试卷。";
+    wrapper.append(title, text);
+    recentPaperSummary.appendChild(wrapper);
     return;
   }
 
@@ -566,7 +595,9 @@ function renderRecentPaperSummary() {
   const summary = getPaperSummaryData(generatedItems);
   const wrapper = document.createElement("div");
   wrapper.className = "summary-row";
-  wrapper.innerHTML = "<h4>最近试卷成绩</h4>";
+  const title = document.createElement("h4");
+  title.textContent = "最近试卷成绩";
+  wrapper.appendChild(title);
   [
     `来源：${sourceLabel}`,
     `筛选：${appState.paperGenerator.grade} · ${appState.paperGenerator.difficulty}`,
@@ -601,20 +632,27 @@ function renderMasteryRanking() {
   masteryRanking.innerHTML = "";
   const rankingData = getMasteryRankingData();
   if (rankingData.length === 0) {
-    masteryRanking.innerHTML = '<div class="summary-row"><h4>模块掌握度排行</h4><p class="muted">当前筛选下还没有可统计的模块。</p></div>';
+    const wrapper = document.createElement("div");
+    wrapper.className = "summary-row";
+    const title = document.createElement("h4");
+    const text = document.createElement("p");
+    text.className = "muted";
+    title.textContent = "模块掌握度排行";
+    text.textContent = "当前筛选下还没有可统计的模块。";
+    wrapper.append(title, text);
+    masteryRanking.appendChild(wrapper);
     return;
   }
 
   const intro = document.createElement("div");
   intro.className = "summary-row";
+  const introTitle = document.createElement("h4");
+  introTitle.textContent = "模块掌握度排行";
+  intro.appendChild(introTitle);
   const topCount = Math.min(3, rankingData.length);
   const supportStartIndex = Math.max(rankingData.length - 3, topCount);
   const supportModules = rankingData.slice(supportStartIndex).map((item) => item.title).join("、");
-  intro.innerHTML = "<h4>模块掌握度排行</h4>";
-  [
-    `按当前筛选条件统计：${activeGrade} · ${activeDifficulty}`,
-    `领先模块：前 ${topCount} 名优先展示；待加强：${supportModules || "暂无"}`
-  ].forEach((text) => {
+  [`按当前筛选条件统计：${activeGrade} · ${activeDifficulty}`, `领先模块：前 ${topCount} 名优先展示；待加强：${supportModules || "暂无"}`].forEach((text) => {
     const row = document.createElement("p");
     row.className = "muted";
     row.textContent = text;
@@ -715,7 +753,7 @@ function renderHeroStats() {
 function getWrongPracticePool() {
   const pool = getPracticePool();
   const visiblePracticeIds = new Set(pool.map((practice) => practice.id));
-  return appState.wrongBook
+  return window.ReviewQueueModel.getDueWrongBookItems(appState, getTodayKey())
     .filter((item) => visiblePracticeIds.has(item.id))
     .map((item) => pool.find((practice) => practice.id === item.id))
     .filter(Boolean);
@@ -749,8 +787,8 @@ function generatePaper() {
 function generateWrongPaper() {
   const wrongPool = getWrongPracticePool();
   if (wrongPool.length === 0) {
-    paperGeneratorTip.textContent = activeGrade === "全部" && activeDifficulty === "全部" ? "当前没有错题可用于重新组卷。" : "当前筛选下没有错题，请切换年级或难度后再试。";
-    paperSummary.innerHTML = '<div class="empty-state-box">先做错几道题，或者切换到有错题的年级和难度后再来复习。</div>';
+    paperGeneratorTip.textContent = activeGrade === "全部" && activeDifficulty === "全部" ? "今天没有到期错题；可继续做新题，或等下次复习日期。" : "当前筛选下没有今日到期错题，请切换年级或难度后再试。";
+    renderEmptyBox(paperSummary, "复习队列会优先抽取“今日待复习”的错题。");
     paperList.innerHTML = "";
     return;
   }
@@ -782,7 +820,7 @@ function getPaperSummaryData(generatedItems) {
 function renderPaperSummary(generatedItems) {
   paperSummary.innerHTML = "";
   if (generatedItems.length === 0) {
-    paperSummary.innerHTML = '<div class="empty-state-box">生成试卷后，这里会自动显示判卷汇总。</div>';
+    renderEmptyBox(paperSummary, "生成试卷后，这里会自动显示判卷汇总。");
     return;
   }
 
@@ -847,18 +885,18 @@ function renderPaperGenerator() {
 
   if (pool.length === 0) {
     paperGeneratorTip.textContent = "当前年级和难度下没有可用于组卷的题目。";
-    paperList.innerHTML = '<div class="empty-state-box">请切换年级或难度后再试。</div>';
+    renderEmptyBox(paperList, "请切换年级或难度后再试。");
     return;
   }
 
   if (appState.paperGenerator.source === "wrongBook") {
-    paperGeneratorTip.textContent = wrongPool.length === 0 ? (activeGrade === "全部" && activeDifficulty === "全部" ? "当前没有错题可用于重新组卷。" : "当前筛选下没有错题，请切换年级或难度后再试。") : `正在查看错题复习卷，可用错题 ${wrongPool.length} 道。`;
+    paperGeneratorTip.textContent = wrongPool.length === 0 ? (activeGrade === "全部" && activeDifficulty === "全部" ? "今天没有到期错题；可继续做新题，或等下次复习日期。" : "当前筛选下没有今日到期错题，请切换年级或难度后再试。") : `正在查看错题复习卷，今日到期错题 ${wrongPool.length} 道。`;
   } else {
     paperGeneratorTip.textContent = pool.length < Number(paperCount.value) ? `当前筛选下可用题目只有 ${pool.length} 道，将按实际数量组卷。` : "";
   }
 
   if (generatedItems.length === 0) {
-    paperList.innerHTML = '<div class="empty-state-box">还没有生成试卷，点击上方按钮开始。</div>';
+    renderEmptyBox(paperList, "还没有生成试卷，点击上方按钮开始。");
     return;
   }
 
@@ -940,7 +978,7 @@ function renderDailyPractice() {
   }
 
   if (dailyItems.length === 0) {
-    dailyPracticeList.innerHTML = '<div class="empty-state-box">当前年级和难度下暂时没有可用的每日一练题目。</div>';
+    renderEmptyBox(dailyPracticeList, "当前年级和难度下暂时没有可用的每日一练题目。");
     return;
   }
 
@@ -987,8 +1025,8 @@ function renderModuleDetail() {
     moduleDescription.textContent = "请切换其他年级或难度查看现有学习模块。";
     moduleGrades.innerHTML = "";
     moduleProgress.textContent = "暂无题目";
-    examplesContainer.innerHTML = '<div class="empty-state-box">当前筛选下没有例题内容。</div>';
-    practiceList.innerHTML = '<div class="empty-state-box">当前筛选下没有练习内容。</div>';
+    renderEmptyBox(examplesContainer, "当前筛选下没有例题内容。");
+    renderEmptyBox(practiceList, "当前筛选下没有练习内容。");
     return;
   }
 
