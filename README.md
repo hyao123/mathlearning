@@ -85,7 +85,7 @@ npm run check
 
 - 新增 `reviewScheduler.js`，负责错题复习日期调度
 - 新增 `reviewQueueModel.js`，封装错题入队、出队、到期筛选和错题卷状态生成
-- `reviewQueueEnhancer.js` 只负责页面事件监听和状态展示，业务规则交给 model
+- `app.js` 直接调用 `reviewQueueModel.js` 维护错题队列，不再依赖页面增强层
 - 错题会显示复习状态：`今日待复习`、`下次复习：YYYY-MM-DD`、`已巩固`
 - 错题重新组卷会优先抽取“今日待复习”的错题
 - 连续答对 2 次后，该题会从复习队列中移出
@@ -93,7 +93,6 @@ npm run check
 
 ## 后续方向
 
-- 将 `reviewQueueModel.js` 直接接入 `app.js`，去掉增强层脚本
 - 为题目增加提示、分步解析与常见错误
 - 根据薄弱知识点生成每日一练
 - 支持多学生学习档案
