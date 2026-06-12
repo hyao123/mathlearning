@@ -1,0 +1,116 @@
+.mistake-diagnosis-panel,
+.mistake-dashboard-panel {
+  margin: 0 0 16px;
+  padding: 16px;
+  border: 1px solid rgba(234, 88, 12, 0.18);
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fff7ed, #ffffff);
+}
+
+.mistake-diagnosis-panel h3,
+.mistake-dashboard-panel h3 {
+  margin: 0 0 10px;
+  color: #c2410c;
+}
+
+.mistake-diagnosis-grid {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.mistake-diagnosis-card {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.mistake-diagnosis-card h4,
+.mistake-dashboard-row h4 {
+  margin: 0;
+  color: var(--text);
+}
+
+.mistake-diagnosis-card strong {
+  color: #c2410c;
+  font-size: 20px;
+}
+
+.mistake-diagnosis-card p,
+.mistake-dashboard-row p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.mistake-tag-heading {
+  margin: 10px 0 6px;
+}
+
+.mistake-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.mistake-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: #fed7aa;
+  color: #9a3412;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.mistake-dashboard-list {
+  display: grid;
+  gap: 8px;
+}
+
+.mistake-dashboard-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.mistake-dashboard-row > span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: #ffedd5;
+  color: #c2410c;
+  font-weight: 900;
+}
+
+.mistake-dashboard-row > strong {
+  color: #c2410c;
+  white-space: nowrap;
+}
+
+@media (min-width: 760px) {
+  .mistake-diagnosis-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .mistake-dashboard-row {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .mistake-dashboard-row > strong {
+    grid-column: 2;
+  }
+}
