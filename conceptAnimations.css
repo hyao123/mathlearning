@@ -338,11 +338,11 @@
 }
 
 .concept-animation__runner--left {
-  left: calc(8px + var(--progress) * 42%);
+  left: var(--runner-offset, 8px);
 }
 
 .concept-animation__runner--right {
-  right: calc(8px + var(--progress) * 42%);
+  right: var(--runner-offset, 8px);
   background: #ea580c;
 }
 
