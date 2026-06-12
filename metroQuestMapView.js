@@ -61,21 +61,25 @@
       meta.className = "metro-quest-station-meta";
       content.appendChild(meta);
     }
-    const text = `${station.stationCode}站 · ${station.reward.points}积分 · ${station.reward.honorEmoji} ${station.reward.honorTitle}`;
+    const completedText = station.total > 0 ? `${station.completed}/${station.total}题` : "知识站";
+    const text = `${station.stationCode}站 · ${station.status.emoji} ${station.status.label} · ${completedText} · ${station.reward.honorEmoji} ${station.reward.honorTitle}`;
     if (meta.textContent !== text) {
       meta.textContent = text;
     }
-    meta.title = station.reward.honorDescription;
+    meta.title = `${station.moduleTitle} · ${station.reward.points}积分 · ${station.reward.honorDescription}`;
   }
 
   function decorateStationNode(card, station) {
     card.classList.add("metro-quest-node");
     card.dataset.stationCode = station.stationCode;
+    card.dataset.stationName = station.moduleTitle;
     card.dataset.stationPoints = String(station.reward.points);
+    card.dataset.stationStatus = station.status.label;
+    card.setAttribute("aria-label", `${station.stationCode}站：${station.moduleTitle}，${station.status.label}`);
     const step = card.querySelector(".module-path__step") || card.querySelector(".knowledge-mode-card__step");
     if (step) {
       step.dataset.level = `${station.stationCode}站`;
-      step.title = `${station.stationName} · ${station.reward.points}积分 · ${station.reward.honorTitle}`;
+      step.title = `${station.moduleTitle} · ${station.reward.points}积分 · ${station.reward.honorTitle}`;
     }
     upsertStationMeta(card, station);
   }
@@ -102,7 +106,7 @@
     if (!next) {
       return `${summary.progressText} · ${summary.rewardText} · 全线已通关，荣誉全部点亮。`;
     }
-    return `${summary.progressText} · ${summary.rewardText} · 下一站：${next.stationCode} ${next.moduleTitle}，通关可得 ${next.reward.points} 积分与「${next.reward.honorTitle}」。`;
+    return `${summary.progressText} · ${summary.rewardText} · 下一站：${next.stationCode}「${next.moduleTitle}」，通关可得 ${next.reward.points} 积分与「${next.reward.honorTitle}」。`;
   }
 
   function renderMetroSummary(stations) {
