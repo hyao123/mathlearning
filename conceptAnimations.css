@@ -1,0 +1,419 @@
+.concept-animation {
+  margin: 0 0 22px;
+  padding: 18px;
+  border: 1px solid rgba(124, 58, 237, 0.18);
+  border-radius: 20px;
+  background: linear-gradient(135deg, #f5f3ff, #ffffff);
+}
+
+.concept-animation__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.concept-animation__header h3 {
+  margin: 6px 0;
+  color: #5b21b6;
+}
+
+.concept-animation__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.concept-animation__body {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.1fr) minmax(220px, 0.9fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.concept-animation__scene,
+.concept-animation__script {
+  min-height: 190px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: #fff;
+  padding: 16px;
+}
+
+.concept-animation__scene {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.concept-animation__script {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.concept-animation__step-label {
+  color: var(--text);
+}
+
+.concept-animation__narration {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.concept-animation__steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.concept-animation__step-button {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: #fff;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.concept-animation__step-button.is-active {
+  border-color: #7c3aed;
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+.concept-animation__flow-chip,
+.concept-animation__tree-node,
+.concept-animation__cycle-node,
+.concept-animation__delta,
+.concept-animation__animal,
+.concept-animation__point {
+  animation: concept-pop 420ms ease both;
+}
+
+.concept-animation__flow-chip {
+  display: inline-flex;
+  margin: 6px;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: #ede9fe;
+  color: #5b21b6;
+  font-weight: 900;
+  animation-delay: var(--delay, 0ms);
+}
+
+.concept-animation__bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 14px;
+  min-height: 140px;
+}
+
+.concept-animation__bar {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 44px;
+  height: var(--bar-height);
+  border-radius: 12px 12px 6px 6px;
+  background: #ddd6fe;
+  color: #4c1d95;
+  font-weight: 900;
+  padding-bottom: 8px;
+  transition: height 300ms ease, background 300ms ease;
+}
+
+.concept-animation__bar.is-active {
+  background: #a78bfa;
+  color: #fff;
+}
+
+.concept-animation__deltas {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.concept-animation__delta,
+.concept-animation__formula {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 7px 11px;
+  background: #f3f4f6;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.concept-animation__cycle {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+  gap: 12px;
+  justify-content: center;
+}
+
+.concept-animation__cycle-node {
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 999px;
+  background: #e0e7ff;
+  color: #3730a3;
+  font-weight: 900;
+}
+
+.concept-animation__cycle-node.is-active {
+  background: #7c3aed;
+  color: #fff;
+  box-shadow: 0 0 0 8px rgba(124, 58, 237, 0.12);
+}
+
+.concept-animation__tree {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+}
+
+.concept-animation__tree-level {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0.62;
+}
+
+.concept-animation__tree-level.is-active {
+  opacity: 1;
+}
+
+.concept-animation__tree-node {
+  border-radius: 12px;
+  padding: 9px 12px;
+  background: #ede9fe;
+  color: #5b21b6;
+  font-weight: 900;
+}
+
+.concept-animation__venn {
+  position: relative;
+  width: 260px;
+  height: 150px;
+}
+
+.concept-animation__venn-circle {
+  position: absolute;
+  top: 12px;
+  display: grid;
+  place-items: center;
+  width: 138px;
+  height: 138px;
+  border-radius: 999px;
+  font-weight: 900;
+  color: #075985;
+  background: rgba(14, 165, 233, 0.22);
+  border: 2px solid rgba(14, 165, 233, 0.38);
+}
+
+.concept-animation__venn-circle--left {
+  left: 20px;
+}
+
+.concept-animation__venn-circle--right {
+  right: 20px;
+}
+
+.concept-animation__venn-overlap {
+  position: absolute;
+  top: 57px;
+  left: 96px;
+  z-index: 2;
+  border-radius: 999px;
+  padding: 9px 12px;
+  background: #fef3c7;
+  color: #92400e;
+  font-weight: 900;
+  transform: scale(0.9);
+}
+
+.concept-animation__venn.is-overlap .concept-animation__venn-overlap,
+.concept-animation__venn.is-result .concept-animation__venn-overlap {
+  animation: concept-pulse 900ms ease infinite alternate;
+}
+
+.concept-animation__segments {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+}
+
+.concept-animation__segment-row {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.68;
+}
+
+.concept-animation__segment-row.is-active {
+  opacity: 1;
+}
+
+.concept-animation__segment-label {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.concept-animation__segment-bar {
+  position: relative;
+  display: inline-flex;
+  width: var(--segment-width);
+  height: 24px;
+  border-radius: 999px;
+  background: #c4b5fd;
+  transition: width 320ms ease;
+}
+
+.concept-animation__segment-bar::after {
+  content: attr(data-extra);
+  position: absolute;
+  right: -42px;
+  top: 1px;
+  color: #7c2d12;
+  font-weight: 900;
+}
+
+.concept-animation__replacement {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 320px;
+}
+
+.concept-animation__animal {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 900;
+}
+
+.concept-animation__animal.is-rabbit {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.concept-animation__motion-track {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  height: 86px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #dbeafe, #fef3c7, #dbeafe);
+  overflow: hidden;
+}
+
+.concept-animation__runner {
+  position: absolute;
+  top: 22px;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 900;
+  transition: left 380ms ease, right 380ms ease;
+}
+
+.concept-animation__runner--left {
+  left: calc(8px + var(--progress) * 42%);
+}
+
+.concept-animation__runner--right {
+  right: calc(8px + var(--progress) * 42%);
+  background: #ea580c;
+}
+
+.concept-animation__points {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.concept-animation__point {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: #166534;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.concept-animation__interval {
+  display: inline-flex;
+  min-width: 34px;
+  height: 3px;
+  background: #a3a3a3;
+  color: transparent;
+}
+
+.concept-animation__points.is-intervals .concept-animation__interval,
+.concept-animation__points.is-endpoints .concept-animation__point:first-child,
+.concept-animation__points.is-endpoints .concept-animation__point:last-child,
+.concept-animation__points.is-points .concept-animation__point {
+  animation: concept-pulse 900ms ease infinite alternate;
+}
+
+@keyframes concept-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes concept-pulse {
+  from {
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.16);
+    transform: scale(0.98);
+  }
+  to {
+    box-shadow: 0 0 0 8px rgba(124, 58, 237, 0.08);
+    transform: scale(1.03);
+  }
+}
+
+@media (max-width: 860px) {
+  .concept-animation__header,
+  .concept-animation__body {
+    grid-template-columns: 1fr;
+  }
+
+  .concept-animation__header {
+    display: grid;
+  }
+
+  .concept-animation__controls {
+    justify-content: flex-start;
+  }
+}
