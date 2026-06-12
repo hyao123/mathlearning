@@ -123,11 +123,6 @@
     }, 2600);
   }
 
-  function scrollToRecommended() {
-    const target = document.querySelector(".quest-map-node.is-quest-needs-review, .quest-map-node.is-quest-current");
-    target?.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
-
   function bindLockedHint(card) {
     if (card.dataset.questBound === "true") {
       return;
@@ -135,17 +130,14 @@
     card.dataset.questBound = "true";
     card.addEventListener(
       "click",
-      (event) => {
+      () => {
         if (card.dataset.questStatus !== root.QuestMap.questStatuses.locked.id) {
           return;
         }
-        event.preventDefault();
-        event.stopPropagation();
         card.classList.add("is-quest-shaking");
         root.setTimeout(() => card.classList.remove("is-quest-shaking"), 420);
         const status = card.querySelector(".quest-map__status")?.title || "建议先完成前面的关卡。";
-        createToast(status);
-        scrollToRecommended();
+        createToast(`${status} 也可以先进入了解这一站内容。`);
       },
       true
     );
