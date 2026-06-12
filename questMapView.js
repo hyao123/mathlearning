@@ -57,9 +57,17 @@
       target.appendChild(pill);
       return;
     }
-    pill.className = `quest-map__status quest-map__status--${state.status.id}`;
-    pill.textContent = `${state.status.emoji} ${state.status.label}`;
-    pill.title = state.hint;
+    const nextClass = `quest-map__status quest-map__status--${state.status.id}`;
+    const nextText = `${state.status.emoji} ${state.status.label}`;
+    if (pill.className !== nextClass) {
+      pill.className = nextClass;
+    }
+    if (pill.textContent !== nextText) {
+      pill.textContent = nextText;
+    }
+    if (pill.title !== state.hint) {
+      pill.title = state.hint;
+    }
   }
 
   function updateStepBadge(card, state) {
@@ -67,9 +75,17 @@
     if (!step) {
       return;
     }
-    step.textContent = state.status.emoji;
-    step.dataset.level = `第 ${state.levelNumber} 关`;
-    step.title = `第 ${state.levelNumber} 关 · ${state.status.label}`;
+    const nextLevel = `第 ${state.levelNumber} 关`;
+    const nextTitle = `第 ${state.levelNumber} 关 · ${state.status.label}`;
+    if (step.textContent !== state.status.emoji) {
+      step.textContent = state.status.emoji;
+    }
+    if (step.dataset.level !== nextLevel) {
+      step.dataset.level = nextLevel;
+    }
+    if (step.title !== nextTitle) {
+      step.title = nextTitle;
+    }
   }
 
   function getStatusClasses() {
@@ -77,8 +93,12 @@
   }
 
   function decorateCard(card, state) {
-    card.dataset.questStatus = state.status.id;
-    card.dataset.questLevel = String(state.levelNumber);
+    if (card.dataset.questStatus !== state.status.id) {
+      card.dataset.questStatus = state.status.id;
+    }
+    if (card.dataset.questLevel !== String(state.levelNumber)) {
+      card.dataset.questLevel = String(state.levelNumber);
+    }
     card.classList.add("quest-map-node");
     card.classList.remove(...getStatusClasses(), "is-quest-shaking");
     card.classList.add(`is-quest-${state.status.id}`);
@@ -175,18 +195,26 @@
       panel.className = "quest-map-summary";
       anchor.insertAdjacentElement("beforebegin", panel);
     }
+    const summary = root.QuestMap.summarizeQuest(allStates);
+    const nextContentKey = `${summary.progressText}|${summary.current?.moduleId || "done"}|${summary.counts["needs-review"] || 0}`;
+    if (panel.dataset.summaryKey === nextContentKey) {
+      return;
+    }
+    panel.dataset.summaryKey = nextContentKey;
     panel.innerHTML = "";
-    panel.appendChild(createSummaryContent(root.QuestMap.summarizeQuest(allStates)));
+    panel.appendChild(createSummaryContent(summary));
   }
 
   function updateOverviewText() {
     const gradeOverview = document.querySelector("#module-list .module-map__overview .muted");
-    if (gradeOverview) {
-      gradeOverview.textContent = "像闯关地图一样从当前推荐关开始推进；已通关会点亮，需复习会变成回访关。";
+    const gradeText = "像闯关地图一样从当前推荐关开始推进；已通关会点亮，需复习会变成回访关。";
+    if (gradeOverview && gradeOverview.textContent !== gradeText) {
+      gradeOverview.textContent = gradeText;
     }
     const knowledgeOverview = document.querySelector("#knowledge-mode-list .knowledge-mode-overview .muted");
-    if (knowledgeOverview) {
-      knowledgeOverview.textContent = "沿知识主线循序闯关，先打通前置模型，再挑战后续综合关。";
+    const knowledgeText = "沿知识主线循序闯关，先打通前置模型，再挑战后续综合关。";
+    if (knowledgeOverview && knowledgeOverview.textContent !== knowledgeText) {
+      knowledgeOverview.textContent = knowledgeText;
     }
   }
 
