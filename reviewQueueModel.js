@@ -8,7 +8,8 @@
       prompt: practice.prompt,
       answer: practice.answer,
       explanation: practice.explanation,
-      difficulty: practice.difficulty
+      difficulty: practice.difficulty,
+      mistakeTags: root.MistakeDiagnosis?.getTagsForPractice(practice, { id: practice.moduleId, title: practice.moduleTitle }) || practice.mistakeTags || []
     };
   }
 
@@ -33,7 +34,8 @@
       return nextState;
     }
 
-    const nextItem = { ...baseItem, review: nextReview };
+    const nextTags = root.MistakeDiagnosis?.getTagsForWrongItem({ ...baseItem, ...practice }) || baseItem.mistakeTags || practice.mistakeTags || [];
+    const nextItem = { ...baseItem, mistakeTags: nextTags, review: nextReview };
     nextState.wrongBook = [nextItem, ...nextState.wrongBook.filter((item) => item.id !== practice.id)];
     return nextState;
   }
