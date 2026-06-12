@@ -139,8 +139,9 @@
     const left = createSceneElement("concept-animation__runner concept-animation__runner--left", "甲");
     const right = createSceneElement("concept-animation__runner concept-animation__runner--right", "乙");
     const progress = Math.min(Math.max(Number(step.progress || 0), 0), 1);
-    left.style.setProperty("--progress", progress);
-    right.style.setProperty("--progress", progress);
+    const offset = `calc(8px + ${progress * 42}%)`;
+    left.style.setProperty("--runner-offset", offset);
+    right.style.setProperty("--runner-offset", offset);
     track.append(left, right);
     scene.appendChild(track);
     scene.appendChild(createSceneElement("concept-animation__formula", step.formula || `距离 ${step.distance} 米，速度和 ${step.leftSpeed + step.rightSpeed} 米/分`));
