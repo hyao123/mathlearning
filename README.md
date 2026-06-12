@@ -18,6 +18,7 @@
 - 提供练习工具栏，支持只看未完成、跳题和批量展开讲解
 - 扩展植树、鸡兔同笼、行程、年龄、平均数等奥数知识点
 - 从数学本源出发展示核心模型、表征方式、迁移提醒和本质易错点
+- 按知识点内在逻辑组织学习谱系，展示先修知识和后续连接
 
 ## 本地运行
 
@@ -84,6 +85,17 @@ npm run check
 ```
 
 `contentExpansion.js` 会在 `data.js` 加载后追加扩展知识模块，适合继续分批增加题库而不直接改动原始大题库。
+
+`knowledgeContinuityExpansion.js` 会继续追加承上启下的桥梁模块，例如周期、枚举、容斥、归一归总和盈亏问题。
+
+`knowledgeTopology.js` 会为模块补充 `knowledgeTopology` 字段，包含：
+
+- `strand`：所属知识主线
+- `stage`：当前学习阶段
+- `prerequisiteIds`：先修模块
+- `nextIds`：后续模块
+- `whyNow`：为什么此时学习
+- `continuity`：它如何连接前后知识
 
 `mathEssence.js` 会为模块补充 `mathEssence` 字段，包含：
 
@@ -194,6 +206,17 @@ npm run check
 - 对未显式配置的模块提供通用数学建模框架，避免模块缺少本源说明
 - 新增 `mathEssenceView.js`，在模块学习页把本源理解展示在例题之前
 - 新增 `mathEssence.css` 和 `tests/mathEssence.test.js`
+
+## 第十阶段知识点内在逻辑与连贯性
+
+知识点库现在按内在逻辑继续扩展和重排：
+
+- 新增 `knowledgeContinuityExpansion.js`，补充 5 个承上启下的桥梁知识点：周期问题、有序枚举、容斥初步、归一归总问题、盈亏问题
+- 新增 15 个例题和 30 道练习题，每道练习继续配置提示、步骤和易错点
+- 新增 `knowledgeTopology.js`，把知识点组织为六条主线：观察与周期、计数与集合、数量关系、变化与效率、空间与离散结构、逻辑推理
+- 对模块补充先修知识、后续连接、当前阶段、学习理由和连贯性说明
+- 新增 `knowledgeTopologyView.js`，在模块学习页展示“知识谱系”卡片
+- 新增 `knowledgeTopology.css`、`tests/knowledgeContinuityExpansion.test.js` 和 `tests/knowledgeTopology.test.js`
 
 ## 后续方向
 
