@@ -1,0 +1,65 @@
+.practice-experience-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 16px 0 18px;
+  padding: 14px;
+  border: 1px solid rgba(37, 99, 235, 0.16);
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f8fbff, #ffffff);
+}
+
+.practice-experience-toolbar__main {
+  display: grid;
+  gap: 4px;
+}
+
+.practice-experience-toolbar__main strong {
+  color: var(--primary-dark);
+}
+
+.practice-experience-toolbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.practice-experience-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--primary-dark);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.practice-experience-toggle input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+}
+
+.card--practice[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  .practice-experience-toolbar,
+  .practice-experience-toolbar__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .practice-experience-toolbar__actions,
+  .practice-experience-toggle {
+    width: 100%;
+  }
+}
