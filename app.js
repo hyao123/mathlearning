@@ -172,7 +172,18 @@ function getPracticePool() {
 
 function getDailyPracticeItems() {
   const pool = getPracticePool();
-  const seed = hashString(getDailyStorageKey());
+  const dailyKey = getDailyStorageKey();
+  if (window.AdaptivePractice?.selectDailyPracticeItems) {
+    return window.AdaptivePractice.selectDailyPracticeItems({
+      pool,
+      state: appState,
+      dailyKey,
+      targetCount: Math.min(3, pool.length),
+      seed: hashString(dailyKey)
+    });
+  }
+
+  const seed = hashString(dailyKey);
   return [...pool]
     .map((item, index) => ({ item, score: hashString(`${seed}-${item.id}-${index}`) }))
     .sort((left, right) => left.score - right.score)
@@ -957,6 +968,12 @@ function createAnswerCard({ practice, index, subtitle, grades = [], saved, butto
   wrapper.querySelector(".difficulty").textContent = practice.difficulty;
   wrapper.querySelector(".card__question").textContent = practice.prompt;
   setChildrenText(wrapper.querySelector(".daily-card__meta"), grades, "grade-tag");
+  if (practice.adaptiveReason) {
+    const reason = document.createElement("span");
+    reason.className = "grade-tag adaptive-reason";
+    reason.textContent = `推荐：${practice.adaptiveReason}`;
+    wrapper.querySelector(".daily-card__meta").appendChild(reason);
+  }
   if (saved) {
     const input = wrapper.querySelector(".answer-input");
     const feedback = wrapper.querySelector(".feedback");
@@ -969,7 +986,7 @@ function createAnswerCard({ practice, index, subtitle, grades = [], saved, butto
 
 function renderDailyPractice() {
   const todayKey = getTodayKey();
-  dailyPracticeDate.textContent = `今天的练习日期：${todayKey}`;
+  dailyPracticeDate.textContent = `今天的练习日期：${todayKey} · 根据错题、正确率和模块完成度智能推荐`;
   dailyPracticeList.innerHTML = "";
   const dailyItems = getDailyPracticeItems();
   const dailyStorageKey = getDailyStorageKey();
