@@ -17,6 +17,7 @@
 - 支持多个学生档案，分别保存进度和错题
 - 提供练习工具栏，支持只看未完成、跳题和批量展开讲解
 - 扩展植树、鸡兔同笼、行程、年龄、平均数等奥数知识点
+- 从数学本源出发展示核心模型、表征方式、迁移提醒和本质易错点
 
 ## 本地运行
 
@@ -83,6 +84,16 @@ npm run check
 ```
 
 `contentExpansion.js` 会在 `data.js` 加载后追加扩展知识模块，适合继续分批增加题库而不直接改动原始大题库。
+
+`mathEssence.js` 会为模块补充 `mathEssence` 字段，包含：
+
+- `bigIdea`：这个知识点最核心的数学思想
+- `essentialQuestion`：学习时最该反复追问的问题
+- `coreModels`：可迁移的数学模型
+- `representations`：推荐画图、列表、线段图等表征方式
+- `transferTips`：迁移到新题时的提醒
+- `misconceptions`：本质易错点
+- `progression`：从理解到解题的学习路径
 
 ## 第一阶段可用性改进
 
@@ -173,6 +184,16 @@ npm run check
 - 平均数问题
 
 本阶段通过 `contentExpansion.js` 追加内容，共新增 15 个例题和 30 道练习题；每道新增练习都配置了 `hints`、`solutionSteps`、`commonMistakes`，并通过 `tests/contentExpansion.test.js` 检查内容结构、题目数量和题目 ID 唯一性。
+
+## 第九阶段数学本源层
+
+知识点质量现在从“会做题”进一步升级到“理解数学本源”：
+
+- 新增 `mathEssence.js`，为知识模块补充核心思想、核心追问、核心模型、表征方式、迁移提醒、本质易错点和学习路径
+- 覆盖找规律、和差倍、几何、逻辑，以及植树问题、鸡兔同笼、行程问题、年龄问题、平均数问题
+- 对未显式配置的模块提供通用数学建模框架，避免模块缺少本源说明
+- 新增 `mathEssenceView.js`，在模块学习页把本源理解展示在例题之前
+- 新增 `mathEssence.css` 和 `tests/mathEssence.test.js`
 
 ## 后续方向
 
