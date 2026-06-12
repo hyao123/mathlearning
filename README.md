@@ -16,6 +16,7 @@
 - 根据错题、最近答错和模块完成度智能推荐每日一练
 - 支持多个学生档案，分别保存进度和错题
 - 提供练习工具栏，支持只看未完成、跳题和批量展开讲解
+- 扩展植树、鸡兔同笼、行程、年龄、平均数等奥数知识点
 
 ## 本地运行
 
@@ -80,6 +81,8 @@ npm run check
   commonMistakes: ["只看最后两个数就猜答案。"]
 }
 ```
+
+`contentExpansion.js` 会在 `data.js` 加载后追加扩展知识模块，适合继续分批增加题库而不直接改动原始大题库。
 
 ## 第一阶段可用性改进
 
@@ -158,6 +161,18 @@ npm run check
 - 支持一键展开或收起全部讲解区
 - 答对后自动聚焦下一题，减少重复滚动和点击
 - 新增 `practiceExperience.css` 和 `tests/practiceExperience.test.js`
+
+## 第八阶段题库与知识点扩展
+
+题库新增 5 个常见奥数知识点：
+
+- 植树问题
+- 鸡兔同笼
+- 行程问题
+- 年龄问题
+- 平均数问题
+
+本阶段通过 `contentExpansion.js` 追加内容，共新增 15 个例题和 30 道练习题；每道新增练习都配置了 `hints`、`solutionSteps`、`commonMistakes`，并通过 `tests/contentExpansion.test.js` 检查内容结构、题目数量和题目 ID 唯一性。
 
 ## 后续方向
 
