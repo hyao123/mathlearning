@@ -72,13 +72,13 @@
     const title = document.createElement("strong");
     const tip = document.createElement("span");
     title.textContent = "建议学习路径";
-    tip.textContent = "先学例题，再做题，答错后看讲解并进错题复习。";
+    tip.textContent = "先沿知识路线看例题，再做题，答错后看讲解并进错题复习。";
     header.append(title, tip);
 
     const steps = document.createElement("div");
     steps.className = "experience-steps";
     [
-      { label: "1", title: "选模块", description: "按年级和难度缩小范围", target: "modules" },
+      { label: "1", title: "进路线", description: "按知识主线和难度进入站点", target: "modules" },
       { label: "2", title: "做每日一练", description: "每天 3 题保持手感", target: "daily-practice-panel" },
       { label: "3", title: "复习错题", description: "优先处理今日到期题", target: "paper-generator-panel" }
     ].forEach((step) => steps.appendChild(createStepCard(step)));
@@ -119,19 +119,33 @@
 
   function enableWrongAnswerCoaching() {
     document.addEventListener("click", (event) => {
-      const target = event.target;
-      if (!target?.matches?.(".submit-answer, .submit-daily-answer, .submit-paper-answer")) {
+      const button = event.target.closest(".submit-answer");
+      if (!button) {
         return;
       }
-      const card = target.closest(".card, .daily-card, .paper-card");
-      root.setTimeout(() => openSupportForWrongAnswer(card), 0);
-      root.setTimeout(() => {
-        const promptText = card?.querySelector(".card__question")?.textContent;
-        if (promptText) {
-          saveExperienceState({ ...loadExperienceState(), lastPracticePrompt: promptText, lastAnsweredAt: new Date().toISOString() });
-        }
-      }, 0);
+      window.setTimeout(() => openSupportForWrongAnswer(button.closest(".card")), 0);
     });
+  }
+
+  function createResumeButton(sectionId) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "button button--small button--ghost resume-button";
+    button.textContent = "回到上次位置";
+    button.addEventListener("click", () => scrollToSection(sectionId));
+    return button;
+  }
+
+  function enhanceResumePosition() {
+    const state = loadExperienceState();
+    if (!state.lastSection || !document.getElementById(state.lastSection)) {
+      return;
+    }
+    const heroActions = document.querySelector(".hero__actions");
+    if (!heroActions || heroActions.querySelector(".resume-button")) {
+      return;
+    }
+    heroActions.appendChild(createResumeButton(state.lastSection));
   }
 
   function trackSectionVisits() {
@@ -140,31 +154,21 @@
     }
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            saveExperienceState({ ...loadExperienceState(), lastSectionId: entry.target.id });
-          }
-        });
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+        if (visible?.target?.id) {
+          saveExperienceState({ ...loadExperienceState(), lastSection: visible.target.id });
+        }
       },
-      { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+      { threshold: [0.35, 0.6] }
     );
     sectionIds.forEach((id) => {
-      const section = document.getElementById(id);
-      if (section) {
-        observer.observe(section);
+      const element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
       }
     });
-  }
-
-  function renderResumeButton() {
-    const state = loadExperienceState();
-    const actions = document.querySelector(".hero__actions");
-    if (!actions || !state.lastSectionId || actions.querySelector(".experience-resume")) {
-      return;
-    }
-    const button = createActionButton("回到上次位置", state.lastSectionId);
-    button.classList.add("experience-resume");
-    actions.appendChild(button);
   }
 
   function boot() {
@@ -173,15 +177,17 @@
     }
     enhanceHeroActions();
     renderExperiencePanel();
-    renderResumeButton();
     enableEnterToSubmit();
     enableWrongAnswerCoaching();
+    enhanceResumePosition();
     trackSectionVisits();
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", boot);
-  } else {
-    boot();
+  if (typeof document !== "undefined") {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", boot);
+    } else {
+      boot();
+    }
   }
 })(typeof window !== "undefined" ? window : globalThis);
