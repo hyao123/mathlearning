@@ -41,6 +41,10 @@
     return card.querySelector("strong")?.textContent?.trim() || "";
   }
 
+  function isVisible(element) {
+    return Boolean(element) && !element.closest("[hidden]");
+  }
+
   function createStatusPill(state) {
     const pill = document.createElement("span");
     pill.className = `quest-map__status quest-map__status--${state.status.id}`;
@@ -224,10 +228,16 @@
     }
     const allStates = [];
     document.querySelectorAll("#module-list .module-path").forEach((path) => {
-      allStates.push(...decoratePath(path, ".module-path__item"));
+      const states = decoratePath(path, ".module-path__item");
+      if (isVisible(path)) {
+        allStates.push(...states);
+      }
     });
     document.querySelectorAll("#knowledge-mode-list .knowledge-strand-path").forEach((path) => {
-      allStates.push(...decoratePath(path, ".knowledge-mode-card"));
+      const states = decoratePath(path, ".knowledge-mode-card");
+      if (isVisible(path)) {
+        allStates.push(...states);
+      }
     });
     updateOverviewText();
     if (allStates.length > 0) {
