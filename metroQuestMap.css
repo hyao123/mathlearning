@@ -1,54 +1,75 @@
 .metro-quest-summary {
-  border-color: rgba(14, 165, 233, 0.28);
-  background: linear-gradient(135deg, #ecfeff, #ffffff 50%, #eff6ff);
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(236, 72, 153, 0.26);
+  background:
+    radial-gradient(circle at 94% 18%, rgba(250, 204, 21, 0.28) 0 58px, transparent 60px),
+    radial-gradient(circle at 8% 92%, rgba(125, 211, 252, 0.26) 0 48px, transparent 50px),
+    linear-gradient(135deg, #fff7ed, #fdf2f8 46%, #ecfeff);
+}
+
+.metro-quest-summary::after {
+  content: "🚇✨";
+  position: absolute;
+  right: 18px;
+  bottom: 12px;
+  font-size: 28px;
+  opacity: 0.42;
 }
 
 .metro-quest-summary strong {
-  color: #0369a1;
+  color: #be185d;
 }
 
 .metro-quest-line {
   position: relative;
   background:
-    radial-gradient(circle at 24px 24px, rgba(14, 165, 233, 0.09) 0 3px, transparent 3px),
-    linear-gradient(180deg, #ffffff, #f8fbff) !important;
-  background-size: 42px 42px, auto !important;
+    radial-gradient(circle at 24px 24px, rgba(236, 72, 153, 0.12) 0 4px, transparent 4px),
+    radial-gradient(circle at 42px 42px, rgba(14, 165, 233, 0.1) 0 3px, transparent 3px),
+    linear-gradient(180deg, #ffffff, #fff7fb 48%, #f0f9ff) !important;
+  background-size: 54px 54px, 54px 54px, auto !important;
 }
 
 .metro-quest-line::before {
-  width: 8px !important;
-  left: 40px !important;
-  background: linear-gradient(180deg, #0284c7, #f59e0b, #16a34a) !important;
-  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.12);
+  width: 10px !important;
+  left: 39px !important;
+  background: linear-gradient(180deg, #fb7185, #f59e0b, #38bdf8, #22c55e) !important;
+  box-shadow: 0 0 0 5px rgba(236, 72, 153, 0.1), 0 8px 22px rgba(14, 165, 233, 0.18);
+}
+
+.metro-quest-node {
+  border-radius: 28px !important;
 }
 
 .metro-quest-node::before {
-  content: attr(data-station-code);
+  content: "🚉 " attr(data-station-code);
   position: absolute;
-  top: -10px;
+  top: -12px;
   left: 78px;
   z-index: 2;
-  padding: 3px 9px;
+  padding: 4px 10px;
   border-radius: 999px;
-  background: #0f172a;
+  background: linear-gradient(135deg, #0ea5e9, #ec4899);
   color: #fff;
   font-size: 11px;
   font-weight: 900;
   letter-spacing: 0.04em;
+  box-shadow: 0 8px 18px rgba(14, 165, 233, 0.22);
 }
 
 .metro-quest-node::after {
-  content: attr(data-station-points) " 积分";
+  content: "⭐ " attr(data-station-points) " 积分";
   position: absolute;
-  top: -10px;
+  top: -12px;
   right: 18px;
   z-index: 2;
-  padding: 3px 9px;
+  padding: 4px 10px;
   border-radius: 999px;
-  background: #fef3c7;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
   color: #92400e;
   font-size: 11px;
   font-weight: 900;
+  box-shadow: 0 8px 16px rgba(245, 158, 11, 0.18);
 }
 
 .metro-quest-station-meta {
@@ -56,21 +77,33 @@
   align-items: center;
   width: fit-content;
   max-width: 100%;
-  margin-top: 3px;
+  margin-top: 5px;
   border-radius: 999px;
-  padding: 5px 10px;
+  padding: 6px 11px;
   background: #ecfeff;
   color: #0369a1 !important;
   border: 1px solid rgba(14, 165, 233, 0.18);
   font-size: 12px;
   font-weight: 900;
   line-height: 1.4;
+  box-shadow: inset 0 -2px 0 rgba(14, 165, 233, 0.08);
 }
 
 .metro-quest-node .module-path__step,
 .metro-quest-node .knowledge-mode-card__step {
-  border-color: #0ea5e9;
-  box-shadow: 0 8px 18px rgba(14, 165, 233, 0.18), 0 0 0 5px rgba(14, 165, 233, 0.1);
+  border-color: #fff;
+  outline: 4px solid rgba(14, 165, 233, 0.2);
+  box-shadow: 0 10px 22px rgba(14, 165, 233, 0.2), 0 0 0 8px rgba(236, 72, 153, 0.08);
+}
+
+.metro-quest-node .module-path__step::before,
+.metro-quest-node .knowledge-mode-card__step::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 999px;
+  border: 2px dashed rgba(14, 165, 233, 0.2);
+  pointer-events: none;
 }
 
 .metro-quest-node.is-quest-cleared .metro-quest-station-meta {
@@ -79,10 +112,22 @@
   border-color: rgba(22, 163, 74, 0.22);
 }
 
+.metro-quest-node.is-quest-cleared::before {
+  background: linear-gradient(135deg, #22c55e, #14b8a6);
+}
+
 .metro-quest-node.is-quest-current .metro-quest-station-meta {
   background: #dbeafe;
   color: #1d4ed8 !important;
   border-color: rgba(37, 99, 235, 0.24);
+}
+
+.metro-quest-node.is-quest-current::before {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+
+.metro-quest-node.is-quest-current::after {
+  animation: cute-station-bounce 1.3s ease-in-out infinite alternate;
 }
 
 .metro-quest-node.is-quest-needs-review .metro-quest-station-meta {
@@ -91,10 +136,48 @@
   border-color: rgba(245, 158, 11, 0.24);
 }
 
+.metro-quest-node.is-quest-needs-review::before {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+}
+
 .metro-quest-node.is-quest-locked .metro-quest-station-meta {
   background: #f3f4f6;
   color: #6b7280 !important;
   border-color: rgba(107, 114, 128, 0.16);
+}
+
+.metro-quest-node.is-quest-locked::before {
+  background: linear-gradient(135deg, #9ca3af, #6b7280);
+}
+
+.knowledge-route-intro {
+  border-color: rgba(236, 72, 153, 0.2);
+  background: linear-gradient(135deg, #fdf2f8, #ffffff 52%, #ecfeff);
+}
+
+.knowledge-route-intro__badge {
+  align-self: center;
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: #fce7f3;
+  color: #be185d;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+#grade-filter[hidden],
+#module-list[hidden],
+#module-grades[hidden] {
+  display: none !important;
+}
+
+@keyframes cute-station-bounce {
+  from {
+    transform: translateY(0) rotate(-1deg);
+  }
+  to {
+    transform: translateY(-3px) rotate(1deg);
+  }
 }
 
 @media (max-width: 620px) {
@@ -108,5 +191,9 @@
 
   .metro-quest-station-meta {
     white-space: normal;
+  }
+
+  .knowledge-route-intro__badge {
+    width: fit-content;
   }
 }

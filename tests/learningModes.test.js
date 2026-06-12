@@ -3,11 +3,11 @@ const test = require("node:test");
 
 const learningModes = require("../learningModes.js");
 
-test("normalizes learning mode values", () => {
+test("normalizes all learning mode values to knowledge route", () => {
   assert.equal(learningModes.normalizeMode("knowledge"), "knowledge");
-  assert.equal(learningModes.normalizeMode("grade"), "grade");
-  assert.equal(learningModes.normalizeMode("unknown"), "grade");
-  assert.equal(learningModes.normalizeMode(undefined), "grade");
+  assert.equal(learningModes.normalizeMode("grade"), "knowledge");
+  assert.equal(learningModes.normalizeMode("unknown"), "knowledge");
+  assert.equal(learningModes.normalizeMode(undefined), "knowledge");
 });
 
 test("matches modules by difficulty", () => {

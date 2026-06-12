@@ -1,25 +1,20 @@
 (function attachLearningModes(root) {
   const storageKey = "mathlearning-learning-mode-v1";
   const modes = {
-    grade: "grade",
     knowledge: "knowledge"
   };
 
-  function normalizeMode(value) {
-    return value === modes.knowledge ? modes.knowledge : modes.grade;
+  function normalizeMode() {
+    return modes.knowledge;
   }
 
   function getSavedMode() {
-    try {
-      return normalizeMode(root.localStorage?.getItem(storageKey));
-    } catch (error) {
-      return modes.grade;
-    }
+    return modes.knowledge;
   }
 
-  function saveMode(mode) {
+  function saveMode() {
     try {
-      root.localStorage?.setItem(storageKey, normalizeMode(mode));
+      root.localStorage?.setItem(storageKey, modes.knowledge);
     } catch (error) {
       // Ignore storage errors.
     }
@@ -71,49 +66,56 @@
     if (activeGrade === "全部") {
       return false;
     }
-    const allButton = Array.from(gradeFilter.querySelectorAll("button")).find((button) => button.textContent.trim() === "全部");
+    const allButton = Array.from(gradeFilter?.querySelectorAll("button") || []).find((button) => button.textContent.trim() === "全部");
     allButton?.click();
     return Boolean(allButton);
   }
 
-  function createModeSwitcher(activeMode) {
+  function createRouteIntro() {
     const wrapper = document.createElement("section");
-    wrapper.className = "learning-mode-switcher";
+    wrapper.className = "learning-mode-switcher knowledge-route-intro";
     wrapper.innerHTML = `
       <div>
-        <strong>学习方式</strong>
-        <p class="muted">可以按年级循序学，也可以按知识点主线学。</p>
+        <strong>知识点地铁路线</strong>
+        <p class="muted">不再按年级分类；只沿数学知识的内在逻辑，从先修模型一站一站闯关。</p>
       </div>
-      <div class="learning-mode-switcher__actions">
-        <button type="button" data-mode="grade">按年级学习</button>
-        <button type="button" data-mode="knowledge">按知识点学习</button>
-      </div>
+      <span class="knowledge-route-intro__badge">数学主线</span>
     `;
-    wrapper.querySelectorAll("button").forEach((button) => {
-      const buttonMode = normalizeMode(button.dataset.mode);
-      button.className = `learning-mode-button${buttonMode === activeMode ? " is-active" : ""}`;
-      button.addEventListener("click", () => {
-        saveMode(buttonMode);
-        applyLearningMode(buttonMode);
-      });
-    });
     return wrapper;
   }
 
   function ensureModeSwitcher() {
-    if (document.querySelector(".learning-mode-switcher")) {
+    const existing = document.querySelector(".learning-mode-switcher");
+    if (existing) {
+      existing.classList.add("knowledge-route-intro");
+      const strong = existing.querySelector("strong");
+      const text = existing.querySelector("p");
+      const actions = existing.querySelector(".learning-mode-switcher__actions");
+      if (strong) {
+        strong.textContent = "知识点地铁路线";
+      }
+      if (text) {
+        text.textContent = "不再按年级分类；只沿数学知识的内在逻辑，从先修模型一站一站闯关。";
+      }
+      actions?.remove();
+      if (!existing.querySelector(".knowledge-route-intro__badge")) {
+        const badge = document.createElement("span");
+        badge.className = "knowledge-route-intro__badge";
+        badge.textContent = "数学主线";
+        existing.appendChild(badge);
+      }
       return;
     }
     const gradeFilter = document.getElementById("grade-filter");
     if (!gradeFilter?.parentElement) {
       return;
     }
-    gradeFilter.parentElement.insertBefore(createModeSwitcher(getSavedMode()), gradeFilter);
+    gradeFilter.parentElement.insertBefore(createRouteIntro(), gradeFilter);
   }
 
-  function updateModeButtons(activeMode) {
+  function updateModeButtons() {
     document.querySelectorAll(".learning-mode-button").forEach((button) => {
-      button.classList.toggle("is-active", normalizeMode(button.dataset.mode) === activeMode);
+      button.classList.toggle("is-active", button.dataset.mode === modes.knowledge);
     });
   }
 
@@ -150,8 +152,8 @@
       </div>
       <span class="badge"></span>
     `;
-    overview.querySelector("strong").textContent = `按知识点学习 · ${difficulty === "全部" ? "全部难度" : difficulty}`;
-    overview.querySelector("p").textContent = "按知识主线组织模块，适合围绕一个数学模型持续深入。";
+    overview.querySelector("strong").textContent = `数学内在逻辑路线 · ${difficulty === "全部" ? "全部难度" : difficulty}`;
+    overview.querySelector("p").textContent = "按知识主线和先后依赖组织模块，不展示年级标签，也不按年级分组。";
     overview.querySelector(".badge").textContent = `${modules.length} 个知识点 · ${practiceCount} 道练习题`;
     return overview;
   }
@@ -227,30 +229,40 @@
     });
   }
 
-  function applyLearningMode(mode = getSavedMode()) {
-    const activeMode = normalizeMode(mode);
-    saveMode(activeMode);
+  function updateModulePanelCopy() {
+    const modulesTitle = document.querySelector("#modules .panel__header h2");
+    const modulesHint = document.querySelector("#modules .panel__hint");
+    if (modulesTitle) {
+      modulesTitle.textContent = "按知识点内在逻辑循序闯关";
+    }
+    if (modulesHint) {
+      modulesHint.textContent = "不按年级分类；沿数学主线、先修关系和后续连接推进。";
+    }
+    document.getElementById("module-grades")?.setAttribute("hidden", "true");
+  }
+
+  function applyLearningMode() {
+    saveMode();
     ensureModeSwitcher();
-    updateModeButtons(activeMode);
+    updateModeButtons();
+    updateModulePanelCopy();
     const gradeFilter = document.getElementById("grade-filter");
     const moduleList = document.getElementById("module-list");
     const knowledgeList = ensureKnowledgeContainer();
 
-    if (activeMode === modes.knowledge) {
-      if (clickGradeAllIfNeeded()) {
-        return;
-      }
-      gradeFilter.hidden = true;
-      moduleList.hidden = true;
-      knowledgeList.hidden = false;
-      renderKnowledgeModeList();
+    if (clickGradeAllIfNeeded()) {
       return;
     }
 
-    gradeFilter.hidden = false;
-    moduleList.hidden = false;
+    if (gradeFilter) {
+      gradeFilter.hidden = true;
+    }
+    if (moduleList) {
+      moduleList.hidden = true;
+    }
     if (knowledgeList) {
-      knowledgeList.hidden = true;
+      knowledgeList.hidden = false;
+      renderKnowledgeModeList();
     }
   }
 
@@ -261,7 +273,7 @@
       return;
     }
     const observer = new MutationObserver(() => {
-      root.requestAnimationFrame?.(() => applyLearningMode(getSavedMode())) || root.setTimeout(() => applyLearningMode(getSavedMode()), 0);
+      root.requestAnimationFrame?.(() => applyLearningMode()) || root.setTimeout(() => applyLearningMode(), 0);
     });
     if (moduleList) {
       observer.observe(moduleList, { childList: true, subtree: true });
@@ -277,7 +289,7 @@
     }
     ensureModeSwitcher();
     ensureKnowledgeContainer();
-    applyLearningMode(getSavedMode());
+    applyLearningMode();
     observeAppRenders();
   }
 
