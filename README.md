@@ -4,6 +4,7 @@
 
 ## 功能
 
+- 支持按年级学习，也支持按知识点主线学习
 - 按年级与难度筛选学习模块
 - 查看典型例题与解析
 - 完成闯关练习并获得即时反馈
@@ -217,6 +218,17 @@ npm run check
 - 对模块补充先修知识、后续连接、当前阶段、学习理由和连贯性说明
 - 新增 `knowledgeTopologyView.js`，在模块学习页展示“知识谱系”卡片
 - 新增 `knowledgeTopology.css`、`tests/knowledgeContinuityExpansion.test.js` 和 `tests/knowledgeTopology.test.js`
+
+## 第十一阶段学习入口双模式
+
+学习地图现在支持两种入口：
+
+- 新增 `learningModes.js`，提供“按年级学习 / 按知识点学习”切换
+- 按年级学习时保留原有年级、难度筛选和年级分组路径
+- 按知识点学习时自动切换到全部年级，并按知识主线分组展示模块
+- 知识点模式会继续尊重当前难度筛选
+- 点击知识点卡片会进入同一个模块学习详情，复用原有例题、练习、错题、进度逻辑
+- 新增 `learningModes.css` 和 `tests/learningModes.test.js`
 
 ## 后续方向
 
