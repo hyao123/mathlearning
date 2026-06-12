@@ -1,0 +1,45 @@
+.learning-support {
+  margin-top: 14px;
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #f8fbff, #ffffff);
+  overflow: hidden;
+}
+
+.learning-support summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  color: var(--primary-dark);
+  font-weight: 800;
+  list-style-position: inside;
+}
+
+.learning-support[open] summary {
+  border-bottom: 1px solid var(--border);
+  background: #eef4ff;
+}
+
+.learning-support__group {
+  padding: 12px 14px;
+  border-top: 1px solid rgba(219, 228, 240, 0.72);
+}
+
+.learning-support__group:first-of-type {
+  border-top: 0;
+}
+
+.learning-support__group h5 {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.learning-support__group ul,
+.learning-support__group ol {
+  margin: 0;
+  padding-left: 22px;
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  line-height: 1.65;
+}
