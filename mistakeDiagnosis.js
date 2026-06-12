@@ -1,24 +1,24 @@
 (function attachMistakeDiagnosis(root) {
   const mistakeTagCatalog = {
-    patternRule: {
+    "pattern-rule": {
       id: "pattern-rule",
       label: "规律识别",
       description: "没有先找稳定变化或重复结构，而是直接猜答案。",
       advice: "先比较相邻变化、位置关系或重复周期，再写出规则。"
     },
-    remainderPosition: {
+    "remainder-position": {
       id: "remainder-position",
       label: "余数定位",
       description: "周期题中没有把余数对应到组内位置，尤其余 0 情况容易错。",
       advice: "先确定周期长度，再用余数定位；余 0 对应每组最后一个。"
     },
-    duplicateCounting: {
+    "duplicate-counting": {
       id: "duplicate-counting",
       label: "重复计数",
       description: "枚举或集合题中重复计算了同一种情况。",
       advice: "固定顺序列举，遇到重叠部分要判断是否已经算过。"
     },
-    missingCases: {
+    "missing-cases": {
       id: "missing-cases",
       label: "漏情况",
       description: "没有完整分类，导致部分可能情况没有被列出。",
@@ -30,37 +30,37 @@
       description: "没有正确处理两个集合的交集，把重叠部分多算或少算。",
       advice: "至少一项 = A + B - 重叠；只会一项要把重叠从两边都去掉。"
     },
-    sumDiffRelation: {
+    "sum-diff-relation": {
       id: "sum-diff-relation",
       label: "和差关系",
       description: "没有区分总量、差量和相等份。",
       advice: "先画线段图，把大数、小数、总和和差量放到同一把尺上。"
     },
-    unitRate: {
+    "unit-rate": {
       id: "unit-rate",
       label: "单位量",
       description: "没有先求 1 份、1 人 1 天或 1 台 1 小时的单位量。",
       advice: "先归到单位量，再按题目要求放大或反求。"
     },
-    surplusDeficit: {
+    "surplus-deficit": {
       id: "surplus-deficit",
       label: "盈亏方向",
       description: "没有分清“多”和“少”的方向，一盈一亏时总差处理错误。",
       advice: "一盈一亏总差相加，两次都盈或都亏比较差额。"
     },
-    assumptionGap: {
+    "assumption-gap": {
       id: "assumption-gap",
       label: "假设差量",
       description: "鸡兔同笼或替换类问题中，没有算清每次替换带来的差量。",
       advice: "先统一假设，再用实际差额除以每次替换差量。"
     },
-    averageTotal: {
+    "average-total": {
       id: "average-total",
       label: "平均总量",
       description: "把平均数当成中间数，忽略总量重新均分。",
       advice: "先求总量，再按份数平均分。"
     },
-    motionRelative: {
+    "motion-relative": {
       id: "motion-relative",
       label: "相对速度",
       description: "相遇、追及问题中混淆速度和与速度差。",
@@ -72,25 +72,25 @@
       description: "没有抓住年龄差、总量、面积或结构中的不变量。",
       advice: "先问：什么量一直不变？什么量同时变化？"
     },
-    pointInterval: {
+    "point-interval": {
       id: "point-interval",
       label: "点与间隔",
       description: "植树、排队、封闭路线中把点数和间隔数混淆。",
       advice: "先求间隔数，再根据两端是否计入判断点数。"
     },
-    geometryTransform: {
+    "geometry-transform": {
       id: "geometry-transform",
       label: "图形转化",
       description: "没有先分割、拼合或补全图形，直接套公式。",
       advice: "把复杂图形转成矩形、正方形、三角形等熟悉结构。"
     },
-    conditionLogic: {
+    "condition-logic": {
       id: "condition-logic",
       label: "条件推理",
       description: "逻辑题中没有逐条使用条件，或没有回代验证。",
       advice: "先列可能，再用条件排除，最后把结论回代检查。"
     },
-    arithmeticCare: {
+    "arithmetic-care": {
       id: "arithmetic-care",
       label: "计算细节",
       description: "模型方向基本正确，但四则运算、单位或最终表达出错。",
