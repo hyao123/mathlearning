@@ -1,0 +1,160 @@
+.metro-line-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 18px;
+  padding: 12px;
+  border: 1px solid rgba(14, 165, 233, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.metro-line-legend__item {
+  --line-color: #0ea5e9;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: #fff;
+  color: #334155;
+  border: 1px solid rgba(226, 232, 240, 0.94);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.metro-line-legend__item::before {
+  content: "";
+  width: 18px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--line-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--line-color) 20%, transparent);
+}
+
+.metro-line-legend__item--observation,
+.metro-colored-line--observation,
+.metro-colored-node--observation {
+  --line-color: #ec4899;
+  --line-color-2: #fb7185;
+}
+
+.metro-line-legend__item--counting,
+.metro-colored-line--counting,
+.metro-colored-node--counting {
+  --line-color: #f97316;
+  --line-color-2: #f59e0b;
+}
+
+.metro-line-legend__item--quantity,
+.metro-colored-line--quantity,
+.metro-colored-node--quantity {
+  --line-color: #2563eb;
+  --line-color-2: #7c3aed;
+}
+
+.metro-line-legend__item--change,
+.metro-colored-line--change,
+.metro-colored-node--change {
+  --line-color: #22c55e;
+  --line-color-2: #14b8a6;
+}
+
+.metro-line-legend__item--space,
+.metro-colored-line--space,
+.metro-colored-node--space {
+  --line-color: #0ea5e9;
+  --line-color-2: #06b6d4;
+}
+
+.metro-line-legend__item--logic,
+.metro-colored-line--logic,
+.metro-colored-node--logic {
+  --line-color: #8b5cf6;
+  --line-color-2: #6366f1;
+}
+
+.metro-line-legend__item--mixed,
+.metro-colored-line--mixed,
+.metro-colored-node--mixed {
+  --line-color: #64748b;
+  --line-color-2: #334155;
+}
+
+.metro-colored-line::before {
+  background: linear-gradient(180deg, var(--line-color), var(--line-color-2)) !important;
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--line-color) 14%, transparent), 0 12px 26px color-mix(in srgb, var(--line-color) 24%, transparent) !important;
+}
+
+.metro-colored-line::after {
+  filter: drop-shadow(0 8px 12px color-mix(in srgb, var(--line-color) 28%, transparent));
+}
+
+.metro-colored-node::before,
+.metro-colored-node .module-path__content strong,
+.metro-colored-node .knowledge-mode-card__content strong {
+  background: linear-gradient(135deg, var(--line-color), var(--line-color-2)) !important;
+}
+
+.metro-colored-node .module-path__step,
+.metro-colored-node .knowledge-mode-card__step {
+  background: var(--line-color) !important;
+  outline-color: color-mix(in srgb, var(--line-color) 22%, transparent) !important;
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--line-color) 26%, transparent), 0 0 0 12px color-mix(in srgb, var(--line-color-2) 10%, transparent) !important;
+}
+
+.metro-current-train {
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  z-index: 8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 4px solid #fff;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffffff, #fef3c7);
+  box-shadow: 0 14px 26px rgba(15, 23, 42, 0.18), 0 0 0 8px color-mix(in srgb, var(--line-color) 14%, transparent);
+  font-size: 24px;
+  transform: translate(-50%, -50%);
+  animation: metro-current-train-pulse 1.35s ease-in-out infinite alternate;
+}
+
+.has-current-train {
+  border-color: color-mix(in srgb, var(--line-color) 45%, #ffffff) !important;
+}
+
+.has-current-train::after {
+  animation: cute-station-bounce 1.1s ease-in-out infinite alternate;
+}
+
+@keyframes metro-current-train-pulse {
+  from {
+    transform: translate(-50%, -50%) scale(1) rotate(-4deg);
+  }
+  to {
+    transform: translate(-50%, -58%) scale(1.08) rotate(4deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .metro-current-train {
+    left: 24px;
+    top: 24px;
+    width: 38px;
+    height: 38px;
+    font-size: 21px;
+    transform: none;
+  }
+
+  @keyframes metro-current-train-pulse {
+    from {
+      transform: translateY(0) scale(1) rotate(-4deg);
+    }
+    to {
+      transform: translateY(-5px) scale(1.08) rotate(4deg);
+    }
+  }
+}
