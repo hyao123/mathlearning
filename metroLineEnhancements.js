@@ -31,21 +31,35 @@
     return strandClassMap[strand] || strandClassMap["综合拓展"];
   }
 
-  function clearTrainMarkers(path) {
-    path.querySelectorAll(".metro-current-train").forEach((train) => train.remove());
-    path.querySelectorAll(".has-current-train").forEach((card) => card.classList.remove("has-current-train"));
+  function addClassOnce(element, className) {
+    if (!element.classList.contains(className)) {
+      element.classList.add(className);
+    }
   }
 
-  function createTrainMarker(card) {
-    let train = card.querySelector(".metro-current-train");
-    if (!train) {
-      train = document.createElement("span");
-      train.className = "metro-current-train";
-      train.textContent = "🚇";
-      train.setAttribute("aria-label", "小火车停靠在当前站");
-      card.appendChild(train);
+  function setDatasetOnce(element, key, value) {
+    if (element.dataset[key] !== value) {
+      element.dataset[key] = value;
     }
-    return train;
+  }
+
+  function syncTrainMarker(card, shouldShow) {
+    const train = card.querySelector(".metro-current-train");
+    if (!shouldShow) {
+      if (train) {
+        train.remove();
+      }
+      card.classList.remove("has-current-train");
+      return;
+    }
+    addClassOnce(card, "has-current-train");
+    if (!train) {
+      const nextTrain = document.createElement("span");
+      nextTrain.className = "metro-current-train";
+      nextTrain.textContent = "🚇";
+      nextTrain.setAttribute("aria-label", "小火车停靠在当前站");
+      card.appendChild(nextTrain);
+    }
   }
 
   function decoratePath(path) {
@@ -53,22 +67,20 @@
     if (cards.length === 0) {
       return;
     }
-    clearTrainMarkers(path);
     const strands = cards.map((card) => getModuleByTitle(getCardTitle(card))?.knowledgeTopology?.strand || "综合拓展");
     const primaryStrand = strands[0] || "综合拓展";
-    path.dataset.metroStrand = primaryStrand;
-    path.classList.add("metro-colored-line", `metro-colored-line--${getStrandClass(primaryStrand)}`);
+    setDatasetOnce(path, "metroStrand", primaryStrand);
+    addClassOnce(path, "metro-colored-line");
+    addClassOnce(path, `metro-colored-line--${getStrandClass(primaryStrand)}`);
 
     cards.forEach((card) => {
       const module = getModuleByTitle(getCardTitle(card));
       const strand = module?.knowledgeTopology?.strand || "综合拓展";
       const strandClass = getStrandClass(strand);
-      card.dataset.metroStrand = strand;
-      card.classList.add("metro-colored-node", `metro-colored-node--${strandClass}`);
-      if (card.classList.contains("is-quest-current") || card.classList.contains("is-quest-needs-review")) {
-        card.classList.add("has-current-train");
-        createTrainMarker(card);
-      }
+      setDatasetOnce(card, "metroStrand", strand);
+      addClassOnce(card, "metro-colored-node");
+      addClassOnce(card, `metro-colored-node--${strandClass}`);
+      syncTrainMarker(card, card.classList.contains("is-quest-current") || card.classList.contains("is-quest-needs-review"));
     });
   }
 
