@@ -1,0 +1,191 @@
+.character-story-panel {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  margin: 16px auto;
+  width: min(1120px, calc(100% - 32px));
+  padding: 18px;
+  border: 1px solid rgba(236, 72, 153, 0.2);
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 94% 10%, rgba(250, 204, 21, 0.28) 0 58px, transparent 60px),
+    radial-gradient(circle at 6% 92%, rgba(14, 165, 233, 0.18) 0 54px, transparent 56px),
+    linear-gradient(135deg, #fdf2f8, #ffffff 52%, #ecfeff);
+  box-shadow: 0 18px 46px rgba(15, 23, 42, 0.08);
+}
+
+.character-story-panel::after {
+  content: "🎬";
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  font-size: 30px;
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.character-story-hero {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+}
+
+.character-story-avatar {
+  display: grid;
+  place-items: center;
+  width: 86px;
+  height: 86px;
+  border: 7px solid #fff;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #ec4899, #2563eb);
+  box-shadow: 0 18px 34px rgba(236, 72, 153, 0.18), 0 0 0 12px rgba(14, 165, 233, 0.08);
+  font-size: 40px;
+  animation: character-story-float 1.8s ease-in-out infinite alternate;
+}
+
+.character-story-text {
+  display: grid;
+  gap: 5px;
+}
+
+.character-story-eyebrow {
+  color: #be185d;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.character-story-text h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 24px;
+}
+
+.character-story-text p,
+.character-story-chapter p,
+.character-story-quest p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.character-story-level {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+  border: 1px solid rgba(226, 232, 240, 0.94);
+  border-radius: 18px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.character-story-level span,
+.character-story-quest small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.character-story-level strong {
+  color: #be185d;
+  font-size: 20px;
+}
+
+.character-story-chapter,
+.character-story-quest,
+.character-story-badges {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(226, 232, 240, 0.94);
+  border-radius: 20px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.character-story-chapter strong,
+.character-story-quest h4,
+.character-story-badges h4 {
+  margin: 0;
+  color: var(--text);
+}
+
+.character-story-progress {
+  display: block;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #fce7f3;
+}
+
+.character-story-progress i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ec4899, #2563eb);
+}
+
+.character-story-badge-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.character-story-badge {
+  display: grid;
+  gap: 5px;
+  border: 1px solid rgba(226, 232, 240, 0.94);
+  border-radius: 18px;
+  padding: 12px;
+  background: #fff;
+  opacity: 0.72;
+}
+
+.character-story-badge.is-unlocked {
+  opacity: 1;
+  border-color: rgba(236, 72, 153, 0.18);
+  background: linear-gradient(135deg, #fff7fb, #ffffff);
+}
+
+.character-story-badge span {
+  font-size: 28px;
+}
+
+.character-story-badge strong {
+  color: var(--text);
+}
+
+.character-story-badge small {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+@keyframes character-story-float {
+  from {
+    transform: translateY(0) rotate(-3deg);
+  }
+  to {
+    transform: translateY(-5px) rotate(3deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .character-story-hero,
+  .character-story-badge-list {
+    grid-template-columns: 1fr;
+  }
+
+  .character-story-level {
+    justify-items: start;
+  }
+
+  .character-story-avatar {
+    width: 72px;
+    height: 72px;
+    font-size: 34px;
+  }
+}
