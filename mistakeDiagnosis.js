@@ -6,6 +6,36 @@
       description: "没有先找稳定变化或重复结构，而是直接猜答案。",
       advice: "先比较相邻变化、位置关系或重复周期，再写出规则。"
     },
+    "structure-missing": {
+      id: "structure-missing",
+      label: "结构未识别",
+      description: "没有先观察能否凑整、拆补或配对，而是直接硬算。",
+      advice: "先圈出接近整十整百的数，再判断能不能先凑整或首尾配对。"
+    },
+    "term-count": {
+      id: "term-count",
+      label: "项数间隔",
+      description: "等差数列中把项数和间隔数混淆，导致第 n 项或求和错误。",
+      advice: "先写出“间隔数 = 项数 - 1”，求和前先确认一共有几项。"
+    },
+    "add-multiply-confusion": {
+      id: "add-multiply-confusion",
+      label: "加乘混淆",
+      description: "没有区分分类选择和分步选择，把该加的乘了或该乘的加了。",
+      advice: "先问：是任选一种方案，还是几个步骤都要完成？分类用加法，分步用乘法。"
+    },
+    "work-unit": {
+      id: "work-unit",
+      label: "工程单位化",
+      description: "工程问题中没有把总工作量看成 1，或把天数当成效率。",
+      advice: "先把总工程看成 1，再求每人每天完成几分之几。"
+    },
+    "efficiency-sum": {
+      id: "efficiency-sum",
+      label: "效率合并",
+      description: "合作问题中把完成时间相加或平均，而不是把工作效率相加。",
+      advice: "合作时相加的是每天完成的工作量，不是各自完成所需天数。"
+    },
     "remainder-position": {
       id: "remainder-position",
       label: "余数定位",
@@ -100,8 +130,11 @@
 
   const moduleMistakeTags = {
     patterns: ["pattern-rule", "arithmetic-care"],
+    "quick-calculation": ["structure-missing", "arithmetic-care"],
+    "arithmetic-series": ["term-count", "pattern-rule", "arithmetic-care"],
     periodicity: ["remainder-position", "pattern-rule"],
     enumeration: ["missing-cases", "duplicate-counting"],
+    "add-multiply-principle": ["add-multiply-confusion", "missing-cases"],
     "inclusion-exclusion": ["overlap", "duplicate-counting"],
     "sum-diff": ["sum-diff-relation", "arithmetic-care"],
     "unit-rate": ["unit-rate", "arithmetic-care"],
@@ -109,6 +142,7 @@
     "chicken-rabbit": ["assumption-gap", "sum-diff-relation"],
     average: ["average-total", "unit-rate"],
     motion: ["motion-relative", "unit-rate"],
+    engineering: ["work-unit", "efficiency-sum", "unit-rate"],
     age: ["invariant", "sum-diff-relation"],
     "tree-planting": ["point-interval", "remainder-position"],
     geometry: ["geometry-transform", "invariant"],
@@ -116,6 +150,10 @@
   };
 
   const keywordRules = [
+    { pattern: /凑整|整十|整百|拆数|补数|配对/, tags: ["structure-missing"] },
+    { pattern: /等差|公差|第\s*\d+\s*项|项数|首尾/, tags: ["term-count", "pattern-rule"] },
+    { pattern: /分类|分步|搭配|路线|密码|选法/, tags: ["add-multiply-confusion"] },
+    { pattern: /工程|工作|合作|效率|每天完成|几天完成/, tags: ["work-unit", "efficiency-sum"] },
     { pattern: /余|周期|循环|第\s*\d+|星期/, tags: ["remainder-position"] },
     { pattern: /两端|间隔|封闭|植树|路灯|每隔/, tags: ["point-interval"] },
     { pattern: /平均|均分|总量/, tags: ["average-total"] },
