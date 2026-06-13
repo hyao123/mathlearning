@@ -304,7 +304,7 @@
     if (!("MutationObserver" in root)) {
       return;
     }
-    ["wrong-book-list", "mistake-diagnosis-panel", "mistake-dashboard-panel", "parent-dashboard"].forEach((id) => {
+    ["wrong-book-list", "mistake-diagnosis-panel", "mistake-dashboard-panel"].forEach((id) => {
       const element = document.getElementById(id);
       if (!element) {
         return;
