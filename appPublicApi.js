@@ -1,8 +1,12 @@
 (function attachMathLearningApp(root) {
   const progressStorageKey = "mathlearning-progress-v2";
 
+  function getRuntime() {
+    return root.MathLearningRuntime || null;
+  }
+
   function getModules() {
-    return Array.isArray(root.MATH_LEARNING_DATA) ? root.MATH_LEARNING_DATA : [];
+    return Array.isArray(getRuntime()?.modules) ? getRuntime().modules : Array.isArray(root.MATH_LEARNING_DATA) ? root.MATH_LEARNING_DATA : [];
   }
 
   function findModuleById(moduleId) {
@@ -19,6 +23,14 @@
   }
 
   function getActiveFilters() {
+    const runtime = getRuntime();
+    if (runtime?.selectors) {
+      return {
+        grade: runtime.selectors.activeGrade,
+        difficulty: runtime.selectors.activeDifficulty
+      };
+    }
+
     return {
       grade: getActiveChipText("grade-filter"),
       difficulty: getActiveChipText("difficulty-filter")
@@ -54,6 +66,17 @@
       return false;
     }
 
+    const runtime = getRuntime();
+    if (runtime?.selectors && typeof runtime.render === "function") {
+      runtime.selectors.activeGrade = "全部";
+      runtime.setActiveModuleId(moduleId);
+      runtime.render();
+      if (options.scroll !== false) {
+        scrollToLessonPanel();
+      }
+      return true;
+    }
+
     const openVisibleModule = () => {
       const button = getOriginalModuleButton(module);
       if (!button) {
@@ -75,6 +98,11 @@
   }
 
   function getActiveModuleId() {
+    const runtime = getRuntime();
+    if (runtime?.selectors) {
+      return runtime.selectors.activeModuleId || "";
+    }
+
     const activeTitle = root.document
       ?.querySelector("#module-list .module-path__item.is-active strong")
       ?.textContent
@@ -91,6 +119,10 @@
   }
 
   function getState() {
+    const runtime = getRuntime();
+    if (typeof runtime?.getState === "function") {
+      return runtime.getState();
+    }
     return safeParse(root.localStorage?.getItem(progressStorageKey), null);
   }
 
@@ -98,7 +130,15 @@
     if (!nextState || typeof nextState !== "object") {
       return false;
     }
-    root.localStorage?.setItem(progressStorageKey, JSON.stringify(nextState));
+
+    const runtime = getRuntime();
+    if (runtime?.setState && runtime?.saveState) {
+      runtime.setState(nextState);
+      runtime.saveState();
+    } else {
+      root.localStorage?.setItem(progressStorageKey, JSON.stringify(nextState));
+    }
+
     if (options.reload) {
       root.location?.reload();
     }
