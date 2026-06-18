@@ -1,3 +1,23 @@
+const lazyState = {};
+
+function observeOnce(element, callback, key) {
+  if (!element) { callback(); lazyState[key] = true; return; }
+  if (lazyState[key]) { callback(); return; }
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        observer.disconnect();
+        lazyState[key] = true;
+        callback();
+      }
+    }, { rootMargin: '200px' });
+    observer.observe(element);
+  } else {
+    lazyState[key] = true;
+    setTimeout(callback, 0);
+  }
+}
+
 const modules = window.MATH_LEARNING_DATA;
 const storageKey = "mathlearning-progress-v2";
 const legacyStorageKey = "mathlearning-progress-v1";
@@ -1067,12 +1087,13 @@ function render() {
   renderGradeFilter();
   renderDifficultyFilter();
   renderModuleList();
-  renderDailyPractice();
-  renderPaperGenerator();
   renderModuleDetail();
-  renderWrongBook();
-  renderDashboard();
   renderHeroStats();
+
+  observeOnce(document.getElementById('daily-practice-panel'), renderDailyPractice, 'daily');
+  observeOnce(document.getElementById('paper-generator-panel'), renderPaperGenerator, 'paper');
+  observeOnce(document.getElementById('wrong-book'), renderWrongBook, 'wrong');
+  observeOnce(document.getElementById('parent-dashboard'), renderDashboard, 'dashboard');
 }
 
 generatePaperButton.addEventListener("click", generatePaper);

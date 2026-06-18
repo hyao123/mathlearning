@@ -3,7 +3,7 @@ const test = require("node:test");
 
 const mastery = require("../masteryModel.js");
 
-const module = {
+const testModule = {
   id: "patterns",
   title: "找规律",
   knowledgeTopology: { strand: "观察与周期", stage: "结构观察" },
@@ -11,7 +11,7 @@ const module = {
 };
 
 test("marks untouched module as not started", () => {
-  const result = mastery.calculateModuleMastery(module, {}, { todayKey: "2026-06-12" });
+  const result = mastery.calculateModuleMastery(testModule, {}, { todayKey: "2026-06-12" });
   assert.equal(result.status.id, "not-started");
   assert.equal(result.stats.completed, 0);
 });
@@ -25,7 +25,7 @@ test("marks partially completed module as learning", () => {
     },
     wrongBook: []
   };
-  const result = mastery.calculateModuleMastery(module, state, { todayKey: "2026-06-12" });
+  const result = mastery.calculateModuleMastery(testModule, state, { todayKey: "2026-06-12" });
   assert.equal(result.status.id, "learning");
   assert.equal(result.stats.completionRateText, "40%");
 });
@@ -41,7 +41,7 @@ test("marks module with due wrong book items as needs review", () => {
     },
     wrongBook: [{ id: "p5", nextReviewAt: "2026-06-12" }]
   };
-  const result = mastery.calculateModuleMastery(module, state, { todayKey: "2026-06-12" });
+  const result = mastery.calculateModuleMastery(testModule, state, { todayKey: "2026-06-12" });
   assert.equal(result.status.id, "needs-review");
   assert.equal(result.stats.dueWrongBook, 1);
 });
@@ -57,7 +57,7 @@ test("marks strong module without wrong book as mastered", () => {
     },
     wrongBook: []
   };
-  const result = mastery.calculateModuleMastery(module, state, { todayKey: "2026-06-12" });
+  const result = mastery.calculateModuleMastery(testModule, state, { todayKey: "2026-06-12" });
   assert.equal(result.status.id, "mastered");
   assert.equal(result.stats.completionRateText, "80%");
   assert.equal(result.stats.accuracyText, "100%");

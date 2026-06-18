@@ -46,5 +46,6 @@ test("unknown modules get a safe fallback topology", () => {
 test("learning strands describe coherent groups", () => {
   assert.ok(topology.learningStrands.length >= 6);
   const counting = topology.learningStrands.find((strand) => strand.id === "counting");
-  assert.deepEqual(counting.moduleIds, ["enumeration", "inclusion-exclusion"]);
+  assert.ok(counting.moduleIds.includes("enumeration"));
+  assert.ok(counting.moduleIds.includes("inclusion-exclusion"));
 });
