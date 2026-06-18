@@ -252,12 +252,21 @@
       wrapper.querySelector(".muted").textContent = subtitle;
       wrapper.querySelector(".difficulty").textContent = practice.difficulty;
       wrapper.querySelector(".card__question").textContent = practice.prompt;
-      setChildrenText(wrapper.querySelector(".daily-card__meta"), grades, "grade-tag");
-      if (practice.adaptiveReason) {
+      const metaContainer = wrapper.querySelector(".daily-card__meta");
+      setChildrenText(metaContainer, grades, "grade-tag");
+      const recommendationReasons = Array.isArray(practice.adaptiveReasonDetails) && practice.adaptiveReasonDetails.length > 0
+        ? practice.adaptiveReasonDetails
+        : practice.adaptiveReason
+          ? [practice.adaptiveReason]
+          : [];
+      if (recommendationReasons.length > 0) {
         const reason = document.createElement("span");
         reason.className = "grade-tag adaptive-reason";
-        reason.textContent = `推荐：${practice.adaptiveReason}`;
-        wrapper.querySelector(".daily-card__meta").appendChild(reason);
+        reason.textContent = `推荐：${recommendationReasons.join(" · ")}`;
+        if (Number.isFinite(practice.adaptiveScore)) {
+          reason.title = `推荐分：${practice.adaptiveScore}`;
+        }
+        metaContainer.appendChild(reason);
       }
       if (saved) {
         const input = wrapper.querySelector(".answer-input");
