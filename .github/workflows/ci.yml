@@ -21,5 +21,8 @@ jobs:
       - name: Run syntax checks
         run: npm run check
 
+      - name: Validate content
+        run: npm run validate:content
+
       - name: Run tests
         run: npm test
