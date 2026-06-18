@@ -20,6 +20,7 @@ test("prioritizes wrong-book items", () => {
   const selected = adaptivePractice.selectDailyPracticeItems({ pool, state, dailyKey: "2026-06-12", targetCount: 3 });
   assert.equal(selected[0].id, "geometry-1");
   assert.equal(selected[0].adaptiveReason, "错题回访");
+  assert.deepEqual(selected[0].adaptiveReasonDetails, ["错题回访", "薄弱模块", "新题探索"]);
 });
 
 test("prioritizes recently wrong answers", () => {
@@ -34,6 +35,8 @@ test("prioritizes recently wrong answers", () => {
   const selected = adaptivePractice.selectDailyPracticeItems({ pool, state, dailyKey: "2026-06-12", targetCount: 3 });
   assert.equal(selected[0].id, "logic-1");
   assert.equal(selected[0].adaptiveReason, "最近答错");
+  assert.ok(selected[0].adaptiveReasonDetails.includes("正确率偏低"));
+  assert.equal(selected[0].adaptiveScoreBreakdown.latestWrongBoost, adaptivePractice.defaultAdaptiveConfig.latestWrongBoost);
 });
 
 test("selects unique items and keeps target count", () => {
@@ -49,6 +52,47 @@ test("selects unique items and keeps target count", () => {
   const selected = adaptivePractice.selectDailyPracticeItems({ pool, state, dailyKey: "2026-06-12", targetCount: 3 });
   assert.equal(selected.length, 3);
   assert.equal(new Set(selected.map((item) => item.id)).size, 3);
+});
+
+test("accepts configurable weights", () => {
+  const state = {
+    wrongBook: [{ id: "geometry-1" }],
+    completed: {},
+    answerHistory: {
+      "logic-1": { attempts: 3, correct: 0, latestCorrect: false }
+    }
+  };
+
+  const selected = adaptivePractice.selectDailyPracticeItems({
+    pool,
+    state,
+    dailyKey: "2026-06-12",
+    targetCount: 1,
+    config: {
+      wrongBookBoost: 1,
+      latestWrongBoost: 100,
+      accuracyPenaltyMax: 100
+    }
+  });
+
+  assert.equal(selected[0].id, "logic-1");
+  assert.equal(selected[0].adaptiveScoreBreakdown.latestWrongBoost, 100);
+});
+
+test("allows configurable reason labels", () => {
+  const state = {
+    wrongBook: [{ id: "patterns-1" }],
+    completed: {},
+    answerHistory: {}
+  };
+
+  const reasons = adaptivePractice.getRecommendationReasons(pool[0], pool, state, {
+    reasonLabels: {
+      wrongBook: "复盘错题"
+    }
+  });
+
+  assert.equal(reasons[0], "复盘错题");
 });
 
 test("returns stable hashes for the same key", () => {
