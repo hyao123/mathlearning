@@ -1,4 +1,33 @@
 (function attachAdaptivePractice(root) {
+  const defaultAdaptiveConfig = {
+    wrongBookBoost: 42,
+    latestWrongBoost: 28,
+    accuracyPenaltyMax: 28,
+    moduleWeaknessMax: 16,
+    newItemBoost: 8,
+    weakModuleThreshold: 0.5,
+    maxReasonDetails: 3,
+    reasonLabels: {
+      wrongBook: "错题回访",
+      latestWrong: "最近答错",
+      lowAccuracy: "正确率偏低",
+      weakModule: "薄弱模块",
+      newItem: "新题探索",
+      consolidation: "巩固练习"
+    }
+  };
+
+  function createAdaptiveConfig(overrides = {}) {
+    return {
+      ...defaultAdaptiveConfig,
+      ...overrides,
+      reasonLabels: {
+        ...defaultAdaptiveConfig.reasonLabels,
+        ...(overrides.reasonLabels || {})
+      }
+    };
+  }
+
   function stableHash(value) {
     let hash = 0;
     for (let index = 0; index < value.length; index += 1) {
@@ -24,52 +53,92 @@
     return completedCount / moduleItems.length;
   }
 
-  function getWeaknessScore(item, pool, state) {
+  function getScoreBreakdown(item, pool, state, configOverrides = {}) {
+    const config = createAdaptiveConfig(configOverrides);
     const record = getAnswerRecord(state, item.id);
     const attempts = Number(record?.attempts || 0);
     const correct = Number(record?.correct || 0);
-    const latestWrong = record && record.latestCorrect === false ? 28 : 0;
-    const wrongBookBoost = isWrongBookItem(state, item.id) ? 42 : 0;
-    const accuracyPenalty = attempts > 0 ? Math.round((1 - correct / attempts) * 28) : 0;
+    const accuracy = attempts > 0 ? correct / attempts : null;
     const completionRate = getModuleCompletionRate(pool, state, item.moduleId);
-    const moduleWeakness = Math.round((1 - completionRate) * 16);
-    const newItemBoost = attempts === 0 ? 8 : 0;
-    return wrongBookBoost + latestWrong + accuracyPenalty + moduleWeakness + newItemBoost;
+    const components = {
+      wrongBookBoost: isWrongBookItem(state, item.id) ? config.wrongBookBoost : 0,
+      latestWrongBoost: record && record.latestCorrect === false ? config.latestWrongBoost : 0,
+      accuracyPenalty: attempts > 0 ? Math.round((1 - accuracy) * config.accuracyPenaltyMax) : 0,
+      moduleWeakness: Math.round((1 - completionRate) * config.moduleWeaknessMax),
+      newItemBoost: attempts === 0 ? config.newItemBoost : 0
+    };
+
+    return {
+      attempts,
+      correct,
+      accuracy,
+      completionRate,
+      components,
+      score: Object.values(components).reduce((sum, value) => sum + value, 0)
+    };
   }
 
-  function getReason(item, pool, state) {
+  function getWeaknessScore(item, pool, state, configOverrides = {}) {
+    return getScoreBreakdown(item, pool, state, configOverrides).score;
+  }
+
+  function getRecommendationReasons(item, pool, state, configOverrides = {}) {
+    const config = createAdaptiveConfig(configOverrides);
+    const labels = config.reasonLabels;
     const record = getAnswerRecord(state, item.id);
-    if (isWrongBookItem(state, item.id)) {
-      return "错题回访";
+    const breakdown = getScoreBreakdown(item, pool, state, config);
+    const reasons = [];
+
+    if (breakdown.components.wrongBookBoost > 0) {
+      reasons.push(labels.wrongBook);
     }
-    if (record?.latestCorrect === false) {
-      return "最近答错";
+    if (breakdown.components.latestWrongBoost > 0) {
+      reasons.push(labels.latestWrong);
+    }
+    if (breakdown.components.accuracyPenalty > 0 && record) {
+      reasons.push(labels.lowAccuracy);
+    }
+    if (breakdown.completionRate < config.weakModuleThreshold) {
+      reasons.push(labels.weakModule);
     }
     if (!record) {
-      return "新题探索";
+      reasons.push(labels.newItem);
     }
-    const completionRate = getModuleCompletionRate(pool, state, item.moduleId);
-    if (completionRate < 0.5) {
-      return "薄弱模块";
+
+    if (reasons.length === 0) {
+      reasons.push(labels.consolidation);
     }
-    return "巩固练习";
+
+    return [...new Set(reasons)].slice(0, config.maxReasonDetails);
   }
 
-  function rankPracticeItems({ pool = [], state = {}, dailyKey = "", seed = 0 }) {
+  function getReason(item, pool, state, configOverrides = {}) {
+    return getRecommendationReasons(item, pool, state, configOverrides)[0];
+  }
+
+  function rankPracticeItems({ pool = [], state = {}, dailyKey = "", seed = 0, config = {} }) {
+    const adaptiveConfig = createAdaptiveConfig(config);
     return pool
       .map((item, index) => {
-        const weaknessScore = getWeaknessScore(item, pool, state);
+        const breakdown = getScoreBreakdown(item, pool, state, adaptiveConfig);
+        const reasons = getRecommendationReasons(item, pool, state, adaptiveConfig);
         const tieBreaker = stableHash(`${dailyKey}-${seed}-${item.id}-${index}`) / 10000000000;
         return {
-          item: { ...item, adaptiveReason: getReason(item, pool, state), adaptiveScore: weaknessScore },
-          score: weaknessScore - tieBreaker
+          item: {
+            ...item,
+            adaptiveReason: reasons[0],
+            adaptiveReasonDetails: reasons,
+            adaptiveScore: breakdown.score,
+            adaptiveScoreBreakdown: breakdown.components
+          },
+          score: breakdown.score - tieBreaker
         };
       })
       .sort((left, right) => right.score - left.score || left.item.title.localeCompare(right.item.title, "zh-CN"));
   }
 
-  function selectDailyPracticeItems({ pool = [], state = {}, dailyKey = "", targetCount = 3, seed = 0 }) {
-    const ranked = rankPracticeItems({ pool, state, dailyKey, seed });
+  function selectDailyPracticeItems({ pool = [], state = {}, dailyKey = "", targetCount = 3, seed = 0, config = {} }) {
+    const ranked = rankPracticeItems({ pool, state, dailyKey, seed, config });
     const selected = [];
     const selectedIds = new Set();
 
@@ -85,7 +154,11 @@
   }
 
   const api = {
+    createAdaptiveConfig,
+    defaultAdaptiveConfig,
+    getRecommendationReasons,
     getReason,
+    getScoreBreakdown,
     getWeaknessScore,
     rankPracticeItems,
     selectDailyPracticeItems,
