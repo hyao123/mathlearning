@@ -142,6 +142,32 @@ function isCorrectAnswer(userAnswer, practice) {
   });
 }
 
+function createMethodChoiceControl(practice, saved = {}) {
+  if (!Array.isArray(practice.methodChoices) || practice.methodChoices.length === 0) {
+    return null;
+  }
+  const label = document.createElement("label");
+  label.className = "method-choice muted";
+  const text = document.createElement("span");
+  text.textContent = "先选方法";
+  const select = document.createElement("select");
+  select.className = "method-choice__select";
+  select.innerHTML = '<option value="">暂不确定</option>';
+  practice.methodChoices.forEach((choice) => {
+    const option = document.createElement("option");
+    option.value = choice;
+    option.textContent = choice;
+    option.selected = saved.methodChoice === choice;
+    select.appendChild(option);
+  });
+  label.append(text, select);
+  return label;
+}
+
+function getSelectedMethod(card) {
+  return card.querySelector(".method-choice__select")?.value || "";
+}
+
 function getAnswerRecord(practiceId) {
   if (!appState.answerHistory[practiceId]) {
     appState.answerHistory[practiceId] = {
@@ -177,10 +203,13 @@ function updateReviewQueue(practice, module, isCorrect) {
   });
 }
 
-function updatePracticeResult(practice, module, isCorrect, userAnswer) {
+function updatePracticeResult(practice, module, isCorrect, userAnswer, methodChoice = "") {
   const record = getAnswerRecord(practice.id);
   record.attempts += 1;
   record.lastAnswer = userAnswer;
+  record.methodChoice = methodChoice;
+  record.recommendedMethod = practice.methodChoices?.[0] || "";
+  record.methodMatched = methodChoice ? methodChoice === record.recommendedMethod : null;
   record.latestCorrect = isCorrect;
   record.lastAnsweredAt = new Date().toISOString();
 
@@ -253,9 +282,12 @@ function renderRouteContext(module) {
   }
   const nextModule = getNextModule(module);
   const topology = module.knowledgeTopology || {};
+  const plan = module.learningPlan || {};
   [
     `当前阶段：${topology.stage || "知识建模"}`,
     `为什么现在学：${topology.whyNow || topology.continuity || "按照知识路线继续推进。"}`,
+    `学习目标：${(plan.goals || []).slice(0, 2).join("；")}`,
+    `过关标准：${(plan.masteryCriteria || []).slice(0, 2).join("；")}`,
     `下一站：${nextModule?.title || "完成当前路线复盘"}`
   ].forEach((text) => {
     const row = document.createElement("span");
@@ -447,12 +479,17 @@ function renderPractice(module) {
     const input = fragment.querySelector(".answer-input");
     const button = fragment.querySelector(".submit-answer");
     const feedback = fragment.querySelector(".feedback");
+    const answerRow = fragment.querySelector(".answer-row");
 
     card.dataset.practiceId = practice.id;
     title.textContent = `${index + 1}. ${practice.title}`;
     subtitle.textContent = appState.completed[practice.id] ? "已完成" : "待挑战";
     difficulty.textContent = practice.difficulty;
     question.textContent = practice.prompt;
+    const methodChoice = createMethodChoiceControl(practice, getAnswerRecord(practice.id));
+    if (methodChoice) {
+      answerRow.before(methodChoice);
+    }
 
     button.addEventListener("click", () => {
       const userAnswer = input.value.trim();
@@ -463,7 +500,7 @@ function renderPractice(module) {
       }
 
       const isCorrect = isCorrectAnswer(userAnswer, practice);
-      feedback.textContent = updatePracticeResult(practice, module, isCorrect, userAnswer);
+      feedback.textContent = updatePracticeResult(practice, module, isCorrect, userAnswer, getSelectedMethod(card));
       feedback.className = createFeedbackClass(isCorrect);
       subtitle.textContent = appState.completed[practice.id] ? "已完成" : "待挑战";
       saveState();
@@ -904,8 +941,9 @@ function renderPaperGenerator() {
       }
 
       const isCorrect = isCorrectAnswer(userAnswer, practice);
-      const message = updatePracticeResult(practice, { id: practice.moduleId, title: practice.moduleTitle }, isCorrect, userAnswer);
-      appState.paperGenerator.answers[practice.id] = { answer: userAnswer, correct: isCorrect, message };
+      const methodChoice = getSelectedMethod(wrapper);
+      const message = updatePracticeResult(practice, { id: practice.moduleId, title: practice.moduleTitle }, isCorrect, userAnswer, methodChoice);
+      appState.paperGenerator.answers[practice.id] = { answer: userAnswer, correct: isCorrect, message, methodChoice };
       feedback.textContent = message;
       feedback.className = createFeedbackClass(isCorrect);
       saveState();
@@ -939,6 +977,10 @@ function createAnswerCard({ practice, index, subtitle, grades = [], saved, butto
   wrapper.querySelector(".difficulty").textContent = practice.difficulty;
   wrapper.querySelector(".card__question").textContent = practice.prompt;
   setChildrenText(wrapper.querySelector(".daily-card__meta"), grades, "grade-tag");
+  const methodChoice = createMethodChoiceControl(practice, saved);
+  if (methodChoice) {
+    wrapper.querySelector(".answer-row").before(methodChoice);
+  }
   if (practice.adaptiveReason) {
     const reason = document.createElement("span");
     reason.className = "grade-tag adaptive-reason";
@@ -994,8 +1036,9 @@ function renderDailyPractice() {
       }
 
       const isCorrect = isCorrectAnswer(userAnswer, practice);
-      const message = updatePracticeResult(practice, module, isCorrect, userAnswer);
-      appState.dailyPractice[dailyStorageKey][practice.id] = { answer: userAnswer, correct: isCorrect, message };
+      const methodChoice = getSelectedMethod(wrapper);
+      const message = updatePracticeResult(practice, module, isCorrect, userAnswer, methodChoice);
+      appState.dailyPractice[dailyStorageKey][practice.id] = { answer: userAnswer, correct: isCorrect, message, methodChoice };
       feedback.textContent = message;
       feedback.className = createFeedbackClass(isCorrect);
       saveState();
@@ -1064,6 +1107,19 @@ function downloadJson(filename, payload) {
 function buildLearningReport() {
   const todayKey = getTodayKey();
   const visibleModules = getVisibleModules();
+  const abilityByStrand = visibleModules.reduce((groups, module) => {
+    const strand = module.knowledgeTopology?.strand || "未分组";
+    if (!groups[strand]) {
+      groups[strand] = { modules: 0, completed: 0, total: 0, wrongBook: 0 };
+    }
+    const practices = getModulePractices(module);
+    groups[strand].modules += 1;
+    groups[strand].completed += getModuleCompletedCount(module.id, practices);
+    groups[strand].total += practices.length;
+    groups[strand].wrongBook += appState.wrongBook.filter((item) => item.moduleId === module.id).length;
+    return groups;
+  }, {});
+  const methodHistory = Object.values(appState.answerHistory || {}).filter((record) => record.methodChoice);
   return {
     generatedAt: new Date().toISOString(),
     dateKey: todayKey,
@@ -1074,6 +1130,15 @@ function buildLearningReport() {
     stats: appState.stats,
     correctRate: getCorrectRate(),
     wrongBookCount: appState.wrongBook.length,
+    abilityByStrand,
+    methodChoice: {
+      attempts: methodHistory.length,
+      matched: methodHistory.filter((record) => record.methodMatched).length
+    },
+    nextStepAdvice: Object.entries(abilityByStrand)
+      .sort((left, right) => right[1].wrongBook - left[1].wrongBook || (left[1].completed / Math.max(left[1].total, 1)) - (right[1].completed / Math.max(right[1].total, 1)))
+      .slice(0, 3)
+      .map(([strand, data]) => `${strand}：完成 ${data.completed}/${data.total}，错题 ${data.wrongBook}，建议优先复盘错因和方法选择。`),
     modules: visibleModules.map((module) => {
       const practices = getModulePractices(module);
       const completed = getModuleCompletedCount(module.id, practices);

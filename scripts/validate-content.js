@@ -22,7 +22,8 @@ global.window = globalThis;
   "supplementalConceptAnimations.js",
   "mistakeDiagnosis.js",
   "supplementalMistakeTags.js",
-  "learningSupport.js"
+  "learningSupport.js",
+  "learningEffectEnhancements.js"
 ].forEach((file) => {
   require(path.join(root, file));
 });
@@ -31,6 +32,7 @@ const modules = globalThis.MATH_LEARNING_DATA;
 const errors = [];
 const moduleIds = new Set();
 const practiceIds = new Set();
+let genericHintCount = 0;
 
 function addError(pathLabel, message) {
   errors.push(`${pathLabel}: ${message}`);
@@ -87,7 +89,23 @@ function validatePractice(modulePath, practice, index) {
   validateTextArray(pathLabel, "hints", practice.hints);
   validateTextArray(pathLabel, "solutionSteps", practice.solutionSteps);
   validateTextArray(pathLabel, "commonMistakes", practice.commonMistakes);
+  validateTextArray(pathLabel, "tieredHints", practice.tieredHints);
+  validateTextArray(pathLabel, "methodChoices", practice.methodChoices);
+  validateString(pathLabel, "targetSkill", practice.targetSkill);
+  validateString(pathLabel, "modelType", practice.modelType);
+  validateString(pathLabel, "transferLevel", practice.transferLevel);
+  validateString(pathLabel, "diagnosticGoal", practice.diagnosticGoal);
   validateMistakeTags(pathLabel, practice);
+
+  if ((practice.hints || []).join("|") === globalThis.LearningEffectEnhancements?.genericHintKey) {
+    genericHintCount += 1;
+  }
+
+  (practice.remediationTags || []).forEach((tagId) => {
+    if (!globalThis.LearningEffectEnhancements.remediationCatalog[tagId]) {
+      addError(pathLabel, `unknown remediation tag "${tagId}"`);
+    }
+  });
 
   if (practice.acceptedAnswers !== undefined) {
     validateTextArray(pathLabel, "acceptedAnswers", practice.acceptedAnswers);
@@ -104,6 +122,14 @@ function validateModule(module, index) {
   validateString(pathLabel, "id", module.id);
   validateString(pathLabel, "title", module.title);
   validateString(pathLabel, "description", module.description);
+  if (!module.learningPlan) {
+    addError(pathLabel, "missing learningPlan");
+  } else {
+    validateTextArray(pathLabel, "learningPlan.goals", module.learningPlan.goals);
+    validateTextArray(pathLabel, "learningPlan.masteryCriteria", module.learningPlan.masteryCriteria);
+    validateString(pathLabel, "learningPlan.targetSkill", module.learningPlan.targetSkill);
+    validateString(pathLabel, "learningPlan.phase", module.learningPlan.phase);
+  }
 
   if (moduleIds.has(module.id)) {
     addError(pathLabel, `duplicate module id "${module.id}"`);
@@ -137,6 +163,9 @@ try {
   assert.ok(Array.isArray(modules), "MATH_LEARNING_DATA must be an array");
   assert.ok(modules.length > 0, "MATH_LEARNING_DATA must not be empty");
   modules.forEach(validateModule);
+  assert.ok(genericHintCount <= 100, `too many generic hints: ${genericHintCount}`);
+  assert.ok((modules.filter((module) => module.knowledgeTopology?.strand === "综合拓展").length) <= 5, "综合拓展 should not be the main content container");
+  assert.ok(Array.isArray(globalThis.LEARNING_EFFECT_REVIEW_SETS) && globalThis.LEARNING_EFFECT_REVIEW_SETS.length > 0, "missing learning effect review sets");
 } catch (error) {
   addError("content", error.message);
 }

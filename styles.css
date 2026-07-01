@@ -556,6 +556,24 @@ select {
   margin-top: 16px;
 }
 
+.method-choice {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.method-choice__select {
+  min-width: 160px;
+  max-width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: #fff;
+  color: var(--text);
+}
+
 .answer-input {
   width: 100%;
   border: 1px solid var(--border);

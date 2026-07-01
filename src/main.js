@@ -16,6 +16,7 @@ import '../masteryModel.js';
 import '../rewardSystem.js';
 import '../questMap.js';
 import '../learningSupport.js';
+import '../learningEffectEnhancements.js';
 import '../answerMatcher.js';
 import '../reviewScheduler.js';
 import '../reviewQueueModel.js';

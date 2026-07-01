@@ -21,15 +21,19 @@ global.window = globalThis;
   "supplementalConceptAnimations.js",
   "mistakeDiagnosis.js",
   "supplementalMistakeTags.js",
-  "learningSupport.js"
+  "learningSupport.js",
+  "learningEffectEnhancements.js"
 ].forEach((file) => require(path.join(root, file)));
 
 const modules = globalThis.MATH_LEARNING_DATA || [];
+const genericHintKey = globalThis.LearningEffectEnhancements?.genericHintKey || "";
 const snapshot = {
   generatedBy: "scripts/content-snapshot.js",
   moduleCount: modules.length,
   practiceCount: modules.reduce((sum, module) => sum + module.practices.length, 0),
   exampleCount: modules.reduce((sum, module) => sum + module.examples.length, 0),
+  genericHintCount: modules.reduce((sum, module) => sum + module.practices.filter((practice) => (practice.hints || []).join("|") === genericHintKey).length, 0),
+  reviewSetCount: (globalThis.LEARNING_EFFECT_REVIEW_SETS || []).length,
   strands: summarizeStrands(modules),
   sampleModules: modules.slice(0, 12).map((module) => ({
     id: module.id,
@@ -38,7 +42,9 @@ const snapshot = {
     examples: module.examples.length,
     practices: module.practices.length,
     supportedPractices: module.practices.filter((practice) => practice.hints?.length && practice.solutionSteps?.length && practice.commonMistakes?.length).length,
-    taggedPractices: module.practices.filter((practice) => practice.mistakeTags?.length).length
+    taggedPractices: module.practices.filter((practice) => practice.mistakeTags?.length).length,
+    planned: !!module.learningPlan,
+    exampleFading: module.exampleFading?.length || 0
   }))
 };
 
@@ -67,6 +73,8 @@ function summarizeStrands(items) {
     group.practices += module.practices.length;
     group.supportedPractices += module.practices.filter((practice) => practice.hints?.length && practice.solutionSteps?.length && practice.commonMistakes?.length).length;
     group.taggedPractices += module.practices.filter((practice) => practice.mistakeTags?.length).length;
+    group.plannedModules = (group.plannedModules || 0) + (module.learningPlan ? 1 : 0);
+    group.genericHints = (group.genericHints || 0) + module.practices.filter((practice) => (practice.hints || []).join("|") === genericHintKey).length;
   });
   return [...groups.values()].sort((left, right) => left.strand.localeCompare(right.strand, "zh-CN"));
 }

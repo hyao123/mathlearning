@@ -3,62 +3,88 @@
   "moduleCount": 75,
   "practiceCount": 689,
   "exampleCount": 286,
+  "genericHintCount": 0,
+  "reviewSetCount": 7,
   "strands": [
     {
       "strand": "变化与效率",
-      "modules": 5,
-      "examples": 15,
-      "practices": 30,
-      "supportedPractices": 30,
-      "taggedPractices": 30
+      "modules": 11,
+      "examples": 39,
+      "practices": 90,
+      "supportedPractices": 90,
+      "taggedPractices": 90,
+      "plannedModules": 11,
+      "genericHints": 0
     },
     {
       "strand": "观察与周期",
-      "modules": 4,
-      "examples": 14,
-      "practices": 31,
-      "supportedPractices": 31,
-      "taggedPractices": 31
+      "modules": 9,
+      "examples": 34,
+      "practices": 81,
+      "supportedPractices": 81,
+      "taggedPractices": 81,
+      "plannedModules": 9,
+      "genericHints": 0
     },
     {
-      "strand": "计数与集合",
-      "modules": 5,
-      "examples": 15,
-      "practices": 30,
-      "supportedPractices": 30,
-      "taggedPractices": 30
+      "strand": "计数与组合",
+      "modules": 10,
+      "examples": 35,
+      "practices": 80,
+      "supportedPractices": 80,
+      "taggedPractices": 80,
+      "plannedModules": 10,
+      "genericHints": 0
     },
     {
-      "strand": "空间与离散结构",
-      "modules": 3,
-      "examples": 11,
-      "practices": 25,
-      "supportedPractices": 25,
-      "taggedPractices": 25
+      "strand": "逻辑与策略",
+      "modules": 9,
+      "examples": 37,
+      "practices": 93,
+      "supportedPractices": 93,
+      "taggedPractices": 93,
+      "plannedModules": 9,
+      "genericHints": 0
     },
     {
-      "strand": "逻辑推理",
-      "modules": 2,
-      "examples": 8,
-      "practices": 19,
-      "supportedPractices": 19,
-      "taggedPractices": 19
+      "strand": "数量关系建模",
+      "modules": 14,
+      "examples": 55,
+      "practices": 134,
+      "supportedPractices": 134,
+      "taggedPractices": 134,
+      "plannedModules": 14,
+      "genericHints": 0
     },
     {
-      "strand": "数量关系",
-      "modules": 5,
-      "examples": 18,
-      "practices": 41,
-      "supportedPractices": 41,
-      "taggedPractices": 41
+      "strand": "数论与整除",
+      "modules": 12,
+      "examples": 48,
+      "practices": 120,
+      "supportedPractices": 120,
+      "taggedPractices": 120,
+      "plannedModules": 12,
+      "genericHints": 0
     },
     {
-      "strand": "综合拓展",
-      "modules": 51,
-      "examples": 205,
-      "practices": 513,
-      "supportedPractices": 513,
-      "taggedPractices": 513
+      "strand": "图形与空间",
+      "modules": 9,
+      "examples": 35,
+      "practices": 85,
+      "supportedPractices": 85,
+      "taggedPractices": 85,
+      "plannedModules": 9,
+      "genericHints": 0
+    },
+    {
+      "strand": "综合迁移",
+      "modules": 1,
+      "examples": 3,
+      "practices": 6,
+      "supportedPractices": 6,
+      "taggedPractices": 6,
+      "plannedModules": 1,
+      "genericHints": 0
     }
   ],
   "sampleModules": [
@@ -69,7 +95,9 @@
       "examples": 5,
       "practices": 13,
       "supportedPractices": 13,
-      "taggedPractices": 13
+      "taggedPractices": 13,
+      "planned": true,
+      "exampleFading": 4
     },
     {
       "id": "quick-calculation",
@@ -78,7 +106,9 @@
       "examples": 3,
       "practices": 6,
       "supportedPractices": 6,
-      "taggedPractices": 6
+      "taggedPractices": 6,
+      "planned": true,
+      "exampleFading": 0
     },
     {
       "id": "arithmetic-series",
@@ -87,7 +117,9 @@
       "examples": 3,
       "practices": 6,
       "supportedPractices": 6,
-      "taggedPractices": 6
+      "taggedPractices": 6,
+      "planned": true,
+      "exampleFading": 0
     },
     {
       "id": "periodicity",
@@ -96,79 +128,97 @@
       "examples": 3,
       "practices": 6,
       "supportedPractices": 6,
-      "taggedPractices": 6
+      "taggedPractices": 6,
+      "planned": true,
+      "exampleFading": 0
     },
     {
       "id": "enumeration",
       "title": "有序枚举",
-      "strand": "计数与集合",
+      "strand": "计数与组合",
       "examples": 3,
       "practices": 6,
       "supportedPractices": 6,
-      "taggedPractices": 6
+      "taggedPractices": 6,
+      "planned": true,
+      "exampleFading": 4
     },
     {
       "id": "add-multiply-principle",
       "title": "加法原理与乘法原理",
-      "strand": "计数与集合",
+      "strand": "计数与组合",
       "examples": 3,
       "practices": 6,
       "supportedPractices": 6,
-      "taggedPractices": 6
+      "taggedPractices": 6,
+      "planned": true,
+      "exampleFading": 0
     },
     {
       "id": "inclusion-exclusion",
       "title": "容斥初步",
-      "strand": "计数与集合",
+      "strand": "计数与组合",
       "examples": 3,
       "practices": 6,
       "supportedPractices": 6,
-      "taggedPractices": 6
+      "taggedPractices": 6,
+      "planned": true,
+      "exampleFading": 4
     },
     {
       "id": "pigeonhole-principle",
       "title": "抽屉原理",
-      "strand": "计数与集合",
+      "strand": "计数与组合",
       "examples": 3,
       "practices": 6,
       "supportedPractices": 6,
-      "taggedPractices": 6
+      "taggedPractices": 6,
+      "planned": true,
+      "exampleFading": 4
     },
     {
       "id": "sum-diff",
       "title": "和差倍问题",
-      "strand": "数量关系",
+      "strand": "数量关系建模",
       "examples": 5,
       "practices": 13,
       "supportedPractices": 13,
-      "taggedPractices": 13
+      "taggedPractices": 13,
+      "planned": true,
+      "exampleFading": 4
     },
     {
       "id": "unit-rate",
       "title": "归一归总问题",
-      "strand": "数量关系",
+      "strand": "数量关系建模",
       "examples": 3,
       "practices": 6,
       "supportedPractices": 6,
-      "taggedPractices": 6
+      "taggedPractices": 6,
+      "planned": true,
+      "exampleFading": 4
     },
     {
       "id": "counting-transfer",
       "title": "计数换乘站",
-      "strand": "计数与集合",
+      "strand": "计数与组合",
       "examples": 3,
       "practices": 6,
       "supportedPractices": 6,
-      "taggedPractices": 6
+      "taggedPractices": 6,
+      "planned": true,
+      "exampleFading": 0
     },
     {
       "id": "surplus-deficit",
       "title": "盈亏问题",
-      "strand": "数量关系",
+      "strand": "数量关系建模",
       "examples": 3,
       "practices": 6,
       "supportedPractices": 6,
-      "taggedPractices": 6
+      "taggedPractices": 6,
+      "planned": true,
+      "exampleFading": 4
     }
   ]
 }

@@ -41,11 +41,17 @@
     const details = document.createElement("details");
     details.className = "learning-support";
     const summary = document.createElement("summary");
-    summary.textContent = "查看提示、分步讲解与易错点";
+    summary.textContent = "查看分层提示、分步讲解与错因补救";
     details.appendChild(summary);
-    appendSupportGroup(details, "提示", support.hints);
+    appendSupportGroup(details, "分层提示", practice.tieredHints || support.hints);
+    appendSupportGroup(details, "通用提示", support.hints);
     appendSupportGroup(details, "分步讲解", support.solutionSteps, true);
     appendSupportGroup(details, "易错点", support.commonMistakes);
+    const remediation = (practice.remediationTags || [])
+      .map((tag) => root.LearningEffectEnhancements?.remediationCatalog?.[tag])
+      .filter(Boolean)
+      .map((item) => `${item.title}：${item.action}`);
+    appendSupportGroup(details, "错因补救", remediation);
     return details;
   }
 
