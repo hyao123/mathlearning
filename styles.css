@@ -169,6 +169,24 @@ select {
   margin-top: 20px;
 }
 
+.dashboard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.route-context {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+.route-context span {
+  display: block;
+}
+
 .module-card {
   border: 1px solid var(--border);
   background: linear-gradient(180deg, #ffffff, #f8fbff);

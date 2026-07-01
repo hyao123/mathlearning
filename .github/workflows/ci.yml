@@ -17,9 +17,37 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Run syntax checks
         run: npm run check
 
+      - name: Validate content
+        run: npm run validate:content
+
+      - name: Check content snapshot
+        run: npm run check:content-snapshot
+
       - name: Run tests
         run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Check bundle size
+        run: npm run check:bundle
+
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run browser smoke test
+        run: npm run smoke
+
+      - name: Run UI behavior test
+        run: npm run test:ui
+
+      - name: Run UI audit
+        run: npm run audit:ui

@@ -1,0 +1,174 @@
+{
+  "generatedBy": "scripts/content-snapshot.js",
+  "moduleCount": 75,
+  "practiceCount": 689,
+  "exampleCount": 286,
+  "strands": [
+    {
+      "strand": "变化与效率",
+      "modules": 5,
+      "examples": 15,
+      "practices": 30,
+      "supportedPractices": 30,
+      "taggedPractices": 30
+    },
+    {
+      "strand": "观察与周期",
+      "modules": 4,
+      "examples": 14,
+      "practices": 31,
+      "supportedPractices": 31,
+      "taggedPractices": 31
+    },
+    {
+      "strand": "计数与集合",
+      "modules": 5,
+      "examples": 15,
+      "practices": 30,
+      "supportedPractices": 30,
+      "taggedPractices": 30
+    },
+    {
+      "strand": "空间与离散结构",
+      "modules": 3,
+      "examples": 11,
+      "practices": 25,
+      "supportedPractices": 25,
+      "taggedPractices": 25
+    },
+    {
+      "strand": "逻辑推理",
+      "modules": 2,
+      "examples": 8,
+      "practices": 19,
+      "supportedPractices": 19,
+      "taggedPractices": 19
+    },
+    {
+      "strand": "数量关系",
+      "modules": 5,
+      "examples": 18,
+      "practices": 41,
+      "supportedPractices": 41,
+      "taggedPractices": 41
+    },
+    {
+      "strand": "综合拓展",
+      "modules": 51,
+      "examples": 205,
+      "practices": 513,
+      "supportedPractices": 513,
+      "taggedPractices": 513
+    }
+  ],
+  "sampleModules": [
+    {
+      "id": "patterns",
+      "title": "找规律",
+      "strand": "观察与周期",
+      "examples": 5,
+      "practices": 13,
+      "supportedPractices": 13,
+      "taggedPractices": 13
+    },
+    {
+      "id": "quick-calculation",
+      "title": "巧算与凑整",
+      "strand": "观察与周期",
+      "examples": 3,
+      "practices": 6,
+      "supportedPractices": 6,
+      "taggedPractices": 6
+    },
+    {
+      "id": "arithmetic-series",
+      "title": "等差数列与配对求和",
+      "strand": "观察与周期",
+      "examples": 3,
+      "practices": 6,
+      "supportedPractices": 6,
+      "taggedPractices": 6
+    },
+    {
+      "id": "periodicity",
+      "title": "周期问题",
+      "strand": "观察与周期",
+      "examples": 3,
+      "practices": 6,
+      "supportedPractices": 6,
+      "taggedPractices": 6
+    },
+    {
+      "id": "enumeration",
+      "title": "有序枚举",
+      "strand": "计数与集合",
+      "examples": 3,
+      "practices": 6,
+      "supportedPractices": 6,
+      "taggedPractices": 6
+    },
+    {
+      "id": "add-multiply-principle",
+      "title": "加法原理与乘法原理",
+      "strand": "计数与集合",
+      "examples": 3,
+      "practices": 6,
+      "supportedPractices": 6,
+      "taggedPractices": 6
+    },
+    {
+      "id": "inclusion-exclusion",
+      "title": "容斥初步",
+      "strand": "计数与集合",
+      "examples": 3,
+      "practices": 6,
+      "supportedPractices": 6,
+      "taggedPractices": 6
+    },
+    {
+      "id": "pigeonhole-principle",
+      "title": "抽屉原理",
+      "strand": "计数与集合",
+      "examples": 3,
+      "practices": 6,
+      "supportedPractices": 6,
+      "taggedPractices": 6
+    },
+    {
+      "id": "sum-diff",
+      "title": "和差倍问题",
+      "strand": "数量关系",
+      "examples": 5,
+      "practices": 13,
+      "supportedPractices": 13,
+      "taggedPractices": 13
+    },
+    {
+      "id": "unit-rate",
+      "title": "归一归总问题",
+      "strand": "数量关系",
+      "examples": 3,
+      "practices": 6,
+      "supportedPractices": 6,
+      "taggedPractices": 6
+    },
+    {
+      "id": "counting-transfer",
+      "title": "计数换乘站",
+      "strand": "计数与集合",
+      "examples": 3,
+      "practices": 6,
+      "supportedPractices": 6,
+      "taggedPractices": 6
+    },
+    {
+      "id": "surplus-deficit",
+      "title": "盈亏问题",
+      "strand": "数量关系",
+      "examples": 3,
+      "practices": 6,
+      "supportedPractices": 6,
+      "taggedPractices": 6
+    }
+  ]
+}

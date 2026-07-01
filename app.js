@@ -19,6 +19,9 @@ function observeOnce(element, callback, key) {
 }
 
 const modules = window.MATH_LEARNING_DATA;
+const appStateModel = window.AppState;
+const appSelectors = window.AppSelectors;
+const appDom = window.AppDom;
 const storageKey = "mathlearning-progress-v2";
 const legacyStorageKey = "mathlearning-progress-v1";
 
@@ -36,6 +39,7 @@ const moduleList = document.getElementById("module-list");
 const moduleTitle = document.getElementById("module-title");
 const moduleDescription = document.getElementById("module-description");
 const moduleGrades = document.getElementById("module-grades");
+const moduleRouteContext = document.getElementById("module-route-context");
 const moduleProgress = document.getElementById("module-progress");
 const examplesContainer = document.getElementById("examples");
 const practiceList = document.getElementById("practice-list");
@@ -46,27 +50,12 @@ const masteryRanking = document.getElementById("mastery-ranking");
 const moduleSummary = document.getElementById("module-summary");
 const heroStats = document.getElementById("hero-stats");
 const clearWrongBookButton = document.getElementById("clear-wrong-book");
+const exportReportButton = document.getElementById("export-report");
+const exportProgressButton = document.getElementById("export-progress");
+const importProgressButton = document.getElementById("import-progress");
+const importProgressFile = document.getElementById("import-progress-file");
 const exampleTemplate = document.getElementById("example-template");
 const practiceTemplate = document.getElementById("practice-template");
-
-const defaultState = {
-  completed: {},
-  wrongBook: [],
-  dailyPractice: {},
-  paperGenerator: {
-    grade: "全部",
-    difficulty: "全部",
-    count: 5,
-    source: "random",
-    practiceIds: [],
-    answers: {}
-  },
-  answerHistory: {},
-  stats: {
-    attempts: 0,
-    correct: 0
-  }
-};
 
 const gradeOptions = ["全部", "一年级", "二年级", "三年级", "四年级", "五年级", "六年级"];
 const difficultyOptions = ["全部", "基础", "进阶", "提高", "挑战"];
@@ -76,75 +65,18 @@ let activeGrade = "全部";
 let activeDifficulty = "全部";
 let activeModuleId = modules[0]?.id || "";
 
-function cloneDefaultState() {
-  return structuredClone(defaultState);
-}
-
-function migrateLegacyState(parsed = {}) {
-  const nextState = cloneDefaultState();
-  nextState.completed = parsed.completed || {};
-  nextState.wrongBook = Array.isArray(parsed.wrongBook) ? parsed.wrongBook : [];
-  nextState.dailyPractice = parsed.dailyPractice || {};
-  nextState.paperGenerator = {
-    grade: parsed.paperGenerator?.grade || "全部",
-    difficulty: parsed.paperGenerator?.difficulty || "全部",
-    count: Number(parsed.paperGenerator?.count || 5),
-    source: parsed.paperGenerator?.source || "random",
-    practiceIds: Array.isArray(parsed.paperGenerator?.practiceIds) ? parsed.paperGenerator.practiceIds : [],
-    answers: parsed.paperGenerator?.answers || {}
-  };
-  nextState.answerHistory = parsed.answerHistory || {};
-
-  if (Object.keys(nextState.answerHistory).length === 0) {
-    Object.entries(nextState.completed).forEach(([practiceId, completed]) => {
-      if (completed) {
-        nextState.answerHistory[practiceId] = {
-          attempts: 1,
-          correct: 1,
-          latestCorrect: true,
-          firstCorrect: true
-        };
-      }
-    });
-    nextState.wrongBook.forEach((item) => {
-      if (!nextState.answerHistory[item.id]) {
-        nextState.answerHistory[item.id] = {
-          attempts: 1,
-          correct: 0,
-          latestCorrect: false,
-          firstCorrect: false
-        };
-      }
-    });
-  }
-
-  nextState.stats = calculateStats(nextState.answerHistory);
-  return nextState;
-}
-
 function loadState() {
   try {
     const saved = localStorage.getItem(storageKey) || localStorage.getItem(legacyStorageKey);
-    return saved ? migrateLegacyState(JSON.parse(saved)) : cloneDefaultState();
+    return saved ? appStateModel.migrateLegacyState(JSON.parse(saved)) : appStateModel.cloneDefaultState();
   } catch (error) {
-    return cloneDefaultState();
+    return appStateModel.cloneDefaultState();
   }
 }
 
 function saveState() {
-  appState.stats = calculateStats(appState.answerHistory);
+  appState.stats = appStateModel.calculateStats(appState.answerHistory);
   localStorage.setItem(storageKey, JSON.stringify(appState));
-}
-
-function calculateStats(answerHistory) {
-  return Object.values(answerHistory || {}).reduce(
-    (stats, record) => {
-      stats.attempts += Number(record.attempts || 0);
-      stats.correct += Number(record.correct || 0);
-      return stats;
-    },
-    { attempts: 0, correct: 0 }
-  );
 }
 
 function getTodayKey() {
@@ -152,7 +84,7 @@ function getTodayKey() {
 }
 
 function formatDateKey(date) {
-  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+  return appStateModel.formatDateKey(date);
 }
 
 function getDailyStorageKey() {
@@ -160,34 +92,27 @@ function getDailyStorageKey() {
 }
 
 function hashString(value) {
-  let hash = 0;
-  for (let index = 0; index < value.length; index += 1) {
-    hash = (hash * 31 + value.charCodeAt(index)) >>> 0;
-  }
-  return hash;
+  return appStateModel.hashString(value);
 }
 
 function matchesDifficulty(item) {
-  return activeDifficulty === "全部" || item.difficulty === activeDifficulty;
+  return appSelectors.matchesDifficulty(item, activeDifficulty);
 }
 
 function getModuleExamples(module) {
-  return module.examples.filter(matchesDifficulty);
+  return appSelectors.getModuleExamples(module, activeDifficulty);
 }
 
 function getModulePractices(module) {
-  return module.practices.filter(matchesDifficulty);
+  return appSelectors.getModulePractices(module, activeDifficulty);
 }
 
 function getVisibleModules() {
-  const gradeMatchedModules = activeGrade === "全部" ? modules : modules.filter((module) => module.grades.includes(activeGrade));
-  return gradeMatchedModules.filter((module) => getModuleExamples(module).length > 0 || getModulePractices(module).length > 0);
+  return appSelectors.getVisibleModules(modules, activeGrade, activeDifficulty);
 }
 
 function getPracticePool() {
-  return getVisibleModules().flatMap((module) =>
-    getModulePractices(module).map((practice) => ({ ...practice, moduleId: module.id, moduleTitle: module.title, grades: module.grades }))
-  );
+  return appSelectors.getPracticePool(modules, activeGrade, activeDifficulty);
 }
 
 function getDailyPracticeItems() {
@@ -287,41 +212,56 @@ function getActiveModule() {
   return visibleModules.find((module) => module.id === activeModuleId) || visibleModules[0] || null;
 }
 
+function getModuleById(moduleId) {
+  return modules.find((module) => module.id === moduleId) || null;
+}
+
+function getNextModule(module) {
+  const explicitNextId = module?.knowledgeTopology?.nextIds?.[0];
+  if (explicitNextId) {
+    return getModuleById(explicitNextId);
+  }
+  const visibleModules = getVisibleModules();
+  const index = visibleModules.findIndex((item) => item.id === module?.id);
+  return index >= 0 ? visibleModules[index + 1] || null : null;
+}
+
 function getModuleCompletedCount(moduleId, visiblePractices = null) {
-  const completedIds = Object.entries(appState.completed)
-    .filter(([, value]) => value)
-    .map(([key]) => key);
-  const practiceIds = (visiblePractices || modules.find((module) => module.id === moduleId)?.practices || []).map((practice) => practice.id);
-  return completedIds.filter((id) => practiceIds.includes(id)).length;
+  return appSelectors.getModuleCompletedCount(modules.find((module) => module.id === moduleId), appState.completed, visiblePractices);
 }
 
 function getTotalPracticeCount() {
-  return modules.reduce((sum, module) => sum + module.practices.length, 0);
+  return appSelectors.getTotalPracticeCount(modules);
 }
 
 function getCorrectRate() {
-  if (appState.stats.attempts === 0) {
-    return "0%";
-  }
-  return `${Math.round((appState.stats.correct / appState.stats.attempts) * 100)}%`;
+  return appSelectors.getCorrectRate(appState.stats);
 }
 
 function setChildrenText(element, values, className) {
-  element.innerHTML = "";
-  values.forEach((value) => {
-    const span = document.createElement("span");
-    span.className = className;
-    span.textContent = value;
-    element.appendChild(span);
-  });
+  appDom.setChildrenText(element, values, className);
 }
 
 function renderEmptyBox(container, text) {
-  container.innerHTML = "";
-  const box = document.createElement("div");
-  box.className = "empty-state-box";
-  box.textContent = text;
-  container.appendChild(box);
+  appDom.renderEmptyBox(container, text);
+}
+
+function renderRouteContext(module) {
+  moduleRouteContext.innerHTML = "";
+  if (!module) {
+    return;
+  }
+  const nextModule = getNextModule(module);
+  const topology = module.knowledgeTopology || {};
+  [
+    `当前阶段：${topology.stage || "知识建模"}`,
+    `为什么现在学：${topology.whyNow || topology.continuity || "按照知识路线继续推进。"}`,
+    `下一站：${nextModule?.title || "完成当前路线复盘"}`
+  ].forEach((text) => {
+    const row = document.createElement("span");
+    row.textContent = text;
+    moduleRouteContext.appendChild(row);
+  });
 }
 
 function updateProgressViews() {
@@ -370,18 +310,11 @@ function renderDifficultyFilter() {
 }
 
 function getPrimaryGrade(module) {
-  return module.grades.find((grade) => gradeOptions.includes(grade)) || "其他";
+  return appSelectors.getPrimaryGrade(module, gradeOptions);
 }
 
 function groupModulesByPrimaryGrade(visibleModules) {
-  return visibleModules.reduce((groups, module) => {
-    const grade = activeGrade === "全部" ? getPrimaryGrade(module) : activeGrade;
-    if (!groups.has(grade)) {
-      groups.set(grade, []);
-    }
-    groups.get(grade).push(module);
-    return groups;
-  }, new Map());
+  return appSelectors.groupModulesByPrimaryGrade(visibleModules, activeGrade, gradeOptions);
 }
 
 function renderModuleList() {
@@ -506,6 +439,7 @@ function renderPractice(module) {
 
   practices.forEach((practice, index) => {
     const fragment = practiceTemplate.content.cloneNode(true);
+    const card = fragment.querySelector(".card--practice");
     const title = fragment.querySelector(".card__title");
     const subtitle = fragment.querySelector(".muted");
     const difficulty = fragment.querySelector(".difficulty");
@@ -514,6 +448,7 @@ function renderPractice(module) {
     const button = fragment.querySelector(".submit-answer");
     const feedback = fragment.querySelector(".feedback");
 
+    card.dataset.practiceId = practice.id;
     title.textContent = `${index + 1}. ${practice.title}`;
     subtitle.textContent = appState.completed[practice.id] ? "已完成" : "待挑战";
     difficulty.textContent = practice.difficulty;
@@ -546,6 +481,16 @@ function getFilteredWrongBookItems() {
     const matchesItemDifficulty = activeDifficulty === "全部" || item.difficulty === activeDifficulty;
     return matchesGrade && matchesItemDifficulty;
   });
+}
+
+function jumpToPractice(practiceId, moduleId) {
+  if (moduleId) {
+    activeModuleId = moduleId;
+  }
+  render();
+  const card = document.querySelector(`#practice-list [data-practice-id="${CSS.escape(practiceId)}"]`);
+  card?.scrollIntoView({ behavior: "smooth", block: "center" });
+  card?.querySelector(".answer-input")?.focus({ preventScroll: true });
 }
 
 function renderWrongBook() {
@@ -588,17 +533,22 @@ function renderWrongBook() {
       const answer = document.createElement("p");
       const explanation = document.createElement("p");
       const reviewStatus = document.createElement("p");
+      const action = document.createElement("button");
       difficulty.className = "muted";
       answer.className = "muted";
       explanation.className = "muted";
       reviewStatus.className = "muted review-status";
+      action.type = "button";
+      action.className = "button button--small button--ghost";
       title.textContent = item.title;
       prompt.textContent = item.prompt;
       difficulty.textContent = `难度：${item.difficulty || "未标注"}`;
       answer.textContent = `答案：${item.answer}`;
       explanation.textContent = `解析：${item.explanation}`;
       reviewStatus.textContent = window.ReviewQueueModel.getReviewStatusText(item, getTodayKey());
-      wrapper.append(title, prompt, difficulty, answer, explanation, reviewStatus);
+      action.textContent = "练这题";
+      action.addEventListener("click", () => jumpToPractice(item.id, item.moduleId));
+      wrapper.append(title, prompt, difficulty, answer, explanation, reviewStatus, action);
       groupWrapper.appendChild(wrapper);
     });
 
@@ -970,6 +920,7 @@ function renderPaperGenerator() {
 function createAnswerCard({ practice, index, subtitle, grades = [], saved, buttonClass }) {
   const wrapper = document.createElement("article");
   wrapper.className = buttonClass === "submit-paper-answer" ? "paper-card" : "daily-card";
+  wrapper.dataset.practiceId = practice.id;
   wrapper.innerHTML = `
     <div class="card__header">
       <div><h4 class="card__title"></h4><p class="muted"></p></div>
@@ -1061,6 +1012,7 @@ function renderModuleDetail() {
     moduleTitle.textContent = "当前筛选暂无内容";
     moduleDescription.textContent = "请切换其他年级或难度查看现有学习模块。";
     moduleGrades.innerHTML = "";
+    moduleRouteContext.innerHTML = "";
     moduleProgress.textContent = "暂无题目";
     renderEmptyBox(examplesContainer, "当前筛选下没有例题内容。");
     renderEmptyBox(practiceList, "当前筛选下没有练习内容。");
@@ -1072,13 +1024,14 @@ function renderModuleDetail() {
   moduleTitle.textContent = module.title;
   moduleDescription.textContent = module.description;
   setChildrenText(moduleGrades, module.grades, "grade-tag");
+  renderRouteContext(module);
   moduleProgress.textContent = `已完成 ${completedCount}/${visiblePractices.length} 题`;
   renderExamples(module);
   renderPractice(module);
 }
 
 function render() {
-  appState.stats = calculateStats(appState.answerHistory);
+  appState.stats = appStateModel.calculateStats(appState.answerHistory);
   const visibleModules = getVisibleModules();
   if (visibleModules.length > 0 && !visibleModules.some((module) => module.id === activeModuleId)) {
     activeModuleId = visibleModules[0].id;
@@ -1096,12 +1049,100 @@ function render() {
   observeOnce(document.getElementById('parent-dashboard'), renderDashboard, 'dashboard');
 }
 
-generatePaperButton.addEventListener("click", generatePaper);
-generateWrongPaperButton.addEventListener("click", generateWrongPaper);
-clearWrongBookButton.addEventListener("click", () => {
-  appState.wrongBook = [];
-  saveState();
-  render();
-});
+function downloadJson(filename, payload) {
+  const blob = new Blob([`${JSON.stringify(payload, null, 2)}\n`], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
 
-render();
+function buildLearningReport() {
+  const todayKey = getTodayKey();
+  const visibleModules = getVisibleModules();
+  return {
+    generatedAt: new Date().toISOString(),
+    dateKey: todayKey,
+    filters: {
+      grade: activeGrade,
+      difficulty: activeDifficulty
+    },
+    stats: appState.stats,
+    correctRate: getCorrectRate(),
+    wrongBookCount: appState.wrongBook.length,
+    modules: visibleModules.map((module) => {
+      const practices = getModulePractices(module);
+      const completed = getModuleCompletedCount(module.id, practices);
+      return {
+        id: module.id,
+        title: module.title,
+        completed,
+        total: practices.length,
+        completionRate: practices.length === 0 ? 0 : completed / practices.length,
+        mastery: window.MasteryModel?.calculateModuleMastery?.(module, appState, { todayKey })?.status || null
+      };
+    }),
+    wrongBook: appState.wrongBook.map((item) => ({
+      id: item.id,
+      title: item.title,
+      moduleId: item.moduleId,
+      moduleTitle: item.moduleTitle,
+      difficulty: item.difficulty,
+      nextReviewDate: item.nextReviewDate,
+      mistakeTags: item.mistakeTags || []
+    }))
+  };
+}
+
+function exportLearningReport() {
+  downloadJson(`mathlearning-report-${getTodayKey()}.json`, buildLearningReport());
+}
+
+function exportProgress() {
+  downloadJson(`mathlearning-progress-${getTodayKey()}.json`, {
+    exportedAt: new Date().toISOString(),
+    storageKey,
+    state: appState
+  });
+}
+
+function importProgressFromFile(file) {
+  if (!file) {
+    return;
+  }
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    try {
+      const parsed = JSON.parse(String(reader.result || "{}"));
+      appState = appStateModel.migrateLegacyState(parsed.state || parsed);
+      saveState();
+      render();
+    } catch (error) {
+      alert("进度文件无法识别，请选择由本系统导出的 JSON 文件。");
+    } finally {
+      importProgressFile.value = "";
+    }
+  });
+  reader.readAsText(file);
+}
+
+function initApp() {
+  generatePaperButton.addEventListener("click", generatePaper);
+  generateWrongPaperButton.addEventListener("click", generateWrongPaper);
+  clearWrongBookButton.addEventListener("click", () => {
+    appState.wrongBook = [];
+    saveState();
+    render();
+  });
+  exportReportButton?.addEventListener("click", exportLearningReport);
+  exportProgressButton?.addEventListener("click", exportProgress);
+  importProgressButton?.addEventListener("click", () => importProgressFile?.click());
+  importProgressFile?.addEventListener("change", () => importProgressFromFile(importProgressFile.files?.[0]));
+  render();
+}
+
+window.AppBoot?.onReady(initApp);

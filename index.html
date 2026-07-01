@@ -93,6 +93,7 @@
               <h2 id="module-title"></h2>
               <p id="module-description" class="muted"></p>
               <div id="module-grades" class="grade-tags"></div>
+              <div id="module-route-context" class="route-context muted"></div>
             </div>
             <span class="badge" id="module-progress"></span>
           </div>
@@ -136,6 +137,12 @@
               </div>
             </div>
             <div class="dashboard-grid" id="dashboard-cards"></div>
+            <div class="dashboard-actions">
+              <button id="export-report" class="button button--small button--ghost" type="button">导出学习报告</button>
+              <button id="export-progress" class="button button--small button--ghost" type="button">备份进度</button>
+              <button id="import-progress" class="button button--small button--ghost" type="button">恢复进度</button>
+              <input id="import-progress-file" type="file" accept="application/json,.json" hidden />
+            </div>
             <div id="recent-paper-summary" class="stack"></div>
             <div class="panel__divider"></div>
             <div id="mastery-ranking" class="stack"></div>

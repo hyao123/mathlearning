@@ -9,9 +9,17 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "node --test",
-    "check": "node scripts/check-syntax.js"
+    "check": "node scripts/check-syntax.js",
+    "validate:content": "node scripts/validate-content.js",
+    "snapshot:content": "node scripts/content-snapshot.js",
+    "check:content-snapshot": "node scripts/content-snapshot.js --check",
+    "check:bundle": "node scripts/check-bundle-size.js",
+    "test:ui": "node scripts/ui-behavior.js",
+    "audit:ui": "node scripts/audit-ui.js",
+    "smoke": "node scripts/smoke-browser.js"
   },
   "devDependencies": {
+    "playwright": "^1.61.1",
     "vite": "^8.0.16"
   },
   "engines": {
