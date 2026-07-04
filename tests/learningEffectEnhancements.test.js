@@ -64,10 +64,12 @@ test("maps parity divisibility content to the number theory strand", () => {
 
 test("only engineering efficiency content receives work-unit remediation", () => {
   const engineering = modules.find((item) => item.id === "engineering");
+  const unitRate = modules.find((item) => item.id === "unit-rate");
   const motion = modules.find((item) => item.id === "motion");
   const trainBridge = modules.find((item) => item.id === "train-bridge");
 
   assert.ok(engineering.practices.some((practice) => practice.remediationTags.includes("work-unit")));
+  assert.ok(unitRate.practices.every((practice) => !practice.remediationTags.includes("work-unit")));
   assert.ok(motion.practices.every((practice) => !practice.remediationTags.includes("work-unit")));
   assert.ok(trainBridge.practices.every((practice) => !practice.remediationTags.includes("work-unit")));
 });

@@ -2,12 +2,7 @@ const assert = require("node:assert/strict");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
-const allowedGrades = new Set(["一年级", "二年级", "三年级", "四年级", "五年级", "六年级"]);
-const allowedDifficulties = new Set(["基础", "进阶", "提高", "挑战"]);
-
-global.window = globalThis;
-
-[
+const contentFiles = [
   "data.js",
   "contentExpansion.js",
   "knowledgeContinuityExpansion.js",
@@ -24,171 +19,301 @@ global.window = globalThis;
   "supplementalMistakeTags.js",
   "learningSupport.js",
   "learningEffectEnhancements.js"
-].forEach((file) => {
-  require(path.join(root, file));
-});
+];
 
-const modules = globalThis.MATH_LEARNING_DATA;
-const errors = [];
-const moduleIds = new Set();
-const practiceIds = new Set();
-let genericHintCount = 0;
+const allowedGrades = new Set(["一年级", "二年级", "三年级", "四年级", "五年级", "六年级"]);
+const allowedDifficulties = new Set(["基础", "进阶", "提高", "挑战"]);
+const fallbackStrand = "综合迁移";
+const legacyBroadStrand = "综合拓展";
+const minReviewSetModules = 3;
+const minReviewSetPractices = 6;
 
-function addError(pathLabel, message) {
-  errors.push(`${pathLabel}: ${message}`);
+function loadContentState() {
+  global.window = globalThis;
+  contentFiles.forEach((file) => {
+    require(path.join(root, file));
+  });
+  return {
+    modules: globalThis.MATH_LEARNING_DATA || [],
+    gradePath: globalThis.LEARNING_EFFECT_GRADE_PATH || {},
+    reviewSets: globalThis.LEARNING_EFFECT_REVIEW_SETS || [],
+    enhancements: globalThis.LearningEffectEnhancements || {},
+    mistakeDiagnosis: globalThis.MistakeDiagnosis
+  };
+}
+
+function createValidationContext(state) {
+  return {
+    errors: [],
+    genericHintCount: 0,
+    moduleIds: new Set(),
+    practiceIds: new Set(),
+    state
+  };
+}
+
+function addError(context, pathLabel, message) {
+  context.errors.push(`${pathLabel}: ${message}`);
 }
 
 function hasText(value) {
   return typeof value === "string" && value.trim().length > 0;
 }
 
-function validateString(pathLabel, key, value) {
+function validateString(context, pathLabel, key, value) {
   if (!hasText(value)) {
-    addError(pathLabel, `missing ${key}`);
+    addError(context, pathLabel, `missing ${key}`);
   }
 }
 
-function validateTextArray(pathLabel, key, values) {
+function validateTextArray(context, pathLabel, key, values) {
   if (!Array.isArray(values) || values.length === 0 || values.some((value) => !hasText(value))) {
-    addError(pathLabel, `${key} must be a non-empty string array`);
+    addError(context, pathLabel, `${key} must be a non-empty string array`);
   }
 }
 
-function validateDifficulty(pathLabel, value) {
+function validateDifficulty(context, pathLabel, value) {
   if (!allowedDifficulties.has(value)) {
-    addError(pathLabel, `invalid difficulty "${value}"`);
+    addError(context, pathLabel, `invalid difficulty "${value}"`);
   }
 }
 
-function validateMistakeTags(pathLabel, practice) {
-  validateTextArray(pathLabel, "mistakeTags", practice.mistakeTags);
+function validateMistakeTags(context, pathLabel, practice) {
+  validateTextArray(context, pathLabel, "mistakeTags", practice.mistakeTags);
   (practice.mistakeTags || []).forEach((tagId) => {
-    if (!globalThis.MistakeDiagnosis.getTagInfo(tagId)) {
-      addError(pathLabel, `unknown mistake tag "${tagId}"`);
+    if (!context.state.mistakeDiagnosis?.getTagInfo?.(tagId)) {
+      addError(context, pathLabel, `unknown mistake tag "${tagId}"`);
     }
   });
 }
 
-function validateExample(modulePath, example, index) {
+function validateExample(context, modulePath, example, index) {
   const pathLabel = `${modulePath}.examples[${index}]`;
-  validateString(pathLabel, "title", example.title);
-  validateDifficulty(pathLabel, example.difficulty);
-  validateString(pathLabel, "question", example.question);
-  validateString(pathLabel, "answer", example.answer);
-  validateString(pathLabel, "analysis", example.analysis);
+  validateString(context, pathLabel, "title", example.title);
+  validateDifficulty(context, pathLabel, example.difficulty);
+  validateString(context, pathLabel, "question", example.question);
+  validateString(context, pathLabel, "answer", example.answer);
+  validateString(context, pathLabel, "analysis", example.analysis);
 }
 
-function validatePractice(modulePath, practice, index) {
+function validatePractice(context, module, modulePath, practice, index) {
   const pathLabel = `${modulePath}.practices[${index}]`;
-  validateString(pathLabel, "id", practice.id);
-  validateString(pathLabel, "title", practice.title);
-  validateDifficulty(pathLabel, practice.difficulty);
-  validateString(pathLabel, "prompt", practice.prompt);
-  validateString(pathLabel, "answer", practice.answer);
-  validateString(pathLabel, "explanation", practice.explanation);
-  validateTextArray(pathLabel, "hints", practice.hints);
-  validateTextArray(pathLabel, "solutionSteps", practice.solutionSteps);
-  validateTextArray(pathLabel, "commonMistakes", practice.commonMistakes);
-  validateTextArray(pathLabel, "tieredHints", practice.tieredHints);
-  validateTextArray(pathLabel, "methodChoices", practice.methodChoices);
-  validateString(pathLabel, "recommendedMethod", practice.recommendedMethod);
-  validateTextArray(pathLabel, "acceptedMethods", practice.acceptedMethods);
-  validateString(pathLabel, "targetSkill", practice.targetSkill);
-  validateString(pathLabel, "modelType", practice.modelType);
-  validateString(pathLabel, "transferLevel", practice.transferLevel);
-  validateString(pathLabel, "diagnosticGoal", practice.diagnosticGoal);
-  validateMistakeTags(pathLabel, practice);
+  validateString(context, pathLabel, "id", practice.id);
+  validateString(context, pathLabel, "title", practice.title);
+  validateDifficulty(context, pathLabel, practice.difficulty);
+  validateString(context, pathLabel, "prompt", practice.prompt);
+  validateString(context, pathLabel, "answer", practice.answer);
+  validateString(context, pathLabel, "explanation", practice.explanation);
+  validateTextArray(context, pathLabel, "hints", practice.hints);
+  validateTextArray(context, pathLabel, "solutionSteps", practice.solutionSteps);
+  validateTextArray(context, pathLabel, "commonMistakes", practice.commonMistakes);
+  validateTextArray(context, pathLabel, "tieredHints", practice.tieredHints);
+  validateTextArray(context, pathLabel, "methodChoices", practice.methodChoices);
+  validateString(context, pathLabel, "recommendedMethod", practice.recommendedMethod);
+  validateTextArray(context, pathLabel, "acceptedMethods", practice.acceptedMethods);
+  validateString(context, pathLabel, "targetSkill", practice.targetSkill);
+  validateString(context, pathLabel, "modelType", practice.modelType);
+  validateString(context, pathLabel, "transferLevel", practice.transferLevel);
+  validateString(context, pathLabel, "diagnosticGoal", practice.diagnosticGoal);
+  validateMistakeTags(context, pathLabel, practice);
 
   if (practice.recommendedMethod && !practice.methodChoices?.includes(practice.recommendedMethod)) {
-    addError(pathLabel, `recommendedMethod "${practice.recommendedMethod}" must be included in methodChoices`);
+    addError(context, pathLabel, `recommendedMethod "${practice.recommendedMethod}" must be included in methodChoices`);
   }
 
   (practice.acceptedMethods || []).forEach((method) => {
     if (!practice.methodChoices?.includes(method)) {
-      addError(pathLabel, `accepted method "${method}" must be included in methodChoices`);
+      addError(context, pathLabel, `accepted method "${method}" must be included in methodChoices`);
     }
   });
 
-  if ((practice.hints || []).join("|") === globalThis.LearningEffectEnhancements?.genericHintKey) {
-    genericHintCount += 1;
+  if ((practice.hints || []).join("|") === context.state.enhancements?.genericHintKey) {
+    context.genericHintCount += 1;
   }
 
-  (practice.remediationTags || []).forEach((tagId) => {
-    if (!globalThis.LearningEffectEnhancements.remediationCatalog[tagId]) {
-      addError(pathLabel, `unknown remediation tag "${tagId}"`);
-    }
-  });
+  validateRemediationTags(context, pathLabel, module, practice);
 
   if (practice.acceptedAnswers !== undefined) {
-    validateTextArray(pathLabel, "acceptedAnswers", practice.acceptedAnswers);
+    validateTextArray(context, pathLabel, "acceptedAnswers", practice.acceptedAnswers);
   }
 
-  if (practiceIds.has(practice.id)) {
-    addError(pathLabel, `duplicate practice id "${practice.id}"`);
+  if (context.practiceIds.has(practice.id)) {
+    addError(context, pathLabel, `duplicate practice id "${practice.id}"`);
   }
-  practiceIds.add(practice.id);
+  context.practiceIds.add(practice.id);
 }
 
-function validateModule(module, index) {
+function validateRemediationTags(context, pathLabel, module, practice) {
+  const catalog = context.state.enhancements?.remediationCatalog || {};
+  const restrictedTags = context.state.enhancements?.remediationPolicies?.restrictedTags || {};
+  (practice.remediationTags || []).forEach((tagId) => {
+    if (!catalog[tagId]) {
+      addError(context, pathLabel, `unknown remediation tag "${tagId}"`);
+      return;
+    }
+    const allowedModuleIds = restrictedTags[tagId];
+    if (Array.isArray(allowedModuleIds) && !allowedModuleIds.includes(module.id)) {
+      addError(context, pathLabel, `remediation tag "${tagId}" is not allowed for module "${module.id}"`);
+    }
+  });
+}
+
+function validateModule(context, module, index) {
   const pathLabel = `modules[${index}](${module.id || "missing-id"})`;
-  validateString(pathLabel, "id", module.id);
-  validateString(pathLabel, "title", module.title);
-  validateString(pathLabel, "description", module.description);
-  if (!module.learningPlan) {
-    addError(pathLabel, "missing learningPlan");
-  } else {
-    validateTextArray(pathLabel, "learningPlan.goals", module.learningPlan.goals);
-    validateTextArray(pathLabel, "learningPlan.masteryCriteria", module.learningPlan.masteryCriteria);
-    validateString(pathLabel, "learningPlan.targetSkill", module.learningPlan.targetSkill);
-    validateString(pathLabel, "learningPlan.phase", module.learningPlan.phase);
-  }
+  validateString(context, pathLabel, "id", module.id);
+  validateString(context, pathLabel, "title", module.title);
+  validateString(context, pathLabel, "description", module.description);
+  validateLearningPlan(context, pathLabel, module.learningPlan);
 
-  if (moduleIds.has(module.id)) {
-    addError(pathLabel, `duplicate module id "${module.id}"`);
+  if (context.moduleIds.has(module.id)) {
+    addError(context, pathLabel, `duplicate module id "${module.id}"`);
   }
-  moduleIds.add(module.id);
+  context.moduleIds.add(module.id);
 
-  if (!Array.isArray(module.grades) || module.grades.length === 0) {
-    addError(pathLabel, "grades must be a non-empty array");
-  } else {
-    module.grades.forEach((grade) => {
-      if (!allowedGrades.has(grade)) {
-        addError(pathLabel, `invalid grade "${grade}"`);
-      }
-    });
-  }
+  validateGrades(context, pathLabel, module.grades);
+  validateFallbackStrand(context, pathLabel, module);
 
   if (!Array.isArray(module.examples) || module.examples.length === 0) {
-    addError(pathLabel, "examples must be a non-empty array");
+    addError(context, pathLabel, "examples must be a non-empty array");
   } else {
-    module.examples.forEach((example, exampleIndex) => validateExample(pathLabel, example, exampleIndex));
+    module.examples.forEach((example, exampleIndex) => validateExample(context, pathLabel, example, exampleIndex));
   }
 
   if (!Array.isArray(module.practices) || module.practices.length === 0) {
-    addError(pathLabel, "practices must be a non-empty array");
+    addError(context, pathLabel, "practices must be a non-empty array");
   } else {
-    module.practices.forEach((practice, practiceIndex) => validatePractice(pathLabel, practice, practiceIndex));
+    module.practices.forEach((practice, practiceIndex) => validatePractice(context, module, pathLabel, practice, practiceIndex));
   }
 }
 
-try {
-  assert.ok(Array.isArray(modules), "MATH_LEARNING_DATA must be an array");
-  assert.ok(modules.length > 0, "MATH_LEARNING_DATA must not be empty");
-  modules.forEach(validateModule);
-  assert.ok(genericHintCount <= 100, `too many generic hints: ${genericHintCount}`);
-  assert.ok((modules.filter((module) => module.knowledgeTopology?.strand === "综合拓展").length) <= 5, "综合拓展 should not be the main content container");
-  assert.ok(Array.isArray(globalThis.LEARNING_EFFECT_REVIEW_SETS) && globalThis.LEARNING_EFFECT_REVIEW_SETS.length > 0, "missing learning effect review sets");
-} catch (error) {
-  addError("content", error.message);
-}
-
-if (errors.length > 0) {
-  console.error(`FAIL content validation found ${errors.length} issue(s):`);
-  errors.slice(0, 80).forEach((error) => console.error(`- ${error}`));
-  if (errors.length > 80) {
-    console.error(`...and ${errors.length - 80} more`);
+function validateLearningPlan(context, pathLabel, learningPlan) {
+  if (!learningPlan) {
+    addError(context, pathLabel, "missing learningPlan");
+    return;
   }
-  process.exit(1);
+  validateTextArray(context, pathLabel, "learningPlan.goals", learningPlan.goals);
+  validateTextArray(context, pathLabel, "learningPlan.masteryCriteria", learningPlan.masteryCriteria);
+  validateString(context, pathLabel, "learningPlan.targetSkill", learningPlan.targetSkill);
+  validateString(context, pathLabel, "learningPlan.phase", learningPlan.phase);
 }
 
-console.log(`OK content validation: ${modules.length} modules, ${practiceIds.size} practices`);
+function validateGrades(context, pathLabel, grades) {
+  if (!Array.isArray(grades) || grades.length === 0) {
+    addError(context, pathLabel, "grades must be a non-empty array");
+    return;
+  }
+  grades.forEach((grade) => {
+    if (!allowedGrades.has(grade)) {
+      addError(context, pathLabel, `invalid grade "${grade}"`);
+    }
+  });
+}
+
+function validateFallbackStrand(context, pathLabel, module) {
+  if (module.knowledgeTopology?.strand !== fallbackStrand) {
+    return;
+  }
+  const allowedFallbackModuleIds = context.state.enhancements?.allowedFallbackModuleIds || [];
+  if (!allowedFallbackModuleIds.includes(module.id)) {
+    addError(context, pathLabel, `unexpected fallback strand "${fallbackStrand}"`);
+  }
+}
+
+function validateLearningEffectReferences(context) {
+  const modules = context.state.modules || [];
+  const moduleIds = new Set(modules.map((module) => module.id));
+  const practiceIds = new Set(modules.flatMap((module) => (module.practices || []).map((practice) => practice.id)));
+  validateGradePathReferences(context, moduleIds);
+  validateReviewSetReferences(context, moduleIds, practiceIds);
+}
+
+function validateGradePathReferences(context, moduleIds) {
+  Object.entries(context.state.gradePath || {}).forEach(([grade, modulePath]) => {
+    if (!allowedGrades.has(grade)) {
+      addError(context, `gradePath.${grade}`, `invalid grade path grade "${grade}"`);
+    }
+    if (!Array.isArray(modulePath) || modulePath.length === 0) {
+      addError(context, `gradePath.${grade}`, "grade path must be a non-empty module id array");
+      return;
+    }
+    modulePath.forEach((moduleId) => {
+      if (!moduleIds.has(moduleId)) {
+        addError(context, `gradePath.${grade}`, `unknown grade path module id "${moduleId}"`);
+      }
+    });
+  });
+}
+
+function validateReviewSetReferences(context, moduleIds, practiceIds) {
+  const reviewSets = context.state.reviewSets || [];
+  if (!Array.isArray(reviewSets) || reviewSets.length === 0) {
+    addError(context, "reviewSets", "missing learning effect review sets");
+    return;
+  }
+  reviewSets.forEach((reviewSet, index) => {
+    const pathLabel = `reviewSets[${index}](${reviewSet.strand || "missing-strand"})`;
+    validateString(context, pathLabel, "strand", reviewSet.strand);
+    validateString(context, pathLabel, "title", reviewSet.title);
+    validateTextArray(context, pathLabel, "methodChoices", reviewSet.methodChoices);
+    validateTextArray(context, pathLabel, "requirements", reviewSet.requirements);
+    if (!Array.isArray(reviewSet.moduleIds) || reviewSet.moduleIds.length < minReviewSetModules) {
+      addError(context, pathLabel, `moduleIds must include at least ${minReviewSetModules} modules`);
+    }
+    if (!Array.isArray(reviewSet.practiceIds) || reviewSet.practiceIds.length < minReviewSetPractices) {
+      addError(context, pathLabel, `practiceIds must include at least ${minReviewSetPractices} practices`);
+    }
+    (reviewSet.moduleIds || []).forEach((moduleId) => {
+      if (!moduleIds.has(moduleId)) {
+        addError(context, pathLabel, `unknown review set module id "${moduleId}"`);
+      }
+    });
+    (reviewSet.practiceIds || []).forEach((practiceId) => {
+      if (!practiceIds.has(practiceId)) {
+        addError(context, pathLabel, `unknown review set practice id "${practiceId}"`);
+      }
+    });
+  });
+}
+
+function validateContentState(state) {
+  const context = createValidationContext(state);
+  try {
+    assert.ok(Array.isArray(state.modules), "MATH_LEARNING_DATA must be an array");
+    assert.ok(state.modules.length > 0, "MATH_LEARNING_DATA must not be empty");
+    state.modules.forEach((module, index) => validateModule(context, module, index));
+    validateLearningEffectReferences(context);
+    assert.ok(context.genericHintCount <= 100, `too many generic hints: ${context.genericHintCount}`);
+    assert.ok((state.modules.filter((module) => module.knowledgeTopology?.strand === legacyBroadStrand).length) <= 5, `${legacyBroadStrand} should not be the main content container`);
+  } catch (error) {
+    addError(context, "content", error.message);
+  }
+  return {
+    errors: context.errors,
+    moduleCount: state.modules?.length || 0,
+    practiceCount: context.practiceIds.size,
+    genericHintCount: context.genericHintCount
+  };
+}
+
+function runCli() {
+  const result = validateContentState(loadContentState());
+  if (result.errors.length > 0) {
+    console.error(`FAIL content validation found ${result.errors.length} issue(s):`);
+    result.errors.slice(0, 80).forEach((error) => console.error(`- ${error}`));
+    if (result.errors.length > 80) {
+      console.error(`...and ${result.errors.length - 80} more`);
+    }
+    process.exit(1);
+  }
+
+  console.log(`OK content validation: ${result.moduleCount} modules, ${result.practiceCount} practices`);
+}
+
+if (require.main === module) {
+  runCli();
+}
+
+module.exports = {
+  loadContentState,
+  validateContentState
+};

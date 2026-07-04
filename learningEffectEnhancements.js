@@ -154,6 +154,14 @@
     "efficiency-transfer"
   ]);
 
+  const allowedFallbackModuleIds = [];
+
+  const remediationPolicies = {
+    restrictedTags: {
+      "work-unit": Array.from(workUnitModuleIds)
+    }
+  };
+
   const moduleMethodProfiles = {
     "unit-rate": {
       methodChoices: ["单位量", "列表比较", "方程思路", "线段图"],
@@ -336,7 +344,10 @@
     const remediationTags = Array.from(new Set([
       ...(practice.mistakeTags || []),
       ...(workUnitModuleIds.has(module.id) ? ["work-unit"] : [])
-    ])).filter((tag) => remediationCatalog[tag]);
+    ])).filter((tag) => {
+      const allowedModuleIds = remediationPolicies.restrictedTags[tag];
+      return remediationCatalog[tag] && (!allowedModuleIds || allowedModuleIds.includes(module.id));
+    });
     return {
       ...practice,
       hints,
@@ -410,8 +421,10 @@
     applyLearningEffectEnhancements,
     genericHintKey,
     gradePath,
+    allowedFallbackModuleIds,
     profileByModuleId,
     remediationCatalog,
+    remediationPolicies,
     strandProfiles
   };
 
