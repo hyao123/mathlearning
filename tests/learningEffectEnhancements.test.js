@@ -53,3 +53,31 @@ test("provides remediation mappings for common mistake tags", () => {
   assert.ok(globalThis.LearningEffectEnhancements.remediationCatalog["arithmetic-care"]);
   assert.ok(globalThis.LearningEffectEnhancements.remediationCatalog["missing-cases"]);
 });
+
+test("maps parity divisibility content to the number theory strand", () => {
+  const module = modules.find((item) => item.id === "parity-divisibility");
+  const reviewSet = globalThis.LEARNING_EFFECT_REVIEW_SETS.find((item) => item.strand === "数论与整除");
+
+  assert.equal(module.knowledgeTopology.strand, "数论与整除");
+  assert.ok(reviewSet.moduleIds.includes("parity-divisibility"));
+});
+
+test("only engineering efficiency content receives work-unit remediation", () => {
+  const engineering = modules.find((item) => item.id === "engineering");
+  const motion = modules.find((item) => item.id === "motion");
+  const trainBridge = modules.find((item) => item.id === "train-bridge");
+
+  assert.ok(engineering.practices.some((practice) => practice.remediationTags.includes("work-unit")));
+  assert.ok(motion.practices.every((practice) => !practice.remediationTags.includes("work-unit")));
+  assert.ok(trainBridge.practices.every((practice) => !practice.remediationTags.includes("work-unit")));
+});
+
+test("adds practice-level recommended and accepted methods", () => {
+  const unitRatePractice = modules.find((item) => item.id === "unit-rate").practices[0];
+  const engineeringPractice = modules.find((item) => item.id === "engineering").practices[0];
+
+  assert.equal(unitRatePractice.recommendedMethod, "单位量");
+  assert.ok(unitRatePractice.acceptedMethods.includes("单位量"));
+  assert.equal(engineeringPractice.recommendedMethod, "效率和");
+  assert.ok(engineeringPractice.acceptedMethods.includes("效率和"));
+});

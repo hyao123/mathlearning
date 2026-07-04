@@ -91,11 +91,23 @@ function validatePractice(modulePath, practice, index) {
   validateTextArray(pathLabel, "commonMistakes", practice.commonMistakes);
   validateTextArray(pathLabel, "tieredHints", practice.tieredHints);
   validateTextArray(pathLabel, "methodChoices", practice.methodChoices);
+  validateString(pathLabel, "recommendedMethod", practice.recommendedMethod);
+  validateTextArray(pathLabel, "acceptedMethods", practice.acceptedMethods);
   validateString(pathLabel, "targetSkill", practice.targetSkill);
   validateString(pathLabel, "modelType", practice.modelType);
   validateString(pathLabel, "transferLevel", practice.transferLevel);
   validateString(pathLabel, "diagnosticGoal", practice.diagnosticGoal);
   validateMistakeTags(pathLabel, practice);
+
+  if (practice.recommendedMethod && !practice.methodChoices?.includes(practice.recommendedMethod)) {
+    addError(pathLabel, `recommendedMethod "${practice.recommendedMethod}" must be included in methodChoices`);
+  }
+
+  (practice.acceptedMethods || []).forEach((method) => {
+    if (!practice.methodChoices?.includes(method)) {
+      addError(pathLabel, `accepted method "${method}" must be included in methodChoices`);
+    }
+  });
 
   if ((practice.hints || []).join("|") === globalThis.LearningEffectEnhancements?.genericHintKey) {
     genericHintCount += 1;

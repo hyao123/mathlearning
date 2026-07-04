@@ -14,6 +14,7 @@
         "square-numbers",
         "remainders",
         "factor-count",
+        "parity-divisibility",
         "divisibility",
         "primes",
         "gcd-lcm",
@@ -147,6 +148,40 @@
     "logic"
   ]);
 
+  const workUnitModuleIds = new Set([
+    "engineering",
+    "work-problems",
+    "efficiency-transfer"
+  ]);
+
+  const moduleMethodProfiles = {
+    "unit-rate": {
+      methodChoices: ["单位量", "列表比较", "方程思路", "线段图"],
+      recommendedMethod: "单位量",
+      acceptedMethods: ["单位量", "列表比较", "方程思路"]
+    },
+    "motion": {
+      methodChoices: ["速度关系", "相对速度", "线段图", "列表比较"],
+      recommendedMethod: "速度关系",
+      acceptedMethods: ["速度关系", "相对速度", "线段图"]
+    },
+    "engineering": {
+      methodChoices: ["效率和", "单位量", "列表统筹", "方程思路"],
+      recommendedMethod: "效率和",
+      acceptedMethods: ["效率和", "单位量", "方程思路"]
+    },
+    "train-bridge": {
+      methodChoices: ["速度关系", "相对速度", "画图分析", "列表比较"],
+      recommendedMethod: "速度关系",
+      acceptedMethods: ["速度关系", "相对速度", "画图分析"]
+    },
+    "ratio-proportion": {
+      methodChoices: ["份数法", "比例关系", "方程思路", "线段图"],
+      recommendedMethod: "份数法",
+      acceptedMethods: ["份数法", "比例关系", "方程思路"]
+    }
+  };
+
   const remediationCatalog = {
     "arithmetic-care": {
       title: "计算检查专项",
@@ -233,14 +268,27 @@
     return "迁移题";
   }
 
+  function getMethodProfile(module, profile) {
+    const override = moduleMethodProfiles[module.id] || {};
+    const methodChoices = override.methodChoices || profile.methodChoices;
+    const recommendedMethod = override.recommendedMethod || methodChoices[0] || "";
+    const acceptedMethods = Array.from(new Set(override.acceptedMethods || [recommendedMethod])).filter((method) => methodChoices.includes(method));
+    return {
+      methodChoices,
+      recommendedMethod,
+      acceptedMethods: acceptedMethods.length > 0 ? acceptedMethods : [recommendedMethod].filter(Boolean)
+    };
+  }
+
   function buildLearningPlan(module, profile) {
+    const methodProfile = getMethodProfile(module, profile);
     return {
       targetGrades: (module.grades || []).filter((grade) => grade !== "一年级"),
       targetSkill: `${profile.strand}中的${module.title}模型`,
       phase: profile.phase,
       goals: [
         `识别${module.title}的核心条件和题型信号。`,
-        `选择合适的${profile.methodChoices.slice(0, 2).join("或")}方法。`,
+        `选择合适的${methodProfile.methodChoices.slice(0, 2).join("或")}方法。`,
         "能把答案代回题目，说明为什么成立。"
       ],
       masteryCriteria: [
@@ -284,6 +332,11 @@
   function enhancePractice(practice, module, profile) {
     const hints = (practice.hints || []).join("|") === genericHintKey ? profileHints[profile.strand]?.hints || practice.hints : practice.hints;
     const support = profileHints[profile.strand] || {};
+    const methodProfile = getMethodProfile(module, profile);
+    const remediationTags = Array.from(new Set([
+      ...(practice.mistakeTags || []),
+      ...(workUnitModuleIds.has(module.id) ? ["work-unit"] : [])
+    ])).filter((tag) => remediationCatalog[tag]);
     return {
       ...practice,
       hints,
@@ -291,15 +344,17 @@
       commonMistakes: (practice.commonMistakes || []).length > 0 && (practice.hints || []).join("|") !== genericHintKey ? practice.commonMistakes : support.mistakes || practice.commonMistakes,
       tieredHints: [
         `题型识别：先判断它属于${profile.strand}中的哪一种模型。`,
-        `模型提示：优先尝试${profile.methodChoices.slice(0, 2).join("或")}。`,
+        `模型提示：优先尝试${methodProfile.methodChoices.slice(0, 2).join("或")}。`,
         `关键步骤：把答案代回题目，检查条件是否全部满足。`
       ],
-      methodChoices: profile.methodChoices,
+      methodChoices: methodProfile.methodChoices,
+      recommendedMethod: methodProfile.recommendedMethod,
+      acceptedMethods: methodProfile.acceptedMethods,
       targetSkill: `${module.title}模型识别`,
       modelType: profile.strand,
       transferLevel: getTransferLevel(practice),
       diagnosticGoal: practice.difficulty === "挑战" ? "检验迁移能力和方法选择" : "检验模型识别和标准解法",
-      remediationTags: Array.from(new Set([...(practice.mistakeTags || []), ...(profile.strand === "变化与效率" ? ["work-unit"] : [])])).filter((tag) => remediationCatalog[tag])
+      remediationTags
     };
   }
 
@@ -310,7 +365,7 @@
         strand: profile.strand,
         title: `${profile.strand}阶段小测`,
         methodChoices: profile.methodChoices,
-        moduleIds: strandModules.slice(0, 6).map((module) => module.id),
+        moduleIds: strandModules.map((module) => module.id),
         practiceIds: strandModules.flatMap((module) => module.practices.slice(0, 2).map((practice) => practice.id)).slice(0, 12),
         requirements: ["先选方法", "再列式作答", "最后说明错因或检查方式"]
       };

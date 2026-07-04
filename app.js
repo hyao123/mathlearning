@@ -208,8 +208,11 @@ function updatePracticeResult(practice, module, isCorrect, userAnswer, methodCho
   record.attempts += 1;
   record.lastAnswer = userAnswer;
   record.methodChoice = methodChoice;
-  record.recommendedMethod = practice.methodChoices?.[0] || "";
-  record.methodMatched = methodChoice ? methodChoice === record.recommendedMethod : null;
+  record.recommendedMethod = practice.recommendedMethod || practice.methodChoices?.[0] || "";
+  record.acceptedMethods = Array.isArray(practice.acceptedMethods) && practice.acceptedMethods.length > 0
+    ? practice.acceptedMethods
+    : [record.recommendedMethod].filter(Boolean);
+  record.methodMatched = methodChoice ? record.acceptedMethods.includes(methodChoice) : null;
   record.latestCorrect = isCorrect;
   record.lastAnsweredAt = new Date().toISOString();
 

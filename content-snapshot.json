@@ -58,12 +58,12 @@
     },
     {
       "strand": "数论与整除",
-      "modules": 12,
-      "examples": 48,
-      "practices": 120,
-      "supportedPractices": 120,
-      "taggedPractices": 120,
-      "plannedModules": 12,
+      "modules": 13,
+      "examples": 51,
+      "practices": 126,
+      "supportedPractices": 126,
+      "taggedPractices": 126,
+      "plannedModules": 13,
       "genericHints": 0
     },
     {
@@ -74,16 +74,6 @@
       "supportedPractices": 85,
       "taggedPractices": 85,
       "plannedModules": 9,
-      "genericHints": 0
-    },
-    {
-      "strand": "综合迁移",
-      "modules": 1,
-      "examples": 3,
-      "practices": 6,
-      "supportedPractices": 6,
-      "taggedPractices": 6,
-      "plannedModules": 1,
       "genericHints": 0
     }
   ],
