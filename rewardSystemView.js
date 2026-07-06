@@ -111,8 +111,8 @@
     if (panel) {
       return panel;
     }
-    const hero = document.querySelector(".hero");
-    if (!hero) {
+    const parentTools = document.getElementById("parent-tools");
+    if (!parentTools) {
       return null;
     }
     panel = document.createElement("section");
@@ -135,7 +135,7 @@
         <div class="reward-badge-wall"></div>
       </details>
     `;
-    hero.insertAdjacentElement("afterend", panel);
+    parentTools.insertBefore(panel, parentTools.querySelector(".panel"));
     return panel;
   }
 

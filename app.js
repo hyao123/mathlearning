@@ -57,8 +57,9 @@ const importProgressFile = document.getElementById("import-progress-file");
 const exampleTemplate = document.getElementById("example-template");
 const practiceTemplate = document.getElementById("practice-template");
 
-const gradeOptions = ["全部", "一年级", "二年级", "三年级", "四年级", "五年级", "六年级"];
+const gradeOptions = ["全部", "二年级", "三年级", "四年级", "五年级", "六年级"];
 const difficultyOptions = ["全部", "基础", "进阶", "提高", "挑战"];
+const studentGradeOptions = gradeOptions.filter((grade) => grade !== "全部");
 
 let appState = loadState();
 let activeGrade = "全部";
@@ -108,7 +109,8 @@ function getModulePractices(module) {
 }
 
 function getVisibleModules() {
-  return appSelectors.getVisibleModules(modules, activeGrade, activeDifficulty);
+  return appSelectors.getVisibleModules(modules, activeGrade, activeDifficulty)
+    .filter((module) => getStudentVisibleGrades(module).length > 0);
 }
 
 function getPracticePool() {
@@ -274,6 +276,10 @@ function setChildrenText(element, values, className) {
   appDom.setChildrenText(element, values, className);
 }
 
+function getStudentVisibleGrades(item) {
+  return (item?.grades || []).filter((grade) => studentGradeOptions.includes(grade));
+}
+
 function renderEmptyBox(container, text) {
   appDom.renderEmptyBox(container, text);
 }
@@ -287,11 +293,10 @@ function renderRouteContext(module) {
   const topology = module.knowledgeTopology || {};
   const plan = module.learningPlan || {};
   [
-    `当前阶段：${topology.stage || "知识建模"}`,
-    `为什么现在学：${topology.whyNow || topology.continuity || "按照知识路线继续推进。"}`,
-    `学习目标：${(plan.goals || []).slice(0, 2).join("；")}`,
-    `过关标准：${(plan.masteryCriteria || []).slice(0, 2).join("；")}`,
-    `下一站：${nextModule?.title || "完成当前路线复盘"}`
+    `现在：${topology.stage || "基础"}`,
+    `目标：${(plan.goals || ["看懂方法，再独立做题"])[0]}`,
+    `过关：${(plan.masteryCriteria || ["连续做对 3 题"])[0]}`,
+    `下一关：${nextModule?.title || "复习本路线"}`
   ].forEach((text) => {
     const row = document.createElement("span");
     row.textContent = text;
@@ -345,7 +350,7 @@ function renderDifficultyFilter() {
 }
 
 function getPrimaryGrade(module) {
-  return appSelectors.getPrimaryGrade(module, gradeOptions);
+  return getStudentVisibleGrades(module)[0] || "其他";
 }
 
 function groupModulesByPrimaryGrade(visibleModules) {
@@ -370,9 +375,9 @@ function renderModuleList() {
     </div>
     <span class="badge"></span>
   `;
-  overview.querySelector("strong").textContent = `${activeGrade === "全部" ? "全部年级" : activeGrade} · ${activeDifficulty === "全部" ? "全部难度" : activeDifficulty}`;
-  overview.querySelector("p").textContent = `共 ${visibleModules.length} 个可学模块，建议从上到下依次学习，也可以点击薄弱模块直接跳转。`;
-  overview.querySelector(".badge").textContent = `${getPracticePool().length} 道可练习题`;
+  overview.querySelector("strong").textContent = `${activeGrade === "全部" ? "二年级以上" : activeGrade} · ${activeDifficulty === "全部" ? "基础到挑战" : activeDifficulty}`;
+  overview.querySelector("p").textContent = `从第 1 关开始，完成一关再进入下一关。`;
+  overview.querySelector(".badge").textContent = `${visibleModules.length} 关`;
   moduleList.appendChild(overview);
 
   const groupedModules = groupModulesByPrimaryGrade(visibleModules);
@@ -405,16 +410,14 @@ function renderModuleList() {
         <span class="module-path__step"></span>
         <span class="module-path__content">
           <strong></strong>
-          <span></span>
           <span class="module-path__tags"></span>
         </span>
         <span class="module-path__progress"></span>
       `;
       item.querySelector(".module-path__step").textContent = index + 1;
       item.querySelector("strong").textContent = module.title;
-      item.querySelector(".module-path__content > span:not(.module-path__tags)").textContent = module.description;
       const tagContainer = item.querySelector(".module-path__tags");
-      module.grades.forEach((moduleGrade) => {
+      [module.knowledgeTopology?.strand || getPrimaryGrade(module)].forEach((moduleGrade) => {
         const tag = document.createElement("em");
         tag.textContent = moduleGrade;
         tagContainer.appendChild(tag);
@@ -435,7 +438,7 @@ function renderModuleList() {
 
 function renderExamples(module) {
   examplesContainer.innerHTML = "";
-  const examples = getModuleExamples(module);
+  const examples = getModuleExamples(module).slice(0, 1);
   if (examples.length === 0) {
     renderEmptyBox(examplesContainer, "当前难度下暂时没有例题讲解。");
     return;
@@ -451,7 +454,7 @@ function renderExamples(module) {
     const answerText = fragment.querySelector(".answer-text");
     const analysisText = fragment.querySelector(".analysis-text");
 
-    title.textContent = `${index + 1}. ${example.title}`;
+    title.textContent = `例题：${example.title}`;
     difficulty.textContent = example.difficulty;
     question.textContent = example.question;
     answerText.textContent = `答案：${example.answer}`;
@@ -979,7 +982,7 @@ function createAnswerCard({ practice, index, subtitle, grades = [], saved, butto
   wrapper.querySelector(".muted").textContent = subtitle;
   wrapper.querySelector(".difficulty").textContent = practice.difficulty;
   wrapper.querySelector(".card__question").textContent = practice.prompt;
-  setChildrenText(wrapper.querySelector(".daily-card__meta"), grades, "grade-tag");
+  setChildrenText(wrapper.querySelector(".daily-card__meta"), grades.filter((grade) => studentGradeOptions.includes(grade)), "grade-tag");
   const methodChoice = createMethodChoiceControl(practice, saved);
   if (methodChoice) {
     wrapper.querySelector(".answer-row").before(methodChoice);
@@ -1068,8 +1071,8 @@ function renderModuleDetail() {
   const visiblePractices = getModulePractices(module);
   const completedCount = getModuleCompletedCount(module.id, visiblePractices);
   moduleTitle.textContent = module.title;
-  moduleDescription.textContent = module.description;
-  setChildrenText(moduleGrades, module.grades, "grade-tag");
+  moduleDescription.textContent = "先看一个例题，再完成下面练习。";
+  setChildrenText(moduleGrades, getStudentVisibleGrades(module), "grade-tag");
   renderRouteContext(module);
   moduleProgress.textContent = `已完成 ${completedCount}/${visiblePractices.length} 题`;
   renderExamples(module);

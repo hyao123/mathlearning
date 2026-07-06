@@ -6,7 +6,7 @@ async function main() {
   await withPage(chromium, async ({ baseUrl, page, pageErrors }) => {
     await page.goto(baseUrl, { waitUntil: "networkidle" });
 
-    await assertVisibleText(page, "h1", "小学奥数学习系统");
+    await assertVisibleText(page, "h1", "当前题目");
     assert.match(await page.title(), /小学奥数学习系统/);
 
     const moduleCount = await page.locator("#module-list button, #knowledge-mode-list button").count();

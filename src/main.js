@@ -27,28 +27,15 @@ import '../appState.js';
 import '../appSelectors.js';
 import '../appDom.js';
 import '../app.js';
-import '../mathEssenceView.js';
-import '../knowledgeTopologyView.js';
-import '../learningModes.js';
-import '../masteryView.js';
 import '../mistakeDiagnosisView.js';
 import '../mistakeMap.js';
 import '../rewardSystemView.js';
 import '../characterStory.js';
-import '../questMapView.js';
-import '../metroQuestMapView.js';
-import '../metroLineEnhancements.js';
-import '../stationExperience.js';
-import '../routeMission.js';
-import '../stationDepthTiers.js';
 import '../learningSupportView.js';
 import '../productExperience.js';
 import '../practiceExperience.js';
 
 const deferEnhancement = window.requestIdleCallback || ((callback) => window.setTimeout(callback, 0));
 deferEnhancement(() => {
-  import('../conceptAnimationView.js');
   import('../learningReport.js');
-  import('../diagnosticEntrance.js');
-  import('../stationClearSummary.js');
 });

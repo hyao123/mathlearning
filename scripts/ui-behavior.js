@@ -8,6 +8,27 @@ async function main() {
     await page.evaluate(() => localStorage.clear());
     await page.reload({ waitUntil: "networkidle" });
 
+    await page.locator(".student-shell").waitFor({ state: "visible", timeout: 10000 });
+    await page.locator(".student-sidebar").waitFor({ state: "visible", timeout: 10000 });
+    await page.locator(".student-workspace #lesson-panel").waitFor({ state: "visible", timeout: 10000 });
+    const navLabels = await page.locator(".student-nav a").evaluateAll((links) => links.map((link) => link.textContent.trim()));
+    assert.deepEqual(navLabels, ["路线", "当前题目", "每日练习", "错题复习"]);
+    const defaultStudentText = await page.locator("body").innerText();
+    for (const nonStudentWord of ["一年级", "家长", "组卷", "报告", "备份", "恢复", "学生切换", "成长奖励"]) {
+      assert.ok(!defaultStudentText.includes(nonStudentWord), `default student view should not show ${nonStudentWord}`);
+    }
+    for (const distractingPanelWord of ["数学本源", "核心追问", "本质易错点", "动画讲解", "自动播放", "掌握度"]) {
+      assert.ok(!defaultStudentText.includes(distractingPanelWord), `default question workspace should not show ${distractingPanelWord}`);
+    }
+    const lessonBox = await page.locator("#lesson-panel").boundingBox();
+    const routeBox = await page.locator("#modules").boundingBox();
+    assert.ok(lessonBox && routeBox && lessonBox.y < routeBox.y, "current lesson should appear before route browser");
+    const gradeLabels = await page.locator("#grade-filter button").evaluateAll((buttons) => buttons.map((button) => button.textContent.trim()));
+    assert.ok(!gradeLabels.includes("一年级"), "child route should start from second grade and above");
+    await page.locator("#parent-tools:not([open])").waitFor({ state: "attached", timeout: 10000 });
+    assert.equal(await page.locator("#parent-tools > summary").isVisible(), false, "parent tools trigger should not appear in the student view");
+    assert.equal(await page.locator("#paper-generator-panel").isVisible(), false, "paper generator should be hidden until parent tools open");
+
     const moduleButtons = page.locator("#module-list .module-path__item, #knowledge-mode-list .knowledge-mode-card").filter({ visible: true });
     const moduleCount = await moduleButtons.count();
     assert.ok(moduleCount > 1, "expected multiple module buttons");
@@ -31,6 +52,9 @@ async function main() {
     assert.ok(stateAfterWrong.wrongBook.length > 0, "wrong answer should add a wrong-book entry");
     assert.ok(stateAfterWrong.stats.attempts >= 1, "wrong answer should update attempts");
 
+    await page.evaluate(() => {
+      document.getElementById("parent-tools")?.setAttribute("open", "");
+    });
     await page.locator("#paper-generator-panel").scrollIntoViewIfNeeded();
     await page.locator("#generate-wrong-paper").click();
     await page.locator(".paper-card").first().waitFor({ state: "visible", timeout: 10000 });

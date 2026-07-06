@@ -144,8 +144,8 @@
     if (typeof document === "undefined" || document.querySelector(".student-profile-switcher")) {
       return;
     }
-    const heroContent = document.querySelector(".hero__content");
-    if (!heroContent) {
+    const parentTools = document.getElementById("parent-tools");
+    if (!parentTools) {
       return;
     }
 
@@ -173,7 +173,7 @@
     hint.className = "muted";
     hint.textContent = "不同学生的进度、错题本、每日一练会分别保存。";
     wrapper.append(label, addButton, hint);
-    heroContent.insertBefore(wrapper, heroContent.querySelector(".experience-panel") || null);
+    parentTools.insertBefore(wrapper, parentTools.querySelector(".panel"));
   }
 
   function boot() {

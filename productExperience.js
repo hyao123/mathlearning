@@ -1,6 +1,6 @@
 (function attachProductExperience(root) {
   const storageKey = "mathlearning-product-experience-v1";
-  const sectionIds = ["modules", "daily-practice-panel", "paper-generator-panel", "lesson-panel", "wrong-book", "parent-dashboard"];
+  const sectionIds = ["modules", "daily-practice-panel", "lesson-panel", "wrong-book", "parent-tools"];
 
   function loadExperienceState() {
     try {
@@ -175,11 +175,8 @@
     if (typeof document === "undefined") {
       return;
     }
-    enhanceHeroActions();
-    renderExperiencePanel();
     enableEnterToSubmit();
     enableWrongAnswerCoaching();
-    enhanceResumePosition();
     trackSectionVisits();
   }
 
