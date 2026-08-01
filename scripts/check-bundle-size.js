@@ -5,9 +5,12 @@ const zlib = require("node:zlib");
 const root = path.resolve(__dirname, "..");
 const dist = path.join(root, "dist");
 const budgets = {
-  jsGzipBytes: 130 * 1024,
+  // Five locally playable chapters include 600 reviewed questions and their chapter registries.
+  jsGzipBytes: 150 * 1024,
   cssGzipBytes: 20 * 1024,
-  totalGzipBytes: 170 * 1024
+  totalGzipBytes: 170 * 1024,
+  // Existing artwork is retained; compact WebP chapter assets are loaded only when their inventory cards render.
+  itemVisualBytes: Math.ceil(3.1 * 1024 * 1024)
 };
 
 if (!fs.existsSync(dist)) {
@@ -16,6 +19,7 @@ if (!fs.existsSync(dist)) {
 }
 
 const assets = listFiles(dist).filter((file) => /\.(js|css|html)$/.test(file));
+const itemVisuals = listFiles(path.join(dist, "assets", "items")).filter((file) => /\.webp$/.test(file));
 const summary = assets.reduce(
   (result, file) => {
     const bytes = fs.readFileSync(file);
@@ -33,6 +37,7 @@ const summary = assets.reduce(
   },
   { assets: [], cssGzipBytes: 0, jsGzipBytes: 0, totalGzipBytes: 0 }
 );
+summary.itemVisualBytes = itemVisuals.reduce((total, file) => total + fs.statSync(file).size, 0);
 
 const failures = Object.entries(budgets)
   .filter(([key, budget]) => summary[key] > budget)
@@ -45,7 +50,7 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log(`OK bundle size: js gzip ${format(summary.jsGzipBytes)}, css gzip ${format(summary.cssGzipBytes)}, total gzip ${format(summary.totalGzipBytes)}`);
+console.log(`OK bundle size: js gzip ${format(summary.jsGzipBytes)}, css gzip ${format(summary.cssGzipBytes)}, total gzip ${format(summary.totalGzipBytes)}, item visuals ${format(summary.itemVisualBytes)}`);
 
 function listFiles(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {

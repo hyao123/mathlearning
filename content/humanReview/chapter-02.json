@@ -1,0 +1,1930 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "chapter-02",
+  "status": "approved",
+  "reviewer": "项目负责人确认",
+  "reviewedAt": "2026-07-30",
+  "notes": "根据项目负责人的第二、三章完整内容审核确认予以签核。",
+  "records": [
+    {
+      "questionId": "pigeonhole-principle-1",
+      "title": "同色球",
+      "prompt": "袋中有红球、黄球、蓝球各若干个。至少取出多少个球，才能保证有 2 个颜色相同？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "pigeonhole-principle-2",
+      "title": "生日月份",
+      "prompt": "班里有 25 人，至少有几个人出生在同一个月份？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "pigeonhole-principle-3",
+      "title": "同余数",
+      "prompt": "任意取 8 个整数，至少有几个数除以 3 的余数相同？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "pigeonhole-principle-4",
+      "title": "保证有 3 个",
+      "prompt": "有黑、白两种棋子。至少取多少枚，才能保证有 3 枚颜色相同？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-pigeonhole-principle-advance-1",
+      "title": "潮汐编号",
+      "prompt": "要保证 8 张潮汐卡中至少有 3 张属于同一种颜色，卡片只有 3 种颜色，至少要抽几张？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "pigeonhole-principle-5",
+      "title": "分组保证",
+      "prompt": "把 31 本书放进 5 个书架，至少有一个书架上有多少本书？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-pigeonhole-principle-improve-1",
+      "title": "样本格",
+      "prompt": "17 个海水样本放进 4 个检测格，至少有一个检测格里至少有几个样本？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-pigeonhole-principle-improve-2",
+      "title": "潜航队",
+      "prompt": "13 名队员分到 3 艘小艇，至少有一艘艇至少坐几人？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "pigeonhole-principle-6",
+      "title": "综合保证",
+      "prompt": "从 1 到 20 中任取 11 个数，为什么一定有两个数的和是 21？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-pigeonhole-principle-challenge-1",
+      "title": "声呐频道",
+      "prompt": "28 段声呐记录分到 6 个频道，至少一个频道至少有几段记录？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "counting-transfer-1",
+      "title": "限制位置",
+      "prompt": "用 1、2、3 可以组成多少个没有重复数字的两位数？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "counting-transfer-2",
+      "title": "分类路线",
+      "prompt": "从 A 到 C，可以直达有 2 条路；也可以经 B，A 到 B 有 2 条路，B 到 C 有 3 条路。共有多少种走法？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "counting-transfer-3",
+      "title": "至少一项",
+      "prompt": "全班 28 人，参加数学社 15 人，参加科学社 12 人，两社都参加 4 人。至少参加一个社团的有多少人？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "counting-transfer-4",
+      "title": "不符合条件",
+      "prompt": "用 0、1、2、3 组成没有重复数字的两位数，一共有多少个？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-counting-transfer-advance-1",
+      "title": "双门密码",
+      "prompt": "密码由 A、B、C、D 中不同的两个字母组成，第一位不能是 D，有多少种密码？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "counting-transfer-5",
+      "title": "只参加一项",
+      "prompt": "30 人中喜欢篮球 18 人，喜欢足球 15 人，两项都喜欢 6 人。只喜欢一项的有多少人？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-counting-transfer-improve-1",
+      "title": "观察顺序",
+      "prompt": "探测艇从 4 个浮标中选 2 个依次观察，不重复选择，有多少种顺序？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-counting-transfer-improve-2",
+      "title": "潜水员编号",
+      "prompt": "用 1、2、3、4 四张数字牌组成没有重复数字的两位编号，有多少个？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "counting-transfer-6",
+      "title": "综合换乘",
+      "prompt": "用 1、2、3、4 组成没有重复数字的三位数，要求百位是奇数，且个位不是 4，一共有多少个？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-counting-transfer-challenge-1",
+      "title": "路线旗",
+      "prompt": "红、蓝、绿三面路线旗排成一列，每面都用一次，有多少种排法？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "motion-1",
+      "title": "求路程",
+      "prompt": "一辆车每小时行 45 千米，行驶 4 小时，一共行驶多少千米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "motion-2",
+      "title": "求时间",
+      "prompt": "小华每分钟走 70 米，走完 560 米需要多少分钟？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "motion-3",
+      "title": "相遇时间",
+      "prompt": "甲乙两地相距 720 米，两人同时相向而行，甲每分钟 50 米，乙每分钟 40 米，几分钟相遇？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-motion-advance-1",
+      "title": "下潜距离",
+      "prompt": "探测艇每分钟下潜 12 米，8 分钟下潜多少米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-motion-advance-2",
+      "title": "返航航程",
+      "prompt": "潜艇去程每小时 18 千米，行驶 3 小时；返程每小时 27 千米，需要几小时？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "motion-4",
+      "title": "追及时间",
+      "prompt": "甲每分钟跑 100 米，乙每分钟跑 80 米，乙先跑 5 分钟，甲几分钟追上乙？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "motion-5",
+      "title": "相遇求距离",
+      "prompt": "两人同时从两地相向而行，甲每分钟 60 米，乙每分钟 55 米，8 分钟相遇。两地相距多少米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-motion-improve-1",
+      "title": "回收浮标",
+      "prompt": "无人艇 3 小时航行 45 千米，照这个速度 7 小时航行多少千米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "motion-6",
+      "title": "往返速度",
+      "prompt": "小明上学每分钟走 60 米，15 分钟到校。放学走同一条路用了 18 分钟，放学每分钟走多少米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-motion-challenge-1",
+      "title": "相向靠近",
+      "prompt": "两艘船相距 90 千米，相向而行，速度分别是每小时 20 千米和 25 千米，几小时相遇？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "engineering-1",
+      "title": "每天做几分之一",
+      "prompt": "一项工作，甲单独做 8 天完成。甲每天完成这项工作的几分之几？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "engineering-2",
+      "title": "合作效率",
+      "prompt": "甲每天完成 1/6，乙每天完成 1/3，两人合作每天完成几分之几？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "engineering-3",
+      "title": "两人合作几天",
+      "prompt": "甲单独 6 天完成，乙单独 3 天完成。两人合作几天完成？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "engineering-4",
+      "title": "先做再合作",
+      "prompt": "一项工作甲单独 10 天完成，甲先做 2 天，还剩几分之几？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-engineering-advance-1",
+      "title": "余下任务",
+      "prompt": "一项任务有 240 个零件，3 台机器每台每小时装 8 个，工作 6 小时后还剩多少个？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "engineering-5",
+      "title": "效率比较",
+      "prompt": "甲单独 4 天完成，乙单独 12 天完成。甲每天比乙多完成这项工程的几分之几？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-engineering-improve-1",
+      "title": "舱门安装",
+      "prompt": "6 名工程师 5 天安装 120 个舱门，平均每人每天安装几个？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-engineering-improve-2",
+      "title": "修理臂",
+      "prompt": "4 台修理臂 3 小时完成 72 次焊接，照此速度 6 台修理臂 5 小时完成多少次？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "engineering-6",
+      "title": "三人合作",
+      "prompt": "甲 6 天完成，乙 12 天完成，丙 4 天完成。三人合作每天完成几分之几？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-engineering-challenge-1",
+      "title": "同步铺设",
+      "prompt": "甲队每天铺 18 米电缆，乙队每天铺 12 米，合作 5 天共铺多少米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "train-bridge-1",
+      "title": "火车过桥",
+      "prompt": "一列火车长 100 米，每秒行 20 米，通过 300 米长的桥需要几秒？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "train-bridge-2",
+      "title": "通过路灯",
+      "prompt": "一列火车长 180 米，每秒行 30 米，通过路边一根电线杆需要几秒？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "train-bridge-3",
+      "title": "过隧道",
+      "prompt": "火车长 160 米，每秒行 40 米，完全通过 640 米长的隧道要几秒？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "train-bridge-4",
+      "title": "反求桥长",
+      "prompt": "火车长 120 米，每秒行 15 米，完全通过一座桥用了 18 秒。这座桥长多少米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-train-bridge-advance-1",
+      "title": "隧道测算",
+      "prompt": "列车长 180 米，以每秒 30 米的速度用 14 秒完全通过隧道，隧道长多少米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "train-bridge-5",
+      "title": "两车相向",
+      "prompt": "甲车长 90 米，乙车长 110 米，相向而行速度分别为 15 米/秒和 25 米/秒。从车头相遇到完全错开要几秒？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-train-bridge-improve-1",
+      "title": "穿过闸门",
+      "prompt": "一列长 120 米的观测列车以每秒 20 米的速度完全穿过 80 米闸门，需要几秒？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-train-bridge-improve-2",
+      "title": "通过平台",
+      "prompt": "长 150 米的列车 15 秒完全通过 75 米平台，速度是每秒多少米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "train-bridge-6",
+      "title": "同向追及",
+      "prompt": "快车长 120 米，每秒 30 米；慢车长 100 米，每秒 20 米。快车从追上慢车车尾到完全超过慢车需要几秒？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-train-bridge-challenge-1",
+      "title": "追上补给车",
+      "prompt": "长 100 米的列车以每秒 25 米追赶每秒 15 米的补给车，车尾相距 200 米，几秒后列车车头追上补给车车尾？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "age-1",
+      "title": "年龄差",
+      "prompt": "姐姐今年 14 岁，妹妹今年 9 岁，5 年后姐姐比妹妹大几岁？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "age-2",
+      "title": "未来年龄",
+      "prompt": "小明今年 8 岁，妈妈今年 34 岁。4 年后两人年龄和是多少？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "age-3",
+      "title": "几年后倍数",
+      "prompt": "爸爸今年 40 岁，小华今年 10 岁。几年后爸爸年龄是小华的 3 倍？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-age-advance-1",
+      "title": "海洋日记",
+      "prompt": "小海今年 9 岁，姐姐比他大 4 岁，姐姐今年几岁？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-age-advance-2",
+      "title": "过去的年龄",
+      "prompt": "哥哥今年 16 岁，弟弟今年 10 岁，几年前哥哥的年龄是弟弟的 2 倍？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "age-4",
+      "title": "几年前倍数",
+      "prompt": "妈妈今年 32 岁，儿子今年 8 岁。几年前妈妈年龄是儿子的 5 倍？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "age-5",
+      "title": "年龄和反推",
+      "prompt": "兄弟俩今年年龄和是 25 岁，哥哥比弟弟大 5 岁。弟弟今年几岁？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-age-improve-1",
+      "title": "未来年龄",
+      "prompt": "小航今年 8 岁，爸爸今年 38 岁，5 年后爸爸比小航大几岁？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "age-6",
+      "title": "倍数与差",
+      "prompt": "今年爸爸比儿子大 28 岁，爸爸年龄是儿子的 3 倍。儿子今年几岁？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-age-challenge-1",
+      "title": "两倍年龄",
+      "prompt": "妈妈今年 36 岁，女儿今年 9 岁，几年后妈妈的年龄是女儿的 3 倍？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "efficiency-transfer-1",
+      "title": "归一速度",
+      "prompt": "小明 4 分钟走 240 米，照这样 7 分钟走多少米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "efficiency-transfer-2",
+      "title": "相遇效率",
+      "prompt": "两人相距 540 米，相向而行，速度分别是 50 米/分和 40 米/分，几分钟相遇？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "efficiency-transfer-3",
+      "title": "合作工程",
+      "prompt": "甲 8 天完成，乙 12 天完成。两人合作每天完成这项工程的几分之几？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "efficiency-transfer-4",
+      "title": "追及效率",
+      "prompt": "甲每分钟走 80 米，乙每分钟走 60 米，甲在乙后面 100 米，同向追乙，几分钟追上？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-efficiency-transfer-advance-1",
+      "title": "清理任务",
+      "prompt": "一台机器人每小时清理 18 平方米，先工作 4 小时后，剩余 36 平方米。任务总面积多少？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "efficiency-transfer-5",
+      "title": "先做后合作",
+      "prompt": "一项工程甲 10 天完成，乙 15 天完成。甲先做 2 天后，两人合作，还要几天完成？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-efficiency-transfer-improve-1",
+      "title": "滤水装置",
+      "prompt": "2 台滤水装置 4 小时净化 160 升水，5 台同样装置 3 小时净化多少升？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-efficiency-transfer-improve-2",
+      "title": "数据标注",
+      "prompt": "3 人 2 天标注 90 条数据，照此速度 5 人 4 天标注多少条？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "efficiency-transfer-6",
+      "title": "综合效率",
+      "prompt": "甲乙两车相距 360 千米相向而行，甲每小时 70 千米，乙每小时 50 千米。相遇后甲继续按原速行驶，到乙出发地还要几小时？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-efficiency-transfer-challenge-1",
+      "title": "同时完成",
+      "prompt": "甲机器单独完成任务要 6 小时，乙机器要 3 小时，同时工作每小时完成任务的几分之几？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "tree-planting-1",
+      "title": "两端都种",
+      "prompt": "一条路长 24 米，每隔 4 米种一棵树，两端都种，一共种多少棵？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "tree-planting-2",
+      "title": "只种一端",
+      "prompt": "一条小路长 35 米，每隔 5 米插一面小旗，只在起点插，终点不插，一共插多少面？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "tree-planting-3",
+      "title": "两端都不种",
+      "prompt": "一条走廊长 48 米，每隔 6 米放一盆花，两端都不放，一共放多少盆？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "tree-planting-4",
+      "title": "封闭路线",
+      "prompt": "一个圆形跑道长 60 米，每隔 10 米放一个标志桶，一共放多少个？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-tree-planting-advance-1",
+      "title": "封闭巡航线",
+      "prompt": "正方形巡航线每边放 6 个定位点，四个顶点都只算一次，一共多少个定位点？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "tree-planting-5",
+      "title": "反求间距",
+      "prompt": "一条路长 45 米，两端都种树，一共种 10 棵。相邻两棵树相隔多少米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-tree-planting-improve-1",
+      "title": "海岸标杆",
+      "prompt": "一段海岸每隔 5 米放一个标杆，两端都放，共有 9 个标杆。这段海岸长多少米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-tree-planting-improve-2",
+      "title": "环形浮标",
+      "prompt": "圆形水池边放 12 个浮标，相邻浮标间隔相同，共有多少段间隔？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "tree-planting-6",
+      "title": "综合判断",
+      "prompt": "一条路每隔 8 米装一盏灯，两端都装，共装 13 盏。这条路长多少米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-tree-planting-challenge-1",
+      "title": "灯带升级",
+      "prompt": "一条 72 米灯带原来每隔 8 米装灯，两端都装。改为每隔 6 米装灯，需要增加几盏？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-1",
+      "title": "闯关 1",
+      "prompt": "一条直线上有 3 个点，可以组成多少条线段？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-2",
+      "title": "闯关 2",
+      "prompt": "一个 1×1 的正方形图里有多少个正方形？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-3",
+      "title": "闯关 3",
+      "prompt": "一个 2×2 方格图中，有多少个小正方形？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-4",
+      "title": "闯关 4",
+      "prompt": "一条直线上有 5 个点，可以组成多少条线段？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-geometry-advance-1",
+      "title": "耐压窗",
+      "prompt": "一个长方形耐压窗长 9 分米、宽 4 分米，周长是多少分米？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-5",
+      "title": "闯关 5",
+      "prompt": "一个 2×2 方格图中，一共有多少个正方形？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-8",
+      "title": "闯关 8",
+      "prompt": "一条直线上有 6 个点，可以组成多少条线段？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-9",
+      "title": "闯关 9",
+      "prompt": "一个 2×3 方格图中，有多少个小正方形？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-6",
+      "title": "闯关 6",
+      "prompt": "一个 3×3 方格图中，有多少个 1×1 的小正方形？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-12",
+      "title": "闯关 12",
+      "prompt": "一个 3×3 方格图中，有多少个小正方形？（只数 1×1）",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "logic-1",
+      "title": "闯关 1",
+      "prompt": "A 不是第一，B 也不是第一，那么第一是谁？（A、B、C 三人中）",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "logic-2",
+      "title": "闯关 2",
+      "prompt": "甲比乙快，乙比丙快，谁最慢？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "logic-3",
+      "title": "闯关 3",
+      "prompt": "3 个盒子中只有 1 个有奖品。已知红盒没有，蓝盒没有，奖品在哪个盒子？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "logic-4",
+      "title": "闯关 4",
+      "prompt": "小丽不是第三，小华不是第三，那么第三是谁？（小丽、小华、小美）",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-logic-advance-1",
+      "title": "真假信号",
+      "prompt": "甲说“乙的信号灯是蓝色”。已知乙的信号灯确实是蓝色，甲的说法是真的吗？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "logic-5",
+      "title": "闯关 5",
+      "prompt": "甲比乙重，乙比丙重，谁最重？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "logic-8",
+      "title": "闯关 8",
+      "prompt": "A 不是最后，B 不是最后，C 不是最后，那么最后是谁？（A、B、C、D 四人中）",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "logic-9",
+      "title": "闯关 9",
+      "prompt": "红、黄、蓝三个盒子里只有一个有球。已知红盒有球，哪个盒子有球？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "logic-6",
+      "title": "闯关 6",
+      "prompt": "甲不是最后，乙不是第一，丙不是第一，那么第一是谁？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "logic-12",
+      "title": "闯关 12",
+      "prompt": "A 不是第一，B 不是第二，C 不是第一，那么第一是谁？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-counting-1",
+      "title": "四点线段",
+      "prompt": "一条直线上有 5 个点，一共可以组成多少条线段？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-counting-2",
+      "title": "数角",
+      "prompt": "从同一个顶点射出 4 条射线，一共形成多少个角？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-counting-3",
+      "title": "分割三角形",
+      "prompt": "一个大三角形从顶点向底边画 4 条分割线，把底边分成 5 段。一共有多少个三角形？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-counting-4",
+      "title": "一行方格",
+      "prompt": "一行 4 个小正方形组成的长方形中，一共有多少个长方形？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-geometry-counting-advance-1",
+      "title": "路线交点",
+      "prompt": "从一个长方形的四个顶点各连一条对角线，两条对角线交于一点，一共有几个三角形区域？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-counting-5",
+      "title": "方格长方形",
+      "prompt": "2 行 2 列小方格组成的正方形中，一共有多少个长方形？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-geometry-counting-improve-1",
+      "title": "三角旗",
+      "prompt": "一个正方形画一条对角线，被分成几个三角形？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-geometry-counting-improve-2",
+      "title": "方格地图",
+      "prompt": "由 4 个小正方形排成一行，一共有几个不同大小的正方形？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "geometry-counting-6",
+      "title": "综合方格",
+      "prompt": "2 行 3 列小方格组成的长方形中，一共有多少个正方形？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-geometry-counting-challenge-1",
+      "title": "九宫网格",
+      "prompt": "3×3 方格中一共有多少个小正方形和大正方形？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "parity-divisibility-1",
+      "title": "奇偶加法",
+      "prompt": "偶数 + 奇数 的结果是奇数还是偶数？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "parity-divisibility-2",
+      "title": "奇偶乘法",
+      "prompt": "奇数 × 偶数 的结果是奇数还是偶数？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "parity-divisibility-3",
+      "title": "能否被 3 整除",
+      "prompt": "数 528 能被 3 整除吗？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "parity-divisibility-4",
+      "title": "能否被 9 整除",
+      "prompt": "数 783 能被 9 整除吗？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-parity-divisibility-advance-1",
+      "title": "配对编号",
+      "prompt": "1 到 20 中，既是 2 的倍数又是 3 的倍数的数有几个？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "parity-divisibility-5",
+      "title": "不可能性",
+      "prompt": "3 个偶数和 4 个奇数相加，结果是奇数还是偶数？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-parity-divisibility-improve-1",
+      "title": "偶数推进",
+      "prompt": "连续两个整数相乘，结果一定是奇数还是偶数？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-parity-divisibility-improve-2",
+      "title": "整除校验",
+      "prompt": "54 能被 9 整除吗？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "parity-divisibility-6",
+      "title": "填数字",
+      "prompt": "三位数 45□ 能被 5 整除，方框里可以填几个不同数字？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    },
+    {
+      "questionId": "chapter-02-parity-divisibility-challenge-1",
+      "title": "余数记录",
+      "prompt": "一个数除以 5 余 3，再加 7 后除以 5 余几？",
+      "reviewer": "项目负责人确认",
+      "reviewedAt": "2026-07-30",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": "已完成六项课程审核。"
+    }
+  ]
+}

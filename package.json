@@ -10,11 +10,10 @@
     "preview": "vite preview",
     "test": "node --test",
     "check": "node scripts/check-syntax.js",
-    "validate:content": "node scripts/validate-content.js",
-    "snapshot:content": "node scripts/content-snapshot.js",
-    "check:content-snapshot": "node scripts/content-snapshot.js --check",
+    "validate:game": "node scripts/validate-game-content.js",
     "check:bundle": "node scripts/check-bundle-size.js",
     "test:ui": "node scripts/ui-behavior.js",
+    "test:game-ui": "node scripts/game-ui-behavior.js",
     "audit:ui": "node scripts/audit-ui.js",
     "smoke": "node scripts/smoke-browser.js"
   },

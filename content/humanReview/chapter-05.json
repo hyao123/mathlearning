@@ -1,0 +1,1930 @@
+{
+  "schemaVersion": 1,
+  "chapterId": "chapter-05",
+  "status": "approved",
+  "reviewer": "课程负责人",
+  "reviewedAt": "2026-08-01T00:00:00+08:00",
+  "notes": "用户确认第五章题目审核通过。",
+  "records": [
+    {
+      "questionId": "chapter-05-algebraic-expressions-1",
+      "title": "字母表示数",
+      "prompt": "装甲突击演练任务：侦察车有 x=9 个补给箱，再运来 6 个，共有多少个？【启航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-algebraic-expressions-2",
+      "title": "字母表示数",
+      "prompt": "装甲突击演练任务：每个装甲小组有 a=7 名队员，4 个小组共有多少名？【校准任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-algebraic-expressions-3",
+      "title": "字母表示数",
+      "prompt": "装甲突击演练任务：能量站有 y=32 格电，先用去 9 格，剩下多少格？【侦察任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-algebraic-expressions-4",
+      "title": "字母表示数",
+      "prompt": "装甲突击演练任务：每辆运输车每天行驶 m=18 千米，连续 3 天行驶多少千米？【推进任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-algebraic-expressions-5",
+      "title": "字母表示数",
+      "prompt": "装甲突击演练任务：一批零件有 n=4 箱，每箱 8 个，另有 5 个散件，一共有多少个？【协作任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-algebraic-expressions-6",
+      "title": "字母表示数",
+      "prompt": "装甲突击演练任务：给每名队员发 2 节电池，共有 p=11 人，发完后剩 7 节，原有多少节？【加固任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-algebraic-expressions-7",
+      "title": "字母表示数",
+      "prompt": "装甲突击演练任务：油料箱原有 t=26 升，上午加 15 升、下午用 8 升，现在多少升？【巡航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-algebraic-expressions-8",
+      "title": "字母表示数",
+      "prompt": "装甲突击演练任务：两支小队各有 k=8 人，指挥组另有 3 人，总人数多少？【穿越任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-algebraic-expressions-9",
+      "title": "字母表示数",
+      "prompt": "装甲突击演练任务：一条路线长 s=14 千米，往返一次后再返回 4 千米，累计路程多少千米？【攻坚任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-algebraic-expressions-10",
+      "title": "字母表示数",
+      "prompt": "装甲突击演练任务：Boss 校准：每套护板重 w=7 千克，6 套护板和 12 千克工具总质量多少千克？【决战任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equations-unknowns-1",
+      "title": "等式与未知数",
+      "prompt": "装甲突击演练任务：补给天平左边是 14，右边是未知数 x，平衡时 x 是多少？【启航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equations-unknowns-2",
+      "title": "等式与未知数",
+      "prompt": "装甲突击演练任务：方程 x+5=17 中，x 是多少？【校准任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equations-unknowns-3",
+      "title": "等式与未知数",
+      "prompt": "装甲突击演练任务：方程 x-8=13 中，x 是多少？【侦察任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equations-unknowns-4",
+      "title": "等式与未知数",
+      "prompt": "装甲突击演练任务：方程 4x=28 中，x 是多少？【推进任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equations-unknowns-5",
+      "title": "等式与未知数",
+      "prompt": "装甲突击演练任务：方程 x÷6=9 中，x 是多少？【协作任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equations-unknowns-6",
+      "title": "等式与未知数",
+      "prompt": "装甲突击演练任务：装甲板编号满足 x+19=42，编号 x 是多少？【加固任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equations-unknowns-7",
+      "title": "等式与未知数",
+      "prompt": "装甲突击演练任务：能量芯片满足 7x=63，每组芯片数 x 是多少？【巡航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equations-unknowns-8",
+      "title": "等式与未知数",
+      "prompt": "装甲突击演练任务：方程 x/5=12 中，x 是多少？【穿越任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equations-unknowns-9",
+      "title": "等式与未知数",
+      "prompt": "装甲突击演练任务：两边同加 11 后得到 x=35，原来的 x 是多少？【攻坚任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equations-unknowns-10",
+      "title": "等式与未知数",
+      "prompt": "装甲突击演练任务：Boss 校准：x-27=46，补回 27 后 x 是多少？【决战任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-linear-equations-1",
+      "title": "一元一次方程基础",
+      "prompt": "装甲突击演练任务：2x+3=15，x 是多少？【启航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-linear-equations-2",
+      "title": "一元一次方程基础",
+      "prompt": "装甲突击演练任务：3x-4=17，x 是多少？【校准任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-linear-equations-3",
+      "title": "一元一次方程基础",
+      "prompt": "装甲突击演练任务：5x+10=40，x 是多少？【侦察任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-linear-equations-4",
+      "title": "一元一次方程基础",
+      "prompt": "装甲突击演练任务：4x-9=23，x 是多少？【推进任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-linear-equations-5",
+      "title": "一元一次方程基础",
+      "prompt": "装甲突击演练任务：6x+12=54，x 是多少？【协作任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-linear-equations-6",
+      "title": "一元一次方程基础",
+      "prompt": "装甲突击演练任务：7x-14=35，x 是多少？【加固任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-linear-equations-7",
+      "title": "一元一次方程基础",
+      "prompt": "装甲突击演练任务：3(x+2)=24，x 是多少？【巡航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-linear-equations-8",
+      "title": "一元一次方程基础",
+      "prompt": "装甲突击演练任务：5(x-1)=45，x 是多少？【穿越任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-linear-equations-9",
+      "title": "一元一次方程基础",
+      "prompt": "装甲突击演练任务：2x+7=x+19，x 是多少？【攻坚任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-linear-equations-10",
+      "title": "一元一次方程基础",
+      "prompt": "装甲突击演练任务：Boss 校准：4x-6=2x+18，x 是多少？【决战任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equation-applications-1",
+      "title": "列方程解决应用题",
+      "prompt": "装甲突击演练任务：装填 3 箱同样的电池后再加 2 节，共 20 节。每箱有多少节？【启航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equation-applications-2",
+      "title": "列方程解决应用题",
+      "prompt": "装甲突击演练任务：一辆工程车行驶 x 千米后还差 15 千米到终点，全程 48 千米。x 是多少？【校准任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equation-applications-3",
+      "title": "列方程解决应用题",
+      "prompt": "装甲突击演练任务：4 套护板和 6 千克工具共重 30 千克，每套护板重多少千克？【侦察任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equation-applications-4",
+      "title": "列方程解决应用题",
+      "prompt": "装甲突击演练任务：指挥组人数的 2 倍再加 5 人是 23 人，指挥组有多少人？【推进任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equation-applications-5",
+      "title": "列方程解决应用题",
+      "prompt": "装甲突击演练任务：油箱先装入相同的 5 桶油，又加 4 升，共 39 升；每桶多少升？【协作任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equation-applications-6",
+      "title": "列方程解决应用题",
+      "prompt": "装甲突击演练任务：两天检修同样多的履带节，另一天多修 8 节，三天共修 32 节；每天原计划修多少节？【加固任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equation-applications-7",
+      "title": "列方程解决应用题",
+      "prompt": "装甲突击演练任务：一卷线缆剪去 12 米后，剩下长度是原来的 2 倍少 30 米；原来多少米？【巡航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equation-applications-8",
+      "title": "列方程解决应用题",
+      "prompt": "装甲突击演练任务：一批晶片分给 6 个小组，每组相等并剩 5 片，共 47 片；每组多少片？【穿越任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equation-applications-9",
+      "title": "列方程解决应用题",
+      "prompt": "装甲突击演练任务：运输车每小时行 x 千米，4 小时比计划 100 千米少 8 千米。x 是多少？【攻坚任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-equation-applications-10",
+      "title": "列方程解决应用题",
+      "prompt": "装甲突击演练任务：Boss 校准：两种传感器共 18 个，A 型每个 4 分、B 型每个 2 分，总分 48；A 型有多少个？【决战任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-fraction-modeling-1",
+      "title": "分数运算建模",
+      "prompt": "装甲突击演练任务：补给箱的 1/3 是冷却剂，箱内有 24 罐，冷却剂有多少罐？【启航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-fraction-modeling-2",
+      "title": "分数运算建模",
+      "prompt": "装甲突击演练任务：一段履带已铺设 2/5，还剩全长的几分之几？【校准任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-fraction-modeling-3",
+      "title": "分数运算建模",
+      "prompt": "装甲突击演练任务：能量条先用去 1/4，又用去 1/8，共用去几分之几？【侦察任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-fraction-modeling-4",
+      "title": "分数运算建模",
+      "prompt": "装甲突击演练任务：一桶油的 3/4 是 30 升，整桶多少升？【推进任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-fraction-modeling-5",
+      "title": "分数运算建模",
+      "prompt": "装甲突击演练任务：甲小队完成任务的 2/3，乙小队完成 1/6，两队合计完成几分之几？【协作任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-fraction-modeling-6",
+      "title": "分数运算建模",
+      "prompt": "装甲突击演练任务：一批板材有 48 块，先用 1/4，再用剩余的 1/3，第二次用了多少块？【加固任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-fraction-modeling-7",
+      "title": "分数运算建模",
+      "prompt": "装甲突击演练任务：装甲测试通过了总项目的 5/8，未通过项目比已通过少多少分之几？【巡航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-fraction-modeling-8",
+      "title": "分数运算建模",
+      "prompt": "装甲突击演练任务：运输队第一天走全程的 3/10，第二天走全程的 2/5，两天共走几分之几？【穿越任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-fraction-modeling-9",
+      "title": "分数运算建模",
+      "prompt": "装甲突击演练任务：一块复合材料先切去 1/5，又切去余下的 1/4，最后剩原来的几分之几？【攻坚任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-fraction-modeling-10",
+      "title": "分数运算建模",
+      "prompt": "装甲突击演练任务：Boss 校准：库存的 2/3 分给甲队后，余下的 3/4 分给乙队，最终还剩 10 个；原库存多少个？【决战任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-decimal-modeling-1",
+      "title": "小数运算建模",
+      "prompt": "装甲突击演练任务：一块传感器板重 2.5 千克，4 块共重多少千克？【启航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-decimal-modeling-2",
+      "title": "小数运算建模",
+      "prompt": "装甲突击演练任务：油箱原有 18.6 升，用去 3.2 升，剩多少升？【校准任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-decimal-modeling-3",
+      "title": "小数运算建模",
+      "prompt": "装甲突击演练任务：每米线缆 1.8 元，买 5 米需要多少元？【侦察任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-decimal-modeling-4",
+      "title": "小数运算建模",
+      "prompt": "装甲突击演练任务：3.6 千克合金平均装入 4 个盒子，每盒多少千克？【推进任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-decimal-modeling-5",
+      "title": "小数运算建模",
+      "prompt": "装甲突击演练任务：工程车每小时耗油 7.5 升，2 小时耗油多少升？【协作任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-decimal-modeling-6",
+      "title": "小数运算建模",
+      "prompt": "装甲突击演练任务：一卷绝缘带 12.4 米，剪去 4.75 米，剩多少米？【加固任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-decimal-modeling-7",
+      "title": "小数运算建模",
+      "prompt": "装甲突击演练任务：每个电池组 0.36 千克，25 个电池组共重多少千克？【巡航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-decimal-modeling-8",
+      "title": "小数运算建模",
+      "prompt": "装甲突击演练任务：补给站 9.6 升冷却剂平均分成 1.2 升一瓶，能装几瓶？【穿越任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-decimal-modeling-9",
+      "title": "小数运算建模",
+      "prompt": "装甲突击演练任务：一段路线长 18.5 千米，先走 6.75 千米，再走 4.6 千米，剩多少千米？【攻坚任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-decimal-modeling-10",
+      "title": "小数运算建模",
+      "prompt": "装甲突击演练任务：Boss 校准：3.2 升润滑油每升 4.5 元，另付 1.6 元瓶费，一共多少元？【决战任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-percent-basics-1",
+      "title": "百分数基础",
+      "prompt": "装甲突击演练任务：100 个零件中有 25 个合格升级件，升级件占百分之几？【启航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-percent-basics-2",
+      "title": "百分数基础",
+      "prompt": "装甲突击演练任务：一批 80 块护板，90% 通过检测，通过多少块？【校准任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-percent-basics-3",
+      "title": "百分数基础",
+      "prompt": "装甲突击演练任务：能量储备从 200 格中用去 15%，用去多少格？【侦察任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-percent-basics-4",
+      "title": "百分数基础",
+      "prompt": "装甲突击演练任务：40 升油料增加 20%，增加后有多少升？【推进任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-percent-basics-5",
+      "title": "百分数基础",
+      "prompt": "装甲突击演练任务：一辆车计划 60 千米，实际走了 75 千米，实际是计划的百分之几？【协作任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-percent-basics-6",
+      "title": "百分数基础",
+      "prompt": "装甲突击演练任务：库存 120 个芯片，减少 10% 后剩多少个？【加固任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-percent-basics-7",
+      "title": "百分数基础",
+      "prompt": "装甲突击演练任务：某组件合格率 96%，抽检 250 个，合格多少个？【巡航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-percent-basics-8",
+      "title": "百分数基础",
+      "prompt": "装甲突击演练任务：一箱材料的 30% 是 18 千克，全箱多少千克？【穿越任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-percent-basics-9",
+      "title": "百分数基础",
+      "prompt": "装甲突击演练任务：速度由 50 千米/时提高 12%，提高后是多少？【攻坚任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-percent-basics-10",
+      "title": "百分数基础",
+      "prompt": "装甲突击演练任务：Boss 校准：原计划完成 160 项，实际多完成 25%，实际完成多少项？【决战任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-discount-tax-1",
+      "title": "折扣与税率",
+      "prompt": "装甲突击演练任务：一套维修包标价 80 元，打九折后多少元？【启航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-discount-tax-2",
+      "title": "折扣与税率",
+      "prompt": "装甲突击演练任务：一台仪器 200 元，八折优惠省了多少元？【校准任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-discount-tax-3",
+      "title": "折扣与税率",
+      "prompt": "装甲突击演练任务：零件原价 150 元，先打八折，现价多少元？【侦察任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-discount-tax-4",
+      "title": "折扣与税率",
+      "prompt": "装甲突击演练任务：售价 300 元的设备按 5% 税率计税，税额多少元？【推进任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-discount-tax-5",
+      "title": "折扣与税率",
+      "prompt": "装甲突击演练任务：一批材料含税价 210 元，其中税率 5%，未税价多少元？【协作任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-discount-tax-6",
+      "title": "折扣与税率",
+      "prompt": "装甲突击演练任务：一件 400 元的护具先打九折，再收 10% 税，最后多少元？【加固任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-discount-tax-7",
+      "title": "折扣与税率",
+      "prompt": "装甲突击演练任务：两件同价工具总价 180 元，七五折后应付多少元？【巡航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-discount-tax-8",
+      "title": "折扣与税率",
+      "prompt": "装甲突击演练任务：某零件折后 68 元，折扣是八五折，原价多少元？【穿越任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-discount-tax-9",
+      "title": "折扣与税率",
+      "prompt": "装甲突击演练任务：一箱设备先涨价 20% 后又打八折，和原价相比变为百分之几？【攻坚任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-discount-tax-10",
+      "title": "折扣与税率",
+      "prompt": "装甲突击演练任务：Boss 校准：标价 500 元的终端，先减 15%，再按折后价收 6% 税，最终多少元？【决战任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-profit-loss-modeling-1",
+      "title": "利润与损失",
+      "prompt": "装甲突击演练任务：一件工具成本 40 元，卖 50 元，利润多少元？【启航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-profit-loss-modeling-2",
+      "title": "利润与损失",
+      "prompt": "装甲突击演练任务：成本 80 元的零件卖 100 元，利润率百分之几？【校准任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-profit-loss-modeling-3",
+      "title": "利润与损失",
+      "prompt": "装甲突击演练任务：一箱设备成本 120 元，亏损 15 元出售，售价多少元？【侦察任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-profit-loss-modeling-4",
+      "title": "利润与损失",
+      "prompt": "装甲突击演练任务：成本 200 元，按成本加价 10% 出售，售价多少元？【推进任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-profit-loss-modeling-5",
+      "title": "利润与损失",
+      "prompt": "装甲突击演练任务：售价 180 元，利润 30 元，成本多少元？【协作任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-profit-loss-modeling-6",
+      "title": "利润与损失",
+      "prompt": "装甲突击演练任务：成本 50 元的材料以 20% 利润率出售，利润多少元？【加固任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-profit-loss-modeling-7",
+      "title": "利润与损失",
+      "prompt": "装甲突击演练任务：两台设备各成本 90 元，一台赚 20 元，另一台亏 10 元，总利润多少元？【巡航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-profit-loss-modeling-8",
+      "title": "利润与损失",
+      "prompt": "装甲突击演练任务：成本 160 元的元件按 25% 利润率出售，售价多少元？【穿越任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-profit-loss-modeling-9",
+      "title": "利润与损失",
+      "prompt": "装甲突击演练任务：一件成本 300 元的装置按成本的 20% 亏损出售，售价多少元？【攻坚任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-profit-loss-modeling-10",
+      "title": "利润与损失",
+      "prompt": "装甲突击演练任务：Boss 校准：两批材料各成本 100 元，甲赚 30%，乙亏 10%，合计利润多少元？【决战任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-concentration-configuration-1",
+      "title": "浓度配置",
+      "prompt": "装甲突击演练任务：10 升冷却液中溶质有 2 升，浓度百分之几？【启航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-concentration-configuration-2",
+      "title": "浓度配置",
+      "prompt": "装甲突击演练任务：5 升 30% 溶液含溶质多少升？【校准任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-concentration-configuration-3",
+      "title": "浓度配置",
+      "prompt": "装甲突击演练任务：8 升溶液含 0.8 升添加剂，浓度百分之几？【侦察任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-concentration-configuration-4",
+      "title": "浓度配置",
+      "prompt": "装甲突击演练任务：要配制 20 升 15% 溶液，需要溶质多少升？【推进任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-concentration-configuration-5",
+      "title": "浓度配置",
+      "prompt": "装甲突击演练任务：4 升 25% 溶液加 1 升纯水，新浓度百分之几？【协作任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-concentration-configuration-6",
+      "title": "浓度配置",
+      "prompt": "装甲突击演练任务：6 升 10% 溶液含多少升溶质？【加固任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-concentration-configuration-7",
+      "title": "浓度配置",
+      "prompt": "装甲突击演练任务：2 升 40% 溶液与 3 升纯水混合，浓度百分之几？【巡航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-concentration-configuration-8",
+      "title": "浓度配置",
+      "prompt": "装甲突击演练任务：12 升 25% 溶液加入 3 升纯水，稀释后浓度百分之几？【穿越任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-concentration-configuration-9",
+      "title": "浓度配置",
+      "prompt": "装甲突击演练任务：要得到 30 升 8% 溶液，已有 2.4 升溶质，还需加多少升水？【攻坚任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-concentration-configuration-10",
+      "title": "浓度配置",
+      "prompt": "装甲突击演练任务：Boss 校准：10 升 30% 溶液与 5 升 10% 溶液混合，新浓度百分之几？【决战任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-savings-interest-1",
+      "title": "储蓄与利息",
+      "prompt": "装甲突击演练任务：存入 1000 元，年利率 2%，一年利息多少元？【启航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-savings-interest-2",
+      "title": "储蓄与利息",
+      "prompt": "装甲突击演练任务：本金 500 元，一年利息 15 元，年利率百分之几？【校准任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-savings-interest-3",
+      "title": "储蓄与利息",
+      "prompt": "装甲突击演练任务：本金 800 元，年利率 2.5%，一年本息共多少元？【侦察任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-savings-interest-4",
+      "title": "储蓄与利息",
+      "prompt": "装甲突击演练任务：1000 元按年利率 4% 存两年，单利利息多少元？【推进任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-savings-interest-5",
+      "title": "储蓄与利息",
+      "prompt": "装甲突击演练任务：一年后本息 1060 元，年利率 6%，本金多少元？【协作任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-savings-interest-6",
+      "title": "储蓄与利息",
+      "prompt": "装甲突击演练任务：本金 2400 元，年利率 1.5%，三年单利本息多少元？【加固任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-savings-interest-7",
+      "title": "储蓄与利息",
+      "prompt": "装甲突击演练任务：存入 600 元，年利率 5%，几年的单利利息是 90 元？【巡航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-savings-interest-8",
+      "title": "储蓄与利息",
+      "prompt": "装甲突击演练任务：本金 1500 元，一年后利息 45 元，利率百分之几？【穿越任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-savings-interest-9",
+      "title": "储蓄与利息",
+      "prompt": "装甲突击演练任务：本息 2120 元，其中本金 2000 元，存期 2 年，年利率百分之几？【攻坚任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-savings-interest-10",
+      "title": "储蓄与利息",
+      "prompt": "装甲突击演练任务：Boss 校准：两笔资金各 1000 元，甲按 3% 存两年，乙按 2% 存三年，合计利息多少元？【决战任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-supply-integration-1",
+      "title": "综合补给建模 Boss",
+      "prompt": "装甲突击演练任务：一批 80 个电池先有 25% 留作备用，其余平均装入 3 辆车，每辆装多少个？【启航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-supply-integration-2",
+      "title": "综合补给建模 Boss",
+      "prompt": "装甲突击演练任务：每桶油 x 升，4 桶油打九折后按每升 5 元计费，共付 180 元。x 是多少？【校准任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-supply-integration-3",
+      "title": "综合补给建模 Boss",
+      "prompt": "装甲突击演练任务：30 升冷却液含 20% 添加剂，加入 10 升纯水后添加剂有多少升？【侦察任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-supply-integration-4",
+      "title": "综合补给建模 Boss",
+      "prompt": "装甲突击演练任务：一项修理计划原需 5 天，每天修 x 节履带；改为每天多修 4 节后 4 天完成，x 是多少？【推进任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-supply-integration-5",
+      "title": "综合补给建模 Boss",
+      "prompt": "装甲突击演练任务：成本 200 元的传感器先加价 20%，再打九折，最终售价多少元？【协作任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-supply-integration-6",
+      "title": "综合补给建模 Boss",
+      "prompt": "装甲突击演练任务：某小队人数的 3 倍减 6 是 30，人数组成 x，x 是多少？【加固任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-supply-integration-7",
+      "title": "综合补给建模 Boss",
+      "prompt": "装甲突击演练任务：4 升 25% 溶液加水后变成 20% 溶液，需要加多少升水？【巡航任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-supply-integration-8",
+      "title": "综合补给建模 Boss",
+      "prompt": "装甲突击演练任务：1000 元资金按 3% 年利率存一年，再加上 50 元奖励，本息加奖励多少元？【穿越任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-supply-integration-9",
+      "title": "综合补给建模 Boss",
+      "prompt": "装甲突击演练任务：一段 120 千米路线，先走全程的 1/4，再以每小时 30 千米行驶 2 小时，还剩多少千米？【攻坚任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-05-supply-integration-10",
+      "title": "综合补给建模 Boss",
+      "prompt": "装甲突击演练任务：Boss 总装：12 个部件中 75% 已完成，每个已完成部件需 2 块装甲板，已用装甲板多少块？【决战任务】",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-01T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    }
+  ]
+}
