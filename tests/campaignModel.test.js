@@ -7,7 +7,7 @@ const builder = require("../game/chapterBuilder.js");
 function loadChapters() {
   global.window = globalThis;
   ["data.js", "contentExpansion.js", "knowledgeContinuityExpansion.js", "priorityContentExpansion.js", "supplementalContentExpansion.js", "supplementalContentFixes.js", "knowledgeTopology.js", "supplementalTopologyExpansion.js"].forEach((file) => require(`../${file}`));
-  return ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05"].map((id) => builder.buildChapter(id, globalThis.MATH_LEARNING_DATA));
+  return ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05", "chapter-06"].map((id) => builder.buildChapter(id, globalThis.MATH_LEARNING_DATA));
 }
 
 test("migrates a chapter-one save into a campaign while preserving inventory", () => {
@@ -28,7 +28,7 @@ test("persists independent chapter states in one campaign envelope", () => {
   const saved = campaign.serializeCampaign(initial);
   const restored = campaign.createCampaign(chapters, saved, { quartz: 3 });
   assert.equal(restored.activeChapterId, "chapter-01");
-  assert.equal(Object.keys(JSON.parse(saved).chapterStates).length, 5);
+  assert.equal(Object.keys(JSON.parse(saved).chapterStates).length, 6);
   assert.equal(restored.chapterStates["chapter-03"].inventory.quartz, 3);
   assert.equal(restored.chapterStates["chapter-04"].inventory.quartz, 3);
 });
@@ -83,4 +83,23 @@ test("unlocks the next chapter only after the prior route is cleared and its fin
     "polar-icebreaker": 1
   });
   assert.deepEqual(chapterFourComplete.unlockedChapterIds, ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05"]);
+
+  const chapterFiveComplete = campaign.createCampaign(chapters, JSON.stringify({
+    activeChapterId: "chapter-05",
+    chapterStates: {
+      "chapter-01": completedRoute(chapters[0]),
+      "chapter-02": completedRoute(chapters[1]),
+      "chapter-03": completedRoute(chapters[2]),
+      "chapter-04": completedRoute(chapters[3]),
+      "chapter-05": completedRoute(chapters[4])
+    }
+  }), {
+    "j20-sky-fighter": 1,
+    "deep-sea-explorer": 1,
+    "orbital-science-station": 1,
+    "polar-icebreaker": 1,
+    "99a-main-battle-tank": 1
+  });
+  assert.deepEqual(chapterFiveComplete.unlockedChapterIds, ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05", "chapter-06"]);
+  assert.equal(Object.keys(chapterFiveComplete.chapterStates["chapter-06"].levelRecords).length, 0);
 });

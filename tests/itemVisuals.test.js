@@ -98,11 +98,11 @@ test("every project component, large part, and final aircraft has a generated vi
 
 test("all campaign catalog items have complete visual entries", () => {
   const coreItems = catalog.listItems();
-  assert.equal(coreItems.length, 160);
+  assert.equal(coreItems.length, 265);
   coreItems.forEach((item) => {
     const visual = visuals.getItemVisual(item.id);
     assert.ok(visual, item.id);
-    const generatedChapterItem = item.tags.includes("chapter-04") || item.tags.includes("chapter-05");
+    const generatedChapterItem = item.tags.includes("chapter-04") || item.tags.includes("chapter-05") || item.tags.includes("chapter-06");
     const minimumSize = generatedChapterItem ? 128 : 256;
     assert.equal(visual.width >= minimumSize && visual.height >= minimumSize, true, item.id);
     assert.ok(visual.alt.length > 0, item.id);
@@ -171,4 +171,13 @@ test("every registered 99A project and mission visual is a shipped WebP asset", 
   });
   assert.match(visuals.getItemVisual("99a-main-battle-tank").src, /99a-main-battle-tank-v2\.webp$/);
   assert.equal(visuals.getItemVisual("99a-main-battle-tank").preloadPriority, "final-project");
+});
+
+test("quantum satellite visuals distinguish materials, components, parts, missions, and final project", () => {
+  assert.equal(visuals.getItemVisual("starlight-crystal").visualVariant, "quantum-material");
+  assert.equal(visuals.getItemVisual("satellite-6").visualVariant, "quantum-component");
+  assert.equal(visuals.getItemVisual("satellite-part-2").visualVariant, "quantum-part");
+  assert.equal(visuals.getItemVisual("chapter-06-mission-1").visualVariant, "quantum-mission");
+  assert.equal(visuals.getItemVisual("quantum-communication-satellite").visualVariant, "quantum-final-project");
+  assert.equal(visuals.getItemVisual("quantum-communication-satellite").preloadPriority, "project-final");
 });

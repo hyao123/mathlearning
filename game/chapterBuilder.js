@@ -4,16 +4,20 @@ const { supplementalQuestionsByModule: chapter02SupplementalQuestions } = requir
 const { supplementalQuestionsByModule: chapter03SupplementalQuestions } = require("./chapter03QuestionPacks.js");
 const { supplementalQuestionsByModule: chapter04SupplementalQuestions, chapterModules: chapter04Modules } = require("./chapter04QuestionPacks.js");
 const { supplementalQuestionsByModule: chapter05SupplementalQuestions, chapterModules: chapter05Modules } = require("./chapter05QuestionPacks.js");
+const { supplementalQuestionsByModule: chapter06SupplementalQuestions, chapterModules: chapter06Modules } = require("./chapter06QuestionPacks.js");
 const QuestionQuality = require("./questionQuality.js");
 const ChapterQualityProfiles = require("./chapterQualityProfiles.js");
 const ChapterQuestionOverrides = require("./chapterQuestionOverrides.js");
+const QuestionContract = require("./questionContract.js");
+const QuestionContractFixes = require("./questionContractFixes.js");
 
 const REQUIRED_SUPPLEMENTAL_FIELDS = ["id", "title", "prompt", "answer", "explanation"];
 const NATIVE_CHAPTER_MODULES = Object.freeze({
   "chapter-04": chapter04Modules,
-  "chapter-05": chapter05Modules
+  "chapter-05": chapter05Modules,
+  "chapter-06": chapter06Modules
 });
-const ALL_SUPPLEMENTAL_QUESTIONS = Object.freeze({ ...supplementalQuestionsByModule, ...chapter02SupplementalQuestions, ...chapter03SupplementalQuestions, ...chapter04SupplementalQuestions, ...chapter05SupplementalQuestions });
+const ALL_SUPPLEMENTAL_QUESTIONS = Object.freeze({ ...supplementalQuestionsByModule, ...chapter02SupplementalQuestions, ...chapter03SupplementalQuestions, ...chapter04SupplementalQuestions, ...chapter05SupplementalQuestions, ...chapter06SupplementalQuestions });
 const MISSION_PHASES = Object.freeze(["启航", "校准", "侦察", "推进", "协作", "加固", "巡航", "穿越", "攻坚", "决战"]);
 
 function hasText(value) {
@@ -35,14 +39,23 @@ function inferReasoningType(moduleId) {
   return "直接计算";
 }
 
-function enrichQuestion(candidate, module, slot, difficulty) {
-  const overriddenCandidate = { ...candidate, ...(ChapterQuestionOverrides.getQuestionOverride(candidate.id) || {}) };
-  const moduleProfile = ChapterQualityProfiles.getQuestionQualityProfile(module, overriddenCandidate, slot);
+function enrichQuestion(candidate, module, slot, difficulty, chapterId) {
+  const overriddenCandidate = {
+    ...candidate,
+    ...(ChapterQuestionOverrides.getQuestionOverride(candidate.id) || {}),
+    ...(QuestionContractFixes.getQuestionContractFix(candidate.id) || {})
+  };
+  const moduleProfile = ChapterQualityProfiles.getQuestionQualityProfile(
+    { ...module, chapterId },
+    { ...overriddenCandidate, chapterId },
+    slot
+  );
   const explanation = hasText(overriddenCandidate.explanation) ? overriddenCandidate.explanation : "根据题目条件一步一步计算。";
   return {
     ...overriddenCandidate,
     prompt: `${overriddenCandidate.prompt}【${MISSION_PHASES[slot - 1]}任务】`,
     answerType: overriddenCandidate.answerType || "numeric",
+    answerFormat: overriddenCandidate.answerFormat || QuestionContract.getAnswerFormat(overriddenCandidate.answer),
     slot,
     difficulty,
     isBoss: slot === 10,
@@ -59,7 +72,7 @@ function enrichQuestion(candidate, module, slot, difficulty) {
     solutionReview: overriddenCandidate.solutionReview || moduleProfile?.solutionReview || {
       observation: `先找出题目中和“${module.title}”有关的数量关系。`,
       steps: [explanation],
-      answer: String(candidate.answer),
+      answer: String(overriddenCandidate.answer),
       check: "把结果代回题目条件核对。",
       pitfall: "注意读清数量、单位和题目所问。"
     }
@@ -82,7 +95,7 @@ function buildLevel(levelConfig, modules = [], chapterId = null) {
     const candidate = allPractices.find((practice) => practice.difficulty === difficulty && !selectedIds.has(practice.id));
     if (!candidate) throw new Error(`${module.id} 缺少第 ${slot} 题所需的${difficulty}题`);
     selectedIds.add(candidate.id);
-    return enrichQuestion(candidate, module, slot, difficulty);
+    return enrichQuestion(candidate, module, slot, difficulty, chapterId);
   });
   return { levelId: levelConfig.id, moduleId: module.id, title: module.title, questions };
 }

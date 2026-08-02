@@ -48,3 +48,13 @@ test("combines repeated awarded items into one display entry", () => {
   assert.equal(result.transactions.length, 1);
   assert.equal(result.transactions[0].awardedQuantity, 3);
 });
+
+test("combines repeated blocked items into one settlement entry", () => {
+  const result = presentation.nonAwardedTransactions([
+    { itemId: "oak-log", rewardType: "fixed", status: "stack-capped", requestedQuantity: 1, awardedQuantity: 0 },
+    { itemId: "oak-log", rewardType: "random", status: "stack-capped", requestedQuantity: 2, awardedQuantity: 0 }
+  ]);
+  assert.equal(result.length, 1);
+  assert.equal(result[0].requestedQuantity, 3);
+  assert.deepEqual(result[0].rewardTypes, ["fixed", "random"]);
+});

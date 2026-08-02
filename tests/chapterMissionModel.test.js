@@ -70,3 +70,32 @@ test("claims each eligible 99A armored mission only once", () => {
   assert.equal(first.transactions.length, 5);
   assert.equal(second.transactions.length, 0);
 });
+
+test("claims each eligible quantum satellite mission only once", () => {
+  const state = {
+    levelRecords: {
+      "chapter-06-level-1": { starCount: 3 },
+      "chapter-06-level-2": { starCount: 3 },
+      "chapter-06-level-3": { starCount: 3 }
+    },
+    streak: 10,
+    inventory: { "satellite-part-1": 1, "quantum-communication-satellite": 1 },
+    claimedMissionRewards: {}
+  };
+  const first = missions.claimEligibleMissions("chapter-06", state);
+  const second = missions.claimEligibleMissions("chapter-06", {
+    ...state,
+    inventory: first.inventory,
+    claimedMissionRewards: first.claimedMissionRewards
+  });
+
+  assert.equal(first.transactions.length, 5);
+  assert.equal(second.transactions.length, 0);
+  assert.deepEqual(Object.keys(first.claimedMissionRewards).sort(), [
+    "chapter-06-mission-1",
+    "chapter-06-mission-2",
+    "chapter-06-mission-3",
+    "chapter-06-mission-4",
+    "chapter-06-mission-5"
+  ]);
+});

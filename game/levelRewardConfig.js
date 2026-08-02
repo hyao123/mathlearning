@@ -27,6 +27,7 @@ function cloneReward(reward) {
 function cloneRecipe(recipe) {
   return recipe ? {
     id: recipe.id,
+    ...(recipe.type ? { type: recipe.type } : {}),
     name: recipe.name,
     inputs: recipe.inputs.map(({ itemId, quantity }) => ({ itemId, quantity })),
     output: { ...recipe.output }
@@ -35,7 +36,13 @@ function cloneRecipe(recipe) {
 
 function materialPlanForChapter(chapterId, project) {
   if (chapterId === FIRST_CHAPTER_ID) return CHAPTER_ONE_FIXED_MATERIALS;
-  return project.componentRecipes.map((recipe) => Array.from({ length: 10 }, () => recipe.inputs[0].itemId));
+  const byOutput = new Map(project.materialRecipes.map((recipe) => [recipe.output.itemId, recipe]));
+  const rawSource = (itemId, visited = new Set()) => {
+    const recipe = byOutput.get(itemId);
+    if (!recipe || visited.has(itemId)) return itemId;
+    return rawSource(recipe.inputs[0].itemId, new Set([...visited, itemId]));
+  };
+  return project.materialRecipes.map((recipe) => Array.from({ length: 10 }, () => rawSource(recipe.output.itemId)));
 }
 
 function createConfigs() {
@@ -52,6 +59,7 @@ function createConfigs() {
         chapterId,
         levelId: `${chapterId}-level-${index + 1}`,
         componentId: componentRecipe.output.itemId,
+        materialRecipe: cloneRecipe(project.materialRecipes[index]),
         componentRecipe: cloneRecipe(componentRecipe),
         fixedRewards: Object.freeze(createRepeatedRewards(materials[index]).map((reward) => Object.freeze(reward))),
         stagePartId: stageRecipe.output.itemId,
@@ -70,6 +78,7 @@ function getLevelRewardConfig(levelId) {
   return {
     ...config,
     fixedRewards: config.fixedRewards.map(cloneReward),
+    materialRecipe: cloneRecipe(config.materialRecipe),
     componentRecipe: cloneRecipe(config.componentRecipe),
     stageRecipe: cloneRecipe(config.stageRecipe)
   };
@@ -102,12 +111,15 @@ function simulateFullClearCraft(chapterId) {
   if (!project) return { ok: false, canCraftFinal: false, usedOnlyFixedRewards: true, inventory, errors: [`缺少章节项目：${chapterId}`] };
 
   configs.forEach((config) => config.fixedRewards.forEach(({ itemId, quantity }) => addToInventory(inventory, itemId, quantity)));
+  project.materialRecipes.forEach((recipe) => craft(inventory, recipe, errors));
+  const processingComplete = errors.length === 0;
   project.componentRecipes.forEach((recipe) => craft(inventory, recipe, errors));
   project.partRecipes.forEach((recipe) => craft(inventory, recipe, errors));
   const canCraftFinal = craft(inventory, project.finalRecipe, errors);
   return {
     ok: errors.length === 0 && canCraftFinal,
     canCraftFinal,
+    processingComplete,
     usedOnlyFixedRewards: true,
     inventory: { ...inventory },
     errors

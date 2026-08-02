@@ -42,7 +42,8 @@ function requireDependencies() {
     RewardPresentation: globalThis.RewardPresentation,
     ChapterMissionModel: globalThis.ChapterMissionModel,
     CampaignModel: globalThis.CampaignModel,
-    ProgressionModel: globalThis.ProgressionModel
+    ProgressionModel: globalThis.ProgressionModel,
+    ChallengeModel: globalThis.ChallengeModel
   };
   for (const [name, dependency] of Object.entries(dependencies)) {
     if (!dependency) throw new Error(`${name} is required before GameApp.mount`);
@@ -366,7 +367,13 @@ function getRewardStatusText(transaction) {
   if (transaction.previewKind === "random-option") return `随机池 · 可能获得 × ${transaction.requestedQuantity}`;
   if (transaction.status === "already-owned") return "已拥有，不会重复获得";
   if (transaction.status === "stack-capped") return "已达堆叠上限，不会新增";
-  return `${transaction.rewardType === "random" ? "随机奖励" : "固定奖励"} × ${transaction.awardedQuantity}`;
+  const rewardTypes = transaction.rewardTypes || [transaction.rewardType];
+  const label = rewardTypes.includes("fixed") && rewardTypes.includes("random")
+    ? "固定 + 随机奖励"
+    : rewardTypes.includes("random")
+      ? "随机奖励"
+      : "固定奖励";
+  return `${label} × ${transaction.awardedQuantity}`;
 }
 
 function appendRewardOutcome(parent, item, transaction, className = "reward-chip") {
@@ -392,7 +399,7 @@ function getLevelNumber(chapter, levelId) {
 function getStoredScreen(serialized) {
   try {
     const stored = typeof serialized === "string" ? JSON.parse(serialized) : serialized;
-    return stored?.lastScreen === "map" || stored?.lastScreen === "settlement" ? stored.lastScreen : null;
+    return ["map", "settlement", "recovery-challenge"].includes(stored?.lastScreen) ? stored.lastScreen : null;
   } catch {
     return null;
   }
@@ -412,7 +419,7 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
   const allChapters = Array.isArray(chapters) && chapters.length ? chapters : [initialChapter];
   if (!allChapters.every((entry) => entry?.levels?.length)) throw new Error("GameApp.mount requires compiled chapters");
   const chaptersById = Object.fromEntries(allChapters.map((entry) => [entry.chapterId, entry]));
-  const { AnswerMatcher, GameItemCatalog, InventoryModel, LevelRewardConfig, RewardPresentation, ChapterMissionModel, CampaignModel, ProgressionModel } = requireDependencies();
+  const { AnswerMatcher, GameItemCatalog, InventoryModel, LevelRewardConfig, RewardPresentation, ChapterMissionModel, CampaignModel, ProgressionModel, ChallengeModel } = requireDependencies();
   let storedState = null;
   try {
     storedState = typeof stateStore?.load === "function" ? stateStore.load() : null;
@@ -444,7 +451,7 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
   }
   const persistedScreenSource = storedState || legacyState;
   const storedScreen = getStoredScreen(persistedScreenSource);
-  let screen = state.activeRun ? "challenge" : storedScreen === "settlement" && state.lastSettlement ? "settlement" : "map";
+  let screen = state.activeRun ? "challenge" : state.activeChallengeRun ? "recovery-challenge" : storedScreen === "settlement" && state.lastSettlement ? "settlement" : "map";
   let inventoryReturnScreen = "map";
   let answerDraft = state.activeRun ? getStoredAnswerDraft(persistedScreenSource) : "";
   let answerFeedback = null;
@@ -468,8 +475,8 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
     state = campaign.chapterStates[chapter.chapterId];
     if (typeof stateStore?.save !== "function") return;
     const serialized = JSON.parse(CampaignModel.serializeCampaign(campaign));
-    serialized.lastScreen = screen === "settlement" ? "settlement" : "map";
-    serialized.activeAnswerDraft = state.activeRun ? answerDraft : "";
+    serialized.lastScreen = screen === "settlement" ? "settlement" : screen === "recovery-challenge" ? "recovery-challenge" : "map";
+    serialized.activeAnswerDraft = (state.activeRun || state.activeChallengeRun) ? answerDraft : "";
     try {
       stateStore.save(JSON.stringify(serialized));
     } catch {
@@ -483,7 +490,7 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
   const getLevel = (levelId) => chapter.levels.find((level) => level.levelId === levelId);
 
   function captureAnswerDraft() {
-    if (screen === "challenge" && state.activeRun?.status === "active") {
+    if ((screen === "challenge" && state.activeRun?.status === "active") || (screen === "recovery-challenge" && state.activeChallengeRun?.status === "active")) {
       answerDraft = root.querySelector("[data-answer-input]")?.value || "";
     }
   }
@@ -691,13 +698,38 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
       card.className = "campaign-chapter";
       card.dataset.chapterId = candidate.chapterId;
       card.dataset.chapterStatus = candidate.chapterId === chapter.chapterId ? "active" : unlocked ? "unlocked" : "locked";
-      card.disabled = !unlocked || Boolean(state.activeRun);
+      card.disabled = !unlocked || Boolean(state.activeRun || state.activeChallengeRun);
       appendText(card, "span", `第 ${index + 1} 章`, "campaign-chapter__number");
       appendText(card, "strong", candidate.name, "campaign-chapter__name");
       appendText(card, "small", unlocked ? `${completion.clearedLevels} / ${completion.totalLevels} 关` : "完成上一章工程后解锁", "campaign-chapter__progress");
       overview.append(card);
     });
     parent.append(overview);
+  }
+
+  function renderRecoveryChallengeCallout(parent) {
+    const completion = ProgressionModel.getChapterCompletion(state, chapter);
+    if (!completion.isChapterCleared || completion.isFinalProjectComplete) return;
+    const missing = ChallengeModel.getMissingRawMaterials(chapter.chapterId, state.inventory);
+    const section = document.createElement("section");
+    section.className = "recovery-challenge-callout";
+    section.dataset.recoveryChallenge = "available";
+    appendText(section, "p", "工程补给挑战", "quest-game__eyebrow");
+    appendText(section, "h2", "主线完成了，缺少的材料去挑战补给", "recovery-challenge__title");
+    const target = missing[0];
+    appendText(section, "p", target
+      ? `当前优先补给：${GameItemCatalog.getItem(target.itemId)?.name || target.itemId} × ${target.quantity}`
+      : "工程链正在等待下一次补给。", "recovery-challenge__copy");
+    const actions = document.createElement("div");
+    actions.className = "recovery-challenge__actions";
+    [["review", "错题复习挑战", "优先复习本章错题，再补充随机题"], ["random", "随机组卷挑战", "从本章全部知识点随机抽取 10 题"]].forEach(([mode, label, hint]) => {
+      const button = appendText(actions, "button", label, "pixel-button pixel-button--primary");
+      button.type = "button";
+      button.dataset.startRecoveryChallenge = mode;
+      button.title = hint;
+    });
+    section.append(actions);
+    parent.append(section);
   }
 
   function renderMap() {
@@ -713,6 +745,7 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
     appendText(summary, "p", "沿着像素路标，完成每一组十题挑战。", "chapter-summary__lead");
     appendText(summary, "p", `${cleared} / ${chapter.levels.length} 关已完成`, "chapter-summary__progress");
     main.append(summary);
+    renderRecoveryChallengeCallout(main);
     renderChapterStages(main);
     renderChapterMissions(main);
 
@@ -860,7 +893,6 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
     } else {
       const form = document.createElement("div");
       form.className = "answer-controls";
-      const textAnswer = /[\u4e00-\u9fffA-Za-z]/.test(String(run.question.answer || ""));
       const input = document.createElement("input");
       input.type = "text";
       input.inputMode = "text";
@@ -870,20 +902,12 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
       input.dataset.answerInput = "";
       input.disabled = run.status === "retry";
       if (run.status === "active") input.value = answerDraft;
-      if (textAnswer) {
-        const choices = [...new Set([String(run.question.answer), "是", "否", "能", "不能", "甲", "乙", "丙", "无法确定"].filter((choice) => choice === String(run.question.answer) || !String(run.question.answer).includes(choice)))].slice(0, 4);
-        choices.forEach((choice) => {
-          const option = appendText(form, "button", choice, "pixel-button answer-option");
-          option.type = "button";
-          option.dataset.answerOption = choice;
-          option.disabled = run.status === "retry";
-        });
-      } else form.append(input);
+      form.append(input);
 
       const submit = appendText(form, "button", "提交", "pixel-button pixel-button--primary");
       submit.type = "button";
       submit.dataset.submitAnswer = "";
-      submit.hidden = run.status === "retry" || textAnswer;
+      submit.hidden = run.status === "retry";
       const retry = appendText(form, "button", "再试一次", "pixel-button pixel-button--primary");
       retry.type = "button";
       retry.dataset.retryQuestion = "";
@@ -901,6 +925,103 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
     }
     renderRewardPopover(challenge);
     main.append(challenge);
+    root.append(main);
+    if (run.status === "active") root.querySelector("[data-answer-input]")?.focus({ preventScroll: true });
+  }
+
+  function renderRecoveryReview(parent, run) {
+    const panel = document.createElement("section");
+    panel.className = "tactical-review recovery-review";
+    panel.dataset.recoveryReview = "";
+    const isCorrect = run.resolved?.resolution === "correct";
+    appendText(panel, "p", isCorrect ? "补给已到账，继续下一道挑战。" : "这道题先记入错题复习，下一道继续。", "tactical-review__cheer");
+    const currentRewards = (run.rewardTransactions || []).filter((transaction) => transaction.questionId === run.resolved?.questionId && transaction.status === "awarded");
+    currentRewards.forEach((transaction) => {
+      const item = GameItemCatalog.getItem(transaction.itemId);
+      if (item) appendRewardOutcome(panel, item, transaction, "inventory-item recovery-reward");
+    });
+    const details = document.createElement("details");
+    details.dataset.reviewDetails = "";
+    appendText(details, "summary", "展开战术复盘", "tactical-review__summary");
+    const review = ProgressionModel.getChallengeReview(state);
+    if (review) {
+      appendText(details, "p", review.observation || "先找出题目中的已知量和目标量。", "tactical-review__observation");
+      if (review.steps?.length) {
+        const steps = document.createElement("ol");
+        steps.className = "tactical-review__steps";
+        review.steps.forEach((step) => appendText(steps, "li", step));
+        details.append(steps);
+      }
+      if (review.answer) appendText(details, "p", `答案：${review.answer}`, "tactical-review__answer");
+      if (review.check) appendText(details, "p", `检查方法：${review.check}`, "tactical-review__check");
+      if (review.pitfall) appendText(details, "p", `易错提醒：${review.pitfall}`, "tactical-review__pitfall");
+    }
+    panel.append(details);
+    const continueButton = appendText(panel, "button", run.questionIndex + 1 >= run.questions.length ? "查看挑战结果" : "继续挑战", "pixel-button pixel-button--primary tactical-review__continue");
+    continueButton.type = "button";
+    continueButton.dataset.continueRecoveryResolved = "";
+    parent.append(panel);
+  }
+
+  function renderRecoveryChallenge() {
+    const run = state.activeChallengeRun;
+    if (!run) {
+      screen = "map";
+      render();
+      return;
+    }
+    const main = document.createElement("main");
+    main.className = "quest-game quest-game--challenge recovery-challenge";
+    main.dataset.gameScreen = "recovery-challenge";
+    renderHeader(main, "工程补给挑战", run.mode === "review" ? "错题复习补给" : "随机组卷补给");
+    const card = document.createElement("section");
+    card.className = "challenge-card recovery-challenge__card";
+    const returnMap = appendText(card, "button", "返回地图", "pixel-button pixel-button--quiet challenge-return");
+    returnMap.type = "button";
+    returnMap.dataset.challengeReturnMap = "";
+    returnMap.hidden = run.status === "retry";
+    renderSubmissionFeedback(card);
+    const meta = document.createElement("div");
+    meta.className = "challenge-meta";
+    appendText(meta, "p", `挑战题 ${run.questionIndex + 1} / ${run.questions.length}`, "question-counter");
+    appendText(meta, "p", run.question?.difficulty || "复习", "difficulty-badge");
+    card.append(meta);
+    appendText(card, "h2", "补给线索", "challenge-card__heading");
+    const target = ChallengeModel.getTargetMaterial(chapter.chapterId, state.inventory);
+    appendText(card, "p", target ? `答对可补给：${GameItemCatalog.getItem(target.itemId)?.name || target.itemId} × 1（还缺 ${target.quantity}）` : "当前工程材料已暂时齐备。", "recovery-target");
+    appendText(card, "p", run.question?.storyBeat || "从本章知识点中抽取一道补给线索。", "question-story-beat");
+    appendText(card, "p", run.question?.prompt || "读取补给线索中……", "question-prompt");
+    if (run.status === "resolved") {
+      renderRecoveryReview(card, run);
+    } else {
+      const form = document.createElement("div");
+      form.className = "answer-controls";
+      const input = document.createElement("input");
+      input.type = "text";
+      input.inputMode = "text";
+      input.autocomplete = "off";
+      input.placeholder = "输入答案";
+      input.setAttribute("aria-label", "补给挑战答案");
+      input.dataset.answerInput = "";
+      input.disabled = run.status === "retry";
+      if (run.status === "active") input.value = answerDraft;
+      form.append(input);
+      const submit = appendText(form, "button", "提交", "pixel-button pixel-button--primary");
+      submit.type = "button";
+      submit.dataset.recoverySubmitAnswer = "";
+      submit.hidden = run.status === "retry";
+      const retry = appendText(form, "button", "再试一次", "pixel-button pixel-button--primary");
+      retry.type = "button";
+      retry.dataset.recoveryRetryQuestion = "";
+      retry.hidden = run.status !== "retry";
+      const skip = appendText(form, "button", "跳过", "pixel-button pixel-button--quiet");
+      skip.type = "button";
+      skip.dataset.recoverySkipQuestion = "";
+      skip.hidden = run.status !== "retry";
+      card.append(form);
+    }
+    if (run.status === "retry") appendText(card, "p", "答案还没对上。可以再试一次，也可以跳过继续补给。", "retry-message");
+    main.append(card);
     root.append(main);
     if (run.status === "active") root.querySelector("[data-answer-input]")?.focus({ preventScroll: true });
   }
@@ -942,15 +1063,14 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
     const items = document.createElement("div");
     items.dataset.settlementItems = "";
     items.className = "inventory-grid settlement-items";
-    settlement.rewardTransactions
-      .filter((transaction) => transaction.status === "awarded" && transaction.awardedQuantity > 0)
+    RewardPresentation.awardedTransactions(settlement.rewardTransactions)
       .forEach((transaction) => {
         const item = GameItemCatalog.getItem(transaction.itemId);
         if (item) appendRewardOutcome(items, item, transaction, "inventory-item");
       });
     if (!items.children.length) appendText(items, "p", "本次没有获得物品。", "empty-state");
     section.append(items);
-    const skippedRewards = settlement.rewardTransactions.filter((transaction) => transaction.status !== "awarded");
+    const skippedRewards = RewardPresentation.nonAwardedTransactions(settlement.rewardTransactions);
     if (skippedRewards.length) {
       appendText(section, "h3", "未新增的奖励", "settlement-title settlement-title--secondary");
       const skippedItems = document.createElement("div");
@@ -1006,6 +1126,7 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
     }
     aside.append(grid);
     renderFinalProjectCeremony(aside);
+    renderMaterialSynthesis(aside);
     renderSuperProject(aside);
     root.append(aside);
   }
@@ -1022,6 +1143,41 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
     appendText(ceremony, "p", "知识路线、材料收集、组件合成和大型部件拼装全部完成。超级工程正式入库。", "final-project-ceremony__lead");
     ceremony.append(createProjectHeroArt(project, finalItem, "completed"));
     parent.append(ceremony);
+  }
+
+  function renderMaterialSynthesis(parent) {
+    const recipes = InventoryModel.getProjectRecipes(chapter.chapterId).filter((recipe) => recipe.type === "material-processing");
+    if (!recipes.length) return;
+    const section = document.createElement("section");
+    section.className = "material-synthesis";
+    section.dataset.materialSynthesis = chapter.chapterId;
+    appendText(section, "p", "原材料精炼台", "quest-game__eyebrow");
+    appendText(section, "h2", "先精炼，再拼装", "material-synthesis__title");
+    appendText(section, "p", "按蓝图配方逐级精炼：题目获得的原材料会变成工程材料，再进入组件拼装；每种材料的工序和用量以卡片为准。", "material-synthesis__lead");
+    const grid = document.createElement("div");
+    grid.className = "material-synthesis__grid";
+    recipes.forEach((recipe) => {
+      const output = recipe.outputs[0];
+      const item = GameItemCatalog.getItem(output.itemId);
+      const card = document.createElement("article");
+      card.className = "material-recipe";
+      card.dataset.materialRecipeCardId = recipe.id;
+      const unlocked = isRecipeUnlocked(recipe);
+      const crafted = hasRecipeOutput(recipe);
+      card.dataset.recipeStatus = crafted ? "completed" : unlocked ? "available" : "locked";
+      if (item) card.append(createItemIcon(item, "material-recipe__icon"));
+      appendText(card, "h3", item?.name || recipe.name, "material-recipe__name");
+      appendRecipeMaterials(card, recipe);
+      const action = appendText(card, "button", crafted ? "已精炼" : "精炼材料", "pixel-button pixel-button--primary material-recipe__action");
+      action.type = "button";
+      action.dataset.materialRecipeId = recipe.id;
+      action.disabled = crafted || !unlocked || !InventoryModel.canCraft(state.inventory, recipe, { crafting: true });
+      if (!unlocked) appendText(card, "p", `完成第 ${recipe.unlockLevelNumber} 个专题后解锁`, "material-recipe__hint");
+      else if (!crafted && action.disabled) appendText(card, "p", "还需要更多原材料", "material-recipe__hint");
+      grid.append(card);
+    });
+    section.append(grid);
+    parent.append(section);
   }
 
   function getClearedLevelCount() {
@@ -1142,7 +1298,7 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
     const recipeGrid = document.createElement("div");
     recipeGrid.className = "super-project__recipes";
     InventoryModel.getProjectRecipes(chapter.chapterId)
-      .filter((recipe) => recipe.id !== project.finalRecipe.id)
+      .filter((recipe) => recipe.type !== "material-processing" && recipe.id !== project.finalRecipe.id)
       .forEach((recipe) => renderProjectRecipe(recipeGrid, recipe));
     renderProjectRecipe(recipeGrid, getCraftableRecipe(project.finalRecipe.id), { final: true });
     section.append(recipeGrid);
@@ -1153,13 +1309,14 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
     if (destroyed) return;
     root.replaceChildren();
     if (screen === "challenge") renderChallenge();
+    else if (screen === "recovery-challenge") renderRecoveryChallenge();
     else if (screen === "settlement") renderSettlement();
     else if (screen === "inventory") renderInventory();
     else renderMap();
   }
 
   function openInventory() {
-    if (screen === "challenge") answerDraft = root.querySelector("[data-answer-input]")?.value || "";
+    if (screen === "challenge" || screen === "recovery-challenge") answerDraft = root.querySelector("[data-answer-input]")?.value || "";
     rewardReveal = null;
     inventoryReturnScreen = screen;
     screen = "inventory";
@@ -1195,6 +1352,20 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
     render();
   }
 
+  function submitCurrentRecoveryAnswer(selectedAnswer = null) {
+    const input = root.querySelector("[data-answer-input]");
+    const value = selectedAnswer || input?.value;
+    if (!value?.trim()) {
+      input?.focus();
+      return;
+    }
+    answerDraft = "";
+    state = ProgressionModel.submitChallengeAnswer(state, value, AnswerMatcher);
+    answerFeedback = createSubmissionFeedback(state.activeChallengeRun?.status === "retry" ? "retry" : "correct");
+    persist();
+    render();
+  }
+
   function handleClick(event) {
     const target = event.target.closest("button");
     if (!target || !root.contains(target)) return;
@@ -1209,6 +1380,13 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
       rewardReveal = null;
       craftingFeedback = null;
       screen = "map";
+      persist();
+      render();
+    } else if (target.matches("[data-start-recovery-challenge]") && !target.disabled) {
+      state = ProgressionModel.startChallenge(state, target.dataset.startRecoveryChallenge, { random: Math.random });
+      answerDraft = "";
+      answerFeedback = null;
+      screen = "recovery-challenge";
       persist();
       render();
     } else if (target.matches("[data-level-id]") && !target.disabled) {
@@ -1231,6 +1409,17 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
       screen = "map";
       persist();
       render();
+    } else if (target.matches("[data-material-recipe-id]")) {
+      const recipe = InventoryModel.getProjectRecipes(chapter.chapterId).find((candidate) => candidate.id === target.dataset.materialRecipeId && candidate.type === "material-processing");
+      if (recipe && isRecipeUnlocked(recipe) && InventoryModel.canCraft(state.inventory, recipe, { crafting: true })) {
+        const result = InventoryModel.craftRecipe(state.inventory, recipe, { crafting: true });
+        replaceInventory(result.inventory, recipe.id);
+        const output = recipe.outputs[0];
+        const item = output ? GameItemCatalog.getItem(output.itemId) : null;
+        craftingFeedback = { itemId: output?.itemId, name: item?.name || recipe.name };
+        persist();
+        render();
+      }
     } else if (target.matches("[data-project-recipe-id]")) {
       const recipe = getCraftableRecipe(target.dataset.projectRecipeId);
       if (recipe && isRecipeUnlocked(recipe) && InventoryModel.canCraft(state.inventory, recipe, { crafting: true })) {
@@ -1250,7 +1439,28 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
       craftingFeedback = null;
       closeInventory();
     }
-    else if (target.matches("[data-submit-answer]")) submitCurrentAnswer();
+    else if (target.matches("[data-recovery-submit-answer]")) submitCurrentRecoveryAnswer();
+    else if (target.matches("[data-recovery-retry-question]")) {
+      answerDraft = "";
+      answerFeedback = null;
+      state = ProgressionModel.retryChallengeQuestion(state);
+      persist();
+      render();
+      root.querySelector("[data-answer-input]")?.focus();
+    } else if (target.matches("[data-recovery-skip-question]")) {
+      answerDraft = "";
+      answerFeedback = null;
+      state = ProgressionModel.skipChallengeQuestion(state);
+      persist();
+      render();
+    } else if (target.matches("[data-continue-recovery-resolved]")) {
+      answerDraft = "";
+      answerFeedback = null;
+      state = ProgressionModel.continueChallenge(state);
+      screen = state.activeChallengeRun ? "recovery-challenge" : "map";
+      persist();
+      render();
+    } else if (target.matches("[data-submit-answer]")) submitCurrentAnswer();
     else if (target.matches("[data-answer-option]")) submitCurrentAnswer(target.dataset.answerOption);
     else if (target.matches("[data-retry-question]")) {
       answerDraft = "";
@@ -1305,6 +1515,7 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
 
   function handleKeydown(event) {
     if (event.key === "Enter" && screen === "challenge" && state.activeRun?.status === "active") submitCurrentAnswer();
+    if (event.key === "Enter" && screen === "recovery-challenge" && state.activeChallengeRun?.status === "active") submitCurrentRecoveryAnswer();
     if (event.key === "Escape" && screen === "inventory") closeInventory();
   }
 

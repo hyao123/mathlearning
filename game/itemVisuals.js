@@ -184,18 +184,27 @@ const ITEM_VISUALS = Object.freeze({
 });
 
 const EXPANSION_ITEM_IDS = Object.freeze([
+  "j20-processed-frame-plate", "j20-structural-steel", "j20-carbon-shell", "j20-signal-board", "j20-optical-lens", "j20-gold-alloy", "j20-emerald-conductor", "j20-diamond-edge", "j20-netherite-composite", "j20-turbine-alloy", "j20-energy-crystal", "j20-expedition-alloy",
   "prismarine-shard", "nautilus-shell", "sponge", "ink-sac", "glow-ink-sac", "turtle-scute", "clay-ball", "amethyst-shard", "conduit-core", "coral-fan", "heart-of-the-sea",
+  "sub-pressure-steel", "sub-ballast-ceramic", "sub-wing-composite", "sub-sonar-crystal", "sub-navigation-gyro", "sub-searchlight-lens", "sub-seal-ring", "sub-sampling-armature", "sub-data-storage", "sub-propeller-alloy", "sub-energy-conduit", "sub-deep-core",
   ...Array.from({ length: 12 }, (_, index) => `sub-${index + 1}`), ...Array.from({ length: 4 }, (_, index) => `sub-part-${index + 1}`), "deep-sea-explorer",
   ...Array.from({ length: 5 }, (_, index) => `chapter-02-mission-${index + 1}`),
   "quartz", "glowstone-dust", "ender-pearl", "echo-shard", "blaze-rod", "phantom-membrane", "obsidian", "nether-star", "shulker-shell", "slimeball", "firework-star",
+  "station-truss-alloy", "station-solar-cell", "station-thermal-panel", "station-star-sensor", "station-communication-crystal", "station-navigation-gyro", "station-lab-console", "station-observation-lens", "station-docking-ring", "station-orbit-thruster", "station-energy-bus", "station-orbit-core",
   ...Array.from({ length: 12 }, (_, index) => `station-${index + 1}`), ...Array.from({ length: 4 }, (_, index) => `station-part-${index + 1}`), "orbital-science-station",
   ...Array.from({ length: 5 }, (_, index) => `chapter-03-mission-${index + 1}`),
   "ice-crystal-shard", "cold-iron-ingot", "aurora-core", "thermal-alloy", "polar-quartz", "compass-core", "icebreaker-plate", "insulation-fiber", "deep-sea-battery", "snow-beacon", "aurora-prism",
+  "icebreaker-steel", "icebreaker-keel-core", "icebreaker-window-glass", "icebreaker-navigation-gyro", "icebreaker-sonar-crystal", "icebreaker-propulsion-alloy", "icebreaker-thermal-pipe", "icebreaker-crane-frame", "icebreaker-radar-lens", "icebreaker-aurora-antenna", "icebreaker-fuel-bus", "icebreaker-ice-core",
   ...Array.from({ length: 12 }, (_, index) => `icebreaker-${index + 1}`), ...Array.from({ length: 4 }, (_, index) => `icebreaker-part-${index + 1}`), "polar-icebreaker",
   ...Array.from({ length: 5 }, (_, index) => `chapter-04-mission-${index + 1}`),
   "carbon-titanium-plate", "nano-ceramic-chip", "quantum-armor-fiber", "reactive-armor-unit", "thermal-imaging-chip", "pulse-circuit", "maglev-track-link", "coolant-gel", "plasma-energy-core", "tactical-data-core", "fusion-drive-rod",
+  "tank-steel-ingot", "tank-armor-ceramic", "tank-fire-control-chip", "tank-turret-ring", "tank-thermal-lens", "tank-pulse-module", "tank-track-steel", "tank-vector-core", "tank-coolant-canister", "tank-power-bus", "tank-tactical-chip", "tank-engineering-alloy",
   ...Array.from({ length: 12 }, (_, index) => `tank-${index + 1}`), ...Array.from({ length: 4 }, (_, index) => `tank-part-${index + 1}`), "99a-main-battle-tank",
-  ...Array.from({ length: 5 }, (_, index) => `chapter-05-mission-${index + 1}`)
+  ...Array.from({ length: 5 }, (_, index) => `chapter-05-mission-${index + 1}`),
+  "starlight-crystal", "spectral-glass", "signal-dust", "quantum-sand", "ion-battery", "photon-chip", "nebula-alloy", "gravity-lens", "data-prism", "pulse-core", "cosmic-iron",
+  "satellite-truss-alloy", "satellite-solar-film", "satellite-data-board", "satellite-sensor-lens", "satellite-gyro-core", "satellite-antenna-array", "satellite-telemetry-chip", "satellite-signal-filter", "satellite-thermal-shell", "satellite-orbit-engine", "satellite-quantum-core", "satellite-command-core",
+  ...Array.from({ length: 12 }, (_, index) => `satellite-${index + 1}`), ...Array.from({ length: 4 }, (_, index) => `satellite-part-${index + 1}`), "quantum-communication-satellite",
+  ...Array.from({ length: 5 }, (_, index) => `chapter-06-mission-${index + 1}`)
 ]);
 
 function polarVisualVariant(itemId) {
@@ -238,22 +247,41 @@ function polarArt(itemId, visualVariant) {
   return materialShape;
 }
 
+function quantumVisualVariant(itemId) {
+  if (!/^(quantum-communication|satellite|starlight|spectral|signal-dust|quantum-sand|ion-battery|photon|nebula|gravity|data-prism|pulse-core|cosmic-iron|chapter-06)/.test(itemId)) return null;
+  if (itemId === "quantum-communication-satellite") return "quantum-final-project";
+  if (itemId.startsWith("satellite-part-")) return "quantum-part";
+  if (/^satellite-\d+$/.test(itemId)) return "quantum-component";
+  if (itemId.startsWith("chapter-06-mission-")) return "quantum-mission";
+  return "quantum-material";
+}
+
+function quantumArt(itemId, visualVariant) {
+  if (visualVariant === "quantum-final-project") return '<path d="M30 126 86 82h84l56 44-56 44H86Z" fill="#122e70" stroke="#a8f5ff" stroke-width="7"/><path d="M86 82 52 36h34l42 46M170 82l34-46h-34l-42 46M86 170l-34 46h34l42-46M170 170l34 46h-34l-42-46" fill="#5c8cff" stroke="#d1fbff" stroke-width="6"/><ellipse cx="128" cy="126" rx="27" ry="19" fill="#d7ffff" stroke="#7dffff" stroke-width="6"/><path d="M128 107v38M109 126h38" stroke="#5a6dff" stroke-width="5"/>';
+  if (visualVariant === "quantum-part") return '<path d="M35 171 68 71h120l33 100-42 35H77Z" fill="#263a8d" stroke="#9cf6ff" stroke-width="7"/><path d="M68 71h120M78 104h100M88 137h80" stroke="#e6ffff" stroke-width="6" opacity=".8"/><circle cx="128" cy="171" r="18" fill="#f3d56f" stroke="#fff4bd" stroke-width="5"/>';
+  if (visualVariant === "quantum-component") return '<rect x="48" y="60" width="160" height="136" rx="14" fill="#1d397f" stroke="#8defff" stroke-width="7"/><path d="M70 92h116M70 126h116M70 160h116" stroke="#78b9ff" stroke-width="8"/><circle cx="86" cy="92" r="7" fill="#f5d06f"/><circle cx="86" cy="126" r="7" fill="#8dffff"/><circle cx="86" cy="160" r="7" fill="#f5d06f"/>';
+  if (visualVariant === "quantum-mission") return '<path d="m128 28 24 48 53 8-38 38 9 54-48-26-48 26 10-54-39-38 53-8Z" fill="#f5d06f" stroke="#f5f0bb" stroke-width="8"/><circle cx="128" cy="116" r="22" fill="#273e9e"/><path d="m116 116 9 10 19-24" fill="none" stroke="#d8ffff" stroke-width="7"/>';
+  return '<path d="M74 176 88 78l40-30 40 30 14 98-54 28Z" fill="#3867c7" stroke="#b7fbff" stroke-width="7"/><path d="M96 94h64M92 122h72M88 150h80" stroke="#e7ffff" stroke-width="6"/><circle cx="128" cy="66" r="13" fill="#f5d06f" stroke="#fff3ae" stroke-width="5"/>';
+}
+
 function createVectorVisual(itemId) {
   const ocean = /^(sub|prismarine|nautilus|sponge|ink|glow-ink|turtle|clay|amethyst|conduit|coral|heart|chapter-02)/.test(itemId);
   const visualVariant = polarVisualVariant(itemId);
+  const quantumVariant = quantumVisualVariant(itemId);
   const polar = Boolean(visualVariant);
-  const a = ocean ? "#26c6da" : polar ? "#c8f4ff" : "#7b61ff";
-  const b = ocean ? "#063d6b" : polar ? "#1a4d78" : "#1c214a";
+  const quantum = Boolean(quantumVariant);
+  const a = ocean ? "#26c6da" : polar ? "#c8f4ff" : quantum ? "#70d8ff" : "#7b61ff";
+  const b = ocean ? "#063d6b" : polar ? "#1a4d78" : quantum ? "#1c2774" : "#1c214a";
   const glyph = polar ? (itemId.includes("mission") ? "✥" : itemId.includes("part") ? "⬢" : itemId === "polar-icebreaker" ? "⚓" : "❄") : itemId.startsWith("sub") || itemId === "deep-sea-explorer" ? "◈" : itemId.startsWith("station") || itemId === "orbital-science-station" ? "✦" : "◆";
-  const art = polar ? polarArt(itemId, visualVariant) : `<path d="M42 160 Q128 210 214 160" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="10"/><path d="M48 96 Q128 46 208 96" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="8"/><text x="128" y="155" text-anchor="middle" font-size="102" font-family="Arial" fill="#fff">${glyph}</text>`;
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" data-visual-kind="${visualVariant || "expansion-generic"}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="256" height="256" rx="42" fill="#10182a"/><circle cx="128" cy="128" r="94" fill="url(#g)" opacity=".92"/>${art}</svg>`;
+  const art = quantum ? quantumArt(itemId, quantumVariant) : polar ? polarArt(itemId, visualVariant) : `<path d="M42 160 Q128 210 214 160" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="10"/><path d="M48 96 Q128 46 208 96" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="8"/><text x="128" y="155" text-anchor="middle" font-size="102" font-family="Arial" fill="#fff">${glyph}</text>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" data-visual-kind="${quantumVariant || visualVariant || "expansion-generic"}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="256" height="256" rx="42" fill="#10182a"/><circle cx="128" cy="128" r="94" fill="url(#g)" opacity=".92"/>${art}</svg>`;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
 
 const EXPANSION_VISUALS = Object.freeze(Object.fromEntries(EXPANSION_ITEM_IDS.map((itemId) => [itemId, Object.freeze({
   src: createVectorVisual(itemId), width: 256, height: 256, alt: `${itemId} 的章节任务图标`, fallbackIcon: "project-art",
-  visualVariant: polarVisualVariant(itemId) || "expansion-generic",
-  preloadPriority: itemId === "polar-icebreaker" || itemId.includes("explorer") || itemId.includes("station") ? "project-final" : itemId.startsWith("icebreaker-part-") ? "project-part" : itemId.startsWith("icebreaker-") ? "project-component" : "lazy"
+  visualVariant: quantumVisualVariant(itemId) || polarVisualVariant(itemId) || "expansion-generic",
+  preloadPriority: itemId === "polar-icebreaker" || itemId.includes("explorer") || itemId.includes("station") || itemId === "quantum-communication-satellite" ? "project-final" : itemId.startsWith("icebreaker-part-") || itemId.startsWith("satellite-part-") ? "project-part" : itemId.startsWith("icebreaker-") || /^satellite-\d+$/.test(itemId) ? "project-component" : "lazy"
 })])));
 
 const POLAR_PROJECT_VISUALS = Object.freeze(Object.fromEntries(

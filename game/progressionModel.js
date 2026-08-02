@@ -3,6 +3,7 @@ const InventoryModel = require("./inventoryModel.js");
 const GameChapterConfig = require("./chapterConfig.js");
 const QuestionAccess = require("./questionAccess.js");
 const RewardEconomy = require("./rewardEconomy.js");
+const ChallengeModel = require("./challengeModel.js");
 
 const STORAGE_KEY = "math-quest-game-v1";
 const ANSWERABLE_STATUSES = new Set(["active", "retry"]);
@@ -78,7 +79,11 @@ function createInitialState(chapter) {
     streak: 0,
     attemptSettlements: {},
     activeRun: null,
+    activeChallengeRun: null,
+    challengeSequence: 0,
+    mistakeQuestionIds: {},
     lastSettlement: null,
+    lastChallengeSettlement: null,
     ...extensions
   }, compiled);
 }
@@ -122,6 +127,133 @@ function startLevel(state, levelId) {
     rewardTransactions: []
   };
   return attachChapter({ ...state, activeRun: run, lastSettlement: null }, chapter);
+}
+
+function copyChallengeRunWithQuestion(run) {
+  return { ...run, question: run.questions?.[run.questionIndex]?.question || null };
+}
+
+function requireActiveChallengeRun(state) {
+  if (!state || !state.activeChallengeRun) throw new Error("No active recovery challenge");
+  return state.activeChallengeRun;
+}
+
+function startChallenge(state, mode = "review", options = {}) {
+  const chapter = getAttachedChapter(state);
+  if (state.activeRun || state.activeChallengeRun) throw new Error("A challenge is already active");
+  const completion = getChapterCompletion(state, chapter);
+  if (!completion.isChapterCleared || completion.isFinalProjectComplete) throw new Error("Recovery challenge is not available");
+  const run = ChallengeModel.createChallengeRun(chapter, state, mode, resolveRandom(options));
+  if (!run.questions.length) throw new Error("No recovery challenge questions available");
+  return attachChapter({
+    ...state,
+    challengeSequence: (state.challengeSequence || 0) + 1,
+    activeChallengeRun: copyChallengeRunWithQuestion(run),
+    lastChallengeSettlement: null
+  }, chapter);
+}
+
+function resolveChallengeQuestion(state, run, chapter, { correct, skipped }) {
+  const entry = run.questions[run.questionIndex];
+  if (!entry) throw new Error("Invalid recovery challenge question");
+  let inventory = state.inventory;
+  let rewardTransactions = [...(run.rewardTransactions || [])];
+  if (correct) {
+    const target = ChallengeModel.getTargetMaterial(chapter.chapterId, inventory);
+    if (target) {
+      const grant = InventoryModel.grantItem(inventory, target.itemId, 1);
+      inventory = grant.inventory;
+      rewardTransactions.push({
+        questionId: entry.questionId,
+        rewardType: "challenge-recovery",
+        targetItemId: target.itemId,
+        ...grant.transaction
+      });
+    }
+  }
+  const nextTarget = ChallengeModel.getTargetMaterial(chapter.chapterId, inventory);
+  const resolvedRun = {
+    ...run,
+    status: "resolved",
+    correctCount: run.correctCount + (correct ? 1 : 0),
+    skippedCount: run.skippedCount + (skipped ? 1 : 0),
+    rewardedQuestionIds: correct && !run.rewardedQuestionIds.includes(entry.questionId) ? [...run.rewardedQuestionIds, entry.questionId] : [...run.rewardedQuestionIds],
+    skippedQuestionIds: skipped && !run.skippedQuestionIds.includes(entry.questionId) ? [...run.skippedQuestionIds, entry.questionId] : [...run.skippedQuestionIds],
+    rewardTransactions,
+    earnedItems: summarizeEarnedItems(rewardTransactions),
+    targetMaterialId: nextTarget?.itemId || null,
+    targetRemaining: nextTarget?.quantity || 0,
+    resolved: { questionId: entry.questionId, resolution: correct ? "correct" : "skipped", advanced: false }
+  };
+  return attachChapter({
+    ...state,
+    inventory,
+    mistakeQuestionIds: correct ? { ...(state.mistakeQuestionIds || {}) } : { ...(state.mistakeQuestionIds || {}), [entry.questionId]: true },
+    activeChallengeRun: resolvedRun
+  }, chapter);
+}
+
+function submitChallengeAnswer(state, userAnswer, answerMatcher) {
+  const chapter = getAttachedChapter(state);
+  const run = requireActiveChallengeRun(state);
+  if (run.status !== "active") throw new Error("Retry the challenge question before submitting again");
+  const entry = run.questions[run.questionIndex];
+  const level = getLevel(chapter, entry.levelId);
+  const question = getQuestion(level, entry.questionIndex);
+  const result = QuestionAccess.judgeAnswer(question, userAnswer, answerMatcher);
+  if (!result.correct) return attachChapter({
+    ...state,
+    mistakeQuestionIds: { ...(state.mistakeQuestionIds || {}), [entry.questionId]: true },
+    activeChallengeRun: { ...run, status: "retry" }
+  }, chapter);
+  return resolveChallengeQuestion(state, run, chapter, { correct: true, skipped: false });
+}
+
+function retryChallengeQuestion(state) {
+  const chapter = getAttachedChapter(state);
+  const run = requireActiveChallengeRun(state);
+  if (run.status !== "retry") throw new Error("Challenge question is not awaiting retry");
+  return attachChapter({ ...state, activeChallengeRun: { ...run, status: "active" } }, chapter);
+}
+
+function skipChallengeQuestion(state) {
+  const chapter = getAttachedChapter(state);
+  const run = requireActiveChallengeRun(state);
+  if (!ANSWERABLE_STATUSES.has(run.status)) throw new Error("Challenge question cannot be skipped");
+  return resolveChallengeQuestion(state, run, chapter, { correct: false, skipped: true });
+}
+
+function continueChallenge(state) {
+  const chapter = getAttachedChapter(state);
+  const run = requireActiveChallengeRun(state);
+  if (run.status !== "resolved" || !run.resolved || run.resolved.advanced) throw new Error("No resolved challenge question to continue from");
+  const nextIndex = run.questionIndex + 1;
+  if (nextIndex >= run.questions.length) {
+    return attachChapter({
+      ...state,
+      activeChallengeRun: null,
+      lastChallengeSettlement: {
+        id: run.id,
+        mode: run.mode,
+        correctCount: run.correctCount,
+        skippedCount: run.skippedCount,
+        earnedItems: (run.earnedItems || []).map((entry) => ({ ...entry })),
+        rewardTransactions: (run.rewardTransactions || []).map((entry) => ({ ...entry }))
+      }
+    }, chapter);
+  }
+  const nextRun = { ...run, questionIndex: nextIndex, status: "active" };
+  delete nextRun.resolved;
+  return attachChapter({ ...state, activeChallengeRun: copyChallengeRunWithQuestion(nextRun) }, chapter);
+}
+
+function getChallengeReview(state) {
+  const run = state?.activeChallengeRun;
+  if (!run || !run.resolved) return null;
+  const entry = run.questions?.[run.questionIndex];
+  if (!entry) return null;
+  const chapter = getAttachedChapter(state);
+  return QuestionAccess.buildSolutionReview(getQuestion(getLevel(chapter, entry.levelId), entry.questionIndex));
 }
 
 function requireActiveRun(state) {
@@ -240,6 +372,7 @@ function resolveCurrentQuestion(state, run, chapter, { correct, skipped, rewardO
     pityEnergy: rewardResult.pityEnergy,
     streak: rewardResult.streak,
     attemptSettlements: rewardResult.attemptSettlements,
+    mistakeQuestionIds: correct ? { ...(state.mistakeQuestionIds || {}) } : { ...(state.mistakeQuestionIds || {}), [question.id]: true },
     activeRun: resolvedRun
   }, chapter);
 }
@@ -251,7 +384,11 @@ function submitAnswer(state, userAnswer, answerMatcher, options = {}) {
   const level = getLevel(chapter, run.levelId);
   const question = getQuestion(level, run.questionIndex);
   const result = QuestionAccess.judgeAnswer(question, userAnswer, answerMatcher);
-  if (!result.correct) return attachChapter({ ...state, activeRun: { ...run, status: "retry" } }, chapter);
+  if (!result.correct) return attachChapter({
+    ...state,
+    mistakeQuestionIds: { ...(state.mistakeQuestionIds || {}), [question.id]: true },
+    activeRun: { ...run, status: "retry" }
+  }, chapter);
   return resolveCurrentQuestion(state, run, chapter, {
     correct: true,
     skipped: false,
@@ -361,6 +498,7 @@ function serialize(state) {
     }
     : null;
   const inventory = sanitizeInventory(state?.inventory);
+  const challengeRun = ChallengeModel.serializeChallengeRun(state?.activeChallengeRun);
   return JSON.stringify({
     version: STORAGE_KEY,
     activeChapterId: state?.activeChapterId,
@@ -375,7 +513,11 @@ function serialize(state) {
     levelRecords: state?.levelRecords || {},
     inventory,
     activeRun,
+    activeChallengeRun: challengeRun,
+    challengeSequence: Number.isInteger(state?.challengeSequence) && state.challengeSequence >= 0 ? state.challengeSequence : 0,
+    mistakeQuestionIds: state?.mistakeQuestionIds || {},
     lastSettlement: state?.lastSettlement || null,
+    lastChallengeSettlement: state?.lastChallengeSettlement || null,
     crafting: sanitizeCrafting(state?.crafting),
     equipment: sanitizeEquipment(state?.equipment, inventory),
     shop: sanitizeShop(state?.shop)
@@ -392,6 +534,24 @@ function sanitizeInventory(inventory) {
     const item = GameItemCatalog.getItem(itemId);
     return positiveInteger(quantity) && item && quantity <= item.stackLimit ? [[itemId, quantity]] : [];
   }));
+}
+
+function sanitizeMistakeQuestionIds(value, chapter) {
+  const knownIds = new Set(chapter.levels.flatMap((level) => level.questions.map((question) => question.id)));
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  return Object.fromEntries(Object.entries(value).filter(([questionId, marked]) => knownIds.has(questionId) && marked === true));
+}
+
+function sanitizeChallengeSettlement(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  return {
+    id: typeof value.id === "string" ? value.id : "recovery-settlement",
+    mode: value.mode === "random" ? "random" : "review",
+    correctCount: Number.isInteger(value.correctCount) && value.correctCount >= 0 ? value.correctCount : 0,
+    skippedCount: Number.isInteger(value.skippedCount) && value.skippedCount >= 0 ? value.skippedCount : 0,
+    earnedItems: Array.isArray(value.earnedItems) ? value.earnedItems.map((entry) => ({ ...entry })) : [],
+    rewardTransactions: Array.isArray(value.rewardTransactions) ? value.rewardTransactions.map((entry) => ({ ...entry })) : []
+  };
 }
 
 function sanitizeCrafting() {
@@ -613,6 +773,7 @@ function hydrate(serialized, chapter) {
   const craftedProjectRecipeIds = sanitizeCraftedProjectRecipeIds(stored.craftedProjectRecipeIds, inventory, compiled);
   const lastSettlement = sanitizeSettlement(stored.lastSettlement, compiled, unlockedLevelIds);
   const levelRecords = sanitizeRecords(stored.levelRecords, compiled, unlockedLevelIds);
+  const mistakeQuestionIds = sanitizeMistakeQuestionIds(stored.mistakeQuestionIds, compiled);
   if (lastSettlement) {
     const previousStarCount = levelRecords[lastSettlement.levelId]?.starCount || 0;
     levelRecords[lastSettlement.levelId] = { starCount: Math.max(previousStarCount, lastSettlement.starCount) };
@@ -621,6 +782,7 @@ function hydrate(serialized, chapter) {
     ...initial,
     activeChapterId: compiled.chapterId,
     attemptSequence: sanitizeAttemptSequence(stored.attemptSequence),
+    challengeSequence: sanitizeAttemptSequence(stored.challengeSequence),
     claimedFixedRewards: sanitizeClaimedFixedRewards(stored.claimedFixedRewards),
     claimedMissionRewards: sanitizeClaimedFixedRewards(stored.claimedMissionRewards),
     craftedProjectRecipeIds,
@@ -631,7 +793,10 @@ function hydrate(serialized, chapter) {
     levelRecords,
     inventory,
     activeRun: hydrateActiveRun(stored.activeRun, compiled, unlockedLevelIds, stored.activeChapterId),
+    activeChallengeRun: ChallengeModel.hydrateChallengeRun(stored.activeChallengeRun, compiled),
+    mistakeQuestionIds,
     lastSettlement,
+    lastChallengeSettlement: sanitizeChallengeSettlement(stored.lastChallengeSettlement),
     crafting: sanitizeCrafting(stored.crafting),
     equipment: sanitizeEquipment(stored.equipment, inventory),
     shop: sanitizeShop(stored.shop)
@@ -642,11 +807,17 @@ const ProgressionModel = {
   STORAGE_KEY,
   createInitialState,
   startLevel,
+  startChallenge,
   submitAnswer,
+  submitChallengeAnswer,
   retryQuestion,
+  retryChallengeQuestion,
   skipQuestion,
+  skipChallengeQuestion,
   continueFromResolved,
+  continueChallenge,
   getResolvedReview,
+  getChallengeReview,
   getSettlement,
   getChapterCompletion,
   serialize,

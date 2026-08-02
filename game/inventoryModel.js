@@ -13,6 +13,7 @@ const RECIPES = Object.freeze([Object.freeze({
 function toInventoryRecipe(recipe) {
   return Object.freeze({
   id: recipe.id,
+  ...(recipe.type ? { type: recipe.type } : {}),
   unlockLevelNumber: recipe.unlockLevelNumber,
   name: recipe.name,
   inputs: Object.freeze(recipe.inputs.map((entry) => Object.freeze({ ...entry }))),
@@ -120,7 +121,8 @@ function canCraft(inventory, recipe, options) {
   const { catalog, flags } = resolveOptions(options);
   if (flags.crafting !== true) return false;
   const normalizedRecipe = validateRecipe(recipe, catalog);
-  return normalizedRecipe.inputs.every(({ itemId, quantity }) => (inventory[itemId] || 0) >= quantity);
+  return normalizedRecipe.inputs.every(({ itemId, quantity }) => (inventory[itemId] || 0) >= quantity)
+    && normalizedRecipe.outputs.every(({ itemId, quantity }) => previewItemGrant(inventory, itemId, quantity, { catalog }).status === "awarded");
 }
 
 function getMissingIngredients(inventory, recipe, options) {

@@ -158,17 +158,22 @@ test("exposes the disabled recipe catalog", () => {
 });
 
 test("crafts J-20 project components, grouped parts, and final fighter with enabled crafting", () => {
+  const materialRecipe = inventory.PROJECT_RECIPES.find((recipe) => recipe.id === "refine-j20-processed-frame-plate");
   const componentRecipe = inventory.PROJECT_RECIPES.find((recipe) => recipe.id === "craft-j20-frame-rib");
   const partRecipe = inventory.PROJECT_RECIPES.find((recipe) => recipe.id === "assemble-j20-airframe");
   const finalRecipe = inventory.PROJECT_RECIPES.find((recipe) => recipe.id === "assemble-j20-sky-fighter");
 
   assert.ok(componentRecipe, "frame rib recipe should exist");
+  assert.ok(materialRecipe, "frame plate processing recipe should exist");
   assert.ok(partRecipe, "airframe assembly recipe should exist");
   assert.ok(finalRecipe, "final J-20 assembly recipe should exist");
   assert.deepEqual(componentRecipe.outputs, [{ itemId: "j20-frame-rib", quantity: 1 }]);
-  assert.equal(inventory.canCraft({ "oak-log": 2 }, componentRecipe, enabled), true);
+  assert.equal(inventory.canCraft({ "oak-log": 3 }, materialRecipe, enabled), true);
+  const processed = inventory.craftRecipe({ "oak-log": 3 }, materialRecipe, enabled).inventory;
+  assert.equal(processed["j20-processed-frame-plate"], 1);
+  assert.equal(inventory.canCraft(processed, componentRecipe, enabled), true);
   assert.deepEqual(
-    inventory.craftRecipe({ "oak-log": 2 }, componentRecipe, enabled),
+    inventory.craftRecipe(processed, componentRecipe, enabled),
     { crafted: true, inventory: { "j20-frame-rib": 1 } }
   );
 
@@ -184,13 +189,16 @@ test("crafts J-20 project components, grouped parts, and final fighter with enab
 });
 
 test("exposes the polar icebreaker crafting chain", () => {
+  const materialRecipe = inventory.getProjectRecipes("chapter-04").find((recipe) => recipe.id === "refine-icebreaker-steel");
   const componentRecipe = inventory.getProjectRecipes("chapter-04").find((recipe) => recipe.id === "craft-icebreaker-1");
   const finalRecipe = inventory.getProjectRecipes("chapter-04").find((recipe) => recipe.id === "assemble-polar-icebreaker");
 
   assert.ok(componentRecipe);
+  assert.ok(materialRecipe);
   assert.ok(finalRecipe);
   assert.deepEqual(componentRecipe.outputs, [{ itemId: "icebreaker-1", quantity: 1 }]);
-  assert.equal(inventory.canCraft({ "ice-crystal-shard": 2 }, componentRecipe, enabled), true);
-  assert.equal(inventory.craftRecipe({ "ice-crystal-shard": 2 }, componentRecipe, enabled).inventory["icebreaker-1"], 1);
+  const processed = inventory.craftRecipe({ "ice-crystal-shard": 3 }, materialRecipe, enabled).inventory;
+  assert.equal(inventory.canCraft(processed, componentRecipe, enabled), true);
+  assert.equal(inventory.craftRecipe(processed, componentRecipe, enabled).inventory["icebreaker-1"], 1);
   assert.equal(finalRecipe.inputs.length, 4);
 });

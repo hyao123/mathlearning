@@ -20,7 +20,7 @@ function buildReviewTemplate(existing = {}, chapterId = FIRST_CHAPTER_ID, option
     status: approved || existing.status === "approved" ? "approved" : "pending-human-review",
     reviewer,
     reviewedAt,
-    notes: approved ? "用户确认第五章题目审核通过。" : existing.notes || "请由课程负责人逐题完成六项人工审阅。",
+    notes: approved ? "用户确认本章题目审核通过。" : existing.notes || "请由课程负责人逐题完成六项人工审阅。",
     records: chapter.levels.flatMap((level) => level.questions.map((question) => {
       const previous = previousRecords.get(question.id) || {};
       return {

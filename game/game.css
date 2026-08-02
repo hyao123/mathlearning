@@ -1117,3 +1117,73 @@ input:focus-visible {
     animation-iteration-count: 1 !important;
   }
 }
+
+.recovery-challenge-callout,
+.material-synthesis {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid rgba(245, 208, 111, 0.38);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(28, 43, 72, 0.96), rgba(16, 24, 42, 0.96));
+  box-shadow: 0 14px 34px rgba(4, 12, 28, 0.22);
+}
+
+.recovery-challenge__title,
+.material-synthesis__title {
+  margin: 4px 0 8px;
+  color: var(--gold, #f5d06f);
+}
+
+.recovery-challenge__copy,
+.material-synthesis__lead,
+.recovery-target {
+  color: var(--ink-muted, #c7d7ef);
+}
+
+.recovery-challenge__actions,
+.material-synthesis__grid {
+  display: grid;
+  gap: 12px;
+}
+
+.recovery-challenge__actions {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.material-synthesis__grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.material-recipe {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid rgba(140, 231, 255, 0.22);
+  border-radius: 14px;
+  background: rgba(8, 17, 34, 0.62);
+}
+
+.material-recipe[data-recipe-status="locked"] {
+  opacity: 0.62;
+}
+
+.material-recipe__icon {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.material-recipe__name {
+  margin: 0;
+  color: #eef7ff;
+}
+
+.material-recipe__hint {
+  margin: 0;
+  color: var(--ink-muted, #9bb2cf);
+  font-size: 0.82rem;
+}
+
+.recovery-reward {
+  margin: 12px 0;
+}

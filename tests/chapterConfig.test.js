@@ -16,12 +16,15 @@ test("chapter one exposes the approved 12 knowledge-point levels", () => {
 });
 
 test("campaign config exposes sequential twelve-topic expansion chapters", () => {
-  assert.deepEqual(config.CHAPTER_IDS, ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05"]);
+  assert.deepEqual(config.CHAPTER_IDS, ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05", "chapter-06"]);
   assert.deepEqual(config.CHAPTERS["chapter-02"].levels.map((level) => level.moduleId), [
     "pigeonhole-principle", "counting-transfer", "motion", "engineering", "train-bridge", "age",
     "efficiency-transfer", "tree-planting", "geometry", "logic", "geometry-counting", "parity-divisibility"
   ]);
   assert.equal(config.CHAPTERS["chapter-03"].prerequisiteChapterId, "chapter-02");
+  assert.equal(config.CHAPTERS["chapter-06"].prerequisiteChapterId, "chapter-05");
+  assert.equal(config.CHAPTERS["chapter-06"].projectId, "quantum-communication-satellite");
+  assert.equal(config.CHAPTERS["chapter-06"].levels.length, 12);
   assert.equal(config.CHAPTER_IDS.every((chapterId) => config.CHAPTERS[chapterId].levels.length === 12), true);
 });
 
@@ -37,7 +40,7 @@ test("chapter four routes from the completed orbital station through twelve geom
 
 test("chapter five unlocks after the polar expedition with twelve algebra-and-equation topics", () => {
   assert.equal(config.FIFTH_CHAPTER_ID, "chapter-05");
-  assert.deepEqual(config.CHAPTER_IDS, ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05"]);
+  assert.deepEqual(config.CHAPTER_IDS, ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05", "chapter-06"]);
   assert.equal(config.CHAPTERS[config.FIFTH_CHAPTER_ID].name, "装甲突击演练");
   assert.equal(config.CHAPTERS[config.FIFTH_CHAPTER_ID].prerequisiteChapterId, "chapter-04");
   assert.equal(config.CHAPTERS[config.FIFTH_CHAPTER_ID].projectId, "99a-main-battle-tank");
@@ -45,5 +48,14 @@ test("chapter five unlocks after the polar expedition with twelve algebra-and-eq
     "algebraic-expressions", "equations-unknowns", "linear-equations", "equation-applications",
     "fraction-modeling", "decimal-modeling", "percent-basics", "discount-tax", "profit-loss-modeling",
     "concentration-configuration", "savings-interest", "supply-integration"
+  ]);
+});
+
+test("chapter six adds the star-sea statistics and probability route", () => {
+  assert.equal(config.SIXTH_CHAPTER_ID, "chapter-06");
+  assert.equal(config.CHAPTERS[config.SIXTH_CHAPTER_ID].name, "星海数据与概率远征");
+  assert.deepEqual(config.CHAPTERS[config.SIXTH_CHAPTER_ID].levels.map((level) => level.moduleId), [
+    "data-collection", "frequency-tables", "bar-charts", "line-charts", "mean", "median-mode",
+    "data-range", "possibility-basics", "probability-fractions", "tree-counting", "data-inference", "statistics-probability-boss"
   ]);
 });

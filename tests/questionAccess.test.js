@@ -9,6 +9,8 @@ const fullQuestion = {
   title: "扫描范围",
   prompt: "雷达扫描范围依次是 3、6、12、24 千米，下一轮是多少千米？",
   answer: "48",
+  answerType: "numeric",
+  answerFormat: "integer",
   acceptedAnswers: ["48千米"],
   difficulty: "进阶",
   slot: 3,
@@ -41,7 +43,7 @@ test("toChallengeQuestion strips answer and review secrets while keeping learner
     storyBeat: "校准逐轮扩大的雷达扫描范围。",
     rewardPreview: ["iron-ingot"]
   });
-  for (const key of ["answer", "acceptedAnswers", "hints", "solutionReview", "explanation", "difficultyProfile"]) {
+  for (const key of ["answer", "answerType", "answerFormat", "acceptedAnswers", "hints", "solutionReview", "explanation", "difficultyProfile"]) {
     assert.equal(Object.hasOwn(question, key), false, key);
   }
 });

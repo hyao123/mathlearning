@@ -6,7 +6,8 @@ const root = path.resolve(__dirname, "..");
 const dist = path.join(root, "dist");
 const budgets = {
   // Five locally playable chapters include 600 reviewed questions and their chapter registries.
-  jsGzipBytes: 150 * 1024,
+  // The processing layer and chapter-wide recovery challenge add a small, intentional data/runtime slice.
+  jsGzipBytes: 160 * 1024,
   cssGzipBytes: 20 * 1024,
   totalGzipBytes: 170 * 1024,
   // Existing artwork is retained; compact WebP chapter assets are loaded only when their inventory cards render.

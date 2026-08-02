@@ -125,7 +125,7 @@ test("migrates a legacy completed final project into persistent component and as
   assert.equal(completed.craftedProjectRecipeIds["craft-j20-frame-rib"], true);
   assert.equal(completed.craftedProjectRecipeIds["assemble-j20-airframe"], true);
   assert.equal(completed.craftedProjectRecipeIds["assemble-j20-sky-fighter"], true);
-  assert.equal(Object.keys(completed.craftedProjectRecipeIds).length, 17);
+  assert.equal(Object.keys(completed.craftedProjectRecipeIds).length, 29);
 });
 
 test("correct answers award each previewed item once and retries do not duplicate rewards", () => {

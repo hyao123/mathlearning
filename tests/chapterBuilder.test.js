@@ -71,6 +71,32 @@ test("builds 120 structured numeric questions for the armored assault route from
   assert.equal(questions.every((question) => /装甲突击/.test(question.storyBeat)), true);
 });
 
+test("builds 120 structured numeric questions for the star-sea probability route", () => {
+  const chapter = builder.buildChapter("chapter-06", []);
+  const questions = chapter.levels.flatMap((level) => level.questions);
+
+  assert.equal(chapter.name, "星海数据与概率远征");
+  assert.equal(chapter.levels.length, 12);
+  assert.equal(questions.length, 120);
+  assert.equal(chapter.levels.every((level) => level.questions.length === 10), true);
+  assert.equal(questions.every((question) => /^\d+(?:\.\d+)?(?:\/\d+)?$/.test(question.answer)), true);
+  assert.equal(questions.every((question) => question.answerType === "numeric"), true);
+  assert.equal(questions.every((question) => /星海数据与概率远征任务/.test(question.prompt)), true);
+  assert.equal(questions.every((question) => /星海数据与概率远征/.test(question.storyBeat)), true);
+});
+
+test("all enabled chapters expose only contract-safe numeric answers", () => {
+  const modules = loadExpandedModules();
+  const chapters = ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05", "chapter-06"]
+    .map((chapterId) => builder.buildChapter(chapterId, modules));
+  const questions = chapters.flatMap((chapter) => chapter.levels.flatMap((level) => level.questions));
+
+  assert.equal(questions.length, 720);
+  assert.equal(questions.every((question) => question.answerType === "numeric"), true);
+  assert.equal(questions.every((question) => /\d/.test(String(question.answer))), true);
+  assert.equal(questions.every((question) => ["integer", "decimal", "fraction", "percent"].includes(question.answerFormat)), true);
+});
+
 test("never mutates original practice prompts, answers, or accepted answers", () => {
   const modules = loadExpandedModules();
   const before = structuredClone(modules);

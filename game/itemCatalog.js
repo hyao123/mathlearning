@@ -1,4 +1,5 @@
 const ExpansionData = require("./chapterExpansionData.js");
+const MaterialProcessingData = require("./materialProcessingData.js");
 
 const freezeItem = (item) => Object.freeze({
   ...item,
@@ -51,7 +52,22 @@ const BASE_ITEMS = Object.freeze([
   equipmentSlots: [],
   tags
 })));
-const ITEMS = Object.freeze([...BASE_ITEMS, ...ExpansionData.ITEMS.map(freezeItem)]);
+const PROCESSED_ITEMS = Object.freeze(Object.entries(MaterialProcessingData.MATERIAL_LAYERS).flatMap(([chapterId, definition]) => definition.refined.map(([id, name, rarity, shape]) => freezeItem({
+  id,
+  name,
+  category: "processed-material",
+  rarity,
+  icon: { kind: "pixel-svg", palette: ["#f5d06f", "#8ce7ff"], shape },
+  stackLimit: 999,
+  craftValue: 24,
+  shopValue: 42,
+  affinity: chapterId,
+  setKey: `${chapterId}-collection`,
+  equipmentStats: null,
+  equipmentSlots: [],
+  tags: ["processed-material", chapterId]
+}))));
+const ITEMS = Object.freeze([...BASE_ITEMS, ...ExpansionData.ITEMS.map(freezeItem), ...PROCESSED_ITEMS]);
 
 const ITEM_BY_ID = Object.freeze(Object.fromEntries(ITEMS.map((item) => [item.id, item])));
 const CHAPTER_THEMES = Object.freeze({
@@ -148,7 +164,11 @@ const BASE_SUPER_PROJECTS = Object.freeze({
     finalRecipe: J20_FINAL_RECIPE
   })
 });
-const SUPER_PROJECTS = Object.freeze({ ...BASE_SUPER_PROJECTS, ...ExpansionData.SUPER_PROJECTS });
+const RAW_SUPER_PROJECTS = Object.freeze({ ...BASE_SUPER_PROJECTS, ...ExpansionData.SUPER_PROJECTS });
+const SUPER_PROJECTS = Object.freeze(Object.fromEntries(Object.entries(RAW_SUPER_PROJECTS).map(([chapterId, project]) => {
+  const layer = MaterialProcessingData.createMaterialLayer(chapterId, project);
+  return [chapterId, layer ? { ...project, materialRecipes: layer.materialRecipes, componentRecipes: layer.componentRecipes } : project];
+})));
 
 const getItem = (itemId) => ITEM_BY_ID[itemId];
 const getChapterTheme = (chapterId) => CHAPTER_THEMES[chapterId];
@@ -182,6 +202,7 @@ const getBonusRewardPool = (chapterId) => CHAPTER_THEMES[chapterId]
   : [];
 const cloneRecipe = (recipe) => ({
   id: recipe.id,
+  ...(recipe.type ? { type: recipe.type } : {}),
   unlockLevelNumber: recipe.unlockLevelNumber,
   name: recipe.name,
   inputs: recipe.inputs.map(({ itemId, quantity }) => ({ itemId, quantity })),
@@ -195,6 +216,7 @@ const getSuperProject = (chapterId) => {
     name: project.name,
     chapterId: project.chapterId,
     description: project.description,
+    materialRecipes: (project.materialRecipes || []).map(cloneRecipe),
     componentRecipes: project.componentRecipes.map(cloneRecipe),
     partRecipes: project.partRecipes.map(cloneRecipe),
     finalRecipe: cloneRecipe(project.finalRecipe)
@@ -202,7 +224,11 @@ const getSuperProject = (chapterId) => {
 };
 const listProjectRecipes = (chapterId) => {
   const project = getSuperProject(chapterId);
-  return project ? [...project.componentRecipes, ...project.partRecipes, project.finalRecipe] : [];
+  return project ? [...(project.materialRecipes || []), ...project.componentRecipes, ...project.partRecipes, project.finalRecipe] : [];
+};
+const getMaterialRecipes = (chapterId) => {
+  const project = getSuperProject(chapterId);
+  return project ? project.materialRecipes || [] : [];
 };
 const normalizeRandomValue = (randomValue) => {
   const value = Number(randomValue);
@@ -227,4 +253,4 @@ const getChapterMissions = (chapterId) => (ExpansionData.MISSION_DEFINITIONS[cha
 const getStreakRewardItem = (chapterId) => CHAPTER_THEMES[chapterId]?.streakItemId || "coal";
 const listItems = () => [...ITEMS];
 
-module.exports = { getItem, getChapterTheme, getSuperProject, getChapterMissions, getStreakRewardItem, listProjectRecipes, getRewardPlanForSlot, getRewardForSlot, getRandomRewardPool, getBonusRewardPool, rollRewardForSlot, listItems };
+module.exports = { getItem, getChapterTheme, getSuperProject, getChapterMissions, getStreakRewardItem, listProjectRecipes, getMaterialRecipes, getRewardPlanForSlot, getRewardForSlot, getRandomRewardPool, getBonusRewardPool, rollRewardForSlot, listItems };

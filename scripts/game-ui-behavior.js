@@ -47,7 +47,7 @@ async function main() {
     assert.match((await page.locator("[data-inventory-empty]").textContent()).trim(), /还没有收集到物品/);
     assert.equal(await page.locator("[data-super-project='j20-sky-fighter']").count(), 1, "inventory should show the J-20 super project blueprint");
     assert.equal((await page.locator("[data-project-progress]").textContent()).includes("工程进度"), true, "super project should show overall progress");
-    assert.equal((await page.locator("[data-project-progress]").textContent()).includes("0 / 17"), true, "empty project should start at 0/17 crafted milestones");
+    assert.equal((await page.locator("[data-project-progress]").textContent()).includes("0 / 29"), true, "empty project should start at 0/29 crafted milestones including processing");
     assert.equal(await page.locator("[data-project-progress-meter]").getAttribute("aria-valuenow"), "0");
     const blueprintArt = page.locator("[data-super-project='j20-sky-fighter'] > [data-fighter-art='j20-sky-fighter'][data-fighter-state='blueprint']");
     assert.equal(await blueprintArt.count(), 1, "J-20 blueprint should include original fighter art");
@@ -65,6 +65,8 @@ async function main() {
     assert.equal((await page.locator("[data-reward-preview]").textContent()).includes("橡木原木"), true);
     assert.equal(await page.locator("[data-reward-preview] img[alt='橡木原木的高写实微缩模型']").count(), 1);
     assert.equal((await page.locator("[data-question-story-beat]").textContent()).trim().length > 0, true, "every challenge should introduce its mission context");
+    assert.equal(await page.locator("[data-answer-option]").count(), 0, "numeric questions must not render text-choice answers");
+    assert.equal(await page.locator("[data-submit-answer]").isVisible(), true, "numeric questions should use the answer input submit flow");
     assert.equal(await page.locator("[data-reward-preview][data-reward-type='fixed']").count(), 1);
     assert.equal(await page.locator("[data-reward-preview] [data-reward-status='awarded']").count(), 1);
     assert.equal(await page.locator("[data-reward-preview] img").count(), 1, "item reward preview must use its generated visual");
@@ -212,7 +214,7 @@ async function main() {
     await page.evaluate(() => {
       localStorage.clear();
       localStorage.setItem("math-quest-game-v1", JSON.stringify({
-        inventory: { "oak-log": 2 },
+        inventory: { "oak-log": 3 },
         unlockedLevelIds: ["chapter-01-level-1", "chapter-01-level-2"],
         levelRecords: { "chapter-01-level-1": { starCount: 1 } }
       }));
@@ -220,12 +222,14 @@ async function main() {
     await page.reload({ waitUntil: "networkidle" });
     await page.locator("[data-open-inventory]").click();
     await page.locator("[data-game-screen='inventory']").waitFor({ state: "visible" });
+    assert.equal(await page.locator("[data-material-recipe-card-id='refine-j20-processed-frame-plate']").count(), 1, "material processing should show its first recipe");
+    await page.locator("[data-material-recipe-id='refine-j20-processed-frame-plate']").click();
     assert.equal(await page.locator("[data-project-recipe-card-id='craft-j20-frame-rib'] [data-project-art='j20-frame-rib']").count(), 1, "component recipe should show its output art");
     assert.equal(await page.locator("[data-project-recipe-id='craft-j20-frame-rib']").isEnabled(), true);
     await page.locator("[data-project-recipe-id='craft-j20-frame-rib']").click();
     assert.equal((await page.locator("[data-crafting-feedback]").textContent()).includes("机体肋梁"), true, "crafting should announce the crafted component");
-    assert.equal((await page.locator("[data-project-progress]").textContent()).includes("1 / 17"), true, "crafted component should advance project progress");
-    assert.equal(await page.locator("[data-project-progress-meter]").getAttribute("aria-valuenow"), "1");
+    assert.equal((await page.locator("[data-project-progress]").textContent()).includes("2 / 29"), true, "processing and component crafting should advance project progress");
+    assert.equal(await page.locator("[data-project-progress-meter]").getAttribute("aria-valuenow"), "2");
     assert.equal(await page.locator("[data-game-screen='inventory']").textContent().then((text) => text.includes("机体肋梁")), true);
     assert.equal(await page.locator("[data-item-id='j20-frame-rib'] [data-project-art='j20-frame-rib']").count(), 1, "crafted component should show its own item art");
     const persistentInventory = await page.evaluate(() => JSON.parse(localStorage.getItem("math-quest-inventory-v1")).inventory);
@@ -272,8 +276,8 @@ async function main() {
     assert.equal((await page.locator("[data-crafting-feedback]").textContent()).includes("J-20 苍穹战机"), true, "final assembly should announce the super project");
     assert.equal(await page.locator("[data-final-project-ceremony]").count(), 1, "final assembly should trigger a dedicated first-chapter ceremony");
     assert.equal(await page.locator("[data-final-project-ceremony] [data-fighter-art='j20-sky-fighter'][data-fighter-state='completed']").count(), 1, "final ceremony should show the completed fighter art");
-    assert.equal((await page.locator("[data-project-progress]").textContent()).includes("17 / 17"), true, "final fighter should complete the project progress");
-    assert.equal(await page.locator("[data-project-progress-meter]").getAttribute("aria-valuenow"), "17");
+    assert.equal((await page.locator("[data-project-progress]").textContent()).includes("29 / 29"), true, "final fighter should complete the project progress");
+    assert.equal(await page.locator("[data-project-progress-meter]").getAttribute("aria-valuenow"), "29");
     const completedBlueprintArt = page.locator("[data-super-project='j20-sky-fighter'] > [data-fighter-art='j20-sky-fighter'][data-fighter-state='completed']");
     assert.equal(await completedBlueprintArt.count(), 1);
     assert.equal(await completedBlueprintArt.locator("[data-fighter-detail='afterburner-glow']").count(), 1, "completed fighter should show a cool afterburner glow");
@@ -313,7 +317,7 @@ async function main() {
     });
     await page.reload({ waitUntil: "networkidle" });
     assert.equal(await page.locator("[data-level-id='chapter-04-level-1']").count(), 1, "fourth chapter should become the active route");
-    assert.equal((await page.locator("[data-campaign-overview]").textContent()).includes("五章数学远征"), true, "campaign overview should reflect the full campaign");
+    assert.equal((await page.locator("[data-campaign-overview]").textContent()).includes("六章数学远征"), true, "campaign overview should reflect the full campaign");
     assert.match(await page.locator("[data-level-map]").getAttribute("aria-label"), /极地破冰远征/, "map label should name the active polar route");
     await page.locator("[data-open-inventory]").click();
     await page.locator("[data-game-screen='inventory']").waitFor({ state: "visible" });
@@ -369,7 +373,7 @@ async function main() {
     });
     await page.reload({ waitUntil: "networkidle" });
     assert.equal(await page.locator("[data-level-id='chapter-05-level-1']").count(), 1, "fifth chapter should become the active route");
-    assert.equal((await page.locator("[data-campaign-overview]").textContent()).includes("五章数学远征"), true, "campaign overview should reflect five chapters");
+    assert.equal((await page.locator("[data-campaign-overview]").textContent()).includes("六章数学远征"), true, "campaign overview should reflect six chapters");
     assert.match(await page.locator("[data-level-map]").getAttribute("aria-label"), /装甲突击演练/, "map label should name the armored route");
     await page.locator("[data-open-inventory]").click();
     await page.locator("[data-game-screen='inventory']").waitFor({ state: "visible" });
@@ -391,6 +395,67 @@ async function main() {
     assert.deepEqual(pageErrors, [], `browser console/page errors:\n${pageErrors.join("\n")}`);
     console.log(`OK game 99A armored project visual test at ${baseUrl}`);
   }, { port: process.env.GAME_UI_ARMORED_PROJECT_PORT || "4192" });
+
+  await withPage(chromium, async ({ baseUrl, page, pageErrors }) => {
+    await page.goto(baseUrl, { waitUntil: "networkidle" });
+    await page.evaluate(() => {
+      const clearedChapter = (chapterId) => ({
+        unlockedLevelIds: Array.from({ length: 12 }, (_, index) => `${chapterId}-level-${index + 1}`),
+        levelRecords: Object.fromEntries(Array.from({ length: 12 }, (_, index) => [`${chapterId}-level-${index + 1}`, { starCount: 3 }]))
+      });
+      localStorage.clear();
+      localStorage.setItem("math-quest-inventory-v1", JSON.stringify({
+        version: "math-quest-inventory-v1",
+        inventory: {
+          "j20-sky-fighter": 1,
+          "deep-sea-explorer": 1,
+          "orbital-science-station": 1,
+          "polar-icebreaker": 1,
+          "99a-main-battle-tank": 1
+        }
+      }));
+      localStorage.setItem("math-quest-campaign-v2", JSON.stringify({
+        version: "math-quest-campaign-v2",
+        activeChapterId: "chapter-06",
+        lastScreen: "map",
+        chapterStates: {
+          "chapter-01": clearedChapter("chapter-01"),
+          "chapter-02": clearedChapter("chapter-02"),
+          "chapter-03": clearedChapter("chapter-03"),
+          "chapter-04": clearedChapter("chapter-04"),
+          "chapter-05": clearedChapter("chapter-05"),
+          "chapter-06": { unlockedLevelIds: ["chapter-06-level-1"], levelRecords: {} }
+        }
+      }));
+    });
+    await page.reload({ waitUntil: "networkidle" });
+    assert.equal(await page.locator("[data-level-id='chapter-06-level-1']").count(), 1, "sixth chapter should become the active route");
+    assert.equal((await page.locator("[data-campaign-overview]").textContent()).includes("六章数学远征"), true, "campaign overview should include the quantum route");
+    assert.match(await page.locator("[data-level-map]").getAttribute("aria-label"), /星海数据与概率远征/, "map label should name the active star-sea route");
+    await page.locator("[data-open-inventory]").click();
+    await page.locator("[data-game-screen='inventory']").waitFor({ state: "visible" });
+    const quantumBlueprint = page.locator("[data-super-project='quantum-communication-satellite']");
+    assert.equal(await quantumBlueprint.count(), 1, "inventory should show the quantum satellite blueprint");
+    const quantumHero = quantumBlueprint.locator(":scope > img[data-item-visual='quantum-communication-satellite']");
+    assert.equal(await quantumHero.count(), 1, "quantum satellite blueprint should use its own hero visual");
+    assert.equal(await quantumHero.getAttribute("loading"), "eager", "final satellite visual should preload when the inventory opens");
+    assert.equal(await page.locator("[data-material-recipe-card-id='refine-satellite-truss-alloy']").count(), 1, "quantum inventory should expose its first material refinement recipe");
+    assert.equal(await page.locator("[data-material-recipe-card-id]").count(), 12, "quantum inventory should expose all twelve refinement recipes");
+    await page.locator("[data-close-inventory]").click();
+    await page.locator("[data-game-screen='map']").waitFor({ state: "visible" });
+    await page.locator("[data-level-id='chapter-06-level-1']").click();
+    await page.locator("[data-game-screen='challenge']").waitFor({ state: "visible" });
+    assert.match(await page.locator("[data-question-prompt]").textContent(), /星海数据与概率远征任务/);
+    assert.equal((await page.locator("[data-reward-preview]").textContent()).includes("星光晶体"), true, "quantum challenge should preview its own fixed material");
+    assert.equal(await page.locator("[data-answer-input]").evaluate((input) => document.activeElement === input), true, "quantum challenge answer input should autofocus");
+    await page.locator("[data-answer-input]").fill("20");
+    await page.locator("[data-submit-answer]").click();
+    await page.locator("[data-answer-feedback='correct']").waitFor({ state: "visible" });
+    assert.equal(await page.locator("[data-tactical-review]").count(), 1, "quantum answers should provide the standard collapsed tactical review");
+    assert.equal(await page.locator("[data-tactical-review] details").evaluate((details) => details.open), false, "quantum review should be collapsed by default");
+    assert.deepEqual(pageErrors, [], `browser console/page errors:\n${pageErrors.join("\n")}`);
+    console.log(`OK game quantum satellite project visual test at ${baseUrl}`);
+  }, { port: process.env.GAME_UI_QUANTUM_PROJECT_PORT || "4193" });
 
   await withPage(chromium, async ({ baseUrl, page, pageErrors }) => {
     await page.goto(baseUrl, { waitUntil: "networkidle" });

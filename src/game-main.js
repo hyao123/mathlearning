@@ -49,12 +49,17 @@ for (const sourceFile of GameRuntimeSources.RUNTIME_SOURCE_FILES) {
 
 const GameChapterConfig = await loadCommonJs(() => import("../game/chapterConfig.js"), "./chapterConfig.js");
 const ChapterExpansionData = await loadCommonJs(() => import("../game/chapterExpansionData.js"), "./chapterExpansionData.js");
+const MaterialProcessingData = await loadCommonJs(() => import("../game/materialProcessingData.js"), "./materialProcessingData.js");
 const GameItemCatalog = await loadCommonJs(() => import("../game/itemCatalog.js"), "./itemCatalog.js");
 const GameChapterQuestionPacks = await loadCommonJs(() => import("../game/chapterQuestionPacks.js"), "./chapterQuestionPacks.js");
 const Chapter02QuestionPacks = await loadCommonJs(() => import("../game/chapter02QuestionPacks.js"), "./chapter02QuestionPacks.js");
 const Chapter03QuestionPacks = await loadCommonJs(() => import("../game/chapter03QuestionPacks.js"), "./chapter03QuestionPacks.js");
 const Chapter04QuestionPacks = await loadCommonJs(() => import("../game/chapter04QuestionPacks.js"), "./chapter04QuestionPacks.js");
 const Chapter05QuestionPacks = await loadCommonJs(() => import("../game/chapter05QuestionPacks.js"), "./chapter05QuestionPacks.js");
+const Chapter06QuestionPacks = await loadCommonJs(() => import("../game/chapter06QuestionPacks.js"), "./chapter06QuestionPacks.js");
+const QuestionContract = await loadCommonJs(() => import("../game/questionContract.js"), "./questionContract.js");
+const QuestionContractFixes = await loadCommonJs(() => import("../game/questionContractFixes.js"), "./questionContractFixes.js");
+const StoryMissionModel = await loadCommonJs(() => import("../game/storyMissionModel.js"), "./storyMissionModel.js");
 const QuestionQuality = await loadCommonJs(() => import("../game/questionQuality.js"), "./questionQuality.js");
 const ChapterQualityProfiles = await loadCommonJs(() => import("../game/chapterQualityProfiles.js"), "./chapterQualityProfiles.js");
 const ChapterQuestionOverrides = await loadCommonJs(() => import("../game/chapterQuestionOverrides.js"), "./chapterQuestionOverrides.js");
@@ -67,6 +72,7 @@ const QuestionAccess = await loadCommonJs(() => import("../game/questionAccess.j
 const LevelRewardConfig = await loadCommonJs(() => import("../game/levelRewardConfig.js"), "./levelRewardConfig.js");
 const RewardEconomy = await loadCommonJs(() => import("../game/rewardEconomy.js"), "./rewardEconomy.js");
 const ChapterMissionModel = await loadCommonJs(() => import("../game/chapterMissionModel.js"), "./chapterMissionModel.js");
+const ChallengeModel = await loadCommonJs(() => import("../game/challengeModel.js"), "./challengeModel.js");
 const ProgressionModel = await loadCommonJs(() => import("../game/progressionModel.js"), "./progressionModel.js");
 const CampaignModel = await loadCommonJs(() => import("../game/campaignModel.js"), "./campaignModel.js");
 const StorageAdapter = await loadCommonJs(() => import("../game/storageAdapter.js"), "./storageAdapter.js");
@@ -74,12 +80,17 @@ const StorageAdapter = await loadCommonJs(() => import("../game/storageAdapter.j
 Object.assign(globalThis, {
   GameChapterConfig,
   ChapterExpansionData,
+  MaterialProcessingData,
   GameItemCatalog,
   GameChapterQuestionPacks,
   Chapter02QuestionPacks,
   Chapter03QuestionPacks,
   Chapter04QuestionPacks,
   Chapter05QuestionPacks,
+  Chapter06QuestionPacks,
+  QuestionContract,
+  QuestionContractFixes,
+  StoryMissionModel,
   QuestionQuality,
   ChapterQualityProfiles,
   ChapterQuestionOverrides,
@@ -93,7 +104,8 @@ Object.assign(globalThis, {
   RewardEconomy,
   ChapterMissionModel,
   CampaignModel,
-  ProgressionModel
+  ProgressionModel,
+  ChallengeModel
 });
 
 const { default: GameApp } = await import("../game/gameApp.js");

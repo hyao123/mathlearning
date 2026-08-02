@@ -1,3 +1,5 @@
+const StoryMissionModel = require("./storyMissionModel.js");
+
 const PROFILE_BY_MODULE = Object.freeze({
   patterns: Object.freeze({
     objective: "识别并延续数列规律",
@@ -116,10 +118,13 @@ function createGeneratedProfile(module) {
   const isDeepSea = /pigeonhole-principle|counting-transfer|motion|engineering|train-bridge|age|efficiency-transfer|tree-planting|geometry|logic|parity/.test(id);
   const isPolar = /angles|triangles|quadrilaterals|perimeter|area|composite-figures|area-units|volume|capacity|surface-area|scale|coordinates-routes/.test(id);
   const isArmor = /algebraic-expressions|equations-unknowns|linear-equations|equation-applications|fraction-modeling|decimal-modeling|percent-basics|discount-tax|profit-loss-modeling|concentration-configuration|savings-interest|supply-integration/.test(id);
+  const isQuantum = /data-collection|frequency-tables|bar-charts|line-charts|mean|median-mode|data-range|possibility-basics|probability-fractions|tree-counting|data-inference|statistics-probability-boss/.test(id);
   const context = isArmor
     ? { mission: "装甲突击演练正在校准补给、编组与工程数据", representation: "armor-console", reasoningType: /equation|algebra|supply/.test(id) ? "关系建模" : "直接计算" }
     : isPolar
     ? { mission: "极地破冰船正在校准冰原测绘数据", representation: "polar-chart", reasoningType: /angles|triangles|quadrilaterals|coordinates/.test(id) ? "空间想象" : "直接计算" }
+    : isQuantum
+    ? { mission: "星海观测中枢正在整理样本、概率与通信决策", representation: "statistics-console", reasoningType: /possibility|probability/.test(id) ? "逻辑推理" : /tree/.test(id) ? "分类计数" : "关系建模" }
     : isDeepSea
     ? { mission: "深海探测艇正在校准任务数据", representation: "mission-log", reasoningType: /logic|parity/.test(id) ? "逻辑推理" : /count|pigeonhole/.test(id) ? "分类计数" : "关系建模" }
     : { mission: "轨道科学站正在整理观测任务", representation: "mission-log", reasoningType: /recurrence|square/.test(id) ? "规律归纳" : /case|plan/.test(id) ? "策略选择" : "关系建模" };
@@ -134,7 +139,7 @@ function createGeneratedProfile(module) {
   };
 }
 
-function getQuestionQualityProfile(module, question, slot) {
+function getLegacyQuestionQualityProfile(module, question, slot) {
   const profile = PROFILE_BY_MODULE[module?.id] || createGeneratedProfile(module);
   const safeSlot = Math.min(Math.max(Number(slot) || 1, 1), 10);
   const goal = profile.goals[safeSlot - 1];
@@ -157,6 +162,42 @@ function getQuestionQualityProfile(module, question, slot) {
         `任务目标：${goal}。`,
         question.explanation || "按题目条件一步一步计算。"
       ],
+      answer: String(question.answer),
+      check: "把结果代回题目条件，确认每个数量和单位都吻合。",
+      pitfall: profile.pitfall
+    }
+  };
+}
+
+function getQuestionQualityProfile(module, question, slot) {
+  const profile = PROFILE_BY_MODULE[module?.id] || createGeneratedProfile(module);
+  const safeSlot = Math.min(Math.max(Number(slot) || 1, 1), 10);
+  const goal = profile.goals[safeSlot - 1];
+  const storyMission = StoryMissionModel.getStoryMission(module, {
+    chapterId: question?.chapterId || module?.chapterId,
+    slot: safeSlot,
+    difficulty: question?.difficulty
+  });
+  const reviewSteps = [
+    `任务目标：${goal}。`,
+    `观察记录：${profile.observation}`,
+    question.explanation || "按题目条件逐步计算，记录每一步结果。"
+  ];
+  if (safeSlot >= 3) reviewSteps.push(`结果核对：${profile.pitfall}`);
+  return {
+    learningObjective: profile.objective,
+    reasoningType: profile.reasoningType,
+    difficultyProfile: {
+      steps: safeSlot >= 10 ? 4 : safeSlot >= 7 ? 3 : safeSlot >= 3 ? 2 : 1,
+      conditions: safeSlot >= 8 ? 3 : safeSlot >= 4 ? 2 : 1,
+      representation: profile.representation,
+      direction: safeSlot >= 8 ? "transfer" : "forward",
+      transfer: safeSlot >= 10 ? "boss-integration" : safeSlot >= 8 ? "contextual" : "direct"
+    },
+    storyBeat: storyMission.storyBeat,
+    solutionReview: {
+      observation: profile.observation,
+      steps: reviewSteps,
       answer: String(question.answer),
       check: "把结果代回题目条件，确认每个数量和单位都吻合。",
       pitfall: profile.pitfall

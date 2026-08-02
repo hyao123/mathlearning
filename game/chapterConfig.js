@@ -5,6 +5,7 @@ const SECOND_CHAPTER_ID = "chapter-02";
 const THIRD_CHAPTER_ID = "chapter-03";
 const FOURTH_CHAPTER_ID = "chapter-04";
 const FIFTH_CHAPTER_ID = "chapter-05";
+const SIXTH_CHAPTER_ID = "chapter-06";
 
 function createLevels(chapterId, moduleIds) {
   return Object.freeze(moduleIds.map((moduleId, index) => Object.freeze({
@@ -70,9 +71,20 @@ const CHAPTERS = Object.freeze({
       "fraction-modeling", "decimal-modeling", "percent-basics", "discount-tax", "profit-loss-modeling",
       "concentration-configuration", "savings-interest", "supply-integration"
     ])
+  },
+  [SIXTH_CHAPTER_ID]: {
+    id: SIXTH_CHAPTER_ID,
+    name: "星海数据与概率远征",
+    rewardTheme: "quantum-materials",
+    prerequisiteChapterId: FIFTH_CHAPTER_ID,
+    projectId: "quantum-communication-satellite",
+    levels: createLevels(SIXTH_CHAPTER_ID, [
+      "data-collection", "frequency-tables", "bar-charts", "line-charts", "mean", "median-mode",
+      "data-range", "possibility-basics", "probability-fractions", "tree-counting", "data-inference", "statistics-probability-boss"
+    ])
   }
 });
 
-const CHAPTER_IDS = Object.freeze([FIRST_CHAPTER_ID, SECOND_CHAPTER_ID, THIRD_CHAPTER_ID, FOURTH_CHAPTER_ID, FIFTH_CHAPTER_ID]);
+const CHAPTER_IDS = Object.freeze([FIRST_CHAPTER_ID, SECOND_CHAPTER_ID, THIRD_CHAPTER_ID, FOURTH_CHAPTER_ID, FIFTH_CHAPTER_ID, SIXTH_CHAPTER_ID]);
 
-module.exports = { CHAPTERS, CHAPTER_IDS, DIFFICULTY_SLOTS, FEATURE_FLAGS, FIRST_CHAPTER_ID, SECOND_CHAPTER_ID, THIRD_CHAPTER_ID, FOURTH_CHAPTER_ID, FIFTH_CHAPTER_ID };
+module.exports = { CHAPTERS, CHAPTER_IDS, DIFFICULTY_SLOTS, FEATURE_FLAGS, FIRST_CHAPTER_ID, SECOND_CHAPTER_ID, THIRD_CHAPTER_ID, FOURTH_CHAPTER_ID, FIFTH_CHAPTER_ID, SIXTH_CHAPTER_ID };

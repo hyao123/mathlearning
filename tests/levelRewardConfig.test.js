@@ -42,6 +42,15 @@ test("fixed chapter-five clears alone craft the 99A main battle tank", () => {
   assert.equal(report.inventory["99a-main-battle-tank"], 1);
 });
 
+test("fixed chapter-six clears alone craft the quantum communication satellite", () => {
+  const report = config.simulateFullClearCraft("chapter-06");
+
+  assert.equal(config.listLevelIds("chapter-06").length, 12);
+  assert.equal(report.ok, true, report.errors.join("; "));
+  assert.equal(report.canCraftFinal, true);
+  assert.equal(report.inventory["quantum-communication-satellite"], 1);
+});
+
 test("every enabled chapter has twelve complete reward tracks and can finish its project with fixed rewards", () => {
   for (const chapterId of CHAPTER_IDS) {
     const levelIds = config.listLevelIds(chapterId);
@@ -57,5 +66,13 @@ test("every enabled chapter has twelve complete reward tracks and can finish its
     assert.equal(report.ok, true, `${chapterId}: ${report.errors.join("; ")}`);
     assert.equal(report.canCraftFinal, true, chapterId);
     assert.equal(report.usedOnlyFixedRewards, true, chapterId);
+  }
+});
+
+test("fixed rewards can traverse raw materials through processing before final assembly", () => {
+  for (const chapterId of CHAPTER_IDS) {
+    const report = config.simulateFullClearCraft(chapterId);
+    assert.equal(report.processingComplete, true, chapterId);
+    assert.equal(report.canCraftFinal, true, chapterId);
   }
 });

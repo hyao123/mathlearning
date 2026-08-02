@@ -35,6 +35,22 @@ const armorMaterials = [["carbon-titanium-plate","碳钛复合板","common","pan
 const armorMaterialItems = armorMaterials.map(([id,name,rarity,shape]) => material(id,name,rarity,shape,"chapter-05","armor"));
 const armorProject = createProject("chapter-05","tank","99a-main-battle-tank","99A 主战坦克",armorMaterials.map(([id])=>id),["主动防护阵列","复合装甲模块","数字火控核心","炮塔稳定框架","热成像组件","脉冲通信器","智能履带模块","矢量动力总成","低温散热装置","动力分配器","战术联控模块","装甲工程核心"],["重型装甲车体","智能火控炮塔","全地形动力平台","战术感知指挥模块"],"armor","收集科幻装甲材料，合成 12 个工程组件与 4 个大型部件，最终组装 99A 主战坦克。");
 const armorMissionItems = chapterMissions("chapter-05",["装甲启程徽章","合金车体蓝图","三星战术记录","十连胜突击徽记","99A 竣工纪念章"],"armor");
+const quantumMaterials = [
+  ["starlight-crystal", "星光晶体", "common", "gem"], ["spectral-glass", "光谱玻璃", "uncommon", "panel"],
+  ["signal-dust", "信号粉尘", "common", "dust"], ["quantum-sand", "量子砂", "rare", "stone"],
+  ["ion-battery", "离子电池", "uncommon", "core"], ["photon-chip", "光子芯片", "rare", "gem"],
+  ["nebula-alloy", "星云合金", "rare", "ingot"], ["gravity-lens", "引力透镜", "epic", "diamond"],
+  ["data-prism", "数据棱镜", "rare", "emerald"], ["pulse-core", "脉冲核心", "epic", "core"],
+  ["cosmic-iron", "宇宙铁锭", "legendary", "ingot"]
+];
+const quantumMaterialItems = quantumMaterials.map(([id, name, rarity, shape]) => material(id, name, rarity, shape, "chapter-06", "quantum"));
+const quantumProject = createProject(
+  "chapter-06", "satellite", "quantum-communication-satellite", "量子通信卫星", quantumMaterials.map(([id]) => id),
+  ["星海桁架组件", "太阳能翼膜组件", "数据总线组件", "观测传感组件", "姿态陀螺组件", "定向天线组件", "遥测芯片组件", "信号滤波组件", "隔热外壳组件", "轨道推进组件", "量子同步组件", "卫星指挥组件"],
+  ["卫星桁架舱段", "能源与姿态平台", "通信天线阵列", "量子指挥核心"],
+  "quantum", "收集星海数据材料，精炼观测组件，拼装量子通信卫星，完成终极通信校准。"
+);
+const quantumMissionItems = chapterMissions("chapter-06", ["星海启航徽章", "光谱采样蓝图", "三星观测记录", "十连胜信号徽记", "量子卫星竣工章"], "quantum");
 
 const makeRewardPlans = (ids) => [
   { type: "fixed", label: "固定奖励", rewards: [{ itemId: ids[0], quantity: 1 }] },
@@ -61,14 +77,16 @@ const missionDefinitions = (chapterId, project) => Object.freeze([
 const DEEP_IDS = deepMaterials.map(([id]) => id);
 const ORBIT_IDS = orbitMaterials.map(([id]) => id);
 const ARMOR_IDS = armorMaterials.map(([id]) => id);
+const QUANTUM_IDS = quantumMaterials.map(([id]) => id);
 module.exports = {
-  ITEMS: Object.freeze([...deepMaterialItems, ...deepProject.items, ...deepMissionItems, ...orbitMaterialItems, ...orbitProject.items, ...orbitMissionItems, ...polarMaterialItems, ...polarProject.items, ...polarMissionItems, ...armorMaterialItems, ...armorProject.items, ...armorMissionItems]),
+  ITEMS: Object.freeze([...deepMaterialItems, ...deepProject.items, ...deepMissionItems, ...orbitMaterialItems, ...orbitProject.items, ...orbitMissionItems, ...polarMaterialItems, ...polarProject.items, ...polarMissionItems, ...armorMaterialItems, ...armorProject.items, ...armorMissionItems, ...quantumMaterialItems, ...quantumProject.items, ...quantumMissionItems]),
   CHAPTER_THEMES: Object.freeze({
     "chapter-02": { id: "chapter-02", rewardCategory: "deep-sea-materials", rewardPool: DEEP_IDS, affinity: "ocean", setKey: "chapter-02-collection", rewardPlans: makeRewardPlans(DEEP_IDS), bonusPool: makeBonusPool(DEEP_IDS), streakItemId: "prismarine-shard" },
     "chapter-03": { id: "chapter-03", rewardCategory: "orbital-materials", rewardPool: ORBIT_IDS, affinity: "orbit", setKey: "chapter-03-collection", rewardPlans: makeRewardPlans(ORBIT_IDS), bonusPool: makeBonusPool(ORBIT_IDS), streakItemId: "quartz" },
     "chapter-04": { id: "chapter-04", rewardCategory: "polar-materials", rewardPool: polarMaterials.map(([id])=>id), affinity: "polar", setKey: "chapter-04-collection", rewardPlans: makeRewardPlans(polarMaterials.map(([id])=>id)), bonusPool: makeBonusPool(polarMaterials.map(([id])=>id)), streakItemId: "ice-crystal-shard" },
-    "chapter-05": { id: "chapter-05", rewardCategory: "armored-materials", rewardPool: ARMOR_IDS, affinity: "armor", setKey: "chapter-05-collection", rewardPlans: makeRewardPlans(ARMOR_IDS), bonusPool: makeBonusPool(ARMOR_IDS), streakItemId: "carbon-titanium-plate" }
+    "chapter-05": { id: "chapter-05", rewardCategory: "armored-materials", rewardPool: ARMOR_IDS, affinity: "armor", setKey: "chapter-05-collection", rewardPlans: makeRewardPlans(ARMOR_IDS), bonusPool: makeBonusPool(ARMOR_IDS), streakItemId: "carbon-titanium-plate" },
+    "chapter-06": { id: "chapter-06", rewardCategory: "quantum-materials", rewardPool: QUANTUM_IDS, affinity: "quantum", setKey: "chapter-06-collection", rewardPlans: makeRewardPlans(QUANTUM_IDS), bonusPool: makeBonusPool(QUANTUM_IDS), streakItemId: "starlight-crystal" }
   }),
-  SUPER_PROJECTS: Object.freeze({ "chapter-02": deepProject.project, "chapter-03": orbitProject.project, "chapter-04": polarProject.project, "chapter-05": armorProject.project }),
-  MISSION_DEFINITIONS: Object.freeze({ "chapter-02": missionDefinitions("chapter-02", deepProject.project), "chapter-03": missionDefinitions("chapter-03", orbitProject.project), "chapter-04": missionDefinitions("chapter-04", polarProject.project), "chapter-05": missionDefinitions("chapter-05", armorProject.project) })
+  SUPER_PROJECTS: Object.freeze({ "chapter-02": deepProject.project, "chapter-03": orbitProject.project, "chapter-04": polarProject.project, "chapter-05": armorProject.project, "chapter-06": quantumProject.project }),
+  MISSION_DEFINITIONS: Object.freeze({ "chapter-02": missionDefinitions("chapter-02", deepProject.project), "chapter-03": missionDefinitions("chapter-03", orbitProject.project), "chapter-04": missionDefinitions("chapter-04", polarProject.project), "chapter-05": missionDefinitions("chapter-05", armorProject.project), "chapter-06": missionDefinitions("chapter-06", quantumProject.project) })
 };
