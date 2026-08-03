@@ -414,20 +414,30 @@ function getStoredAnswerDraft(serialized) {
   }
 }
 
-function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryStore, legacyState }) {
+function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore, inventoryStore, legacyState }) {
   if (!(root instanceof Element)) throw new Error("GameApp.mount requires a root element");
   const allChapters = Array.isArray(chapters) && chapters.length ? chapters : [initialChapter];
   if (!allChapters.every((entry) => entry?.levels?.length)) throw new Error("GameApp.mount requires compiled chapters");
   const chaptersById = Object.fromEntries(allChapters.map((entry) => [entry.chapterId, entry]));
   const { AnswerMatcher, GameItemCatalog, InventoryModel, LevelRewardConfig, RewardPresentation, ChapterMissionModel, CampaignModel, ProgressionModel, ChallengeModel } = requireDependencies();
   let storedState = null;
+  const primaryStore = saveStore || stateStore;
   try {
-    storedState = typeof stateStore?.load === "function" ? stateStore.load() : null;
+    storedState = typeof primaryStore?.load === "function" ? primaryStore.load() : null;
   } catch {
     storedState = null;
   }
   let initialInventory = {};
-  if (inventoryStore && typeof inventoryStore.loadInventory === "function") {
+  if (saveStore) {
+    try {
+      const parsedSave = typeof storedState === "string" ? JSON.parse(storedState) : storedState;
+      if (parsedSave?.inventory && typeof parsedSave.inventory === "object" && !Array.isArray(parsedSave.inventory)) {
+        initialInventory = parsedSave.inventory;
+      }
+    } catch {
+      initialInventory = {};
+    }
+  } else if (inventoryStore && typeof inventoryStore.loadInventory === "function") {
     try { initialInventory = inventoryStore.loadInventory({}); } catch { initialInventory = {}; }
   }
   let campaign = CampaignModel.createCampaign(allChapters, storedState, initialInventory, legacyState);
@@ -473,16 +483,16 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, inventoryS
     campaign = { ...campaign, chapterStates: { ...campaign.chapterStates, [chapter.chapterId]: state } };
     campaign = CampaignModel.synchronizeInventory(campaign, allChapters, state.inventory);
     state = campaign.chapterStates[chapter.chapterId];
-    if (typeof stateStore?.save !== "function") return;
+    if (typeof primaryStore?.save !== "function") return;
     const serialized = JSON.parse(CampaignModel.serializeCampaign(campaign));
     serialized.lastScreen = screen === "settlement" ? "settlement" : screen === "recovery-challenge" ? "recovery-challenge" : "map";
     serialized.activeAnswerDraft = (state.activeRun || state.activeChallengeRun) ? answerDraft : "";
     try {
-      stateStore.save(JSON.stringify(serialized));
+      primaryStore.save(JSON.stringify(serialized));
     } catch {
       // Persistence is non-fatal; the in-memory state is still rendered below.
     }
-    if (inventoryStore && typeof inventoryStore.saveInventory === "function") {
+    if (!saveStore && inventoryStore && typeof inventoryStore.saveInventory === "function") {
       inventoryStore.saveInventory(state.inventory);
     }
   };

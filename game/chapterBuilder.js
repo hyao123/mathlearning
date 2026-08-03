@@ -5,6 +5,7 @@ const { supplementalQuestionsByModule: chapter03SupplementalQuestions } = requir
 const { supplementalQuestionsByModule: chapter04SupplementalQuestions, chapterModules: chapter04Modules } = require("./chapter04QuestionPacks.js");
 const { supplementalQuestionsByModule: chapter05SupplementalQuestions, chapterModules: chapter05Modules } = require("./chapter05QuestionPacks.js");
 const { supplementalQuestionsByModule: chapter06SupplementalQuestions, chapterModules: chapter06Modules } = require("./chapter06QuestionPacks.js");
+const { nativeChapterModules } = require("./nativeQuestionPacks.js");
 const QuestionQuality = require("./questionQuality.js");
 const ChapterQualityProfiles = require("./chapterQualityProfiles.js");
 const ChapterQuestionOverrides = require("./chapterQuestionOverrides.js");
@@ -13,6 +14,9 @@ const QuestionContractFixes = require("./questionContractFixes.js");
 
 const REQUIRED_SUPPLEMENTAL_FIELDS = ["id", "title", "prompt", "answer", "explanation"];
 const NATIVE_CHAPTER_MODULES = Object.freeze({
+  "chapter-01": nativeChapterModules["chapter-01"],
+  "chapter-02": nativeChapterModules["chapter-02"],
+  "chapter-03": nativeChapterModules["chapter-03"],
   "chapter-04": chapter04Modules,
   "chapter-05": chapter05Modules,
   "chapter-06": chapter06Modules
@@ -161,7 +165,9 @@ function validateSupplementalPacks(chapterId, packs = ALL_SUPPLEMENTAL_QUESTIONS
 
   configuredModuleIds.forEach((moduleId) => {
     const rows = packs[moduleId];
-    const expectedCount = NATIVE_CHAPTER_MODULES[chapterId] ? 10 : chapterId === "chapter-03" ? 1 : 4;
+    const expectedCount = ["chapter-04", "chapter-05", "chapter-06"].includes(chapterId)
+      ? 10
+      : chapterId === "chapter-03" ? 1 : 4;
     if (!Array.isArray(rows) || rows.length !== expectedCount) {
       errors.push(`${moduleId} must contain exactly ${expectedCount} supplemental questions; found ${Array.isArray(rows) ? rows.length : 0}`);
     }

@@ -46,6 +46,13 @@ test("a fresh review template covers every built chapter question without markin
   assert.equal(chapter.levels.flatMap((level) => level.questions).every((question) => manifest.records.some((record) => record.questionId === question.id)), true);
 });
 
+test("release validation is strict unless content-only mode is explicitly requested", () => {
+  assert.equal(validation.shouldRequireHumanReview(["node", "validate-game-content.js"], {}), true);
+  assert.equal(validation.shouldRequireHumanReview(["node", "validate-game-content.js", "--strict"], {}), true);
+  assert.equal(validation.shouldRequireHumanReview(["node", "validate-game-content.js", "--content-only"], {}), false);
+  assert.equal(validation.shouldRequireHumanReview(["node", "validate-game-content.js"], { REQUIRE_HUMAN_REVIEW: "0" }), true);
+});
+
 test("every chapter uses the same raw-to-material-to-component reward contract", () => {
   const { CHAPTER_IDS } = require("../game/chapterConfig.js");
   CHAPTER_IDS.forEach((chapterId) => {

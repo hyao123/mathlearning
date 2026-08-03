@@ -5,7 +5,7 @@ const zlib = require("node:zlib");
 const root = path.resolve(__dirname, "..");
 const dist = path.join(root, "dist");
 const budgets = {
-  // Five locally playable chapters include 600 reviewed questions and their chapter registries.
+  // Six locally playable chapters include 720 reviewed questions and their compact chapter registries.
   // The processing layer and chapter-wide recovery challenge add a small, intentional data/runtime slice.
   jsGzipBytes: 160 * 1024,
   cssGzipBytes: 20 * 1024,

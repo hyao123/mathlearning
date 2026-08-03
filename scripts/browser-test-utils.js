@@ -8,6 +8,11 @@ function wait(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function extractViteBaseUrl(output, fallbackPort) {
+  const match = String(output || "").match(/http:\/\/127\.0\.0\.1:(\d+)\//);
+  return `http://${host}:${match?.[1] || fallbackPort}/`;
+}
+
 async function waitForServer(url, timeoutMs = 15000) {
   const startedAt = Date.now();
   let lastError;
@@ -30,7 +35,7 @@ async function waitForServer(url, timeoutMs = 15000) {
 
 function startVite({ port = process.env.SMOKE_PORT || "4174" } = {}) {
   const viteBin = path.join(root, "node_modules", "vite", "bin", "vite.js");
-  const server = spawn(process.execPath, [viteBin, "--host", host, "--port", String(port), "--strictPort"], {
+  const server = spawn(process.execPath, [viteBin, "--host", host, "--port", String(port)], {
     cwd: root,
     stdio: ["ignore", "pipe", "pipe"],
   });
@@ -60,7 +65,15 @@ async function withPage(chromium, callback, options = {}) {
   let browser;
 
   try {
-    await waitForServer(baseUrl);
+    let actualBaseUrl = baseUrl;
+    const startedAt = Date.now();
+    while (Date.now() - startedAt < 15000) {
+      actualBaseUrl = extractViteBaseUrl(getOutput(), String(options.port || process.env.SMOKE_PORT || "4174"));
+      if (getOutput().includes("Local:") || getOutput().includes("http://127.0.0.1:")) break;
+      if (server.exitCode !== null) break;
+      await wait(100);
+    }
+    await waitForServer(actualBaseUrl);
     browser = await chromium.launch();
     const page = await browser.newPage({ viewport: options.viewport || { width: 1280, height: 900 } });
     const pageErrors = [];
@@ -74,7 +87,7 @@ async function withPage(chromium, callback, options = {}) {
       pageErrors.push(error.message);
     });
 
-    await callback({ baseUrl, page, pageErrors });
+    await callback({ baseUrl: actualBaseUrl, page, pageErrors });
   } catch (error) {
     process.stderr.write(getOutput());
     throw error;
@@ -85,6 +98,7 @@ async function withPage(chromium, callback, options = {}) {
 }
 
 module.exports = {
+  extractViteBaseUrl,
   startVite,
   waitForServer,
   withPage

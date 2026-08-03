@@ -11,6 +11,7 @@
     "test": "node --test",
     "check": "node scripts/check-syntax.js",
     "validate:game": "node scripts/validate-game-content.js",
+    "validate:release": "node scripts/validate-game-content.js --strict",
     "check:bundle": "node scripts/check-bundle-size.js",
     "test:ui": "node scripts/ui-behavior.js",
     "test:game-ui": "node scripts/game-ui-behavior.js",

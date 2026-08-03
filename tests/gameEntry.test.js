@@ -68,9 +68,11 @@ test("the main-module guard covers all supported import syntaxes and path forms"
   );
 });
 
-test("runtime and validator consume the same canonical game source list", () => {
+test("runtime uses compact native chapter packs while validator retains the canonical source list", () => {
   const entrypoint = fs.readFileSync(path.join(root, "src", "game-main.js"), "utf8");
 
   assert.deepEqual(validator.contentFiles, runtimeSources.RUNTIME_SOURCE_FILES);
-  assert.match(entrypoint, /GameRuntimeSources\.RUNTIME_SOURCE_FILES/);
+  assert.match(entrypoint, /NativeQuestionPacks/);
+  assert.doesNotMatch(entrypoint, /GameRuntimeSources\.RUNTIME_SOURCE_FILES/);
+  assert.doesNotMatch(entrypoint, /data\.js/);
 });

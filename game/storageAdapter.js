@@ -1,6 +1,7 @@
 const GameItemCatalog = require("./itemCatalog.js");
 
 const INVENTORY_STORAGE_KEY = "math-quest-inventory-v1";
+const ATOMIC_SAVE_STORAGE_KEY = "math-quest-save-v3";
 
 function createResilientStateStore(storageProvider, key) {
   if (typeof storageProvider !== "function") throw new Error("Storage provider must be a function");
@@ -130,4 +131,99 @@ function createInventoryStore(storageProvider, options = {}) {
   };
 }
 
-module.exports = { INVENTORY_STORAGE_KEY, createInventoryStore, createResilientStateStore, mergeInventories, serializeInventory };
+function parseStoredObject(serialized) {
+  try {
+    const value = typeof serialized === "string" ? JSON.parse(serialized) : serialized;
+    return value && typeof value === "object" && !Array.isArray(value) ? value : null;
+  } catch {
+    return null;
+  }
+}
+
+function createAtomicSaveStore(storageProvider, options = {}) {
+  if (typeof storageProvider !== "function") throw new Error("Storage provider must be a function");
+  const key = options.key || ATOMIC_SAVE_STORAGE_KEY;
+  const legacyStateKeys = options.legacyStateKeys || ["math-quest-campaign-v2", "math-quest-game-v1"];
+  const legacyInventoryKeys = options.legacyInventoryKeys || [INVENTORY_STORAGE_KEY];
+  let memoryState = null;
+  let memoryIsFallback = false;
+  let revision = 0;
+
+  const read = (storageKey) => {
+    try {
+      const value = storageProvider()?.getItem(storageKey);
+      return typeof value === "string" ? value : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const write = (value) => {
+    try {
+      storageProvider()?.setItem(key, value);
+      memoryIsFallback = false;
+    } catch {
+      memoryIsFallback = true;
+    }
+  };
+
+  const withRevision = (value, nextRevision) => {
+    const parsed = parseStoredObject(value) || {};
+    return JSON.stringify({
+      ...parsed,
+      version: ATOMIC_SAVE_STORAGE_KEY,
+      revision: nextRevision
+    });
+  };
+
+  const migrate = () => {
+    const campaign = legacyStateKeys.map(read).map(parseStoredObject).find(Boolean) || {
+      version: "math-quest-campaign-v2",
+      chapterStates: {}
+    };
+    const legacyInventory = mergeInventories(
+      ...legacyInventoryKeys.map((legacyKey) => parseStoredInventory(read(legacyKey))),
+      campaign.inventory,
+      ...Object.values(campaign.chapterStates || {}).map((state) => state?.inventory)
+    );
+    const legacyChapterStates = Object.entries(campaign.chapterStates || {}).length
+      ? campaign.chapterStates
+      : { [campaign.activeChapterId || "chapter-01"]: campaign };
+    const chapterStates = Object.fromEntries(Object.entries(legacyChapterStates).map(([chapterId, state]) => [
+      chapterId,
+      { ...state, inventory: { ...legacyInventory } }
+    ]));
+    const migrated = withRevision(JSON.stringify({
+      ...campaign,
+      chapterStates,
+      inventory: { ...legacyInventory }
+    }), 1);
+    memoryState = migrated;
+    revision = 1;
+    write(migrated);
+    return migrated;
+  };
+
+  return {
+    load() {
+      if (memoryIsFallback && memoryState) return memoryState;
+      const stored = parseStoredObject(read(key));
+      if (stored) {
+        revision = Number.isInteger(stored.revision) && stored.revision >= 0 ? stored.revision : 0;
+        memoryState = JSON.stringify(stored);
+        return memoryState;
+      }
+      return migrate();
+    },
+    save(serialized) {
+      const current = parseStoredObject(memoryState) || parseStoredObject(read(key));
+      const currentRevision = Number.isInteger(current?.revision) ? current.revision : revision;
+      const next = withRevision(serialized, currentRevision + 1);
+      memoryState = next;
+      revision = currentRevision + 1;
+      write(next);
+    }
+  };
+}
+
+module.exports = { ATOMIC_SAVE_STORAGE_KEY, INVENTORY_STORAGE_KEY, createAtomicSaveStore, createInventoryStore, createResilientStateStore, mergeInventories, serializeInventory };

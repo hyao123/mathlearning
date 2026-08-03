@@ -139,7 +139,14 @@ function validateProjectChain(chapterId) {
   return errors;
 }
 
+function shouldRequireHumanReview(argv = process.argv, env = process.env) {
+  if (argv.includes("--strict")) return true;
+  if (env.REQUIRE_HUMAN_REVIEW === "1") return true;
+  return !argv.includes("--content-only");
+}
+
 function runCli() {
+  const requireHumanReview = shouldRequireHumanReview();
   const modules = loadExpandedModules();
   const reports = CHAPTER_IDS.map((chapterId) => ({ chapterId, report: GameChapterBuilder.validateChapter(chapterId, modules), projectErrors: validateProjectChain(chapterId) }));
   const invalid = reports.filter(({ report, projectErrors }) => !report.valid || projectErrors.length);
@@ -158,7 +165,7 @@ function runCli() {
       process.exitCode = 1;
       return;
     }
-    qualityReports.push({ chapterId, reviewManifest, report: validateBuiltChapter(chapter, { requireHumanReview: process.env.REQUIRE_HUMAN_REVIEW === "1", reviewManifest }) });
+    qualityReports.push({ chapterId, reviewManifest, report: validateBuiltChapter(chapter, { requireHumanReview, reviewManifest }) });
   }
   const failed = qualityReports.filter(({ report }) => !report.valid);
   if (failed.length) {
@@ -178,4 +185,4 @@ if (require.main === module) {
   runCli();
 }
 
-module.exports = { contentFiles, loadExpandedModules, loadReviewManifest, validateBuiltChapter, validateProjectChain, runCli };
+module.exports = { contentFiles, loadExpandedModules, loadReviewManifest, shouldRequireHumanReview, validateBuiltChapter, validateProjectChain, runCli };

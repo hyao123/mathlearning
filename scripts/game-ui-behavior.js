@@ -232,10 +232,11 @@ async function main() {
     assert.equal(await page.locator("[data-project-progress-meter]").getAttribute("aria-valuenow"), "2");
     assert.equal(await page.locator("[data-game-screen='inventory']").textContent().then((text) => text.includes("机体肋梁")), true);
     assert.equal(await page.locator("[data-item-id='j20-frame-rib'] [data-project-art='j20-frame-rib']").count(), 1, "crafted component should show its own item art");
-    const persistentInventory = await page.evaluate(() => JSON.parse(localStorage.getItem("math-quest-inventory-v1")).inventory);
+    const persistentInventory = await page.evaluate(() => JSON.parse(localStorage.getItem("math-quest-save-v3")).chapterStates["chapter-01"].inventory);
     assert.deepEqual(persistentInventory, { "j20-frame-rib": 1 });
 
     await page.evaluate(() => {
+      localStorage.removeItem("math-quest-save-v3");
       localStorage.removeItem("math-quest-campaign-v2");
       localStorage.setItem("math-quest-inventory-v1", JSON.stringify({
         version: "math-quest-inventory-v1",
@@ -256,6 +257,7 @@ async function main() {
     assert.equal(await page.locator("[data-item-id='j20-airframe'] [data-project-art='j20-airframe']").count(), 1, "crafted large part should show its own item art");
 
     await page.evaluate(() => {
+      localStorage.removeItem("math-quest-save-v3");
       localStorage.removeItem("math-quest-campaign-v2");
       const partIds = ["j20-airframe", "j20-avionics", "j20-stealth-wing", "j20-vector-engine"];
       localStorage.setItem("math-quest-inventory-v1", JSON.stringify({

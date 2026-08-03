@@ -57,6 +57,27 @@ test("builds 120 structured numeric questions for the polar icebreaker route wit
   assert.equal(questions.every((question) => question.learningObjective && question.storyBeat && question.solutionReview?.steps?.length), true);
 });
 
+test("builds the first three chapters without loading the legacy full question source", () => {
+  ["chapter-01", "chapter-02", "chapter-03"].forEach((chapterId) => {
+    const chapter = builder.buildChapter(chapterId, []);
+    assert.equal(chapter.levels.length, 12, chapterId);
+    assert.equal(chapter.levels.every((level) => level.questions.length === 10), true, chapterId);
+  });
+});
+
+test("native first-three-chapter packs preserve the reviewed legacy question contract", () => {
+  const modules = loadExpandedModules();
+  ["chapter-01", "chapter-02", "chapter-03"].forEach((chapterId) => {
+    const legacyQuestions = builder.buildChapter(chapterId, modules).levels.flatMap((level) => level.questions);
+    const nativeQuestions = builder.buildChapter(chapterId, []).levels.flatMap((level) => level.questions);
+    assert.deepEqual(
+      nativeQuestions.map(({ id, answer, answerType, answerFormat, difficulty }) => ({ id, answer, answerType, answerFormat, difficulty })),
+      legacyQuestions.map(({ id, answer, answerType, answerFormat, difficulty }) => ({ id, answer, answerType, answerFormat, difficulty })),
+      chapterId
+    );
+  });
+});
+
 test("builds 120 structured numeric questions for the armored assault route from the native chapter registry", () => {
   const chapter = builder.buildChapter("chapter-05", []);
   const questions = chapter.levels.flatMap((level) => level.questions);
@@ -122,7 +143,7 @@ test("reports every missing level and difficulty slot instead of silently degrad
   const report = builder.validateChapter("chapter-01", [{ id: "patterns", practices: [] }]);
 
   assert.equal(report.valid, false);
-  assert.match(report.errors.join("\n"), /quick-calculation/);
+  assert.match(report.errors.join("\n"), /patterns/);
   assert.match(report.errors.join("\n"), /第 1 题/);
 });
 

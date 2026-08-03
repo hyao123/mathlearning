@@ -28,25 +28,6 @@ async function loadCommonJs(load, registryKey) {
   }
 }
 
-const GameRuntimeSources = await loadCommonJs(() => import("../game/runtimeSources.js"), "./runtimeSources.js");
-const runtimeSourceLoaders = {
-  "data.js": () => import("../data.js"),
-  "contentExpansion.js": () => import("../contentExpansion.js"),
-  "knowledgeContinuityExpansion.js": () => import("../knowledgeContinuityExpansion.js"),
-  "priorityContentExpansion.js": () => import("../priorityContentExpansion.js"),
-  "supplementalContentExpansion.js": () => import("../supplementalContentExpansion.js"),
-  "supplementalContentFixes.js": () => import("../supplementalContentFixes.js"),
-  "knowledgeTopology.js": () => import("../knowledgeTopology.js"),
-  "supplementalTopologyExpansion.js": () => import("../supplementalTopologyExpansion.js"),
-  "answerMatcher.js": () => import("../answerMatcher.js")
-};
-
-for (const sourceFile of GameRuntimeSources.RUNTIME_SOURCE_FILES) {
-  const loadSource = runtimeSourceLoaders[sourceFile];
-  if (!loadSource) throw new Error(`Missing game runtime source loader: ${sourceFile}`);
-  await loadSource();
-}
-
 const GameChapterConfig = await loadCommonJs(() => import("../game/chapterConfig.js"), "./chapterConfig.js");
 const ChapterExpansionData = await loadCommonJs(() => import("../game/chapterExpansionData.js"), "./chapterExpansionData.js");
 const MaterialProcessingData = await loadCommonJs(() => import("../game/materialProcessingData.js"), "./materialProcessingData.js");
@@ -57,8 +38,10 @@ const Chapter03QuestionPacks = await loadCommonJs(() => import("../game/chapter0
 const Chapter04QuestionPacks = await loadCommonJs(() => import("../game/chapter04QuestionPacks.js"), "./chapter04QuestionPacks.js");
 const Chapter05QuestionPacks = await loadCommonJs(() => import("../game/chapter05QuestionPacks.js"), "./chapter05QuestionPacks.js");
 const Chapter06QuestionPacks = await loadCommonJs(() => import("../game/chapter06QuestionPacks.js"), "./chapter06QuestionPacks.js");
+const NativeQuestionPacks = await loadCommonJs(() => import("../game/nativeQuestionPacks.js"), "./nativeQuestionPacks.js");
 const QuestionContract = await loadCommonJs(() => import("../game/questionContract.js"), "./questionContract.js");
 const QuestionContractFixes = await loadCommonJs(() => import("../game/questionContractFixes.js"), "./questionContractFixes.js");
+const AnswerMatcher = await loadCommonJs(() => import("../answerMatcher.js"), "../answerMatcher.js");
 const StoryMissionModel = await loadCommonJs(() => import("../game/storyMissionModel.js"), "./storyMissionModel.js");
 const QuestionQuality = await loadCommonJs(() => import("../game/questionQuality.js"), "./questionQuality.js");
 const ChapterQualityProfiles = await loadCommonJs(() => import("../game/chapterQualityProfiles.js"), "./chapterQualityProfiles.js");
@@ -88,8 +71,10 @@ Object.assign(globalThis, {
   Chapter04QuestionPacks,
   Chapter05QuestionPacks,
   Chapter06QuestionPacks,
+  NativeQuestionPacks,
   QuestionContract,
   QuestionContractFixes,
+  AnswerMatcher,
   StoryMissionModel,
   QuestionQuality,
   ChapterQualityProfiles,
@@ -109,16 +94,15 @@ Object.assign(globalThis, {
 });
 
 const { default: GameApp } = await import("../game/gameApp.js");
-const chapters = GameChapterConfig.CHAPTER_IDS.map((chapterId) => GameChapterBuilder.buildChapter(chapterId, globalThis.MATH_LEARNING_DATA));
+const chapters = GameChapterConfig.CHAPTER_IDS.map((chapterId) => GameChapterBuilder.buildChapter(chapterId));
 const root = document.getElementById("game-root");
-const stateStore = StorageAdapter.createResilientStateStore(
-  () => globalThis.localStorage,
-  CampaignModel.STORAGE_KEY
-);
 const legacyStateStore = StorageAdapter.createResilientStateStore(() => globalThis.localStorage, ProgressionModel.STORAGE_KEY);
-const inventoryStore = StorageAdapter.createInventoryStore(
+const saveStore = StorageAdapter.createAtomicSaveStore(
   () => globalThis.localStorage,
-  { legacyStateKeys: [ProgressionModel.STORAGE_KEY, CampaignModel.STORAGE_KEY] }
+  {
+    legacyStateKeys: [CampaignModel.STORAGE_KEY, ProgressionModel.STORAGE_KEY],
+    legacyInventoryKeys: [StorageAdapter.INVENTORY_STORAGE_KEY]
+  }
 );
 
-GameApp.mount({ root, chapters, stateStore, inventoryStore, legacyState: legacyStateStore.load() });
+GameApp.mount({ root, chapters, saveStore, legacyState: legacyStateStore.load() });
