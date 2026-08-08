@@ -46,6 +46,43 @@ test("a fresh review template covers every built chapter question without markin
   assert.equal(chapter.levels.flatMap((level) => level.questions).every((question) => manifest.records.some((record) => record.questionId === question.id)), true);
 });
 
+test("human review templates cannot bulk approve and carry content fingerprints", () => {
+  assert.throws(
+    () => reviewTemplate.buildReviewTemplate({}, "chapter-01", { approve: true }),
+    /Bulk approval is disabled/
+  );
+  const manifest = reviewTemplate.buildReviewTemplate({}, "chapter-01");
+  assert.equal(manifest.schemaVersion, 2);
+  assert.match(manifest.contentHash, /^[a-f0-9]{64}$/);
+  assert.equal(manifest.records.every((record) => /^[a-f0-9]{64}$/.test(record.contentHash)), true);
+});
+
+test("release validation rejects a review record whose question content changed", () => {
+  const modules = validation.loadExpandedModules();
+  const builder = require("../game/chapterBuilder.js");
+  const chapter = builder.buildChapter("chapter-01", modules);
+  const template = reviewTemplate.buildReviewTemplate({}, "chapter-01");
+  const approved = {
+    ...template,
+    status: "approved",
+    reviewer: "课程负责人",
+    reviewedAt: "2026-08-05T00:00:00+08:00",
+    records: template.records.map((record) => ({
+      ...record,
+      reviewer: "课程负责人",
+      reviewedAt: "2026-08-05T00:00:00+08:00",
+      scores: Object.fromEntries(reviewTemplate.REVIEW_CRITERIA.map((criterion) => [criterion, 1]))
+    }))
+  };
+  const tampered = {
+    ...approved,
+    records: approved.records.map((record, index) => index === 0 ? { ...record, prompt: `${record.prompt} 修改` } : record)
+  };
+  const report = validation.validateBuiltChapter(chapter, { requireHumanReview: true, reviewManifest: tampered });
+  assert.equal(report.valid, false);
+  assert.match(report.errors.join("\n"), /content hash/);
+});
+
 test("release validation is strict unless content-only mode is explicitly requested", () => {
   assert.equal(validation.shouldRequireHumanReview(["node", "validate-game-content.js"], {}), true);
   assert.equal(validation.shouldRequireHumanReview(["node", "validate-game-content.js", "--strict"], {}), true);

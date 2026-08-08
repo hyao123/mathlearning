@@ -1,0 +1,2051 @@
+{
+  "schemaVersion": 2,
+  "chapterId": "chapter-08",
+  "status": "approved",
+  "reviewer": "课程负责人",
+  "reviewedAt": "2026-08-06T00:00:00+08:00",
+  "contentHash": "75d0e101e7161eaf43536307aa1a7d5645dae21e9efc8c13dc73695e20556f87",
+  "notes": "新增思维方法题库已完成规则审校，课程负责人可继续进行逐题复核。 P0 ???????????????",
+  "records": [
+    {
+      "questionId": "chapter-08-case-discussion-1",
+      "title": "分类讨论",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【分类讨论】把任务分成上午和下午两类：上午2组、每组3件，下午3组、每组2件，共有多少件？【启航任务】",
+      "contentHash": "5982d51b650e7743973c5a14cfe5a1afac28f7e36580147bf1122383f323cb05",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-case-discussion-2",
+      "title": "分类讨论",
+      "prompt": "补给台记录：先用清单整理已知量：【分类讨论】把任务分成上午和下午两类：上午3组、每组4件，下午4组、每组2件，共有多少件？【校准任务】",
+      "contentHash": "8eadf684f75c193c48d6ec72d0a834bbd39c793078ea7ccc4eaadc4e1e3a02b1",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-case-discussion-3",
+      "title": "分类讨论",
+      "prompt": "地图标记显示：先在路线图上标出关系：【分类讨论】把任务分成上午和下午两类：上午4组、每组5件，下午5组、每组2件，共有多少件？【侦察任务】",
+      "contentHash": "5cdd5d4dd535eeb9ee228701586911d8220af497e77f7a0de26656448af22647",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-case-discussion-4",
+      "title": "分类讨论",
+      "prompt": "观察窗发现：先比较候选方案再计算：【分类讨论】把任务分成上午和下午两类：上午5组、每组3件，下午6组、每组2件，共有多少件？【推进任务】",
+      "contentHash": "ad1eb27448a2a37e64565eada12e570ec3b36f60132e4cdcc5b45522188f6b26",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-case-discussion-5",
+      "title": "分类讨论",
+      "prompt": "校准表给出：最后回到现场做一次核验：【分类讨论】把任务分成上午和下午两类：上午2组、每组4件，下午7组、每组2件，共有多少件？【协作任务】",
+      "contentHash": "40e70f1a75332ac7d95ab1a44b072fc4ebc90fa38935784818c9a34ca3f86e61",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-case-discussion-6",
+      "title": "分类讨论",
+      "prompt": "任务员核对：先把条件记在任务卡上：【分类讨论】把任务分成上午和下午两类：上午3组、每组5件，下午3组、每组2件，共有多少件？【加固任务】",
+      "contentHash": "3a4417461a03b4a1e681b2c1343951a8881158306468829b2112c52cbfd86730",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-case-discussion-7",
+      "title": "分类讨论",
+      "prompt": "仓库清单提示：先用清单整理已知量：【分类讨论】把任务分成上午和下午两类：上午4组、每组3件，下午4组、每组2件，共有多少件？【巡航任务】",
+      "contentHash": "86b4eddac77010c992df229d0fc02d01cd9b6b7e70f84aa5c9778e40260615cd",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-case-discussion-8",
+      "title": "分类讨论",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【分类讨论】把任务分成上午和下午两类：上午5组、每组4件，下午5组、每组2件，共有多少件？【穿越任务】",
+      "contentHash": "79319d38380da600c47835d7d09b5c5a01cac7a23787944791b638934a2fec12",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-case-discussion-9",
+      "title": "分类讨论",
+      "prompt": "综合任务要求：先比较候选方案再计算：【分类讨论】把任务分成上午和下午两类：上午2组、每组5件，下午6组、每组2件，共有多少件？【攻坚任务】",
+      "contentHash": "25ba66ef9d2e0c808811f3a7090ef113115aeca3391b34fd8c7979a8291816d8",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-case-discussion-10",
+      "title": "分类讨论",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【分类讨论】把任务分成上午和下午两类：上午3组、每组3件，下午7组、每组2件，共有多少件？【决战任务】",
+      "contentHash": "539e7e2b04908cbb7e17c223a29dc78608df425bcfeee814bb893403934297fa",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-parity-invariant-1",
+      "title": "奇偶性与不变量",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【奇偶性与不变量】从4开始，每次增加2，连续操作4次，最后的数是多少？【启航任务】",
+      "contentHash": "613afb46dd55564c21489a20a9c9a1c0016780168cd8508ebf15fa7825401d6d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-parity-invariant-2",
+      "title": "奇偶性与不变量",
+      "prompt": "补给台记录：先用清单整理已知量：【奇偶性与不变量】从5开始，每次增加4，连续操作4次，最后的数是多少？【校准任务】",
+      "contentHash": "a995a06dc19a3fc255da30f6a8f164b625794236a81e602ad23628ac6f30c33a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-parity-invariant-3",
+      "title": "奇偶性与不变量",
+      "prompt": "地图标记显示：先在路线图上标出关系：【奇偶性与不变量】从6开始，每次增加6，连续操作4次，最后的数是多少？【侦察任务】",
+      "contentHash": "c32a567fb07127f1b5bf7393b01663cde2c29384c80396a74fc59732b9ed649b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-parity-invariant-4",
+      "title": "奇偶性与不变量",
+      "prompt": "观察窗发现：先比较候选方案再计算：【奇偶性与不变量】从7开始，每次增加2，连续操作4次，最后的数是多少？【推进任务】",
+      "contentHash": "346e732c2ffad23a72cdd2d51dcee4228b6f58e9a76dbef052e5049fb6ce5d72",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-parity-invariant-5",
+      "title": "奇偶性与不变量",
+      "prompt": "校准表给出：最后回到现场做一次核验：【奇偶性与不变量】从8开始，每次增加4，连续操作4次，最后的数是多少？【协作任务】",
+      "contentHash": "db13f109acab42339336d522f75414a4789b1b6d26f60a2c3e355a5bc732f22c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-parity-invariant-6",
+      "title": "奇偶性与不变量",
+      "prompt": "任务员核对：先把条件记在任务卡上：【奇偶性与不变量】从9开始，每次增加6，连续操作4次，最后的数是多少？【加固任务】",
+      "contentHash": "cd22cd154fa453e2cbdf3a58d05215c6acdb68d0c762d4d34574a0e73bad1ed2",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-parity-invariant-7",
+      "title": "奇偶性与不变量",
+      "prompt": "仓库清单提示：先用清单整理已知量：【奇偶性与不变量】从10开始，每次增加2，连续操作4次，最后的数是多少？【巡航任务】",
+      "contentHash": "e73d8afcb6802d26184d3318fd22ccb9d828a843a5ab0f2f43e31b8b31cc92c9",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-parity-invariant-8",
+      "title": "奇偶性与不变量",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【奇偶性与不变量】从11开始，每次增加4，连续操作4次，最后的数是多少？【穿越任务】",
+      "contentHash": "0b182ccf29c5276088f8470a66f14616f36a6e51092b8bddf499bce0c8be3487",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-parity-invariant-9",
+      "title": "奇偶性与不变量",
+      "prompt": "综合任务要求：先比较候选方案再计算：【奇偶性与不变量】从12开始，每次增加6，连续操作4次，最后的数是多少？【攻坚任务】",
+      "contentHash": "fa66595354b6e0dbad58ada760d21357ac6e883b3b68fd5e35e1a1557c873eeb",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-parity-invariant-10",
+      "title": "奇偶性与不变量",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【奇偶性与不变量】从13开始，每次增加2，连续操作4次，最后的数是多少？【决战任务】",
+      "contentHash": "eb385a8a92ac1a49554b911e6afd5490b7b4e1cab4daa4a3d0649ab410d4ed38",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-worst-case-1",
+      "title": "最不利原则",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【最不利原则】抽屉中有3种颜色的信标，最不利时先各取到一种，至少再取几个才能保证有两个同色信标？【启航任务】",
+      "contentHash": "00c091bbe42665ce29950cb67eb3889751b577270596a09e006e761fe3b9b0a6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-worst-case-2",
+      "title": "最不利原则",
+      "prompt": "补给台记录：先用清单整理已知量：【最不利原则】抽屉中有4种颜色的信标，最不利时先各取到一种，至少再取几个才能保证有两个同色信标？【校准任务】",
+      "contentHash": "8f50ddabdbb675e3dd312e067fbe16f98e0ed5dbff9dbcb2dc657812a0a45daa",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-worst-case-3",
+      "title": "最不利原则",
+      "prompt": "地图标记显示：先在路线图上标出关系：【最不利原则】抽屉中有5种颜色的信标，最不利时先各取到一种，至少再取几个才能保证有两个同色信标？【侦察任务】",
+      "contentHash": "b7e2c44515c0f624d2db5ab7f3f779a91ff23ce705d7b124e0bb538f995e7129",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-worst-case-4",
+      "title": "最不利原则",
+      "prompt": "观察窗发现：先比较候选方案再计算：【最不利原则】抽屉中有6种颜色的信标，最不利时先各取到一种，至少再取几个才能保证有两个同色信标？【推进任务】",
+      "contentHash": "15e1e00f7fa3974f81f0f8f6cc2462cbc9623a09378fdcfad8dd738822265a91",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-worst-case-5",
+      "title": "最不利原则",
+      "prompt": "校准表给出：最后回到现场做一次核验：【最不利原则】抽屉中有7种颜色的信标，最不利时先各取到一种，至少再取几个才能保证有两个同色信标？【协作任务】",
+      "contentHash": "041d7f79e6d222e528e451517110bd0199b3927f70e91745af74560e047972ef",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-worst-case-6",
+      "title": "最不利原则",
+      "prompt": "任务员核对：先把条件记在任务卡上：【最不利原则】抽屉中有3种颜色的信标，最不利时先各取到一种，至少再取几个才能保证有三个同色信标？【加固任务】",
+      "contentHash": "74fc7a56b62d2d00c8715c23190678f757f4c53a2d175f211cabb335c3fd802a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-worst-case-7",
+      "title": "最不利原则",
+      "prompt": "仓库清单提示：先用清单整理已知量：【最不利原则】抽屉中有4种颜色的信标，最不利时先各取到一种，至少再取几个才能保证有三个同色信标？【巡航任务】",
+      "contentHash": "dd9475155304b5f1569faedde50757e0dfe8601aa093ae8ccf3081b2fe37885c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-worst-case-8",
+      "title": "最不利原则",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【最不利原则】抽屉中有5种颜色的信标，最不利时先各取到一种，至少再取几个才能保证有三个同色信标？【穿越任务】",
+      "contentHash": "69595bbc49500eaa2c4000b2fcfd1713e589a591d4b9dc060cfcff18547a6b7f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-worst-case-9",
+      "title": "最不利原则",
+      "prompt": "综合任务要求：先比较候选方案再计算：【最不利原则】抽屉中有6种颜色的信标，最不利时先各取到一种，至少再取几个才能保证有三个同色信标？【攻坚任务】",
+      "contentHash": "5e03d8aaab03dd848654e46838474e3659c2c9d4774056e88b4644b2aaaee9f2",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-worst-case-10",
+      "title": "最不利原则",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【最不利原则】抽屉中有7种颜色的信标，最不利时先各取到一种，至少再取几个才能保证有三个同色信标？【决战任务】",
+      "contentHash": "5af23bed1f9004557b21d7d071d3bf95c8294788d7a5425a140c22dfb07df773",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-recurrence-strategy-1",
+      "title": "递推思考",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【递推思考】补给量从第1天的3份开始，每天比前一天多2份，第6天有多少份？【启航任务】",
+      "contentHash": "ae3c69009f6e630221cfdeb22265b50f6df226db80ad829857076516972d7e77",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-recurrence-strategy-2",
+      "title": "递推思考",
+      "prompt": "补给台记录：先用清单整理已知量：【递推思考】补给量从第1天的4份开始，每天比前一天多3份，第6天有多少份？【校准任务】",
+      "contentHash": "a668e00a9e5d0afd0499d804dd047e84affce868657d44f5da9737f6a5b7697d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-recurrence-strategy-3",
+      "title": "递推思考",
+      "prompt": "地图标记显示：先在路线图上标出关系：【递推思考】补给量从第1天的5份开始，每天比前一天多4份，第6天有多少份？【侦察任务】",
+      "contentHash": "d3ab61a63f0d8ea1e61cca69ad729b01520d96574aaed14111fd0e0cc9ba2eba",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-recurrence-strategy-4",
+      "title": "递推思考",
+      "prompt": "观察窗发现：先比较候选方案再计算：【递推思考】补给量从第1天的6份开始，每天比前一天多2份，第6天有多少份？【推进任务】",
+      "contentHash": "520e9fff4395edf7eb5d776267dbddf9e4731d5bc5d90d5012ce72e28aac4297",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-recurrence-strategy-5",
+      "title": "递推思考",
+      "prompt": "校准表给出：最后回到现场做一次核验：【递推思考】补给量从第1天的3份开始，每天比前一天多3份，第6天有多少份？【协作任务】",
+      "contentHash": "16266c0c84c5a28e1d303387411a52559b4747021341069a23ba1b80aa306f2f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-recurrence-strategy-6",
+      "title": "递推思考",
+      "prompt": "任务员核对：先把条件记在任务卡上：【递推思考】补给量从第1天的4份开始，每天比前一天多4份，第6天有多少份？【加固任务】",
+      "contentHash": "dd11c4324233a5d4bda47481039bd3bd7c1660e4b5beb75c68697d1e818d87c6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-recurrence-strategy-7",
+      "title": "递推思考",
+      "prompt": "仓库清单提示：先用清单整理已知量：【递推思考】补给量从第1天的5份开始，每天比前一天多2份，第6天有多少份？【巡航任务】",
+      "contentHash": "cc2aec733de1b33865fbf3c7e0e52fabf7f8aa5d52ff450748e8cfcad381f283",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-recurrence-strategy-8",
+      "title": "递推思考",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【递推思考】补给量从第1天的6份开始，每天比前一天多3份，第6天有多少份？【穿越任务】",
+      "contentHash": "260f7314fa283a4d9430774f799e3fd358d1c336fc4b1422eb5f4069a1a4473e",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-recurrence-strategy-9",
+      "title": "递推思考",
+      "prompt": "综合任务要求：先比较候选方案再计算：【递推思考】补给量从第1天的3份开始，每天比前一天多4份，第6天有多少份？【攻坚任务】",
+      "contentHash": "869b3b6c611940e365f9ad839f871557e996180bfd33518b8bd32a227e127b46",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-recurrence-strategy-10",
+      "title": "递推思考",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【递推思考】补给量从第1天的4份开始，每天比前一天多2份，第6天有多少份？【决战任务】",
+      "contentHash": "d34db9fb117f0bc338b291f478d79b7ecbac17f768a962f7fbc3c593ade5c460",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-reverse-reasoning-1",
+      "title": "逆推与还原",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【逆推与还原】某批材料先加5再乘3得到24，倒推原来有多少份？【启航任务】",
+      "contentHash": "ea8ddbc8cf087400f9f68b82576a0db96c1fadacd8f1701fac47f425bd4eeab1",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-reverse-reasoning-2",
+      "title": "逆推与还原",
+      "prompt": "补给台记录：先用清单整理已知量：【逆推与还原】某批材料先加5再乘3得到27，倒推原来有多少份？【校准任务】",
+      "contentHash": "381bf484dac66c7b6d3a401ed4500f72c7e6889d61cefc36e6331d9084ad5f1b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-reverse-reasoning-3",
+      "title": "逆推与还原",
+      "prompt": "地图标记显示：先在路线图上标出关系：【逆推与还原】某批材料先加5再乘3得到30，倒推原来有多少份？【侦察任务】",
+      "contentHash": "958f41bd64b06403fa2d2819cf4fe8b8e1b350db5676042a4480792561256741",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-reverse-reasoning-4",
+      "title": "逆推与还原",
+      "prompt": "观察窗发现：先比较候选方案再计算：【逆推与还原】某批材料先加5再乘3得到33，倒推原来有多少份？【推进任务】",
+      "contentHash": "e3a563549995e57beecebdc299da840646fa896171cfec1350df812acdccc940",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-reverse-reasoning-5",
+      "title": "逆推与还原",
+      "prompt": "校准表给出：最后回到现场做一次核验：【逆推与还原】某批材料先加5再乘3得到36，倒推原来有多少份？【协作任务】",
+      "contentHash": "2451ec30ae7bfe944b8e836f7a4bfa81558e5c8cf5a614f2319b0557d0583c07",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-reverse-reasoning-6",
+      "title": "逆推与还原",
+      "prompt": "任务员核对：先把条件记在任务卡上：【逆推与还原】某批材料先加5再乘3得到39，倒推原来有多少份？【加固任务】",
+      "contentHash": "b338ed857889e5ce9f65fa81a026609da777e26a73266744acf338a7811b5b81",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-reverse-reasoning-7",
+      "title": "逆推与还原",
+      "prompt": "仓库清单提示：先用清单整理已知量：【逆推与还原】某批材料先加5再乘3得到42，倒推原来有多少份？【巡航任务】",
+      "contentHash": "5d7cfe75818c5866690be2a07ee7f32b1003ffdcc506bfdc1a15f9fa8523768f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-reverse-reasoning-8",
+      "title": "逆推与还原",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【逆推与还原】某批材料先加5再乘3得到45，倒推原来有多少份？【穿越任务】",
+      "contentHash": "795d93e9b7ced3b847ca315438190e20f51f8ff7ba2f62471a4eb2f2849dc4e4",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-reverse-reasoning-9",
+      "title": "逆推与还原",
+      "prompt": "综合任务要求：先比较候选方案再计算：【逆推与还原】某批材料先加5再乘3得到48，倒推原来有多少份？【攻坚任务】",
+      "contentHash": "fa92970a2211279f365d82df6e60db204a96056f76d01b2fb21ab4d5af58833a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-reverse-reasoning-10",
+      "title": "逆推与还原",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【逆推与还原】某批材料先加5再乘3得到51，倒推原来有多少份？【决战任务】",
+      "contentHash": "d5015c1c0f2ba239447994df505011f04937bfb1083d0ab2f3ebf7ea1aa56dc7",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-elimination-table-1",
+      "title": "表格排除",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【表格排除】排除表中总共有17个位置，已确定甲占5个，剩余位置平均分给3列，每列多少个？【启航任务】",
+      "contentHash": "33d5a1dd05103a3ba7e0b70eeba9bd5675b93cfa5068a840db700171545d3684",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-elimination-table-2",
+      "title": "表格排除",
+      "prompt": "补给台记录：先用清单整理已知量：【表格排除】排除表中总共有21个位置，已确定甲占6个，剩余位置平均分给3列，每列多少个？【校准任务】",
+      "contentHash": "ffa4c3be135d872400a7d0e7b6834ad44892e4372f81a70f631569fe7700c692",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-elimination-table-3",
+      "title": "表格排除",
+      "prompt": "地图标记显示：先在路线图上标出关系：【表格排除】排除表中总共有25个位置，已确定甲占7个，剩余位置平均分给3列，每列多少个？【侦察任务】",
+      "contentHash": "ee46c3af86784e65002727471cdf7c278d9e93497bcb040cbf1cf745b2f18bcf",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-elimination-table-4",
+      "title": "表格排除",
+      "prompt": "观察窗发现：先比较候选方案再计算：【表格排除】排除表中总共有29个位置，已确定甲占8个，剩余位置平均分给3列，每列多少个？【推进任务】",
+      "contentHash": "5b6e5029c28db07d86c7c2d7f2df40d8e91d63e3cbea3b73f5cec52160179a25",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-elimination-table-5",
+      "title": "表格排除",
+      "prompt": "校准表给出：最后回到现场做一次核验：【表格排除】排除表中总共有21个位置，已确定甲占9个，剩余位置平均分给3列，每列多少个？【协作任务】",
+      "contentHash": "7df9ca0d32aa4836184bbf1acc891ab1e003cc917589af6203e33ae7d10f68d2",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-elimination-table-6",
+      "title": "表格排除",
+      "prompt": "任务员核对：先把条件记在任务卡上：【表格排除】排除表中总共有25个位置，已确定甲占10个，剩余位置平均分给3列，每列多少个？【加固任务】",
+      "contentHash": "b5c334a45de8e70ebd9adc77d61910ee859fee8096dcb86d56d53fe873c0035b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-elimination-table-7",
+      "title": "表格排除",
+      "prompt": "仓库清单提示：先用清单整理已知量：【表格排除】排除表中总共有23个位置，已确定甲占5个，剩余位置平均分给3列，每列多少个？【巡航任务】",
+      "contentHash": "e23b0635f37d401eaea9307f05ad70c35b0c9977710578c8dcd66c6b9a063d13",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-elimination-table-8",
+      "title": "表格排除",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【表格排除】排除表中总共有27个位置，已确定甲占6个，剩余位置平均分给3列，每列多少个？【穿越任务】",
+      "contentHash": "b2e4b2c081a62ddb4859a4da58a31acad4885838b42f3c96382b0e06a0067c0d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-elimination-table-9",
+      "title": "表格排除",
+      "prompt": "综合任务要求：先比较候选方案再计算：【表格排除】排除表中总共有19个位置，已确定甲占7个，剩余位置平均分给3列，每列多少个？【攻坚任务】",
+      "contentHash": "e4814ffa92e2276d6696b2909cb632bb8b3bc03e9527e6d867b2d2085c5cf4c0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-elimination-table-10",
+      "title": "表格排除",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【表格排除】排除表中总共有23个位置，已确定甲占8个，剩余位置平均分给3列，每列多少个？【决战任务】",
+      "contentHash": "569e0ed6ed26547ccb87fb4e49ba3a168f32ca166ce4221a4ee7f587c20be528",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-scheduling-1",
+      "title": "统筹安排",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【统筹安排】统筹安排三项校准任务，分别需要12分钟、8分钟和6分钟，连续完成共需多少分钟？【启航任务】",
+      "contentHash": "e717a7eaa6e710c3b42ff6b34b8ec9ffbe736b0ab19ae311edec4d9d99b202ca",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-scheduling-2",
+      "title": "统筹安排",
+      "prompt": "补给台记录：先用清单整理已知量：【统筹安排】统筹安排三项校准任务，分别需要13分钟、9分钟和7分钟，连续完成共需多少分钟？【校准任务】",
+      "contentHash": "67ceedcc7db73e5ec5faf8eb213833134d7dfe3595e5d7c0dd604571058c644a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-scheduling-3",
+      "title": "统筹安排",
+      "prompt": "地图标记显示：先在路线图上标出关系：【统筹安排】统筹安排三项校准任务，分别需要14分钟、10分钟和8分钟，连续完成共需多少分钟？【侦察任务】",
+      "contentHash": "48886dd7e7c0d86ac21adcf883cb411b1e39a187559a3870ee3397a427d9a7df",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-scheduling-4",
+      "title": "统筹安排",
+      "prompt": "观察窗发现：先比较候选方案再计算：【统筹安排】统筹安排三项校准任务，分别需要15分钟、11分钟和9分钟，连续完成共需多少分钟？【推进任务】",
+      "contentHash": "2147e8789b6d989144dbde83fa69926bfe5c10f9740a860b4e587262410c555c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-scheduling-5",
+      "title": "统筹安排",
+      "prompt": "校准表给出：最后回到现场做一次核验：【统筹安排】统筹安排三项校准任务，分别需要16分钟、12分钟和6分钟，连续完成共需多少分钟？【协作任务】",
+      "contentHash": "18a142434f4f27f714b5eb76f50de29388f6c48af6fc98ff06fdd9e227e26334",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-scheduling-6",
+      "title": "统筹安排",
+      "prompt": "任务员核对：先把条件记在任务卡上：【统筹安排】统筹安排三项校准任务，分别需要17分钟、8分钟和7分钟，连续完成共需多少分钟？【加固任务】",
+      "contentHash": "070cc6064751fe37e17dda366c07b7f6d5810ebbfd6a7c2b1799f600e901c421",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-scheduling-7",
+      "title": "统筹安排",
+      "prompt": "仓库清单提示：先用清单整理已知量：【统筹安排】统筹安排三项校准任务，分别需要18分钟、9分钟和8分钟，连续完成共需多少分钟？【巡航任务】",
+      "contentHash": "eb4a02ef85de743a76a2c1f9618dbe5bd79ae1ce65bcf9fb726da7f86ab68a96",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-scheduling-8",
+      "title": "统筹安排",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【统筹安排】统筹安排三项校准任务，分别需要19分钟、10分钟和9分钟，连续完成共需多少分钟？【穿越任务】",
+      "contentHash": "80df69681bffcbaefcdbd70afff2c6895def99d6e4490c5217ed18775208aac6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-scheduling-9",
+      "title": "统筹安排",
+      "prompt": "综合任务要求：先比较候选方案再计算：【统筹安排】统筹安排三项校准任务，分别需要20分钟、11分钟和6分钟，连续完成共需多少分钟？【攻坚任务】",
+      "contentHash": "1418a536acbba9e5feacd1a34e1a806360d33f752cc8f70c6763b633213e76a5",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-scheduling-10",
+      "title": "统筹安排",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【统筹安排】统筹安排三项校准任务，分别需要21分钟、12分钟和7分钟，连续完成共需多少分钟？【决战任务】",
+      "contentHash": "1d0ce828a7f1c9c9e38d714b495ae0357225c73b92a087a7ba5bd7861c2acaa8",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-shortest-path-1",
+      "title": "最短路线",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【最短路线】网格地图上从起点向右走4格、向上走3格才能到终点，最短需要走多少格？【启航任务】",
+      "contentHash": "a099a167ee2f6d37153c64c4ddbc1a3234115b837ecd14920ff6fd6eb143a1e8",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-shortest-path-2",
+      "title": "最短路线",
+      "prompt": "补给台记录：先用清单整理已知量：【最短路线】网格地图上从起点向右走5格、向上走4格才能到终点，最短需要走多少格？【校准任务】",
+      "contentHash": "f9494005a4ae6f2bdb9dca546f396e72f90c805bed3a10a0c4fb9351b83ec0be",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-shortest-path-3",
+      "title": "最短路线",
+      "prompt": "地图标记显示：先在路线图上标出关系：【最短路线】网格地图上从起点向右走6格、向上走5格才能到终点，最短需要走多少格？【侦察任务】",
+      "contentHash": "503c4e884cd78eea1ac0e6f5f93ac0d2abec55ab2402813ec2a09f881391c200",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-shortest-path-4",
+      "title": "最短路线",
+      "prompt": "观察窗发现：先比较候选方案再计算：【最短路线】网格地图上从起点向右走7格、向上走6格才能到终点，最短需要走多少格？【推进任务】",
+      "contentHash": "4d61960582c423d57f1f5d8b0951d0e97d192675137ecf99f9f313aca0a1cb65",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-shortest-path-5",
+      "title": "最短路线",
+      "prompt": "校准表给出：最后回到现场做一次核验：【最短路线】网格地图上从起点向右走8格、向上走3格才能到终点，最短需要走多少格？【协作任务】",
+      "contentHash": "4b99f836b66f6a5641447dbc73a8ae36775ea4babe9700a1f97f4b0a497664c4",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-shortest-path-6",
+      "title": "最短路线",
+      "prompt": "任务员核对：先把条件记在任务卡上：【最短路线】网格地图上从起点向右走9格、向上走4格才能到终点，最短需要走多少格？【加固任务】",
+      "contentHash": "bef7778e99ac8dd130bdad5d0dbdcc5cefb114037a4455186c975be3ca679b78",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-shortest-path-7",
+      "title": "最短路线",
+      "prompt": "仓库清单提示：先用清单整理已知量：【最短路线】网格地图上从起点向右走10格、向上走5格才能到终点，最短需要走多少格？【巡航任务】",
+      "contentHash": "42477097a95e07a43108df405dccba7b504e337597d3b40282e8782cfa82bc3d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-shortest-path-8",
+      "title": "最短路线",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【最短路线】网格地图上从起点向右走11格、向上走6格才能到终点，最短需要走多少格？【穿越任务】",
+      "contentHash": "1bfb2187da77b593285b17cd296a2f2eb016b285c77cefd99ff4c08b63ea465a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-shortest-path-9",
+      "title": "最短路线",
+      "prompt": "综合任务要求：先比较候选方案再计算：【最短路线】网格地图上从起点向右走12格、向上走3格才能到终点，最短需要走多少格？【攻坚任务】",
+      "contentHash": "75c06b25431ab2a10617e6159b901ab35a75fe9798266223e31c6b393918be13",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-shortest-path-10",
+      "title": "最短路线",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【最短路线】网格地图上从起点向右走13格、向上走4格才能到终点，最短需要走多少格？【决战任务】",
+      "contentHash": "f7973ea2b58aa969879d6307a7e54a2b474b361d2d5d189a0da88e377b1ddeaf",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-optimal-strategy-1",
+      "title": "最优策略",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【最优策略】两种补给方案效果相同，方案甲耗时18分钟，方案乙耗时15分钟，选择最优方案可节省多少分钟？【启航任务】",
+      "contentHash": "8df20d5d12b5e62ad7034bf2264d345b30a04c3bb7e8bcfecedd835c288ce6a7",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-optimal-strategy-2",
+      "title": "最优策略",
+      "prompt": "补给台记录：先用清单整理已知量：【最优策略】两种补给方案效果相同，方案甲耗时20分钟，方案乙耗时16分钟，选择最优方案可节省多少分钟？【校准任务】",
+      "contentHash": "e180c7760a848fcfca78c219d3f1a77dde2981ab63797f7d8175e85267d8a92d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-optimal-strategy-3",
+      "title": "最优策略",
+      "prompt": "地图标记显示：先在路线图上标出关系：【最优策略】两种补给方案效果相同，方案甲耗时22分钟，方案乙耗时17分钟，选择最优方案可节省多少分钟？【侦察任务】",
+      "contentHash": "58ae90f0794d47c98208d73295680222dfe9697edabe8ec8f31d892056618430",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-optimal-strategy-4",
+      "title": "最优策略",
+      "prompt": "观察窗发现：先比较候选方案再计算：【最优策略】两种补给方案效果相同，方案甲耗时24分钟，方案乙耗时18分钟，选择最优方案可节省多少分钟？【推进任务】",
+      "contentHash": "cac4a79a2972e76aaa2ce423c2b7ef6f2d36957d50983da7f4288c3278611fe2",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-optimal-strategy-5",
+      "title": "最优策略",
+      "prompt": "校准表给出：最后回到现场做一次核验：【最优策略】两种补给方案效果相同，方案甲耗时26分钟，方案乙耗时23分钟，选择最优方案可节省多少分钟？【协作任务】",
+      "contentHash": "3f8a838e49d2503d77d5a03486a0c091516bffa9c4238d8d8dc30b2e0bfc2fcb",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-optimal-strategy-6",
+      "title": "最优策略",
+      "prompt": "任务员核对：先把条件记在任务卡上：【最优策略】两种补给方案效果相同，方案甲耗时28分钟，方案乙耗时24分钟，选择最优方案可节省多少分钟？【加固任务】",
+      "contentHash": "ff78842d9e4bb26b41ac779d1959a27fbc88fa3572503489dfe4ec773a55ae0a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-optimal-strategy-7",
+      "title": "最优策略",
+      "prompt": "仓库清单提示：先用清单整理已知量：【最优策略】两种补给方案效果相同，方案甲耗时30分钟，方案乙耗时25分钟，选择最优方案可节省多少分钟？【巡航任务】",
+      "contentHash": "08293b3625760884a42099f0278e5e5e22fa112ac7fe2bcc0ce5c8644614d779",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-optimal-strategy-8",
+      "title": "最优策略",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【最优策略】两种补给方案效果相同，方案甲耗时32分钟，方案乙耗时26分钟，选择最优方案可节省多少分钟？【穿越任务】",
+      "contentHash": "3bbe99c02b57daf398f67ad4969793a56aa2c6b02bc410262962bdbb05e0db62",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-optimal-strategy-9",
+      "title": "最优策略",
+      "prompt": "综合任务要求：先比较候选方案再计算：【最优策略】两种补给方案效果相同，方案甲耗时34分钟，方案乙耗时31分钟，选择最优方案可节省多少分钟？【攻坚任务】",
+      "contentHash": "254f5328137077759d95844a267131f7ceaf52b43ac4a2a2493b615c299b22c3",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-optimal-strategy-10",
+      "title": "最优策略",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【最优策略】两种补给方案效果相同，方案甲耗时36分钟，方案乙耗时32分钟，选择最优方案可节省多少分钟？【决战任务】",
+      "contentHash": "cf4480da09d5645801d697336c79774d2613e8116814b292177e239e9effa99c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-construction-1",
+      "title": "构造法",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【构造法】构造一个长5米、宽2米的矩形场地，围一圈需要多少米围栏？【启航任务】",
+      "contentHash": "c0aba8921103cb1dd111da5d6bab79c066b039a0eedff4c45acb9984a5fd1668",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-construction-2",
+      "title": "构造法",
+      "prompt": "补给台记录：先用清单整理已知量：【构造法】构造一个长6米、宽3米的矩形场地，围一圈需要多少米围栏？【校准任务】",
+      "contentHash": "bc1f0f5c24b44c88406d73196a342bd3ae3b8206d820a54eda45dc7e16e9530b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-construction-3",
+      "title": "构造法",
+      "prompt": "地图标记显示：先在路线图上标出关系：【构造法】构造一个长7米、宽4米的矩形场地，围一圈需要多少米围栏？【侦察任务】",
+      "contentHash": "d23be722c71115e79f2819b30a1c31ca6c4ae072a0a168250d5270b41c8d6f31",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-construction-4",
+      "title": "构造法",
+      "prompt": "观察窗发现：先比较候选方案再计算：【构造法】构造一个长8米、宽5米的矩形场地，围一圈需要多少米围栏？【推进任务】",
+      "contentHash": "55f518d71c9f50b27937e0a5d392685d8232a87d469595b5122e3c1bf40305fe",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-construction-5",
+      "title": "构造法",
+      "prompt": "校准表给出：最后回到现场做一次核验：【构造法】构造一个长9米、宽2米的矩形场地，围一圈需要多少米围栏？【协作任务】",
+      "contentHash": "620bb4aeafa454b3783d76987db9bd7d84062df8afbe3d168534a1430daaaa92",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-construction-6",
+      "title": "构造法",
+      "prompt": "任务员核对：先把条件记在任务卡上：【构造法】构造一个长10米、宽3米的矩形场地，围一圈需要多少米围栏？【加固任务】",
+      "contentHash": "d1d8f755ea88ff1701e849ac897b174e4bb63fd152df452c81c065da0904b45a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-construction-7",
+      "title": "构造法",
+      "prompt": "仓库清单提示：先用清单整理已知量：【构造法】构造一个长11米、宽4米的矩形场地，围一圈需要多少米围栏？【巡航任务】",
+      "contentHash": "a7ae9ee787a4dcad22ececc13e4ec23b3f15019c6cbd76b4c566c0d41fc7fa71",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-construction-8",
+      "title": "构造法",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【构造法】构造一个长12米、宽5米的矩形场地，围一圈需要多少米围栏？【穿越任务】",
+      "contentHash": "ed02ebba32430b8d4a2e7e5f78e37a0c81c4b8f28ca86c4acb7cd0c931c4a332",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-construction-9",
+      "title": "构造法",
+      "prompt": "综合任务要求：先比较候选方案再计算：【构造法】构造一个长13米、宽2米的矩形场地，围一圈需要多少米围栏？【攻坚任务】",
+      "contentHash": "a8b982751f17e9b84875f57a220d9067c07760be4f56d1cee6e096e40f11f4cc",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-construction-10",
+      "title": "构造法",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【构造法】构造一个长14米、宽3米的矩形场地，围一圈需要多少米围栏？【决战任务】",
+      "contentHash": "c352d5088181d3f8c5cde3d309cb957364bcdac12545a72530b083154fd46850",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-contradiction-1",
+      "title": "反证启蒙",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【反证启蒙】若把24份材料平均分给3组，检查“每组少于7份”的说法是否可能；每组实际有多少份？【启航任务】",
+      "contentHash": "519bd058e85fd02cdcbc2bc10d6e3787e8b34e90f3884d4d3e823a871580dbbc",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-contradiction-2",
+      "title": "反证启蒙",
+      "prompt": "补给台记录：先用清单整理已知量：【反证启蒙】若把36份材料平均分给4组，检查“每组少于8份”的说法是否可能；每组实际有多少份？【校准任务】",
+      "contentHash": "29fadde8c7fed3ee82b212bb9a20483d8d32b501110a546c5e6e87748a27bff7",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-contradiction-3",
+      "title": "反证启蒙",
+      "prompt": "地图标记显示：先在路线图上标出关系：【反证启蒙】若把50份材料平均分给5组，检查“每组少于9份”的说法是否可能；每组实际有多少份？【侦察任务】",
+      "contentHash": "f8b935b451209bf8e04b2eb9a8aec44da0eda461247d413f9c92a5d797033429",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-contradiction-4",
+      "title": "反证启蒙",
+      "prompt": "观察窗发现：先比较候选方案再计算：【反证启蒙】若把66份材料平均分给6组，检查“每组少于10份”的说法是否可能；每组实际有多少份？【推进任务】",
+      "contentHash": "74b514267ffffae48150a96ec8c6f1789a2c0a210c522b288bfdcd7d0d02bd13",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-contradiction-5",
+      "title": "反证启蒙",
+      "prompt": "校准表给出：最后回到现场做一次核验：【反证启蒙】若把36份材料平均分给3组，检查“每组少于11份”的说法是否可能；每组实际有多少份？【协作任务】",
+      "contentHash": "5744234473fc8d2c8dd877eb86bb96e4b5ad6a080ce533058eb7b590de633f87",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-contradiction-6",
+      "title": "反证启蒙",
+      "prompt": "任务员核对：先把条件记在任务卡上：【反证启蒙】若把32份材料平均分给4组，检查“每组少于7份”的说法是否可能；每组实际有多少份？【加固任务】",
+      "contentHash": "a7efa4aaf4715dab5e9eff58b686a4f173a19226ecd577a91a836ed21fe571b0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-contradiction-7",
+      "title": "反证启蒙",
+      "prompt": "仓库清单提示：先用清单整理已知量：【反证启蒙】若把45份材料平均分给5组，检查“每组少于8份”的说法是否可能；每组实际有多少份？【巡航任务】",
+      "contentHash": "6558a8c73b8c360d94647fb684f17610c97f812e0bff43873fbd4c7c3fb24d82",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-contradiction-8",
+      "title": "反证启蒙",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【反证启蒙】若把60份材料平均分给6组，检查“每组少于9份”的说法是否可能；每组实际有多少份？【穿越任务】",
+      "contentHash": "8126917cda6792b372cb25590c5ae92176ec3e76db420be6c602a37e68c6917d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-contradiction-9",
+      "title": "反证启蒙",
+      "prompt": "综合任务要求：先比较候选方案再计算：【反证启蒙】若把33份材料平均分给3组，检查“每组少于10份”的说法是否可能；每组实际有多少份？【攻坚任务】",
+      "contentHash": "cc9b8be74f861a30570a40bc718285cde20213ee00a9dc8a58a582b266865bcd",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-contradiction-10",
+      "title": "反证启蒙",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【反证启蒙】若把48份材料平均分给4组，检查“每组少于11份”的说法是否可能；每组实际有多少份？【决战任务】",
+      "contentHash": "4ae92285ad30681eedd4c919124a9474c818f9b258b6c945f70040ca9e605d33",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-integrated-strategy-1",
+      "title": "综合策略 Boss",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【综合策略 Boss】综合任务中有3组，每组完成4项，另外完成2项复核，全部完成多少项？【启航任务】",
+      "contentHash": "761aeb05ec96994a00c74cf9a4eb49136909f4b31ac1ebe221cb14aa1fee367a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-integrated-strategy-2",
+      "title": "综合策略 Boss",
+      "prompt": "补给台记录：先用清单整理已知量：【综合策略 Boss】综合任务中有4组，每组完成5项，另外完成3项复核，全部完成多少项？【校准任务】",
+      "contentHash": "45656985b6eadf3ecb3001180ce7e96a7281d87ece126a1ce0f5a1c80bd7c4c9",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-integrated-strategy-3",
+      "title": "综合策略 Boss",
+      "prompt": "地图标记显示：先在路线图上标出关系：【综合策略 Boss】综合任务中有5组，每组完成6项，另外完成4项复核，全部完成多少项？【侦察任务】",
+      "contentHash": "f65a73817839faedc710f4fd61427c7b2668b3e9840bec04b323a27642d40ae8",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-integrated-strategy-4",
+      "title": "综合策略 Boss",
+      "prompt": "观察窗发现：先比较候选方案再计算：【综合策略 Boss】综合任务中有6组，每组完成4项，另外完成5项复核，全部完成多少项？【推进任务】",
+      "contentHash": "922126b3a9ce83fa886f3caa4e1dacd5dd1c36cc01d2d2daf48023dc33cc3523",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-integrated-strategy-5",
+      "title": "综合策略 Boss",
+      "prompt": "校准表给出：最后回到现场做一次核验：【综合策略 Boss】综合任务中有3组，每组完成5项，另外完成6项复核，全部完成多少项？【协作任务】",
+      "contentHash": "3da7bf00c6ec473c29ed64c1a48fed08180619db6cb340e8de9735a441d433cc",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-integrated-strategy-6",
+      "title": "综合策略 Boss",
+      "prompt": "任务员核对：先把条件记在任务卡上：【综合策略 Boss】综合任务中有4组，每组完成6项，另外完成2项复核，全部完成多少项？【加固任务】",
+      "contentHash": "d8f391cb01354819edd110ec5ba8e83792b257780fd95a642931b5afb5fb57de",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-integrated-strategy-7",
+      "title": "综合策略 Boss",
+      "prompt": "仓库清单提示：先用清单整理已知量：【综合策略 Boss】综合任务中有5组，每组完成4项，另外完成3项复核，全部完成多少项？【巡航任务】",
+      "contentHash": "7f5a31e01a4bc581772f010524e7806a1d8ea3ce25f732f11bb1e32a846ea40c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-integrated-strategy-8",
+      "title": "综合策略 Boss",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【综合策略 Boss】综合任务中有6组，每组完成5项，另外完成4项复核，全部完成多少项？【穿越任务】",
+      "contentHash": "16e888ee0f6f6e036fe4f5e498b01a89f207f8bf8369f9fc77dda61c12194450",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-integrated-strategy-9",
+      "title": "综合策略 Boss",
+      "prompt": "综合任务要求：先比较候选方案再计算：【综合策略 Boss】综合任务中有3组，每组完成6项，另外完成5项复核，全部完成多少项？【攻坚任务】",
+      "contentHash": "cf65c3ea8aff1bb100f159e034ad87ed86ce41fc68cabc49a6570c55a18ed141",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-08-integrated-strategy-10",
+      "title": "综合策略 Boss",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【综合策略 Boss】综合任务中有4组，每组完成4项，另外完成6项复核，全部完成多少项？【决战任务】",
+      "contentHash": "07689f86d719523009a60a0db560e8ff25d7191b7f5ee64f667c889999c1fc1e",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    }
+  ]
+}

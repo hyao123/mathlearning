@@ -274,21 +274,6 @@ function resolveRandom(options) {
   return typeof options?.random === "function" ? options.random : Math.random;
 }
 
-function awardQuestionReward(inventory, chapterId, questionIndex, questionId, options = {}) {
-  const rewardPlan = GameItemCatalog.rollRewardForSlot(chapterId, questionIndex, resolveRandom(options)());
-  return rewardPlan.rewards
-    .reduce((result, reward) => {
-      const grant = InventoryModel.grantItem(result.inventory, reward.itemId, reward.quantity);
-      return {
-        inventory: grant.inventory,
-        rewardTransactions: [
-          ...result.rewardTransactions,
-          { questionId, rewardType: rewardPlan.type, ...grant.transaction }
-        ]
-      };
-    }, { inventory, rewardTransactions: [] });
-}
-
 function unlockNextLevel(unlockedLevelIds, chapter, levelId) {
   const currentIndex = chapter.levels.findIndex((level) => level.levelId === levelId);
   const nextLevelId = chapter.levels[currentIndex + 1]?.levelId;
@@ -542,18 +527,6 @@ function sanitizeMistakeQuestionIds(value, chapter) {
   return Object.fromEntries(Object.entries(value).filter(([questionId, marked]) => knownIds.has(questionId) && marked === true));
 }
 
-function sanitizeChallengeSettlement(value) {
-  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
-  return {
-    id: typeof value.id === "string" ? value.id : "recovery-settlement",
-    mode: value.mode === "random" ? "random" : "review",
-    correctCount: Number.isInteger(value.correctCount) && value.correctCount >= 0 ? value.correctCount : 0,
-    skippedCount: Number.isInteger(value.skippedCount) && value.skippedCount >= 0 ? value.skippedCount : 0,
-    earnedItems: Array.isArray(value.earnedItems) ? value.earnedItems.map((entry) => ({ ...entry })) : [],
-    rewardTransactions: Array.isArray(value.rewardTransactions) ? value.rewardTransactions.map((entry) => ({ ...entry })) : []
-  };
-}
-
 function sanitizeCrafting() {
   return { enabled: GameChapterConfig.FEATURE_FLAGS.crafting === true };
 }
@@ -656,20 +629,6 @@ function sanitizeResolvedMetadata(resolved, currentQuestion) {
     resolvedAt: resolved.resolvedAt,
     advanced: false
   };
-}
-
-function getExpectedRewardPlans(chapterId, questions) {
-  const expected = new Map();
-  questions.forEach((question, questionIndex) => {
-    const plan = GameItemCatalog.getRewardPlanForSlot(chapterId, questionIndex);
-    const rewards = plan.type === "random" ? plan.pool : plan.rewards;
-    expected.set(question.id, {
-      type: plan.type,
-      maxTransactions: plan.type === "random" ? 1 : rewards.length,
-      quantities: new Map(rewards.map(({ itemId, quantity }) => [itemId, quantity]))
-    });
-  });
-  return expected;
 }
 
 function sanitizeRewardTransactions(transactions, permittedQuestionIds) {
@@ -793,10 +752,10 @@ function hydrate(serialized, chapter) {
     levelRecords,
     inventory,
     activeRun: hydrateActiveRun(stored.activeRun, compiled, unlockedLevelIds, stored.activeChapterId),
-    activeChallengeRun: ChallengeModel.hydrateChallengeRun(stored.activeChallengeRun, compiled),
+    activeChallengeRun: ChallengeModel.hydrateChallengeRun(stored.activeChallengeRun, compiled, inventory),
     mistakeQuestionIds,
     lastSettlement,
-    lastChallengeSettlement: sanitizeChallengeSettlement(stored.lastChallengeSettlement),
+    lastChallengeSettlement: ChallengeModel.sanitizeChallengeSettlement(stored.lastChallengeSettlement, compiled),
     crafting: sanitizeCrafting(stored.crafting),
     equipment: sanitizeEquipment(stored.equipment, inventory),
     shop: sanitizeShop(stored.shop)

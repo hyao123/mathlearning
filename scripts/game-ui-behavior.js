@@ -34,6 +34,7 @@ async function main() {
     await page.reload({ waitUntil: "networkidle" });
 
     await page.locator("[data-game-screen='map']").waitFor({ state: "visible", timeout: 10000 });
+    assert.equal(await page.locator("[data-live-status][aria-live='polite']").count(), 1, "game should expose a polite live status region");
     assert.equal(await page.locator("[data-level-id]").count(), 12);
     assert.equal(await page.locator("[data-chapter-stage]").count(), 4, "map should show four first-chapter progress stages");
     assert.equal((await page.locator("[data-chapter-stage='1']").textContent()).includes("0 / 3"), true, "stage one should start at 0/3");
@@ -70,10 +71,14 @@ async function main() {
     assert.equal(await page.locator("[data-reward-preview][data-reward-type='fixed']").count(), 1);
     assert.equal(await page.locator("[data-reward-preview] [data-reward-status='awarded']").count(), 1);
     assert.equal(await page.locator("[data-reward-preview] img").count(), 1, "item reward preview must use its generated visual");
+    assert.equal(await page.locator("[data-reward-preview] img").getAttribute("loading"), "eager", "the current reward visual should load immediately");
+    assert.equal(await page.locator("[data-reward-preview] img").getAttribute("decoding"), "async", "ordinary reward visuals should decode asynchronously");
+    assert.equal(await page.locator("[data-reward-preview] img").getAttribute("fetchpriority"), "high", "the current reward visual should have high fetch priority");
 
     await page.locator("[data-answer-input]").fill("unsubmitted draft 42");
     await page.locator("[data-challenge-return-map]").click();
     await page.locator("[data-game-screen='map']").waitFor({ state: "visible" });
+    assert.equal(await page.evaluate(() => document.activeElement?.matches("[data-level-id='chapter-01-level-1']")), true, "returning to the map should restore focus to the paused level");
     assert.equal(await page.locator("[data-level-id='chapter-01-level-1']").getAttribute("data-status"), "paused");
     assert.equal((await page.locator("[data-level-id='chapter-01-level-1']").textContent()).includes("继续挑战"), true);
     await page.locator("[data-level-id='chapter-01-level-1']").click();
@@ -205,6 +210,8 @@ async function main() {
     await page.locator("[data-level-id='chapter-01-level-1']").click();
     await page.locator("[data-game-screen='challenge']").waitFor({ state: "visible" });
     assert.equal(await page.locator("[data-question-counter]").count(), 1, "save failure must not block rendering the new state");
+    assert.equal(await page.locator("[data-save-feedback]").count(), 1, "storage failures should be announced in the game UI");
+    assert.equal(await page.locator("[data-save-feedback]").getAttribute("role"), "alert");
     assert.deepEqual(pageErrors, [], `browser console/page errors:\n${pageErrors.join("\n")}`);
     console.log(`OK game storage failure fallback test at ${baseUrl}`);
   }, { port: process.env.GAME_UI_STORAGE_PORT || "4185" });
@@ -232,7 +239,7 @@ async function main() {
     assert.equal(await page.locator("[data-project-progress-meter]").getAttribute("aria-valuenow"), "2");
     assert.equal(await page.locator("[data-game-screen='inventory']").textContent().then((text) => text.includes("机体肋梁")), true);
     assert.equal(await page.locator("[data-item-id='j20-frame-rib'] [data-project-art='j20-frame-rib']").count(), 1, "crafted component should show its own item art");
-    const persistentInventory = await page.evaluate(() => JSON.parse(localStorage.getItem("math-quest-save-v3")).chapterStates["chapter-01"].inventory);
+    const persistentInventory = await page.evaluate(() => JSON.parse(localStorage.getItem("math-quest-save-v3")).inventory);
     assert.deepEqual(persistentInventory, { "j20-frame-rib": 1 });
 
     await page.evaluate(() => {
@@ -319,7 +326,7 @@ async function main() {
     });
     await page.reload({ waitUntil: "networkidle" });
     assert.equal(await page.locator("[data-level-id='chapter-04-level-1']").count(), 1, "fourth chapter should become the active route");
-    assert.equal((await page.locator("[data-campaign-overview]").textContent()).includes("六章数学远征"), true, "campaign overview should reflect the full campaign");
+    assert.equal((await page.locator("[data-campaign-overview]").textContent()).includes("九章数学远征"), true, "campaign overview should reflect the full campaign");
     assert.match(await page.locator("[data-level-map]").getAttribute("aria-label"), /极地破冰远征/, "map label should name the active polar route");
     await page.locator("[data-open-inventory]").click();
     await page.locator("[data-game-screen='inventory']").waitFor({ state: "visible" });
@@ -375,7 +382,7 @@ async function main() {
     });
     await page.reload({ waitUntil: "networkidle" });
     assert.equal(await page.locator("[data-level-id='chapter-05-level-1']").count(), 1, "fifth chapter should become the active route");
-    assert.equal((await page.locator("[data-campaign-overview]").textContent()).includes("六章数学远征"), true, "campaign overview should reflect six chapters");
+    assert.equal((await page.locator("[data-campaign-overview]").textContent()).includes("九章数学远征"), true, "campaign overview should reflect nine chapters");
     assert.match(await page.locator("[data-level-map]").getAttribute("aria-label"), /装甲突击演练/, "map label should name the armored route");
     await page.locator("[data-open-inventory]").click();
     await page.locator("[data-game-screen='inventory']").waitFor({ state: "visible" });
@@ -432,7 +439,7 @@ async function main() {
     });
     await page.reload({ waitUntil: "networkidle" });
     assert.equal(await page.locator("[data-level-id='chapter-06-level-1']").count(), 1, "sixth chapter should become the active route");
-    assert.equal((await page.locator("[data-campaign-overview]").textContent()).includes("六章数学远征"), true, "campaign overview should include the quantum route");
+    assert.equal((await page.locator("[data-campaign-overview]").textContent()).includes("九章数学远征"), true, "campaign overview should include the quantum route");
     assert.match(await page.locator("[data-level-map]").getAttribute("aria-label"), /星海数据与概率远征/, "map label should name the active star-sea route");
     await page.locator("[data-open-inventory]").click();
     await page.locator("[data-game-screen='inventory']").waitFor({ state: "visible" });
@@ -458,6 +465,55 @@ async function main() {
     assert.deepEqual(pageErrors, [], `browser console/page errors:\n${pageErrors.join("\n")}`);
     console.log(`OK game quantum satellite project visual test at ${baseUrl}`);
   }, { port: process.env.GAME_UI_QUANTUM_PROJECT_PORT || "4193" });
+
+  await withPage(chromium, async ({ baseUrl, page, pageErrors }) => {
+    await page.goto(baseUrl, { waitUntil: "networkidle" });
+    await page.evaluate(() => {
+      const clearedChapter = (chapterId) => ({
+        unlockedLevelIds: Array.from({ length: 12 }, (_, index) => `${chapterId}-level-${index + 1}`),
+        levelRecords: Object.fromEntries(Array.from({ length: 12 }, (_, index) => [`${chapterId}-level-${index + 1}`, { starCount: 3 }]))
+      });
+      localStorage.clear();
+      localStorage.setItem("math-quest-inventory-v1", JSON.stringify({
+        version: "math-quest-inventory-v1",
+        inventory: {
+          "j20-sky-fighter": 1,
+          "deep-sea-explorer": 1,
+          "orbital-science-station": 1,
+          "polar-icebreaker": 1,
+          "99a-main-battle-tank": 1,
+          "quantum-communication-satellite": 1
+        }
+      }));
+      localStorage.setItem("math-quest-campaign-v2", JSON.stringify({
+        version: "math-quest-campaign-v2",
+        activeChapterId: "chapter-07",
+        lastScreen: "map",
+        chapterStates: {
+          "chapter-01": clearedChapter("chapter-01"),
+          "chapter-02": clearedChapter("chapter-02"),
+          "chapter-03": clearedChapter("chapter-03"),
+          "chapter-04": clearedChapter("chapter-04"),
+          "chapter-05": clearedChapter("chapter-05"),
+          "chapter-06": clearedChapter("chapter-06"),
+          "chapter-07": { unlockedLevelIds: ["chapter-07-level-1"], levelRecords: {} }
+        }
+      }));
+    });
+    await page.reload({ waitUntil: "networkidle" });
+    assert.equal(await page.locator("[data-level-id='chapter-07-level-1']").count(), 1, "seventh chapter should become the active route");
+    assert.match(await page.locator("[data-level-map]").getAttribute("aria-label"), /思维工具工坊/, "map label should name the thinking workshop route");
+    await page.locator("[data-level-id='chapter-07-level-1']").click();
+    await page.locator("[data-game-screen='challenge']").waitFor({ state: "visible" });
+    assert.equal(await page.locator("[data-thinking-method='read-conditions']").count(), 1, "method label should be visible on new chapter questions");
+    assert.equal(await page.locator("[data-answer-input]").evaluate((input) => document.activeElement === input), true, "new chapter answer input should autofocus");
+    await page.locator("[data-answer-input]").fill("21");
+    await page.locator("[data-submit-answer]").click();
+    await page.locator("[data-answer-feedback='correct']").waitFor({ state: "visible" });
+    assert.equal(await page.locator("[data-tactical-review] details").evaluate((details) => details.open), false, "new chapter review should be collapsed by default");
+    assert.deepEqual(pageErrors, [], `browser console/page errors:\n${pageErrors.join("\n")}`);
+    console.log(`OK game thinking-method chapter test at ${baseUrl}`);
+  }, { port: process.env.GAME_UI_THINKING_METHOD_PORT || "4194" });
 
   await withPage(chromium, async ({ baseUrl, page, pageErrors }) => {
     await page.goto(baseUrl, { waitUntil: "networkidle" });

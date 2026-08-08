@@ -1,11 +1,5 @@
-const { CHAPTERS, DIFFICULTY_SLOTS } = require("./chapterConfig.js");
-const { supplementalQuestionsByModule } = require("./chapterQuestionPacks.js");
-const { supplementalQuestionsByModule: chapter02SupplementalQuestions } = require("./chapter02QuestionPacks.js");
-const { supplementalQuestionsByModule: chapter03SupplementalQuestions } = require("./chapter03QuestionPacks.js");
-const { supplementalQuestionsByModule: chapter04SupplementalQuestions, chapterModules: chapter04Modules } = require("./chapter04QuestionPacks.js");
-const { supplementalQuestionsByModule: chapter05SupplementalQuestions, chapterModules: chapter05Modules } = require("./chapter05QuestionPacks.js");
-const { supplementalQuestionsByModule: chapter06SupplementalQuestions, chapterModules: chapter06Modules } = require("./chapter06QuestionPacks.js");
-const { nativeChapterModules } = require("./nativeQuestionPacks.js");
+const { DIFFICULTY_SLOTS } = require("./chapterConfig.js");
+const ChapterRegistry = require("./chapterRegistry.js");
 const QuestionQuality = require("./questionQuality.js");
 const ChapterQualityProfiles = require("./chapterQualityProfiles.js");
 const ChapterQuestionOverrides = require("./chapterQuestionOverrides.js");
@@ -13,15 +7,6 @@ const QuestionContract = require("./questionContract.js");
 const QuestionContractFixes = require("./questionContractFixes.js");
 
 const REQUIRED_SUPPLEMENTAL_FIELDS = ["id", "title", "prompt", "answer", "explanation"];
-const NATIVE_CHAPTER_MODULES = Object.freeze({
-  "chapter-01": nativeChapterModules["chapter-01"],
-  "chapter-02": nativeChapterModules["chapter-02"],
-  "chapter-03": nativeChapterModules["chapter-03"],
-  "chapter-04": chapter04Modules,
-  "chapter-05": chapter05Modules,
-  "chapter-06": chapter06Modules
-});
-const ALL_SUPPLEMENTAL_QUESTIONS = Object.freeze({ ...supplementalQuestionsByModule, ...chapter02SupplementalQuestions, ...chapter03SupplementalQuestions, ...chapter04SupplementalQuestions, ...chapter05SupplementalQuestions, ...chapter06SupplementalQuestions });
 const MISSION_PHASES = Object.freeze(["启航", "校准", "侦察", "推进", "协作", "加固", "巡航", "穿越", "攻坚", "决战"]);
 
 function hasText(value) {
@@ -29,11 +14,7 @@ function hasText(value) {
 }
 
 function getChapter(chapterId) {
-  const chapter = CHAPTERS[chapterId];
-  if (!chapter) {
-    throw new Error(`Missing configured chapter: ${chapterId}`);
-  }
-  return chapter;
+  return ChapterRegistry.getChapterEntry(chapterId).chapter;
 }
 
 function inferReasoningType(moduleId) {
@@ -64,7 +45,16 @@ function enrichQuestion(candidate, module, slot, difficulty, chapterId) {
     difficulty,
     isBoss: slot === 10,
     learningObjective: overriddenCandidate.learningObjective || moduleProfile?.learningObjective || `掌握${module.title}的核心方法`,
+    knowledgeGoal: overriddenCandidate.knowledgeGoal || moduleProfile?.knowledgeGoal || overriddenCandidate.learningObjective || `掌握${module.title}的核心方法`,
+    typicalModel: overriddenCandidate.typicalModel || moduleProfile?.typicalModel || overriddenCandidate.difficultyProfile?.representation || "word-problem",
+    commonPitfall: overriddenCandidate.commonPitfall || moduleProfile?.commonPitfall || moduleProfile?.pitfall || "不要省略最后的验算。",
+    transferType: overriddenCandidate.transferType || moduleProfile?.transferType || (slot >= 10 ? "boss-integration" : slot >= 8 ? "contextual" : "direct"),
+    verificationMethod: overriddenCandidate.verificationMethod || moduleProfile?.verificationMethod || moduleProfile?.solutionReview?.verification || "把结果代回题目条件，确认数量、单位和所求量一致。",
     reasoningType: overriddenCandidate.reasoningType || moduleProfile?.reasoningType || inferReasoningType(module.id),
+    thinkingMethodId: overriddenCandidate.thinkingMethodId || moduleProfile?.thinkingMethodId,
+    thinkingMethodLabel: overriddenCandidate.thinkingMethodLabel || moduleProfile?.thinkingMethodLabel,
+    methodPrompt: overriddenCandidate.methodPrompt || moduleProfile?.methodPrompt,
+    methodReview: overriddenCandidate.methodReview || moduleProfile?.methodReview,
     difficultyProfile: overriddenCandidate.difficultyProfile || moduleProfile?.difficultyProfile || {
       steps: slot <= 3 ? 1 : slot <= 7 ? 2 : 3,
       conditions: slot <= 3 ? 1 : 2,
@@ -73,25 +63,36 @@ function enrichQuestion(candidate, module, slot, difficulty, chapterId) {
       transfer: slot >= 8 ? "contextual" : "direct"
     },
     storyBeat: overriddenCandidate.storyBeat || moduleProfile?.storyBeat || `完成${module.title}任务，推进工程路线。`,
-    solutionReview: overriddenCandidate.solutionReview || moduleProfile?.solutionReview || {
-      observation: `先找出题目中和“${module.title}”有关的数量关系。`,
-      steps: [explanation],
-      answer: String(overriddenCandidate.answer),
-      check: "把结果代回题目条件核对。",
-      pitfall: "注意读清数量、单位和题目所问。"
+    solutionReview: {
+      ...(moduleProfile?.solutionReview || {
+        schemaVersion: 2,
+        method: "word-problem",
+        stepKinds: ["observe", "calculate", "verify"],
+        observation: `\u5148\u627e\u51fa${module.title}\u4e2d\u7684\u6570\u91cf\u5173\u7cfb\u3002`,
+        steps: ["\u89c2\u5bdf\u9898\u76ee\u6761\u4ef6", explanation, "\u628a\u7ed3\u679c\u4ee3\u56de\u9898\u76ee\u6838\u5bf9"],
+        calculation: explanation,
+        answer: String(overriddenCandidate.answer),
+        answerFormat: QuestionContract.getAnswerFormat(overriddenCandidate.answer),
+        verification: "\u628a\u7ed3\u679c\u4ee3\u56de\u9898\u76ee\u6761\u4ef6\uff0c\u786e\u8ba4\u6570\u91cf\u3001\u5355\u4f4d\u548c\u6240\u6c42\u91cf\u5747\u6b63\u786e\u3002",
+        check: "\u6838\u5bf9\u7ed3\u679c\u4e0e\u9898\u76ee\u6761\u4ef6\u662f\u5426\u4e00\u81f4\u3002",
+        errorTrap: "\u63d0\u4ea4\u524d\u68c0\u67e5\u8fd0\u7b97\u987a\u5e8f\u548c\u5355\u4f4d\u3002",
+        pitfall: "\u4e0d\u8981\u7701\u7565\u6700\u540e\u7684\u9a8c\u7b97\u3002"
+      }),
+      ...(overriddenCandidate.solutionReview || {})
     }
   };
 }
 
 function findModule(moduleId, modules = [], chapterId = null) {
-  const nativeModules = NATIVE_CHAPTER_MODULES[chapterId] || [];
-  return modules.find((item) => item.id === moduleId) || nativeModules.find((item) => item.id === moduleId);
+  return chapterId
+    ? ChapterRegistry.findModule(chapterId, moduleId, modules)
+    : modules.find((item) => item.id === moduleId);
 }
 
 function buildLevel(levelConfig, modules = [], chapterId = null) {
   const module = findModule(levelConfig.moduleId, modules, chapterId);
   if (!module) throw new Error(`Missing configured module: ${levelConfig.moduleId}`);
-  const supplemental = ALL_SUPPLEMENTAL_QUESTIONS[module.id] || [];
+  const supplemental = ChapterRegistry.getSupplementalQuestions(chapterId, module.id);
   const allPractices = [...(module.practices || []), ...supplemental].map((practice) => ({ ...practice }));
   const slots = DIFFICULTY_SLOTS.map((difficulty, index) => ({ difficulty, slot: index + 1 }));
   const selectedIds = new Set();
@@ -110,11 +111,12 @@ function buildChapter(chapterId, modules) {
     chapterId: chapter.id,
     name: chapter.name,
     rewardTheme: chapter.rewardTheme,
+    prerequisiteChapterId: chapter.prerequisiteChapterId,
     levels: chapter.levels.map((levelConfig) => buildLevel(levelConfig, modules, chapter.id))
   };
 }
 
-function validateSupplementalPacks(chapterId, packs = ALL_SUPPLEMENTAL_QUESTIONS, modules = []) {
+function validateSupplementalPacks(chapterId, packs = null, modules = []) {
   let chapter;
   try {
     chapter = getChapter(chapterId);
@@ -124,11 +126,11 @@ function validateSupplementalPacks(chapterId, packs = ALL_SUPPLEMENTAL_QUESTIONS
 
   const errors = [];
   const configuredModuleIds = chapter.levels.map((level) => level.moduleId);
-  const configuredModuleIdSet = new Set(configuredModuleIds);
+  const selectedPacks = packs || ChapterRegistry.getSupplementalQuestionsByModule(chapterId);
   const allowedDifficulties = new Set(DIFFICULTY_SLOTS);
   const supplementalIds = new Set();
 
-  if (!packs || typeof packs !== "object" || Array.isArray(packs)) {
+  if (!selectedPacks || typeof selectedPacks !== "object" || Array.isArray(selectedPacks)) {
     return { valid: false, errors: ["Supplemental question packs must be an object"] };
   }
 
@@ -164,10 +166,8 @@ function validateSupplementalPacks(chapterId, packs = ALL_SUPPLEMENTAL_QUESTIONS
   };
 
   configuredModuleIds.forEach((moduleId) => {
-    const rows = packs[moduleId];
-    const expectedCount = ["chapter-04", "chapter-05", "chapter-06"].includes(chapterId)
-      ? 10
-      : chapterId === "chapter-03" ? 1 : 4;
+    const rows = selectedPacks[moduleId];
+    const expectedCount = ChapterRegistry.getChapterEntry(chapterId).supplementalCount || 0;
     if (!Array.isArray(rows) || rows.length !== expectedCount) {
       errors.push(`${moduleId} must contain exactly ${expectedCount} supplemental questions; found ${Array.isArray(rows) ? rows.length : 0}`);
     }
@@ -201,7 +201,7 @@ function validateChapter(chapterId, modules) {
     return { valid: false, errors: [error.message] };
   }
 
-  const supplementalReport = validateSupplementalPacks(chapterId, ALL_SUPPLEMENTAL_QUESTIONS, modules);
+  const supplementalReport = validateSupplementalPacks(chapterId, null, modules);
   errors.push(...supplementalReport.errors);
 
   chapter.levels.forEach((levelConfig) => {
@@ -211,7 +211,7 @@ function validateChapter(chapterId, modules) {
       return;
     }
 
-    const allPractices = [...(module.practices || []), ...(ALL_SUPPLEMENTAL_QUESTIONS[module.id] || [])];
+    const allPractices = [...(module.practices || []), ...ChapterRegistry.getSupplementalQuestions(chapterId, module.id)];
     const selectedIds = new Set();
     DIFFICULTY_SLOTS.forEach((difficulty, index) => {
       const slot = index + 1;

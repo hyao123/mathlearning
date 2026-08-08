@@ -1,15 +1,17 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "chapterId": "chapter-01",
   "status": "approved",
   "reviewer": "???????????",
   "reviewedAt": "2026-07-30",
+  "contentHash": "34ca1baf30314e1b1e8ef9021bff9fa49d82b5844d5d605f4ac1de06d4334951",
   "notes": "?????? 2026-07-30 ???? 120 ???????????????????",
   "records": [
     {
       "questionId": "patterns-1",
       "title": "刻度推进",
-      "prompt": "工程尺的刻度从 4、7、10、13 依次推进。下一格应标多少？",
+      "prompt": "工程尺的刻度从 4、7、10、13 依次推进。下一格应标多少？【启航任务】",
+      "contentHash": "c7bdfe5c785485bdda4faa5a5ce6f1693303225e35d1a18322b8c2437ffa69ad",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -25,7 +27,8 @@
     {
       "questionId": "patterns-2",
       "title": "方形护板",
-      "prompt": "第 1、2、3、4 块方形护板的小格数依次是 1、4、9、16。第 5 块有多少小格？",
+      "prompt": "第 1、2、3、4 块方形护板的小格数依次是 1、4、9、16。第 5 块有多少小格？【校准任务】",
+      "contentHash": "4df8f0eb50ef40851b96ff4d3bafeb28b7f4747d1ecfc8bd5465296767f0a17f",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -41,7 +44,8 @@
     {
       "questionId": "patterns-3",
       "title": "扫描范围",
-      "prompt": "探测器的扫描范围每轮都扩大为原来的 2 倍：3、6、12、24。下一轮是多少？",
+      "prompt": "探测器的扫描范围每轮都扩大为原来的 2 倍：3、6、12、24。下一轮是多少？【侦察任务】",
+      "contentHash": "ba8a332ee886fc692ac8245900c5fdea6e87ce3c01416c41df9f565c90d7a5b3",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -57,7 +61,8 @@
     {
       "questionId": "patterns-4",
       "title": "灯带编号",
-      "prompt": "跑道灯每隔 3 个编号亮一次：5、8、11、14、17。下一盏的编号是多少？",
+      "prompt": "跑道灯每隔 3 个编号亮一次：5、8、11、14、17。下一盏的编号是多少？【推进任务】",
+      "contentHash": "64f5d3f1a40040c1cd028250157b18c628f3232e421ffc7e262553ec1a88280d",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -73,7 +78,8 @@
     {
       "questionId": "chapter-01-patterns-advance-1",
       "title": "递增步数",
-      "prompt": "数列 1，4，9，16，( ) 的下一项是多少？",
+      "prompt": "数列 1，4，9，16，( ) 的下一项是多少？【协作任务】",
+      "contentHash": "09cddace8784c9f0499d533315a2f7381cee6ca7496e5e8651493b1447f1f68a",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -89,7 +95,8 @@
     {
       "questionId": "patterns-5",
       "title": "折叠翼片",
-      "prompt": "翼片每次折叠后数量翻倍：2、4、8、16。下一次折叠后有多少片？",
+      "prompt": "翼片每次折叠后数量翻倍：2、4、8、16。下一次折叠后有多少片？【加固任务】",
+      "contentHash": "3ea3873d0a9477b085505912863baee365b3c2b8f80497832f829b7fe5cb8917",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -105,7 +112,8 @@
     {
       "questionId": "patterns-8",
       "title": "方阵地砖",
-      "prompt": "正方形训练区边长依次为 1、2、3、4、5 格，对应地砖数是 2、5、10、17、( )。下一块训练区需要多少块地砖？",
+      "prompt": "正方形训练区边长依次为 1、2、3、4、5 格，对应地砖数是 2、5、10、17、( )。下一块训练区需要多少块地砖？【巡航任务】",
+      "contentHash": "b45474bd6f9e57ed01b3c56f15b15dbee0cd768d80c79835df1c41218465cfb7",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -121,7 +129,8 @@
     {
       "questionId": "patterns-9",
       "title": "闯关 9",
-      "prompt": "8，7，10，9，12，11，( )",
+      "prompt": "8，7，10，9，12，11，( )【穿越任务】",
+      "contentHash": "69410d2b10159c76ec13dc3e0b3bcf57f3d53891044b02f7241c5a58e56899f5",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -137,7 +146,8 @@
     {
       "questionId": "patterns-6",
       "title": "装箱记录",
-      "prompt": "补给箱本轮多装 1 件、下一轮多装 2 件、再下一轮多装 3 件：1、2、4、7、11。下一箱应装多少件？",
+      "prompt": "补给箱本轮多装 1 件、下一轮多装 2 件、再下一轮多装 3 件：1、2、4、7、11。下一箱应装多少件？【攻坚任务】",
+      "contentHash": "b26504ff4f9289b04a7853ba3bc962ce6185d3359033f4e53cc9e7417c5eb1bd",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -153,7 +163,8 @@
     {
       "questionId": "patterns-12",
       "title": "螺栓累计",
-      "prompt": "装配第 1、2、3、4、5 层支架后，累计使用螺栓数是 2、6、12、20、30。第 6 层后累计是多少？",
+      "prompt": "装配第 1、2、3、4、5 层支架后，累计使用螺栓数是 2、6、12、20、30。第 6 层后累计是多少？【决战任务】",
+      "contentHash": "8c4d89d3313b9a8aec9cfb2b6115df28fc6f3f16ab53f5c1ee9091915a05deef",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -169,7 +180,8 @@
     {
       "questionId": "quick-calculation-1",
       "title": "维修台清点",
-      "prompt": "维修台先摆了 297 个小垫片，又放上 36 个，其中 3 个正好补整。现在一共有多少个？",
+      "prompt": "维修台先摆了 297 个小垫片，又放上 36 个，其中 3 个正好补整。现在一共有多少个？【启航任务】",
+      "contentHash": "4e30cbb9ecf8507c74755d9d9e9e6dbc61e7edf13624f9a8aaac3500ec0e91a0",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -185,7 +197,8 @@
     {
       "questionId": "quick-calculation-2",
       "title": "接近整百",
-      "prompt": "计算 456 + 99。",
+      "prompt": "计算 456 + 99。【校准任务】",
+      "contentHash": "5ec74814d898ece2dc24f27215eb58c237a44f4dea0572226f3b971a10fe4381",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -201,7 +214,8 @@
     {
       "questionId": "quick-calculation-3",
       "title": "加减凑整",
-      "prompt": "计算 1000 - 398 - 2。",
+      "prompt": "计算 1000 - 398 - 2。【侦察任务】",
+      "contentHash": "d3fdb98fc174f174a9cf1fa094a1a7ef83a1ac4d8e3d52ad35cb2fe91cc3048b",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -217,7 +231,8 @@
     {
       "questionId": "quick-calculation-4",
       "title": "整齐排布",
-      "prompt": "装配架有 16 排，每排整齐放 25 个卡扣。一共放了多少个卡扣？",
+      "prompt": "装配架有 16 排，每排整齐放 25 个卡扣。一共放了多少个卡扣？【推进任务】",
+      "contentHash": "5c24b8b76519a06a1ad80cf08ffe5adf44f78eca3322681f20c62076534f9fd7",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -233,7 +248,8 @@
     {
       "questionId": "chapter-01-quick-calculation-advance-1",
       "title": "三箱补给",
-      "prompt": "三箱补给分别装有 684、199 和 316 个零件。合在一起共有多少个？",
+      "prompt": "三箱补给分别装有 684、199 和 316 个零件。合在一起共有多少个？【协作任务】",
+      "contentHash": "d9c2bc1f82c4bd60aec136ad619ae09b7709639b3f0bb09bd8b91d979b900841",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -249,7 +265,8 @@
     {
       "questionId": "quick-calculation-5",
       "title": "连续工位",
-      "prompt": "工位编号从 21 到 29，每个工位各领取 1 张任务卡。把这些编号相加，结果是多少？",
+      "prompt": "工位编号从 21 到 29，每个工位各领取 1 张任务卡。把这些编号相加，结果是多少？【加固任务】",
+      "contentHash": "e36646b54e41a8c56e9ac785a14c96cd85ab14dd2195036ab612ffc561bb5b73",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -265,7 +282,8 @@
     {
       "questionId": "chapter-01-quick-calculation-improve-1",
       "title": "跑道灯编号",
-      "prompt": "跑道灯编号从 31 到 39。把这些编号相加，结果是多少？",
+      "prompt": "跑道灯编号从 31 到 39。把这些编号相加，结果是多少？【巡航任务】",
+      "contentHash": "f4d0f168a31eb511ebecd087f2d01372d03d1efba9f1163bc6b1543c52df27cb",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -281,7 +299,8 @@
     {
       "questionId": "chapter-01-quick-calculation-improve-2",
       "title": "批量芯片",
-      "prompt": "24 组传感芯片，每组有 125 枚。共有多少枚芯片？",
+      "prompt": "24 组传感芯片，每组有 125 枚。共有多少枚芯片？【穿越任务】",
+      "contentHash": "5bcfe2f8a23d4caf946a065b044256eaa0dc3a378c790f43b7660d80c41160b4",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -297,7 +316,8 @@
     {
       "questionId": "quick-calculation-6",
       "title": "双向校准",
-      "prompt": "校准台的四个读数是 998、397、2、3。快速合计后是多少？",
+      "prompt": "校准台的四个读数是 998、397、2、3。快速合计后是多少？【攻坚任务】",
+      "contentHash": "664b80f31719b2c42977294fa86bdc4110d06ffc3892b0f2411629278ac3b4cc",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -313,7 +333,8 @@
     {
       "questionId": "chapter-01-quick-calculation-challenge-1",
       "title": "整千配对",
-      "prompt": "两组数据 999 和 1 可以配成整千，278 和 722 也可以配成整千。四个数合计是多少？",
+      "prompt": "两组数据 999 和 1 可以配成整千，278 和 722 也可以配成整千。四个数合计是多少？【决战任务】",
+      "contentHash": "396bec9f4f3480c2bd7b3323d4a87ad39b46a16f8f86f80c3e3980790e81d38d",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -329,7 +350,8 @@
     {
       "questionId": "arithmetic-series-1",
       "title": "下一项",
-      "prompt": "数列 4，9，14，19，下一项是多少？",
+      "prompt": "数列 4，9，14，19，下一项是多少？【启航任务】",
+      "contentHash": "648f09501f9dcb2b26aa73c05968003444a45dd25a18fae77d6d775f9a5d6214",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -345,7 +367,8 @@
     {
       "questionId": "arithmetic-series-2",
       "title": "第八盏灯",
-      "prompt": "灯带从第 1 盏起编号为 2、6、10、14……每盏比前一盏多 4。第 8 盏编号是多少？",
+      "prompt": "灯带从第 1 盏起编号为 2、6、10、14……每盏比前一盏多 4。第 8 盏编号是多少？【校准任务】",
+      "contentHash": "8e3f1fb6eb12cd7c6eaf73e283109b38fc3ea0e42ca9f009f34fad6d8067aad0",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -361,7 +384,8 @@
     {
       "questionId": "arithmetic-series-3",
       "title": "求项数",
-      "prompt": "数列 6，10，14，18，……，46 一共有多少项？",
+      "prompt": "数列 6，10，14，18，……，46 一共有多少项？【侦察任务】",
+      "contentHash": "2131c0bf2fa6d5c01f04e189e25f37b974c5aec5c962f5109df4dc623359dff4",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -377,7 +401,8 @@
     {
       "questionId": "arithmetic-series-4",
       "title": "从 1 加到 30",
-      "prompt": "1 + 2 + 3 + …… + 30 的和是多少？",
+      "prompt": "1 + 2 + 3 + …… + 30 的和是多少？【推进任务】",
+      "contentHash": "02c960f112f903d14e48e6c03082ce088919a7fa990c768d7fefe8183cea047c",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -393,7 +418,8 @@
     {
       "questionId": "chapter-01-arithmetic-series-advance-1",
       "title": "第十段轨道",
-      "prompt": "轨道段长度依次是 5、8、11、14……每段比前一段长 3。第 10 段长度是多少？",
+      "prompt": "轨道段长度依次是 5、8、11、14……每段比前一段长 3。第 10 段长度是多少？【协作任务】",
+      "contentHash": "72e78a83749aade84aa9cf1757c64f25edc1467e17ef2aa2cd4daa495d794691",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -409,7 +435,8 @@
     {
       "questionId": "arithmetic-series-5",
       "title": "奇数编号牌",
-      "prompt": "把编号为 1、3、5、7、9、11、13、15 的八块标记牌相加，和是多少？",
+      "prompt": "把编号为 1、3、5、7、9、11、13、15 的八块标记牌相加，和是多少？【加固任务】",
+      "contentHash": "10a3ad03329b4f064efaa361409da905db67a2a884fa6dd6d8ab37b5208bcd3a",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -425,7 +452,8 @@
     {
       "questionId": "chapter-01-arithmetic-series-improve-1",
       "title": "偶数工具箱",
-      "prompt": "8 个工具箱的编号是 2、4、6、8、10、12、14、16。编号和是多少？",
+      "prompt": "8 个工具箱的编号是 2、4、6、8、10、12、14、16。编号和是多少？【巡航任务】",
+      "contentHash": "f13699d4d5ee505a5f702b9600fb2dbf430ec6a3ebcd5ba227f9cb4107322e94",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -441,7 +469,8 @@
     {
       "questionId": "chapter-01-arithmetic-series-improve-2",
       "title": "中间项",
-      "prompt": "等差数列的第 1 项是 7，第 9 项是 39，第 5 项是多少？",
+      "prompt": "等差数列的第 1 项是 7，第 9 项是 39，第 5 项是多少？【穿越任务】",
+      "contentHash": "ff42981435be20c642ca51e49aa43781138a3da08221300b5ee042b40ce8b521",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -457,7 +486,8 @@
     {
       "questionId": "arithmetic-series-6",
       "title": "综合求和",
-      "prompt": "数列 7，12，17，22，……，52 的所有项之和是多少？",
+      "prompt": "数列 7，12，17，22，……，52 的所有项之和是多少？【攻坚任务】",
+      "contentHash": "c4a28b4fbf500d1d28a1b7ea318af9564e46cf6d42722e4bc2d378eb36e17dd2",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -473,7 +503,8 @@
     {
       "questionId": "chapter-01-arithmetic-series-challenge-1",
       "title": "连续数求和",
-      "prompt": "从 18 加到 42，一共有多少？",
+      "prompt": "从 18 加到 42，一共有多少？【决战任务】",
+      "contentHash": "ba7cc9461128a7f7c7fc1a28f1b14d98a6b7b419e65866878f0f4d410c3f2451",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -489,7 +520,8 @@
     {
       "questionId": "periodicity-1",
       "title": "颜色循环",
-      "prompt": "按“红、黄、蓝、红、黄、蓝……”排列，第 20 个是什么颜色？",
+      "prompt": "按红、黄、蓝循环排列，编号规则为红=1、黄=2、蓝=3。第 20 个颜色对应的循环编号是多少？【启航任务】",
+      "contentHash": "18adf48a6d0966b475871e82d507cea3d29ca27a5d1c1bd4914bec5fd9e6ff22",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -505,7 +537,8 @@
     {
       "questionId": "periodicity-2",
       "title": "图形周期",
-      "prompt": "按“○、□、△、○、□、△……”排列，第 17 个图形是什么？",
+      "prompt": "按○、□、△循环排列，编号规则为○=1、□=2、△=3。第 17 个图形对应的循环编号是多少？【校准任务】",
+      "contentHash": "8cf84e26954bd842607bebe3c28659f881e697d55d65c750cd9d85b3f06124da",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -521,7 +554,8 @@
     {
       "questionId": "periodicity-3",
       "title": "星期推算",
-      "prompt": "今天是星期五，10 天后是星期几？",
+      "prompt": "按周一=1、周二=2、……、周日=7 编号。今天是周五，10 天后的星期编号是多少？【侦察任务】",
+      "contentHash": "9923ade6389eb6c37ceddcb661d1b4e00e83a72b393acbca65b7ef47f83c67e6",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -537,7 +571,8 @@
     {
       "questionId": "periodicity-4",
       "title": "余 0 情况",
-      "prompt": "按“甲、乙、丙、丁”循环排列，第 32 个是谁？",
+      "prompt": "按甲=1、乙=2、丙=3、丁=4 循环排列。第 32 个位置的编号是多少？【推进任务】",
+      "contentHash": "e806bd7cbfb3ea05fe527aa50a329ab5b0d30b4fb46da49ed48b5b0020444b2b",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -553,7 +588,8 @@
     {
       "questionId": "chapter-01-periodicity-advance-1",
       "title": "余数定位",
-      "prompt": "按“春、夏、秋、冬”循环，第 18 个是什么？",
+      "prompt": "按春=1、夏=2、秋=3、冬=4 循环排列。第 18 个位置的循环编号是多少？【协作任务】",
+      "contentHash": "3e19687632c3b4bc9ab940e8f8cee77ac8f67a8b6700839e03b2bd0488bf75df",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -569,7 +605,8 @@
     {
       "questionId": "periodicity-5",
       "title": "数字周期",
-      "prompt": "数列 2，5，8，2，5，8……第 41 项是多少？",
+      "prompt": "数列 2，5，8，2，5，8……第 41 项是多少？【加固任务】",
+      "contentHash": "d7b73d675ab9491cb2f98981d3d7dd1f3df31d5cd515cf5089fbf5d77ef40012",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -585,7 +622,8 @@
     {
       "questionId": "chapter-01-periodicity-improve-1",
       "title": "循环字母",
-      "prompt": "按“A、B、C、D、E”循环，第 43 个字母是什么？",
+      "prompt": "按 A=1、B=2、C=3、D=4、E=5 循环排列。第 43 个位置的循环编号是多少？【巡航任务】",
+      "contentHash": "a95f07f5e1a5ecee4e7e4acfa4dc3450ef03f810b853a48423a6b0d71da3d5ff",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -601,7 +639,8 @@
     {
       "questionId": "chapter-01-periodicity-improve-2",
       "title": "整除位置",
-      "prompt": "按“★、●、▲、■、♥”循环，第 35 个图形是什么？",
+      "prompt": "按★=1、●=2、▲=3、■=4、♥=5 循环排列。第 35 个位置的循环编号是多少？【穿越任务】",
+      "contentHash": "7d3daec9641f6aaeec26a8dd5b808f8752c14da372c2084d5cde6198e9d6c2af",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -617,7 +656,8 @@
     {
       "questionId": "periodicity-6",
       "title": "复杂周期",
-      "prompt": "按“1，1，2，3，1，1，2，3……”排列，第 50 个数是多少？",
+      "prompt": "按“1，1，2，3，1，1，2，3……”排列，第 50 个数是多少？【攻坚任务】",
+      "contentHash": "4e1662249f95f3daa45e75a1b3a220930ea2892ed948dc253dcfbc1792d632ab",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -633,7 +673,8 @@
     {
       "questionId": "chapter-01-periodicity-challenge-1",
       "title": "两层周期",
-      "prompt": "今天是星期二，100 天后是星期几？",
+      "prompt": "按周一=1、周二=2、……、周日=7 编号。今天是周二，100 天后的星期编号是多少？【决战任务】",
+      "contentHash": "9c3c090a33f4ba624f5ab780cecff47faa56cf4eddcc89693a60354bd208f34d",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -649,7 +690,8 @@
     {
       "questionId": "enumeration-1",
       "title": "两位数",
-      "prompt": "用 4、5、6 可以组成多少个没有重复数字的两位数？",
+      "prompt": "用 4、5、6 可以组成多少个没有重复数字的两位数？【启航任务】",
+      "contentHash": "11ebc80f750526db590de449532e5cbc535ee02e9b8eb469eacd102c7f56f83f",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -665,7 +707,8 @@
     {
       "questionId": "enumeration-2",
       "title": "三种搭配",
-      "prompt": "有 2 顶帽子和 4 件上衣，每次选一顶帽子和一件上衣，一共有多少种搭配？",
+      "prompt": "有 2 顶帽子和 4 件上衣，每次选一顶帽子和一件上衣，一共有多少种搭配？【校准任务】",
+      "contentHash": "efb3bc2f6cf4d921f39023b98f97a08f4a18004da937c4ddd5e2cf94138efe71",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -681,7 +724,8 @@
     {
       "questionId": "enumeration-3",
       "title": "分类计数",
-      "prompt": "从 A、B、C、D 四人中选 1 人当组长，有多少种选法？",
+      "prompt": "从 A、B、C、D 四人中选 1 人当组长，有多少种选法？【侦察任务】",
+      "contentHash": "9bf3bc5c24bf0904fe03b3a963ba3425230825c34dce141e658d4f92079a7bbc",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -697,7 +741,8 @@
     {
       "questionId": "chapter-01-enumeration-advance-1",
       "title": "三位排列",
-      "prompt": "用 1、2、3 组成没有重复数字的三位数，有多少个？",
+      "prompt": "用 1、2、3 组成没有重复数字的三位数，有多少个？【推进任务】",
+      "contentHash": "6f3b7747b5ffde523be5722e2b487a64d5455998e17d608f36cdde659b4cd12c",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -713,7 +758,8 @@
     {
       "questionId": "chapter-01-enumeration-advance-2",
       "title": "有序列表",
-      "prompt": "从 A、B、C 三张卡片中选两张并排成一列，有多少种排法？",
+      "prompt": "从 A、B、C 三张卡片中选两张并排成一列，有多少种排法？【协作任务】",
+      "contentHash": "61f22d0fe32892342534dec090ba0bcef5c11eea6ff3e83de8ee409938f5b3f3",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -729,7 +775,8 @@
     {
       "questionId": "enumeration-4",
       "title": "选两人握手",
-      "prompt": "4 个人两两握手，每两人握一次，一共握手多少次？",
+      "prompt": "4 个人两两握手，每两人握一次，一共握手多少次？【加固任务】",
+      "contentHash": "2ad640aed74453ecab7ee60aa35654ffbe43c3697ac215cc68f701823c790876",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -745,7 +792,8 @@
     {
       "questionId": "enumeration-5",
       "title": "有序安排",
-      "prompt": "甲、乙、丙三人排成一排，一共有多少种不同排法？",
+      "prompt": "甲、乙、丙三人排成一排，一共有多少种不同排法？【巡航任务】",
+      "contentHash": "619a49b110f652ceaeba24d4a9f42b5e285d7d14003d32fffbf6a4728140010d",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -761,7 +809,8 @@
     {
       "questionId": "chapter-01-enumeration-improve-1",
       "title": "不重复号码",
-      "prompt": "用 1、2、3、4 组成没有重复数字的三位数，有多少个？",
+      "prompt": "用 1、2、3、4 组成没有重复数字的三位数，有多少个？【穿越任务】",
+      "contentHash": "68ac9a0e621b18d9e47c483f5af0455e2ec1b0295cac3703a15d5773924292ac",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -777,7 +826,8 @@
     {
       "questionId": "enumeration-6",
       "title": "不重不漏",
-      "prompt": "用 0、1、2、3 可以组成多少个没有重复数字的两位数？",
+      "prompt": "用 0、1、2、3 可以组成多少个没有重复数字的两位数？【攻坚任务】",
+      "contentHash": "454cd73e54df5ace5ea804b71ada2a833dbad89d953e215e85c6c79397530abc",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -793,7 +843,8 @@
     {
       "questionId": "chapter-01-enumeration-challenge-1",
       "title": "首位限制",
-      "prompt": "用 0、1、2、3、4 组成没有重复数字的三位数，百位不能是 0，有多少个？",
+      "prompt": "用 0、1、2、3、4 组成没有重复数字的三位数，百位不能是 0，有多少个？【决战任务】",
+      "contentHash": "2a743fc052512d8821d1ea6e479a33c41d3c06811ce5b34acac773d6853d5ce0",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -809,7 +860,8 @@
     {
       "questionId": "add-multiply-principle-1",
       "title": "只选一种",
-      "prompt": "盒子里有 5 支铅笔和 3 支钢笔，只选 1 支笔，一共有多少种选法？",
+      "prompt": "盒子里有 5 支铅笔和 3 支钢笔，只选 1 支笔，一共有多少种选法？【启航任务】",
+      "contentHash": "812a6c2b12b48e3a8a2b2774a264b38f6db2fb4694948516a337f75cabc21a7f",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -825,7 +877,8 @@
     {
       "questionId": "add-multiply-principle-2",
       "title": "一套搭配",
-      "prompt": "有 4 件上衣和 2 条裤子，每次选 1 件上衣和 1 条裤子，一共有多少种搭配？",
+      "prompt": "有 4 件上衣和 2 条裤子，每次选 1 件上衣和 1 条裤子，一共有多少种搭配？【校准任务】",
+      "contentHash": "6ad42e69f49b73e1c34a0d43c08f977ff7bc84b852dfb295e2756f709f3c6941",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -841,7 +894,8 @@
     {
       "questionId": "add-multiply-principle-3",
       "title": "路线选择",
-      "prompt": "从家到学校必须经过公园。家到公园有 3 条路，公园到学校有 2 条路，一共有多少种走法？",
+      "prompt": "从家到学校必须经过公园。家到公园有 3 条路，公园到学校有 2 条路，一共有多少种走法？【侦察任务】",
+      "contentHash": "e017d79b5b9cb4cc48508238fe35718ed4f064488e0bdaecbadd08a47ccd0dd9",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -857,7 +911,8 @@
     {
       "questionId": "add-multiply-principle-4",
       "title": "两种方案",
-      "prompt": "小明去图书馆，可以坐 2 路公交，也可以坐 5 路公交；2 路有 3 个班次，5 路有 4 个班次。共有多少种乘车选择？",
+      "prompt": "小明去图书馆，可以坐 2 路公交，也可以坐 5 路公交；2 路有 3 个班次，5 路有 4 个班次。共有多少种乘车选择？【推进任务】",
+      "contentHash": "65227f6b8cce94115dd1f6899566e0e0588543ab56b8af4bd3e8d6b64e481bd8",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -873,7 +928,8 @@
     {
       "questionId": "chapter-01-add-multiply-principle-advance-1",
       "title": "两类路线",
-      "prompt": "去公园可以坐公交（3 条线）或骑车（2 条路线），一共有多少种去法？",
+      "prompt": "去公园可以坐公交（3 条线）或骑车（2 条路线），一共有多少种去法？【协作任务】",
+      "contentHash": "300f22c88bbf1b650b25b91969300635e5013adb536621b0a44f63f287a19343",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -889,7 +945,8 @@
     {
       "questionId": "add-multiply-principle-5",
       "title": "混合计数",
-      "prompt": "早餐可以选中式或西式。中式有 2 种主食和 3 种饮品；西式有 3 种套餐。共有多少种早餐选择？",
+      "prompt": "早餐可以选中式或西式。中式有 2 种主食和 3 种饮品；西式有 3 种套餐。共有多少种早餐选择？【加固任务】",
+      "contentHash": "bee0231e904aaa5640a66592c06c7560fe6886bf439d6bff73a44efb48c0c7d2",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -905,7 +962,8 @@
     {
       "questionId": "chapter-01-add-multiply-principle-improve-1",
       "title": "菜单搭配",
-      "prompt": "一份午餐选 1 种主食（3 种）和 1 种汤（4 种），另有 2 种单独套餐。一共有多少种选择？",
+      "prompt": "一份午餐选 1 种主食（3 种）和 1 种汤（4 种），另有 2 种单独套餐。一共有多少种选择？【巡航任务】",
+      "contentHash": "87aaca704be282d12a9a32bd6fe0cccaae12616542ba25b25b5bb1bf8557fa1a",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -921,7 +979,8 @@
     {
       "questionId": "chapter-01-add-multiply-principle-improve-2",
       "title": "分步再分类",
-      "prompt": "参加游戏可选跳绳（2 种玩法）或拼图（3 种难度），每种都要选 1 个队友（4 人）。一共有多少种参加方法？",
+      "prompt": "参加游戏可选跳绳（2 种玩法）或拼图（3 种难度），每种都要选 1 个队友（4 人）。一共有多少种参加方法？【穿越任务】",
+      "contentHash": "6d3ac533b6a605dde6fdd0828c8309e20cfa8a3cbe1b5544e20ea2cfe1de0fdb",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -937,7 +996,8 @@
     {
       "questionId": "add-multiply-principle-6",
       "title": "密码组合",
-      "prompt": "一个两位密码，十位可选 1、2、3，个位可选 0、5、8、9，一共有多少种密码？",
+      "prompt": "一个两位密码，十位可选 1、2、3，个位可选 0、5、8、9，一共有多少种密码？【攻坚任务】",
+      "contentHash": "9c2792ceb9196460543df2313c4cb03ec1f663d44fc3df45c06b54c2fc764070",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -953,7 +1013,8 @@
     {
       "questionId": "chapter-01-add-multiply-principle-challenge-1",
       "title": "车票组合",
-      "prompt": "去动物园先选 2 种交通方式之一，再选上午或下午入园；其中第 1 种交通有 3 个班次，第 2 种有 2 个班次。一共有多少种安排？",
+      "prompt": "去动物园先选 2 种交通方式之一，再选上午或下午入园；其中第 1 种交通有 3 个班次，第 2 种有 2 个班次。一共有多少种安排？【决战任务】",
+      "contentHash": "4deaf49ff24e9e2cc226fac293230761c6ca4177b87cd7fb990a910ffddf6db8",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -969,7 +1030,8 @@
     {
       "questionId": "inclusion-exclusion-1",
       "title": "求并集",
-      "prompt": "有 12 人喜欢画画，10 人喜欢唱歌，其中 4 人两项都喜欢。至少喜欢一项的有多少人？",
+      "prompt": "有 12 人喜欢画画，10 人喜欢唱歌，其中 4 人两项都喜欢。至少喜欢一项的有多少人？【启航任务】",
+      "contentHash": "4334122992b4ef8bab4bab0859e11d1bc5320a7f273e3ec9c2f66b32c8bc72b4",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -985,7 +1047,8 @@
     {
       "questionId": "chapter-01-inclusion-exclusion-basic-1",
       "title": "两项爱好",
-      "prompt": "有 9 人喜欢足球，8 人喜欢绘画，3 人两项都喜欢。至少喜欢一项的有多少人？",
+      "prompt": "有 9 人喜欢足球，8 人喜欢绘画，3 人两项都喜欢。至少喜欢一项的有多少人？【校准任务】",
+      "contentHash": "72425eed6230dbd40d72c8f085b97ffe557c16bf0500fa8de60ee684f326acba",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1001,7 +1064,8 @@
     {
       "questionId": "inclusion-exclusion-2",
       "title": "反求重叠",
-      "prompt": "喜欢数学的有 16 人，喜欢科学的有 14 人，至少喜欢一项的有 24 人，两项都喜欢的有多少人？",
+      "prompt": "喜欢数学的有 16 人，喜欢科学的有 14 人，至少喜欢一项的有 24 人，两项都喜欢的有多少人？【侦察任务】",
+      "contentHash": "762524f95ba9bb35a57b718291bb70a2e11cfa36c4dd9ea119c2f2267a3340d3",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1017,7 +1081,8 @@
     {
       "questionId": "inclusion-exclusion-3",
       "title": "都不参加",
-      "prompt": "全班 35 人，参加足球的有 18 人，参加篮球的有 15 人，两项都参加的有 5 人。两项都不参加的有多少人？",
+      "prompt": "全班 35 人，参加足球的有 18 人，参加篮球的有 15 人，两项都参加的有 5 人。两项都不参加的有多少人？【推进任务】",
+      "contentHash": "d935cd41bf1401c1dc499bb3870fa07683f99dff85290db872e289f1a830c151",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1033,7 +1098,8 @@
     {
       "questionId": "chapter-01-inclusion-exclusion-advance-1",
       "title": "反求重叠",
-      "prompt": "喜欢读书的有 18 人，喜欢运动的有 15 人，至少喜欢一项的有 27 人。两项都喜欢的有多少人？",
+      "prompt": "喜欢读书的有 18 人，喜欢运动的有 15 人，至少喜欢一项的有 27 人。两项都喜欢的有多少人？【协作任务】",
+      "contentHash": "aad0aa20f9bd45f33b7719e586bbefb0a31b895dab6c00915063d24760b16f59",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1049,7 +1115,8 @@
     {
       "questionId": "inclusion-exclusion-4",
       "title": "调查统计",
-      "prompt": "有 25 人订语文报，22 人订数学报，10 人两种都订，至少订一种报纸的有多少人？",
+      "prompt": "有 25 人订语文报，22 人订数学报，10 人两种都订，至少订一种报纸的有多少人？【加固任务】",
+      "contentHash": "b602bf7a0c4add9d55e9b0ce25007c73868d631a76aa415d638b9f2f195d8264",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1065,7 +1132,8 @@
     {
       "questionId": "inclusion-exclusion-5",
       "title": "至少一项",
-      "prompt": "全班 42 人，20 人会游泳，18 人会滑冰，8 人两项都会，至少会一项的有多少人？",
+      "prompt": "全班 42 人，20 人会游泳，18 人会滑冰，8 人两项都会，至少会一项的有多少人？【巡航任务】",
+      "contentHash": "77ec8077dc534567ae9012e98f9151e2eb8453d92360eb1ceaa941f68ee041ba",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1081,7 +1149,8 @@
     {
       "questionId": "chapter-01-inclusion-exclusion-improve-1",
       "title": "都不喜欢",
-      "prompt": "全班 40 人，16 人喜欢棋类，19 人喜欢球类，5 人两项都喜欢。两项都不喜欢的有多少人？",
+      "prompt": "全班 40 人，16 人喜欢棋类，19 人喜欢球类，5 人两项都喜欢。两项都不喜欢的有多少人？【穿越任务】",
+      "contentHash": "17452a550f71c9817c467c509cee6be401d874c648d46049cd1cef31ef112eb2",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1097,7 +1166,8 @@
     {
       "questionId": "inclusion-exclusion-6",
       "title": "只会一项",
-      "prompt": "会弹琴的有 15 人，会画画的有 13 人，两项都会的有 4 人。只会其中一项的有多少人？",
+      "prompt": "会弹琴的有 15 人，会画画的有 13 人，两项都会的有 4 人。只会其中一项的有多少人？【攻坚任务】",
+      "contentHash": "b45fab897806e3cf6f92cba4cfd2e329666c0f562ea33926441da1becbe77d81",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1113,7 +1183,8 @@
     {
       "questionId": "chapter-01-inclusion-exclusion-challenge-1",
       "title": "只喜欢一项",
-      "prompt": "有 20 人会游泳，17 人会骑车，7 人两项都会。只会其中一项的有多少人？",
+      "prompt": "有 20 人会游泳，17 人会骑车，7 人两项都会。只会其中一项的有多少人？【决战任务】",
+      "contentHash": "0581f66458b428e4d63ddeb7e3e5fbaba858a050d788f1f779ed8325c4fb29cb",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1129,7 +1200,8 @@
     {
       "questionId": "sum-diff-1",
       "title": "闯关 1",
-      "prompt": "两个数的和是 16，差是 2，较大的数是多少？",
+      "prompt": "两个数的和是 16，差是 2，较大的数是多少？【启航任务】",
+      "contentHash": "9700f551e7ffb0efd59015c668f8540cd4b6c27265216b2696360317367ce6d0",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1145,7 +1217,8 @@
     {
       "questionId": "sum-diff-2",
       "title": "闯关 2",
-      "prompt": "一个数是另一个数的 3 倍，小数是 5，大数是多少？",
+      "prompt": "一个数是另一个数的 3 倍，小数是 5，大数是多少？【校准任务】",
+      "contentHash": "4be2c64b998df3ef97fd1566b7509af94865ab47116aa2d098b4d8fb44e596d2",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1161,7 +1234,8 @@
     {
       "questionId": "sum-diff-3",
       "title": "闯关 3",
-      "prompt": "甲乙两数和为 30，甲比乙多 6，乙是多少？",
+      "prompt": "甲乙两数和为 30，甲比乙多 6，乙是多少？【侦察任务】",
+      "contentHash": "e2111383747c4de1a5aeeb680197edb63dcd2917977a9333495ebc528beb85da",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1177,7 +1251,8 @@
     {
       "questionId": "sum-diff-4",
       "title": "闯关 4",
-      "prompt": "两个数的和是 28，大数比小数多 8，小数是多少？",
+      "prompt": "两个数的和是 28，大数比小数多 8，小数是多少？【推进任务】",
+      "contentHash": "659810f66bc4a29663725cd78a361de9642bb2c6b8915ce53310054aa536aee0",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1193,7 +1268,8 @@
     {
       "questionId": "chapter-01-sum-diff-advance-1",
       "title": "和与差",
-      "prompt": "两个数的和是 44，差是 8，较小的数是多少？",
+      "prompt": "两个数的和是 44，差是 8，较小的数是多少？【协作任务】",
+      "contentHash": "009c6ada7788cd878e201815c10f6b582eaaaec5163e89e3449abcf280fb3586",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1209,7 +1285,8 @@
     {
       "questionId": "sum-diff-5",
       "title": "闯关 5",
-      "prompt": "甲是乙的 2 倍，甲乙一共 18，乙是多少？",
+      "prompt": "甲是乙的 2 倍，甲乙一共 18，乙是多少？【加固任务】",
+      "contentHash": "1de53d0290caedf283af723740399ff6838d4f2838f2ac1a2c66a9c57ca2ef2d",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1225,7 +1302,8 @@
     {
       "questionId": "sum-diff-8",
       "title": "闯关 8",
-      "prompt": "甲乙两数的和是 21，甲是乙的 2 倍，乙是多少？",
+      "prompt": "甲乙两数的和是 21，甲是乙的 2 倍，乙是多少？【巡航任务】",
+      "contentHash": "74d090dd17303a32dec0f926ad98a105b622f80dd7d1fc8a64e634a862a9c908",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1241,7 +1319,8 @@
     {
       "questionId": "sum-diff-9",
       "title": "闯关 9",
-      "prompt": "大数比小数多 12，两数和是 36，小数是多少？",
+      "prompt": "大数比小数多 12，两数和是 36，小数是多少？【穿越任务】",
+      "contentHash": "a70f2ce36b11a4c9760e66d6401d758cd82e5b44276fde8fc68a2ef72c92845e",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1257,7 +1336,8 @@
     {
       "questionId": "sum-diff-6",
       "title": "闯关 6",
-      "prompt": "大数是小数的 5 倍，它们相差 16，小数是多少？",
+      "prompt": "大数是小数的 5 倍，它们相差 16，小数是多少？【攻坚任务】",
+      "contentHash": "a36c9be8b73883693d7ac23ff6abffedde68f9730d430d0f70dc90fcff6a9b9e",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1273,7 +1353,8 @@
     {
       "questionId": "sum-diff-12",
       "title": "闯关 12",
-      "prompt": "大数是小数的 4 倍，两数和是 25，小数是多少？",
+      "prompt": "大数是小数的 4 倍，两数和是 25，小数是多少？【决战任务】",
+      "contentHash": "eadef6262ef0c47345674e7939f8ae1435620931a6a9cc29b79315834fb6634e",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1289,7 +1370,8 @@
     {
       "questionId": "unit-rate-1",
       "title": "单价归一",
-      "prompt": "4 支铅笔 12 元，买 7 支铅笔多少元？",
+      "prompt": "4 支铅笔 12 元，买 7 支铅笔多少元？【启航任务】",
+      "contentHash": "0d95c269ca33a1d13f282dee25ba70159ee1997c88cb6df94bbf65c009f1a5f9",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1305,7 +1387,8 @@
     {
       "questionId": "unit-rate-2",
       "title": "速度归一",
-      "prompt": "小明 5 分钟走 300 米，照这样走，8 分钟走多少米？",
+      "prompt": "小明 5 分钟走 300 米，照这样走，8 分钟走多少米？【校准任务】",
+      "contentHash": "3ad63d7a4d19146219c7905207fb03be6089d74204eb518b590438a1f0dd742a",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1321,7 +1404,8 @@
     {
       "questionId": "unit-rate-3",
       "title": "多人多天",
-      "prompt": "3 人 4 天吃 36 个苹果，平均 1 人 1 天吃几个苹果？",
+      "prompt": "3 人 4 天吃 36 个苹果，平均 1 人 1 天吃几个苹果？【侦察任务】",
+      "contentHash": "01eba3f871a3c3c708690d985bd2f784bd46b351f8e830253b8ac0adf7fd9d9f",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1337,7 +1421,8 @@
     {
       "questionId": "chapter-01-unit-rate-advance-1",
       "title": "每本价格",
-      "prompt": "6 本练习册共 48 元，买 9 本同样的练习册需要多少元？",
+      "prompt": "6 本练习册共 48 元，买 9 本同样的练习册需要多少元？【推进任务】",
+      "contentHash": "d1b92563840bd0085962ba17b2c1692c8db68a70fa50e9b6857da716836cbe0d",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1353,7 +1438,8 @@
     {
       "questionId": "chapter-01-unit-rate-advance-2",
       "title": "每分钟速度",
-      "prompt": "小红 4 分钟跳了 120 下，照这样 7 分钟跳多少下？",
+      "prompt": "小红 4 分钟跳了 120 下，照这样 7 分钟跳多少下？【协作任务】",
+      "contentHash": "43ecc7e94adaed4ae0a77dc2bd3cd0161c6557aa1a6af5e601a5c2bdc277d9ff",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1369,7 +1455,8 @@
     {
       "questionId": "unit-rate-4",
       "title": "机器效率",
-      "prompt": "5 台机器 6 小时生产 240 个零件，1 台机器 1 小时生产多少个？",
+      "prompt": "5 台机器 6 小时生产 240 个零件，1 台机器 1 小时生产多少个？【加固任务】",
+      "contentHash": "55d396e78738a919498a39c4d5bd81259b4a31819e83f29b4fa178cc7659f9ee",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1385,7 +1472,8 @@
     {
       "questionId": "unit-rate-5",
       "title": "归一再放大",
-      "prompt": "6 个工人 3 天修路 90 米，照这样，4 个工人 5 天修路多少米？",
+      "prompt": "6 个工人 3 天修路 90 米，照这样，4 个工人 5 天修路多少米？【巡航任务】",
+      "contentHash": "7b66644f8c12337413b70f7e20bd6be1a42a08942e6292e689db239c0a402597",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1401,7 +1489,8 @@
     {
       "questionId": "chapter-01-unit-rate-improve-1",
       "title": "每人每天",
-      "prompt": "4 个同学 5 天读完 200 页书，平均每人每天读多少页？",
+      "prompt": "4 个同学 5 天读完 200 页书，平均每人每天读多少页？【穿越任务】",
+      "contentHash": "a2f83b5601316e9091865fe8377f49f9465490f916ddbfcc9b2c973c476e952c",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1417,7 +1506,8 @@
     {
       "questionId": "unit-rate-6",
       "title": "反求数量",
-      "prompt": "3 台机器 4 小时生产 96 个零件，照这样，2 台机器生产 64 个零件需要几小时？",
+      "prompt": "3 台机器 4 小时生产 96 个零件，照这样，2 台机器生产 64 个零件需要几小时？【攻坚任务】",
+      "contentHash": "4b4c79c0aa5b9350fc9d42e397582fbc8cb686e01f288ff7b4675ed2ed0e77a3",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1433,7 +1523,8 @@
     {
       "questionId": "chapter-01-unit-rate-challenge-1",
       "title": "反求天数",
-      "prompt": "3 台打印机 2 小时打印 180 张，照这样 5 台打印机打印 450 张需要几小时？",
+      "prompt": "3 台打印机 2 小时打印 180 张，照这样 5 台打印机打印 450 张需要几小时？【决战任务】",
+      "contentHash": "ab80891069a2b2df4aee1a70fb75cf6539936732bd60c9256c327e863846b942",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1449,7 +1540,8 @@
     {
       "questionId": "surplus-deficit-1",
       "title": "一盈一亏",
-      "prompt": "分糖果，每人 5 颗多 12 颗，每人 6 颗少 3 颗。有几个小朋友？",
+      "prompt": "分糖果，每人 5 颗多 12 颗，每人 6 颗少 3 颗。有几个小朋友？【启航任务】",
+      "contentHash": "cbf4bdfc5ca310d0d6bba94271b0978cd7a50e679da5a516f42902cc52d885c4",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1465,7 +1557,8 @@
     {
       "questionId": "surplus-deficit-2",
       "title": "求人数",
-      "prompt": "分铅笔，每人 4 支多 8 支，每人 5 支刚好分完。有几个人？",
+      "prompt": "分铅笔，每人 4 支多 8 支，每人 5 支刚好分完。有几个人？【校准任务】",
+      "contentHash": "dce3258c299a15f7ad5b984272a92250c01201b045d7008bb0c86e6942f00c91",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1481,7 +1574,8 @@
     {
       "questionId": "surplus-deficit-3",
       "title": "两次都盈",
-      "prompt": "分练习本，每人 3 本多 15 本，每人 6 本多 3 本。有几个学生？",
+      "prompt": "分练习本，每人 3 本多 15 本，每人 6 本多 3 本。有几个学生？【侦察任务】",
+      "contentHash": "31ee3d750ca997d28ff6522eda5a22159710f88abe7513aea10df2d984d559b8",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1497,7 +1591,8 @@
     {
       "questionId": "chapter-01-surplus-deficit-advance-1",
       "title": "一次刚好",
-      "prompt": "分贴纸，每人 3 张多 10 张；每人 5 张刚好分完。有几个小朋友？",
+      "prompt": "分贴纸，每人 3 张多 10 张；每人 5 张刚好分完。有几个小朋友？【推进任务】",
+      "contentHash": "abea3a118eac1ae5d60d6ca5d75025fb2afc70745ba28bd46430bc2c42abd7c3",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1513,7 +1608,8 @@
     {
       "questionId": "chapter-01-surplus-deficit-advance-2",
       "title": "两次都多",
-      "prompt": "分彩笔，每人 2 支多 18 支；每人 5 支多 6 支。有几个人？",
+      "prompt": "分彩笔，每人 2 支多 18 支；每人 5 支多 6 支。有几个人？【协作任务】",
+      "contentHash": "ca9e05863e6a9f03bdb5ced2fc668f15ec01d590d5a674412c6b04c492a9da17",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1529,7 +1625,8 @@
     {
       "questionId": "surplus-deficit-4",
       "title": "两次都亏",
-      "prompt": "分书，每人 7 本少 10 本，每人 5 本少 2 本。有几个学生？",
+      "prompt": "分书，每人 7 本少 10 本，每人 5 本少 2 本。有几个学生？【加固任务】",
+      "contentHash": "dd5eeef1d61b8518a909790d9fde88bfea5d96a023bc68cb0e91552d71a852d7",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1545,7 +1642,8 @@
     {
       "questionId": "surplus-deficit-5",
       "title": "求总量",
-      "prompt": "分苹果，每人 4 个多 6 个，每人 6 个少 4 个。一共有多少个苹果？",
+      "prompt": "分苹果，每人 4 个多 6 个，每人 6 个少 4 个。一共有多少个苹果？【巡航任务】",
+      "contentHash": "265a031f8f24cfb6c208bc4664a319faa998ea8636cba6ce2e1b840874e3e249",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1561,7 +1659,8 @@
     {
       "questionId": "chapter-01-surplus-deficit-improve-1",
       "title": "一多一少",
-      "prompt": "分贝壳，每人 4 个多 8 个；每人 6 个少 2 个。有几个人？",
+      "prompt": "分贝壳，每人 4 个多 8 个；每人 6 个少 2 个。有几个人？【穿越任务】",
+      "contentHash": "bc08705f8729703f5f090178199034d2efb9c978f114ac7043b135230caf5aaa",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1577,7 +1676,8 @@
     {
       "questionId": "surplus-deficit-6",
       "title": "方案比较",
-      "prompt": "分卡片，每人 8 张少 12 张，每人 5 张多 9 张。共有多少张卡片？",
+      "prompt": "分卡片，每人 8 张少 12 张，每人 5 张多 9 张。共有多少张卡片？【攻坚任务】",
+      "contentHash": "1d85803fe5b6d58397574e4fec7c107a5d5a19f4c6548285c5bdbee317abf338",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1593,7 +1693,8 @@
     {
       "questionId": "chapter-01-surplus-deficit-challenge-1",
       "title": "求总数",
-      "prompt": "分奖券，每人 3 张多 12 张；每人 5 张少 4 张。一共有多少张奖券？",
+      "prompt": "分奖券，每人 3 张多 12 张；每人 5 张少 4 张。一共有多少张奖券？【决战任务】",
+      "contentHash": "cc737fe82f28276f19b913731ee63891f54ce9b0b1c33023b03bc10d91dbed2b",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1609,7 +1710,8 @@
     {
       "questionId": "chicken-rabbit-1",
       "title": "四台运输车",
-      "prompt": "巡检站有两轮小车和四轮搬运车共 4 台，车轮一共 12 个。四轮搬运车有几台？",
+      "prompt": "巡检站有两轮小车和四轮搬运车共 4 台，车轮一共 12 个。四轮搬运车有几台？【启航任务】",
+      "contentHash": "c4a0466e19ae961cc66855e6563071f99183d5854150bbeaba6d2a0a7ddf8bc2",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1625,7 +1727,8 @@
     {
       "questionId": "chicken-rabbit-2",
       "title": "五台小车",
-      "prompt": "仓库里有两轮小车和四轮搬运车共 5 台，车轮一共 14 个。两轮小车有几台？",
+      "prompt": "仓库里有两轮小车和四轮搬运车共 5 台，车轮一共 14 个。两轮小车有几台？【校准任务】",
+      "contentHash": "f51b766cffa6fb6feb97e194923d4571ad5aa88c3d8e8a335e4ac087e6ef8311",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1641,7 +1744,8 @@
     {
       "questionId": "chicken-rabbit-3",
       "title": "七台巡检车",
-      "prompt": "7 台巡检车由两轮车和四轮车组成，轮子一共 20 个。四轮车有几台？",
+      "prompt": "7 台巡检车由两轮车和四轮车组成，轮子一共 20 个。四轮车有几台？【侦察任务】",
+      "contentHash": "79657f416f5af0a5605243adb063de69ceb463b2ad8a4421a9a12fc16c7f0bb0",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1657,7 +1761,8 @@
     {
       "questionId": "chicken-rabbit-4",
       "title": "八台搬运车",
-      "prompt": "两轮搬运车和四轮搬运车一共 8 台，车轮一共 24 个。两轮车有几台？",
+      "prompt": "两轮搬运车和四轮搬运车一共 8 台，车轮一共 24 个。两轮车有几台？【推进任务】",
+      "contentHash": "78cb52b2f87f98c4f7bb3c8351d34e2940a8a6fb9dfdb2f71d7e05278c4c65de",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1673,7 +1778,8 @@
     {
       "questionId": "chapter-01-chicken-rabbit-advance-1",
       "title": "车队轮数",
-      "prompt": "探测车队有两轮车和四轮车共 14 台，轮子一共 40 个。四轮车有几台？",
+      "prompt": "探测车队有两轮车和四轮车共 14 台，轮子一共 40 个。四轮车有几台？【协作任务】",
+      "contentHash": "7a55c5c9af3600fa2cbee3d0251803ffb139e4528c67fa5f0dc34e5ec2747695",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1689,7 +1795,8 @@
     {
       "questionId": "chicken-rabbit-5",
       "title": "九台服务车",
-      "prompt": "服务车有两轮型和四轮型共 9 台，轮子总数是 26 个。四轮型有几台？",
+      "prompt": "服务车有两轮型和四轮型共 9 台，轮子总数是 26 个。四轮型有几台？【加固任务】",
+      "contentHash": "931dcaf7c8741a5f52de33d11aca6baea3faa4982920aca2d12e5ff531ecb384",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1705,7 +1812,8 @@
     {
       "questionId": "chicken-rabbit-6",
       "title": "十台巡逻车",
-      "prompt": "两轮巡逻车和四轮巡逻车一共 10 台，轮子有 32 个。两轮巡逻车有几台？",
+      "prompt": "两轮巡逻车和四轮巡逻车一共 10 台，轮子有 32 个。两轮巡逻车有几台？【巡航任务】",
+      "contentHash": "7f3ef01aec4014a87bfb525241edb8603626c27797c426b56575ff417ab7bc9d",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1721,7 +1829,8 @@
     {
       "questionId": "chicken-rabbit-9",
       "title": "十三台补给车",
-      "prompt": "补给车有两轮型和四轮型共 13 台，轮子总数为 38 个。四轮型有几台？",
+      "prompt": "补给车有两轮型和四轮型共 13 台，轮子总数为 38 个。四轮型有几台？【穿越任务】",
+      "contentHash": "7a01bdcb5fa4ea869ae4c49ed47a1e5b11a2cd440c5fd050fbdffda27bd1d393",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1737,7 +1846,8 @@
     {
       "questionId": "chicken-rabbit-7",
       "title": "十二台任务车",
-      "prompt": "任务车有两轮型和四轮型共 12 台，车轮一共 34 个。四轮型有几台？",
+      "prompt": "任务车有两轮型和四轮型共 12 台，车轮一共 34 个。四轮型有几台？【攻坚任务】",
+      "contentHash": "dfe66eff919f682fabcd563babd4ad84e36bd9396f92fc09bfe3a7956d4688e0",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1753,7 +1863,8 @@
     {
       "questionId": "chicken-rabbit-8",
       "title": "十一台推车",
-      "prompt": "推车由两轮车和四轮车组成，共 11 台，轮子总数为 30 个。两轮车有几台？",
+      "prompt": "推车由两轮车和四轮车组成，共 11 台，轮子总数为 30 个。两轮车有几台？【决战任务】",
+      "contentHash": "42a983e48402510b77e9b30fb2820d2e866238ac11ca9ba22c7946bc934dd3a0",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1769,7 +1880,8 @@
     {
       "questionId": "average-1",
       "title": "求平均",
-      "prompt": "三个数分别是 12、18、24，它们的平均数是多少？",
+      "prompt": "三个数分别是 12、18、24，它们的平均数是多少？【启航任务】",
+      "contentHash": "9ac4fb9c5a0579ee51154c605f9b47ed7e35e1de6d365d3a65972475e88c1c75",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1785,7 +1897,8 @@
     {
       "questionId": "average-2",
       "title": "求总数",
-      "prompt": "5 个数的平均数是 16，这 5 个数的和是多少？",
+      "prompt": "5 个数的平均数是 16，这 5 个数的和是多少？【校准任务】",
+      "contentHash": "b487853d202a0f7286a9fea21d0b680eb8d6d48479ffd36a0d5306b977c903f3",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1801,7 +1914,8 @@
     {
       "questionId": "average-3",
       "title": "补一个数",
-      "prompt": "前 3 次平均分是 82 分，第 4 次考多少分，4 次平均分才能达到 85 分？",
+      "prompt": "前 3 次平均分是 82 分，第 4 次考多少分，4 次平均分才能达到 85 分？【侦察任务】",
+      "contentHash": "4a30558491c8074fae54a5f93e032f41c31dd9f85cda6134c4078ed57854426f",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1817,7 +1931,8 @@
     {
       "questionId": "chapter-01-average-advance-1",
       "title": "补齐总分",
-      "prompt": "4 次测验平均 75 分，前 3 次共 210 分，第 4 次是多少分？",
+      "prompt": "4 次测验平均 75 分，前 3 次共 210 分，第 4 次是多少分？【推进任务】",
+      "contentHash": "558e785b9247d0186b8b4328dbce8a8c297424a0e829d0ece8d6a33bfc5cebc7",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1833,7 +1948,8 @@
     {
       "questionId": "chapter-01-average-advance-2",
       "title": "增加一个数",
-      "prompt": "3 个数的平均数是 14，再加一个数 20，4 个数的平均数是多少？",
+      "prompt": "3 个数的平均数是 14，再加一个数 20，4 个数的平均数是多少？【协作任务】",
+      "contentHash": "3fd390980ab175da566b9ede9389b1e95773d4a6b60110455944df364f41391f",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1849,7 +1965,8 @@
     {
       "questionId": "average-4",
       "title": "去掉一个数",
-      "prompt": "5 个数的平均数是 20，去掉一个数后，剩下 4 个数平均数是 18。去掉的数是多少？",
+      "prompt": "5 个数的平均数是 20，去掉一个数后，剩下 4 个数平均数是 18。去掉的数是多少？【加固任务】",
+      "contentHash": "074878da58c3c687dccafd276467ee34e23a517961fe1d3794e8467df29067a5",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1865,7 +1982,8 @@
     {
       "questionId": "average-5",
       "title": "调平均数",
-      "prompt": "4 个数的平均数是 15，如果其中一个数增加 8，新的平均数是多少？",
+      "prompt": "4 个数的平均数是 15，如果其中一个数增加 8，新的平均数是多少？【巡航任务】",
+      "contentHash": "14bd50fe2ae9d967339d90f6fadf9014da88b8efd6a39f8a770923abe1f5ca28",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1881,7 +1999,8 @@
     {
       "questionId": "chapter-01-average-improve-1",
       "title": "替换一个数",
-      "prompt": "5 个数的平均数是 18，其中一个数从 12 改成 22，新的平均数是多少？",
+      "prompt": "5 个数的平均数是 18，其中一个数从 12 改成 22，新的平均数是多少？【穿越任务】",
+      "contentHash": "4d72f564f87ba8662666d5ae2746f96368ae2bbd580eba97053d32f84dce85a8",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1897,7 +2016,8 @@
     {
       "questionId": "average-6",
       "title": "平均速度",
-      "prompt": "小明前 2 天平均每天读 18 页，后 3 天平均每天读 22 页，5 天平均每天读多少页？",
+      "prompt": "小明前 2 天平均每天读 18 页，后 3 天平均每天读 22 页，5 天平均每天读多少页？【攻坚任务】",
+      "contentHash": "a777231d78aa0947c36e02040377f5900329119e29dbc415ba86d6d1d49873ec",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1913,7 +2033,8 @@
     {
       "questionId": "chapter-01-average-challenge-1",
       "title": "分组平均",
-      "prompt": "第一组 4 人平均 16 分，第二组 6 人平均 20 分，两个组合在一起平均多少分？",
+      "prompt": "第一组 4 人平均 16 分，第二组 6 人平均 20 分，两个组合在一起平均多少分？【决战任务】",
+      "contentHash": "026919c670a80fa51c0407b994d562f9cdbca27cedd6c694751c49f3e07dde48",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {

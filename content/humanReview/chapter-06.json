@@ -1,15 +1,17 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "chapterId": "chapter-06",
   "status": "approved",
   "reviewer": "课程负责人",
   "reviewedAt": "2026-08-01T00:00:00+08:00",
+  "contentHash": "2edea55ead885371def32b9443d8ba87a926b15b806d045c361b2c1fe996eea6",
   "notes": "用户确认本章题目审核通过。",
   "records": [
     {
       "questionId": "chapter-06-data-collection-1",
       "title": "数据收集与分类",
       "prompt": "星海数据与概率远征任务：观测舱收集到红色信号 12 条、蓝色信号 8 条，一共收集多少条？【启航任务】",
+      "contentHash": "108bd78cfad49490b9566dc50d84b48040e9fffebd352e0dae30bbbd023f04e1",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -26,6 +28,7 @@
       "questionId": "chapter-06-data-collection-2",
       "title": "数据收集与分类",
       "prompt": "星海数据与概率远征任务：数据仓记录了 34 次扫描，其中 9 次是重复记录，有效记录多少次？【校准任务】",
+      "contentHash": "8b4ec8ebaa86432b99f1fa1259deecb29b1e12bf6ef696ba18d7b58c19cca163",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -42,6 +45,7 @@
       "questionId": "chapter-06-data-collection-3",
       "title": "数据收集与分类",
       "prompt": "星海数据与概率远征任务：三个波段分别采集 7、5、4 条数据，合计多少条？【侦察任务】",
+      "contentHash": "1a9f26d32367bcf6006122a8db8df9ff62520ed213e8aa4e55ee8b26e7f27062",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -58,6 +62,7 @@
       "questionId": "chapter-06-data-collection-4",
       "title": "数据收集与分类",
       "prompt": "星海数据与概率远征任务：每个探测窗口记录 6 个样本，连续开启 5 个窗口，共记录多少个？【推进任务】",
+      "contentHash": "81f111f0150b10ae0c49a87b2e9cd9a6b030007abaa445ff9c4914de40811e2c",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -74,6 +79,7 @@
       "questionId": "chapter-06-data-collection-5",
       "title": "数据收集与分类",
       "prompt": "星海数据与概率远征任务：42 个样本中有 1/6 属于高频信号，高频信号有多少个？【协作任务】",
+      "contentHash": "686974daf5d7d3aae5eacf10ba6d639e3fe185789d323f704e35a6e11ed92b27",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -90,6 +96,7 @@
       "questionId": "chapter-06-data-collection-6",
       "title": "数据收集与分类",
       "prompt": "星海数据与概率远征任务：卫星连续三天记录 14、18、16 条脉冲，三天一共多少条？【加固任务】",
+      "contentHash": "2663226b5e104ff3ae9b4998480760a4850013746ceebccc896d155b0f308a66",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -106,6 +113,7 @@
       "questionId": "chapter-06-data-collection-7",
       "title": "数据收集与分类",
       "prompt": "星海数据与概率远征任务：数据池有 50 条记录，剔除 6 条噪声后还剩多少条？【巡航任务】",
+      "contentHash": "e2e786c75e6dc1329c0e5a87a66ec6cb6d45d4d6a7c2f0ab24dbd7ec5fff0453",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -122,6 +130,7 @@
       "questionId": "chapter-06-data-collection-8",
       "title": "数据收集与分类",
       "prompt": "星海数据与概率远征任务：四个采样舱各有 9 条基础记录，另有 3 条校准记录，共多少条？【穿越任务】",
+      "contentHash": "e2a8fe37e85e4c77030afcaf739861690d38a2dcd0073f7d0c73662da17efbb8",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -138,6 +147,7 @@
       "questionId": "chapter-06-data-collection-9",
       "title": "数据收集与分类",
       "prompt": "星海数据与概率远征任务：观测站有 120 条数据，先删除 28 条噪声，再补录 16 条，现有多少条？【攻坚任务】",
+      "contentHash": "f1d55fdfccbdf90f504c0d5862a0d9bf628c1c9d7999800245f6e2707d98ea90",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -154,6 +164,7 @@
       "questionId": "chapter-06-data-collection-10",
       "title": "数据收集与分类",
       "prompt": "星海数据与概率远征任务：五次扫描分别得到 18、17、16、15、12 条有效数据，合计多少条？【决战任务】",
+      "contentHash": "a6e693b5f9f7ec49f2613795988ee1980652baeb7678b8f4c6e7fb2275414547",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -170,6 +181,7 @@
       "questionId": "chapter-06-frequency-tables-1",
       "title": "统计表",
       "prompt": "星海数据与概率远征任务：统计表中三类信号频数为 3、5、4，三类合计多少条？【启航任务】",
+      "contentHash": "fcbcba8f6124c072641403df29a4aacc6df88e64aa79d77af1029b868cfdad9a",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -186,6 +198,7 @@
       "questionId": "chapter-06-frequency-tables-2",
       "title": "统计表",
       "prompt": "星海数据与概率远征任务：一张表共记录 20 个样本，已知两类分别有 7 个和 6 个，第三类有多少个？【校准任务】",
+      "contentHash": "e58096e32b15a2426817b91df75b52fd771e8e444f8823e66e1477a5a6b9d6fb",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -202,6 +215,7 @@
       "questionId": "chapter-06-frequency-tables-3",
       "title": "统计表",
       "prompt": "星海数据与概率远征任务：频数表中的观测次数为 2、4、4、3、4，出现次数最多的数字是多少？【侦察任务】",
+      "contentHash": "7ee88e26393a070db6b81cd4105b0aecccda3a1c989d9d4bfb395a10fa2228ba",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -218,6 +232,7 @@
       "questionId": "chapter-06-frequency-tables-4",
       "title": "统计表",
       "prompt": "星海数据与概率远征任务：表中最大温度记录为 18，最小记录为 7，温度相差多少？【推进任务】",
+      "contentHash": "acb111f95798f14e3a911e62037c4f94cec156bcef148ad1ce7c64925e22df68",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -234,6 +249,7 @@
       "questionId": "chapter-06-frequency-tables-5",
       "title": "统计表",
       "prompt": "星海数据与概率远征任务：五个信号等级的频数为 8、5、7，另外两级各有 4 条，总频数是多少？【协作任务】",
+      "contentHash": "581ff7d77859811cb0a36f9339e452cb2502a972f0d6e450a404d65b7b5f034f",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -250,6 +266,7 @@
       "questionId": "chapter-06-frequency-tables-6",
       "title": "统计表",
       "prompt": "星海数据与概率远征任务：统计表用 1 个图标表示 4 个样本，6 个图标表示多少个样本？【加固任务】",
+      "contentHash": "abe4db85d715a06525d0bd885ee58f2adc12414dd2421da164287c9f9e8499d7",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -266,6 +283,7 @@
       "questionId": "chapter-06-frequency-tables-7",
       "title": "统计表",
       "prompt": "星海数据与概率远征任务：前三个时段的累计频数依次为 5、8、9，前三个时段共有多少条？【巡航任务】",
+      "contentHash": "92db56a9d110832e008a0248fc5db75fcd2c442603ac06404d710f553fce1ebf",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -282,6 +300,7 @@
       "questionId": "chapter-06-frequency-tables-8",
       "title": "统计表",
       "prompt": "星海数据与概率远征任务：四类数据总数为 50，其中三类分别为 12、15、14，剩余一类有多少？【穿越任务】",
+      "contentHash": "d872acaf3b0e2b70d4bfdd2a0f8d9a1de0e10ccea481e581590c262447aea5c8",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -298,6 +317,7 @@
       "questionId": "chapter-06-frequency-tables-9",
       "title": "统计表",
       "prompt": "星海数据与概率远征任务：甲表记录 36 条，乙表记录 29 条，甲比乙多多少条？【攻坚任务】",
+      "contentHash": "768eb1268a2a8aede8f801a999a9c5dd069eb15cd7f912e308c4955cf09be7c9",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -314,6 +334,7 @@
       "questionId": "chapter-06-frequency-tables-10",
       "title": "统计表",
       "prompt": "星海数据与概率远征任务：六个观测时段的频数分别为 4、7、9、6、8、5，全部频数合计多少？【决战任务】",
+      "contentHash": "eb6ea337c6d01367b229ff4069913f0c30fe9eac45490db756301c63089a39cb",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -330,6 +351,7 @@
       "questionId": "chapter-06-bar-charts-1",
       "title": "条形统计图",
       "prompt": "星海数据与概率远征任务：条形图显示四个波段分别有 6、9、8、7 条信号，合计多少条？【启航任务】",
+      "contentHash": "08d5b7c654838e2ad668399c01aa303fc4274a4160cd45aa7d7a8d68d0ff4c95",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -346,6 +368,7 @@
       "questionId": "chapter-06-bar-charts-2",
       "title": "条形统计图",
       "prompt": "星海数据与概率远征任务：蓝色波段柱高为 12，红色波段柱高为 8，蓝色比红色多多少条？【校准任务】",
+      "contentHash": "c8d2d8a3f76afaec2cc249756af10053579017cdb030902b0596f9f23c15edc9",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -362,6 +385,7 @@
       "questionId": "chapter-06-bar-charts-3",
       "title": "条形统计图",
       "prompt": "星海数据与概率远征任务：一个刻度代表 5 个样本，柱子高 4 个刻度，表示多少个样本？【侦察任务】",
+      "contentHash": "77b8c09aad0d4916448a79a99e77275bd2ca39715992d64d7d6cad6c0087187f",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -378,6 +402,7 @@
       "questionId": "chapter-06-bar-charts-4",
       "title": "条形统计图",
       "prompt": "星海数据与概率远征任务：四天观测柱高为 10、14、12、16，四天共记录多少条？【推进任务】",
+      "contentHash": "83b28e8724caaf3f0630f325a20492fbfe3c45e3b1c5e98fa7d46b6eb4edc308",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -394,6 +419,7 @@
       "questionId": "chapter-06-bar-charts-5",
       "title": "条形统计图",
       "prompt": "星海数据与概率远征任务：图表总数为 52，前三类柱高为 11、14、9，第四类柱高是多少？【协作任务】",
+      "contentHash": "83a72bf8432fa0b3fface77a07904b806a3f0ae43e1bd7211897f815d487ec28",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -410,6 +436,7 @@
       "questionId": "chapter-06-bar-charts-6",
       "title": "条形统计图",
       "prompt": "星海数据与概率远征任务：每个柱形小格代表 3 个信号，某柱有 7 个小格，表示多少个？【加固任务】",
+      "contentHash": "d5e28ca323d1c1a5a3fe8f039d78f455df62ba8d38943f55babca2de1c68b03c",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -426,6 +453,7 @@
       "questionId": "chapter-06-bar-charts-7",
       "title": "条形统计图",
       "prompt": "星海数据与概率远征任务：甲柱高 18，乙柱高 6，甲柱是乙柱的几倍？【巡航任务】",
+      "contentHash": "4eb2f958565a8ea31096b1e1c43ee6f9a2167d8380804bb2624e6b95f307f2e1",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -442,6 +470,7 @@
       "questionId": "chapter-06-bar-charts-8",
       "title": "条形统计图",
       "prompt": "星海数据与概率远征任务：五个区域柱高为 15、13、17、11、14，合计多少条观测？【穿越任务】",
+      "contentHash": "5326330f775c1531f0b88eaf1d978ab645bc5d3397a425f3ab7c0b0a1c1ecce6",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -458,6 +487,7 @@
       "questionId": "chapter-06-bar-charts-9",
       "title": "条形统计图",
       "prompt": "星海数据与概率远征任务：条形图总数 60，其中一类有 15 条，这一类占总数百分之几？【攻坚任务】",
+      "contentHash": "cce8cbc4f4679555dc9ebc238c2a4c822269acd181643b69c2a86ec9853d75e7",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -474,6 +504,7 @@
       "questionId": "chapter-06-bar-charts-10",
       "title": "条形统计图",
       "prompt": "星海数据与概率远征任务：六个时段柱高为 12、15、18、14、16、19，最高柱比最低柱多多少？【决战任务】",
+      "contentHash": "816372da5143d39ce829b314f26a7ade7242da6c8530024f070005fde1bf267a",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -490,6 +521,7 @@
       "questionId": "chapter-06-line-charts-1",
       "title": "折线统计图",
       "prompt": "星海数据与概率远征任务：折线图中第一天为 6 条、第二天为 9 条，第二天比第一天增加多少？【启航任务】",
+      "contentHash": "4f8d8fa8eb278b147dcf1682f93918ac621752d7701c63edf2c55212932c2283",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -506,6 +538,7 @@
       "questionId": "chapter-06-line-charts-2",
       "title": "折线统计图",
       "prompt": "星海数据与概率远征任务：一周信号量为 8、12、15、11、18，最高的一天有多少条？【校准任务】",
+      "contentHash": "26046d4bbdd91edec2cb77f3654b14913f2e0e0c87bebd07b5d564ccd7bd403a",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -522,6 +555,7 @@
       "questionId": "chapter-06-line-charts-3",
       "title": "折线统计图",
       "prompt": "星海数据与概率远征任务：四个时刻的能量读数为 8、10、12、14，合计是多少？【侦察任务】",
+      "contentHash": "8fd11fbd3eb0306bde4310a09f0dc4d0a66e496757437e26047a197889ec8903",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -538,6 +572,7 @@
       "questionId": "chapter-06-line-charts-4",
       "title": "折线统计图",
       "prompt": "星海数据与概率远征任务：轨道温度从 20 降到 13，下降了多少度？【推进任务】",
+      "contentHash": "8a07af20c730ee0205aba375f7105919c030a2420cfb69960729239b2cde1ea3",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -554,6 +589,7 @@
       "questionId": "chapter-06-line-charts-5",
       "title": "折线统计图",
       "prompt": "星海数据与概率远征任务：脉冲量每次增加 4，第一次为 5，经过 4 次记录后最后一次是多少？【协作任务】",
+      "contentHash": "36596281be3d42433a2e2fed45e406927c0630eedb09543319aa813d97b5b782",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -570,6 +606,7 @@
       "questionId": "chapter-06-line-charts-6",
       "title": "折线统计图",
       "prompt": "星海数据与概率远征任务：五次读数总和为 60，前四次是 9、13、12、14，第五次是多少？【加固任务】",
+      "contentHash": "44008679c58919e0034b7165af6b92885391133d3b46ba34be3717adf7011a2e",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -586,6 +623,7 @@
       "questionId": "chapter-06-line-charts-7",
       "title": "折线统计图",
       "prompt": "星海数据与概率远征任务：折线图四点为 10、16、12、18，四次读数的平均数是多少？【巡航任务】",
+      "contentHash": "8bbfc0531ce7bfeb60ca842151670ea0e18cd4d218e893935f85f457452ac0bc",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -602,6 +640,7 @@
       "questionId": "chapter-06-line-charts-8",
       "title": "折线统计图",
       "prompt": "星海数据与概率远征任务：一条折线的最高点为 27，最低点为 9，变化范围是多少？【穿越任务】",
+      "contentHash": "2bc38bb3b78daadc6c99ecf607e2dd0ba15d818ab9d2b14578d047deedcd6dbd",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -618,6 +657,7 @@
       "questionId": "chapter-06-line-charts-9",
       "title": "折线统计图",
       "prompt": "星海数据与概率远征任务：信号量从 12 增至 18，增加量占原来的百分之几？【攻坚任务】",
+      "contentHash": "d9b00d0319044e5b90c7ffec95eaa4ad88649fe0be08a63c88ca88cdc105ea39",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -634,6 +674,7 @@
       "questionId": "chapter-06-line-charts-10",
       "title": "折线统计图",
       "prompt": "星海数据与概率远征任务：Boss 记录六个时段 14、18、15、21、19、13 条信号，全部共多少条？【决战任务】",
+      "contentHash": "dc93235bae903fa41ec832a035935a3ff6d61a672f2c997e8bb16bde1c10c6b1",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -650,6 +691,7 @@
       "questionId": "chapter-06-mean-1",
       "title": "平均数",
       "prompt": "星海数据与概率远征任务：三个观测值为 6、8、10，平均数是多少？【启航任务】",
+      "contentHash": "fe702ed2ac84ec03aafe5c1a7914e2b2015a78c8b856f67380e9b7f2b3c3da8e",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -666,6 +708,7 @@
       "questionId": "chapter-06-mean-2",
       "title": "平均数",
       "prompt": "星海数据与概率远征任务：四次测量平均为 12，四次测量总和是多少？【校准任务】",
+      "contentHash": "d134649c16e282cda420280c5f82bc4c333521119e79a83412749bcfc959b41c",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -682,6 +725,7 @@
       "questionId": "chapter-06-mean-3",
       "title": "平均数",
       "prompt": "星海数据与概率远征任务：四个读数平均为 9，其中三个是 7、8、10，第四个是多少？【侦察任务】",
+      "contentHash": "19ce8a3633be44ffa6a509b4ccf081a264ed9d6730ca319efe363ebca19373bd",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -698,6 +742,7 @@
       "questionId": "chapter-06-mean-4",
       "title": "平均数",
       "prompt": "星海数据与概率远征任务：三个读数 6、8、10 的总和加上一个 14 后，四个读数平均是多少？【推进任务】",
+      "contentHash": "27488909cd2dbbc3be5c70048b54f7e1d9e8af6778f495d4c47bb405ce040080",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -714,6 +759,7 @@
       "questionId": "chapter-06-mean-5",
       "title": "平均数",
       "prompt": "星海数据与概率远征任务：甲组 4 个数据平均 9，乙组 6 个数据平均 11，两组总和是多少？【协作任务】",
+      "contentHash": "78f9260aaadb6c22bcab61c7333cd3a0a239192b243eacb17177510e33e3c36c",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -730,6 +776,7 @@
       "questionId": "chapter-06-mean-6",
       "title": "平均数",
       "prompt": "星海数据与概率远征任务：六天数据平均 12，前五天总和为 58，第六天是多少？【加固任务】",
+      "contentHash": "0ee40084495370b79e708cbab88a9696092f571c9586c30c7915a60056e3f381",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -746,6 +793,7 @@
       "questionId": "chapter-06-mean-7",
       "title": "平均数",
       "prompt": "星海数据与概率远征任务：四个数据平均 15，删去一个 21 后，剩余三个数据平均是多少？【巡航任务】",
+      "contentHash": "cfe734464ed2b45296a255029e54a18645e8c7b74dfbf8d17b0e7f9d7c2013b0",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -762,6 +810,7 @@
       "questionId": "chapter-06-mean-8",
       "title": "平均数",
       "prompt": "星海数据与概率远征任务：四次测试平均 76，前三次分数为 72、75、80，第四次是多少？【穿越任务】",
+      "contentHash": "c064f9a71a5f40b5b805214e9c58ea8152bacd6b72569624a262958f763500dd",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -778,6 +827,7 @@
       "questionId": "chapter-06-mean-9",
       "title": "平均数",
       "prompt": "星海数据与概率远征任务：两台传感器读数平均为 18，一台读数为 15，另一台是多少？【攻坚任务】",
+      "contentHash": "92ad3fbffffb0eb6089c40d0ca4ccd470bd7f1e0bcf2731939956aa724a25e3a",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -794,6 +844,7 @@
       "questionId": "chapter-06-mean-10",
       "title": "平均数",
       "prompt": "星海数据与概率远征任务：Boss 五次测量平均为 24，若前四次为 18、22、27、31，第五次是多少？【决战任务】",
+      "contentHash": "e913d12ae8e82d44f84cff42e1acc5e9e70f611d0080b03bdd088a58429fcbce",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -810,6 +861,7 @@
       "questionId": "chapter-06-median-mode-1",
       "title": "中位数与众数",
       "prompt": "星海数据与概率远征任务：按从小到大排列 3、5、7，中位数是多少？【启航任务】",
+      "contentHash": "fab2618d5e61590c2627f55d1ae72348e2aa7d98bd5fb8fd1df6bb112ec5f00b",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -826,6 +878,7 @@
       "questionId": "chapter-06-median-mode-2",
       "title": "中位数与众数",
       "prompt": "星海数据与概率远征任务：数据 2、4、6、8 的中位数是多少？【校准任务】",
+      "contentHash": "4db4d98b7b43209f0738dcb6dc485ef50ad4ca78170bb5441d35879457496c4c",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -842,6 +895,7 @@
       "questionId": "chapter-06-median-mode-3",
       "title": "中位数与众数",
       "prompt": "星海数据与概率远征任务：数据 2、3、3、5、7 中出现次数最多的数是多少？【侦察任务】",
+      "contentHash": "e3f4b2f3fe8e46b5dd1416d4e95abebe35aa1fb140f94026b3e52ca63d73a1a8",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -858,6 +912,7 @@
       "questionId": "chapter-06-median-mode-4",
       "title": "中位数与众数",
       "prompt": "星海数据与概率远征任务：五个数据按序为 4、7、x、13、18，中位数为 10，x 是多少？【推进任务】",
+      "contentHash": "fb7925f5329abd8abe2322fac84c40b566cdc4bb851aff956c3f8daf383bbf0f",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -874,6 +929,7 @@
       "questionId": "chapter-06-median-mode-5",
       "title": "中位数与众数",
       "prompt": "星海数据与概率远征任务：数据 6、8、11 的中位数为 8，加入数据 10 后，四个数据的中位数是多少？【协作任务】",
+      "contentHash": "88410e02f7477a5cb9ef3e5809a782c05a83f0f9b54e2b27b890b53ea48fc34c",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -890,6 +946,7 @@
       "questionId": "chapter-06-median-mode-6",
       "title": "中位数与众数",
       "prompt": "星海数据与概率远征任务：频数表中 5 出现 4 次，8 出现 7 次，11 出现 3 次，众数的频数是多少？【加固任务】",
+      "contentHash": "e753e1012e69d2b822e12878ae0d399ef45374326b519ca9f269826f94042ded",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -906,6 +963,7 @@
       "questionId": "chapter-06-median-mode-7",
       "title": "中位数与众数",
       "prompt": "星海数据与概率远征任务：数据 1、4、4、4、6、9 的众数是多少？【巡航任务】",
+      "contentHash": "2886f1c76c081d69f35b58e3c3a3829e4c791dab5c1ee9d943e7088a5e3f3e78",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -922,6 +980,7 @@
       "questionId": "chapter-06-median-mode-8",
       "title": "中位数与众数",
       "prompt": "星海数据与概率远征任务：两组数据合并后为 2、5、7、9、12、15、18，中位数是多少？【穿越任务】",
+      "contentHash": "c8f0285b363767d72f4401cc5a1a1e813d1a0d1f7899072d3d7ebd8d1b58cf46",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -938,6 +997,7 @@
       "questionId": "chapter-06-median-mode-9",
       "title": "中位数与众数",
       "prompt": "星海数据与概率远征任务：五个数据中中位数为 12，最中间的数据增加 3 后，新的中位数是多少？【攻坚任务】",
+      "contentHash": "047b52bafe634abd564edb9edf8bfb2b0ed36630d89af311a58c773e20be6404",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -954,6 +1014,7 @@
       "questionId": "chapter-06-median-mode-10",
       "title": "中位数与众数",
       "prompt": "星海数据与概率远征任务：Boss 按序数据为 6、8、8、11、14、14、14、18，众数的数值是多少？【决战任务】",
+      "contentHash": "b068dea38fcbe8b40278ed11be20a35e54efdee0379811a6d64ee143e72d877d",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -970,6 +1031,7 @@
       "questionId": "chapter-06-data-range-1",
       "title": "数据的范围",
       "prompt": "星海数据与概率远征任务：四次温度记录为 5、8、11、9，数据范围是多少？【启航任务】",
+      "contentHash": "df9b819bf3a2dfa9c05cae52198c9cab683888e569c6e0beb43d841ddd22d5c9",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -986,6 +1048,7 @@
       "questionId": "chapter-06-data-range-2",
       "title": "数据的范围",
       "prompt": "星海数据与概率远征任务：信号强度最大为 27，最小为 14，范围是多少？【校准任务】",
+      "contentHash": "df4f03b40bec536abd399ede11acf88dd0c4c64a6b49a4a5cbf9e3b5ed54c585",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1002,6 +1065,7 @@
       "questionId": "chapter-06-data-range-3",
       "title": "数据的范围",
       "prompt": "星海数据与概率远征任务：数据 12、16、18、20、25 中最大值与最小值之和是多少？【侦察任务】",
+      "contentHash": "4c1e6cedbeccda1ff0cf81b4e3e6544bbbd9c80fa71a78cf6a838314a49b9b0b",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1018,6 +1082,7 @@
       "questionId": "chapter-06-data-range-4",
       "title": "数据的范围",
       "prompt": "星海数据与概率远征任务：五天观测范围为 9，最低值为 7，最高值是多少？【推进任务】",
+      "contentHash": "bd0bc66d49618c0027692236b17a1e48ed07a435a6a0f2e2b13398d11bbf2f79",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1034,6 +1099,7 @@
       "questionId": "chapter-06-data-range-5",
       "title": "数据的范围",
       "prompt": "星海数据与概率远征任务：两组数据范围分别为 12 和 18，第二组比第一组大多少？【协作任务】",
+      "contentHash": "e2863059319fcf8e0ee8733dbae397a4081233f803b39cafbf65cf8975176ffa",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1050,6 +1116,7 @@
       "questionId": "chapter-06-data-range-6",
       "title": "数据的范围",
       "prompt": "星海数据与概率远征任务：六个读数为 14、19、12、23、17、16，去掉最大值和最小值后，剩余四个数的和是多少？【加固任务】",
+      "contentHash": "f1ab00dacb6ea1d982b077e0dfbe1f18eeb5bd84cd07d1d452792a5236d1eba7",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1066,6 +1133,7 @@
       "questionId": "chapter-06-data-range-7",
       "title": "数据的范围",
       "prompt": "星海数据与概率远征任务：四次读数的最大值 31，最小值 19，若最大值增加 4，新的范围是多少？【巡航任务】",
+      "contentHash": "c9bebc47dd981c9727afb29480146987f3f45a2be6146201afa38e5dd635c399",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1082,6 +1150,7 @@
       "questionId": "chapter-06-data-range-8",
       "title": "数据的范围",
       "prompt": "星海数据与概率远征任务：数据范围为 24，最大值为 40，最小值是多少？【穿越任务】",
+      "contentHash": "2542d5c9ff58f0400a79db6faf380ebbdd0e9634f1f1d6b533ec6c6ffce0ff05",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1098,6 +1167,7 @@
       "questionId": "chapter-06-data-range-9",
       "title": "数据的范围",
       "prompt": "星海数据与概率远征任务：三组数据的范围为 8、13、11，三组范围合计是多少？【攻坚任务】",
+      "contentHash": "7c75b87a35026f04c8628e0a624bdfc280b30fc5048312751dd7126fe1fac962",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1114,6 +1184,7 @@
       "questionId": "chapter-06-data-range-10",
       "title": "数据的范围",
       "prompt": "星海数据与概率远征任务：Boss 七次读数为 18、26、21、34、29、17、25，最大值比最小值多多少？【决战任务】",
+      "contentHash": "4de0bb6f428e2637a0b161e6a62448d437e9fd6806561dd6bc9b3b4186fb0064",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1130,6 +1201,7 @@
       "questionId": "chapter-06-possibility-basics-1",
       "title": "可能性基础",
       "prompt": "星海数据与概率远征任务：盒中有 3 个蓝色信标、3 个红色信标，随机取一个取到蓝色的可能性是多少？【启航任务】",
+      "contentHash": "8942f03a477ccad1ce9e99d938562b9d8c937cf4aa22f41cff55944ebf15f42d",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1146,6 +1218,7 @@
       "questionId": "chapter-06-possibility-basics-2",
       "title": "可能性基础",
       "prompt": "星海数据与概率远征任务：转盘分成 4 个相等区域，其中 1 个是金色，指针停在金色的可能性是多少？【校准任务】",
+      "contentHash": "f68c78edb07113cd9106b2ee2e3c5f7e4f43dc787b9aa7e8f15a68ecaa328903",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1162,6 +1235,7 @@
       "questionId": "chapter-06-possibility-basics-3",
       "title": "可能性基础",
       "prompt": "星海数据与概率远征任务：袋中有 5 个绿色球、3 个白色球，取到绿色的可能性是多少？【侦察任务】",
+      "contentHash": "e0ff51904196abfe2ea8131eba3b2b97a9057c8eef6b7803ac0b54f1a0d940b9",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1178,6 +1252,7 @@
       "questionId": "chapter-06-possibility-basics-4",
       "title": "可能性基础",
       "prompt": "星海数据与概率远征任务：一个骰子有 6 个等可能面，掷出偶数的面有 3 个，可能性是多少？【推进任务】",
+      "contentHash": "e0d1a929ce2cc6151a29911ad848784b32c2d6f051976c6c228d6a4664a65b8e",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1194,6 +1269,7 @@
       "questionId": "chapter-06-possibility-basics-5",
       "title": "可能性基础",
       "prompt": "星海数据与概率远征任务：密码盘有 10 个等可能数字，其中 0、1、2 都能触发警报，触发警报的可能性是多少？【协作任务】",
+      "contentHash": "4291dfa6f755b89367739a41a2db81940bfa52f95d184429f2c1c4a03f13442b",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1210,6 +1286,7 @@
       "questionId": "chapter-06-possibility-basics-6",
       "title": "可能性基础",
       "prompt": "星海数据与概率远征任务：箱中红、蓝、黄三类芯片各有 4 个，取到黄色的可能性是多少？【加固任务】",
+      "contentHash": "3c031e6db5153d508f09f896aa2fa5cc2b4839c2e8fa372deeef80a6de0a65b6",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1226,6 +1303,7 @@
       "questionId": "chapter-06-possibility-basics-7",
       "title": "可能性基础",
       "prompt": "星海数据与概率远征任务：某事件发生的可能性为 3/5，那么不发生的可能性是多少？【巡航任务】",
+      "contentHash": "fa082cb2c4cf78b1612d1822a988d76c7bf682684c93142f317a79d38f8914d5",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1242,6 +1320,7 @@
       "questionId": "chapter-06-possibility-basics-8",
       "title": "可能性基础",
       "prompt": "星海数据与概率远征任务：八个相等格中有 3 格标有星号，随机落点不在星号格的可能性是多少？【穿越任务】",
+      "contentHash": "87d0cca840976e5ab850b8ea30ed69f421c694be87ac961cf608c59f4eb24210",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1258,6 +1337,7 @@
       "questionId": "chapter-06-possibility-basics-9",
       "title": "可能性基础",
       "prompt": "星海数据与概率远征任务：观测灯有 2 个绿色档、1 个黄色档、1 个红色档，亮起黄色的可能性是多少？【攻坚任务】",
+      "contentHash": "9f5f63d3ed5560bb667781b3a23d57d59b2ddf21a98d4fc2621fea0648dbeaad",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1274,6 +1354,7 @@
       "questionId": "chapter-06-possibility-basics-10",
       "title": "可能性基础",
       "prompt": "星海数据与概率远征任务：Boss 抽取一个信号标签，成功标签有 4 个，普通标签有 6 个，抽到成功标签的可能性是多少？【决战任务】",
+      "contentHash": "ceb231f846820c52e08516863c9ac2200c6c4d79a9ad308e5a95b40a3b7b2151",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1290,6 +1371,7 @@
       "questionId": "chapter-06-probability-fractions-1",
       "title": "概率与分数",
       "prompt": "星海数据与概率远征任务：从 12 个等可能数据包中选 4 个是红色，选中红色的概率是多少？【启航任务】",
+      "contentHash": "34dfbc78db32e83905767768554ab7ef9db57ac4e006c5e4c410ddb31f8c9e47",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1306,6 +1388,7 @@
       "questionId": "chapter-06-probability-fractions-2",
       "title": "概率与分数",
       "prompt": "星海数据与概率远征任务：抽签盒中有 10 张签，中奖签 7 张，抽到未中奖签的概率是多少？【校准任务】",
+      "contentHash": "96a342ddca47dc287c022ea8cb767dc2a70400410c2c9b9f6cf48a504543fed9",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1322,6 +1405,7 @@
       "questionId": "chapter-06-probability-fractions-3",
       "title": "概率与分数",
       "prompt": "星海数据与概率远征任务：某天气模型预测晴天概率为 2/5，预测非晴天概率是多少？【侦察任务】",
+      "contentHash": "3905fe2d0bd466e390350f94f7583b7442a4e4c04b466f5feb8991121f592149",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1338,6 +1422,7 @@
       "questionId": "chapter-06-probability-fractions-4",
       "title": "概率与分数",
       "prompt": "星海数据与概率远征任务：九个相等扇区中有 6 个安全区，指针落在安全区的概率是多少？【推进任务】",
+      "contentHash": "916d3e346f898c98c499442e9b77fc8f258b1c7f66597034e85eaac14f343495",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1354,6 +1439,7 @@
       "questionId": "chapter-06-probability-fractions-5",
       "title": "概率与分数",
       "prompt": "星海数据与概率远征任务：一个信号包有 4 个零件，其中 1 个是稀有件；随机选两个位置，单个位置遇到稀有件的概率是多少？【协作任务】",
+      "contentHash": "b3b6ee09c7eb0b0b74d4755b22c1aee739400824817576368aac07c9bef63923",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1370,6 +1456,7 @@
       "questionId": "chapter-06-probability-fractions-6",
       "title": "概率与分数",
       "prompt": "星海数据与概率远征任务：抽样 20 次，某事件出现 13 次，用频率估计其概率是多少？【加固任务】",
+      "contentHash": "5ac84ba7ced88d6c487dbd1f9db3f0445fa1c4c94cd3a3ce47df24ab2f1bc2da",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1386,6 +1473,7 @@
       "questionId": "chapter-06-probability-fractions-7",
       "title": "概率与分数",
       "prompt": "星海数据与概率远征任务：红色概率为 3/8，蓝色概率为 1/4，红蓝两类合计概率是多少？【巡航任务】",
+      "contentHash": "cc3efef7141399df6484aba8c3d8d36f753c9aa250c84782f41b82a0699f9750",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1402,6 +1490,7 @@
       "questionId": "chapter-06-probability-fractions-8",
       "title": "概率与分数",
       "prompt": "星海数据与概率远征任务：一批 15 个元件中有 9 个合格，随机取到不合格元件的概率是多少？【穿越任务】",
+      "contentHash": "b820fb34d3886c73db5aa778166fa29a0164af007285537163c8bf1cae16866b",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1418,6 +1507,7 @@
       "questionId": "chapter-06-probability-fractions-9",
       "title": "概率与分数",
       "prompt": "星海数据与概率远征任务：模拟 30 次通信，成功 21 次，失败频率是多少？【攻坚任务】",
+      "contentHash": "17b43854c9e7bb9f88dca009e059c34feb461e0e1f40d6b8f4e833976bbb322e",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1434,6 +1524,7 @@
       "questionId": "chapter-06-probability-fractions-10",
       "title": "概率与分数",
       "prompt": "星海数据与概率远征任务：Boss 三种天气概率分别为 1/2、1/3 和未知，三种情况必有一种发生，未知概率是多少？【决战任务】",
+      "contentHash": "7fc3537dba4ca0f182c561b9fe31f80dd520337dfce1abaf4a7d521b3654fed2",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1450,6 +1541,7 @@
       "questionId": "chapter-06-tree-counting-1",
       "title": "树状图与计数",
       "prompt": "星海数据与概率远征任务：信号颜色有 2 种，频段有 3 种，每种颜色都能配每个频段，共有多少种方案？【启航任务】",
+      "contentHash": "a9543f168936b157e36cfc0aaa9455ba725f7669f05171e6a80c75055daab1e0",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1466,6 +1558,7 @@
       "questionId": "chapter-06-tree-counting-2",
       "title": "树状图与计数",
       "prompt": "星海数据与概率远征任务：有 3 条上行路线和 2 条下行路线，往返各选一条，共有多少种路线组合？【校准任务】",
+      "contentHash": "7058b2c7eb9a3eb56dfc634bb418faa1c5bc7ac820c36465c3305a14b8a7d7aa",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1482,6 +1575,7 @@
       "questionId": "chapter-06-tree-counting-3",
       "title": "树状图与计数",
       "prompt": "星海数据与概率远征任务：密码第一位有 4 种选择，第二位有 3 种选择，第三位有 2 种选择，共有多少个密码？【侦察任务】",
+      "contentHash": "ecbf3203037fba9eda69201e55d9290dad44c52ffc977af78a27de9a78d9e421",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1498,6 +1592,7 @@
       "questionId": "chapter-06-tree-counting-4",
       "title": "树状图与计数",
       "prompt": "星海数据与概率远征任务：观测任务可选 2 个时段、3 个镜头和 2 个滤镜，共有多少种配置？【推进任务】",
+      "contentHash": "f79ba7103104f0f720c4e1626f4d6ebcd2a810cd6977563661635ac78ac9e8d1",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1514,6 +1609,7 @@
       "questionId": "chapter-06-tree-counting-5",
       "title": "树状图与计数",
       "prompt": "星海数据与概率远征任务：餐盒有 3 种主食、2 种饮料、4 种徽章，选一套有多少种组合？【协作任务】",
+      "contentHash": "1871b0231e314dc1888379295ecac7efcb066c76ae1f6d98023329f6bddbae18",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1530,6 +1626,7 @@
       "questionId": "chapter-06-tree-counting-6",
       "title": "树状图与计数",
       "prompt": "星海数据与概率远征任务：四条线路中选出一条，再从 3 种数据格式中选一种，且有 2 种传输模式，共有多少种？【加固任务】",
+      "contentHash": "80bbdebf3a782bdf02393b7b9276b2d46b9975c3eaf9518345f7903d37d83be2",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1546,6 +1643,7 @@
       "questionId": "chapter-06-tree-counting-7",
       "title": "树状图与计数",
       "prompt": "星海数据与概率远征任务：三种信号颜色各可配 4 个频道，其中每种还可选白天或夜间，共有多少种？【巡航任务】",
+      "contentHash": "4115067665c6166e75bfb0befadf23701a96d5fc740c00d30bc873b8dc612a40",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1562,6 +1660,7 @@
       "questionId": "chapter-06-tree-counting-8",
       "title": "树状图与计数",
       "prompt": "星海数据与概率远征任务：第一步有 5 种校准方式，第二步有 2 种检查方式，第三步有 3 种记录格式，共有多少条路径？【穿越任务】",
+      "contentHash": "7c263a9f5af559507b9a44f34031c1637f4cc8304ddae66ef722f7ac634c3fc6",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1578,6 +1677,7 @@
       "questionId": "chapter-06-tree-counting-9",
       "title": "树状图与计数",
       "prompt": "星海数据与概率远征任务：两条主路线分别有 4、3 个中转点，每个中转点有 2 种记录方式，共有多少方案？【攻坚任务】",
+      "contentHash": "0d1850a8fa365b485d2a898e5e621288e097f4a912f4cfcf0bf1b89ec267ba35",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1594,6 +1694,7 @@
       "questionId": "chapter-06-tree-counting-10",
       "title": "树状图与计数",
       "prompt": "星海数据与概率远征任务：Boss 有 3 个发射窗口，每个窗口可选 2 个频段和 4 个功率档，共有多少种调度？【决战任务】",
+      "contentHash": "ca9806a9dcaf5d1ddf529ecc0edba19c96f3e2bb6b6a80058d4ce4fbdd887fd2",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1610,6 +1711,7 @@
       "questionId": "chapter-06-data-inference-1",
       "title": "数据推理与决策",
       "prompt": "星海数据与概率远征任务：四天信号数为 12、15、18、15，平均每天多少条？【启航任务】",
+      "contentHash": "19232a438ceaabc97691c0b1b6f815d39ac5e191fe74cb4cc708efbcecfae8da",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1626,6 +1728,7 @@
       "questionId": "chapter-06-data-inference-2",
       "title": "数据推理与决策",
       "prompt": "星海数据与概率远征任务：两种方案成功率分别为 80% 和 65%，前者比后者高多少个百分点？【校准任务】",
+      "contentHash": "99068e072050392b70b4faecc712b738f6170659ef00b57337390a9f54c9d889",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1642,6 +1745,7 @@
       "questionId": "chapter-06-data-inference-3",
       "title": "数据推理与决策",
       "prompt": "星海数据与概率远征任务：一组 50 条数据中，合格 42 条，合格率是多少？【侦察任务】",
+      "contentHash": "6381bcae200c84017aab48f4d38e97da329bf07850a08d6555209c79880e1945",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1658,6 +1762,7 @@
       "questionId": "chapter-06-data-inference-4",
       "title": "数据推理与决策",
       "prompt": "星海数据与概率远征任务：方案甲耗时 24 分钟，方案乙耗时 18 分钟，乙比甲少用多少分钟？【推进任务】",
+      "contentHash": "d0b72de6b7e018748cb0b641534693790f829626dac61a91b82333cc34a3bce0",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1674,6 +1779,7 @@
       "questionId": "chapter-06-data-inference-5",
       "title": "数据推理与决策",
       "prompt": "星海数据与概率远征任务：样本总数 80，A 类占 35%，A 类有多少个？【协作任务】",
+      "contentHash": "892688588f08db456d828c05a2c6107ef61a945c98dfef973dad4306daa2d4a6",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1690,6 +1796,7 @@
       "questionId": "chapter-06-data-inference-6",
       "title": "数据推理与决策",
       "prompt": "星海数据与概率远征任务：两台天线分别传输 36 和 44 个数据包，平均每台传输多少个？【加固任务】",
+      "contentHash": "2e7bb646ea9343c05377a37f8282d5d32479286a57736e6925bcb180abaff173",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1706,6 +1813,7 @@
       "questionId": "chapter-06-data-inference-7",
       "title": "数据推理与决策",
       "prompt": "星海数据与概率远征任务：预测值为 120，实际值为 108，实际值比预测值少百分之几？【巡航任务】",
+      "contentHash": "72afd0a1b85791f48a58c900d58f8301b16b02aaf8874c894bc0b66520df49e0",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1722,6 +1830,7 @@
       "questionId": "chapter-06-data-inference-8",
       "title": "数据推理与决策",
       "prompt": "星海数据与概率远征任务：三个方案得分为 72、85、78，最高分比最低分高多少？【穿越任务】",
+      "contentHash": "626f2ea85233d052a82d179a7939584bd84386242aa5c345704fb762ed5090a5",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1738,6 +1847,7 @@
       "questionId": "chapter-06-data-inference-9",
       "title": "数据推理与决策",
       "prompt": "星海数据与概率远征任务：抽查 25 个元件有 2 个不合格，照此估计 100 个中不合格多少个？【攻坚任务】",
+      "contentHash": "94e4699e4e52f014cd502ccd538f81dd07ebbf0f0a1d54d9424cf3956ede8dd8",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1754,6 +1864,7 @@
       "questionId": "chapter-06-data-inference-10",
       "title": "数据推理与决策",
       "prompt": "星海数据与概率远征任务：Boss 两轮测试各有 60 个样本，第一轮通过 45 个，第二轮通过 51 个，两轮共通过多少个？【决战任务】",
+      "contentHash": "2ffc9e38847f9c300011152b7fc42ebb2ff85ed96928523e10f17114ddb45f2b",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1770,6 +1881,7 @@
       "questionId": "chapter-06-statistics-probability-boss-1",
       "title": "综合统计概率 Boss",
       "prompt": "星海数据与概率远征任务：四次通信成功数为 8、9、7、10，平均每次成功多少次？【启航任务】",
+      "contentHash": "c79ed32018b973dadf480de919fbcc668fc88283606be2ea8ac5f617b4516bab",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1786,6 +1898,7 @@
       "questionId": "chapter-06-statistics-probability-boss-2",
       "title": "综合统计概率 Boss",
       "prompt": "星海数据与概率远征任务：信号箱有 12 个标签，其中 3 个故障；随机取到正常标签的概率是多少？【校准任务】",
+      "contentHash": "5b03e3eb768e91bd4fdf6cf922f7b7d575938f2f609c6f5a5e2efdfa5d1ebb9b",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1802,6 +1915,7 @@
       "questionId": "chapter-06-statistics-probability-boss-3",
       "title": "综合统计概率 Boss",
       "prompt": "星海数据与概率远征任务：三类数据频数为 12、18、10，第二类比第一类多多少条？【侦察任务】",
+      "contentHash": "de7f680c0461297cad513eea03040150089f7374e36b77b15bbedc094eac4670",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1818,6 +1932,7 @@
       "questionId": "chapter-06-statistics-probability-boss-4",
       "title": "综合统计概率 Boss",
       "prompt": "星海数据与概率远征任务：两条线路各有 3 个入口和 4 个出口，分别选择一个入口和出口，共有多少种？【推进任务】",
+      "contentHash": "e52575065c33c10b23b62d62fadfceb29de4af7305585ef98fc50ba83476cd98",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1834,6 +1949,7 @@
       "questionId": "chapter-06-statistics-probability-boss-5",
       "title": "综合统计概率 Boss",
       "prompt": "星海数据与概率远征任务：一组 40 个样本中 70% 合格，后来又补测 4 个且都合格，合格样本共有多少个？【协作任务】",
+      "contentHash": "9069f88876a8027e5a8c654b56759760aff566ae31b261bb60b7246876525eea",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1850,6 +1966,7 @@
       "questionId": "chapter-06-statistics-probability-boss-6",
       "title": "综合统计概率 Boss",
       "prompt": "星海数据与概率远征任务：五天读数为 16、12、20、18、14，去掉最高和最低后，剩余数据平均是多少？【加固任务】",
+      "contentHash": "54e316c37b25d3b05d819479889a63f8c5a9a5491aa865ea37efc289c3e0f986",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1866,6 +1983,7 @@
       "questionId": "chapter-06-statistics-probability-boss-7",
       "title": "综合统计概率 Boss",
       "prompt": "星海数据与概率远征任务：某事件概率为 2/5，连续两次独立尝试都发生的概率是多少？【巡航任务】",
+      "contentHash": "a27e3c0715b90f34937873ee74854d5410a11159e1f02f14fb0c0619220d4942",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1882,6 +2000,7 @@
       "questionId": "chapter-06-statistics-probability-boss-8",
       "title": "综合统计概率 Boss",
       "prompt": "星海数据与概率远征任务：卫星有 4 个频段、3 个编码方式和 2 个发送窗口，共有多少种配置？【穿越任务】",
+      "contentHash": "534d8e2ac63ea5c7f77a5174dd5fae25977563eb50d2750a5e5639d0e71320dd",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1898,6 +2017,7 @@
       "questionId": "chapter-06-statistics-probability-boss-9",
       "title": "综合统计概率 Boss",
       "prompt": "星海数据与概率远征任务：观测数据中最大值 32、最小值 14，平均数为 22；若共有 5 个数据，总和是多少？【攻坚任务】",
+      "contentHash": "77d1758b168abd5fb518385a0fd54ee9d61c8ed0ac9011433914458a30cb5169",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {
@@ -1914,6 +2034,7 @@
       "questionId": "chapter-06-statistics-probability-boss-10",
       "title": "综合统计概率 Boss",
       "prompt": "星海数据与概率远征任务：终极校准中，三类任务占比为 1/2、1/4 和剩余部分，剩余部分占百分之几？【决战任务】",
+      "contentHash": "b7f565bdf55042d47d6fd9ed3a9e94a0d2c9cf698a6e08145f99d342ac039ef6",
       "reviewer": "课程负责人",
       "reviewedAt": "2026-08-01T00:00:00+08:00",
       "scores": {

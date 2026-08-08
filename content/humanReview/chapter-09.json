@@ -1,0 +1,2051 @@
+{
+  "schemaVersion": 2,
+  "chapterId": "chapter-09",
+  "status": "approved",
+  "reviewer": "课程负责人",
+  "reviewedAt": "2026-08-06T00:00:00+08:00",
+  "contentHash": "bb345415c106ba68e681201aa97c20b35856c6484a5d37ac4d1df7daef2ff05e",
+  "notes": "新增思维方法题库已完成规则审校，课程负责人可继续进行逐题复核。 P0 ???????????????",
+  "records": [
+    {
+      "questionId": "chapter-09-decompose-conditions-1",
+      "title": "多条件拆解",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【多条件拆解】把城市任务拆成三段：第一段完成8项，第二段完成5项，第三段完成3项，共完成多少项？【启航任务】",
+      "contentHash": "151eaf9e2d30e0c1f4654764fe65cd38f2c5652c2e2d493501ccc558235f5922",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-decompose-conditions-2",
+      "title": "多条件拆解",
+      "prompt": "补给台记录：先用清单整理已知量：【多条件拆解】把城市任务拆成三段：第一段完成9项，第二段完成6项，第三段完成4项，共完成多少项？【校准任务】",
+      "contentHash": "81fa09b38a728da229c3117cfff558c44e8e10c8001887fe52fc52305c210326",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-decompose-conditions-3",
+      "title": "多条件拆解",
+      "prompt": "地图标记显示：先在路线图上标出关系：【多条件拆解】把城市任务拆成三段：第一段完成10项，第二段完成7项，第三段完成5项，共完成多少项？【侦察任务】",
+      "contentHash": "6647696e610ca52a14005a498aa12b71de7da07f6fa41a330e2e631bccbbc30c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-decompose-conditions-4",
+      "title": "多条件拆解",
+      "prompt": "观察窗发现：先比较候选方案再计算：【多条件拆解】把城市任务拆成三段：第一段完成11项，第二段完成8项，第三段完成3项，共完成多少项？【推进任务】",
+      "contentHash": "e0a17880b9f567b356aa83bb05b2f2ae744aa042cd01ace392048a90efefff9d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-decompose-conditions-5",
+      "title": "多条件拆解",
+      "prompt": "校准表给出：最后回到现场做一次核验：【多条件拆解】把城市任务拆成三段：第一段完成12项，第二段完成5项，第三段完成4项，共完成多少项？【协作任务】",
+      "contentHash": "c148749479fd3750dc8e6073cb19b40c64851f2cb94f804e7eed5ff9483eb253",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-decompose-conditions-6",
+      "title": "多条件拆解",
+      "prompt": "任务员核对：先把条件记在任务卡上：【多条件拆解】把城市任务拆成三段：第一段完成13项，第二段完成6项，第三段完成5项，共完成多少项？【加固任务】",
+      "contentHash": "8b063ec0b319bf3598f1f420f1e43063e942449b7947cf193302e90a014ea7ba",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-decompose-conditions-7",
+      "title": "多条件拆解",
+      "prompt": "仓库清单提示：先用清单整理已知量：【多条件拆解】把城市任务拆成三段：第一段完成14项，第二段完成7项，第三段完成3项，共完成多少项？【巡航任务】",
+      "contentHash": "ad123ed28bceb9c0d9d2431156776ef109902b49d950e9729b3f1f177375f9ae",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-decompose-conditions-8",
+      "title": "多条件拆解",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【多条件拆解】把城市任务拆成三段：第一段完成15项，第二段完成8项，第三段完成4项，共完成多少项？【穿越任务】",
+      "contentHash": "fddede172c715c6f2a1e970b3af0e2767a08369a0614cffaf22e54ee867edda5",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-decompose-conditions-9",
+      "title": "多条件拆解",
+      "prompt": "综合任务要求：先比较候选方案再计算：【多条件拆解】把城市任务拆成三段：第一段完成16项，第二段完成5项，第三段完成5项，共完成多少项？【攻坚任务】",
+      "contentHash": "cd7953cef166d609b3a1256ec75fd029c78c97d6aa61d3b5c2efa4903b06dcd7",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-decompose-conditions-10",
+      "title": "多条件拆解",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【多条件拆解】把城市任务拆成三段：第一段完成17项，第二段完成6项，第三段完成3项，共完成多少项？【决战任务】",
+      "contentHash": "9ba6e846d608342d2c66f5078a7adbfed6e58de32661e00c166593982a1eb120",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-equation-model-1",
+      "title": "线段图与方程建模",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【线段图与方程建模】两条街区共有11盏路灯，第二条比第一条多3盏，第一条有多少盏？【启航任务】",
+      "contentHash": "e4e6647793b08b8c150c8789cd23dd48ab6f920a55a8ba37f7854ec723d0dd88",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-equation-model-2",
+      "title": "线段图与方程建模",
+      "prompt": "补给台记录：先用清单整理已知量：【线段图与方程建模】两条街区共有14盏路灯，第二条比第一条多4盏，第一条有多少盏？【校准任务】",
+      "contentHash": "ead5760a6898056b67f969596ea794362c3d314e91c25815ec1bc18d727fea22",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-equation-model-3",
+      "title": "线段图与方程建模",
+      "prompt": "地图标记显示：先在路线图上标出关系：【线段图与方程建模】两条街区共有17盏路灯，第二条比第一条多5盏，第一条有多少盏？【侦察任务】",
+      "contentHash": "ecaf538dce1a0e16773fc34a76583aeb2baa5bebba9b81189a1c0b8a5b5d249b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-equation-model-4",
+      "title": "线段图与方程建模",
+      "prompt": "观察窗发现：先比较候选方案再计算：【线段图与方程建模】两条街区共有20盏路灯，第二条比第一条多6盏，第一条有多少盏？【推进任务】",
+      "contentHash": "57228706f754d71249da7ba372bd5d622c2315d151e01f71bd2bbf6ac66fa21f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-equation-model-5",
+      "title": "线段图与方程建模",
+      "prompt": "校准表给出：最后回到现场做一次核验：【线段图与方程建模】两条街区共有19盏路灯，第二条比第一条多3盏，第一条有多少盏？【协作任务】",
+      "contentHash": "fb00dc57a2b683792465d1b4d949675cc77b998f216193c04b26dedebdbb8074",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-equation-model-6",
+      "title": "线段图与方程建模",
+      "prompt": "任务员核对：先把条件记在任务卡上：【线段图与方程建模】两条街区共有22盏路灯，第二条比第一条多4盏，第一条有多少盏？【加固任务】",
+      "contentHash": "f32c90acc87a16c8808c56ba878511489f27edadc2d1a7a1b2b442b6f094f0fe",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-equation-model-7",
+      "title": "线段图与方程建模",
+      "prompt": "仓库清单提示：先用清单整理已知量：【线段图与方程建模】两条街区共有25盏路灯，第二条比第一条多5盏，第一条有多少盏？【巡航任务】",
+      "contentHash": "d03796d9c4d897b73dbd77ecbd3f8c62038add4cb2d1e5ec97cf5312f0675415",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-equation-model-8",
+      "title": "线段图与方程建模",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【线段图与方程建模】两条街区共有28盏路灯，第二条比第一条多6盏，第一条有多少盏？【穿越任务】",
+      "contentHash": "b824996e166bee12eb5d8215156c8e12734031bdd87e86d16c343a2ad044abc9",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-equation-model-9",
+      "title": "线段图与方程建模",
+      "prompt": "综合任务要求：先比较候选方案再计算：【线段图与方程建模】两条街区共有27盏路灯，第二条比第一条多3盏，第一条有多少盏？【攻坚任务】",
+      "contentHash": "e4d61ec54b746939aeb9ac77ce334b5d6f0f2a29f339865becb3f4e2695b3cde",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-equation-model-10",
+      "title": "线段图与方程建模",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【线段图与方程建模】两条街区共有30盏路灯，第二条比第一条多4盏，第一条有多少盏？【决战任务】",
+      "contentHash": "bcf4a3e4a66fb258d934a91b52fe356fc0faee9af88237508a87a0f586602c3c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-ratio-model-1",
+      "title": "比例模型",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【比例模型】一批15件物资按2:3分给甲乙两队，甲队得到多少件？【启航任务】",
+      "contentHash": "7560e39522cbfbbd114a033cf87da547487ed66f50821c652ab06f53501fdc19",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-ratio-model-2",
+      "title": "比例模型",
+      "prompt": "补给台记录：先用清单整理已知量：【比例模型】一批24件物资按2:4分给甲乙两队，甲队得到多少件？【校准任务】",
+      "contentHash": "3eddada61f0db72283e9a483cd6f41b3f6417ac2fa97bed6b870a297540e7e4a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-ratio-model-3",
+      "title": "比例模型",
+      "prompt": "地图标记显示：先在路线图上标出关系：【比例模型】一批35件物资按2:5分给甲乙两队，甲队得到多少件？【侦察任务】",
+      "contentHash": "8c8c03563adc90d976b956fdba2840ada38a63d1e3cf0b4bc1196b3717334cc6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-ratio-model-4",
+      "title": "比例模型",
+      "prompt": "观察窗发现：先比较候选方案再计算：【比例模型】一批48件物资按2:6分给甲乙两队，甲队得到多少件？【推进任务】",
+      "contentHash": "281294a1d5046746fa13cf33ca2098417794d56d25d706b18a1862c913ced8af",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-ratio-model-5",
+      "title": "比例模型",
+      "prompt": "校准表给出：最后回到现场做一次核验：【比例模型】一批35件物资按2:3分给甲乙两队，甲队得到多少件？【协作任务】",
+      "contentHash": "d8288f06f8b6f7af3a9cd359fcd353398f98de917f21e441fbc2bda96342598c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-ratio-model-6",
+      "title": "比例模型",
+      "prompt": "任务员核对：先把条件记在任务卡上：【比例模型】一批18件物资按2:4分给甲乙两队，甲队得到多少件？【加固任务】",
+      "contentHash": "9241f0662e33eb3bbcf32a5450a50f786da26e44b831fce7160c4f19c5578404",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-ratio-model-7",
+      "title": "比例模型",
+      "prompt": "仓库清单提示：先用清单整理已知量：【比例模型】一批28件物资按2:5分给甲乙两队，甲队得到多少件？【巡航任务】",
+      "contentHash": "0a3387069e79beb31f42ead88650da57986c5279a76371ee9a6e934ac4b55bc7",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-ratio-model-8",
+      "title": "比例模型",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【比例模型】一批40件物资按2:6分给甲乙两队，甲队得到多少件？【穿越任务】",
+      "contentHash": "16e73bb25ce9bfc8620f9f59bd450cf21f8efd1fda5c98261cd19562ad531a77",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-ratio-model-9",
+      "title": "比例模型",
+      "prompt": "综合任务要求：先比较候选方案再计算：【比例模型】一批30件物资按2:3分给甲乙两队，甲队得到多少件？【攻坚任务】",
+      "contentHash": "93a73707ea391bc6e0ebe1af5830cd8c1832524caf1f981d42beff9fefcecaec",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-ratio-model-10",
+      "title": "比例模型",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【比例模型】一批42件物资按2:4分给甲乙两队，甲队得到多少件？【决战任务】",
+      "contentHash": "d604d0a22b8755377ff761e4a2c039f57df3f886fa884184c141c6979911656a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-change-model-1",
+      "title": "变化关系建模",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【变化关系建模】能源仓初有20格电量，每天增加3格，连续2天后有多少格？【启航任务】",
+      "contentHash": "eec0711990aa1fa0d525ac53d6e03fb1d7afb7f1e92cd3b16a3246fa68f46ee5",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-change-model-2",
+      "title": "变化关系建模",
+      "prompt": "补给台记录：先用清单整理已知量：【变化关系建模】能源仓初有22格电量，每天增加4格，连续3天后有多少格？【校准任务】",
+      "contentHash": "6120c02ce3cf22eba5772d79ac2e1446dda2fdd10d01d77462f4eab08a7ef221",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-change-model-3",
+      "title": "变化关系建模",
+      "prompt": "地图标记显示：先在路线图上标出关系：【变化关系建模】能源仓初有24格电量，每天增加5格，连续4天后有多少格？【侦察任务】",
+      "contentHash": "d7db27ee066969bb1bfa56ba513c24c0832a0898e7d4cf4b2f40bc1b2cdfe0f4",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-change-model-4",
+      "title": "变化关系建模",
+      "prompt": "观察窗发现：先比较候选方案再计算：【变化关系建模】能源仓初有26格电量，每天增加6格，连续5天后有多少格？【推进任务】",
+      "contentHash": "dae8830d6278fcfca66dc9dac2a6c060d246a4119277d4ea88cc0e01b3bfbd2a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-change-model-5",
+      "title": "变化关系建模",
+      "prompt": "校准表给出：最后回到现场做一次核验：【变化关系建模】能源仓初有28格电量，每天增加7格，连续2天后有多少格？【协作任务】",
+      "contentHash": "56c193596d68940b5fbe634763377abf91c67ca7efc1762928baee1775d65195",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-change-model-6",
+      "title": "变化关系建模",
+      "prompt": "任务员核对：先把条件记在任务卡上：【变化关系建模】能源仓初有30格电量，每天增加3格，连续3天后有多少格？【加固任务】",
+      "contentHash": "51ae718a9bab2a0ce40352db357d9efcc050d279ecabe83fe64c4f591ffffe40",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-change-model-7",
+      "title": "变化关系建模",
+      "prompt": "仓库清单提示：先用清单整理已知量：【变化关系建模】能源仓初有32格电量，每天增加4格，连续4天后有多少格？【巡航任务】",
+      "contentHash": "afa9615df6f589f97caf0f8edfccda7bc8c579313e281b5ba79317e3b8efb846",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-change-model-8",
+      "title": "变化关系建模",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【变化关系建模】能源仓初有34格电量，每天增加5格，连续5天后有多少格？【穿越任务】",
+      "contentHash": "ca8a166ae41d568af2ff5081545f13c7de19d074abee4677ba80daf05d6a66b3",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-change-model-9",
+      "title": "变化关系建模",
+      "prompt": "综合任务要求：先比较候选方案再计算：【变化关系建模】能源仓初有36格电量，每天增加6格，连续2天后有多少格？【攻坚任务】",
+      "contentHash": "a82f46edd18f94390aba4071358e4e618d0d2fdb6f81ebe68f069e47a592e731",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-change-model-10",
+      "title": "变化关系建模",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【变化关系建模】能源仓初有38格电量，每天增加7格，连续3天后有多少格？【决战任务】",
+      "contentHash": "8d9c762810ad3f8f0830707d9dcb72127b40b8d2a824cd851896bc27d80cc9bf",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-data-decision-1",
+      "title": "数据图表决策",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【数据图表决策】数据表显示方案甲两天完成10、14项，方案乙完成12、11项，甲比乙多完成多少项？【启航任务】",
+      "contentHash": "af206ee94213b44c565624f41912473eb2c67e49c4f97dc9de74a2bfbd797797",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-data-decision-2",
+      "title": "数据图表决策",
+      "prompt": "补给台记录：先用清单整理已知量：【数据图表决策】数据表显示方案甲两天完成11、15项，方案乙完成13、12项，甲比乙多完成多少项？【校准任务】",
+      "contentHash": "94893839bf718ff5b9ab2f2105e8a1033763d0bdff365b7bd2a649dcd13f1e30",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-data-decision-3",
+      "title": "数据图表决策",
+      "prompt": "地图标记显示：先在路线图上标出关系：【数据图表决策】数据表显示方案甲两天完成12、16项，方案乙完成14、13项，甲比乙多完成多少项？【侦察任务】",
+      "contentHash": "5d01a2a2cb83b3769cfb356934cc69d087b4b1561a190e482cbbdc7277ebdf08",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-data-decision-4",
+      "title": "数据图表决策",
+      "prompt": "观察窗发现：先比较候选方案再计算：【数据图表决策】数据表显示方案甲两天完成13、17项，方案乙完成12、14项，甲比乙多完成多少项？【推进任务】",
+      "contentHash": "5c0dd634283090e3fa2fa30acd19999cf508adf5a8e0cced0c7d15327575225b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-data-decision-5",
+      "title": "数据图表决策",
+      "prompt": "校准表给出：最后回到现场做一次核验：【数据图表决策】数据表显示方案甲两天完成14、18项，方案乙完成13、11项，甲比乙多完成多少项？【协作任务】",
+      "contentHash": "4cb2368b60c15a0641348b54306abc91d82b5128cd6124e0b9a00ee7f659e42c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-data-decision-6",
+      "title": "数据图表决策",
+      "prompt": "任务员核对：先把条件记在任务卡上：【数据图表决策】数据表显示方案甲两天完成15、19项，方案乙完成14、12项，甲比乙多完成多少项？【加固任务】",
+      "contentHash": "411a4777bb65dfc53410348ab149553426bac5ea337130d1827868880497f780",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-data-decision-7",
+      "title": "数据图表决策",
+      "prompt": "仓库清单提示：先用清单整理已知量：【数据图表决策】数据表显示方案甲两天完成16、20项，方案乙完成12、13项，甲比乙多完成多少项？【巡航任务】",
+      "contentHash": "5a58637ad53f39ae4f7aa39b351c0bed37bf4959de2e6753bf1e288fca67f698",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-data-decision-8",
+      "title": "数据图表决策",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【数据图表决策】数据表显示方案甲两天完成17、21项，方案乙完成13、14项，甲比乙多完成多少项？【穿越任务】",
+      "contentHash": "a5254dfd43b256ae2191bcf5c52acf6a27a294f3fd148b598bbd8f84f9b67a74",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-data-decision-9",
+      "title": "数据图表决策",
+      "prompt": "综合任务要求：先比较候选方案再计算：【数据图表决策】数据表显示方案甲两天完成18、22项，方案乙完成14、11项，甲比乙多完成多少项？【攻坚任务】",
+      "contentHash": "6cfdddaf7003f9a8b142c758be43ad352363f6ba2d6d1941b8e8ad329f98aae0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-data-decision-10",
+      "title": "数据图表决策",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【数据图表决策】数据表显示方案甲两天完成19、23项，方案乙完成12、12项，甲比乙多完成多少项？【决战任务】",
+      "contentHash": "3ec775689cfdbdc62520c0077518addc742a046f3ca00a395b4399f5cbb01a80",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-probability-risk-1",
+      "title": "概率与风险",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【概率与风险】风险盘有6个等可能区域，其中2个代表安全，随机一次落在安全区的概率是多少？请用分数表示。【启航任务】",
+      "contentHash": "b7313e6afef3e8b83c8bbdff1e8061684a561c518e45d1c1fc608c1867f521c6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-probability-risk-2",
+      "title": "概率与风险",
+      "prompt": "补给台记录：先用清单整理已知量：【概率与风险】风险盘有7个等可能区域，其中3个代表安全，随机一次落在安全区的概率是多少？请用分数表示。【校准任务】",
+      "contentHash": "8c2c8c5de5b7442cea78a40a27e908e412a592d553690dbe49909ff034c8fe37",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-probability-risk-3",
+      "title": "概率与风险",
+      "prompt": "地图标记显示：先在路线图上标出关系：【概率与风险】风险盘有8个等可能区域，其中4个代表安全，随机一次落在安全区的概率是多少？请用分数表示。【侦察任务】",
+      "contentHash": "17285a4e71427a463aac2c9100f1c19fa47c479c64182b6a6a460604c40f181f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-probability-risk-4",
+      "title": "概率与风险",
+      "prompt": "观察窗发现：先比较候选方案再计算：【概率与风险】风险盘有9个等可能区域，其中2个代表安全，随机一次落在安全区的概率是多少？请用分数表示。【推进任务】",
+      "contentHash": "37c3d6daf372c1e4956aa4e6a2f0b7dce8d1284468e5ff88959fca22f79b4314",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-probability-risk-5",
+      "title": "概率与风险",
+      "prompt": "校准表给出：最后回到现场做一次核验：【概率与风险】风险盘有10个等可能区域，其中3个代表安全，随机一次落在安全区的概率是多少？请用分数表示。【协作任务】",
+      "contentHash": "231662e042d2df32c9dc716385731d171cf97c3ec6ecc6a4bac9ae5e373aedf3",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-probability-risk-6",
+      "title": "概率与风险",
+      "prompt": "任务员核对：先把条件记在任务卡上：【概率与风险】风险盘有11个等可能区域，其中4个代表安全，随机一次落在安全区的概率是多少？请用分数表示。【加固任务】",
+      "contentHash": "58b8dec6ce15beadc7ce3f450fcdb38b07a487e94309ce49d6acc54667a6d4e8",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-probability-risk-7",
+      "title": "概率与风险",
+      "prompt": "仓库清单提示：先用清单整理已知量：【概率与风险】风险盘有12个等可能区域，其中2个代表安全，随机一次落在安全区的概率是多少？请用分数表示。【巡航任务】",
+      "contentHash": "efb6c5068b5ba4117409173803d364075653422990ee11ecd87fa403085f0ea4",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-probability-risk-8",
+      "title": "概率与风险",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【概率与风险】风险盘有13个等可能区域，其中3个代表安全，随机一次落在安全区的概率是多少？请用分数表示。【穿越任务】",
+      "contentHash": "798614f1dc95b68ca5cdedb8132d79d177b4fba3390990c0bdbb73eef766a742",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-probability-risk-9",
+      "title": "概率与风险",
+      "prompt": "综合任务要求：先比较候选方案再计算：【概率与风险】风险盘有14个等可能区域，其中4个代表安全，随机一次落在安全区的概率是多少？请用分数表示。【攻坚任务】",
+      "contentHash": "7fd2c534f1b8b58f90bf7a48df41c9c2b4e88d5d4f615e76816dc3c2aa207d5f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-probability-risk-10",
+      "title": "概率与风险",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【概率与风险】风险盘有15个等可能区域，其中2个代表安全，随机一次落在安全区的概率是多少？请用分数表示。【决战任务】",
+      "contentHash": "9509e67e3a038fd2ba7bc6d9ab83e9deacdc43651584a8010f03e49c0cc03611",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-geometry-decomposition-1",
+      "title": "几何分割",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【几何分割】把长10米、宽6米的矩形广场挖去一个长2米、宽2米的小矩形，剩余面积是多少平方米？【启航任务】",
+      "contentHash": "d643d704d90872e0a4394ad494dfebf8a69780cb8d468c3ee0162e83bc617ece",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-geometry-decomposition-2",
+      "title": "几何分割",
+      "prompt": "补给台记录：先用清单整理已知量：【几何分割】把长11米、宽7米的矩形广场挖去一个长3米、宽2米的小矩形，剩余面积是多少平方米？【校准任务】",
+      "contentHash": "7d00554f52f28064fe9190f8b6565a0f639f8c35d106c711daed04f5c38d11dd",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-geometry-decomposition-3",
+      "title": "几何分割",
+      "prompt": "地图标记显示：先在路线图上标出关系：【几何分割】把长12米、宽8米的矩形广场挖去一个长2米、宽2米的小矩形，剩余面积是多少平方米？【侦察任务】",
+      "contentHash": "53d613e9afe66232b50109534a01b1c8b85db16ab3aeb2ca5fa47044d22dbc02",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-geometry-decomposition-4",
+      "title": "几何分割",
+      "prompt": "观察窗发现：先比较候选方案再计算：【几何分割】把长13米、宽6米的矩形广场挖去一个长3米、宽2米的小矩形，剩余面积是多少平方米？【推进任务】",
+      "contentHash": "6815dffd7cc29b976c556510f91418ff02b1af092f7fbf938fd6fc44a3b98133",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-geometry-decomposition-5",
+      "title": "几何分割",
+      "prompt": "校准表给出：最后回到现场做一次核验：【几何分割】把长14米、宽7米的矩形广场挖去一个长2米、宽2米的小矩形，剩余面积是多少平方米？【协作任务】",
+      "contentHash": "daf6f0bc2030134ca7479a34e6c4b44cc89a9bc4aa57b06fef4d57b7efe90ac9",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-geometry-decomposition-6",
+      "title": "几何分割",
+      "prompt": "任务员核对：先把条件记在任务卡上：【几何分割】把长15米、宽8米的矩形广场挖去一个长3米、宽2米的小矩形，剩余面积是多少平方米？【加固任务】",
+      "contentHash": "22614ef0f591ebc768c6ad5de72a44aac4a8642e84bbfdc2d09dbd98296eb8ae",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-geometry-decomposition-7",
+      "title": "几何分割",
+      "prompt": "仓库清单提示：先用清单整理已知量：【几何分割】把长16米、宽6米的矩形广场挖去一个长2米、宽2米的小矩形，剩余面积是多少平方米？【巡航任务】",
+      "contentHash": "91517f8e7332c64a60200588ebf9c38ccd8863f6b9c8e5ede9222a0af09dd525",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-geometry-decomposition-8",
+      "title": "几何分割",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【几何分割】把长17米、宽7米的矩形广场挖去一个长3米、宽2米的小矩形，剩余面积是多少平方米？【穿越任务】",
+      "contentHash": "8118e35ac952a53b448c4a0e8be0ce6aa879aa47899df5edd5fa76eba396653e",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-geometry-decomposition-9",
+      "title": "几何分割",
+      "prompt": "综合任务要求：先比较候选方案再计算：【几何分割】把长18米、宽8米的矩形广场挖去一个长2米、宽2米的小矩形，剩余面积是多少平方米？【攻坚任务】",
+      "contentHash": "a44499979de457ec4c129b34bc68e0abac2ea1184c075be229e43b2423e59ee8",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-geometry-decomposition-10",
+      "title": "几何分割",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【几何分割】把长19米、宽6米的矩形广场挖去一个长3米、宽2米的小矩形，剩余面积是多少平方米？【决战任务】",
+      "contentHash": "2fed20f88e6e453afb570e33da86b2c58203dcdc0affe721015f3b8a55bf8f6b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-motion-model-1",
+      "title": "运动与变化建模",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【运动与变化建模】配送车以每分钟6千米的速度行驶3分钟，走了多少千米？【启航任务】",
+      "contentHash": "315bdd8d98669850907e62f442d8fdd1bb08cac2906348830f8bd8be5c6b32d1",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-motion-model-2",
+      "title": "运动与变化建模",
+      "prompt": "补给台记录：先用清单整理已知量：【运动与变化建模】配送车以每分钟7千米的速度行驶4分钟，走了多少千米？【校准任务】",
+      "contentHash": "e65df3c00b90f107d7e2fef870d04bda25a14137ed0284443ea097a8f88700b1",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-motion-model-3",
+      "title": "运动与变化建模",
+      "prompt": "地图标记显示：先在路线图上标出关系：【运动与变化建模】配送车以每分钟8千米的速度行驶5分钟，走了多少千米？【侦察任务】",
+      "contentHash": "9f1cd496fc4121bda4a86f63f0678022f014d73e0fe7e3abb08b1632c42ecfd5",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-motion-model-4",
+      "title": "运动与变化建模",
+      "prompt": "观察窗发现：先比较候选方案再计算：【运动与变化建模】配送车以每分钟9千米的速度行驶6分钟，走了多少千米？【推进任务】",
+      "contentHash": "48de8f27630507e367ba6d81abb37558b930047a311c131febce4764fdef344e",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-motion-model-5",
+      "title": "运动与变化建模",
+      "prompt": "校准表给出：最后回到现场做一次核验：【运动与变化建模】配送车以每分钟10千米的速度行驶3分钟，走了多少千米？【协作任务】",
+      "contentHash": "7c30127c6371d75775e7d1853e682e13d9b90e8604bd500ef06d10ee2823304b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-motion-model-6",
+      "title": "运动与变化建模",
+      "prompt": "任务员核对：先把条件记在任务卡上：【运动与变化建模】配送车以每分钟11千米的速度行驶4分钟，走了多少千米？【加固任务】",
+      "contentHash": "f838d3b9c7bed8650c8dbfb3195c915b368fa02c1f10682da2ae7e5a07f0e800",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-motion-model-7",
+      "title": "运动与变化建模",
+      "prompt": "仓库清单提示：先用清单整理已知量：【运动与变化建模】配送车以每分钟12千米的速度行驶5分钟，走了多少千米？【巡航任务】",
+      "contentHash": "c33b241ad1f1bd8a794837453d13b1d514d7469bedf98aa089d1d7b795fe6efc",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-motion-model-8",
+      "title": "运动与变化建模",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【运动与变化建模】配送车以每分钟13千米的速度行驶6分钟，走了多少千米？【穿越任务】",
+      "contentHash": "4572b69246c3a914afb2514c768dbd3f56c3199d35a55aedc687631cffa7cdbd",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-motion-model-9",
+      "title": "运动与变化建模",
+      "prompt": "综合任务要求：先比较候选方案再计算：【运动与变化建模】配送车以每分钟14千米的速度行驶3分钟，走了多少千米？【攻坚任务】",
+      "contentHash": "09b4c928e36bab68cb2566df529d390191f08654b9d73f93d76f163e3c3ef229",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-motion-model-10",
+      "title": "运动与变化建模",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【运动与变化建模】配送车以每分钟15千米的速度行驶4分钟，走了多少千米？【决战任务】",
+      "contentHash": "86d27b90bf84151302fdbb561b3452fb1a4ee597b1003d9ecc1fc77f897d47eb",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-compare-plans-1",
+      "title": "方案比较",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【方案比较】方案甲固定花费8枚能量币，另按每项3枚完成4项；总花费是多少枚？【启航任务】",
+      "contentHash": "81f5b8fc11e2376953c3aaa36049219e428cf38fdcc7ed455731fcf86955d415",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-compare-plans-2",
+      "title": "方案比较",
+      "prompt": "补给台记录：先用清单整理已知量：【方案比较】方案甲固定花费9枚能量币，另按每项4枚完成5项；总花费是多少枚？【校准任务】",
+      "contentHash": "5ebe103fbef48a4f2b43a3960997b64b4825bf7c437adf8dbeca07930f3a8959",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-compare-plans-3",
+      "title": "方案比较",
+      "prompt": "地图标记显示：先在路线图上标出关系：【方案比较】方案甲固定花费10枚能量币，另按每项5枚完成6项；总花费是多少枚？【侦察任务】",
+      "contentHash": "dc05e54dcadf3fabe1531349a6937eea5e7558e66a3f92187240ce577de7ebcc",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-compare-plans-4",
+      "title": "方案比较",
+      "prompt": "观察窗发现：先比较候选方案再计算：【方案比较】方案甲固定花费11枚能量币，另按每项6枚完成4项；总花费是多少枚？【推进任务】",
+      "contentHash": "9e8d1d799bef4b7e874261eff446074b81f504891410b166d6dd658a6e62c822",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-compare-plans-5",
+      "title": "方案比较",
+      "prompt": "校准表给出：最后回到现场做一次核验：【方案比较】方案甲固定花费12枚能量币，另按每项3枚完成5项；总花费是多少枚？【协作任务】",
+      "contentHash": "8996e248bc93d54c105ed5d23b13634ca04bed0538cdbba0bd2761527e12e3bd",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-compare-plans-6",
+      "title": "方案比较",
+      "prompt": "任务员核对：先把条件记在任务卡上：【方案比较】方案甲固定花费13枚能量币，另按每项4枚完成6项；总花费是多少枚？【加固任务】",
+      "contentHash": "adebe4755512c51bba7adb33413a611038dfa1869422582e5af094b35078b319",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-compare-plans-7",
+      "title": "方案比较",
+      "prompt": "仓库清单提示：先用清单整理已知量：【方案比较】方案甲固定花费14枚能量币，另按每项5枚完成4项；总花费是多少枚？【巡航任务】",
+      "contentHash": "b1ae3b59b1e746d8448ab79a3c900b47d59c0e0678525a8ad8a3234ca45a19fb",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-compare-plans-8",
+      "title": "方案比较",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【方案比较】方案甲固定花费15枚能量币，另按每项6枚完成5项；总花费是多少枚？【穿越任务】",
+      "contentHash": "acfcb226579a1c6a0db58f938dd70186a4be5860863ae12c5449b1a8dd629849",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-compare-plans-9",
+      "title": "方案比较",
+      "prompt": "综合任务要求：先比较候选方案再计算：【方案比较】方案甲固定花费16枚能量币，另按每项3枚完成6项；总花费是多少枚？【攻坚任务】",
+      "contentHash": "11266e2bd31c584153eda9ee84e25ab800cb7785567ab29e6d762789754a5e0c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-compare-plans-10",
+      "title": "方案比较",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【方案比较】方案甲固定花费17枚能量币，另按每项4枚完成4项；总花费是多少枚？【决战任务】",
+      "contentHash": "8209fef53165c4f963f8c7fe02cc6e99c40ec966fd7883ee9d4a801c95ff7d19",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-optimization-1",
+      "title": "最优配置",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【最优配置】预算有24枚能量币，每个传感器4枚，最多能完整安装多少个传感器？【启航任务】",
+      "contentHash": "d02bd26078fa1dc99a1d58189083e8ae49566914a13c1658d1b3552ba4426fb0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-optimization-2",
+      "title": "最优配置",
+      "prompt": "补给台记录：先用清单整理已知量：【最优配置】预算有27枚能量币，每个传感器5枚，最多能完整安装多少个传感器？【校准任务】",
+      "contentHash": "3ae84fd49a6b420d9e58bde7b4ed0b4fd0d692241e82474e828d540362c37d4f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-optimization-3",
+      "title": "最优配置",
+      "prompt": "地图标记显示：先在路线图上标出关系：【最优配置】预算有30枚能量币，每个传感器6枚，最多能完整安装多少个传感器？【侦察任务】",
+      "contentHash": "456d719a8d261ddf947ac4b3ab02beacfb44e4c55a3cb8d64452b43afd4f666d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-optimization-4",
+      "title": "最优配置",
+      "prompt": "观察窗发现：先比较候选方案再计算：【最优配置】预算有33枚能量币，每个传感器7枚，最多能完整安装多少个传感器？【推进任务】",
+      "contentHash": "e6ad6255b3ae24f84f6ac465b55ba503e26ad40079891e0e6c4e950828015e6f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-optimization-5",
+      "title": "最优配置",
+      "prompt": "校准表给出：最后回到现场做一次核验：【最优配置】预算有36枚能量币，每个传感器4枚，最多能完整安装多少个传感器？【协作任务】",
+      "contentHash": "781872d8f60bc1ee6a14bd77ce87344c9a7bf438420fc346b64728bdf66ca7c6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-optimization-6",
+      "title": "最优配置",
+      "prompt": "任务员核对：先把条件记在任务卡上：【最优配置】预算有39枚能量币，每个传感器5枚，最多能完整安装多少个传感器？【加固任务】",
+      "contentHash": "e1c5bed82a20d83535735314985bb53bc416fa39ce8f3fde70fb221db60092c1",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-optimization-7",
+      "title": "最优配置",
+      "prompt": "仓库清单提示：先用清单整理已知量：【最优配置】预算有42枚能量币，每个传感器6枚，最多能完整安装多少个传感器？【巡航任务】",
+      "contentHash": "1c717a9ca88f2993d0b5015849a0dd61ee4a49f410856ff8d082de1275eab42b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-optimization-8",
+      "title": "最优配置",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【最优配置】预算有45枚能量币，每个传感器7枚，最多能完整安装多少个传感器？【穿越任务】",
+      "contentHash": "6f5632462c8b98bbe7e55c819920a60f7fbcc58e954983b9d33603e049a30c3f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-optimization-9",
+      "title": "最优配置",
+      "prompt": "综合任务要求：先比较候选方案再计算：【最优配置】预算有48枚能量币，每个传感器4枚，最多能完整安装多少个传感器？【攻坚任务】",
+      "contentHash": "862ad04b075acb31ab52d4866d7945c833761c29cc1bda58e68cfd6c4ce7df78",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-optimization-10",
+      "title": "最优配置",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【最优配置】预算有51枚能量币，每个传感器5枚，最多能完整安装多少个传感器？【决战任务】",
+      "contentHash": "83edf297f4d29c7149eb724dbb3daf0f51754cfe13348c446dab521809b2bdaa",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-result-verification-1",
+      "title": "结果验证",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【结果验证】用逆向验算检查：一个数量减去3后再乘2得到8，原数量是多少？【启航任务】",
+      "contentHash": "04ea881b66814828a835fd9c2f17cba5fcb2528960a1a0631f7e2efd35ff1b6f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-result-verification-2",
+      "title": "结果验证",
+      "prompt": "补给台记录：先用清单整理已知量：【结果验证】用逆向验算检查：一个数量减去4后再乘2得到8，原数量是多少？【校准任务】",
+      "contentHash": "315368c44d4dd33abd5157cf2dece072997dab0a4274a7ed2d0928aec077e8ba",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-result-verification-3",
+      "title": "结果验证",
+      "prompt": "地图标记显示：先在路线图上标出关系：【结果验证】用逆向验算检查：一个数量减去5后再乘2得到8，原数量是多少？【侦察任务】",
+      "contentHash": "0658c5f4df1ba938fda200969c8ba731ba640f735cbc90de8bd2389f02c048c4",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-result-verification-4",
+      "title": "结果验证",
+      "prompt": "观察窗发现：先比较候选方案再计算：【结果验证】用逆向验算检查：一个数量减去6后再乘2得到8，原数量是多少？【推进任务】",
+      "contentHash": "b825d2608587b41050d946ce817e4617c33e948cd984b9387a3510913bfdb260",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-result-verification-5",
+      "title": "结果验证",
+      "prompt": "校准表给出：最后回到现场做一次核验：【结果验证】用逆向验算检查：一个数量减去7后再乘2得到8，原数量是多少？【协作任务】",
+      "contentHash": "8a2e49e17ccd6e1f83c91504c45ad5351ae6e34765e3bf29fff25cccf320cac9",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-result-verification-6",
+      "title": "结果验证",
+      "prompt": "任务员核对：先把条件记在任务卡上：【结果验证】用逆向验算检查：一个数量减去3后再乘2得到18，原数量是多少？【加固任务】",
+      "contentHash": "f986d30827fb9ffe3a017cb4bf93c7f87aadd82f44254098c084b1de886aef12",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-result-verification-7",
+      "title": "结果验证",
+      "prompt": "仓库清单提示：先用清单整理已知量：【结果验证】用逆向验算检查：一个数量减去4后再乘2得到18，原数量是多少？【巡航任务】",
+      "contentHash": "ecc40a54fe1200aa2e078658a05c6fee6f08330b7621906c742366e251f7b85b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-result-verification-8",
+      "title": "结果验证",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【结果验证】用逆向验算检查：一个数量减去5后再乘2得到18，原数量是多少？【穿越任务】",
+      "contentHash": "e1ffce78c1592fc2da8618c99130dca0e4748235aa35d5321dbda9159ab810e6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-result-verification-9",
+      "title": "结果验证",
+      "prompt": "综合任务要求：先比较候选方案再计算：【结果验证】用逆向验算检查：一个数量减去6后再乘2得到18，原数量是多少？【攻坚任务】",
+      "contentHash": "2960579782b0c99e2a66e3dd9c699fe62a8df4abb31d46b61decc6deffda9f96",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-result-verification-10",
+      "title": "结果验证",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【结果验证】用逆向验算检查：一个数量减去7后再乘2得到18，原数量是多少？【决战任务】",
+      "contentHash": "152220e3c097f07e29125463c465c41e47fe392ef260c45d5b4e64fbd84d0d6c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-1",
+      "title": "综合生活建模 Boss",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【综合生活建模 Boss】智慧社区有3组家庭，每组需要5份物资，公共服务还需4份，一共需要多少份？【启航任务】",
+      "contentHash": "57914535010cf934fe7c09cb0f6d3ed06ce7d8e11a3fd8ae9a95a646cce3c5a9",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-2",
+      "title": "综合生活建模 Boss",
+      "prompt": "补给台记录：先用清单整理已知量：【综合生活建模 Boss】智慧社区有4组家庭，每组需要6份物资，公共服务还需5份，一共需要多少份？【校准任务】",
+      "contentHash": "77c8fd775c842e98b74a77d1654d76b6808cb4a3c4afccea5d478473358aa985",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-3",
+      "title": "综合生活建模 Boss",
+      "prompt": "地图标记显示：先在路线图上标出关系：【综合生活建模 Boss】智慧社区有5组家庭，每组需要7份物资，公共服务还需6份，一共需要多少份？【侦察任务】",
+      "contentHash": "769c0018e491330b26b53c3d0e8c54d6d7ee704bada1b407d82aabb1e1e6c91d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-4",
+      "title": "综合生活建模 Boss",
+      "prompt": "观察窗发现：先比较候选方案再计算：【综合生活建模 Boss】智慧社区有6组家庭，每组需要5份物资，公共服务还需7份，一共需要多少份？【推进任务】",
+      "contentHash": "96a5dba3fc05086263fe4ad37248bab98251ac89fae04d8faea7f6f31c1bb6e6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-5",
+      "title": "综合生活建模 Boss",
+      "prompt": "校准表给出：最后回到现场做一次核验：【综合生活建模 Boss】智慧社区有3组家庭，每组需要6份物资，公共服务还需8份，一共需要多少份？【协作任务】",
+      "contentHash": "6eeddf13a76b0542fa158a0e9e5f46e48367e90e51e5782fbdb06fbdd333c6ed",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-6",
+      "title": "综合生活建模 Boss",
+      "prompt": "任务员核对：先把条件记在任务卡上：【综合生活建模 Boss】智慧社区有4组家庭，每组需要7份物资，公共服务还需4份，一共需要多少份？【加固任务】",
+      "contentHash": "322c6f3f35aedabb6d74e520303697f8eb7b8a72fbb226f153c52e2a7a2b7f1a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-7",
+      "title": "综合生活建模 Boss",
+      "prompt": "仓库清单提示：先用清单整理已知量：【综合生活建模 Boss】智慧社区有5组家庭，每组需要5份物资，公共服务还需5份，一共需要多少份？【巡航任务】",
+      "contentHash": "db71735a4e088093a154a323f78b31a75ac09c52b6b898811942226f8f7d8f65",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-8",
+      "title": "综合生活建模 Boss",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【综合生活建模 Boss】智慧社区有6组家庭，每组需要6份物资，公共服务还需6份，一共需要多少份？【穿越任务】",
+      "contentHash": "e7142b6fd406ba36c6f7ce362acf128fafd76d9d6e1e84a8e44a994ae772fc4b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-9",
+      "title": "综合生活建模 Boss",
+      "prompt": "综合任务要求：先比较候选方案再计算：【综合生活建模 Boss】智慧社区有3组家庭，每组需要7份物资，公共服务还需7份，一共需要多少份？【攻坚任务】",
+      "contentHash": "cc8e350cec7ba0ca4c440ddca5c6e2a50afc6e101be7d2ef2fe0bd883bf9a67c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-10",
+      "title": "综合生活建模 Boss",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【综合生活建模 Boss】智慧社区有4组家庭，每组需要5份物资，公共服务还需8份，一共需要多少份？【决战任务】",
+      "contentHash": "93685b132af076199a538b425e45b5c621b9e245a9d216ee102ca0f61d14878f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    }
+  ]
+}

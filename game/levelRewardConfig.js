@@ -84,6 +84,35 @@ function getLevelRewardConfig(levelId) {
   };
 }
 
+function getRewardTrack(levelId) {
+  const config = CONFIG_BY_LEVEL_ID[levelId];
+  if (!config) return null;
+  const bonusPool = GameItemCatalog.getBonusRewardPool(config.chapterId);
+  return {
+    chapterId: config.chapterId,
+    levelId: config.levelId,
+    componentId: config.componentId,
+    stagePartId: config.stagePartId,
+    materialRecipe: cloneRecipe(config.materialRecipe),
+    componentRecipe: cloneRecipe(config.componentRecipe),
+    stageRecipe: cloneRecipe(config.stageRecipe),
+    bonusPool: bonusPool.map((reward) => ({ ...reward })),
+    streakItemId: GameItemCatalog.getStreakRewardItem(config.chapterId),
+    questionSlots: config.fixedRewards.map((fixedReward) => ({
+      questionSlot: fixedReward.questionSlot,
+      fixedReward: cloneReward(fixedReward),
+      bonusPool: bonusPool.map((reward) => ({ ...reward })),
+      streakItemId: GameItemCatalog.getStreakRewardItem(config.chapterId)
+    }))
+  };
+}
+
+function getQuestionRewardTrack(levelId, questionSlot) {
+  const track = getRewardTrack(levelId);
+  if (!track || !Number.isInteger(questionSlot)) return null;
+  return track.questionSlots.find((entry) => entry.questionSlot === questionSlot) || null;
+}
+
 function listLevelIds(chapterId) {
   return CONFIGS.filter((config) => config.chapterId === chapterId).map((config) => config.levelId);
 }
@@ -143,6 +172,8 @@ function validateMainlineEconomy(chapterId = FIRST_CHAPTER_ID) {
 module.exports = {
   FIRST_CHAPTER_ID,
   getLevelRewardConfig,
+  getRewardTrack,
+  getQuestionRewardTrack,
   listLevelIds,
   simulateFullClearCraft,
   validateMainlineEconomy

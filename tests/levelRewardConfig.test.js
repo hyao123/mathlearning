@@ -76,3 +76,15 @@ test("fixed rewards can traverse raw materials through processing before final a
     assert.equal(report.canCraftFinal, true, chapterId);
   }
 });
+
+test("the canonical reward track resolves by level and question slot", () => {
+  const track = config.getRewardTrack("chapter-01-level-1");
+  assert.equal(track.chapterId, "chapter-01");
+  assert.equal(track.levelId, "chapter-01-level-1");
+  assert.equal(track.questionSlots.length, 10);
+  assert.deepEqual(track.questionSlots.map((slot) => slot.questionSlot), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  const entry = config.getQuestionRewardTrack("chapter-01-level-1", 1);
+  assert.deepEqual(entry.fixedReward, { questionSlot: 1, itemId: "oak-log", quantity: 1 });
+  assert.equal(Array.isArray(entry.bonusPool), true);
+  assert.equal(typeof entry.streakItemId, "string");
+});

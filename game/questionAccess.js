@@ -6,7 +6,11 @@ const CHALLENGE_FIELDS = [
   "slot",
   "isBoss",
   "learningObjective",
-  "storyBeat"
+  "storyBeat",
+  "thinkingMethodId",
+  "thinkingMethodLabel",
+  "methodPrompt",
+  "methodReview"
 ];
 
 function toChallengeQuestion(question, options = {}) {
@@ -41,13 +45,17 @@ function buildSolutionReview(question) {
   const review = question?.solutionReview;
   if (!review || typeof review !== "object" || Array.isArray(review)) return null;
 
-  return {
+  const result = {
     observation: review.observation,
     steps: Array.isArray(review.steps) ? [...review.steps] : [],
     answer: review.answer,
     check: review.check,
     pitfall: review.pitfall
   };
+  ["schemaVersion", "method", "stepKinds", "calculation", "answerFormat", "verification", "errorTrap"].forEach((field) => {
+    if (Object.hasOwn(review, field)) result[field] = Array.isArray(review[field]) ? [...review[field]] : review[field];
+  });
+  return result;
 }
 
 module.exports = {

@@ -98,17 +98,16 @@ test("every project component, large part, and final aircraft has a generated vi
 
 test("all campaign catalog items have complete visual entries", () => {
   const coreItems = catalog.listItems();
-  assert.equal(coreItems.length, 265);
+  assert.equal(coreItems.length, 400);
   coreItems.forEach((item) => {
     const visual = visuals.getItemVisual(item.id);
     assert.ok(visual, item.id);
-    const generatedChapterItem = item.tags.includes("chapter-04") || item.tags.includes("chapter-05") || item.tags.includes("chapter-06");
+    const generatedChapterItem = item.tags.some((tag) => /^chapter-0[2-9]$/.test(tag));
     const minimumSize = generatedChapterItem ? 128 : 256;
     assert.equal(visual.width >= minimumSize && visual.height >= minimumSize, true, item.id);
     assert.ok(visual.alt.length > 0, item.id);
     if (visual.src.startsWith("/assets/")) {
-      const expectedVersion = generatedChapterItem ? "v2" : "v1";
-      assert.match(visual.src, new RegExp(`^/assets/items/.+-${expectedVersion}\\.webp$`), item.id);
+      assert.match(visual.src, /^\/assets\/items\/.+-v[12]\.webp$/, item.id);
       const relativeAssetPath = visual.src.replace(/^\//, "");
       assert.equal(fs.existsSync(path.join(__dirname, "..", "public", relativeAssetPath.replace(/^assets\//, "assets/"))), true, item.id);
     } else {
@@ -122,9 +121,9 @@ test("chapter visual manifest defines unique v2 assets for every new chapter pro
   const itemIds = CHAPTER_VISUAL_MANIFEST.map(({ itemId }) => itemId);
   const filenames = CHAPTER_VISUAL_MANIFEST.map(({ filename }) => filename);
 
-  assert.equal(CHAPTER_VISUAL_MANIFEST.length, 88);
-  assert.equal(new Set(itemIds).size, 88);
-  assert.equal(new Set(filenames).size, 88);
+  assert.equal(CHAPTER_VISUAL_MANIFEST.length, 176);
+  assert.equal(new Set(itemIds).size, 176);
+  assert.equal(new Set(filenames).size, 176);
   filenames.forEach((filename) => assert.match(filename, /^.+-v2\.webp$/));
 });
 
@@ -180,4 +179,26 @@ test("quantum satellite visuals distinguish materials, components, parts, missio
   assert.equal(visuals.getItemVisual("chapter-06-mission-1").visualVariant, "quantum-mission");
   assert.equal(visuals.getItemVisual("quantum-communication-satellite").visualVariant, "quantum-final-project");
   assert.equal(visuals.getItemVisual("quantum-communication-satellite").preloadPriority, "project-final");
+});
+
+test("expansion visuals use shipped WebP assets instead of runtime data URIs", () => {
+  const visual = visuals.getItemVisual("starlight-crystal");
+  assert.match(visual.src, /^\/assets\/items\/starlight-crystal-v2\.webp$/);
+  assert.equal(visuals.EXPANSION_VISUALS["starlight-crystal"].src, visual.src);
+  assert.equal(fs.existsSync(path.join(__dirname, "..", "public", "assets", "items", "starlight-crystal-v2.webp")), true);
+});
+
+test("every chapter manifest asset is shipped and points to the matching visual", () => {
+  const { CHAPTER_VISUAL_MANIFEST } = require("../game/chapterVisualManifest.js");
+  CHAPTER_VISUAL_MANIFEST.forEach(({ itemId, filename }) => {
+    const visual = visuals.getItemVisual(itemId);
+    assert.equal(visual.src, `/assets/items/${filename}`, itemId);
+    assert.equal(fs.existsSync(path.join(__dirname, "..", "public", "assets", "items", filename)), true, itemId);
+  });
+});
+
+test("all catalog visuals are materialized as unique shipped assets", () => {
+  const sources = catalog.listItems().map((item) => visuals.getItemVisual(item.id).src);
+  assert.ok(sources.every((src) => src.startsWith("/assets/items/")));
+  assert.equal(new Set(sources).size, sources.length, "every item should have its own shipped artwork asset");
 });

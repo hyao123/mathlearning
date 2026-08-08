@@ -12,10 +12,13 @@
     "check": "node scripts/check-syntax.js",
     "validate:game": "node scripts/validate-game-content.js",
     "validate:release": "node scripts/validate-game-content.js --strict",
+    "generate:expansion-visuals": "node scripts/generate-expansion-item-visuals.js",
+    "check:visual-assets": "node scripts/check-visual-assets.js",
     "check:bundle": "node scripts/check-bundle-size.js",
     "test:ui": "node scripts/ui-behavior.js",
     "test:game-ui": "node scripts/game-ui-behavior.js",
     "audit:ui": "node scripts/audit-ui.js",
+    "audit:low-performance": "node scripts/audit-low-performance.js",
     "smoke": "node scripts/smoke-browser.js"
   },
   "devDependencies": {

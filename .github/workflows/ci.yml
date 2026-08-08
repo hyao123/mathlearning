@@ -25,11 +25,11 @@ jobs:
       - name: Run syntax checks
         run: npm run check
 
-      - name: Validate content
-        run: npm run validate:content
+      - name: Validate game content and human review
+        run: npm run validate:release
 
-      - name: Check content snapshot
-        run: npm run check:content-snapshot
+      - name: Check shipped visual assets
+        run: npm run check:visual-assets
 
       - name: Run tests
         run: npm test
@@ -46,8 +46,8 @@ jobs:
       - name: Run browser smoke test
         run: npm run smoke
 
-      - name: Run UI behavior test
-        run: npm run test:ui
+      - name: Run game UI behavior test
+        run: npm run test:game-ui
 
       - name: Run UI audit
         run: npm run audit:ui

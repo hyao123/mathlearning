@@ -16,7 +16,7 @@ test("chapter one exposes the approved 12 knowledge-point levels", () => {
 });
 
 test("campaign config exposes sequential twelve-topic expansion chapters", () => {
-  assert.deepEqual(config.CHAPTER_IDS, ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05", "chapter-06"]);
+  assert.deepEqual(config.CHAPTER_IDS, ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05", "chapter-06", "chapter-07", "chapter-08", "chapter-09"]);
   assert.deepEqual(config.CHAPTERS["chapter-02"].levels.map((level) => level.moduleId), [
     "pigeonhole-principle", "counting-transfer", "motion", "engineering", "train-bridge", "age",
     "efficiency-transfer", "tree-planting", "geometry", "logic", "geometry-counting", "parity-divisibility"
@@ -40,7 +40,7 @@ test("chapter four routes from the completed orbital station through twelve geom
 
 test("chapter five unlocks after the polar expedition with twelve algebra-and-equation topics", () => {
   assert.equal(config.FIFTH_CHAPTER_ID, "chapter-05");
-  assert.deepEqual(config.CHAPTER_IDS, ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05", "chapter-06"]);
+  assert.deepEqual(config.CHAPTER_IDS, ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05", "chapter-06", "chapter-07", "chapter-08", "chapter-09"]);
   assert.equal(config.CHAPTERS[config.FIFTH_CHAPTER_ID].name, "装甲突击演练");
   assert.equal(config.CHAPTERS[config.FIFTH_CHAPTER_ID].prerequisiteChapterId, "chapter-04");
   assert.equal(config.CHAPTERS[config.FIFTH_CHAPTER_ID].projectId, "99a-main-battle-tank");
@@ -58,4 +58,16 @@ test("chapter six adds the star-sea statistics and probability route", () => {
     "data-collection", "frequency-tables", "bar-charts", "line-charts", "mean", "median-mode",
     "data-range", "possibility-basics", "probability-fractions", "tree-counting", "data-inference", "statistics-probability-boss"
   ]);
+});
+
+test("chapters seven to nine add the thinking-method routes in sequence", () => {
+  assert.equal(config.CHAPTERS["chapter-07"].prerequisiteChapterId, "chapter-06");
+  assert.equal(config.CHAPTERS["chapter-08"].prerequisiteChapterId, "chapter-07");
+  assert.equal(config.CHAPTERS["chapter-09"].prerequisiteChapterId, "chapter-08");
+  assert.equal(config.CHAPTERS["chapter-07"].projectId, "math-explorer-rover");
+  assert.equal(config.CHAPTERS["chapter-08"].projectId, "deep-space-navigation-ship");
+  assert.equal(config.CHAPTERS["chapter-09"].projectId, "smart-city-hub");
+  assert.equal(config.CHAPTERS["chapter-07"].levels.length, 12);
+  assert.equal(config.CHAPTERS["chapter-08"].levels.length, 12);
+  assert.equal(config.CHAPTERS["chapter-09"].levels.length, 12);
 });

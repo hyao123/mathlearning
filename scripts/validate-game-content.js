@@ -7,6 +7,7 @@ const QuestionQuality = require(path.join(root, "game", "questionQuality.js"));
 const { CHAPTER_IDS } = require(path.join(root, "game", "chapterConfig.js"));
 const GameItemCatalog = require(path.join(root, "game", "itemCatalog.js"));
 const { RUNTIME_SOURCE_FILES } = require(path.join(root, "game", "runtimeSources.js"));
+const { getManifestContentHash, getQuestionContentHash, normalizeReviewedPrompt } = require("./humanReviewIntegrity.js");
 
 const contentFiles = RUNTIME_SOURCE_FILES;
 
@@ -39,6 +40,13 @@ function validateBuiltChapter(chapter, { requireHumanReview = false, reviewManif
       .filter((entry) => entry.uniqueBeats < 4)
       .map((entry) => `${entry.levelId}: story variants must contain at least 4 stable beats; found ${entry.uniqueBeats}`)
   ];
+  if (/^chapter-0[789]$/.test(chapter.chapterId)) {
+    chapter.levels.forEach((level) => {
+      QuestionQuality.validateTopicTemplateDiversity(level.questions).forEach((error) => {
+        errors.push(`${level.levelId}: ${error}`);
+      });
+    });
+  }
   const warnings = QuestionQuality.detectTemplateDuplicates(questions)
     .map(({ questionIds }) => `suspected numeric template duplicate: ${questionIds.join(", ")}`);
 
@@ -49,6 +57,17 @@ function validateBuiltChapter(chapter, { requireHumanReview = false, reviewManif
       errors.push(`human review manifest is not approved: ${reviewManifest.status || "unknown"}`);
     } else {
       errors.push(...QuestionQuality.validateHumanReviewRecords(reviewManifest.records, questions.map((question) => question.id)));
+      if (reviewManifest.schemaVersion !== 2) errors.push("human review manifest schemaVersion must be 2");
+      const expectedRecords = questions.map((question) => ({ questionId: question.id, contentHash: getQuestionContentHash(question) }));
+      const recordsById = new Map((reviewManifest.records || []).map((record) => [record.questionId, record]));
+      expectedRecords.forEach(({ questionId, contentHash }) => {
+        const question = questions.find((candidate) => candidate.id === questionId);
+        const record = recordsById.get(questionId);
+        if (record?.contentHash !== contentHash || record?.title !== question?.title || normalizeReviewedPrompt(record?.prompt) !== normalizeReviewedPrompt(question?.prompt)) {
+          errors.push(`human review content hash mismatch: ${questionId}`);
+        }
+      });
+      if (reviewManifest.contentHash !== getManifestContentHash(expectedRecords)) errors.push("human review manifest content hash mismatch");
     }
   }
   return { valid: errors.length === 0, errors, warnings, questionCount: questions.length, storyCoverage };

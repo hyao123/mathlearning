@@ -25,9 +25,11 @@ function createResilientStateStore(storageProvider, key) {
       try {
         storageProvider()?.setItem(key, serialized);
         memoryIsFallback = false;
+        return { ok: true, mode: "persistent" };
       } catch {
         // Persistence is best effort. Rendering continues from the in-memory state.
         memoryIsFallback = true;
+        return { ok: false, mode: "memory" };
       }
     }
   };
@@ -64,6 +66,19 @@ function mergeInventories(...inventories) {
     }
   }
   return result;
+}
+
+function inventoryFingerprint(inventory) {
+  return JSON.stringify(Object.entries(sanitizeInventory(inventory)).sort(([left], [right]) => left.localeCompare(right)));
+}
+
+function mergeDistinctInventories(...inventories) {
+  const uniqueInventories = new Map();
+  for (const inventory of inventories) {
+    const sanitized = sanitizeInventory(inventory);
+    if (Object.keys(sanitized).length) uniqueInventories.set(inventoryFingerprint(sanitized), sanitized);
+  }
+  return mergeInventories(...uniqueInventories.values());
 }
 
 function serializeInventory(inventory) {
@@ -140,6 +155,28 @@ function parseStoredObject(serialized) {
   }
 }
 
+function canonicalizeAtomicSave(serialized) {
+  const parsed = parseStoredObject(serialized) || {};
+  const rawChapterStates = parsed.chapterStates && typeof parsed.chapterStates === "object" && !Array.isArray(parsed.chapterStates)
+    ? parsed.chapterStates
+    : {};
+  const rootInventory = sanitizeInventory(parsed.inventory);
+  const inventory = Object.keys(rootInventory).length
+    ? rootInventory
+    : mergeDistinctInventories(...Object.values(rawChapterStates).map((state) => state?.inventory));
+  const chapterStates = Object.fromEntries(Object.entries(rawChapterStates).map(([chapterId, state]) => {
+    if (!state || typeof state !== "object" || Array.isArray(state)) return [chapterId, state];
+    const { inventory: _legacyInventory, ...stateWithoutInventory } = state;
+    return [chapterId, stateWithoutInventory];
+  }));
+  return {
+    ...parsed,
+    version: ATOMIC_SAVE_STORAGE_KEY,
+    inventory,
+    chapterStates
+  };
+}
+
 function createAtomicSaveStore(storageProvider, options = {}) {
   if (typeof storageProvider !== "function") throw new Error("Storage provider must be a function");
   const key = options.key || ATOMIC_SAVE_STORAGE_KEY;
@@ -162,16 +199,17 @@ function createAtomicSaveStore(storageProvider, options = {}) {
     try {
       storageProvider()?.setItem(key, value);
       memoryIsFallback = false;
+      return true;
     } catch {
       memoryIsFallback = true;
+      return false;
     }
   };
 
   const withRevision = (value, nextRevision) => {
-    const parsed = parseStoredObject(value) || {};
+    const parsed = canonicalizeAtomicSave(value);
     return JSON.stringify({
       ...parsed,
-      version: ATOMIC_SAVE_STORAGE_KEY,
       revision: nextRevision
     });
   };
@@ -181,7 +219,7 @@ function createAtomicSaveStore(storageProvider, options = {}) {
       version: "math-quest-campaign-v2",
       chapterStates: {}
     };
-    const legacyInventory = mergeInventories(
+    const legacyInventory = mergeDistinctInventories(
       ...legacyInventoryKeys.map((legacyKey) => parseStoredInventory(read(legacyKey))),
       campaign.inventory,
       ...Object.values(campaign.chapterStates || {}).map((state) => state?.inventory)
@@ -191,7 +229,11 @@ function createAtomicSaveStore(storageProvider, options = {}) {
       : { [campaign.activeChapterId || "chapter-01"]: campaign };
     const chapterStates = Object.fromEntries(Object.entries(legacyChapterStates).map(([chapterId, state]) => [
       chapterId,
-      { ...state, inventory: { ...legacyInventory } }
+      (() => {
+        if (!state || typeof state !== "object" || Array.isArray(state)) return state;
+        const { inventory: _legacyInventory, ...stateWithoutInventory } = state;
+        return stateWithoutInventory;
+      })()
     ]));
     const migrated = withRevision(JSON.stringify({
       ...campaign,
@@ -210,7 +252,9 @@ function createAtomicSaveStore(storageProvider, options = {}) {
       const stored = parseStoredObject(read(key));
       if (stored) {
         revision = Number.isInteger(stored.revision) && stored.revision >= 0 ? stored.revision : 0;
-        memoryState = JSON.stringify(stored);
+        const canonical = { ...canonicalizeAtomicSave(stored), revision };
+        memoryState = JSON.stringify(canonical);
+        if (JSON.stringify(stored) !== memoryState) write(memoryState);
         return memoryState;
       }
       return migrate();
@@ -221,9 +265,10 @@ function createAtomicSaveStore(storageProvider, options = {}) {
       const next = withRevision(serialized, currentRevision + 1);
       memoryState = next;
       revision = currentRevision + 1;
-      write(next);
+      const persisted = write(next);
+      return { ok: persisted, mode: persisted ? "persistent" : "memory", revision: revision };
     }
   };
 }
 
-module.exports = { ATOMIC_SAVE_STORAGE_KEY, INVENTORY_STORAGE_KEY, createAtomicSaveStore, createInventoryStore, createResilientStateStore, mergeInventories, serializeInventory };
+module.exports = { ATOMIC_SAVE_STORAGE_KEY, INVENTORY_STORAGE_KEY, canonicalizeAtomicSave, createAtomicSaveStore, createInventoryStore, createResilientStateStore, mergeInventories, serializeInventory };

@@ -49,7 +49,11 @@ const CHAPTER_VISUAL_MANIFEST = Object.freeze([
   ...createChapterVisuals("chapter-02", "sub", "deep-sea-explorer", "Deep-sea explorer"),
   ...createChapterVisuals("chapter-03", "station", "orbital-science-station", "Orbital science station"),
   ...createChapterVisuals("chapter-04", "icebreaker", "polar-icebreaker", "Polar icebreaker"),
-  ...createChapterVisuals("chapter-05", "tank", "99a-main-battle-tank", "99A armored assault")
+  ...createChapterVisuals("chapter-05", "tank", "99a-main-battle-tank", "99A armored assault"),
+  ...createChapterVisuals("chapter-06", "satellite", "quantum-communication-satellite", "Quantum communication satellite"),
+  ...createChapterVisuals("chapter-07", "rover", "math-explorer-rover", "Math exploration rover"),
+  ...createChapterVisuals("chapter-08", "navship", "deep-space-navigation-ship", "Deep-space navigation ship"),
+  ...createChapterVisuals("chapter-09", "city", "smart-city-hub", "Smart city hub")
 ]);
 
 module.exports = { CHAPTER_VISUAL_MANIFEST };

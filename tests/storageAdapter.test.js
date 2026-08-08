@@ -93,8 +93,52 @@ test("atomic save store persists campaign and inventory in one revisioned record
   assert.equal(storage.size, 1);
   const saved = JSON.parse(storage.get(ATOMIC_SAVE_STORAGE_KEY));
   assert.equal(saved.revision, 1);
-  assert.deepEqual(saved.chapterStates["chapter-01"].inventory, { "oak-log": 2 });
+  assert.deepEqual(saved.inventory, { "oak-log": 2 });
+  assert.equal(Object.hasOwn(saved.chapterStates["chapter-01"], "inventory"), false);
   assert.equal(JSON.parse(store.load()).revision, 1);
+});
+
+test("atomic save canonicalizes legacy chapter inventory copies before writing", () => {
+  const storage = new Map();
+  const provider = () => ({
+    getItem(key) { return storage.get(key) ?? null; },
+    setItem(key, value) { storage.set(key, value); }
+  });
+  const store = createAtomicSaveStore(provider);
+
+  store.save(JSON.stringify({
+    version: "math-quest-campaign-v2",
+    activeChapterId: "chapter-02",
+    chapterStates: {
+      "chapter-01": { inventory: { "oak-log": 2 } },
+      "chapter-02": { inventory: { "oak-log": 3, quartz: 1 } }
+    }
+  }));
+
+  const saved = JSON.parse(storage.get(ATOMIC_SAVE_STORAGE_KEY));
+  assert.deepEqual(saved.inventory, { "oak-log": 5, quartz: 1 });
+  Object.values(saved.chapterStates).forEach((state) => assert.equal(Object.hasOwn(state, "inventory"), false));
+});
+
+test("atomic save deduplicates mirrored chapter inventories when upgrading an existing record", () => {
+  const storage = new Map([[ATOMIC_SAVE_STORAGE_KEY, JSON.stringify({
+    version: ATOMIC_SAVE_STORAGE_KEY,
+    revision: 4,
+    chapterStates: {
+      "chapter-01": { inventory: { "oak-log": 2, quartz: 1 } },
+      "chapter-02": { inventory: { "oak-log": 2, quartz: 1 } }
+    }
+  })]]);
+  const provider = () => ({
+    getItem(key) { return storage.get(key) ?? null; },
+    setItem(key, value) { storage.set(key, value); }
+  });
+  const store = createAtomicSaveStore(provider);
+
+  const saved = JSON.parse(store.load());
+  assert.deepEqual(saved.inventory, { "oak-log": 2, quartz: 1 });
+  Object.values(saved.chapterStates).forEach((state) => assert.equal(Object.hasOwn(state, "inventory"), false));
+  assert.equal(JSON.parse(storage.get(ATOMIC_SAVE_STORAGE_KEY)).revision, 4);
 });
 
 test("atomic save store migrates split campaign and inventory keys into one canonical record", () => {
@@ -113,7 +157,8 @@ test("atomic save store migrates split campaign and inventory keys into one cano
   const store = createAtomicSaveStore(provider, { legacyStateKeys: ["math-quest-campaign-v2"], legacyInventoryKeys: [INVENTORY_STORAGE_KEY] });
 
   const migrated = JSON.parse(store.load());
-  assert.deepEqual(migrated.chapterStates["chapter-01"].inventory, { "oak-log": 3 });
+  assert.deepEqual(migrated.inventory, { "oak-log": 3 });
+  assert.equal(Object.hasOwn(migrated.chapterStates["chapter-01"], "inventory"), false);
   assert.equal(JSON.parse(storage.get(ATOMIC_SAVE_STORAGE_KEY)).revision, 1);
 });
 
@@ -136,7 +181,8 @@ test("atomic save store keeps progress from the legacy single-chapter state shap
   assert.deepEqual(migrated.chapterStates["chapter-01"].levelRecords, {
     "chapter-01-level-1": { starCount: 1 }
   });
-  assert.deepEqual(migrated.chapterStates["chapter-01"].inventory, { "oak-log": 3 });
+  assert.deepEqual(migrated.inventory, { "oak-log": 3 });
+  assert.equal(Object.hasOwn(migrated.chapterStates["chapter-01"], "inventory"), false);
 });
 
 test("atomic save store keeps the newest memory snapshot when the persistent write fails", () => {
@@ -149,4 +195,15 @@ test("atomic save store keeps the newest memory snapshot when the persistent wri
   store.save(JSON.stringify({ version: "math-quest-campaign-v2", chapterStates: {}, inventory: { "oak-log": 1 } }));
   assert.equal(JSON.parse(store.load()).inventory["oak-log"], 1);
   assert.equal(JSON.parse(store.load()).revision, 1);
+});
+
+test("atomic save store reports when it had to fall back to memory", () => {
+  const store = createAtomicSaveStore(() => ({
+    getItem() { return null; },
+    setItem() { throw new Error("quota exceeded"); }
+  }));
+
+  const result = store.save(JSON.stringify({ version: "math-quest-campaign-v2", chapterStates: {} }));
+
+  assert.deepEqual(result, { ok: false, mode: "memory", revision: 1 });
 });

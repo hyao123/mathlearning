@@ -6,6 +6,9 @@ const THIRD_CHAPTER_ID = "chapter-03";
 const FOURTH_CHAPTER_ID = "chapter-04";
 const FIFTH_CHAPTER_ID = "chapter-05";
 const SIXTH_CHAPTER_ID = "chapter-06";
+const SEVENTH_CHAPTER_ID = "chapter-07";
+const EIGHTH_CHAPTER_ID = "chapter-08";
+const NINTH_CHAPTER_ID = "chapter-09";
 
 function createLevels(chapterId, moduleIds) {
   return Object.freeze(moduleIds.map((moduleId, index) => Object.freeze({
@@ -82,9 +85,42 @@ const CHAPTERS = Object.freeze({
       "data-collection", "frequency-tables", "bar-charts", "line-charts", "mean", "median-mode",
       "data-range", "possibility-basics", "probability-fractions", "tree-counting", "data-inference", "statistics-probability-boss"
     ])
+  },
+  [SEVENTH_CHAPTER_ID]: {
+    id: SEVENTH_CHAPTER_ID,
+    name: "思维工具工坊",
+    rewardTheme: "math-tools-materials",
+    prerequisiteChapterId: SIXTH_CHAPTER_ID,
+    projectId: "math-explorer-rover",
+    levels: createLevels(SEVENTH_CHAPTER_ID, [
+      "read-conditions", "draw-bar-model", "diagram-model", "table-method", "enumeration-method", "tree-diagram",
+      "assumption-method", "reverse-thinking", "transformation-method", "unit-method", "estimation-method", "verify-eliminate"
+    ])
+  },
+  [EIGHTH_CHAPTER_ID]: {
+    id: EIGHTH_CHAPTER_ID,
+    name: "逻辑策略指挥部",
+    rewardTheme: "strategy-materials",
+    prerequisiteChapterId: SEVENTH_CHAPTER_ID,
+    projectId: "deep-space-navigation-ship",
+    levels: createLevels(EIGHTH_CHAPTER_ID, [
+      "case-discussion", "parity-invariant", "worst-case", "recurrence-strategy", "reverse-reasoning", "elimination-table",
+      "scheduling", "shortest-path", "optimal-strategy", "construction", "contradiction", "integrated-strategy"
+    ])
+  },
+  [NINTH_CHAPTER_ID]: {
+    id: NINTH_CHAPTER_ID,
+    name: "综合建模竞赛场",
+    rewardTheme: "smart-city-materials",
+    prerequisiteChapterId: EIGHTH_CHAPTER_ID,
+    projectId: "smart-city-hub",
+    levels: createLevels(NINTH_CHAPTER_ID, [
+      "decompose-conditions", "equation-model", "ratio-model", "change-model", "data-decision", "probability-risk",
+      "geometry-decomposition", "motion-model", "compare-plans", "optimization", "result-verification", "integrated-modeling"
+    ])
   }
 });
 
-const CHAPTER_IDS = Object.freeze([FIRST_CHAPTER_ID, SECOND_CHAPTER_ID, THIRD_CHAPTER_ID, FOURTH_CHAPTER_ID, FIFTH_CHAPTER_ID, SIXTH_CHAPTER_ID]);
+const CHAPTER_IDS = Object.freeze([FIRST_CHAPTER_ID, SECOND_CHAPTER_ID, THIRD_CHAPTER_ID, FOURTH_CHAPTER_ID, FIFTH_CHAPTER_ID, SIXTH_CHAPTER_ID, SEVENTH_CHAPTER_ID, EIGHTH_CHAPTER_ID, NINTH_CHAPTER_ID]);
 
-module.exports = { CHAPTERS, CHAPTER_IDS, DIFFICULTY_SLOTS, FEATURE_FLAGS, FIRST_CHAPTER_ID, SECOND_CHAPTER_ID, THIRD_CHAPTER_ID, FOURTH_CHAPTER_ID, FIFTH_CHAPTER_ID, SIXTH_CHAPTER_ID };
+module.exports = { CHAPTERS, CHAPTER_IDS, DIFFICULTY_SLOTS, FEATURE_FLAGS, FIRST_CHAPTER_ID, SECOND_CHAPTER_ID, THIRD_CHAPTER_ID, FOURTH_CHAPTER_ID, FIFTH_CHAPTER_ID, SIXTH_CHAPTER_ID, SEVENTH_CHAPTER_ID, EIGHTH_CHAPTER_ID, NINTH_CHAPTER_ID };

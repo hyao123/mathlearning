@@ -1,4 +1,5 @@
 const { CHAPTER_VISUAL_MANIFEST } = require("./chapterVisualManifest.js");
+const GameItemCatalog = require("./itemCatalog.js");
 
 const ITEM_VISUALS = Object.freeze({
   "oak-log": Object.freeze({
@@ -204,7 +205,19 @@ const EXPANSION_ITEM_IDS = Object.freeze([
   "starlight-crystal", "spectral-glass", "signal-dust", "quantum-sand", "ion-battery", "photon-chip", "nebula-alloy", "gravity-lens", "data-prism", "pulse-core", "cosmic-iron",
   "satellite-truss-alloy", "satellite-solar-film", "satellite-data-board", "satellite-sensor-lens", "satellite-gyro-core", "satellite-antenna-array", "satellite-telemetry-chip", "satellite-signal-filter", "satellite-thermal-shell", "satellite-orbit-engine", "satellite-quantum-core", "satellite-command-core",
   ...Array.from({ length: 12 }, (_, index) => `satellite-${index + 1}`), ...Array.from({ length: 4 }, (_, index) => `satellite-part-${index + 1}`), "quantum-communication-satellite",
-  ...Array.from({ length: 5 }, (_, index) => `chapter-06-mission-${index + 1}`)
+  ...Array.from({ length: 5 }, (_, index) => `chapter-06-mission-${index + 1}`),
+  "workshop-compass", "workshop-paper", "workshop-book", "workshop-map", "workshop-string", "workshop-copper-ingot", "workshop-redstone", "workshop-quartz", "workshop-amethyst", "workshop-clock", "workshop-iron-nugget",
+  "rover-condition-chip", "rover-bar-projector", "rover-shape-lens", "rover-table-disk", "rover-enumeration-wheel", "rover-branch-lamp", "rover-assumption-arm", "rover-reverse-tracker", "rover-transform-gear", "rover-unit-wheel", "rover-estimation-radar", "rover-verification-console",
+  ...Array.from({ length: 12 }, (_, index) => `rover-${index + 1}`), ...Array.from({ length: 4 }, (_, index) => `rover-part-${index + 1}`), "math-explorer-rover",
+  ...Array.from({ length: 5 }, (_, index) => `chapter-07-mission-${index + 1}`),
+  "strategy-redstone", "strategy-ender-eye", "strategy-iron-ingot", "strategy-lapis", "strategy-ladder", "strategy-lead", "strategy-observer", "strategy-piston", "strategy-rail", "strategy-beacon", "strategy-netherite",
+  "navship-case-screen", "navship-parity-detector", "navship-worst-case-simulator", "navship-recurrence-core", "navship-reverse-module", "navship-elimination-table", "navship-schedule-clock", "navship-shortest-path", "navship-strategy-array", "navship-construction-bay", "navship-contradiction-alarm", "navship-decision-core",
+  ...Array.from({ length: 12 }, (_, index) => `navship-${index + 1}`), ...Array.from({ length: 4 }, (_, index) => `navship-part-${index + 1}`), "deep-space-navigation-ship",
+  ...Array.from({ length: 5 }, (_, index) => `chapter-08-mission-${index + 1}`),
+  "city-stone", "city-glass", "city-iron", "city-copper", "city-redstone", "city-rail", "city-lantern", "city-hopper", "city-target", "city-beacon", "city-heart",
+  "city-condition-analyzer", "city-equation-console", "city-ratio-distributor", "city-change-monitor", "city-data-screen", "city-risk-evaluator", "city-geometry-bench", "city-motion-track", "city-plan-comparator", "city-optimization-disk", "city-verification-loop", "city-modeling-core",
+  ...Array.from({ length: 12 }, (_, index) => `city-${index + 1}`), ...Array.from({ length: 4 }, (_, index) => `city-part-${index + 1}`), "smart-city-hub",
+  ...Array.from({ length: 5 }, (_, index) => `chapter-09-mission-${index + 1}`)
 ]);
 
 function polarVisualVariant(itemId) {
@@ -264,7 +277,54 @@ function quantumArt(itemId, visualVariant) {
   return '<path d="M74 176 88 78l40-30 40 30 14 98-54 28Z" fill="#3867c7" stroke="#b7fbff" stroke-width="7"/><path d="M96 94h64M92 122h72M88 150h80" stroke="#e7ffff" stroke-width="6"/><circle cx="128" cy="66" r="13" fill="#f5d06f" stroke="#fff3ae" stroke-width="5"/>';
 }
 
+function hashItemId(itemId) {
+  let hash = 2166136261;
+  for (const character of String(itemId)) {
+    hash ^= character.codePointAt(0);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function escapeXml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+}
+
+function renderIdentityArt(itemId, item) {
+  const hash = hashItemId(itemId);
+  const shape = item?.icon?.shape || "core";
+  const label = Array.from(item?.name || itemId).slice(0, 2).join("");
+  const hue = hash % 360;
+  const accent = `hsl(${hue} 86% 70%)`;
+  const deep = `hsl(${(hue + 42) % 360} 62% 32%)`;
+  const angle = (hash % 17) - 8;
+  const mark = hash % 4;
+  const shapeArt = {
+    gem: '<path d="M128 75 164 103 151 166 128 188 105 166 92 103Z" fill="url(#identity-gradient)" stroke="white" stroke-width="5"/><path d="m128 75 0 113M92 103h72M105 166h46" stroke="white" stroke-width="3" opacity=".72"/>',
+    diamond: '<path d="m128 66 58 62-58 70-58-70Z" fill="url(#identity-gradient)" stroke="white" stroke-width="5"/><path d="m70 128h116M128 66v132M92 91l36 37 36-37M92 165l36-37 36 37" stroke="white" stroke-width="3" opacity=".72"/>',
+    core: '<circle cx="128" cy="128" r="54" fill="url(#identity-gradient)" stroke="white" stroke-width="5"/><circle cx="128" cy="128" r="24" fill="#fff" opacity=".82"/><path d="M128 54v28M128 174v28M54 128h28M174 128h28" stroke="white" stroke-width="6" stroke-linecap="round"/>',
+    panel: '<path d="M71 91 170 70 185 166 86 187Z" fill="url(#identity-gradient)" stroke="white" stroke-width="5"/><path d="m91 110 73-16M96 137l73-16M101 164l73-16" stroke="white" stroke-width="5" opacity=".72"/>',
+    ingot: '<path d="m72 101 43-28 70 22-29 34-70-12Z" fill="url(#identity-gradient)" stroke="white" stroke-width="5"/><path d="m72 101v47l70 25v-44M142 173l43-34v-44" fill="none" stroke="white" stroke-width="5" opacity=".76"/>',
+    ring: '<circle cx="128" cy="128" r="62" fill="url(#identity-gradient)" stroke="white" stroke-width="5"/><circle cx="128" cy="128" r="30" fill="#10182a" stroke="white" stroke-width="5"/><path d="M128 66v31M128 159v31M66 128h31M159 128h31" stroke="white" stroke-width="6"/>',
+    dust: '<g fill="url(#identity-gradient)" stroke="white" stroke-width="3"><circle cx="89" cy="112" r="18"/><circle cx="141" cy="86" r="25"/><circle cx="166" cy="145" r="20"/><circle cx="107" cy="169" r="16"/></g><path d="m74 184 110-98" stroke="white" stroke-width="4" opacity=".7"/>',
+    stone: '<path d="m70 105 38-35 78 23 0 69-59 31-57-31Z" fill="url(#identity-gradient)" stroke="white" stroke-width="5"/><path d="m108 70v62l78 30M70 105l38 27 78-39" fill="none" stroke="white" stroke-width="4" opacity=".72"/>',
+    coal: '<path d="m68 112 43-39 73 19 6 63-61 43-58-34Z" fill="url(#identity-gradient)" stroke="white" stroke-width="5"/><path d="m88 112 44 16 37-20M132 128v48" fill="none" stroke="white" stroke-width="4" opacity=".68"/>',
+    scrap: '<path d="m76 80 42 21 26-29 39 43-22 28 22 38-51 20-37-29 11-34-31-25Z" fill="url(#identity-gradient)" stroke="white" stroke-width="5"/><path d="m102 105 53 55M145 101l-42 58" stroke="white" stroke-width="4" opacity=".7"/>',
+    engine: '<path d="M74 93h79l31 35-31 35H74l25-35Z" fill="url(#identity-gradient)" stroke="white" stroke-width="5"/><circle cx="142" cy="128" r="24" fill="#10182a" stroke="white" stroke-width="5"/><path d="M64 108c-26 12-26 28 0 40" fill="none" stroke="white" stroke-width="6"/>',
+    airframe: '<path d="m204 128-51-22-31-36-36 28 14 30-14 30 36 28 31-36Z" fill="url(#identity-gradient)" stroke="white" stroke-width="5"/><path d="M84 128h100M117 91l20 37-20 37" stroke="white" stroke-width="4" opacity=".72"/>',
+    log: '<path d="M76 92h94l22 36-22 36H76l-22-36Z" fill="url(#identity-gradient)" stroke="white" stroke-width="5"/><ellipse cx="76" cy="128" rx="22" ry="36" fill="#10182a" stroke="white" stroke-width="5"/><path d="M65 114c14 8 14 20 0 28M76 102v52" fill="none" stroke="white" stroke-width="3" opacity=".72"/>'
+  }[shape] || '<rect x="72" y="76" width="112" height="104" rx="18" fill="url(#identity-gradient)" stroke="white" stroke-width="5"/><path d="M90 108h76M90 136h76M90 164h48" stroke="white" stroke-width="5" opacity=".72"/>';
+  const marks = Array.from({ length: mark + 1 }, (_, index) => `<circle cx="${68 + index * 18}" cy="216" r="5" fill="${accent}"/>`).join("");
+  return `<defs><linearGradient id="identity-gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${accent}"/><stop offset="1" stop-color="${deep}"/></linearGradient></defs><g data-item-identity="${escapeXml(itemId)}" transform="rotate(${angle} 128 128)">${shapeArt}</g><g data-item-label="${escapeXml(itemId)}"><rect x="170" y="28" width="62" height="38" rx="10" fill="#10182a" stroke="${accent}" stroke-width="3"/><text x="201" y="54" text-anchor="middle" font-size="19" font-weight="900" fill="white" font-family="Microsoft YaHei UI, sans-serif">${escapeXml(label)}</text>${marks}</g>`;
+}
+
 function createVectorVisual(itemId) {
+  const item = GameItemCatalog.getItem(itemId);
   const ocean = /^(sub|prismarine|nautilus|sponge|ink|glow-ink|turtle|clay|amethyst|conduit|coral|heart|chapter-02)/.test(itemId);
   const visualVariant = polarVisualVariant(itemId);
   const quantumVariant = quantumVisualVariant(itemId);
@@ -274,14 +334,16 @@ function createVectorVisual(itemId) {
   const b = ocean ? "#063d6b" : polar ? "#1a4d78" : quantum ? "#1c2774" : "#1c214a";
   const glyph = polar ? (itemId.includes("mission") ? "✥" : itemId.includes("part") ? "⬢" : itemId === "polar-icebreaker" ? "⚓" : "❄") : itemId.startsWith("sub") || itemId === "deep-sea-explorer" ? "◈" : itemId.startsWith("station") || itemId === "orbital-science-station" ? "✦" : "◆";
   const art = quantum ? quantumArt(itemId, quantumVariant) : polar ? polarArt(itemId, visualVariant) : `<path d="M42 160 Q128 210 214 160" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="10"/><path d="M48 96 Q128 46 208 96" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="8"/><text x="128" y="155" text-anchor="middle" font-size="102" font-family="Arial" fill="#fff">${glyph}</text>`;
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" data-visual-kind="${quantumVariant || visualVariant || "expansion-generic"}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="256" height="256" rx="42" fill="#10182a"/><circle cx="128" cy="128" r="94" fill="url(#g)" opacity=".92"/>${art}</svg>`;
+  const identityArt = renderIdentityArt(itemId, item);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" data-visual-kind="${quantumVariant || visualVariant || "expansion-generic"}" data-item-id="${escapeXml(itemId)}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="256" height="256" rx="42" fill="#10182a"/><circle cx="128" cy="128" r="94" fill="url(#g)" opacity=".92"/>${art}${identityArt}</svg>`;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
 
 const EXPANSION_VISUALS = Object.freeze(Object.fromEntries(EXPANSION_ITEM_IDS.map((itemId) => [itemId, Object.freeze({
-  src: createVectorVisual(itemId), width: 256, height: 256, alt: `${itemId} 的章节任务图标`, fallbackIcon: "project-art",
+  src: `/assets/items/${itemId}-v2.webp`,
+  width: 256, height: 256, alt: `${itemId} 的章节任务图标`, fallbackIcon: "project-art",
   visualVariant: quantumVisualVariant(itemId) || polarVisualVariant(itemId) || "expansion-generic",
-  preloadPriority: itemId === "polar-icebreaker" || itemId.includes("explorer") || itemId.includes("station") || itemId === "quantum-communication-satellite" ? "project-final" : itemId.startsWith("icebreaker-part-") || itemId.startsWith("satellite-part-") ? "project-part" : itemId.startsWith("icebreaker-") || /^satellite-\d+$/.test(itemId) ? "project-component" : "lazy"
+  preloadPriority: itemId === "polar-icebreaker" || itemId.includes("explorer") || itemId.includes("station") || itemId === "quantum-communication-satellite" || itemId === "math-explorer-rover" || itemId === "deep-space-navigation-ship" || itemId === "smart-city-hub" ? "project-final" : itemId.startsWith("icebreaker-part-") || itemId.startsWith("satellite-part-") || itemId.startsWith("rover-part-") || itemId.startsWith("navship-part-") || itemId.startsWith("city-part-") ? "project-part" : itemId.startsWith("icebreaker-") || /^satellite-\d+$/.test(itemId) || /^rover-\d+$/.test(itemId) || /^navship-\d+$/.test(itemId) || /^city-\d+$/.test(itemId) ? "project-component" : "lazy"
 })])));
 
 const POLAR_PROJECT_VISUALS = Object.freeze(Object.fromEntries(
@@ -314,7 +376,17 @@ const ARMORED_PROJECT_VISUALS = Object.freeze(Object.fromEntries(
 
 function getItemVisual(itemId) {
   const visual = ITEM_VISUALS[itemId] || POLAR_PROJECT_VISUALS[itemId] || ARMORED_PROJECT_VISUALS[itemId] || EXPANSION_VISUALS[itemId];
-  return visual ? { ...visual, src: visual.src.replace(/\.png$/, ".webp") } : null;
+  if (!visual) return null;
+  const src = visual.src || createVectorVisual(itemId);
+  const item = GameItemCatalog.getItem(itemId);
+  const alt = visual.alt === `${itemId} 的章节任务图标` && item?.name
+    ? `${item.name} 的章节任务图标`
+    : visual.alt;
+  return { ...visual, src: src.replace(/\.png$/, ".webp"), alt };
 }
 
-module.exports = { ITEM_VISUALS, EXPANSION_VISUALS, POLAR_PROJECT_VISUALS, ARMORED_PROJECT_VISUALS, getItemVisual };
+function getGeneratedVisualSource(itemId) {
+  return EXPANSION_VISUALS[itemId] ? createVectorVisual(itemId) : null;
+}
+
+module.exports = { ITEM_VISUALS, EXPANSION_VISUALS, POLAR_PROJECT_VISUALS, ARMORED_PROJECT_VISUALS, getItemVisual, getGeneratedVisualSource };

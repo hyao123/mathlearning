@@ -1,4 +1,6 @@
 const StoryMissionModel = require("./storyMissionModel.js");
+const QuestionContract = require("./questionContract.js");
+const MathThinkingMethods = require("./mathThinkingMethods.js");
 
 const PROFILE_BY_MODULE = Object.freeze({
   patterns: Object.freeze({
@@ -112,81 +114,125 @@ const PROFILE_BY_MODULE = Object.freeze({
 });
 
 const SLOT_PHASES = Object.freeze(["启动", "校准", "推进", "扩展", "整合", "提高", "提高", "迁移", "挑战", "Boss"]);
+const DEFAULT_VERIFICATION_METHOD = "把结果代回题目条件，确认数量、单位和所求量一致。";
+
+const TOPIC_GUIDANCE = Object.freeze([
+  { pattern: /pigeonhole/, typicalModel: "鸽巢模型", observation: "先数对象和容器，再比较对象数是否超过容器数。", pitfall: "至少有一个容器达到的数量要向上取整，不能只求平均。", verificationMethod: "把对象按每个容器最多少放一个的边界重新分配，检查结论是否必然成立。" },
+  { pattern: /counting|enumeration|add-multiply|inclusion|tree-counting/, typicalModel: "分类计数表", observation: "先判断情况是否互斥，再按固定顺序列出每一类。", pitfall: "同一种情况不能重复计数，也不能漏掉最后一类。", verificationMethod: "用另一种顺序或总数边界复核，确认每种情况恰好计算一次。" },
+  { pattern: /motion|engineering|train|age|efficiency|tree-planting|work-problems|unitary|savings|interest/, typicalModel: "数量关系式", observation: "先统一路程、时间、效率或年龄的单位，再找出变化量。", pitfall: "速度差、工作效率和时间不能混用，先写单位再列式。", verificationMethod: "把结果代回速度、效率或年龄关系，检查每个量的单位和总量。" },
+  { pattern: /geometry|angles|triangles|quadrilateral|perimeter|area|volume|capacity|surface|scale|coordinate/, typicalModel: "图形关系图", observation: "先标出已知边、角、单位和要求的图形量，再选择对应公式。", pitfall: "周长、面积和体积的单位不同，不能把边长直接当成面积。", verificationMethod: "用图形的边界、面积或体积公式回代，并核对单位是否平方或立方。" },
+  { pattern: /logic|parity|divisibility|factors|prime|restoration|case-analysis/, typicalModel: "条件排除表", observation: "把每条条件改写成可检查的关系，再逐项排除不可能情况。", pitfall: "一个条件成立不代表结论成立，要把所有条件一起核对。", verificationMethod: "把得到的结果逐条代回原条件，确认没有遗漏或矛盾。" },
+  { pattern: /ratio|percent|discount|tax|profit|concentration|proportion|pricing/, typicalModel: "比例关系式", observation: "先确定基准量和对应量，再统一比例、百分数或金额单位。", pitfall: "折扣、税率和利润率的基准量不同，不能直接相加减。", verificationMethod: "用基准量乘比例回算结果，并检查金额或浓度处在合理范围。" },
+  { pattern: /data|frequency|chart|mean|median|mode|range|possibility|probability|statistics/, typicalModel: "数据表与概率树", observation: "先整理数据总量、类别和顺序，再选择统计量或概率模型。", pitfall: "分母必须是全部可能或全部样本，不能只用其中一类。", verificationMethod: "把各类频数或概率相加，检查总数或总概率是否符合边界。" },
+  { pattern: /patterns|periodicity|arithmetic-series|recurrence|square-array/, typicalModel: "规律表", observation: "先比较相邻项并圈出重复单位，再确认规律适用于目标位置。", pitfall: "余数为 0 或项数含首尾时容易错位，要回看完整周期。", verificationMethod: "把结果放回前后两项或完整周期，确认变化规律连续一致。" }
+]);
+
+function getTopicGuidance(moduleId, moduleTitle, context) {
+  const guidance = TOPIC_GUIDANCE.find((entry) => entry.pattern.test(String(moduleId || "")));
+  return guidance || {
+    typicalModel: context.representation,
+    observation: `先整理${moduleTitle || "题目"}中的已知量和目标量，再选择合适的方法。`,
+    pitfall: `不要只看${moduleTitle || "题目"}的中间结果，最后要回到题目条件验算。`,
+    verificationMethod: DEFAULT_VERIFICATION_METHOD
+  };
+}
+
+function getTopicQuality(profile, slot) {
+  const safeSlot = Math.min(Math.max(Number(slot) || 1, 1), 10);
+  return {
+    knowledgeGoal: profile.knowledgeGoal || profile.objective,
+    typicalModel: profile.typicalModel || profile.representation,
+    commonPitfall: profile.commonPitfall || profile.pitfall,
+    transferType: safeSlot >= 10 ? "boss-integration" : safeSlot >= 8 ? "contextual" : "direct",
+    verificationMethod: profile.verificationMethod || DEFAULT_VERIFICATION_METHOD
+  };
+}
 
 function createGeneratedProfile(module) {
   const id = module?.id || "math";
+  const thinkingMethod = MathThinkingMethods.getMethodForModule(module);
   const isDeepSea = /pigeonhole-principle|counting-transfer|motion|engineering|train-bridge|age|efficiency-transfer|tree-planting|geometry|logic|parity/.test(id);
   const isPolar = /angles|triangles|quadrilaterals|perimeter|area|composite-figures|area-units|volume|capacity|surface-area|scale|coordinates-routes/.test(id);
   const isArmor = /algebraic-expressions|equations-unknowns|linear-equations|equation-applications|fraction-modeling|decimal-modeling|percent-basics|discount-tax|profit-loss-modeling|concentration-configuration|savings-interest|supply-integration/.test(id);
   const isQuantum = /data-collection|frequency-tables|bar-charts|line-charts|mean|median-mode|data-range|possibility-basics|probability-fractions|tree-counting|data-inference|statistics-probability-boss/.test(id);
+  const isWorkshop = /read-conditions|draw-bar-model|diagram-model|table-method|enumeration-method|tree-diagram|assumption-method|reverse-thinking|transformation-method|unit-method|estimation-method|verify-eliminate/.test(id);
+  const isStrategy = /case-discussion|parity-invariant|worst-case|recurrence-strategy|reverse-reasoning|elimination-table|scheduling|shortest-path|optimal-strategy|construction|contradiction|integrated-strategy/.test(id);
+  const isCity = /decompose-conditions|equation-model|ratio-model|change-model|data-decision|probability-risk|geometry-decomposition|motion-model|compare-plans|optimization|result-verification|integrated-modeling/.test(id);
   const context = isArmor
     ? { mission: "装甲突击演练正在校准补给、编组与工程数据", representation: "armor-console", reasoningType: /equation|algebra|supply/.test(id) ? "关系建模" : "直接计算" }
     : isPolar
     ? { mission: "极地破冰船正在校准冰原测绘数据", representation: "polar-chart", reasoningType: /angles|triangles|quadrilaterals|coordinates/.test(id) ? "空间想象" : "直接计算" }
     : isQuantum
     ? { mission: "星海观测中枢正在整理样本、概率与通信决策", representation: "statistics-console", reasoningType: /possibility|probability/.test(id) ? "逻辑推理" : /tree/.test(id) ? "分类计数" : "关系建模" }
+    : isWorkshop
+    ? { mission: "思维工具工坊正在校准探测车的方法组件", representation: "workshop-console", reasoningType: "策略选择" }
+    : isStrategy
+    ? { mission: "逻辑策略指挥部正在规划深空导航路线", representation: "strategy-console", reasoningType: "逻辑推理" }
+    : isCity
+    ? { mission: "综合建模竞赛场正在调度智慧城市数据", representation: "city-console", reasoningType: "关系建模" }
     : isDeepSea
     ? { mission: "深海探测艇正在校准任务数据", representation: "mission-log", reasoningType: /logic|parity/.test(id) ? "逻辑推理" : /count|pigeonhole/.test(id) ? "分类计数" : "关系建模" }
     : { mission: "轨道科学站正在整理观测任务", representation: "mission-log", reasoningType: /recurrence|square/.test(id) ? "规律归纳" : /case|plan/.test(id) ? "策略选择" : "关系建模" };
+  const guidance = getTopicGuidance(id, module?.title, context);
   return {
-    objective: `掌握${module?.title || "本专题"}的核心解题方法`,
-    reasoningType: context.reasoningType,
-    representation: context.representation,
-    observation: "先圈出已知数量和要求的结果，再选择与本专题相符的方法逐步计算。",
-    pitfall: "不要只计算中间结果；最后要回到题目条件检查单位、数量和所问内容。",
+    objective: thinkingMethod.objective || `??${module?.title || "???"}???????`,
+    reasoningType: thinkingMethod.reasoningType || context.reasoningType,
+    representation: thinkingMethod.representation || guidance.typicalModel || context.representation,
+    observation: thinkingMethod.prompt || guidance.observation,
+    pitfall: thinkingMethod.pitfall || guidance.pitfall,
+    verificationMethod: thinkingMethod.verification || guidance.verificationMethod,
+    thinkingMethodId: thinkingMethod.id,
+    thinkingMethodLabel: thinkingMethod.label,
+    methodPrompt: thinkingMethod.prompt,
+    methodReview: thinkingMethod.review,
     mission: context.mission,
-    goals: SLOT_PHASES.map((phase, index) => `${phase}：完成第 ${index + 1} 个知识线索`)
+    goals: SLOT_PHASES.map((phase, index) => `${phase}???? ${index + 1} ?????`)
   };
 }
 
-function getLegacyQuestionQualityProfile(module, question, slot) {
-  const profile = PROFILE_BY_MODULE[module?.id] || createGeneratedProfile(module);
-  const safeSlot = Math.min(Math.max(Number(slot) || 1, 1), 10);
-  const goal = profile.goals[safeSlot - 1];
-  const steps = safeSlot >= 10 ? 4 : safeSlot >= 7 ? 3 : safeSlot >= 3 ? 2 : 1;
-  const conditions = safeSlot >= 8 ? 3 : safeSlot >= 4 ? 2 : 1;
+function createStructuredReview(profile, question, steps, topicQuality = getTopicQuality(profile, question?.slot)) {
+  const stepKinds = steps.length >= 4
+    ? ["observe", "model", "calculate", "verify"]
+    : ["observe", "calculate", "verify"];
+  const verification = topicQuality.verificationMethod;
   return {
-    learningObjective: profile.objective,
-    reasoningType: profile.reasoningType,
-    difficultyProfile: {
-      steps,
-      conditions,
-      representation: profile.representation,
-      direction: safeSlot >= 8 ? "transfer" : "forward",
-      transfer: safeSlot >= 10 ? "boss-integration" : safeSlot >= 8 ? "contextual" : "direct"
-    },
-    storyBeat: `${SLOT_PHASES[safeSlot - 1]}：${profile.mission}。本题任务是${goal}。`,
-    solutionReview: {
-      observation: profile.observation,
-      steps: [
-        `任务目标：${goal}。`,
-        question.explanation || "按题目条件一步一步计算。"
-      ],
-      answer: String(question.answer),
-      check: "把结果代回题目条件，确认每个数量和单位都吻合。",
-      pitfall: profile.pitfall
-    }
+    schemaVersion: 2,
+    method: topicQuality.typicalModel,
+    stepKinds,
+    observation: profile.observation,
+    steps,
+    calculation: question.explanation || "\u6309\u9898\u76ee\u6761\u4ef6\u9010\u6b65\u8ba1\u7b97\uff0c\u8bb0\u5f55\u6bcf\u4e00\u6b65\u7ed3\u679c\u3002",
+    answer: String(question.answer),
+    answerFormat: QuestionContract.getAnswerFormat(question.answer),
+    verification,
+    check: verification,
+    errorTrap: topicQuality.commonPitfall,
+    pitfall: topicQuality.commonPitfall
   };
 }
 
 function getQuestionQualityProfile(module, question, slot) {
   const profile = PROFILE_BY_MODULE[module?.id] || createGeneratedProfile(module);
   const safeSlot = Math.min(Math.max(Number(slot) || 1, 1), 10);
-  const goal = profile.goals[safeSlot - 1];
+  const topicQuality = getTopicQuality(profile, safeSlot);
+  const goal = profile.goals[safeSlot - 1] || "\u5b8c\u6210\u672c\u4e13\u9898\u4efb\u52a1";
   const storyMission = StoryMissionModel.getStoryMission(module, {
     chapterId: question?.chapterId || module?.chapterId,
     slot: safeSlot,
     difficulty: question?.difficulty
   });
-  const reviewSteps = [
-    `任务目标：${goal}。`,
-    `观察记录：${profile.observation}`,
-    question.explanation || "按题目条件逐步计算，记录每一步结果。"
-  ];
-  if (safeSlot >= 3) reviewSteps.push(`结果核对：${profile.pitfall}`);
+  const calculation = question.explanation || "\u6309\u9898\u76ee\u6761\u4ef6\u9010\u6b65\u8ba1\u7b97\uff0c\u8bb0\u5f55\u6bcf\u4e00\u6b65\u7ed3\u679c\u3002";
+  const reviewSteps = safeSlot >= 3
+    ? [`\u89c2\u5bdf：${profile.observation}`, `\u5217\u5f0f：${topicQuality.typicalModel}\uff0c\u5148\u5efa\u7acb\u5df2\u77e5\u91cf\u4e0e\u76ee\u6807\u91cf\u7684\u5173\u7cfb。`, `\u8ba1\u7b97：${calculation}`, `\u9a8c\u7b97：${topicQuality.verificationMethod}`]
+    : [`\u89c2\u5bdf：${profile.observation}`, `\u8ba1\u7b97：${calculation}`, `\u9a8c\u7b97：${topicQuality.verificationMethod}`];
   return {
     learningObjective: profile.objective,
+    ...topicQuality,
     reasoningType: profile.reasoningType,
+    thinkingMethodId: profile.thinkingMethodId,
+    thinkingMethodLabel: profile.thinkingMethodLabel,
+    methodPrompt: profile.methodPrompt || profile.observation,
+    methodReview: profile.methodReview || profile.verificationMethod,
     difficultyProfile: {
       steps: safeSlot >= 10 ? 4 : safeSlot >= 7 ? 3 : safeSlot >= 3 ? 2 : 1,
       conditions: safeSlot >= 8 ? 3 : safeSlot >= 4 ? 2 : 1,
@@ -195,13 +241,7 @@ function getQuestionQualityProfile(module, question, slot) {
       transfer: safeSlot >= 10 ? "boss-integration" : safeSlot >= 8 ? "contextual" : "direct"
     },
     storyBeat: storyMission.storyBeat,
-    solutionReview: {
-      observation: profile.observation,
-      steps: reviewSteps,
-      answer: String(question.answer),
-      check: "把结果代回题目条件，确认每个数量和单位都吻合。",
-      pitfall: profile.pitfall
-    }
+    solutionReview: createStructuredReview(profile, question, reviewSteps, topicQuality)
   };
 }
 

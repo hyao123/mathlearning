@@ -55,6 +55,10 @@ test("builds 120 structured numeric questions for the polar icebreaker route wit
   assert.equal(questions.every((question) => /^\d+(?:\.\d+)?(?:\/\d+)?$/.test(question.answer)), true);
   assert.equal(questions.every((question) => question.answerType === "numeric"), true);
   assert.equal(questions.every((question) => question.learningObjective && question.storyBeat && question.solutionReview?.steps?.length), true);
+  assert.equal(questions.every((question) => question.solutionReview?.schemaVersion === 2
+    && question.solutionReview.stepKinds.length === question.solutionReview.steps.length
+    && question.solutionReview.stepKinds.includes("verify")
+    && question.solutionReview.verification), true);
 });
 
 test("builds the first three chapters without loading the legacy full question source", () => {
@@ -63,6 +67,24 @@ test("builds the first three chapters without loading the legacy full question s
     assert.equal(chapter.levels.length, 12, chapterId);
     assert.equal(chapter.levels.every((level) => level.questions.length === 10), true, chapterId);
   });
+});
+
+test("final train-bridge pursuit uses the front-to-tail gap divided by speed difference", () => {
+  const level = builder.buildChapter("chapter-02", []).levels.find((item) => item.moduleId === "train-bridge");
+  const question = level.questions.find((item) => item.id === "chapter-02-train-bridge-challenge-1");
+
+  assert.equal(question.answer, "10");
+  assert.match(question.prompt, /25.*15.*200/);
+  assert.match(question.explanation, /200-100.*25-15.*10/);
+});
+
+test("final age challenge uses a whole-year family scenario", () => {
+  const level = builder.buildChapter("chapter-02", []).levels.find((item) => item.moduleId === "age");
+  const question = level.questions.find((item) => item.id === "chapter-02-age-challenge-1");
+
+  assert.equal(question.answer, "6");
+  assert.match(question.prompt, /\u5973\u513f\u4eca\u5e74 8 \u5c81/);
+  assert.match(question.explanation, /6 \u5e74\u540e.*42.*14.*3/);
 });
 
 test("native first-three-chapter packs preserve the reviewed legacy question contract", () => {
@@ -116,6 +138,21 @@ test("all enabled chapters expose only contract-safe numeric answers", () => {
   assert.equal(questions.every((question) => question.answerType === "numeric"), true);
   assert.equal(questions.every((question) => /\d/.test(String(question.answer))), true);
   assert.equal(questions.every((question) => ["integer", "decimal", "fraction", "percent"].includes(question.answerFormat)), true);
+});
+
+test("every built question exposes topic quality metadata and executable review steps", () => {
+  const chapters = ["chapter-01", "chapter-02", "chapter-03", "chapter-04", "chapter-05", "chapter-06"]
+    .map((chapterId) => builder.buildChapter(chapterId, loadExpandedModules()));
+  chapters.flatMap((chapter) => chapter.levels.flatMap((level) => level.questions)).forEach((question) => {
+    ["knowledgeGoal", "typicalModel", "commonPitfall", "transferType", "verificationMethod"].forEach((field) => {
+      assert.equal(typeof question[field], "string", `${question.id}: ${field}`);
+      assert.equal(question[field].trim().length > 0, true, `${question.id}: ${field}`);
+    });
+    assert.equal(question.solutionReview.steps.length, question.solutionReview.stepKinds.length, question.id);
+    assert.equal(question.solutionReview.stepKinds[0], "observe", question.id);
+    assert.equal(question.solutionReview.stepKinds.at(-1), "verify", question.id);
+    assert.equal(question.solutionReview.verification, question.verificationMethod, question.id);
+  });
 });
 
 test("never mutates original practice prompts, answers, or accepted answers", () => {

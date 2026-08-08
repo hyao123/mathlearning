@@ -1,1930 +1,2051 @@
 {
-    "schemaVersion":  1,
-    "chapterId":  "chapter-04",
-    "status":  "approved",
-    "reviewer":  "课程负责人",
-    "reviewedAt":  "2026-07-31T00:00:00+08:00",
-    "notes":  "课程负责人已确认完成第四章全部 120 道题的六项审核。",
-    "records":  [
-                    {
-                        "questionId":  "chapter-04-angles-1",
-                        "title":  "角度校准",
-                        "prompt":  "极地破冰船任务·冰缝观测器显示一个直角被分成 35° 和另一个角；另一个角是多少度？【启航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-angles-2",
-                        "title":  "角度校准",
-                        "prompt":  "极地破冰船任务·船桥转向盘上，一个平角中的已知角是 68°；剩下的角是多少度？【校准任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-angles-3",
-                        "title":  "角度校准",
-                        "prompt":  "极地破冰船任务·两束救援灯互成直角，其中一束偏离 47°；另一束偏离多少度？【侦察任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-angles-4",
-                        "title":  "角度校准",
-                        "prompt":  "极地破冰船任务·雷达扇形的两个相邻角合成平角，已知一个是 125°；另一个是多少度？【推进任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-angles-5",
-                        "title":  "角度校准",
-                        "prompt":  "极地破冰船任务·甲板圆形刻度被三个角分开，两个角为 96°、104°；第三个角是多少度？【协作任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-angles-6",
-                        "title":  "角度校准",
-                        "prompt":  "极地破冰船任务·破冰航向连续右转 90° 后又右转 35°；这两次共转过多少度？【加固任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-angles-7",
-                        "title":  "角度校准",
-                        "prompt":  "极地破冰船任务·浮标的两个补角相差 26°，较大角是多少度？【巡航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-angles-8",
-                        "title":  "角度校准",
-                        "prompt":  "极地破冰船任务·观察窗里一个角是另一个角的 2 倍，两个角合成直角；较大角是多少度？【穿越任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-angles-9",
-                        "title":  "角度校准",
-                        "prompt":  "极地破冰船任务·破冰船绕冰山转过 3 个相同的角后共转 270°；每个角是多少度？【攻坚任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-angles-10",
-                        "title":  "角度校准",
-                        "prompt":  "极地破冰船任务·Boss 校准：四个相邻角围成一周，分别为 75°、85°、110° 和 x；x 是多少度？【决战任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-triangles-1",
-                        "title":  "三角形",
-                        "prompt":  "极地破冰船任务·冰面三角警示旗的两个内角是 45°、65°；第三个内角是多少度？【启航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-triangles-2",
-                        "title":  "三角形",
-                        "prompt":  "极地破冰船任务·三角帆的两个角同为 50°；顶角是多少度？【校准任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-triangles-3",
-                        "title":  "三角形",
-                        "prompt":  "极地破冰船任务·测绘员记录三角冰块有 90° 和 37° 两个角；剩下角是多少度？【侦察任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-triangles-4",
-                        "title":  "三角形",
-                        "prompt":  "极地破冰船任务·救援三角架的一个外角是 132°，与它不相邻的一个内角是 48°；另一个不相邻内角是多少度？【推进任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-triangles-5",
-                        "title":  "三角形",
-                        "prompt":  "极地破冰船任务·等腰三角形冰标的顶角为 40°；每个底角是多少度？【协作任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-triangles-6",
-                        "title":  "三角形",
-                        "prompt":  "极地破冰船任务·三角航线的三个内角按 2:3:4 分配；最小角是多少度？【加固任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-triangles-7",
-                        "title":  "三角形",
-                        "prompt":  "极地破冰船任务·一块三角冰的两个角相差 18°，第三个角为 72°；较大角是多少度？【巡航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-triangles-8",
-                        "title":  "三角形",
-                        "prompt":  "极地破冰船任务·破冰吊臂形成直角三角形，两个锐角之比为 2:3；较大锐角是多少度？【穿越任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-triangles-9",
-                        "title":  "三角形",
-                        "prompt":  "极地破冰船任务·一条等边冰道警示牌的周长是 36 米；每条边多少米？【攻坚任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-triangles-10",
-                        "title":  "三角形",
-                        "prompt":  "极地破冰船任务·Boss 测绘：等腰三角形的一个外角为 130°；它的顶角是多少度？【决战任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-quadrilaterals-1",
-                        "title":  "四边形",
-                        "prompt":  "极地破冰船任务·冰原四边形标志的三个内角是 80°、95°、110°；第四个角是多少度？【启航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-quadrilaterals-2",
-                        "title":  "四边形",
-                        "prompt":  "极地破冰船任务·矩形保温板的一个角是多少度？【校准任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-quadrilaterals-3",
-                        "title":  "四边形",
-                        "prompt":  "极地破冰船任务·正方形甲板格的周长为 28 米；一条边多少米？【侦察任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-quadrilaterals-4",
-                        "title":  "四边形",
-                        "prompt":  "极地破冰船任务·平行四边形冰道的一个角为 68°；与它相邻的角是多少度？【推进任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-quadrilaterals-5",
-                        "title":  "四边形",
-                        "prompt":  "极地破冰船任务·梯形防滑垫的四个角中已有 85°、95°、120°；最后一个角是多少度？【协作任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-quadrilaterals-6",
-                        "title":  "四边形",
-                        "prompt":  "极地破冰船任务·菱形航标的一条边是 9 米；它的周长是多少米？【加固任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-quadrilaterals-7",
-                        "title":  "四边形",
-                        "prompt":  "极地破冰船任务·长方形舷窗长 12 厘米、宽 7 厘米；周长是多少厘米？【巡航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-quadrilaterals-8",
-                        "title":  "四边形",
-                        "prompt":  "极地破冰船任务·平行四边形甲板一个角为 x，邻角是 3x；x 是多少度？【穿越任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-quadrilaterals-9",
-                        "title":  "四边形",
-                        "prompt":  "极地破冰船任务·正方形冰库面积是 81 平方米；一条边多少米？【攻坚任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-quadrilaterals-10",
-                        "title":  "四边形",
-                        "prompt":  "极地破冰船任务·Boss 拼板：一个四边形有两个直角，另外两个角之比为 2:3；较大角是多少度？【决战任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-perimeter-1",
-                        "title":  "周长",
-                        "prompt":  "极地破冰船任务·船舱地毯长 8 米、宽 5 米；一圈包边长多少米？【启航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-perimeter-2",
-                        "title":  "周长",
-                        "prompt":  "极地破冰船任务·圆形停机坪半径为 4 米，取 π=3；周长是多少米？【校准任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-perimeter-3",
-                        "title":  "周长",
-                        "prompt":  "极地破冰船任务·三角冰区三边分别为 6 米、7 米、9 米；周长是多少米？【侦察任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-perimeter-4",
-                        "title":  "周长",
-                        "prompt":  "极地破冰船任务·正方形救援区每边 11 米；围栏长多少米？【推进任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-perimeter-5",
-                        "title":  "周长",
-                        "prompt":  "极地破冰船任务·一根 36 米的绳子围成长 11 米的长方形；宽是多少米？【协作任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-perimeter-6",
-                        "title":  "周长",
-                        "prompt":  "极地破冰船任务·半圆形观景台直径 10 米，取 π=3；包括直径的周长是多少米？【加固任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-perimeter-7",
-                        "title":  "周长",
-                        "prompt":  "极地破冰船任务·两个边长为 4 米的正方形并排拼成一个长方形；外周长是多少米？【巡航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-perimeter-8",
-                        "title":  "周长",
-                        "prompt":  "极地破冰船任务·长方形冰槽周长 50 米，长比宽多 5 米；宽是多少米？【穿越任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-perimeter-9",
-                        "title":  "周长",
-                        "prompt":  "极地破冰船任务·圆形雷达基座直径 14 米，取 π=22/7；周长是多少米？【攻坚任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-perimeter-10",
-                        "title":  "周长",
-                        "prompt":  "极地破冰船任务·Boss 围栏：一个正方形和一个边长 6 米的等边三角形共用一条边；合起来外周长是多少米？【决战任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-1",
-                        "title":  "面积",
-                        "prompt":  "极地破冰船任务·补给甲板长 9 米、宽 4 米；面积是多少平方米？【启航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-2",
-                        "title":  "面积",
-                        "prompt":  "极地破冰船任务·正方形冰场边长 7 米；面积是多少平方米？【校准任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-3",
-                        "title":  "面积",
-                        "prompt":  "极地破冰船任务·三角形警戒区底为 10 米、高为 6 米；面积是多少平方米？【侦察任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-4",
-                        "title":  "面积",
-                        "prompt":  "极地破冰船任务·平行四边形停靠区底为 12 米、高为 5 米；面积是多少平方米？【推进任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-5",
-                        "title":  "面积",
-                        "prompt":  "极地破冰船任务·梯形冰道上底 6 米、下底 10 米、高 4 米；面积是多少平方米？【协作任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-6",
-                        "title":  "面积",
-                        "prompt":  "极地破冰船任务·一块长方形保温毯面积 48 平方米、宽 6 米；长是多少米？【加固任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-7",
-                        "title":  "面积",
-                        "prompt":  "极地破冰船任务·圆形观测窗半径 5 分米，取 π=3.14；面积是多少平方分米？【巡航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-8",
-                        "title":  "面积",
-                        "prompt":  "极地破冰船任务·两个相同的三角冰旗各底 8 米、高 3 米；总面积是多少平方米？【穿越任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-9",
-                        "title":  "面积",
-                        "prompt":  "极地破冰船任务·一块 64 平方米的正方形甲板砖，边长是多少米？【攻坚任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-10",
-                        "title":  "面积",
-                        "prompt":  "极地破冰船任务·Boss 覆盖：长 15 米、宽 8 米的甲板上留出一个底 6 米、高 4 米的三角形开口；需要铺多少平方米防滑垫？【决战任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-composite-figures-1",
-                        "title":  "组合图形",
-                        "prompt":  "极地破冰船任务·两块长 6 米、宽 4 米的长方形冰垫首尾相接；总面积是多少平方米？【启航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-composite-figures-2",
-                        "title":  "组合图形",
-                        "prompt":  "极地破冰船任务·L 形甲板可看作长 10 米、宽 8 米的长方形去掉长 3 米、宽 2 米的小角；面积是多少平方米？【校准任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-composite-figures-3",
-                        "title":  "组合图形",
-                        "prompt":  "极地破冰船任务·一块长方形保温区长 12 米、宽 7 米，内挖去边长 3 米的正方形口；剩余面积是多少平方米？【侦察任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-composite-figures-4",
-                        "title":  "组合图形",
-                        "prompt":  "极地破冰船任务·两个边长 5 米的正方形拼成一个长方形；总面积是多少平方米？【推进任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-composite-figures-5",
-                        "title":  "组合图形",
-                        "prompt":  "极地破冰船任务·长 14 米、宽 6 米的甲板一端加一个底 6 米、高 4 米的三角形平台；总面积是多少平方米？【协作任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-composite-figures-6",
-                        "title":  "组合图形",
-                        "prompt":  "极地破冰船任务·一块边长 10 米的正方形冰区中央挖去长 4 米、宽 3 米的长方形；剩余面积是多少平方米？【加固任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-composite-figures-7",
-                        "title":  "组合图形",
-                        "prompt":  "极地破冰船任务·三块底 6 米、高 4 米的三角形警示区不重叠；总面积是多少平方米？【巡航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-composite-figures-8",
-                        "title":  "组合图形",
-                        "prompt":  "极地破冰船任务·长方形船舱长 16 米、宽 9 米，两角各剪去一个直角边为 2 米的等腰直角三角形；剩余面积是多少平方米？【穿越任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-composite-figures-9",
-                        "title":  "组合图形",
-                        "prompt":  "极地破冰船任务·半径 7 米的圆形冰场中有一个边长 7 米的正方形停机区，取 π=22/7；圆场比停机区大多少平方米？【攻坚任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-composite-figures-10",
-                        "title":  "组合图形",
-                        "prompt":  "极地破冰船任务·Boss 拼图：一个 12×10 的长方形甲板去掉两个 3×4 的长方形角和一个底 4、高 3 的三角形角；剩余面积是多少平方米？【决战任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-units-1",
-                        "title":  "面积单位",
-                        "prompt":  "极地破冰船任务·一张极地图纸面积是 3 平方米，等于多少平方分米？【启航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-units-2",
-                        "title":  "面积单位",
-                        "prompt":  "极地破冰船任务·一块 500 平方厘米的铭牌，等于多少平方分米？【校准任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-units-3",
-                        "title":  "面积单位",
-                        "prompt":  "极地破冰船任务·甲板面积 2 平方千米，等于多少公顷？【侦察任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-units-4",
-                        "title":  "面积单位",
-                        "prompt":  "极地破冰船任务·一片冰区有 6 公顷，等于多少平方米？【推进任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-units-5",
-                        "title":  "面积单位",
-                        "prompt":  "极地破冰船任务·保温膜面积 4.5 平方米，等于多少平方分米？【协作任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-units-6",
-                        "title":  "面积单位",
-                        "prompt":  "极地破冰船任务·一张 7200 平方厘米的船图，等于多少平方米？【加固任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-units-7",
-                        "title":  "面积单位",
-                        "prompt":  "极地破冰船任务·圆形舷窗面积 0.36 平方米，等于多少平方厘米？【巡航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-units-8",
-                        "title":  "面积单位",
-                        "prompt":  "极地破冰船任务·一块 1.25 公顷的试验田，等于多少平方米？【穿越任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-units-9",
-                        "title":  "面积单位",
-                        "prompt":  "极地破冰船任务·冰原地图标出 2500000 平方米，等于多少平方千米？【攻坚任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-area-units-10",
-                        "title":  "面积单位",
-                        "prompt":  "极地破冰船任务·Boss 换算：0.08 平方千米的禁航区，等于多少公顷？【决战任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-volume-1",
-                        "title":  "体积",
-                        "prompt":  "极地破冰船任务·一个货箱长 4 米、宽 3 米、高 2 米；体积是多少立方米？【启航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-volume-2",
-                        "title":  "体积",
-                        "prompt":  "极地破冰船任务·正方体冰块棱长 5 分米；体积是多少立方分米？【校准任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-volume-3",
-                        "title":  "体积",
-                        "prompt":  "极地破冰船任务·货舱体积 72 立方米，底面积 12 平方米；高是多少米？【侦察任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-volume-4",
-                        "title":  "体积",
-                        "prompt":  "极地破冰船任务·一个长方体储物柜长 8 米、宽 2 米、高 3 米；体积是多少立方米？【推进任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-volume-5",
-                        "title":  "体积",
-                        "prompt":  "极地破冰船任务·棱长 4 米的正方体装备箱，体积是多少立方米？【协作任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-volume-6",
-                        "title":  "体积",
-                        "prompt":  "极地破冰船任务·一个底面积 15 平方米、高 4 米的长方体冰仓；体积是多少立方米？【加固任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-volume-7",
-                        "title":  "体积",
-                        "prompt":  "极地破冰船任务·两个长 3 米、宽 2 米、高 2 米的相同箱体装满货物；总体积是多少立方米？【巡航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-volume-8",
-                        "title":  "体积",
-                        "prompt":  "极地破冰船任务·一块体积 216 立方分米的正方体冰砖，棱长是多少分米？【穿越任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-volume-9",
-                        "title":  "体积",
-                        "prompt":  "极地破冰船任务·货舱长 10 米、宽 4 米、体积 200 立方米；高是多少米？【攻坚任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-volume-10",
-                        "title":  "体积",
-                        "prompt":  "极地破冰船任务·Boss 装载：一个长 12 米、宽 5 米、高 4 米的舱室，底部有一块长 3 米、宽 2 米、高 4 米的设备占位；可用体积是多少立方米？【决战任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-capacity-1",
-                        "title":  "容积",
-                        "prompt":  "极地破冰船任务·一只水箱能装 8 升水，等于多少毫升？【启航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-capacity-2",
-                        "title":  "容积",
-                        "prompt":  "极地破冰船任务·应急壶里有 2500 毫升热水，等于多少升？【校准任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-capacity-3",
-                        "title":  "容积",
-                        "prompt":  "极地破冰船任务·三只相同水袋每只装 6 升；一共能装多少升？【侦察任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-capacity-4",
-                        "title":  "容积",
-                        "prompt":  "极地破冰船任务·一个 12 升水箱已装 7 升；还能装多少升？【推进任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-capacity-5",
-                        "title":  "容积",
-                        "prompt":  "极地破冰船任务·一桶融雪水有 15 升，平均装入 3 个水壶；每壶多少升？【协作任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-capacity-6",
-                        "title":  "容积",
-                        "prompt":  "极地破冰船任务·补给车运来 4 箱水，每箱 24 瓶，每瓶 500 毫升；共有多少升？【加固任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-capacity-7",
-                        "title":  "容积",
-                        "prompt":  "极地破冰船任务·一个容积 3.6 升的保温瓶，倒出 850 毫升后还剩多少毫升？【巡航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-capacity-8",
-                        "title":  "容积",
-                        "prompt":  "极地破冰船任务·储水舱可装 2 立方米水，等于多少升？【穿越任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-capacity-9",
-                        "title":  "容积",
-                        "prompt":  "极地破冰船任务·一台制水机每分钟产 1.5 升水，20 分钟产多少升？【攻坚任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-capacity-10",
-                        "title":  "容积",
-                        "prompt":  "极地破冰船任务·Boss 配给：72 升水按每人每天 1.5 升使用，可供 6 人使用多少天？【决战任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-surface-area-1",
-                        "title":  "表面积",
-                        "prompt":  "极地破冰船任务·一个棱长 3 分米的正方体保温箱，表面积是多少平方分米？【启航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-surface-area-2",
-                        "title":  "表面积",
-                        "prompt":  "极地破冰船任务·长方体设备箱长 4 米、宽 3 米、高 2 米；表面积是多少平方米？【校准任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-surface-area-3",
-                        "title":  "表面积",
-                        "prompt":  "极地破冰船任务·正方体冰样盒棱长 5 厘米；六个面的总面积是多少平方厘米？【侦察任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-surface-area-4",
-                        "title":  "表面积",
-                        "prompt":  "极地破冰船任务·一个长 6 米、宽 2 米、高 1 米的箱体只给外表面贴膜；需要多少平方米？【推进任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-surface-area-5",
-                        "title":  "表面积",
-                        "prompt":  "极地破冰船任务·棱长 4 米的立方形通讯舱，涂五个面需多少平方米涂料？【协作任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-surface-area-6",
-                        "title":  "表面积",
-                        "prompt":  "极地破冰船任务·一个长方体货柜表面积 94 平方米，长 5 米、宽 3 米；高是多少米？【加固任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-surface-area-7",
-                        "title":  "表面积",
-                        "prompt":  "极地破冰船任务·两个棱长 2 米的正方体箱体完全分开；总表面积是多少平方米？【巡航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-surface-area-8",
-                        "title":  "表面积",
-                        "prompt":  "极地破冰船任务·一个棱长 6 分米的正方体冰箱去掉底面不贴保温层；需贴多少平方分米？【穿越任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-surface-area-9",
-                        "title":  "表面积",
-                        "prompt":  "极地破冰船任务·长方体冷藏箱长 8 米、宽 4 米、高 3 米；表面积是多少平方米？【攻坚任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-surface-area-10",
-                        "title":  "表面积",
-                        "prompt":  "极地破冰船任务·Boss 覆膜：长 10 米、宽 5 米、高 4 米的长方体舱室，门洞面积 6 平方米不贴膜；实际贴膜面积是多少平方米？【决战任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-scale-1",
-                        "title":  "比例尺",
-                        "prompt":  "极地破冰船任务·极地图上 1 厘米表示实际 2 千米；图上 3 厘米表示实际多少千米？【启航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-scale-2",
-                        "title":  "比例尺",
-                        "prompt":  "极地破冰船任务·比例尺 1:100000 的图上两点相距 4 厘米；实际相距多少千米？【校准任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-scale-3",
-                        "title":  "比例尺",
-                        "prompt":  "极地破冰船任务·实际冰道长 15 千米，图上每厘米表示 3 千米；图上长多少厘米？【侦察任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-scale-4",
-                        "title":  "比例尺",
-                        "prompt":  "极地破冰船任务·图纸比例尺为 1:500，图上甲板长 6 厘米；实际长多少米？【推进任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-scale-5",
-                        "title":  "比例尺",
-                        "prompt":  "极地破冰船任务·实际距离 800 米，在 1:20000 的图上应画多少厘米？【协作任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-scale-6",
-                        "title":  "比例尺",
-                        "prompt":  "极地破冰船任务·比例尺 1:2500000 的图上航线长 2.4 厘米；实际长多少千米？【加固任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-scale-7",
-                        "title":  "比例尺",
-                        "prompt":  "极地破冰船任务·图上 7 厘米表示实际 21 千米；每厘米表示多少千米？【巡航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-scale-8",
-                        "title":  "比例尺",
-                        "prompt":  "极地破冰船任务·实际补给线长 36 千米，图上长 9 厘米；比例尺每厘米表示多少千米？【穿越任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-scale-9",
-                        "title":  "比例尺",
-                        "prompt":  "极地破冰船任务·比例尺 1:40000 的图上长方形冰场长 5 厘米、宽 3 厘米；实际面积是多少平方千米？【攻坚任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-scale-10",
-                        "title":  "比例尺",
-                        "prompt":  "极地破冰船任务·Boss 规划：图上两段航线分别长 3.5 厘米和 4.5 厘米，比例尺每厘米表示 8 千米；实际总长多少千米？【决战任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-coordinates-routes-1",
-                        "title":  "坐标与路线",
-                        "prompt":  "极地破冰船任务·冰原坐标点从 (2,3) 向东移动 4 格；新坐标的横坐标是多少？【启航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-coordinates-routes-2",
-                        "title":  "坐标与路线",
-                        "prompt":  "极地破冰船任务·破冰船从 (5,7) 向北移动 3 格；新坐标的纵坐标是多少？【校准任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-coordinates-routes-3",
-                        "title":  "坐标与路线",
-                        "prompt":  "极地破冰船任务·补给点 A(1,4) 到 B(6,4) 是水平航线；相距多少格？【侦察任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-coordinates-routes-4",
-                        "title":  "坐标与路线",
-                        "prompt":  "极地破冰船任务·航标 C(3,2) 到 D(3,9) 是竖直航线；相距多少格？【推进任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-coordinates-routes-5",
-                        "title":  "坐标与路线",
-                        "prompt":  "极地破冰船任务·从 (2,2) 先向东 5 格再向北 4 格；终点横坐标是多少？【协作任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-coordinates-routes-6",
-                        "title":  "坐标与路线",
-                        "prompt":  "极地破冰船任务·从 (8,6) 向西 3 格、向南 2 格；终点纵坐标是多少？【加固任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-coordinates-routes-7",
-                        "title":  "坐标与路线",
-                        "prompt":  "极地破冰船任务·一条航线从 (1,1) 到 (6,1)，再到 (6,5)；共走多少格？【巡航任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-coordinates-routes-8",
-                        "title":  "坐标与路线",
-                        "prompt":  "极地破冰船任务·救援船从 (4,9) 到 (10,5) 只沿水平和竖直航线走；最短走多少格？【穿越任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-coordinates-routes-9",
-                        "title":  "坐标与路线",
-                        "prompt":  "极地破冰船任务·坐标点 P(x,6) 与 Q(9,6) 相距 5 格，且 P 在 Q 的西边；x 是多少？【攻坚任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    },
-                    {
-                        "questionId":  "chapter-04-coordinates-routes-10",
-                        "title":  "坐标与路线",
-                        "prompt":  "极地破冰船任务·Boss 导航：从 (2,3) 到 (8,3)，再到 (8,10)，最后到 (5,10)；总航程是多少格？【决战任务】",
-                        "reviewer":  "课程负责人",
-                        "reviewedAt":  "2026-07-31T00:00:00+08:00",
-                        "scores":  {
-                                       "objective":  1,
-                                       "nonTemplate":  1,
-                                       "contextNecessary":  1,
-                                       "progressionClear":  1,
-                                       "reviewExecutable":  1,
-                                       "pitfallReal":  1
-                                   },
-                        "notes":  ""
-                    }
-                ]
+  "schemaVersion": 2,
+  "chapterId": "chapter-04",
+  "status": "approved",
+  "reviewer": "课程负责人",
+  "reviewedAt": "2026-07-31T00:00:00+08:00",
+  "contentHash": "8c84d30b4834657621078ba51f6f9ccc5b810555cd73ccfee2a20decd727f708",
+  "notes": "课程负责人已确认完成第四章全部 120 道题的六项审核。",
+  "records": [
+    {
+      "questionId": "chapter-04-angles-1",
+      "title": "角度校准",
+      "prompt": "极地破冰船任务·冰缝观测器显示一个直角被分成 35° 和另一个角；另一个角是多少度？【启航任务】",
+      "contentHash": "c88b2927610ec206928b0328c2bce22959b355a4cd4d38ffff45e2a63e28ecce",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-angles-2",
+      "title": "角度校准",
+      "prompt": "极地破冰船任务·船桥转向盘上，一个平角中的已知角是 68°；剩下的角是多少度？【校准任务】",
+      "contentHash": "6413a3cb69cb0398b6d5f50a4541c4f2af2aa16dc8508eec492f309b7f957c62",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-angles-3",
+      "title": "角度校准",
+      "prompt": "极地破冰船任务·两束救援灯互成直角，其中一束偏离 47°；另一束偏离多少度？【侦察任务】",
+      "contentHash": "609fc2ae1b6072d87fa1f7e0b074bac890aa5b481e0a84de7d8f3ef47f5a20b2",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-angles-4",
+      "title": "角度校准",
+      "prompt": "极地破冰船任务·雷达扇形的两个相邻角合成平角，已知一个是 125°；另一个是多少度？【推进任务】",
+      "contentHash": "9f045bd911beb8ee3ccf5f6e6ff75e6279355d50c614e3961dd05994dae9c5c3",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-angles-5",
+      "title": "角度校准",
+      "prompt": "极地破冰船任务·甲板圆形刻度被三个角分开，两个角为 96°、104°；第三个角是多少度？【协作任务】",
+      "contentHash": "596f29b8641fd97b637ad423c4aa77c44805df693d3cbd7aa0ce9390ac20fdcb",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-angles-6",
+      "title": "角度校准",
+      "prompt": "极地破冰船任务·破冰航向连续右转 90° 后又右转 35°；这两次共转过多少度？【加固任务】",
+      "contentHash": "9dbefb17387113ffa8b2bc04e1c69664f906ba45c7ff39d11f58eddc0fc03ad7",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-angles-7",
+      "title": "角度校准",
+      "prompt": "极地破冰船任务·浮标的两个补角相差 26°，较大角是多少度？【巡航任务】",
+      "contentHash": "e10f505b65d3d8d4ea67b6e0880e4fef22a9743283d202ab0b221873d85108d8",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-angles-8",
+      "title": "角度校准",
+      "prompt": "极地破冰船任务·观察窗里一个角是另一个角的 2 倍，两个角合成直角；较大角是多少度？【穿越任务】",
+      "contentHash": "1bcea4b54faedb061db364425085d2f66b36a685b6d58c437019f1d484f7786c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-angles-9",
+      "title": "角度校准",
+      "prompt": "极地破冰船任务·破冰船绕冰山转过 3 个相同的角后共转 270°；每个角是多少度？【攻坚任务】",
+      "contentHash": "b879678a5b4c04d504f6b8a4528a86708eca7aab6ee36ba538f0f1770d33b97c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-angles-10",
+      "title": "角度校准",
+      "prompt": "极地破冰船任务·Boss 校准：四个相邻角围成一周，分别为 75°、85°、110° 和 x；x 是多少度？【决战任务】",
+      "contentHash": "4187557c9ba7fa844cd5f80678e7baa853cc4ddd13cb3956abd9b92e6b81fcf7",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-triangles-1",
+      "title": "三角形",
+      "prompt": "极地破冰船任务·冰面三角警示旗的两个内角是 45°、65°；第三个内角是多少度？【启航任务】",
+      "contentHash": "2cd5c8d2cea93076b9b2d17eaa1ecc2f717c22f4230b7e19a6f372fcce6dfa75",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-triangles-2",
+      "title": "三角形",
+      "prompt": "极地破冰船任务·三角帆的两个角同为 50°；顶角是多少度？【校准任务】",
+      "contentHash": "f8402473fad3058a3132391a9ecc50164f48678c67fead436f8f50ad3f368473",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-triangles-3",
+      "title": "三角形",
+      "prompt": "极地破冰船任务·测绘员记录三角冰块有 90° 和 37° 两个角；剩下角是多少度？【侦察任务】",
+      "contentHash": "23b9570f0a9f66445023940c943290b9bf1156c0498740d617e6af500ea0d8fe",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-triangles-4",
+      "title": "三角形",
+      "prompt": "极地破冰船任务·救援三角架的一个外角是 132°，与它不相邻的一个内角是 48°；另一个不相邻内角是多少度？【推进任务】",
+      "contentHash": "14aca3c006f0908c95d6dedb3d0d3c2477e615715a03e8e9ee18de545771892c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-triangles-5",
+      "title": "三角形",
+      "prompt": "极地破冰船任务·等腰三角形冰标的顶角为 40°；每个底角是多少度？【协作任务】",
+      "contentHash": "64108df6f40570c211f875b39f6a77e98239d0cfb329263afe63287095a86129",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-triangles-6",
+      "title": "三角形",
+      "prompt": "极地破冰船任务·三角航线的三个内角按 2:3:4 分配；最小角是多少度？【加固任务】",
+      "contentHash": "97e094c14b38b9cd2b605dcfaa9f71265be9a84f364998ea595c122ba9d4f198",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-triangles-7",
+      "title": "三角形",
+      "prompt": "极地破冰船任务·一块三角冰的两个角相差 18°，第三个角为 72°；较大角是多少度？【巡航任务】",
+      "contentHash": "312fa9b714437abc0a289f68f9e2b3d6421c04d3d0487f127752169571470cb4",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-triangles-8",
+      "title": "三角形",
+      "prompt": "极地破冰船任务·破冰吊臂形成直角三角形，两个锐角之比为 2:3；较大锐角是多少度？【穿越任务】",
+      "contentHash": "8fae8abeb29f05f7ba908c12dbe70bc036da8eece3941731860c935d951de901",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-triangles-9",
+      "title": "三角形",
+      "prompt": "极地破冰船任务·一条等边冰道警示牌的周长是 36 米；每条边多少米？【攻坚任务】",
+      "contentHash": "211416e4027dbc8e67b5ff1b0c5795115786ce72fbf98e7d147b02447ae03808",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-triangles-10",
+      "title": "三角形",
+      "prompt": "极地破冰船任务·Boss 测绘：等腰三角形的一个外角为 130°；它的顶角是多少度？【决战任务】",
+      "contentHash": "c36ec92f3944f069629afdca1393e97275ec9fd1b0c1c5e8cc86393356604179",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-quadrilaterals-1",
+      "title": "四边形",
+      "prompt": "极地破冰船任务·冰原四边形标志的三个内角是 80°、95°、110°；第四个角是多少度？【启航任务】",
+      "contentHash": "3aaaf8c3505968bf6ceb9ac9ee7dd7ad2afcfe3984d401a71eb9bb1229c9ddc2",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-quadrilaterals-2",
+      "title": "四边形",
+      "prompt": "极地破冰船任务·矩形保温板的一个角是多少度？【校准任务】",
+      "contentHash": "72714c5978fcfd65fb87b65311733b3a4562cbc3a454145cff77eae49408b936",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-quadrilaterals-3",
+      "title": "四边形",
+      "prompt": "极地破冰船任务·正方形甲板格的周长为 28 米；一条边多少米？【侦察任务】",
+      "contentHash": "01dcb7a1f8cf95bd1929e60e6d03a8d2a4b83954e4fa6ed5e404ab69f7ccb4e6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-quadrilaterals-4",
+      "title": "四边形",
+      "prompt": "极地破冰船任务·平行四边形冰道的一个角为 68°；与它相邻的角是多少度？【推进任务】",
+      "contentHash": "4ed2bd9b9d6de4bf2602d8336794397496d033caac57f53180dda342ef6eca14",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-quadrilaterals-5",
+      "title": "四边形",
+      "prompt": "极地破冰船任务·梯形防滑垫的四个角中已有 85°、95°、120°；最后一个角是多少度？【协作任务】",
+      "contentHash": "b08d8eb750aed44237eb15118e0cac331094128e337a3470ef9e26877a43c9f5",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-quadrilaterals-6",
+      "title": "四边形",
+      "prompt": "极地破冰船任务·菱形航标的一条边是 9 米；它的周长是多少米？【加固任务】",
+      "contentHash": "73f3639659c206305bb67c8c9ca86873b9f83e3ed133fe799fb671eb6b4f54a6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-quadrilaterals-7",
+      "title": "四边形",
+      "prompt": "极地破冰船任务·长方形舷窗长 12 厘米、宽 7 厘米；周长是多少厘米？【巡航任务】",
+      "contentHash": "fd0f11d6ec5b60e59886db04dd67ce4d9f3ccc62a23fa3b9e2cdb52210cc5ce0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-quadrilaterals-8",
+      "title": "四边形",
+      "prompt": "极地破冰船任务·平行四边形甲板一个角为 x，邻角是 3x；x 是多少度？【穿越任务】",
+      "contentHash": "5ccc8a75d2442aaefabcfc3599b4eacff2bb598ece1814643e53157c0b4f65af",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-quadrilaterals-9",
+      "title": "四边形",
+      "prompt": "极地破冰船任务·正方形冰库面积是 81 平方米；一条边多少米？【攻坚任务】",
+      "contentHash": "db100d4495969544028b4f695b52f59894f00a6e39978bbc224a43bde82508c9",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-quadrilaterals-10",
+      "title": "四边形",
+      "prompt": "极地破冰船任务·Boss 拼板：一个四边形有两个直角，另外两个角之比为 2:3；较大角是多少度？【决战任务】",
+      "contentHash": "7eb0b6ea54cc8b28f2551da6122dcb915dfd2dc80e140d592a73f1265c4afd04",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-perimeter-1",
+      "title": "周长",
+      "prompt": "极地破冰船任务·船舱地毯长 8 米、宽 5 米；一圈包边长多少米？【启航任务】",
+      "contentHash": "f6e0b5ac9a82641bc53137ea6b5fb97170caa2c66d04e816f5ecd6f2ce272085",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-perimeter-2",
+      "title": "周长",
+      "prompt": "极地破冰船任务·圆形停机坪半径为 4 米，取 π=3；周长是多少米？【校准任务】",
+      "contentHash": "4905b70203eefec94ec03cf1d64acb9fd12921702cc7211a40d20caeb9edab8a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-perimeter-3",
+      "title": "周长",
+      "prompt": "极地破冰船任务·三角冰区三边分别为 6 米、7 米、9 米；周长是多少米？【侦察任务】",
+      "contentHash": "3452ef8c86e0e3b9ff15c3c57c0e8e4ea8f3651a94775c22d143f0901e130925",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-perimeter-4",
+      "title": "周长",
+      "prompt": "极地破冰船任务·正方形救援区每边 11 米；围栏长多少米？【推进任务】",
+      "contentHash": "c817b35445e04f4036048089ee8b2b85e9418dd68ac4b3dc922255867b821db5",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-perimeter-5",
+      "title": "周长",
+      "prompt": "极地破冰船任务·一根 36 米的绳子围成长 11 米的长方形；宽是多少米？【协作任务】",
+      "contentHash": "e36106d8eed54df406a97a76d6fbf180b5994e00badaa1639f80bc37caa89377",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-perimeter-6",
+      "title": "周长",
+      "prompt": "极地破冰船任务·半圆形观景台直径 10 米，取 π=3；包括直径的周长是多少米？【加固任务】",
+      "contentHash": "ac0aafd75085913aacfa11748f5aab96cf74ebfd172dde2989065cf1cac9e243",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-perimeter-7",
+      "title": "周长",
+      "prompt": "极地破冰船任务·两个边长为 4 米的正方形并排拼成一个长方形；外周长是多少米？【巡航任务】",
+      "contentHash": "251e16489525974d6b1877a0345fb6b888febac69f44e2e79da085eb5e200e1b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-perimeter-8",
+      "title": "周长",
+      "prompt": "极地破冰船任务·长方形冰槽周长 50 米，长比宽多 5 米；宽是多少米？【穿越任务】",
+      "contentHash": "62dd73422758d60f00a770e3df0faeffbecf8de7bab31fb2d2d610d5dc834f1a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-perimeter-9",
+      "title": "周长",
+      "prompt": "极地破冰船任务·圆形雷达基座直径 14 米，取 π=22/7；周长是多少米？【攻坚任务】",
+      "contentHash": "66eb14b667ada0a8f4bf9659dda5a98f2d3876ff40eb7877253ebbb50e575b10",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-perimeter-10",
+      "title": "周长",
+      "prompt": "极地破冰船任务·Boss 围栏：一个正方形和一个边长 6 米的等边三角形共用一条边；合起来外周长是多少米？【决战任务】",
+      "contentHash": "97b7506a3ddcf8d2602e4e8176bbdbc334753d0354c07890e5680df2c0b70a1d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-1",
+      "title": "面积",
+      "prompt": "极地破冰船任务·补给甲板长 9 米、宽 4 米；面积是多少平方米？【启航任务】",
+      "contentHash": "9cc2b214e2e873c13fcedfee73e24bda702c44c109c9201accd0715c7089c806",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-2",
+      "title": "面积",
+      "prompt": "极地破冰船任务·正方形冰场边长 7 米；面积是多少平方米？【校准任务】",
+      "contentHash": "67a09a33ae36557d0ea10027d9be12242c165c595f1680a5b691aac54e198b9e",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-3",
+      "title": "面积",
+      "prompt": "极地破冰船任务·三角形警戒区底为 10 米、高为 6 米；面积是多少平方米？【侦察任务】",
+      "contentHash": "73758ab4be7905347317931dceca1b0a60c8101d385794ee8e0642a1efafc62e",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-4",
+      "title": "面积",
+      "prompt": "极地破冰船任务·平行四边形停靠区底为 12 米、高为 5 米；面积是多少平方米？【推进任务】",
+      "contentHash": "f756e5f2002bd34e1f728970893b575297c62fed6d8c638fdaac4efbb2eb1851",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-5",
+      "title": "面积",
+      "prompt": "极地破冰船任务·梯形冰道上底 6 米、下底 10 米、高 4 米；面积是多少平方米？【协作任务】",
+      "contentHash": "b85ab474cb6a1e1eb790ba6ff5b0868ead7ce82fc0324b0a884a28f3de72763c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-6",
+      "title": "面积",
+      "prompt": "极地破冰船任务·一块长方形保温毯面积 48 平方米、宽 6 米；长是多少米？【加固任务】",
+      "contentHash": "3325a2ee1fc0ac529a717916f3e568a147b6a22038afd7b127804d1b93276c97",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-7",
+      "title": "面积",
+      "prompt": "极地破冰船任务·圆形观测窗半径 5 分米，取 π=3.14；面积是多少平方分米？【巡航任务】",
+      "contentHash": "7ca6c0f55ec7955c54a7115d7d707cbe6096a55d147f19f167584fbb82b97938",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-8",
+      "title": "面积",
+      "prompt": "极地破冰船任务·两个相同的三角冰旗各底 8 米、高 3 米；总面积是多少平方米？【穿越任务】",
+      "contentHash": "88707fe45caae36b81f3f9fe311d97abf392f3c27db8d2441ed499d7684427a3",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-9",
+      "title": "面积",
+      "prompt": "极地破冰船任务·一块 64 平方米的正方形甲板砖，边长是多少米？【攻坚任务】",
+      "contentHash": "ec9dd556646847a5e16c4e4b5ae48b65832a072d3f8d13bb6de5ae02ed9355f0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-10",
+      "title": "面积",
+      "prompt": "极地破冰船任务·Boss 覆盖：长 15 米、宽 8 米的甲板上留出一个底 6 米、高 4 米的三角形开口；需要铺多少平方米防滑垫？【决战任务】",
+      "contentHash": "01d0f9d8fc3bf6a36425f5aef899a231f2d549d33e9ec57738977057e7964b23",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-composite-figures-1",
+      "title": "组合图形",
+      "prompt": "极地破冰船任务·两块长 6 米、宽 4 米的长方形冰垫首尾相接；总面积是多少平方米？【启航任务】",
+      "contentHash": "ecd536d2ec3ab1af0fe366b85f7996d836d8d14473beb8e0bf6fb85d3de3a388",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-composite-figures-2",
+      "title": "组合图形",
+      "prompt": "极地破冰船任务·L 形甲板可看作长 10 米、宽 8 米的长方形去掉长 3 米、宽 2 米的小角；面积是多少平方米？【校准任务】",
+      "contentHash": "0d428d6d549a4cc07070696b0cac71977b4af8da51e429781f2f10f0d38e355d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-composite-figures-3",
+      "title": "组合图形",
+      "prompt": "极地破冰船任务·一块长方形保温区长 12 米、宽 7 米，内挖去边长 3 米的正方形口；剩余面积是多少平方米？【侦察任务】",
+      "contentHash": "a24d9abfe1b58cd1755ad5ccacfc2987f98dc64cca2516b8b5d4db495bd9632d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-composite-figures-4",
+      "title": "组合图形",
+      "prompt": "极地破冰船任务·两个边长 5 米的正方形拼成一个长方形；总面积是多少平方米？【推进任务】",
+      "contentHash": "ebeccfb6f43926a88bbe81f8c41a1b4569ce19f0c7001db21de242138a9ce278",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-composite-figures-5",
+      "title": "组合图形",
+      "prompt": "极地破冰船任务·长 14 米、宽 6 米的甲板一端加一个底 6 米、高 4 米的三角形平台；总面积是多少平方米？【协作任务】",
+      "contentHash": "e16d8b14bb4d433ecc39ae0e0a043d6efab785aa901fdd7987b6a6709bd4c34c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-composite-figures-6",
+      "title": "组合图形",
+      "prompt": "极地破冰船任务·一块边长 10 米的正方形冰区中央挖去长 4 米、宽 3 米的长方形；剩余面积是多少平方米？【加固任务】",
+      "contentHash": "c6debdee6e3aa9ead78c23928bbe891cd0c2447d5c031c658d08662af248e9b0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-composite-figures-7",
+      "title": "组合图形",
+      "prompt": "极地破冰船任务·三块底 6 米、高 4 米的三角形警示区不重叠；总面积是多少平方米？【巡航任务】",
+      "contentHash": "71e721855cb5197e9195f4d5efaa8a950ef6e6709b7ae884e6fbe5d647601d92",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-composite-figures-8",
+      "title": "组合图形",
+      "prompt": "极地破冰船任务·长方形船舱长 16 米、宽 9 米，两角各剪去一个直角边为 2 米的等腰直角三角形；剩余面积是多少平方米？【穿越任务】",
+      "contentHash": "bf2ac7ae2cb68089edfa3c840ed092c8e57c201a868651f4d7e5fd800a04a211",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-composite-figures-9",
+      "title": "组合图形",
+      "prompt": "极地破冰船任务·半径 7 米的圆形冰场中有一个边长 7 米的正方形停机区，取 π=22/7；圆场比停机区大多少平方米？【攻坚任务】",
+      "contentHash": "c443978e269655da66abb86a97ad2088d3d6b6d73922e4cdaf904536247a8140",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-composite-figures-10",
+      "title": "组合图形",
+      "prompt": "极地破冰船任务·Boss 拼图：一个 12×10 的长方形甲板去掉两个 3×4 的长方形角和一个底 4、高 3 的三角形角；剩余面积是多少平方米？【决战任务】",
+      "contentHash": "d8a0f987577d7da85ccd238d4ce7f83b17cbf401191723f146e2a9a5974000ad",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-units-1",
+      "title": "面积单位",
+      "prompt": "极地破冰船任务·一张极地图纸面积是 3 平方米，等于多少平方分米？【启航任务】",
+      "contentHash": "6fd3e714ccf89ddcf84a7cbbf7ee8c916defd0b2e1bf32861451204852c58367",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-units-2",
+      "title": "面积单位",
+      "prompt": "极地破冰船任务·一块 500 平方厘米的铭牌，等于多少平方分米？【校准任务】",
+      "contentHash": "10c79ee5172f1672f3cfd4db809b8c9569d994772d2dbc7dc152d641cb48a77d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-units-3",
+      "title": "面积单位",
+      "prompt": "极地破冰船任务·甲板面积 2 平方千米，等于多少公顷？【侦察任务】",
+      "contentHash": "bb79423fade0ad5599304787e68cbfcfc196c70b7127e3bb0144c72039e1f6a8",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-units-4",
+      "title": "面积单位",
+      "prompt": "极地破冰船任务·一片冰区有 6 公顷，等于多少平方米？【推进任务】",
+      "contentHash": "3c91524fdbe8102dfdc12344ed6699236bc510ec75334ba997f5481c79af4a9d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-units-5",
+      "title": "面积单位",
+      "prompt": "极地破冰船任务·保温膜面积 4.5 平方米，等于多少平方分米？【协作任务】",
+      "contentHash": "8be9bf27bd4ba8c72ce14f1a38e0cfc30a789f093ae11e141fbedb4e45c85bde",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-units-6",
+      "title": "面积单位",
+      "prompt": "极地破冰船任务·一张 7200 平方厘米的船图，等于多少平方米？【加固任务】",
+      "contentHash": "3b7a5e7f20fce1ada1cfc4193fcbdfc1deaa7c61bb4c896832ac3fb4202deed5",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-units-7",
+      "title": "面积单位",
+      "prompt": "极地破冰船任务·圆形舷窗面积 0.36 平方米，等于多少平方厘米？【巡航任务】",
+      "contentHash": "95e6d33beab770064b0088c7c6d1e89e467256b532f2d7427214c5f6b869d631",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-units-8",
+      "title": "面积单位",
+      "prompt": "极地破冰船任务·一块 1.25 公顷的试验田，等于多少平方米？【穿越任务】",
+      "contentHash": "909f61550b80326c10b4e684591ea1e06b41e8939824d3107658891d25fd2239",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-units-9",
+      "title": "面积单位",
+      "prompt": "极地破冰船任务·冰原地图标出 2500000 平方米，等于多少平方千米？【攻坚任务】",
+      "contentHash": "2fe1941db2cec84e1627aa86426d41ade7d6d36f1d386de2630d58ef1d1dc5f0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-area-units-10",
+      "title": "面积单位",
+      "prompt": "极地破冰船任务·Boss 换算：0.08 平方千米的禁航区，等于多少公顷？【决战任务】",
+      "contentHash": "a0f86594c5357fe79a84cd866f81d39996c5b849e597a68da39c920ff9d1aece",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-volume-1",
+      "title": "体积",
+      "prompt": "极地破冰船任务·一个货箱长 4 米、宽 3 米、高 2 米；体积是多少立方米？【启航任务】",
+      "contentHash": "b88c7d54c9706bffddf2b3a89fc5fb62c1e7a2fc75328aa5d6a65be83de21c6f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-volume-2",
+      "title": "体积",
+      "prompt": "极地破冰船任务·正方体冰块棱长 5 分米；体积是多少立方分米？【校准任务】",
+      "contentHash": "2db8970f6d9381cac0b6a2a3effaadc4aa2c9bf5990d69fcfaff8d147213c668",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-volume-3",
+      "title": "体积",
+      "prompt": "极地破冰船任务·货舱体积 72 立方米，底面积 12 平方米；高是多少米？【侦察任务】",
+      "contentHash": "60ec93fc216278fc56dbaca32571e189c1828f385668db5cb543d68efb3ccbbe",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-volume-4",
+      "title": "体积",
+      "prompt": "极地破冰船任务·一个长方体储物柜长 8 米、宽 2 米、高 3 米；体积是多少立方米？【推进任务】",
+      "contentHash": "80f989a80f33a8bf6fe491082c18b744db8012ca26e1f1fd7863f3d00114695f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-volume-5",
+      "title": "体积",
+      "prompt": "极地破冰船任务·棱长 4 米的正方体装备箱，体积是多少立方米？【协作任务】",
+      "contentHash": "89894b5bb50867afb97dbe538977f8a76acf64ab978e599c636b03124e8b026c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-volume-6",
+      "title": "体积",
+      "prompt": "极地破冰船任务·一个底面积 15 平方米、高 4 米的长方体冰仓；体积是多少立方米？【加固任务】",
+      "contentHash": "7d619bda4500edea6d263ff9469a2345ed779bfc5b4d4c1b210cec6a81f2dcbb",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-volume-7",
+      "title": "体积",
+      "prompt": "极地破冰船任务·两个长 3 米、宽 2 米、高 2 米的相同箱体装满货物；总体积是多少立方米？【巡航任务】",
+      "contentHash": "7cdfa29b147f67306895291a30b4ab2ec21b5b764e4ff8e066903255e3aaaf77",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-volume-8",
+      "title": "体积",
+      "prompt": "极地破冰船任务·一块体积 216 立方分米的正方体冰砖，棱长是多少分米？【穿越任务】",
+      "contentHash": "ec4f59b69c9b2de81233241fcc42ec99f7351393982d83560f21c88fa66dc367",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-volume-9",
+      "title": "体积",
+      "prompt": "极地破冰船任务·货舱长 10 米、宽 4 米、体积 200 立方米；高是多少米？【攻坚任务】",
+      "contentHash": "7cbf15bd5fbce1e2362a35d1bfc09af9980a2708ecf35bf0465d58741fd077e7",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-volume-10",
+      "title": "体积",
+      "prompt": "极地破冰船任务·Boss 装载：一个长 12 米、宽 5 米、高 4 米的舱室，底部有一块长 3 米、宽 2 米、高 4 米的设备占位；可用体积是多少立方米？【决战任务】",
+      "contentHash": "73b66b79e6605fad98f3259a948215e284df88b01cf9f4c4001501487fb8c06e",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-capacity-1",
+      "title": "容积",
+      "prompt": "极地破冰船任务·一只水箱能装 8 升水，等于多少毫升？【启航任务】",
+      "contentHash": "d7a5bbdfd8f0b9205e22b5b83f5f80de98343e32bf4946422f60989fa5c1d65c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-capacity-2",
+      "title": "容积",
+      "prompt": "极地破冰船任务·应急壶里有 2500 毫升热水，等于多少升？【校准任务】",
+      "contentHash": "aa0d4623551083a6ce5f135deb3f583ca96d1cf8ad14adc18a795c4958e17278",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-capacity-3",
+      "title": "容积",
+      "prompt": "极地破冰船任务·三只相同水袋每只装 6 升；一共能装多少升？【侦察任务】",
+      "contentHash": "85390d7abcfdfa44b2183fddf794f590b00a27531b60f128688b6910a2294cb4",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-capacity-4",
+      "title": "容积",
+      "prompt": "极地破冰船任务·一个 12 升水箱已装 7 升；还能装多少升？【推进任务】",
+      "contentHash": "4c823481d36c155005a43c6be79c207cf8d2bad40a6fabd1d0a26e6d02fe8234",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-capacity-5",
+      "title": "容积",
+      "prompt": "极地破冰船任务·一桶融雪水有 15 升，平均装入 3 个水壶；每壶多少升？【协作任务】",
+      "contentHash": "7661405fb7ebef71a175892417ab6e01086a5a04ad9eb4fac12f11ece141eb01",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-capacity-6",
+      "title": "容积",
+      "prompt": "极地破冰船任务·补给车运来 4 箱水，每箱 24 瓶，每瓶 500 毫升；共有多少升？【加固任务】",
+      "contentHash": "8eebf37323e855b09dc303173c3126e5438b173c4da82d0f45ae78be57b82018",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-capacity-7",
+      "title": "容积",
+      "prompt": "极地破冰船任务·一个容积 3.6 升的保温瓶，倒出 850 毫升后还剩多少毫升？【巡航任务】",
+      "contentHash": "3059842a4fccbdec57fc054345337071a9e46a2d418053ba5812874a053c59e8",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-capacity-8",
+      "title": "容积",
+      "prompt": "极地破冰船任务·储水舱可装 2 立方米水，等于多少升？【穿越任务】",
+      "contentHash": "11e48044181d720ac5d1243e9c8c23604c2b0aafdb0f21a808a61b18ddb0db3d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-capacity-9",
+      "title": "容积",
+      "prompt": "极地破冰船任务·一台制水机每分钟产 1.5 升水，20 分钟产多少升？【攻坚任务】",
+      "contentHash": "74870a0782e6fd34589252c22211996e46ab0288d9b8e1271cb3642f3fe453ee",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-capacity-10",
+      "title": "容积",
+      "prompt": "极地破冰船任务·Boss 配给：72 升水按每人每天 1.5 升使用，可供 6 人使用多少天？【决战任务】",
+      "contentHash": "030fe6252cde8683151d32ec17e1c2b8b0734ffbe3655139d459d323586953eb",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-surface-area-1",
+      "title": "表面积",
+      "prompt": "极地破冰船任务·一个棱长 3 分米的正方体保温箱，表面积是多少平方分米？【启航任务】",
+      "contentHash": "d8858c2aca62fbefe577924e07cfe812d7ee496590941461649659fb4a40a007",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-surface-area-2",
+      "title": "表面积",
+      "prompt": "极地破冰船任务·长方体设备箱长 4 米、宽 3 米、高 2 米；表面积是多少平方米？【校准任务】",
+      "contentHash": "987700a8abbc354b538fc85b3ed7482d363f8dc1feabcf729216eed4977642e5",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-surface-area-3",
+      "title": "表面积",
+      "prompt": "极地破冰船任务·正方体冰样盒棱长 5 厘米；六个面的总面积是多少平方厘米？【侦察任务】",
+      "contentHash": "963c88158076ad037938ba951f2e430c8f28c4cd9700f009362373a58c94b5e7",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-surface-area-4",
+      "title": "表面积",
+      "prompt": "极地破冰船任务·一个长 6 米、宽 2 米、高 1 米的箱体只给外表面贴膜；需要多少平方米？【推进任务】",
+      "contentHash": "77fa20dd9c6886ea1a622bef5502631c54b48ef13df105064e80e42e53861449",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-surface-area-5",
+      "title": "表面积",
+      "prompt": "极地破冰船任务·棱长 4 米的立方形通讯舱，涂五个面需多少平方米涂料？【协作任务】",
+      "contentHash": "70d3e8e4b2f9ed77fb08631859ed0a52120d5e65d1b737b0e79130a906ebf521",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-surface-area-6",
+      "title": "表面积",
+      "prompt": "极地破冰船任务·一个长方体货柜表面积 94 平方米，长 5 米、宽 3 米；高是多少米？【加固任务】",
+      "contentHash": "af5d3bb4a47ca1f46e802fed42bcbde1f9381ede4557a8ee28427fe13b517508",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-surface-area-7",
+      "title": "表面积",
+      "prompt": "极地破冰船任务·两个棱长 2 米的正方体箱体完全分开；总表面积是多少平方米？【巡航任务】",
+      "contentHash": "e2e45180f280cc6126acb71cab6d4378f78f9adce6cc5c6496ebd58200dbb392",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-surface-area-8",
+      "title": "表面积",
+      "prompt": "极地破冰船任务·一个棱长 6 分米的正方体冰箱去掉底面不贴保温层；需贴多少平方分米？【穿越任务】",
+      "contentHash": "1a18f1fffd577dccf2f216f11f7551bafa1466a640152ac988152feca8c4c5e1",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-surface-area-9",
+      "title": "表面积",
+      "prompt": "极地破冰船任务·长方体冷藏箱长 8 米、宽 4 米、高 3 米；表面积是多少平方米？【攻坚任务】",
+      "contentHash": "4d18045d2a779ed2d5fc1b108d96d9b6f67f981fdfc22f01b2f4816a7cf29232",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-surface-area-10",
+      "title": "表面积",
+      "prompt": "极地破冰船任务·Boss 覆膜：长 10 米、宽 5 米、高 4 米的长方体舱室，门洞面积 6 平方米不贴膜；实际贴膜面积是多少平方米？【决战任务】",
+      "contentHash": "de4345a345e64020f4d4d8976d026d29e8c0df2fa4da9d0895b3088140738aa1",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-scale-1",
+      "title": "比例尺",
+      "prompt": "极地破冰船任务·极地图上 1 厘米表示实际 2 千米；图上 3 厘米表示实际多少千米？【启航任务】",
+      "contentHash": "acb600046af83177e3b5a305d62bd8f04632b4bac5772600d085b6eea1ff0d71",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-scale-2",
+      "title": "比例尺",
+      "prompt": "极地破冰船任务·比例尺 1:100000 的图上两点相距 4 厘米；实际相距多少千米？【校准任务】",
+      "contentHash": "f6c8b32132e49ddd07f2d0c582c836d7ed50825399dd708cb75948d2545fa844",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-scale-3",
+      "title": "比例尺",
+      "prompt": "极地破冰船任务·实际冰道长 15 千米，图上每厘米表示 3 千米；图上长多少厘米？【侦察任务】",
+      "contentHash": "95a807e4d0b9e59870c33d163589c17d3847a041c7427543df8ac70dd0c99298",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-scale-4",
+      "title": "比例尺",
+      "prompt": "极地破冰船任务·图纸比例尺为 1:500，图上甲板长 6 厘米；实际长多少米？【推进任务】",
+      "contentHash": "07eff8e142cea1284e89646b6348e1605c373877be0b2725fabc61c724da702f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-scale-5",
+      "title": "比例尺",
+      "prompt": "极地破冰船任务·实际距离 800 米，在 1:20000 的图上应画多少厘米？【协作任务】",
+      "contentHash": "ba4f096f7ef2d7b4b7cb7dd76bc0c0afd91ebc3ad7960123753f05f88fde2123",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-scale-6",
+      "title": "比例尺",
+      "prompt": "极地破冰船任务·比例尺 1:2500000 的图上航线长 2.4 厘米；实际长多少千米？【加固任务】",
+      "contentHash": "38bbcf0a3d8443d445c00b04b5cf2d6241fc6204bf1d730dfcc091692c01065a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-scale-7",
+      "title": "比例尺",
+      "prompt": "极地破冰船任务·图上 7 厘米表示实际 21 千米；每厘米表示多少千米？【巡航任务】",
+      "contentHash": "43215cbfba1b11c4ad5763cf65d6a264ad4780a2f0ef564feaebe4c7544c58f8",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-scale-8",
+      "title": "比例尺",
+      "prompt": "极地破冰船任务·实际补给线长 36 千米，图上长 9 厘米；比例尺每厘米表示多少千米？【穿越任务】",
+      "contentHash": "2a0bbb79af62fb36573615ab36d93c2247776935a4bdab5943e213c61c6a4d1c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-scale-9",
+      "title": "比例尺",
+      "prompt": "极地破冰船任务·比例尺 1:40000 的图上长方形冰场长 5 厘米、宽 3 厘米；实际面积是多少平方千米？【攻坚任务】",
+      "contentHash": "5fa5f345392dfa86befd61ffc00ec753ad963002f406a4473e929890a8ce8efa",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-scale-10",
+      "title": "比例尺",
+      "prompt": "极地破冰船任务·Boss 规划：图上两段航线分别长 3.5 厘米和 4.5 厘米，比例尺每厘米表示 8 千米；实际总长多少千米？【决战任务】",
+      "contentHash": "fca6d9eba389a53aeca44d4c213d2f81a9e68e15272bb0614282eeabfe452f0e",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-coordinates-routes-1",
+      "title": "坐标与路线",
+      "prompt": "极地破冰船任务·冰原坐标点从 (2,3) 向东移动 4 格；新坐标的横坐标是多少？【启航任务】",
+      "contentHash": "c4515672e014d4fc174fa5bdae977c6b067d05c47fbf2c51e3e31f6db7ec75f3",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-coordinates-routes-2",
+      "title": "坐标与路线",
+      "prompt": "极地破冰船任务·破冰船从 (5,7) 向北移动 3 格；新坐标的纵坐标是多少？【校准任务】",
+      "contentHash": "e95650ef73dd44120dfef5c130a00c28dfd7067022aaac50572160cf0a6cf065",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-coordinates-routes-3",
+      "title": "坐标与路线",
+      "prompt": "极地破冰船任务·补给点 A(1,4) 到 B(6,4) 是水平航线；相距多少格？【侦察任务】",
+      "contentHash": "a64c152974cbfe30aad4cfdb66f68fd7b5154db9a38933e177605ce24ae6dcf0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-coordinates-routes-4",
+      "title": "坐标与路线",
+      "prompt": "极地破冰船任务·航标 C(3,2) 到 D(3,9) 是竖直航线；相距多少格？【推进任务】",
+      "contentHash": "41fabce04e853711a0a5a45738d2f83843f582074347983124a0d39837491225",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-coordinates-routes-5",
+      "title": "坐标与路线",
+      "prompt": "极地破冰船任务·从 (2,2) 先向东 5 格再向北 4 格；终点横坐标是多少？【协作任务】",
+      "contentHash": "0befcdb2e1051a9b56eb4e0bfe59e23b97ca2e8a91e157c2160631ffd076317c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-coordinates-routes-6",
+      "title": "坐标与路线",
+      "prompt": "极地破冰船任务·从 (8,6) 向西 3 格、向南 2 格；终点纵坐标是多少？【加固任务】",
+      "contentHash": "047cecc542383be3b6da048c4bdc6836989a035979cbfd448c8bb2259f8045e3",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-coordinates-routes-7",
+      "title": "坐标与路线",
+      "prompt": "极地破冰船任务·一条航线从 (1,1) 到 (6,1)，再到 (6,5)；共走多少格？【巡航任务】",
+      "contentHash": "f978da16e0bb8c5f997834a436249b014ff64733155018a2bcb7f31664bf5410",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-coordinates-routes-8",
+      "title": "坐标与路线",
+      "prompt": "极地破冰船任务·救援船从 (4,9) 到 (10,5) 只沿水平和竖直航线走；最短走多少格？【穿越任务】",
+      "contentHash": "cf950f79a3d34b58e5013845345cf83ddec41103c47d82980321b50fde2e5e25",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-coordinates-routes-9",
+      "title": "坐标与路线",
+      "prompt": "极地破冰船任务·坐标点 P(x,6) 与 Q(9,6) 相距 5 格，且 P 在 Q 的西边；x 是多少？【攻坚任务】",
+      "contentHash": "c6eeabdc7f8e03844ba584d455e8c62d305dfe088db83d32352225042fbccc05",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-04-coordinates-routes-10",
+      "title": "坐标与路线",
+      "prompt": "极地破冰船任务·Boss 导航：从 (2,3) 到 (8,3)，再到 (8,10)，最后到 (5,10)；总航程是多少格？【决战任务】",
+      "contentHash": "c46aeabd54ad9e3e3e714dc710b6618664d8811302b69aedece3fedd73e23413",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-07-31T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    }
+  ]
 }

@@ -1,15 +1,17 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "chapterId": "chapter-02",
   "status": "approved",
   "reviewer": "项目负责人确认",
   "reviewedAt": "2026-07-30",
+  "contentHash": "af36108ba3b753a04e75a60805b9eb06d5308ac192c92dae9de6e2e0dc9b9ca4",
   "notes": "根据项目负责人的第二、三章完整内容审核确认予以签核。",
   "records": [
     {
       "questionId": "pigeonhole-principle-1",
       "title": "同色球",
-      "prompt": "袋中有红球、黄球、蓝球各若干个。至少取出多少个球，才能保证有 2 个颜色相同？",
+      "prompt": "袋中有红球、黄球、蓝球各若干个。至少取出多少个球，才能保证有 2 个颜色相同？【启航任务】",
+      "contentHash": "3e455cfc07f8ab8cdd6ccbfa7a27619e10f8028e515d086a0f79985472d73e11",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -25,7 +27,8 @@
     {
       "questionId": "pigeonhole-principle-2",
       "title": "生日月份",
-      "prompt": "班里有 25 人，至少有几个人出生在同一个月份？",
+      "prompt": "班里有 25 人，至少有几个人出生在同一个月份？【校准任务】",
+      "contentHash": "6450626d10ddfc60e2152cf17eb57ae4ba61ece0d1272d9b9cebdf558c549a58",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -41,7 +44,8 @@
     {
       "questionId": "pigeonhole-principle-3",
       "title": "同余数",
-      "prompt": "任意取 8 个整数，至少有几个数除以 3 的余数相同？",
+      "prompt": "任意取 8 个整数，至少有几个数除以 3 的余数相同？【侦察任务】",
+      "contentHash": "bfd1b9fc67b6c90ee11add887d5b2ff472fed9a4f94fc6f42ea16d5d96a434a1",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -57,7 +61,8 @@
     {
       "questionId": "pigeonhole-principle-4",
       "title": "保证有 3 个",
-      "prompt": "有黑、白两种棋子。至少取多少枚，才能保证有 3 枚颜色相同？",
+      "prompt": "有黑、白两种棋子。至少取多少枚，才能保证有 3 枚颜色相同？【推进任务】",
+      "contentHash": "ac4939d58dac0bc17def36b83d33f7a9c2cab7c28ccd6cf7341c625192c997db",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -73,7 +78,8 @@
     {
       "questionId": "chapter-02-pigeonhole-principle-advance-1",
       "title": "潮汐编号",
-      "prompt": "要保证 8 张潮汐卡中至少有 3 张属于同一种颜色，卡片只有 3 种颜色，至少要抽几张？",
+      "prompt": "要保证 8 张潮汐卡中至少有 3 张属于同一种颜色，卡片只有 3 种颜色，至少要抽几张？【协作任务】",
+      "contentHash": "251f73f45ac28611d310b3bdc9476b193db5f589464fb31fb9dca8929cce08d5",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -89,7 +95,8 @@
     {
       "questionId": "pigeonhole-principle-5",
       "title": "分组保证",
-      "prompt": "把 31 本书放进 5 个书架，至少有一个书架上有多少本书？",
+      "prompt": "把 31 本书放进 5 个书架，至少有一个书架上有多少本书？【加固任务】",
+      "contentHash": "66358a990dbcc9d56f3929c3812767c4780ab4a19061c8ac1ce900d77d164895",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -105,7 +112,8 @@
     {
       "questionId": "chapter-02-pigeonhole-principle-improve-1",
       "title": "样本格",
-      "prompt": "17 个海水样本放进 4 个检测格，至少有一个检测格里至少有几个样本？",
+      "prompt": "17 个海水样本放进 4 个检测格，至少有一个检测格里至少有几个样本？【巡航任务】",
+      "contentHash": "fa0a62fb86d39f5b8c84cc3f1c37c5d32e605236468742e4113c9e198397b9b7",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -121,7 +129,8 @@
     {
       "questionId": "chapter-02-pigeonhole-principle-improve-2",
       "title": "潜航队",
-      "prompt": "13 名队员分到 3 艘小艇，至少有一艘艇至少坐几人？",
+      "prompt": "13 名队员分到 3 艘小艇，至少有一艘艇至少坐几人？【穿越任务】",
+      "contentHash": "7f459cb03a49d082b8d12c284fc9e681dc0c8deeb7a508073ec98ab15db62f45",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -137,7 +146,8 @@
     {
       "questionId": "pigeonhole-principle-6",
       "title": "综合保证",
-      "prompt": "从 1 到 20 中任取 11 个数，为什么一定有两个数的和是 21？",
+      "prompt": "把 1 到 20 配成 10 对，每对数的和都是 21。任取 11 个数，至少能保证有多少对数被同时取到？【攻坚任务】",
+      "contentHash": "11eeea137353bb9bc02589c5620c90fe6de1bb621b45080687fea3bfed7e0178",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -153,7 +163,8 @@
     {
       "questionId": "chapter-02-pigeonhole-principle-challenge-1",
       "title": "声呐频道",
-      "prompt": "28 段声呐记录分到 6 个频道，至少一个频道至少有几段记录？",
+      "prompt": "28 段声呐记录分到 6 个频道，至少一个频道至少有几段记录？【决战任务】",
+      "contentHash": "6eec05a4b1a8dd221ac735d71ff5852fc48bfab720fa94001c9d7ef6d46ef591",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -169,7 +180,8 @@
     {
       "questionId": "counting-transfer-1",
       "title": "限制位置",
-      "prompt": "用 1、2、3 可以组成多少个没有重复数字的两位数？",
+      "prompt": "用 1、2、3 可以组成多少个没有重复数字的两位数？【启航任务】",
+      "contentHash": "18ff68c6ecada448912d2b3cf280884c57f69862250da9b2f086773f939242a4",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -185,7 +197,8 @@
     {
       "questionId": "counting-transfer-2",
       "title": "分类路线",
-      "prompt": "从 A 到 C，可以直达有 2 条路；也可以经 B，A 到 B 有 2 条路，B 到 C 有 3 条路。共有多少种走法？",
+      "prompt": "从 A 到 C，可以直达有 2 条路；也可以经 B，A 到 B 有 2 条路，B 到 C 有 3 条路。共有多少种走法？【校准任务】",
+      "contentHash": "9907557cadb9156de1cad71377ba8a03aedb55a21da1098509d737db70cc19f9",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -201,7 +214,8 @@
     {
       "questionId": "counting-transfer-3",
       "title": "至少一项",
-      "prompt": "全班 28 人，参加数学社 15 人，参加科学社 12 人，两社都参加 4 人。至少参加一个社团的有多少人？",
+      "prompt": "全班 28 人，参加数学社 15 人，参加科学社 12 人，两社都参加 4 人。至少参加一个社团的有多少人？【侦察任务】",
+      "contentHash": "f9e4683c7f5c75e90182cc186369090d2d11fe5b56f3271a3769a8dc3e21109b",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -217,7 +231,8 @@
     {
       "questionId": "counting-transfer-4",
       "title": "不符合条件",
-      "prompt": "用 0、1、2、3 组成没有重复数字的两位数，一共有多少个？",
+      "prompt": "用 0、1、2、3 组成没有重复数字的两位数，一共有多少个？【推进任务】",
+      "contentHash": "99d16c80427b4cdb27633f371b003987223cd72b3fcec89bfe2dc610507d127a",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -233,7 +248,8 @@
     {
       "questionId": "chapter-02-counting-transfer-advance-1",
       "title": "双门密码",
-      "prompt": "密码由 A、B、C、D 中不同的两个字母组成，第一位不能是 D，有多少种密码？",
+      "prompt": "密码由 A、B、C、D 中不同的两个字母组成，第一位不能是 D，有多少种密码？【协作任务】",
+      "contentHash": "7c6370628fa36c59f193439fc4208d999736ec820f9ade4ffd450f23e4636e30",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -249,7 +265,8 @@
     {
       "questionId": "counting-transfer-5",
       "title": "只参加一项",
-      "prompt": "30 人中喜欢篮球 18 人，喜欢足球 15 人，两项都喜欢 6 人。只喜欢一项的有多少人？",
+      "prompt": "30 人中喜欢篮球 18 人，喜欢足球 15 人，两项都喜欢 6 人。只喜欢一项的有多少人？【加固任务】",
+      "contentHash": "ff1af475dc325d323a905824867e3d768cdace41325cb6bdcc0bdc25e7177c66",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -265,7 +282,8 @@
     {
       "questionId": "chapter-02-counting-transfer-improve-1",
       "title": "观察顺序",
-      "prompt": "探测艇从 4 个浮标中选 2 个依次观察，不重复选择，有多少种顺序？",
+      "prompt": "探测艇从 4 个浮标中选 2 个依次观察，不重复选择，有多少种顺序？【巡航任务】",
+      "contentHash": "e1a383d320c83373045179e56c9e42c22a88cb56d186bccc7161920310dfad25",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -281,7 +299,8 @@
     {
       "questionId": "chapter-02-counting-transfer-improve-2",
       "title": "潜水员编号",
-      "prompt": "用 1、2、3、4 四张数字牌组成没有重复数字的两位编号，有多少个？",
+      "prompt": "用 1、2、3、4 四张数字牌组成没有重复数字的两位编号，有多少个？【穿越任务】",
+      "contentHash": "20efdd4c451354435d262736fbfa2fda1e373145452ee6bded36c459b5c52fe0",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -297,7 +316,8 @@
     {
       "questionId": "counting-transfer-6",
       "title": "综合换乘",
-      "prompt": "用 1、2、3、4 组成没有重复数字的三位数，要求百位是奇数，且个位不是 4，一共有多少个？",
+      "prompt": "用 1、2、3、4 组成没有重复数字的三位数，要求百位是奇数，且个位不是 4，一共有多少个？【攻坚任务】",
+      "contentHash": "349863977b9f4252f2e376ce8df3a716af34ec8782b54abdaf363eb9775e357d",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -313,7 +333,8 @@
     {
       "questionId": "chapter-02-counting-transfer-challenge-1",
       "title": "路线旗",
-      "prompt": "红、蓝、绿三面路线旗排成一列，每面都用一次，有多少种排法？",
+      "prompt": "红、蓝、绿三面路线旗排成一列，每面都用一次，有多少种排法？【决战任务】",
+      "contentHash": "47f0760d85545c2117a3079cb117b0571058e156bddfdb7bb7080af06d086ce0",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -329,7 +350,8 @@
     {
       "questionId": "motion-1",
       "title": "求路程",
-      "prompt": "一辆车每小时行 45 千米，行驶 4 小时，一共行驶多少千米？",
+      "prompt": "一辆车每小时行 45 千米，行驶 4 小时，一共行驶多少千米？【启航任务】",
+      "contentHash": "c7579146baa8d00bbaaa2299cd160445b69aab7acae26ec142ab7fd873ba1166",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -345,7 +367,8 @@
     {
       "questionId": "motion-2",
       "title": "求时间",
-      "prompt": "小华每分钟走 70 米，走完 560 米需要多少分钟？",
+      "prompt": "小华每分钟走 70 米，走完 560 米需要多少分钟？【校准任务】",
+      "contentHash": "cbc7397bbc39320e7e3fbf7ece61d1b958798040d5f932e753836a5df7907719",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -361,7 +384,8 @@
     {
       "questionId": "motion-3",
       "title": "相遇时间",
-      "prompt": "甲乙两地相距 720 米，两人同时相向而行，甲每分钟 50 米，乙每分钟 40 米，几分钟相遇？",
+      "prompt": "甲乙两地相距 720 米，两人同时相向而行，甲每分钟 50 米，乙每分钟 40 米，几分钟相遇？【侦察任务】",
+      "contentHash": "82bcf35489f8d120e6b9774fae5ce6936ec2202c4e669e0173ae2a04e58f9d08",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -377,7 +401,8 @@
     {
       "questionId": "chapter-02-motion-advance-1",
       "title": "下潜距离",
-      "prompt": "探测艇每分钟下潜 12 米，8 分钟下潜多少米？",
+      "prompt": "探测艇每分钟下潜 12 米，8 分钟下潜多少米？【推进任务】",
+      "contentHash": "5cdf298c78971dfd15721f1e607c205987190789c5cff16afa96aa27187d553f",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -393,7 +418,8 @@
     {
       "questionId": "chapter-02-motion-advance-2",
       "title": "返航航程",
-      "prompt": "潜艇去程每小时 18 千米，行驶 3 小时；返程每小时 27 千米，需要几小时？",
+      "prompt": "潜艇去程每小时 18 千米，行驶 3 小时；返程每小时 27 千米，需要几小时？【协作任务】",
+      "contentHash": "e84a154dd31f80a1af8e28a7acb8ca35dd8ebe0aa23372613e56542481c40242",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -409,7 +435,8 @@
     {
       "questionId": "motion-4",
       "title": "追及时间",
-      "prompt": "甲每分钟跑 100 米，乙每分钟跑 80 米，乙先跑 5 分钟，甲几分钟追上乙？",
+      "prompt": "甲每分钟跑 100 米，乙每分钟跑 80 米，乙先跑 5 分钟，甲几分钟追上乙？【加固任务】",
+      "contentHash": "b4d3a4b09f43dbf7b99f4ea66339ec3bc88bb4a8734b0cf2ca04087a12f85d9b",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -425,7 +452,8 @@
     {
       "questionId": "motion-5",
       "title": "相遇求距离",
-      "prompt": "两人同时从两地相向而行，甲每分钟 60 米，乙每分钟 55 米，8 分钟相遇。两地相距多少米？",
+      "prompt": "两人同时从两地相向而行，甲每分钟 60 米，乙每分钟 55 米，8 分钟相遇。两地相距多少米？【巡航任务】",
+      "contentHash": "0ba891e2020a3845b4245d44a233c49d176b1afd22efc4eac019971c405322aa",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -441,7 +469,8 @@
     {
       "questionId": "chapter-02-motion-improve-1",
       "title": "回收浮标",
-      "prompt": "无人艇 3 小时航行 45 千米，照这个速度 7 小时航行多少千米？",
+      "prompt": "无人艇 3 小时航行 45 千米，照这个速度 7 小时航行多少千米？【穿越任务】",
+      "contentHash": "996ca90b5b5ec4e14e0ee559b294fbe422aa7ea55a04cdc3942ed137a42a56fa",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -457,7 +486,8 @@
     {
       "questionId": "motion-6",
       "title": "往返速度",
-      "prompt": "小明上学每分钟走 60 米，15 分钟到校。放学走同一条路用了 18 分钟，放学每分钟走多少米？",
+      "prompt": "小明上学每分钟走 60 米，15 分钟到校。放学走同一条路用了 18 分钟，放学每分钟走多少米？【攻坚任务】",
+      "contentHash": "eef8ed98969cfdeebc376aaba3d57458ea9ef5abd463030eee9bba729f78acce",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -473,7 +503,8 @@
     {
       "questionId": "chapter-02-motion-challenge-1",
       "title": "相向靠近",
-      "prompt": "两艘船相距 90 千米，相向而行，速度分别是每小时 20 千米和 25 千米，几小时相遇？",
+      "prompt": "两艘船相距 90 千米，相向而行，速度分别是每小时 20 千米和 25 千米，几小时相遇？【决战任务】",
+      "contentHash": "72c4f061a5fec5fb229855190822f831f490a2af0f1185810436c538f6a25432",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -489,7 +520,8 @@
     {
       "questionId": "engineering-1",
       "title": "每天做几分之一",
-      "prompt": "一项工作，甲单独做 8 天完成。甲每天完成这项工作的几分之几？",
+      "prompt": "一项工作，甲单独做 8 天完成。甲每天完成这项工作的几分之几？【启航任务】",
+      "contentHash": "d94bdd5096c3183589483558fa67d4aa51cc7a9c8cb63abf4b44d0faa1626246",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -505,7 +537,8 @@
     {
       "questionId": "engineering-2",
       "title": "合作效率",
-      "prompt": "甲每天完成 1/6，乙每天完成 1/3，两人合作每天完成几分之几？",
+      "prompt": "甲每天完成 1/6，乙每天完成 1/3，两人合作每天完成几分之几？【校准任务】",
+      "contentHash": "e0c071516f749939acf6e67eb70078655ea5fe5b2ce81cdafffffc942fa601c9",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -521,7 +554,8 @@
     {
       "questionId": "engineering-3",
       "title": "两人合作几天",
-      "prompt": "甲单独 6 天完成，乙单独 3 天完成。两人合作几天完成？",
+      "prompt": "甲单独 6 天完成，乙单独 3 天完成。两人合作几天完成？【侦察任务】",
+      "contentHash": "e00dc3e2d0d6d19a28eb3f03e16cb20872381889f858d4b1f7862051d42ff821",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -537,7 +571,8 @@
     {
       "questionId": "engineering-4",
       "title": "先做再合作",
-      "prompt": "一项工作甲单独 10 天完成，甲先做 2 天，还剩几分之几？",
+      "prompt": "一项工作甲单独 10 天完成，甲先做 2 天，还剩几分之几？【推进任务】",
+      "contentHash": "b1d8397a4cbd9da73e9260246183ba37c0f8e2b414030ac524bf6279598e8afc",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -553,7 +588,8 @@
     {
       "questionId": "chapter-02-engineering-advance-1",
       "title": "余下任务",
-      "prompt": "一项任务有 240 个零件，3 台机器每台每小时装 8 个，工作 6 小时后还剩多少个？",
+      "prompt": "一项任务有 240 个零件，3 台机器每台每小时装 8 个，工作 6 小时后还剩多少个？【协作任务】",
+      "contentHash": "9c1f3447bc5cb6036c76f2a503959a3e0fefb85744500e6cd7ccd5990ca1ec56",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -569,7 +605,8 @@
     {
       "questionId": "engineering-5",
       "title": "效率比较",
-      "prompt": "甲单独 4 天完成，乙单独 12 天完成。甲每天比乙多完成这项工程的几分之几？",
+      "prompt": "甲单独 4 天完成，乙单独 12 天完成。甲每天比乙多完成这项工程的几分之几？【加固任务】",
+      "contentHash": "8b6ad965845b0ba91226f6b1233f23fe3bd4d4ed86eed00c6fe94a4938f12b97",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -585,7 +622,8 @@
     {
       "questionId": "chapter-02-engineering-improve-1",
       "title": "舱门安装",
-      "prompt": "6 名工程师 5 天安装 120 个舱门，平均每人每天安装几个？",
+      "prompt": "6 名工程师 5 天安装 120 个舱门，平均每人每天安装几个？【巡航任务】",
+      "contentHash": "db279568d04df5a88434ded249b4e321c65c375ab9d94d21a66d9f98120ca8c4",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -601,7 +639,8 @@
     {
       "questionId": "chapter-02-engineering-improve-2",
       "title": "修理臂",
-      "prompt": "4 台修理臂 3 小时完成 72 次焊接，照此速度 6 台修理臂 5 小时完成多少次？",
+      "prompt": "4 台修理臂 3 小时完成 72 次焊接，照此速度 6 台修理臂 5 小时完成多少次？【穿越任务】",
+      "contentHash": "f63e12c459248daef8fdbf0bda79240f7678eb752b1c8aa97511b06ea2e24f4e",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -617,7 +656,8 @@
     {
       "questionId": "engineering-6",
       "title": "三人合作",
-      "prompt": "甲 6 天完成，乙 12 天完成，丙 4 天完成。三人合作每天完成几分之几？",
+      "prompt": "甲 6 天完成，乙 12 天完成，丙 4 天完成。三人合作每天完成几分之几？【攻坚任务】",
+      "contentHash": "0c3512522af40a71e45068b16ce2fdfc49709b4fc0908988b1f5442766e893d4",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -633,7 +673,8 @@
     {
       "questionId": "chapter-02-engineering-challenge-1",
       "title": "同步铺设",
-      "prompt": "甲队每天铺 18 米电缆，乙队每天铺 12 米，合作 5 天共铺多少米？",
+      "prompt": "甲队每天铺 18 米电缆，乙队每天铺 12 米，合作 5 天共铺多少米？【决战任务】",
+      "contentHash": "40bcc05ea0cc5e82390be87217e233e882fba978a3230ba3808a2d2ab2e8e9fc",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -649,7 +690,8 @@
     {
       "questionId": "train-bridge-1",
       "title": "火车过桥",
-      "prompt": "一列火车长 100 米，每秒行 20 米，通过 300 米长的桥需要几秒？",
+      "prompt": "一列火车长 100 米，每秒行 20 米，通过 300 米长的桥需要几秒？【启航任务】",
+      "contentHash": "343c98bbf2072d86e05fa87c90c454680021f25167432ca7fa2979ec54607175",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -665,7 +707,8 @@
     {
       "questionId": "train-bridge-2",
       "title": "通过路灯",
-      "prompt": "一列火车长 180 米，每秒行 30 米，通过路边一根电线杆需要几秒？",
+      "prompt": "一列火车长 180 米，每秒行 30 米，通过路边一根电线杆需要几秒？【校准任务】",
+      "contentHash": "3111811a5a725a36e59054a3d0e5b80755a56e87f025c49392181e149bac39cd",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -681,7 +724,8 @@
     {
       "questionId": "train-bridge-3",
       "title": "过隧道",
-      "prompt": "火车长 160 米，每秒行 40 米，完全通过 640 米长的隧道要几秒？",
+      "prompt": "火车长 160 米，每秒行 40 米，完全通过 640 米长的隧道要几秒？【侦察任务】",
+      "contentHash": "104ceba2d04503a8775e0d6200aca312d8c1f12e63ae9bf2c1d9d7f3a977b5a9",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -697,7 +741,8 @@
     {
       "questionId": "train-bridge-4",
       "title": "反求桥长",
-      "prompt": "火车长 120 米，每秒行 15 米，完全通过一座桥用了 18 秒。这座桥长多少米？",
+      "prompt": "火车长 120 米，每秒行 15 米，完全通过一座桥用了 18 秒。这座桥长多少米？【推进任务】",
+      "contentHash": "9ce0e7c3af8bafce7fa611eb86da42cadcc90be10ee49083c197fbf804e528b5",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -713,7 +758,8 @@
     {
       "questionId": "chapter-02-train-bridge-advance-1",
       "title": "隧道测算",
-      "prompt": "列车长 180 米，以每秒 30 米的速度用 14 秒完全通过隧道，隧道长多少米？",
+      "prompt": "列车长 180 米，以每秒 30 米的速度用 14 秒完全通过隧道，隧道长多少米？【协作任务】",
+      "contentHash": "28bca606fb5b1612ecacef4b713e145c9c6b834abfe6181d9534ae4c7185ec7e",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -729,7 +775,8 @@
     {
       "questionId": "train-bridge-5",
       "title": "两车相向",
-      "prompt": "甲车长 90 米，乙车长 110 米，相向而行速度分别为 15 米/秒和 25 米/秒。从车头相遇到完全错开要几秒？",
+      "prompt": "甲车长 90 米，乙车长 110 米，相向而行速度分别为 15 米/秒和 25 米/秒。从车头相遇到完全错开要几秒？【加固任务】",
+      "contentHash": "48cff5af7e06cfa72e52d2bccef94d9ef265bc8199424d2b8d42b6d3748e0b47",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -745,7 +792,8 @@
     {
       "questionId": "chapter-02-train-bridge-improve-1",
       "title": "穿过闸门",
-      "prompt": "一列长 120 米的观测列车以每秒 20 米的速度完全穿过 80 米闸门，需要几秒？",
+      "prompt": "一列长 120 米的观测列车以每秒 20 米的速度完全穿过 80 米闸门，需要几秒？【巡航任务】",
+      "contentHash": "8ed4b8d6bde9d2d77d4b3581ea5a05cdb6ec7f0d6c13f7c9ace2236b6b46275a",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -761,7 +809,8 @@
     {
       "questionId": "chapter-02-train-bridge-improve-2",
       "title": "通过平台",
-      "prompt": "长 150 米的列车 15 秒完全通过 75 米平台，速度是每秒多少米？",
+      "prompt": "长 150 米的列车 15 秒完全通过 75 米平台，速度是每秒多少米？【穿越任务】",
+      "contentHash": "d423fdb5be1263090678a1f528cd16863f193547935d29c53473e466bbe9aaf3",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -777,7 +826,8 @@
     {
       "questionId": "train-bridge-6",
       "title": "同向追及",
-      "prompt": "快车长 120 米，每秒 30 米；慢车长 100 米，每秒 20 米。快车从追上慢车车尾到完全超过慢车需要几秒？",
+      "prompt": "快车长 120 米，每秒 30 米；慢车长 100 米，每秒 20 米。快车从追上慢车车尾到完全超过慢车需要几秒？【攻坚任务】",
+      "contentHash": "84989ef3d7f024abf3b92c75d09b7545da10a43b1e0b923d4d907dc238e5aa2d",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -793,7 +843,8 @@
     {
       "questionId": "chapter-02-train-bridge-challenge-1",
       "title": "追上补给车",
-      "prompt": "长 100 米的列车以每秒 25 米追赶每秒 15 米的补给车，车尾相距 200 米，几秒后列车车头追上补给车车尾？",
+      "prompt": "长 100 米的列车以每秒 25 米追赶每秒 15 米的补给车，车尾相距 200 米，几秒后列车车头追上补给车车尾？【决战任务】",
+      "contentHash": "94de2e316392ac940437f4479113d6cbb3f1f5d79ea8f582ff562d6b7fb76ddb",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -809,7 +860,8 @@
     {
       "questionId": "age-1",
       "title": "年龄差",
-      "prompt": "姐姐今年 14 岁，妹妹今年 9 岁，5 年后姐姐比妹妹大几岁？",
+      "prompt": "姐姐今年 14 岁，妹妹今年 9 岁，5 年后姐姐比妹妹大几岁？【启航任务】",
+      "contentHash": "d8c2ccadf77ed48da39a69149490ed1560bb89d155a613bea5126937fbd06ba0",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -825,7 +877,8 @@
     {
       "questionId": "age-2",
       "title": "未来年龄",
-      "prompt": "小明今年 8 岁，妈妈今年 34 岁。4 年后两人年龄和是多少？",
+      "prompt": "小明今年 8 岁，妈妈今年 34 岁。4 年后两人年龄和是多少？【校准任务】",
+      "contentHash": "f748cb042e8f476cd111e04a4d84876551ee116a5e214167ff6a9900667eaefa",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -841,7 +894,8 @@
     {
       "questionId": "age-3",
       "title": "几年后倍数",
-      "prompt": "爸爸今年 40 岁，小华今年 10 岁。几年后爸爸年龄是小华的 3 倍？",
+      "prompt": "爸爸今年 40 岁，小华今年 10 岁。几年后爸爸年龄是小华的 3 倍？【侦察任务】",
+      "contentHash": "f1c5f3cd991ea56b660d7b4128dbf7b82f40b2a4b42a739de4dd4aeb12a233d7",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -857,7 +911,8 @@
     {
       "questionId": "chapter-02-age-advance-1",
       "title": "海洋日记",
-      "prompt": "小海今年 9 岁，姐姐比他大 4 岁，姐姐今年几岁？",
+      "prompt": "小海今年 9 岁，姐姐比他大 4 岁，姐姐今年几岁？【推进任务】",
+      "contentHash": "3d9f2e35a66e373e139100919097adb247d0ed647af66b921fddfc201be5ac0d",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -873,7 +928,8 @@
     {
       "questionId": "chapter-02-age-advance-2",
       "title": "过去的年龄",
-      "prompt": "哥哥今年 16 岁，弟弟今年 10 岁，几年前哥哥的年龄是弟弟的 2 倍？",
+      "prompt": "哥哥今年 16 岁，弟弟今年 10 岁，几年前哥哥的年龄是弟弟的 2 倍？【协作任务】",
+      "contentHash": "43d77d5812ee2e4d1b95a9c66fdae4eb870dd3702f75914f5cdbb60623c0ff7d",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -889,7 +945,8 @@
     {
       "questionId": "age-4",
       "title": "几年前倍数",
-      "prompt": "妈妈今年 32 岁，儿子今年 8 岁。几年前妈妈年龄是儿子的 5 倍？",
+      "prompt": "妈妈今年 32 岁，儿子今年 8 岁。几年前妈妈年龄是儿子的 5 倍？【加固任务】",
+      "contentHash": "1dfdf2cb13a5d964477ada6ebbeef0612740cc065c6739e94ea13118baba3405",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -905,7 +962,8 @@
     {
       "questionId": "age-5",
       "title": "年龄和反推",
-      "prompt": "兄弟俩今年年龄和是 25 岁，哥哥比弟弟大 5 岁。弟弟今年几岁？",
+      "prompt": "兄弟俩今年年龄和是 25 岁，哥哥比弟弟大 5 岁。弟弟今年几岁？【巡航任务】",
+      "contentHash": "da091cf9d784b698ae24c2613bb60137537c69a08874c9d07eab6943a6971b39",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -921,7 +979,8 @@
     {
       "questionId": "chapter-02-age-improve-1",
       "title": "未来年龄",
-      "prompt": "小航今年 8 岁，爸爸今年 38 岁，5 年后爸爸比小航大几岁？",
+      "prompt": "小航今年 8 岁，爸爸今年 38 岁，5 年后爸爸比小航大几岁？【穿越任务】",
+      "contentHash": "d7546ae1b1108a054ac5062c1fbea0cba121d509e633c280167341a4d39cd236",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -937,7 +996,8 @@
     {
       "questionId": "age-6",
       "title": "倍数与差",
-      "prompt": "今年爸爸比儿子大 28 岁，爸爸年龄是儿子的 3 倍。儿子今年几岁？",
+      "prompt": "今年爸爸比儿子大 28 岁，爸爸年龄是儿子的 3 倍。儿子今年几岁？【攻坚任务】",
+      "contentHash": "aa1ecafd06aae222e83becc24cb209ad1c89f24c477777a7a33152707c9e3a94",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -952,8 +1012,9 @@
     },
     {
       "questionId": "chapter-02-age-challenge-1",
-      "title": "两倍年龄",
-      "prompt": "妈妈今年 36 岁，女儿今年 9 岁，几年后妈妈的年龄是女儿的 3 倍？",
+      "title": "三倍年龄",
+      "prompt": "妈妈今年 36 岁，女儿今年 8 岁，再过几年，妈妈的年龄正好是女儿的 3 倍？【决战任务】",
+      "contentHash": "a99cca551673d3147e7e65ae79ba4c382b502db3aaa0b81f486bf27ee68e192e",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -969,7 +1030,8 @@
     {
       "questionId": "efficiency-transfer-1",
       "title": "归一速度",
-      "prompt": "小明 4 分钟走 240 米，照这样 7 分钟走多少米？",
+      "prompt": "小明 4 分钟走 240 米，照这样 7 分钟走多少米？【启航任务】",
+      "contentHash": "5e49d615ecb85d63e9f175bae4c8f5f96545ed2f05efe43e78aa8d50e444825a",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -985,7 +1047,8 @@
     {
       "questionId": "efficiency-transfer-2",
       "title": "相遇效率",
-      "prompt": "两人相距 540 米，相向而行，速度分别是 50 米/分和 40 米/分，几分钟相遇？",
+      "prompt": "两人相距 540 米，相向而行，速度分别是 50 米/分和 40 米/分，几分钟相遇？【校准任务】",
+      "contentHash": "922640776ed925e8546f7c9db6baa2f5266673b2dffc703d03b49d9e7bc725fd",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1001,7 +1064,8 @@
     {
       "questionId": "efficiency-transfer-3",
       "title": "合作工程",
-      "prompt": "甲 8 天完成，乙 12 天完成。两人合作每天完成这项工程的几分之几？",
+      "prompt": "甲 8 天完成，乙 12 天完成。两人合作每天完成这项工程的几分之几？【侦察任务】",
+      "contentHash": "c277a5261971a7f147e009fc9b0143e17c653a9c19a15963b112c3ff766914c6",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1017,7 +1081,8 @@
     {
       "questionId": "efficiency-transfer-4",
       "title": "追及效率",
-      "prompt": "甲每分钟走 80 米，乙每分钟走 60 米，甲在乙后面 100 米，同向追乙，几分钟追上？",
+      "prompt": "甲每分钟走 80 米，乙每分钟走 60 米，甲在乙后面 100 米，同向追乙，几分钟追上？【推进任务】",
+      "contentHash": "74bd57d7893886a58e2c18b86d570b2dbbc976c7e2e04ec3839375982d26b8a4",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1033,7 +1098,8 @@
     {
       "questionId": "chapter-02-efficiency-transfer-advance-1",
       "title": "清理任务",
-      "prompt": "一台机器人每小时清理 18 平方米，先工作 4 小时后，剩余 36 平方米。任务总面积多少？",
+      "prompt": "一台机器人每小时清理 18 平方米，先工作 4 小时后，剩余 36 平方米。任务总面积多少？【协作任务】",
+      "contentHash": "f1c375cca8beaee9a9786c5a9901fad59f598b5ccd28b20ef5a9ada49dcf8eb7",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1049,7 +1115,8 @@
     {
       "questionId": "efficiency-transfer-5",
       "title": "先做后合作",
-      "prompt": "一项工程甲 10 天完成，乙 15 天完成。甲先做 2 天后，两人合作，还要几天完成？",
+      "prompt": "一项工程甲 10 天完成，乙 15 天完成。甲先做 2 天后，两人合作，还要几天完成？【加固任务】",
+      "contentHash": "6a2b2746aaca60c3d5c7f241a0eddf66bf122477c49fc3dc0d95f448e1a11e0b",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1065,7 +1132,8 @@
     {
       "questionId": "chapter-02-efficiency-transfer-improve-1",
       "title": "滤水装置",
-      "prompt": "2 台滤水装置 4 小时净化 160 升水，5 台同样装置 3 小时净化多少升？",
+      "prompt": "2 台滤水装置 4 小时净化 160 升水，5 台同样装置 3 小时净化多少升？【巡航任务】",
+      "contentHash": "bd753239517dbf0254a74687b9407ec81555e1364820d44697532d59fda9d320",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1081,7 +1149,8 @@
     {
       "questionId": "chapter-02-efficiency-transfer-improve-2",
       "title": "数据标注",
-      "prompt": "3 人 2 天标注 90 条数据，照此速度 5 人 4 天标注多少条？",
+      "prompt": "3 人 2 天标注 90 条数据，照此速度 5 人 4 天标注多少条？【穿越任务】",
+      "contentHash": "e56708cddaaa5fabd994caf27936a1c49d80670e768975b023f68d299188e7b8",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1097,7 +1166,8 @@
     {
       "questionId": "efficiency-transfer-6",
       "title": "综合效率",
-      "prompt": "甲乙两车相距 360 千米相向而行，甲每小时 70 千米，乙每小时 50 千米。相遇后甲继续按原速行驶，到乙出发地还要几小时？",
+      "prompt": "甲乙两车相距 360 千米相向而行，甲每小时 70 千米，乙每小时 50 千米。相遇后甲继续按原速行驶，到乙出发地还要几小时？【攻坚任务】",
+      "contentHash": "7f00356dc6a932e5ed43e48614aa01e0392c26b59716c43d4ba7b8296dae294f",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1113,7 +1183,8 @@
     {
       "questionId": "chapter-02-efficiency-transfer-challenge-1",
       "title": "同时完成",
-      "prompt": "甲机器单独完成任务要 6 小时，乙机器要 3 小时，同时工作每小时完成任务的几分之几？",
+      "prompt": "甲机器单独完成任务要 6 小时，乙机器要 3 小时，同时工作每小时完成任务的几分之几？【决战任务】",
+      "contentHash": "d09bd008b8ab92fe0803ad7a309c48db4344177047abbdbb6a5ff0d98a597aa2",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1129,7 +1200,8 @@
     {
       "questionId": "tree-planting-1",
       "title": "两端都种",
-      "prompt": "一条路长 24 米，每隔 4 米种一棵树，两端都种，一共种多少棵？",
+      "prompt": "一条路长 24 米，每隔 4 米种一棵树，两端都种，一共种多少棵？【启航任务】",
+      "contentHash": "474cb61050d0da276006f04bd0dd93f6c3233b5f4f283e4768dd6186783656d2",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1145,7 +1217,8 @@
     {
       "questionId": "tree-planting-2",
       "title": "只种一端",
-      "prompt": "一条小路长 35 米，每隔 5 米插一面小旗，只在起点插，终点不插，一共插多少面？",
+      "prompt": "一条小路长 35 米，每隔 5 米插一面小旗，只在起点插，终点不插，一共插多少面？【校准任务】",
+      "contentHash": "7afeb9c54601fcd598152fa99e201e75b4e76ded5b85f6e74696150abba1d337",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1161,7 +1234,8 @@
     {
       "questionId": "tree-planting-3",
       "title": "两端都不种",
-      "prompt": "一条走廊长 48 米，每隔 6 米放一盆花，两端都不放，一共放多少盆？",
+      "prompt": "一条走廊长 48 米，每隔 6 米放一盆花，两端都不放，一共放多少盆？【侦察任务】",
+      "contentHash": "ac10017489f425ea16edb8547993fffa9ece9bf1f01692fb1e3fe75a54cd2b97",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1177,7 +1251,8 @@
     {
       "questionId": "tree-planting-4",
       "title": "封闭路线",
-      "prompt": "一个圆形跑道长 60 米，每隔 10 米放一个标志桶，一共放多少个？",
+      "prompt": "一个圆形跑道长 60 米，每隔 10 米放一个标志桶，一共放多少个？【推进任务】",
+      "contentHash": "cdf184fca6c61d5ca3ca36c678cf7ecee91dd9a0782f85667d234f757c49a056",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1193,7 +1268,8 @@
     {
       "questionId": "chapter-02-tree-planting-advance-1",
       "title": "封闭巡航线",
-      "prompt": "正方形巡航线每边放 6 个定位点，四个顶点都只算一次，一共多少个定位点？",
+      "prompt": "正方形巡航线每边放 6 个定位点，四个顶点都只算一次，一共多少个定位点？【协作任务】",
+      "contentHash": "884a3a1d928a269007398855432e85bd701c130c1fbaec8cb106f3d3aff27885",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1209,7 +1285,8 @@
     {
       "questionId": "tree-planting-5",
       "title": "反求间距",
-      "prompt": "一条路长 45 米，两端都种树，一共种 10 棵。相邻两棵树相隔多少米？",
+      "prompt": "一条路长 45 米，两端都种树，一共种 10 棵。相邻两棵树相隔多少米？【加固任务】",
+      "contentHash": "e34324438a9e405df87a25b4c472df74fe34a116d114cc7a34b0604bfcb7a205",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1225,7 +1302,8 @@
     {
       "questionId": "chapter-02-tree-planting-improve-1",
       "title": "海岸标杆",
-      "prompt": "一段海岸每隔 5 米放一个标杆，两端都放，共有 9 个标杆。这段海岸长多少米？",
+      "prompt": "一段海岸每隔 5 米放一个标杆，两端都放，共有 9 个标杆。这段海岸长多少米？【巡航任务】",
+      "contentHash": "80fedc0f5174aac8c8d709969e50d749d82536f530d83482438383bcdeca8161",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1241,7 +1319,8 @@
     {
       "questionId": "chapter-02-tree-planting-improve-2",
       "title": "环形浮标",
-      "prompt": "圆形水池边放 12 个浮标，相邻浮标间隔相同，共有多少段间隔？",
+      "prompt": "圆形水池边放 12 个浮标，相邻浮标间隔相同，共有多少段间隔？【穿越任务】",
+      "contentHash": "d8b74060eef3b24b00045fedae6dc3f6fcaf8db09e1d3f5240a85cf17cf82db7",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1257,7 +1336,8 @@
     {
       "questionId": "tree-planting-6",
       "title": "综合判断",
-      "prompt": "一条路每隔 8 米装一盏灯，两端都装，共装 13 盏。这条路长多少米？",
+      "prompt": "一条路每隔 8 米装一盏灯，两端都装，共装 13 盏。这条路长多少米？【攻坚任务】",
+      "contentHash": "f6e9827335dc4f6a8567fb9068526878e777b6f5a4b9cff1b1cdeaa97abfc6ad",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1273,7 +1353,8 @@
     {
       "questionId": "chapter-02-tree-planting-challenge-1",
       "title": "灯带升级",
-      "prompt": "一条 72 米灯带原来每隔 8 米装灯，两端都装。改为每隔 6 米装灯，需要增加几盏？",
+      "prompt": "一条 72 米灯带原来每隔 8 米装灯，两端都装。改为每隔 6 米装灯，需要增加几盏？【决战任务】",
+      "contentHash": "62105fc927037c061abf424f49cace034904b27f3cf9d8fe927010a163c6dfe0",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1289,7 +1370,8 @@
     {
       "questionId": "geometry-1",
       "title": "闯关 1",
-      "prompt": "一条直线上有 3 个点，可以组成多少条线段？",
+      "prompt": "一条直线上有 3 个点，可以组成多少条线段？【启航任务】",
+      "contentHash": "ccd70db643b95b3fe6521a252370da9cae3119ff65cb6465e1a94480e9d52d94",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1305,7 +1387,8 @@
     {
       "questionId": "geometry-2",
       "title": "闯关 2",
-      "prompt": "一个 1×1 的正方形图里有多少个正方形？",
+      "prompt": "一个 1×1 的正方形图里有多少个正方形？【校准任务】",
+      "contentHash": "62ab1b43d84476f43cd567e9a1d6a58beefeeb790f40ce14c74cf009b7f25e2f",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1321,7 +1404,8 @@
     {
       "questionId": "geometry-3",
       "title": "闯关 3",
-      "prompt": "一个 2×2 方格图中，有多少个小正方形？",
+      "prompt": "一个 2×2 方格图中，有多少个小正方形？【侦察任务】",
+      "contentHash": "4417fa9dfd3be94d2704cc3a7552b73b9d12bb665adb365645006282f9d2af37",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1337,7 +1421,8 @@
     {
       "questionId": "geometry-4",
       "title": "闯关 4",
-      "prompt": "一条直线上有 5 个点，可以组成多少条线段？",
+      "prompt": "一条直线上有 5 个点，可以组成多少条线段？【推进任务】",
+      "contentHash": "d859ab654d225ac48c9023d91a0edb10bdffbed67350c09ef3651d068ef2dca5",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1353,7 +1438,8 @@
     {
       "questionId": "chapter-02-geometry-advance-1",
       "title": "耐压窗",
-      "prompt": "一个长方形耐压窗长 9 分米、宽 4 分米，周长是多少分米？",
+      "prompt": "一个长方形耐压窗长 9 分米、宽 4 分米，周长是多少分米？【协作任务】",
+      "contentHash": "8555d8bf57a3f1c42406ee326a660f2818ab5be341c227748304401464e3768d",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1369,7 +1455,8 @@
     {
       "questionId": "geometry-5",
       "title": "闯关 5",
-      "prompt": "一个 2×2 方格图中，一共有多少个正方形？",
+      "prompt": "一个 2×2 方格图中，一共有多少个正方形？【加固任务】",
+      "contentHash": "0d9eeca3ff1bafbc41f4349e08797416b5ce08ad65b0e26672a8da5180e230fa",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1385,7 +1472,8 @@
     {
       "questionId": "geometry-8",
       "title": "闯关 8",
-      "prompt": "一条直线上有 6 个点，可以组成多少条线段？",
+      "prompt": "一条直线上有 6 个点，可以组成多少条线段？【巡航任务】",
+      "contentHash": "33cf53250e2e727518b6a1ddaf187e632ea9f552a72650c051c0671b846a8077",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1401,7 +1489,8 @@
     {
       "questionId": "geometry-9",
       "title": "闯关 9",
-      "prompt": "一个 2×3 方格图中，有多少个小正方形？",
+      "prompt": "一个 2×3 方格图中，有多少个小正方形？【穿越任务】",
+      "contentHash": "d1478f6fd7baf9beaa19275cdaf4f8ef006fa81eaceeeb0581079d05f2388368",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1417,7 +1506,8 @@
     {
       "questionId": "geometry-6",
       "title": "闯关 6",
-      "prompt": "一个 3×3 方格图中，有多少个 1×1 的小正方形？",
+      "prompt": "一个 3×3 方格图中，有多少个 1×1 的小正方形？【攻坚任务】",
+      "contentHash": "3a165b467ddc560288790e55d48b9656ff4166aa5968f7b1b4a017577a761bad",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1433,7 +1523,8 @@
     {
       "questionId": "geometry-12",
       "title": "闯关 12",
-      "prompt": "一个 3×3 方格图中，有多少个小正方形？（只数 1×1）",
+      "prompt": "一个 3×3 方格图中，有多少个小正方形？（只数 1×1）【决战任务】",
+      "contentHash": "97b0f385ac57d988b1dd81aeff82671da9a0291b3d93a9e6b002adee38e5dca2",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1449,7 +1540,8 @@
     {
       "questionId": "logic-1",
       "title": "闯关 1",
-      "prompt": "A 不是第一，B 也不是第一，那么第一是谁？（A、B、C 三人中）",
+      "prompt": "A、B、C 三人的编号分别为 1、2、3。A 不是第一，B 也不是第一，那么第一位置的编号是多少？【启航任务】",
+      "contentHash": "cdd837302adabd228777f69a8ef24890015796450c258fcc137a2b427baafa9a",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1465,7 +1557,8 @@
     {
       "questionId": "logic-2",
       "title": "闯关 2",
-      "prompt": "甲比乙快，乙比丙快，谁最慢？",
+      "prompt": "甲比乙快，乙比丙快。按最快=1、最慢=3 编号，最慢者的编号是多少？【校准任务】",
+      "contentHash": "d8ba4835f196c26e6c651c27639fe1717cb1041ad3262f5449cc1e71cf8d17a5",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1481,7 +1574,8 @@
     {
       "questionId": "logic-3",
       "title": "闯关 3",
-      "prompt": "3 个盒子中只有 1 个有奖品。已知红盒没有，蓝盒没有，奖品在哪个盒子？",
+      "prompt": "红、黄、蓝三个盒子的编号分别为 1、2、3，只有一个有奖品。红盒和蓝盒都没有，奖品盒的编号是多少？【侦察任务】",
+      "contentHash": "be13c4e7ee83e6bfcb48f7138bfdcaa39a190d39b065e9dd28d1f837a70e43f5",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1497,7 +1591,8 @@
     {
       "questionId": "logic-4",
       "title": "闯关 4",
-      "prompt": "小丽不是第三，小华不是第三，那么第三是谁？（小丽、小华、小美）",
+      "prompt": "小丽、小华、小美的编号分别为 1、2、3。小丽不是第三，小华不是第三，那么第三位置的编号是多少？【推进任务】",
+      "contentHash": "ca506a8a106af6ddec00231df4bb9aaefa32fa20e31c356a004a872a7e2cb2f3",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1513,7 +1608,8 @@
     {
       "questionId": "chapter-02-logic-advance-1",
       "title": "真假信号",
-      "prompt": "甲说“乙的信号灯是蓝色”。已知乙的信号灯确实是蓝色，甲的说法是真的吗？",
+      "prompt": "把“说法正确”编号为 1，把“说法错误”编号为 0。乙的信号灯确实是蓝色，甲说乙是蓝色，这句话的编号是多少？【协作任务】",
+      "contentHash": "04707054d44d16682fa1fb0f78104bf7c7c97d61e5acbb355acd2a3238a15c99",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1529,7 +1625,8 @@
     {
       "questionId": "logic-5",
       "title": "闯关 5",
-      "prompt": "甲比乙重，乙比丙重，谁最重？",
+      "prompt": "甲比乙重，乙比丙重。按最重=1、最轻=3 编号，最重者的编号是多少？【加固任务】",
+      "contentHash": "488627c39abd2cb25828690e9ed535c4befe84385dec16976d9ac8802cb0b65d",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1545,7 +1642,8 @@
     {
       "questionId": "logic-8",
       "title": "闯关 8",
-      "prompt": "A 不是最后，B 不是最后，C 不是最后，那么最后是谁？（A、B、C、D 四人中）",
+      "prompt": "A、B、C、D 的编号分别为 1、2、3、4。A、B、C 都不是最后，那么最后位置的编号是多少？【巡航任务】",
+      "contentHash": "53a821495531680c589e658a8cf32111f20991f1d7c8cf10a666f889a1f29fb3",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1561,7 +1659,8 @@
     {
       "questionId": "logic-9",
       "title": "闯关 9",
-      "prompt": "红、黄、蓝三个盒子里只有一个有球。已知红盒有球，哪个盒子有球？",
+      "prompt": "红、黄、蓝三个盒子的编号分别为 1、2、3，已知红盒有球。装有球的盒子编号是多少？【穿越任务】",
+      "contentHash": "2f1ec8c51b8bd6be684f31ff17575b677dae758cd1540ec1c3627d891d786ae6",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1577,7 +1676,8 @@
     {
       "questionId": "logic-6",
       "title": "闯关 6",
-      "prompt": "甲不是最后，乙不是第一，丙不是第一，那么第一是谁？",
+      "prompt": "甲、乙、丙的编号分别为 1、2、3。甲不是最后，乙和丙都不是第一，那么第一位置的编号是多少？【攻坚任务】",
+      "contentHash": "8239a397e368787042eac8ed636379a867134d85931c40450ffaaa8bc0ffe696",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1593,7 +1693,8 @@
     {
       "questionId": "logic-12",
       "title": "闯关 12",
-      "prompt": "A 不是第一，B 不是第二，C 不是第一，那么第一是谁？",
+      "prompt": "A、B、C 的编号分别为 1、2、3。A、C 都不是第一，B 不是第二，那么第一位置的编号是多少？【决战任务】",
+      "contentHash": "bf9b4f96befee3337a0f0931414c5001bdbeb4c5c13aa973c83c41059c16c6c8",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1609,7 +1710,8 @@
     {
       "questionId": "geometry-counting-1",
       "title": "四点线段",
-      "prompt": "一条直线上有 5 个点，一共可以组成多少条线段？",
+      "prompt": "一条直线上有 5 个点，一共可以组成多少条线段？【启航任务】",
+      "contentHash": "e7c3124596b2f90771f658eed903dabfdb00710d1dbd7a9f206d7586ac125369",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1625,7 +1727,8 @@
     {
       "questionId": "geometry-counting-2",
       "title": "数角",
-      "prompt": "从同一个顶点射出 4 条射线，一共形成多少个角？",
+      "prompt": "从同一个顶点射出 4 条射线，一共形成多少个角？【校准任务】",
+      "contentHash": "dabcca0b52755793f82e5c9e23a199d51de96345fa6404a465b60bf5571cf7cc",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1641,7 +1744,8 @@
     {
       "questionId": "geometry-counting-3",
       "title": "分割三角形",
-      "prompt": "一个大三角形从顶点向底边画 4 条分割线，把底边分成 5 段。一共有多少个三角形？",
+      "prompt": "一个大三角形从顶点向底边画 4 条分割线，把底边分成 5 段。一共有多少个三角形？【侦察任务】",
+      "contentHash": "18fc10d1e1221afb2985d8329fb87f56734b9360444a935094467b476044ffb8",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1657,7 +1761,8 @@
     {
       "questionId": "geometry-counting-4",
       "title": "一行方格",
-      "prompt": "一行 4 个小正方形组成的长方形中，一共有多少个长方形？",
+      "prompt": "一行 4 个小正方形组成的长方形中，一共有多少个长方形？【推进任务】",
+      "contentHash": "c170aaa588187cfc3a88b0787e3fa716f16201809b94277a0c49fa0be0554dcb",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1673,7 +1778,8 @@
     {
       "questionId": "chapter-02-geometry-counting-advance-1",
       "title": "路线交点",
-      "prompt": "从一个长方形的四个顶点各连一条对角线，两条对角线交于一点，一共有几个三角形区域？",
+      "prompt": "从一个长方形的四个顶点各连一条对角线，两条对角线交于一点，一共有几个三角形区域？【协作任务】",
+      "contentHash": "5a63ebb8e64e90c85254ec201819a4ce6dad8c5a0d84cd77ed0a0952b1b57024",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1689,7 +1795,8 @@
     {
       "questionId": "geometry-counting-5",
       "title": "方格长方形",
-      "prompt": "2 行 2 列小方格组成的正方形中，一共有多少个长方形？",
+      "prompt": "2 行 2 列小方格组成的正方形中，一共有多少个长方形？【加固任务】",
+      "contentHash": "8ae6e01a4f373d3b63fa2969e8a1ccd0a3cc4994e49a4dc50cf8827d36552e5c",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1705,7 +1812,8 @@
     {
       "questionId": "chapter-02-geometry-counting-improve-1",
       "title": "三角旗",
-      "prompt": "一个正方形画一条对角线，被分成几个三角形？",
+      "prompt": "一个正方形画一条对角线，被分成几个三角形？【巡航任务】",
+      "contentHash": "75dbb362122832a76a06d4b08b55195acd6c64124a03b7ad94041e2a97298e68",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1721,7 +1829,8 @@
     {
       "questionId": "chapter-02-geometry-counting-improve-2",
       "title": "方格地图",
-      "prompt": "由 4 个小正方形排成一行，一共有几个不同大小的正方形？",
+      "prompt": "由 4 个小正方形排成一行，一共有几个不同大小的正方形？【穿越任务】",
+      "contentHash": "541f394ef1dc30ca031aae05bf2715fc3244aa5e875d23fb8d57a24e8d1612c2",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1737,7 +1846,8 @@
     {
       "questionId": "geometry-counting-6",
       "title": "综合方格",
-      "prompt": "2 行 3 列小方格组成的长方形中，一共有多少个正方形？",
+      "prompt": "2 行 3 列小方格组成的长方形中，一共有多少个正方形？【攻坚任务】",
+      "contentHash": "fd8aaa84c4efa27ef0299b452480ddb337b70a98bf136a013fed1d92f4be8c72",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1753,7 +1863,8 @@
     {
       "questionId": "chapter-02-geometry-counting-challenge-1",
       "title": "九宫网格",
-      "prompt": "3×3 方格中一共有多少个小正方形和大正方形？",
+      "prompt": "3×3 方格中一共有多少个小正方形和大正方形？【决战任务】",
+      "contentHash": "7bbab65090b1945f17ec7243772ac5204c15ee1fb9f830d3dc2dc89bd92765e9",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1769,7 +1880,8 @@
     {
       "questionId": "parity-divisibility-1",
       "title": "奇偶加法",
-      "prompt": "偶数 + 奇数 的结果是奇数还是偶数？",
+      "prompt": "把奇数编号为 1、偶数编号为 2。偶数加奇数的结果编号是多少？【启航任务】",
+      "contentHash": "1e7faef03a7c7dc1e89068e292a7aaa0110797106febe39affec4d749bf89c18",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1785,7 +1897,8 @@
     {
       "questionId": "parity-divisibility-2",
       "title": "奇偶乘法",
-      "prompt": "奇数 × 偶数 的结果是奇数还是偶数？",
+      "prompt": "把奇数编号为 1、偶数编号为 2。奇数乘偶数的结果编号是多少？【校准任务】",
+      "contentHash": "5843975cec6a756a384bf0c386f6237d06e66ba4b583895751662dde74ab52de",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1801,7 +1914,8 @@
     {
       "questionId": "parity-divisibility-3",
       "title": "能否被 3 整除",
-      "prompt": "数 528 能被 3 整除吗？",
+      "prompt": "把“能被整除”编号为 1，把“不能被整除”编号为 0。528 能被 3 整除，结果编号是多少？【侦察任务】",
+      "contentHash": "38c57cf882c8705811fb865936eae258a5232214a4eb03d069a1dc1be419b41b",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1817,7 +1931,8 @@
     {
       "questionId": "parity-divisibility-4",
       "title": "能否被 9 整除",
-      "prompt": "数 783 能被 9 整除吗？",
+      "prompt": "把“能被整除”编号为 1，把“不能被整除”编号为 0。783 能被 9 整除，结果编号是多少？【推进任务】",
+      "contentHash": "1f2ba7bbfc99aa53efc1d620e9c630e2ff3a656ad20e13d0075e7fcfe6198bad",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1833,7 +1948,8 @@
     {
       "questionId": "chapter-02-parity-divisibility-advance-1",
       "title": "配对编号",
-      "prompt": "1 到 20 中，既是 2 的倍数又是 3 的倍数的数有几个？",
+      "prompt": "1 到 20 中，既是 2 的倍数又是 3 的倍数的数有几个？【协作任务】",
+      "contentHash": "a140e7261b5e1ba7e5f98216f6b2dc44e7e8a4340c8caaf96928b553b612ae46",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1849,7 +1965,8 @@
     {
       "questionId": "parity-divisibility-5",
       "title": "不可能性",
-      "prompt": "3 个偶数和 4 个奇数相加，结果是奇数还是偶数？",
+      "prompt": "把奇数编号为 1、偶数编号为 2。3 个偶数和 4 个奇数相加，结果编号是多少？【加固任务】",
+      "contentHash": "e9babad90686a5603c89a21ef0154dff896ba704115900d0f1a592ec3a9cc855",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1865,7 +1982,8 @@
     {
       "questionId": "chapter-02-parity-divisibility-improve-1",
       "title": "偶数推进",
-      "prompt": "连续两个整数相乘，结果一定是奇数还是偶数？",
+      "prompt": "把奇数编号为 1、偶数编号为 2。连续两个整数相乘，结果一定的编号是多少？【巡航任务】",
+      "contentHash": "e35e2a087ebd19e5098e41dc244ae2bf7eac7d6658ff9f9f4abbf3bf677f32b0",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1881,7 +1999,8 @@
     {
       "questionId": "chapter-02-parity-divisibility-improve-2",
       "title": "整除校验",
-      "prompt": "54 能被 9 整除吗？",
+      "prompt": "把“能被整除”编号为 1，把“不能被整除”编号为 0。54 能被 9 整除，结果编号是多少？【穿越任务】",
+      "contentHash": "6992122246278a8a1af3e32c76e12173b9759cb08cb2ce1423c486d8f3a609ef",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1897,7 +2016,8 @@
     {
       "questionId": "parity-divisibility-6",
       "title": "填数字",
-      "prompt": "三位数 45□ 能被 5 整除，方框里可以填几个不同数字？",
+      "prompt": "三位数 45□ 能被 5 整除，方框里可以填几个不同数字？【攻坚任务】",
+      "contentHash": "bea16e6b1d000fc476125c77fffab15574b65fc4df7d06cc46de7649e0c9865c",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1913,7 +2033,8 @@
     {
       "questionId": "chapter-02-parity-divisibility-challenge-1",
       "title": "余数记录",
-      "prompt": "一个数除以 5 余 3，再加 7 后除以 5 余几？",
+      "prompt": "一个数除以 5 余 3，再加 7 后除以 5 余几？【决战任务】",
+      "contentHash": "14751c0e9e2597c03aebc11a0e4f77e7763b4699c86e0cc771129edf9f84a3f3",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {

@@ -102,6 +102,39 @@ const MATERIAL_LAYERS = Object.freeze({
       ["satellite-quantum-core", "量子同步核心", "legendary", "core"],
       ["satellite-command-core", "卫星指挥核心", "legendary", "core"]
     ]
+  },
+  "chapter-07": {
+    rawIds: ["workshop-compass", "workshop-paper", "workshop-book", "workshop-map", "workshop-string", "workshop-copper-ingot", "workshop-redstone", "workshop-quartz", "workshop-amethyst", "workshop-clock", "workshop-iron-nugget", "workshop-iron-nugget"],
+    refined: [
+      ["rover-condition-chip", "条件扫描芯片", "uncommon", "gem"], ["rover-bar-projector", "线段图投影片", "uncommon", "panel"],
+      ["rover-shape-lens", "数形观测镜", "rare", "gem"], ["rover-table-disk", "列表整理盘", "rare", "panel"],
+      ["rover-enumeration-wheel", "枚举记录轮", "rare", "ring"], ["rover-branch-lamp", "分支路线灯", "rare", "core"],
+      ["rover-assumption-arm", "假设校准臂", "uncommon", "core"], ["rover-reverse-tracker", "逆向追踪芯", "rare", "gem"],
+      ["rover-transform-gear", "转化齿轮组", "rare", "ingot"], ["rover-unit-wheel", "单位测量轮", "epic", "ring"],
+      ["rover-estimation-radar", "估算雷达", "epic", "core"], ["rover-verification-console", "验算控制台", "legendary", "core"]
+    ]
+  },
+  "chapter-08": {
+    rawIds: ["strategy-redstone", "strategy-ender-eye", "strategy-iron-ingot", "strategy-lapis", "strategy-ladder", "strategy-lead", "strategy-observer", "strategy-piston", "strategy-rail", "strategy-beacon", "strategy-netherite", "strategy-netherite"],
+    refined: [
+      ["navship-case-screen", "分类指挥屏", "uncommon", "panel"], ["navship-parity-detector", "奇偶检测器", "uncommon", "gem"],
+      ["navship-worst-case-simulator", "最不利模拟器", "rare", "core"], ["navship-recurrence-core", "递推导航芯", "rare", "core"],
+      ["navship-reverse-module", "逆推回溯器", "rare", "ring"], ["navship-elimination-table", "逻辑排除台", "rare", "panel"],
+      ["navship-schedule-clock", "任务统筹钟", "uncommon", "core"], ["navship-shortest-path", "最短路线仪", "rare", "gem"],
+      ["navship-strategy-array", "策略比较阵", "rare", "panel"], ["navship-construction-bay", "构造实验舱", "epic", "core"],
+      ["navship-contradiction-alarm", "反证警报器", "epic", "gem"], ["navship-decision-core", "综合决策核心", "legendary", "core"]
+    ]
+  },
+  "chapter-09": {
+    rawIds: ["city-stone", "city-glass", "city-iron", "city-copper", "city-redstone", "city-rail", "city-lantern", "city-hopper", "city-target", "city-beacon", "city-heart", "city-heart"],
+    refined: [
+      ["city-condition-analyzer", "条件分析器", "uncommon", "gem"], ["city-equation-console", "方程建模台", "uncommon", "panel"],
+      ["city-ratio-distributor", "比例分配器", "rare", "core"], ["city-change-monitor", "变化监测器", "rare", "gem"],
+      ["city-data-screen", "数据决策屏", "rare", "panel"], ["city-risk-evaluator", "风险评估芯", "rare", "core"],
+      ["city-geometry-bench", "几何分割台", "uncommon", "panel"], ["city-motion-track", "运动模型轨", "rare", "ingot"],
+      ["city-plan-comparator", "方案比较器", "rare", "gem"], ["city-optimization-disk", "最优配置盘", "epic", "ring"],
+      ["city-verification-loop", "验证回路", "epic", "core"], ["city-modeling-core", "生活建模核心", "legendary", "core"]
+    ]
   }
 });
 

@@ -1,0 +1,2051 @@
+{
+  "schemaVersion": 2,
+  "chapterId": "chapter-07",
+  "status": "approved",
+  "reviewer": "课程负责人",
+  "reviewedAt": "2026-08-06T00:00:00+08:00",
+  "contentHash": "3d02c7a0ba9ffc5e1f05794a66d48f56342c379995b7d8e69eba473a640f045b",
+  "notes": "新增思维方法题库已完成规则审校，课程负责人可继续进行逐题复核。 P0 ???????????????",
+  "records": [
+    {
+      "questionId": "chapter-07-read-conditions-1",
+      "title": "审题与提取条件",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【审题与提取条件】有4箱零件，每箱5件，另有1件备用，合计有多少件？【启航任务】",
+      "contentHash": "9bc8d0cf227e1f3b55f4e5451ae06a1629b90c6954ede904c49f4c63642bfeed",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-read-conditions-2",
+      "title": "审题与提取条件",
+      "prompt": "补给台记录：先用清单整理已知量：【审题与提取条件】有5箱零件，每箱6件，另有2件备用，合计有多少件？【校准任务】",
+      "contentHash": "7e15c7b5181d69111c1dcc4d079ea38f4d5dcb99f6060f3cb85e7b1ddbfff96a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-read-conditions-3",
+      "title": "审题与提取条件",
+      "prompt": "地图标记显示：先在路线图上标出关系：【审题与提取条件】有6箱零件，每箱7件，另有3件备用，合计有多少件？【侦察任务】",
+      "contentHash": "494bd619561243da71b300826d959eed7e4e5e033c99979570c38e3f9d98cf4b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-read-conditions-4",
+      "title": "审题与提取条件",
+      "prompt": "观察窗发现：先比较候选方案再计算：【审题与提取条件】有7箱零件，每箱8件，另有4件备用，合计有多少件？【推进任务】",
+      "contentHash": "d80a084ff0f2af39ee97a98f34339dbd38350addaf319d262145222747ab94a6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-read-conditions-5",
+      "title": "审题与提取条件",
+      "prompt": "校准表给出：最后回到现场做一次核验：【审题与提取条件】有8箱零件，每箱9件，另有5件备用，合计有多少件？【协作任务】",
+      "contentHash": "17aefcb0da932b6a340579dd8c93774331c2a9b7af16b965340eb57b6836e3e9",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-read-conditions-6",
+      "title": "审题与提取条件",
+      "prompt": "任务员核对：先把条件记在任务卡上：【审题与提取条件】有9箱零件，每箱10件，另有6件备用，合计有多少件？【加固任务】",
+      "contentHash": "7228c83812034990841c8e4c1ed3709debf0e7e3e8876d25bfc7f1ea66df591c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-read-conditions-7",
+      "title": "审题与提取条件",
+      "prompt": "仓库清单提示：先用清单整理已知量：【审题与提取条件】有10箱零件，每箱11件，另有7件备用，合计有多少件？【巡航任务】",
+      "contentHash": "63838b38b8626b7fbe8ed526b4b6c2ed8bdc68225f319108ffe439ae8fe9d0e8",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-read-conditions-8",
+      "title": "审题与提取条件",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【审题与提取条件】有11箱零件，每箱12件，另有8件备用，合计有多少件？【穿越任务】",
+      "contentHash": "5da6e4533bc3330525bb58c83f8a094991b9632678a2f4fedb9fb03ec1455a97",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-read-conditions-9",
+      "title": "审题与提取条件",
+      "prompt": "综合任务要求：先比较候选方案再计算：【审题与提取条件】有12箱零件，每箱13件，另有9件备用，合计有多少件？【攻坚任务】",
+      "contentHash": "357723d28d0a8c79c9fbbe268dfabadbda956992b66a3055e4d0fa6e737ed607",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-read-conditions-10",
+      "title": "审题与提取条件",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【审题与提取条件】有13箱零件，每箱14件，另有10件备用，合计有多少件？【决战任务】",
+      "contentHash": "66383b5bd22941535c71a1bfb45b818c684399a64af7cf74d586f3ad0c1fa4de",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-draw-bar-model-1",
+      "title": "线段图",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【线段图】两段线段总长12米，较长的一段比短的一段多2米，较长的一段长多少米？【启航任务】",
+      "contentHash": "24fb03020bffe3f0dd2a9b172bc4dd0f83720c306a50ee0cb74bab4749993da0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-draw-bar-model-2",
+      "title": "线段图",
+      "prompt": "补给台记录：先用清单整理已知量：【线段图】两段线段总长14米，较长的一段比短的一段多4米，较长的一段长多少米？【校准任务】",
+      "contentHash": "30cbd476eadd1a8839615a66dd35977b2da3934c3069dd642bd85a245b2a2be3",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-draw-bar-model-3",
+      "title": "线段图",
+      "prompt": "地图标记显示：先在路线图上标出关系：【线段图】两段线段总长16米，较长的一段比短的一段多6米，较长的一段长多少米？【侦察任务】",
+      "contentHash": "87c319aa3b96324b77b8638f307f97c83ccc442309a7e91f3256d5fc11d41e5d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-draw-bar-model-4",
+      "title": "线段图",
+      "prompt": "观察窗发现：先比较候选方案再计算：【线段图】两段线段总长18米，较长的一段比短的一段多8米，较长的一段长多少米？【推进任务】",
+      "contentHash": "6c31a32bc1c22e9855ae5a04227d4143720ed225743ad6b6d84e610ff2586ad3",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-draw-bar-model-5",
+      "title": "线段图",
+      "prompt": "校准表给出：最后回到现场做一次核验：【线段图】两段线段总长20米，较长的一段比短的一段多2米，较长的一段长多少米？【协作任务】",
+      "contentHash": "0ade03249613694d5e245c59346bf307aa723026bbe1ca93a9eb1cd9159839dd",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-draw-bar-model-6",
+      "title": "线段图",
+      "prompt": "任务员核对：先把条件记在任务卡上：【线段图】两段线段总长22米，较长的一段比短的一段多4米，较长的一段长多少米？【加固任务】",
+      "contentHash": "b41f60d9fee2411bc83cd3cd040a16f4454b31bad974015b5a98d6e58dc1148d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-draw-bar-model-7",
+      "title": "线段图",
+      "prompt": "仓库清单提示：先用清单整理已知量：【线段图】两段线段总长24米，较长的一段比短的一段多6米，较长的一段长多少米？【巡航任务】",
+      "contentHash": "3d7445b3418461155185398c6f92f0223cbb6178ef7cab70833a481365cee6a3",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-draw-bar-model-8",
+      "title": "线段图",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【线段图】两段线段总长26米，较长的一段比短的一段多8米，较长的一段长多少米？【穿越任务】",
+      "contentHash": "ae1c3d820b6908627885156936d5f6e6e34515c84ba82a67de0355c2396ae6c0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-draw-bar-model-9",
+      "title": "线段图",
+      "prompt": "综合任务要求：先比较候选方案再计算：【线段图】两段线段总长28米，较长的一段比短的一段多2米，较长的一段长多少米？【攻坚任务】",
+      "contentHash": "7756774cd31707ff8aa937149466c61371ee4666d90cf61379cc2fb8bb9507e7",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-draw-bar-model-10",
+      "title": "线段图",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【线段图】两段线段总长30米，较长的一段比短的一段多4米，较长的一段长多少米？【决战任务】",
+      "contentHash": "31d72cf05e877f60dd462d919806cc4e72943ba861c5e7a19a0b49300ccf30da",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-diagram-model-1",
+      "title": "示意图与数形结合",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【示意图与数形结合】示意图中的长方形花圃长6米、宽3米，面积是多少平方米？【启航任务】",
+      "contentHash": "dd62b47d165a9fa7f6fe8653d4ee1602704ee766131432e742f90fd91ae6ed67",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-diagram-model-2",
+      "title": "示意图与数形结合",
+      "prompt": "补给台记录：先用清单整理已知量：【示意图与数形结合】示意图中的长方形花圃长7米、宽4米，面积是多少平方米？【校准任务】",
+      "contentHash": "6d86e79f24d85ee9266bc0b1fc1e54c0cee6dbd34f7380088afdcd941f802eac",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-diagram-model-3",
+      "title": "示意图与数形结合",
+      "prompt": "地图标记显示：先在路线图上标出关系：【示意图与数形结合】示意图中的长方形花圃长8米、宽5米，面积是多少平方米？【侦察任务】",
+      "contentHash": "5341fd2357eff9ba2fa0229207b879d9c0a4200e0453796bc1e255e9ef3c638b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-diagram-model-4",
+      "title": "示意图与数形结合",
+      "prompt": "观察窗发现：先比较候选方案再计算：【示意图与数形结合】示意图中的长方形花圃长9米、宽6米，面积是多少平方米？【推进任务】",
+      "contentHash": "ec31564d7b12d951b19bf6c5bbbf68d3b853cf234d63b398deda308740934439",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-diagram-model-5",
+      "title": "示意图与数形结合",
+      "prompt": "校准表给出：最后回到现场做一次核验：【示意图与数形结合】示意图中的长方形花圃长10米、宽3米，面积是多少平方米？【协作任务】",
+      "contentHash": "a9e1cd63fff2d50546b9bb73b094a91ce64e24bb49a79004d1802b6347072330",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-diagram-model-6",
+      "title": "示意图与数形结合",
+      "prompt": "任务员核对：先把条件记在任务卡上：【示意图与数形结合】示意图中的长方形花圃长11米、宽4米，面积是多少平方米？【加固任务】",
+      "contentHash": "583bcf233ec8c9cd8906e646abf75623029cb3fcbfea4bdb154002a2c72dc177",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-diagram-model-7",
+      "title": "示意图与数形结合",
+      "prompt": "仓库清单提示：先用清单整理已知量：【示意图与数形结合】示意图中的长方形花圃长12米、宽5米，面积是多少平方米？【巡航任务】",
+      "contentHash": "b1c7442a7adc4bfaa4cd91399b99f79514ce10aee7a1275349d4fe2e82b0efeb",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-diagram-model-8",
+      "title": "示意图与数形结合",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【示意图与数形结合】示意图中的长方形花圃长13米、宽6米，面积是多少平方米？【穿越任务】",
+      "contentHash": "53b8c81e7c7e486db7d963dcd72dc331fb3492b0ac2d6e4db03c9ef684a5c2e8",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-diagram-model-9",
+      "title": "示意图与数形结合",
+      "prompt": "综合任务要求：先比较候选方案再计算：【示意图与数形结合】示意图中的长方形花圃长14米、宽3米，面积是多少平方米？【攻坚任务】",
+      "contentHash": "95c1c7398d85d0540ae80e8009200c771f3cccb246824cbd5a3c89fb7d1e5bbd",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-diagram-model-10",
+      "title": "示意图与数形结合",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【示意图与数形结合】示意图中的长方形花圃长15米、宽4米，面积是多少平方米？【决战任务】",
+      "contentHash": "14f16ecb1d437221a3172c0294ef48c974567e93a4f64f637d201f49c9341c39",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-table-method-1",
+      "title": "列表整理",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【列表整理】表格共记录24项，前两类分别有5项和3项，第三类有多少项？【启航任务】",
+      "contentHash": "40bf8e21a953113612cd84dfc5191b5d26b0cd58f96a05dcb050d69aa70602fc",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-table-method-2",
+      "title": "列表整理",
+      "prompt": "补给台记录：先用清单整理已知量：【列表整理】表格共记录27项，前两类分别有6项和4项，第三类有多少项？【校准任务】",
+      "contentHash": "1521f097b561889a3f1c4c0355691f469a4a3d15402842f0992cb55a00bc3429",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-table-method-3",
+      "title": "列表整理",
+      "prompt": "地图标记显示：先在路线图上标出关系：【列表整理】表格共记录30项，前两类分别有7项和5项，第三类有多少项？【侦察任务】",
+      "contentHash": "5ef75067beea4e472f84ef4dc12a7ade149efd95c4ba3d280baaca91b321b908",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-table-method-4",
+      "title": "列表整理",
+      "prompt": "观察窗发现：先比较候选方案再计算：【列表整理】表格共记录33项，前两类分别有8项和6项，第三类有多少项？【推进任务】",
+      "contentHash": "a59ec6c25cb9eb40199636496a3b026432297ddf43485d9dac9bda381436f167",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-table-method-5",
+      "title": "列表整理",
+      "prompt": "校准表给出：最后回到现场做一次核验：【列表整理】表格共记录36项，前两类分别有9项和3项，第三类有多少项？【协作任务】",
+      "contentHash": "16844282d48c8fca82782e10e6526393f867fc77055e6f12b0ad82986c802c28",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-table-method-6",
+      "title": "列表整理",
+      "prompt": "任务员核对：先把条件记在任务卡上：【列表整理】表格共记录39项，前两类分别有10项和4项，第三类有多少项？【加固任务】",
+      "contentHash": "abaa00f74b8df2f220cbfa37c18ef9549c9eaef1b650235da158e78e11ea51dc",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-table-method-7",
+      "title": "列表整理",
+      "prompt": "仓库清单提示：先用清单整理已知量：【列表整理】表格共记录42项，前两类分别有11项和5项，第三类有多少项？【巡航任务】",
+      "contentHash": "795548d6894e1f7e0b8a7958b2edeb6b3e79620f1bdeeaf6246cbfdc6161680c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-table-method-8",
+      "title": "列表整理",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【列表整理】表格共记录45项，前两类分别有12项和6项，第三类有多少项？【穿越任务】",
+      "contentHash": "2122ca190d80513189561500803d6b98d9a7b582a0282e8f73cc5d1160794847",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-table-method-9",
+      "title": "列表整理",
+      "prompt": "综合任务要求：先比较候选方案再计算：【列表整理】表格共记录48项，前两类分别有13项和3项，第三类有多少项？【攻坚任务】",
+      "contentHash": "11b39def8935535c0989da7c4b2720c62c13218029e019a02f6fcda7484b1537",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-table-method-10",
+      "title": "列表整理",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【列表整理】表格共记录51项，前两类分别有14项和4项，第三类有多少项？【决战任务】",
+      "contentHash": "ed4757043f56a28230b2dd1d5bd18f517c31dbae4e850bf2cb9cfeee7003d2e3",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-enumeration-method-1",
+      "title": "枚举法",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【枚举法】用2种颜色和3种徽章各选一种，按顺序列举后共有多少种组合？【启航任务】",
+      "contentHash": "772320fb730d737a3d40f2624d6fe8dbe3999c64362c81a3acbe04434cda2619",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-enumeration-method-2",
+      "title": "枚举法",
+      "prompt": "补给台记录：先用清单整理已知量：【枚举法】用3种颜色和4种徽章各选一种，按顺序列举后共有多少种组合？【校准任务】",
+      "contentHash": "a407038a2e428b0551e74e62b5e28add143cf3615b4c9602880d74deaa9a7b6c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-enumeration-method-3",
+      "title": "枚举法",
+      "prompt": "地图标记显示：先在路线图上标出关系：【枚举法】用4种颜色和3种徽章各选一种，按顺序列举后共有多少种组合？【侦察任务】",
+      "contentHash": "113254f80dd57dac73f9aba45d32942c0f3b7d7d37337b07ac5150064d93f15e",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-enumeration-method-4",
+      "title": "枚举法",
+      "prompt": "观察窗发现：先比较候选方案再计算：【枚举法】用2种颜色和4种徽章各选一种，按顺序列举后共有多少种组合？【推进任务】",
+      "contentHash": "c25c498320e2b6988b0b34bdb9eb32e937948355e51f913f0d6b2326c200fcf6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-enumeration-method-5",
+      "title": "枚举法",
+      "prompt": "校准表给出：最后回到现场做一次核验：【枚举法】用3种颜色和3种徽章各选一种，按顺序列举后共有多少种组合？【协作任务】",
+      "contentHash": "4fba6a82fa7d2fff89bc99906014525bb0420b2d49eecd98e9a8a85ba104c207",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-enumeration-method-6",
+      "title": "枚举法",
+      "prompt": "任务员核对：先把条件记在任务卡上：【枚举法】用4种颜色和4种徽章各选一种，按顺序列举后共有多少种组合？【加固任务】",
+      "contentHash": "246ee9854dba188f900f53d1ac3aa43b03942a32396a118fce9579faa048098f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-enumeration-method-7",
+      "title": "枚举法",
+      "prompt": "仓库清单提示：先用清单整理已知量：【枚举法】用2种颜色和3种徽章各选一种，按顺序列举后共有多少种组合？【巡航任务】",
+      "contentHash": "69faf1f71109ae57a1ce4f54dc0401c6fc93b1874ced0e0e4b0d297e2969499b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-enumeration-method-8",
+      "title": "枚举法",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【枚举法】用3种颜色和4种徽章各选一种，按顺序列举后共有多少种组合？【穿越任务】",
+      "contentHash": "f6858f738eb4691483b59e92eb337c12e3da9895e249dd801796ae43d8467b12",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-enumeration-method-9",
+      "title": "枚举法",
+      "prompt": "综合任务要求：先比较候选方案再计算：【枚举法】用4种颜色和3种徽章各选一种，按顺序列举后共有多少种组合？【攻坚任务】",
+      "contentHash": "04328e5f90470ec1b839ae6b1173f587aa9f7683d22e3ef0422e37911c88616e",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-enumeration-method-10",
+      "title": "枚举法",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【枚举法】用2种颜色和4种徽章各选一种，按顺序列举后共有多少种组合？【决战任务】",
+      "contentHash": "5281f7c87358bbdfd066c06a14f0aa189842cf9a27fca8bc5d3f3bb0e8ee07c4",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-tree-diagram-1",
+      "title": "树状图",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【树状图】探测路线有2条、发射窗口有3个、功率档有2种，共有多少种配置？【启航任务】",
+      "contentHash": "1296f0ab667d9fb2a9b7ee5aff60bfc8b7e3b0d5236422e482ccff84533f4591",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-tree-diagram-2",
+      "title": "树状图",
+      "prompt": "补给台记录：先用清单整理已知量：【树状图】探测路线有3条、发射窗口有4个、功率档有3种，共有多少种配置？【校准任务】",
+      "contentHash": "3a4905ca766db378b712c7c91c1db30043517cb919025ea03594294c68b9b577",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-tree-diagram-3",
+      "title": "树状图",
+      "prompt": "地图标记显示：先在路线图上标出关系：【树状图】探测路线有4条、发射窗口有5个、功率档有2种，共有多少种配置？【侦察任务】",
+      "contentHash": "ea98f18318c83b46408c63c409bed02a02518346f4d2b683e33736f8472099bc",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-tree-diagram-4",
+      "title": "树状图",
+      "prompt": "观察窗发现：先比较候选方案再计算：【树状图】探测路线有2条、发射窗口有3个、功率档有3种，共有多少种配置？【推进任务】",
+      "contentHash": "44519e7094a1ad08262ea48bc37ca965cbb0038ee4a8a6460f8f917a7aee5524",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-tree-diagram-5",
+      "title": "树状图",
+      "prompt": "校准表给出：最后回到现场做一次核验：【树状图】探测路线有3条、发射窗口有4个、功率档有2种，共有多少种配置？【协作任务】",
+      "contentHash": "cde5a161ffdc16d4259f00b5d3f3cd57cae2a00797b4d826f8786a25dc96d39a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-tree-diagram-6",
+      "title": "树状图",
+      "prompt": "任务员核对：先把条件记在任务卡上：【树状图】探测路线有4条、发射窗口有5个、功率档有3种，共有多少种配置？【加固任务】",
+      "contentHash": "b81bf25471b85af1c972029f0925f2b776a77343043f26f3fcbb8602add1e44d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-tree-diagram-7",
+      "title": "树状图",
+      "prompt": "仓库清单提示：先用清单整理已知量：【树状图】探测路线有2条、发射窗口有3个、功率档有2种，共有多少种配置？【巡航任务】",
+      "contentHash": "1c08583d7fe2c166143520559f38fc7c3a144903a660b8b2e3a2663409ca4bb2",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-tree-diagram-8",
+      "title": "树状图",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【树状图】探测路线有3条、发射窗口有4个、功率档有3种，共有多少种配置？【穿越任务】",
+      "contentHash": "b3d1c35d7c9746dadb17fa3779b7e67d3368f8e8a760518647ca91c0957796fc",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-tree-diagram-9",
+      "title": "树状图",
+      "prompt": "综合任务要求：先比较候选方案再计算：【树状图】探测路线有4条、发射窗口有5个、功率档有2种，共有多少种配置？【攻坚任务】",
+      "contentHash": "51542e23308957a411561ffed66176a9aba64ac4966f2f175f9eadc2a4d03879",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-tree-diagram-10",
+      "title": "树状图",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【树状图】探测路线有2条、发射窗口有3个、功率档有3种，共有多少种配置？【决战任务】",
+      "contentHash": "bea33fcc7431d34bc52e4939adb779730dcdd869075eb3537c7e318a2470c37f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-assumption-method-1",
+      "title": "假设法",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【假设法】农场机器人共有8台，分为两足和四足两类，共有20条腿，四足机器人有多少台？【启航任务】",
+      "contentHash": "f241cbe4cf04768a3e6afedeaf8bd1bc888bc93a2f264264e1b9e2eed452caaf",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-assumption-method-2",
+      "title": "假设法",
+      "prompt": "补给台记录：先用清单整理已知量：【假设法】农场机器人共有9台，分为两足和四足两类，共有24条腿，四足机器人有多少台？【校准任务】",
+      "contentHash": "108d88cb37b6ef1b5da2ca47869f1221710f5b481ee418bcfbdf16867798a776",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-assumption-method-3",
+      "title": "假设法",
+      "prompt": "地图标记显示：先在路线图上标出关系：【假设法】农场机器人共有10台，分为两足和四足两类，共有28条腿，四足机器人有多少台？【侦察任务】",
+      "contentHash": "d676533436ba237a42c2a3835e6b291d772e2f86f7cea6550d9febb367bce828",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-assumption-method-4",
+      "title": "假设法",
+      "prompt": "观察窗发现：先比较候选方案再计算：【假设法】农场机器人共有11台，分为两足和四足两类，共有32条腿，四足机器人有多少台？【推进任务】",
+      "contentHash": "1a22959b66fa229471e5932a4f2c492ff18408225bf38e8f702691e6dd10029a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-assumption-method-5",
+      "title": "假设法",
+      "prompt": "校准表给出：最后回到现场做一次核验：【假设法】农场机器人共有12台，分为两足和四足两类，共有36条腿，四足机器人有多少台？【协作任务】",
+      "contentHash": "1af84628902dd1919073048046f9630d34b2fcb4cf40706bf3d8f517ca905197",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-assumption-method-6",
+      "title": "假设法",
+      "prompt": "任务员核对：先把条件记在任务卡上：【假设法】农场机器人共有13台，分为两足和四足两类，共有30条腿，四足机器人有多少台？【加固任务】",
+      "contentHash": "4715ebad82a25a6ab29abd0a44fedf860bc7818aa866842c9135e4dc4d42635f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-assumption-method-7",
+      "title": "假设法",
+      "prompt": "仓库清单提示：先用清单整理已知量：【假设法】农场机器人共有14台，分为两足和四足两类，共有34条腿，四足机器人有多少台？【巡航任务】",
+      "contentHash": "225a0d293ca67df9811c44e98fe307c89921628a698501e936a95325c26f2470",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-assumption-method-8",
+      "title": "假设法",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【假设法】农场机器人共有15台，分为两足和四足两类，共有38条腿，四足机器人有多少台？【穿越任务】",
+      "contentHash": "47a832dd86483a92271148254de598d1612fb3f024489d5392a4bd4a14eff4ae",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-assumption-method-9",
+      "title": "假设法",
+      "prompt": "综合任务要求：先比较候选方案再计算：【假设法】农场机器人共有16台，分为两足和四足两类，共有42条腿，四足机器人有多少台？【攻坚任务】",
+      "contentHash": "9e64c071941bb7259365eed8f690bbbad43a3a88be1a174cc1ab438d8065b28d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-assumption-method-10",
+      "title": "假设法",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【假设法】农场机器人共有17台，分为两足和四足两类，共有46条腿，四足机器人有多少台？【决战任务】",
+      "contentHash": "8999cff25d95530dedc8f7dcf9b2074568633d3f98e5f60bb40945b53519263f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-reverse-thinking-1",
+      "title": "逆向思考",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【逆向思考】一个数先乘2，再加6，结果是14，这个数是多少？【启航任务】",
+      "contentHash": "62208def39e1e4a1de2fa0e503f4fc3e0aa9a937f31507db005279e5f9c7d2fc",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-reverse-thinking-2",
+      "title": "逆向思考",
+      "prompt": "补给台记录：先用清单整理已知量：【逆向思考】一个数先乘2，再加6，结果是16，这个数是多少？【校准任务】",
+      "contentHash": "675ab2d5cf77dc7d0404be07bd6001281fdec9d866f24899086d918a72ac34c0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-reverse-thinking-3",
+      "title": "逆向思考",
+      "prompt": "地图标记显示：先在路线图上标出关系：【逆向思考】一个数先乘2，再加6，结果是18，这个数是多少？【侦察任务】",
+      "contentHash": "bcd25c7188021ec5e50de1286bb696ce581c77f9be2baa902f542593ed8a25ff",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-reverse-thinking-4",
+      "title": "逆向思考",
+      "prompt": "观察窗发现：先比较候选方案再计算：【逆向思考】一个数先乘2，再加6，结果是20，这个数是多少？【推进任务】",
+      "contentHash": "66ecc3b40c8aa1f2d47e94406d8ecc370743c16c9aeaae9fd60fc7723a587fd6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-reverse-thinking-5",
+      "title": "逆向思考",
+      "prompt": "校准表给出：最后回到现场做一次核验：【逆向思考】一个数先乘2，再加6，结果是22，这个数是多少？【协作任务】",
+      "contentHash": "090c5c815faab6e3af66b108d140d43ebca007526d0bf0dffb904e460c1bf865",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-reverse-thinking-6",
+      "title": "逆向思考",
+      "prompt": "任务员核对：先把条件记在任务卡上：【逆向思考】一个数先乘2，再加6，结果是24，这个数是多少？【加固任务】",
+      "contentHash": "cd7db5745d380180c03a7496c1bc5a55e5db8da1bc60a32f15d112268f4f9376",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-reverse-thinking-7",
+      "title": "逆向思考",
+      "prompt": "仓库清单提示：先用清单整理已知量：【逆向思考】一个数先乘2，再加6，结果是26，这个数是多少？【巡航任务】",
+      "contentHash": "cf28046ab5e9347c010bcdf5dbf47a62ecd88848ab35fb20f427877dc760c9ce",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-reverse-thinking-8",
+      "title": "逆向思考",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【逆向思考】一个数先乘2，再加6，结果是28，这个数是多少？【穿越任务】",
+      "contentHash": "2e3c8a15ea08bff057cd593c52df16e3b77fa43bc7b9a184fdd282fc927222aa",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-reverse-thinking-9",
+      "title": "逆向思考",
+      "prompt": "综合任务要求：先比较候选方案再计算：【逆向思考】一个数先乘2，再加6，结果是30，这个数是多少？【攻坚任务】",
+      "contentHash": "82815e20db5440129caf064ab6bc474c9cbc22fcf89ebe26d3dffdd1b620673c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-reverse-thinking-10",
+      "title": "逆向思考",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【逆向思考】一个数先乘2，再加6，结果是32，这个数是多少？【决战任务】",
+      "contentHash": "3e3d76f7668ce99768f07433469ccb6a16bdc32590655fb76566d2fff795c069",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-transformation-method-1",
+      "title": "转化与替换",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【转化与替换】把每组复杂零件替换成等量小片后，3组各有4片，共有多少片？【启航任务】",
+      "contentHash": "b1e557a292ef3cda9dfea43a608156f4c3d6b6afeba15794221ee5b1ff6d5e9e",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-transformation-method-2",
+      "title": "转化与替换",
+      "prompt": "补给台记录：先用清单整理已知量：【转化与替换】把每组复杂零件替换成等量小片后，4组各有5片，共有多少片？【校准任务】",
+      "contentHash": "1648bcde6f2bb491ad0f86a28f147ec309b725ce4e3f9988e7efe2eb487285f4",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-transformation-method-3",
+      "title": "转化与替换",
+      "prompt": "地图标记显示：先在路线图上标出关系：【转化与替换】把每组复杂零件替换成等量小片后，5组各有6片，共有多少片？【侦察任务】",
+      "contentHash": "aad4a3c1c8e7a855fd93726e0e6b8b40444a2821f2e586765b358cbdbadeade3",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-transformation-method-4",
+      "title": "转化与替换",
+      "prompt": "观察窗发现：先比较候选方案再计算：【转化与替换】把每组复杂零件替换成等量小片后，6组各有4片，共有多少片？【推进任务】",
+      "contentHash": "769a0a7af9abc48090cd8d75494b3cbd8f46cf4b0dc15c47cde65eb4e3972633",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-transformation-method-5",
+      "title": "转化与替换",
+      "prompt": "校准表给出：最后回到现场做一次核验：【转化与替换】把每组复杂零件替换成等量小片后，7组各有5片，共有多少片？【协作任务】",
+      "contentHash": "d23d63685f18ff60a02c358bd0a414fd8dc367e738a549025170017b53a28e9d",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-transformation-method-6",
+      "title": "转化与替换",
+      "prompt": "任务员核对：先把条件记在任务卡上：【转化与替换】把每组复杂零件替换成等量小片后，3组各有6片，共有多少片？【加固任务】",
+      "contentHash": "9745455632e50c0658e501024198569fa6800c3d3bc67ee5946817d5d1936fd4",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-transformation-method-7",
+      "title": "转化与替换",
+      "prompt": "仓库清单提示：先用清单整理已知量：【转化与替换】把每组复杂零件替换成等量小片后，4组各有4片，共有多少片？【巡航任务】",
+      "contentHash": "2dc7e87fc4c8092b2596de6f9152058d60a288355faec5f4349de29a53ba7b5a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-transformation-method-8",
+      "title": "转化与替换",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【转化与替换】把每组复杂零件替换成等量小片后，5组各有5片，共有多少片？【穿越任务】",
+      "contentHash": "1b0e404380265b30390ef42a1bee862313b5c6e1dfe1fec299951ad08814350b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-transformation-method-9",
+      "title": "转化与替换",
+      "prompt": "综合任务要求：先比较候选方案再计算：【转化与替换】把每组复杂零件替换成等量小片后，6组各有6片，共有多少片？【攻坚任务】",
+      "contentHash": "b76fbf7adbc7c7ec13e1f59e81d41b02a24254d06b001af2c9dccfdc8d1a8cca",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-transformation-method-10",
+      "title": "转化与替换",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【转化与替换】把每组复杂零件替换成等量小片后，7组各有4片，共有多少片？【决战任务】",
+      "contentHash": "bfe40b1357452aa2ddef1e4d20dc0e6a9d88b73e8c9925d8206b5a44401518e2",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-unit-method-1",
+      "title": "归一与单位化",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【归一与单位化】补给箱中20件材料平均装入4个小箱，每箱多少件？【启航任务】",
+      "contentHash": "941a9a37aca82430654e5c4fac20f9c4823c2e0b31fa89e4579835bd82c68dce",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-unit-method-2",
+      "title": "归一与单位化",
+      "prompt": "补给台记录：先用清单整理已知量：【归一与单位化】补给箱中30件材料平均装入5个小箱，每箱多少件？【校准任务】",
+      "contentHash": "2c44236bf13e9570529f84bdd610a42d2b727572a0ad42b86968c3197cc2fd13",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-unit-method-3",
+      "title": "归一与单位化",
+      "prompt": "地图标记显示：先在路线图上标出关系：【归一与单位化】补给箱中42件材料平均装入6个小箱，每箱多少件？【侦察任务】",
+      "contentHash": "58dcab0908771bf1e3febf108882121fb1fa047fd77d8f280a5d64f9817271a3",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-unit-method-4",
+      "title": "归一与单位化",
+      "prompt": "观察窗发现：先比较候选方案再计算：【归一与单位化】补给箱中56件材料平均装入7个小箱，每箱多少件？【推进任务】",
+      "contentHash": "03df489d9aaeba8580a30f97383ffa3624e8be5c692ef5981632e09b36530c32",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-unit-method-5",
+      "title": "归一与单位化",
+      "prompt": "校准表给出：最后回到现场做一次核验：【归一与单位化】补给箱中40件材料平均装入8个小箱，每箱多少件？【协作任务】",
+      "contentHash": "95dfb279cfee3534b884c804adb679145149ca2a0b35a24b486ddc21ba0e36e0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-unit-method-6",
+      "title": "归一与单位化",
+      "prompt": "任务员核对：先把条件记在任务卡上：【归一与单位化】补给箱中54件材料平均装入9个小箱，每箱多少件？【加固任务】",
+      "contentHash": "8bbb9f935166f846d8d3ec938a54f501ceed53b413e408d869ced50417430411",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-unit-method-7",
+      "title": "归一与单位化",
+      "prompt": "仓库清单提示：先用清单整理已知量：【归一与单位化】补给箱中70件材料平均装入10个小箱，每箱多少件？【巡航任务】",
+      "contentHash": "44ca633845b15b9654c14632ab3210d509ac9c21434a6c9281bb31159bac466e",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-unit-method-8",
+      "title": "归一与单位化",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【归一与单位化】补给箱中88件材料平均装入11个小箱，每箱多少件？【穿越任务】",
+      "contentHash": "9ed5baa9c90e233ed4a1c6790ab157f58f8355c80b76b76afb43800baa3cb414",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-unit-method-9",
+      "title": "归一与单位化",
+      "prompt": "综合任务要求：先比较候选方案再计算：【归一与单位化】补给箱中60件材料平均装入12个小箱，每箱多少件？【攻坚任务】",
+      "contentHash": "2dd5378b7030e387b99f468f315734b6b3453922894b30e9afb799a88934d34f",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-unit-method-10",
+      "title": "归一与单位化",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【归一与单位化】补给箱中78件材料平均装入13个小箱，每箱多少件？【决战任务】",
+      "contentHash": "cf785a302eef288a6df81e031a423def30e7b3841d77a36e6b05683fc6a7ed25",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-estimation-method-1",
+      "title": "估算与范围",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【估算与范围】先估算再精算：一块长12米、宽4米的地面需要铺多少平方米材料？【启航任务】",
+      "contentHash": "66f5aefc4ee6d5858999168e57fcbf842e83204f0bf2fb604cc5f743afc1f995",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-estimation-method-2",
+      "title": "估算与范围",
+      "prompt": "补给台记录：先用清单整理已知量：【估算与范围】先估算再精算：一块长14米、宽5米的地面需要铺多少平方米材料？【校准任务】",
+      "contentHash": "9334beb46cac11958eafc3685d5c9d592043bfd33ec57f3f84c3680a9da926df",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-estimation-method-3",
+      "title": "估算与范围",
+      "prompt": "地图标记显示：先在路线图上标出关系：【估算与范围】先估算再精算：一块长16米、宽6米的地面需要铺多少平方米材料？【侦察任务】",
+      "contentHash": "cb61d2b3588579c35997bbcb927c798965ba06ec3401ab9b3ff7c387721292fd",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-estimation-method-4",
+      "title": "估算与范围",
+      "prompt": "观察窗发现：先比较候选方案再计算：【估算与范围】先估算再精算：一块长18米、宽7米的地面需要铺多少平方米材料？【推进任务】",
+      "contentHash": "dbff341daac1841615c64d2abba4ebe97e5cf25946aaffa4a948eeb8e9e54086",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-estimation-method-5",
+      "title": "估算与范围",
+      "prompt": "校准表给出：最后回到现场做一次核验：【估算与范围】先估算再精算：一块长20米、宽4米的地面需要铺多少平方米材料？【协作任务】",
+      "contentHash": "69d646b4ebe67635f15d37e43973efd366267b5ad4da50a79bc880f569dc5c2a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-estimation-method-6",
+      "title": "估算与范围",
+      "prompt": "任务员核对：先把条件记在任务卡上：【估算与范围】先估算再精算：一块长22米、宽5米的地面需要铺多少平方米材料？【加固任务】",
+      "contentHash": "20cdd1932d143df9f27d0371faf0abe72e6d166bed9399f1899b9be9abee70c0",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-estimation-method-7",
+      "title": "估算与范围",
+      "prompt": "仓库清单提示：先用清单整理已知量：【估算与范围】先估算再精算：一块长24米、宽6米的地面需要铺多少平方米材料？【巡航任务】",
+      "contentHash": "c79b57512d6b561f3df6260aa61a434e08968251b79b6f61289788ba5dc9421a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-estimation-method-8",
+      "title": "估算与范围",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【估算与范围】先估算再精算：一块长26米、宽7米的地面需要铺多少平方米材料？【穿越任务】",
+      "contentHash": "e55576cd9b8871a7e7b7ca9c57a8e1b204a40bc64f25266a8214aeb634f6ecaf",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-estimation-method-9",
+      "title": "估算与范围",
+      "prompt": "综合任务要求：先比较候选方案再计算：【估算与范围】先估算再精算：一块长28米、宽4米的地面需要铺多少平方米材料？【攻坚任务】",
+      "contentHash": "d5f5ad4faf8b82b8abd9f6f96aeec9042867ed7af297a943a9ab35b706d7b460",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-estimation-method-10",
+      "title": "估算与范围",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【估算与范围】先估算再精算：一块长30米、宽5米的地面需要铺多少平方米材料？【决战任务】",
+      "contentHash": "888231f1763ad1dd94da5314bdc5077df7d25c5624f49f309e0a6560d9645527",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-verify-eliminate-1",
+      "title": "验算与排除",
+      "prompt": "工坊日志写着：先把条件记在任务卡上：【验算与排除】验算方程4x+3=23的候选结果，x应是多少？【启航任务】",
+      "contentHash": "29dba4197bc68fa30eadadd6d169e40a058f2717540f887bd90053e774e2e210",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-verify-eliminate-2",
+      "title": "验算与排除",
+      "prompt": "补给台记录：先用清单整理已知量：【验算与排除】验算方程4x+3=27的候选结果，x应是多少？【校准任务】",
+      "contentHash": "62a1685b03b33743bd154cf891fb1a645b81b7a32a9a6d615457d69a0d2c1da9",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-verify-eliminate-3",
+      "title": "验算与排除",
+      "prompt": "地图标记显示：先在路线图上标出关系：【验算与排除】验算方程4x+3=31的候选结果，x应是多少？【侦察任务】",
+      "contentHash": "3addd593f35b0f3f508574053df9eb0c72802827250b4b02eebb8ab562bc057c",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-verify-eliminate-4",
+      "title": "验算与排除",
+      "prompt": "观察窗发现：先比较候选方案再计算：【验算与排除】验算方程4x+3=35的候选结果，x应是多少？【推进任务】",
+      "contentHash": "0bbbf73f9da0c8cc379e04eebd17505115b811b9789861aad95a954b76218551",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-verify-eliminate-5",
+      "title": "验算与排除",
+      "prompt": "校准表给出：最后回到现场做一次核验：【验算与排除】验算方程4x+3=39的候选结果，x应是多少？【协作任务】",
+      "contentHash": "5cb5b318be512a187d6a0b00cf998e56e4171e22db62a9e817d7f63e8f01c2d6",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-verify-eliminate-6",
+      "title": "验算与排除",
+      "prompt": "任务员核对：先把条件记在任务卡上：【验算与排除】验算方程4x+3=43的候选结果，x应是多少？【加固任务】",
+      "contentHash": "3face300e3b40e3280dc7ddcc451aa52bbf77c955a368ea3f71693a71e27216a",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-verify-eliminate-7",
+      "title": "验算与排除",
+      "prompt": "仓库清单提示：先用清单整理已知量：【验算与排除】验算方程4x+3=47的候选结果，x应是多少？【巡航任务】",
+      "contentHash": "e19253a8a26c3f000c471661e164630058a5cc95ab383306aa0c999d4c68d79b",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-verify-eliminate-8",
+      "title": "验算与排除",
+      "prompt": "路线记录表显示：先在路线图上标出关系：【验算与排除】验算方程4x+3=51的候选结果，x应是多少？【穿越任务】",
+      "contentHash": "a638caf76a143c4352ea50576ad1732652251d752240a6586bdf2d6040c366ac",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-verify-eliminate-9",
+      "title": "验算与排除",
+      "prompt": "综合任务要求：先比较候选方案再计算：【验算与排除】验算方程4x+3=55的候选结果，x应是多少？【攻坚任务】",
+      "contentHash": "39facca0ebca97e2a2199f67d44eb281ff2bfd85e746381606217709835050e1",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    },
+    {
+      "questionId": "chapter-07-verify-eliminate-10",
+      "title": "验算与排除",
+      "prompt": "终点报告需要：最后回到现场做一次核验：【验算与排除】验算方程4x+3=59的候选结果，x应是多少？【决战任务】",
+      "contentHash": "744e569e352cf10ae2cd7b21b5555f50ea7033f7104184cf839086f1c20b5922",
+      "reviewer": "课程负责人",
+      "reviewedAt": "2026-08-06T00:00:00+08:00",
+      "scores": {
+        "objective": 1,
+        "nonTemplate": 1,
+        "contextNecessary": 1,
+        "progressionClear": 1,
+        "reviewExecutable": 1,
+        "pitfallReal": 1
+      },
+      "notes": ""
+    }
+  ]
+}

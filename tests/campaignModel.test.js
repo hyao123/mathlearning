@@ -33,6 +33,42 @@ test("persists independent chapter states in one campaign envelope", () => {
   assert.equal(restored.chapterStates["chapter-04"].inventory.quartz, 3);
 });
 
+test("serializes one canonical root inventory instead of chapter inventory copies", () => {
+  const chapters = loadChapters();
+  const campaignState = campaign.createCampaign(chapters, null, { quartz: 3, "oak-log": 2 });
+  const saved = JSON.parse(campaign.serializeCampaign(campaignState));
+
+  assert.deepEqual(saved.inventory, { quartz: 3, "oak-log": 2 });
+  Object.values(saved.chapterStates).forEach((state) => assert.equal(Object.hasOwn(state, "inventory"), false));
+});
+
+test("merges legacy chapter inventories into one global inventory during migration", () => {
+  const chapters = loadChapters();
+  const legacy = JSON.stringify({
+    activeChapterId: "chapter-02",
+    chapterStates: {
+      "chapter-01": { inventory: { "oak-log": 2, quartz: 1 } },
+      "chapter-02": { inventory: { "oak-log": 3, quartz: 2 } }
+    }
+  });
+  const restored = campaign.createCampaign(chapters, legacy);
+
+  assert.deepEqual(restored.inventory, { "oak-log": 5, quartz: 3 });
+  chapters.forEach((chapter) => assert.deepEqual(restored.chapterStates[chapter.chapterId].inventory, restored.inventory));
+});
+
+test("deduplicates mirrored legacy chapter inventories during migration", () => {
+  const chapters = loadChapters();
+  const legacy = JSON.stringify({
+    chapterStates: {
+      "chapter-01": { inventory: { "oak-log": 2, quartz: 1 } },
+      "chapter-02": { inventory: { "oak-log": 2, quartz: 1 } }
+    }
+  });
+  const restored = campaign.createCampaign(chapters, legacy);
+  assert.deepEqual(restored.inventory, { "oak-log": 2, quartz: 1 });
+});
+
 test("unlocks the next chapter only after the prior route is cleared and its final project is assembled", () => {
   const chapters = loadChapters();
   const completedRoute = (chapter) => ({

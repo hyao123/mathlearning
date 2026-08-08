@@ -5,13 +5,14 @@ const zlib = require("node:zlib");
 const root = path.resolve(__dirname, "..");
 const dist = path.join(root, "dist");
 const budgets = {
-  // Six locally playable chapters include 720 reviewed questions and their compact chapter registries.
+  // Nine locally playable chapters include 1080 reviewed questions and their compact chapter registries.
   // The processing layer and chapter-wide recovery challenge add a small, intentional data/runtime slice.
   jsGzipBytes: 160 * 1024,
   cssGzipBytes: 20 * 1024,
   totalGzipBytes: 170 * 1024,
   // Existing artwork is retained; compact WebP chapter assets are loaded only when their inventory cards render.
-  itemVisualBytes: Math.ceil(3.1 * 1024 * 1024)
+  // All 400 catalog items are shipped as compact WebP assets; keep 0.4 MiB headroom for the next visual batch.
+  itemVisualBytes: Math.ceil(4.5 * 1024 * 1024)
 };
 
 if (!fs.existsSync(dist)) {

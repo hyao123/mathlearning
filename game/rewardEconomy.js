@@ -28,9 +28,9 @@ function grantReward(inventory, { itemId, quantity }, rewardType, questionId) {
   };
 }
 
-function eligibleBonusRewards(chapterId, difficulty) {
+function eligibleBonusRewards(pool, difficulty) {
   const rank = DIFFICULTY_RANK[difficulty] || 0;
-  return GameItemCatalog.getBonusRewardPool(chapterId)
+  return (pool || [])
     .filter((reward) => reward.purpose !== "mainline-required" && (DIFFICULTY_RANK[reward.minDifficulty] || Infinity) <= rank);
 }
 
@@ -74,8 +74,8 @@ function settleResolution(args) {
     return { inventory, claimedFixedRewards, pityEnergy, streak: 0, transactions, attemptSettlements };
   }
 
-  const rewardConfig = LevelRewardConfig.getLevelRewardConfig(args.levelId);
-  const fixedReward = rewardConfig?.fixedRewards.find((reward) => reward.questionSlot === args.questionSlot);
+  const rewardTrack = LevelRewardConfig.getQuestionRewardTrack(args.levelId, args.questionSlot);
+  const fixedReward = rewardTrack?.fixedReward;
   let nextInventory = inventory;
   if (fixedReward && !claimedFixedRewards[questionId]) {
     const result = grantReward(nextInventory, fixedReward, "fixed", questionId);
@@ -85,7 +85,7 @@ function settleResolution(args) {
   }
 
   let nextPityEnergy = pityEnergy;
-  const bonusPool = eligibleBonusRewards(chapterId, args.difficulty);
+  const bonusPool = eligibleBonusRewards(rewardTrack?.bonusPool || GameItemCatalog.getBonusRewardPool(chapterId), args.difficulty);
   if (bonusPool.length) {
     const rarePool = bonusPool.filter((reward) => RARE_RARITIES.has(reward.rarity));
     const selected = pityEnergy >= PITY_THRESHOLD - 1 && rarePool.length
@@ -101,7 +101,7 @@ function settleResolution(args) {
 
   const nextStreak = streak + 1;
   if (nextStreak % 3 === 0) {
-    const chestReward = grantReward(nextInventory, { itemId: GameItemCatalog.getStreakRewardItem(chapterId), quantity: 1 }, "streak-chest", questionId);
+    const chestReward = grantReward(nextInventory, { itemId: rewardTrack?.streakItemId || GameItemCatalog.getStreakRewardItem(chapterId), quantity: 1 }, "streak-chest", questionId);
     nextInventory = chestReward.inventory;
     transactions.push(chestReward.transaction);
   }

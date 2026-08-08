@@ -1,15 +1,17 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "chapterId": "chapter-03",
   "status": "approved",
   "reviewer": "项目负责人确认",
   "reviewedAt": "2026-07-30",
+  "contentHash": "34b7774a2984acd086d476f71ab513e3016055b4d95c0f7dcb360f65a0e7658b",
   "notes": "根据项目负责人的第二、三章完整内容审核确认予以签核。",
   "records": [
     {
       "questionId": "factors-multiples-1",
       "title": "闯关 1",
-      "prompt": "15 是 5 的倍数吗？回答“是”或“不是”。",
+      "prompt": "把“是”编号为 1，把“不是”编号为 0。15 是 5 的倍数，结果编号是多少？【启航任务】",
+      "contentHash": "826b8ed2cf3a9a3591fc6c23667df3084dbac82271183550cef9184ed95bc26e",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -25,7 +27,8 @@
     {
       "questionId": "factors-multiples-2",
       "title": "闯关 2",
-      "prompt": "3 是 14 的因数吗？回答“是”或“不是”。",
+      "prompt": "把“是”编号为 1，把“不是”编号为 0。3 不是 14 的因数，结果编号是多少？【校准任务】",
+      "contentHash": "bb70d823130d49e410b0469b09339db1a9bd2a6bcf85d32b3788d07243f16a3e",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -41,7 +44,8 @@
     {
       "questionId": "factors-multiples-3",
       "title": "闯关 3",
-      "prompt": "20 的一个因数是 4 还是 6？",
+      "prompt": "20 的一个因数是 4 还是 6？【侦察任务】",
+      "contentHash": "fe8f890d12496d235af4e89386a2b545cff3a20b68783ce4c647a6e2a7cd2e97",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -57,7 +61,8 @@
     {
       "questionId": "factors-multiples-4",
       "title": "闯关 4",
-      "prompt": "18 是 6 的倍数吗？",
+      "prompt": "把“是”编号为 1，把“不是”编号为 0。18 是 6 的倍数，结果编号是多少？【推进任务】",
+      "contentHash": "a3bf120d84f64fde44b6b759c8158be8f2dbc519ab75e19dd02f949a8c1bb9e8",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -73,7 +78,8 @@
     {
       "questionId": "chapter-03-factors-multiples-advance-1",
       "title": "轨道编号",
-      "prompt": "48 的所有因数中，最大的两位数因数是多少？",
+      "prompt": "48 的所有因数中，最大的两位数因数是多少？【协作任务】",
+      "contentHash": "3a9f5962edf31f98ead3af3403e1920409967650fbaa32eb5fcb8d8d8cd7c7b2",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -89,7 +95,8 @@
     {
       "questionId": "factors-multiples-5",
       "title": "闯关 5",
-      "prompt": "24 的最小因数是多少？",
+      "prompt": "24 的最小因数是多少？【加固任务】",
+      "contentHash": "23a0e2078386090c7c3d113522a5ba0a487c762892d3eb4920a9fd3d9531c17f",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -105,7 +112,8 @@
     {
       "questionId": "factors-multiples-6",
       "title": "闯关 6",
-      "prompt": "24 的最大因数是多少？",
+      "prompt": "24 的最大因数是多少？【巡航任务】",
+      "contentHash": "59ea069015ece3fbebb400d529e3f0c214a19256598842d507e789dc86e81354",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -121,7 +129,8 @@
     {
       "questionId": "factors-multiples-9",
       "title": "闯关 9",
-      "prompt": "36 的最大因数是多少？",
+      "prompt": "36 的最大因数是多少？【穿越任务】",
+      "contentHash": "59a9e5ea89399ecf7a3d092f94e9a9f0459f7c22bac4833c006784f7ac0085de",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -137,7 +146,8 @@
     {
       "questionId": "factors-multiples-7",
       "title": "闯关 7",
-      "prompt": "一个数同时是 4 和 5 的倍数，它一定是几的倍数？",
+      "prompt": "一个数同时是 4 和 5 的倍数，它一定是几的倍数？【攻坚任务】",
+      "contentHash": "c37401b1855df0ae467abf342811dbd1fcf68674574cf764c5bbc692d23a2a21",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -153,7 +163,8 @@
     {
       "questionId": "factors-multiples-8",
       "title": "闯关 8",
-      "prompt": "30 以内既是 2 的倍数又是 3 的倍数的最小数是多少？",
+      "prompt": "30 以内既是 2 的倍数又是 3 的倍数的最小数是多少？【决战任务】",
+      "contentHash": "7340bb1f99606e245106969ec20d16b740a6a4e0bc73e29f7d1a59758c4b8167",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -169,7 +180,8 @@
     {
       "questionId": "ratio-proportion-1",
       "title": "闯关 1",
-      "prompt": "8 和 4 的最简整数比是多少？",
+      "prompt": "8 和 4 的最简整数比中，前项是多少？【启航任务】",
+      "contentHash": "9643dec9993db33a01228d09def9ec1c4f76d11ab1f35aabf4ecee043169f8d8",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -185,7 +197,8 @@
     {
       "questionId": "ratio-proportion-2",
       "title": "闯关 2",
-      "prompt": "10 和 5 的最简整数比是多少？",
+      "prompt": "10 和 5 的最简整数比中，前项是多少？【校准任务】",
+      "contentHash": "47ff270c6d6ab171539a0240196d3cf80840f4703a855d5db59f8a206c3f1754",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -201,7 +214,8 @@
     {
       "questionId": "ratio-proportion-3",
       "title": "闯关 3",
-      "prompt": "把 15 按 2:3 分成两份，较大的一份是多少？",
+      "prompt": "把 15 按 2:3 分成两份，较大的一份是多少？【侦察任务】",
+      "contentHash": "79ac9dd822dc981d2bed58780acd2e73609800ce222862018c85ae34453df42e",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -217,7 +231,8 @@
     {
       "questionId": "ratio-proportion-4",
       "title": "闯关 4",
-      "prompt": "把 20 按 1:4 分成两份，较小的一份是多少？",
+      "prompt": "把 20 按 1:4 分成两份，较小的一份是多少？【推进任务】",
+      "contentHash": "fb5a330df85bf5fb7a982b1a4c4471506a3a4a9df7d3145db76be05caa4e4a58",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -233,7 +248,8 @@
     {
       "questionId": "chapter-03-ratio-proportion-advance-1",
       "title": "燃料配比",
-      "prompt": "燃料和冷却液的比是 3∶2，燃料有 18 升，冷却液有多少升？",
+      "prompt": "燃料和冷却液的比是 3∶2，燃料有 18 升，冷却液有多少升？【协作任务】",
+      "contentHash": "45756258bcbe49162c936b858a48bbc55c6ac8e32e329590e2bcb24ffffe871d",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -249,7 +265,8 @@
     {
       "questionId": "ratio-proportion-5",
       "title": "闯关 5",
-      "prompt": "把 24 按 1:1:2 分成三份，最大的一份是多少？",
+      "prompt": "把 24 按 1:1:2 分成三份，最大的一份是多少？【加固任务】",
+      "contentHash": "6ae14bbcfcffa5918478e2cf33b931853bc696ab5e6f7d90daf1c97a7c951869",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -265,7 +282,8 @@
     {
       "questionId": "ratio-proportion-6",
       "title": "闯关 6",
-      "prompt": "12:18 的最简整数比是多少？",
+      "prompt": "12:18 的最简整数比中，前项是多少？【巡航任务】",
+      "contentHash": "007213568423b2f93878d0d16d4fb8f99fe02662366de4c1b01cb4a4b05a4b14",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -281,7 +299,8 @@
     {
       "questionId": "ratio-proportion-9",
       "title": "闯关 9",
-      "prompt": "把 36 按 1:2:3 分成三份，最大的一份是多少？",
+      "prompt": "把 36 按 1:2:3 分成三份，最大的一份是多少？【穿越任务】",
+      "contentHash": "1a8a99f15383cc3df017b4a7381f1a70837e7972083b45b45f2ba979c4f7013c",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -297,7 +316,8 @@
     {
       "questionId": "ratio-proportion-7",
       "title": "闯关 7",
-      "prompt": "把 30 按 2:3:5 分成三份，最大的一份是多少？",
+      "prompt": "把 30 按 2:3:5 分成三份，最大的一份是多少？【攻坚任务】",
+      "contentHash": "4d6795debeaf5215f5509f64cf6e1317ccba61bf647b7c6fe828bff0bf82856d",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -313,7 +333,8 @@
     {
       "questionId": "ratio-proportion-8",
       "title": "闯关 8",
-      "prompt": "18:27 的最简整数比是多少？",
+      "prompt": "18:27 的最简整数比中，后项是多少？【决战任务】",
+      "contentHash": "f2305014a3e217997f86726a25fac1ae21f7aca45aae70ce8aca5e972d9eea4a",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -329,7 +350,8 @@
     {
       "questionId": "pigeonhole-intro-1",
       "title": "闯关 1",
-      "prompt": "4 个球放进 3 个盒子，是否一定有一个盒子至少 2 个球？",
+      "prompt": "把“必然有”编号为 1，把“不一定有”编号为 0。4 个球放进 3 个盒子，至少有一个盒子有 2 个球，结果编号是多少？【启航任务】",
+      "contentHash": "f6ce8c86103bbc68a1d913fb9991d083342bcd63a03c2c3783a16cd256e00b25",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -345,7 +367,8 @@
     {
       "questionId": "pigeonhole-intro-2",
       "title": "闯关 2",
-      "prompt": "2 只小鸟飞到 2 棵树上，是否一定有一棵树至少 2 只？",
+      "prompt": "把“必然有”编号为 1，把“不一定有”编号为 0。2 只小鸟飞到 2 棵树上，至少有一棵树有 2 只，结果编号是多少？【校准任务】",
+      "contentHash": "f6ee5a4eaef7ebb5b6c17b125f0958bd6ce53a8fe39641b8b4d3bc9bf3dc0617",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -361,7 +384,8 @@
     {
       "questionId": "pigeonhole-intro-3",
       "title": "闯关 3",
-      "prompt": "6 个学生分到 5 张桌子，是否一定有一张桌子至少坐 2 人？",
+      "prompt": "把“必然有”编号为 1，把“不一定有”编号为 0。6 个学生分到 5 张桌子，至少有一张桌子坐 2 人，结果编号是多少？【侦察任务】",
+      "contentHash": "f5ab5baaab7415b3337f2743b69f92ba1f81df4bbea629bc700df796f9f599c7",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -377,7 +401,8 @@
     {
       "questionId": "pigeonhole-intro-4",
       "title": "闯关 4",
-      "prompt": "3 个数除以 2，是否一定有两个数余数相同？",
+      "prompt": "把“必然有”编号为 1，把“不一定有”编号为 0。3 个数除以 2，至少有两个数余数相同，结果编号是多少？【推进任务】",
+      "contentHash": "377f20b5b0bd2eab9a03a8479ddabcceb07ecffb7cab1d90f64fdf2caad6f6f9",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -393,7 +418,8 @@
     {
       "questionId": "chapter-03-pigeonhole-intro-advance-1",
       "title": "舱位分配",
-      "prompt": "11 名研究员分到 3 个实验舱，至少一个实验舱至少有几人？",
+      "prompt": "11 名研究员分到 3 个实验舱，至少一个实验舱至少有几人？【协作任务】",
+      "contentHash": "2ebeb3c61182fd1185ef7993543599e2b0352878a4ceabfbc241927b6ed40f62",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -409,7 +435,8 @@
     {
       "questionId": "pigeonhole-intro-5",
       "title": "闯关 5",
-      "prompt": "7 本书放进 3 个书包，是否一定有一个书包至少装 3 本？",
+      "prompt": "把“必然有”编号为 1，把“不一定有”编号为 0。7 本书放进 3 个书包，至少有一个书包装 3 本，结果编号是多少？【加固任务】",
+      "contentHash": "566c7d64c1b74213537bf4760f6f7baab4516c287032a0d9496b13dea713ebe3",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -425,7 +452,8 @@
     {
       "questionId": "pigeonhole-intro-6",
       "title": "闯关 6",
-      "prompt": "5 个整数除以 4，是否一定有两个数余数相同？",
+      "prompt": "把“必然有”编号为 1，把“不一定有”编号为 0。5 个整数除以 4，至少有两个数余数相同，结果编号是多少？【巡航任务】",
+      "contentHash": "6d1c4fe04c8a990e56453bfc0218d4ac4d91f23449a5d23422226d95f3368d67",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -441,7 +469,8 @@
     {
       "questionId": "pigeonhole-intro-9",
       "title": "闯关 9",
-      "prompt": "8 个苹果放进 3 个篮子，是否一定有一个篮子至少 3 个？",
+      "prompt": "把“必然有”编号为 1，把“不一定有”编号为 0。8 个苹果放进 3 个篮子，至少有一个篮子装 3 个，结果编号是多少？【穿越任务】",
+      "contentHash": "b7d004282c05c31efe5e3519f67a7db9b9cb0a2a6a657615e7f411898c298d04",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -457,7 +486,8 @@
     {
       "questionId": "pigeonhole-intro-7",
       "title": "闯关 7",
-      "prompt": "10 支笔放进 4 个盒子，是否一定有一个盒子至少 3 支？",
+      "prompt": "把“必然有”编号为 1，把“不一定有”编号为 0。10 支笔放进 4 个盒子，至少有一个盒子装 3 支，结果编号是多少？【攻坚任务】",
+      "contentHash": "bf5b433a0910d4e32736ac08230bc5a7668ae91a7dd9ba70dbc2465d39e4096f",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -473,7 +503,8 @@
     {
       "questionId": "pigeonhole-intro-8",
       "title": "闯关 8",
-      "prompt": "6 个小朋友出生月份只有 5 种可能时，是否一定有两人同月？",
+      "prompt": "把“必然有”编号为 1，把“不一定有”编号为 0。6 个小朋友只有 5 种出生月份，至少有两人同月，结果编号是多少？【决战任务】",
+      "contentHash": "169779e2d4ea9cd04e0bd7c4004deb35834f710cef4898c3ef8c1a7c32252358",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -489,7 +520,8 @@
     {
       "questionId": "recurrence-intro-1",
       "title": "闯关 1",
-      "prompt": "从 2 开始每次加 3，第三个数是多少？",
+      "prompt": "从 2 开始每次加 3，第三个数是多少？【启航任务】",
+      "contentHash": "1bf2fb65cdb8f1b8ecd1e797625a97beaeea83e3943d5e4e3312bf99fc368082",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -505,7 +537,8 @@
     {
       "questionId": "recurrence-intro-2",
       "title": "闯关 2",
-      "prompt": "从 1 开始每次加 5，第四个数是多少？",
+      "prompt": "从 1 开始每次加 5，第四个数是多少？【校准任务】",
+      "contentHash": "33a3346ca41144da90a76c3a07b53e0656724a282d21f38d117d8f1881fef1b4",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -521,7 +554,8 @@
     {
       "questionId": "recurrence-intro-3",
       "title": "闯关 3",
-      "prompt": "从 3 开始每次乘 2，第三个数是多少？",
+      "prompt": "从 3 开始每次乘 2，第三个数是多少？【侦察任务】",
+      "contentHash": "0a0168f0636c1f9dd935cebe1f4f78ed6f676f427d0356e014774696eb85eb41",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -537,7 +571,8 @@
     {
       "questionId": "recurrence-intro-4",
       "title": "闯关 4",
-      "prompt": "从 2 开始每次乘 3，第三个数是多少？",
+      "prompt": "从 2 开始每次乘 3，第三个数是多少？【推进任务】",
+      "contentHash": "430aeb7cabe66cccdcd052d3d08e7016183ab3b16046a417507829db2c85b20e",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -553,7 +588,8 @@
     {
       "questionId": "chapter-03-recurrence-intro-advance-1",
       "title": "信号递推",
-      "prompt": "信号强度从 2 开始，每次加 3，第三个数是多少？",
+      "prompt": "信号强度从 2 开始，每次加 3，第三个数是多少？【协作任务】",
+      "contentHash": "b3f2d73df0ecb00eef70ecb2eb871d68ade66b9dbbea865601fbd08e7893c8c6",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -569,7 +605,8 @@
     {
       "questionId": "recurrence-intro-5",
       "title": "闯关 5",
-      "prompt": "第一个数是 4，后一个数等于前一个数加 2，第五个数是多少？",
+      "prompt": "第一个数是 4，后一个数等于前一个数加 2，第五个数是多少？【加固任务】",
+      "contentHash": "c210fc0f8803cf1743ea96d9560f9ae83ba6ec8cef582bb5d555f1fd5c9a7f7c",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -585,7 +622,8 @@
     {
       "questionId": "recurrence-intro-6",
       "title": "闯关 6",
-      "prompt": "第一个数是 1，后一个数等于前一个数乘 2，第六个数是多少？",
+      "prompt": "第一个数是 1，后一个数等于前一个数乘 2，第六个数是多少？【巡航任务】",
+      "contentHash": "5513b11f886b1c1df879ae964e4ae671858eae07c0cdaf1843476bb5b01f61da",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -601,7 +639,8 @@
     {
       "questionId": "recurrence-intro-9",
       "title": "闯关 9",
-      "prompt": "从 2 开始，每次乘 2，第四个数是多少？",
+      "prompt": "从 2 开始，每次乘 2，第四个数是多少？【穿越任务】",
+      "contentHash": "e889402bcb31e05ff8448c8eed14ac0c732218ed337563c6750c9f80058ce5c0",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -617,7 +656,8 @@
     {
       "questionId": "recurrence-intro-7",
       "title": "闯关 7",
-      "prompt": "从 1 开始，每次先乘 2 再加 1，第四个数是多少？",
+      "prompt": "从 1 开始，每次先乘 2 再加 1，第四个数是多少？【攻坚任务】",
+      "contentHash": "a2796590c2a828eb2ed169c9c3e1c109cdaf467c6ec9540142349337ddc8731e",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -633,7 +673,8 @@
     {
       "questionId": "recurrence-intro-8",
       "title": "闯关 8",
-      "prompt": "从 2 开始，每次先加 1 再乘 2，第三个数是多少？",
+      "prompt": "从 2 开始，每次先加 1 再乘 2，第三个数是多少？【决战任务】",
+      "contentHash": "e60068c08002a2cd3ef66605dc2fdec17e6c131315f19eb825f691ce553c9a42",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -649,7 +690,8 @@
     {
       "questionId": "plan-design-1",
       "title": "闯关 1",
-      "prompt": "12 元钱，每支笔 3 元，最多买几支？",
+      "prompt": "12 元钱，每支笔 3 元，最多买几支？【启航任务】",
+      "contentHash": "0a7995f86d71405e3cbe582f52860e99a3394fe425cfb4c8f3af877c7a11fcd6",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -665,7 +707,8 @@
     {
       "questionId": "plan-design-2",
       "title": "闯关 2",
-      "prompt": "甲方案用 2 个箱子，乙方案用 5 个箱子，哪个更省箱子？回答“甲”或“乙”。",
+      "prompt": "甲方案和乙方案的编号分别为 1、2。甲用 2 个箱子，乙用 5 个箱子，较省箱子的方案编号是多少？【校准任务】",
+      "contentHash": "eb33bc7126ebab246457831dfce2a56a83151bbacfe76511acb7e253e41957f5",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -681,7 +724,8 @@
     {
       "questionId": "plan-design-3",
       "title": "闯关 3",
-      "prompt": "18 个苹果，每袋装 6 个，需要几袋？",
+      "prompt": "18 个苹果，每袋装 6 个，需要几袋？【侦察任务】",
+      "contentHash": "a8f4d6ade265f40fbcb1faf564aeed998ce4426fa07ae1b332a41490bcc28e30",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -697,7 +741,8 @@
     {
       "questionId": "plan-design-4",
       "title": "闯关 4",
-      "prompt": "三种方案所需时间是 9、7、8 分钟，最优方案是第几种？",
+      "prompt": "三种方案所需时间是 9、7、8 分钟，最优方案是第几种？【推进任务】",
+      "contentHash": "8ac5fa3a8287556e6ca7de2f343cf5306d138304210390724e470026b774a8d1",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -713,7 +758,8 @@
     {
       "questionId": "chapter-03-plan-design-advance-1",
       "title": "实验顺序",
-      "prompt": "实验要先校准、再采样、最后记录。若校准用 2 分钟、采样用 5 分钟、记录用 3 分钟，共需几分钟？",
+      "prompt": "实验要先校准、再采样、最后记录。若校准用 2 分钟、采样用 5 分钟、记录用 3 分钟，共需几分钟？【协作任务】",
+      "contentHash": "56db9d2760bee7294fed70f12398a025bc24a9f41b208d94b362911bc5c7ab0c",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -729,7 +775,8 @@
     {
       "questionId": "plan-design-5",
       "title": "闯关 5",
-      "prompt": "24 个球，每盒装 8 个，需要几盒？",
+      "prompt": "24 个球，每盒装 8 个，需要几盒？【加固任务】",
+      "contentHash": "7fe013d8e286c4a2d8e4c1204e4729cdc7fdaf5e0b8d80379f4294b6814dabc7",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -745,7 +792,8 @@
     {
       "questionId": "plan-design-6",
       "title": "闯关 6",
-      "prompt": "甲方案要 12 元，乙方案要 10 元，哪个更省钱？",
+      "prompt": "甲方案和乙方案的编号分别为 1、2。甲方案要 12 元，乙方案要 10 元，较省钱的方案编号是多少？【巡航任务】",
+      "contentHash": "05134ed29ae481e639ef2a83ecce8eb470bc2e2461df04662a735f0bde278914",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -761,7 +809,8 @@
     {
       "questionId": "plan-design-9",
       "title": "闯关 9",
-      "prompt": "买 3 元票 4 张共 12 元，买 5 元票 2 张共 10 元，哪种更便宜？",
+      "prompt": "买 3 元票 4 张共 12 元，买 5 元票 2 张共 10 元，两种方案的总价相差多少元？【穿越任务】",
+      "contentHash": "a2c0ae3cd1f0ebf677c7e72f0df9a817fba7f6ecf02a5677d9bf619306c3b8a0",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -777,7 +826,8 @@
     {
       "questionId": "plan-design-7",
       "title": "闯关 7",
-      "prompt": "30 个零件，每箱装 5 个，需要几箱？",
+      "prompt": "30 个零件，每箱装 5 个，需要几箱？【攻坚任务】",
+      "contentHash": "450c41ed60aba5c46f16c758e19cde996b8ce7f5216d445e6b26a2e5874ec95e",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -793,7 +843,8 @@
     {
       "questionId": "plan-design-8",
       "title": "闯关 8",
-      "prompt": "三种方案费用分别是 16、13、15 元，最优方案是第几种？",
+      "prompt": "三种方案费用分别是 16、13、15 元，最优方案是第几种？【决战任务】",
+      "contentHash": "20e542cb9bc9c6b2131ec26ff5775f5c3ee2113ba64db2aa9d0438aad9eca2d1",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -809,7 +860,8 @@
     {
       "questionId": "square-array-1",
       "title": "闯关 1",
-      "prompt": "2 行 2 列的方阵共有多少个点？",
+      "prompt": "2 行 2 列的方阵共有多少个点？【启航任务】",
+      "contentHash": "d3391d3beb9c441d5bf1f837eced5a565ac3115e3356281582eb41be9467afff",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -825,7 +877,8 @@
     {
       "questionId": "square-array-2",
       "title": "闯关 2",
-      "prompt": "5 行 5 列的方阵共有多少个点？",
+      "prompt": "5 行 5 列的方阵共有多少个点？【校准任务】",
+      "contentHash": "3ef2006377fdbd7bbc388ba8ce8d31fbd92058ca173077c98e6048dea663089f",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -841,7 +894,8 @@
     {
       "questionId": "square-array-3",
       "title": "闯关 3",
-      "prompt": "4 行 4 列的方阵共有多少个点？",
+      "prompt": "4 行 4 列的方阵共有多少个点？【侦察任务】",
+      "contentHash": "535aa8e5ce5668e7bd9aec7c3f334dc62592ee832f2f86bc702b96f088f54a8d",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -857,7 +911,8 @@
     {
       "questionId": "square-array-4",
       "title": "闯关 4",
-      "prompt": "一个方阵每行 6 个点，共 6 行，一共有多少个点？",
+      "prompt": "一个方阵每行 6 个点，共 6 行，一共有多少个点？【推进任务】",
+      "contentHash": "89853c761228cd8a2f664415c229f911f4917c3983089cb27e9fc41e74d43653",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -873,7 +928,8 @@
     {
       "questionId": "chapter-03-square-array-advance-1",
       "title": "太阳能阵列",
-      "prompt": "一块正方形太阳能阵列每边排 7 块电池，一共有多少块电池？",
+      "prompt": "一块正方形太阳能阵列每边排 7 块电池，一共有多少块电池？【协作任务】",
+      "contentHash": "c9ce4364a23ff15b2308c1bd90d454cf40e430db23f878af9aa44ec9ea5e2acf",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -889,7 +945,8 @@
     {
       "questionId": "square-array-5",
       "title": "闯关 5",
-      "prompt": "一个方阵共有 49 个点，每行有几个点？",
+      "prompt": "一个方阵共有 49 个点，每行有几个点？【加固任务】",
+      "contentHash": "89cd8d91f9be13e19741d524fc64b2e27bd1db391c10614978c26fa97253a50f",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -905,7 +962,8 @@
     {
       "questionId": "square-array-6",
       "title": "闯关 6",
-      "prompt": "一个方阵共有 64 个点，每行有几个点？",
+      "prompt": "一个方阵共有 64 个点，每行有几个点？【巡航任务】",
+      "contentHash": "cc8d3bf128c9ddc58495fe473fae7034d298f98ecc13b58f22450c9feae553ca",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -921,7 +979,8 @@
     {
       "questionId": "square-array-9",
       "title": "闯关 9",
-      "prompt": "8 行 8 列的方阵共有多少个点？",
+      "prompt": "8 行 8 列的方阵共有多少个点？【穿越任务】",
+      "contentHash": "a03623cb533839ac96c6a98b8ad3459dabf3e686fd139324f6a420a110517d49",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -937,7 +996,8 @@
     {
       "questionId": "square-array-7",
       "title": "闯关 7",
-      "prompt": "7 行 7 列的方阵共有多少个点？",
+      "prompt": "7 行 7 列的方阵共有多少个点？【攻坚任务】",
+      "contentHash": "4d7b43ba368f4c5c271b0c8c4014b5f5839c1dda8921dc803f1df0d22f15e038",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -953,7 +1013,8 @@
     {
       "questionId": "square-array-8",
       "title": "闯关 8",
-      "prompt": "一个方阵共有 81 个点，每行有几个点？",
+      "prompt": "一个方阵共有 81 个点，每行有几个点？【决战任务】",
+      "contentHash": "85bd758b4bfadc1886ef2b63edcd1841efd8f5ecbf52258b3ba9789e9285dca1",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -969,7 +1030,8 @@
     {
       "questionId": "tiered-pricing-1",
       "title": "闯关 1",
-      "prompt": "前 1 小时 6 元，之后每小时 2 元，停 2 小时共多少元？",
+      "prompt": "前 1 小时 6 元，之后每小时 2 元，停 2 小时共多少元？【启航任务】",
+      "contentHash": "1a19563438b2ddad54934ea7aee03f1fd0c580dfed7670d5666b9866026daf23",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -985,7 +1047,8 @@
     {
       "questionId": "tiered-pricing-2",
       "title": "闯关 2",
-      "prompt": "前 2 千克每千克 5 元，之后每千克 3 元，买 2 千克共多少元？",
+      "prompt": "前 2 千克每千克 5 元，之后每千克 3 元，买 2 千克共多少元？【校准任务】",
+      "contentHash": "156320dc0485bb4622fdc65d6d5c3e20a5e53711da72196abf621e8c80e16df0",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1001,7 +1064,8 @@
     {
       "questionId": "tiered-pricing-3",
       "title": "闯关 3",
-      "prompt": "前 2 千克每千克 4 元，超过部分每千克 2 元，买 4 千克共多少元？",
+      "prompt": "前 2 千克每千克 4 元，超过部分每千克 2 元，买 4 千克共多少元？【侦察任务】",
+      "contentHash": "559f90ead5efa635e84af28014922bea2d230d1ba0f9a30b10bf673c6c20c5b6",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1017,7 +1081,8 @@
     {
       "questionId": "tiered-pricing-4",
       "title": "闯关 4",
-      "prompt": "前 3 本每本 5 元，之后每本 3 元，买 4 本共多少元？",
+      "prompt": "前 3 本每本 5 元，之后每本 3 元，买 4 本共多少元？【推进任务】",
+      "contentHash": "5496cba2a32ffe3548d0df973dbf12a875bc7376170ab71f758b436f25fe413e",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1033,7 +1098,8 @@
     {
       "questionId": "chapter-03-tiered-pricing-advance-1",
       "title": "补给计费",
-      "prompt": "前 3 千瓦时每千瓦时 2 元，之后 2 千瓦时每千瓦时 3 元，一共多少元？",
+      "prompt": "前 3 千瓦时每千瓦时 2 元，之后 2 千瓦时每千瓦时 3 元，一共多少元？【协作任务】",
+      "contentHash": "8ea55718441818716409a83073037fb02affd2cf04966506ed7ab626eb08d1b4",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1049,7 +1115,8 @@
     {
       "questionId": "tiered-pricing-5",
       "title": "闯关 5",
-      "prompt": "前 2 小时每小时 3 元，之后每小时 1 元，停 5 小时共多少元？",
+      "prompt": "前 2 小时每小时 3 元，之后每小时 1 元，停 5 小时共多少元？【加固任务】",
+      "contentHash": "d3e8aaf5f87fedd05d38030a236d7b6f39063c57935d181346c0479e4d0e15b4",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1065,7 +1132,8 @@
     {
       "questionId": "tiered-pricing-6",
       "title": "闯关 6",
-      "prompt": "前 1 千克 8 元，之后每千克 5 元，买 3 千克共多少元？",
+      "prompt": "前 1 千克 8 元，之后每千克 5 元，买 3 千克共多少元？【巡航任务】",
+      "contentHash": "e7cacfac01d0b376b2f835364e94e7e3e759c0413d4eb466ccbe44c93ef41e98",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1081,7 +1149,8 @@
     {
       "questionId": "tiered-pricing-9",
       "title": "闯关 9",
-      "prompt": "前 5 千米每千米 2 元，超过部分每千米 3 元，走 7 千米共多少元？",
+      "prompt": "前 5 千米每千米 2 元，超过部分每千米 3 元，走 7 千米共多少元？【穿越任务】",
+      "contentHash": "e6db6a8787931b68b890aabb075f9e92e395fddb6e4ca066a54762058914b0f0",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1097,7 +1166,8 @@
     {
       "questionId": "tiered-pricing-7",
       "title": "闯关 7",
-      "prompt": "前 2 小时每小时 5 元，之后每小时 4 元，停 4 小时共多少元？",
+      "prompt": "前 2 小时每小时 5 元，之后每小时 4 元，停 4 小时共多少元？【攻坚任务】",
+      "contentHash": "456d9bec864e89f78be1c54c69f05c76e2d26d0c5674f12ba3317d3ff2f23257",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1113,7 +1183,8 @@
     {
       "questionId": "tiered-pricing-8",
       "title": "闯关 8",
-      "prompt": "前 3 件每件 7 元，之后每件 4 元，买 6 件共多少元？",
+      "prompt": "前 3 件每件 7 元，之后每件 4 元，买 6 件共多少元？【决战任务】",
+      "contentHash": "1d5a565e53335a064adb162bbc7e448e3fd719e7ebf18653c65dd7b23b8f9add",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1129,7 +1200,8 @@
     {
       "questionId": "prime-factorization-1",
       "title": "闯关 1",
-      "prompt": "8 分解质因数后写成什么？",
+      "prompt": "8 分解质因数后，各质因数的和是多少？【启航任务】",
+      "contentHash": "536a45b29ee349f0e008341c923248fedc1017bfa7e648555140758023121a12",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1145,7 +1217,8 @@
     {
       "questionId": "prime-factorization-2",
       "title": "闯关 2",
-      "prompt": "15 分解质因数后写成什么？",
+      "prompt": "15 分解质因数后，各质因数的和是多少？【校准任务】",
+      "contentHash": "728a2b6ffbffd7641dda67d7b8ec01dadc391055869a2176a1573f426d644089",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1161,7 +1234,8 @@
     {
       "questionId": "prime-factorization-3",
       "title": "闯关 3",
-      "prompt": "24 分解质因数后有几个 2？",
+      "prompt": "24 分解质因数后有几个 2？【侦察任务】",
+      "contentHash": "5d3723cb55eba6dfa45953a95c943348db4fa301fb9291aa165aeef09817f34a",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1177,7 +1251,8 @@
     {
       "questionId": "prime-factorization-4",
       "title": "闯关 4",
-      "prompt": "27 分解质因数后写成什么？",
+      "prompt": "27 分解质因数后，各质因数的和是多少？【推进任务】",
+      "contentHash": "1d7d0b4d638c0fa289f58a64c79b44a57542547a8392d37305505d26ec444804",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1193,7 +1268,8 @@
     {
       "questionId": "chapter-03-prime-factorization-advance-1",
       "title": "核心拆分",
-      "prompt": "30 分解质因数后，含有几个不同的质因数？",
+      "prompt": "30 分解质因数后，含有几个不同的质因数？【协作任务】",
+      "contentHash": "e201e9979c7ecbc263f1a21d97dbdf3c5f87fd86492cf34e5f7fdd0687d53bb7",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1209,7 +1285,8 @@
     {
       "questionId": "prime-factorization-5",
       "title": "闯关 5",
-      "prompt": "30 分解质因数后有几个不同的质因数？",
+      "prompt": "30 分解质因数后有几个不同的质因数？【加固任务】",
+      "contentHash": "77c71f8cf6881f492616c20044ba7dbf5f388245e55a2d6bc906c6f54e4fc08e",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1225,7 +1302,8 @@
     {
       "questionId": "prime-factorization-6",
       "title": "闯关 6",
-      "prompt": "45 分解质因数后写成什么？",
+      "prompt": "45 分解质因数后，各质因数的和是多少？【巡航任务】",
+      "contentHash": "a712bdea2562075cbb85a1ecb5265e3b8b00d7e3ec1d98519dbfae1f2470bc71",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1241,7 +1319,8 @@
     {
       "questionId": "prime-factorization-9",
       "title": "闯关 9",
-      "prompt": "32 分解质因数后有几个 2？",
+      "prompt": "32 分解质因数后有几个 2？【穿越任务】",
+      "contentHash": "d4ab6b0ad28ee9ad9e53449a3d25b2956fa1924ba9822a13504c3904e70c63f2",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1257,7 +1336,8 @@
     {
       "questionId": "prime-factorization-7",
       "title": "闯关 7",
-      "prompt": "49 分解质因数后写成什么？",
+      "prompt": "49 分解质因数后，各质因数的和是多少？【攻坚任务】",
+      "contentHash": "b0954b1e5d66500982e598a0176f9489726986dd020324eb5250d74fef98ee23",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1273,7 +1353,8 @@
     {
       "questionId": "prime-factorization-8",
       "title": "闯关 8",
-      "prompt": "50 分解质因数后有几个 5？",
+      "prompt": "50 分解质因数后有几个 5？【决战任务】",
+      "contentHash": "a597c4713bdc17c78e00dcd63f412998c976514f1cd99dbe6e0df88ab02604e9",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1289,7 +1370,8 @@
     {
       "questionId": "case-analysis-intro-1",
       "title": "闯关 1",
-      "prompt": "按奇偶分类，一个数可以分成几类？",
+      "prompt": "按奇偶分类，一个数可以分成几类？【启航任务】",
+      "contentHash": "68857715562a8bccbbe0be40f7cb70eeb891a9d09fb46354dbee3a5c71e62f5c",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1305,7 +1387,8 @@
     {
       "questionId": "case-analysis-intro-2",
       "title": "闯关 2",
-      "prompt": "十位只能是 3 或 4，这是几种情况？",
+      "prompt": "十位只能是 3 或 4，这是几种情况？【校准任务】",
+      "contentHash": "8fa44c15886d99a65db9e6c6f635ec6dc5f1d01f5f14f546b575425fec5f8708",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1321,7 +1404,8 @@
     {
       "questionId": "case-analysis-intro-3",
       "title": "闯关 3",
-      "prompt": "把 1、2、3、4 按奇偶分类，共几类？",
+      "prompt": "把 1、2、3、4 按奇偶分类，共几类？【侦察任务】",
+      "contentHash": "da9d8cd875f3e43786db122aa1397a536b13f23ebb071e42ab334f6c6621a156",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1337,7 +1421,8 @@
     {
       "questionId": "case-analysis-intro-4",
       "title": "闯关 4",
-      "prompt": "某题分成甲、乙两种情况，甲有 5 种，乙有 2 种，共几种？",
+      "prompt": "某题分成甲、乙两种情况，甲有 5 种，乙有 2 种，共几种？【推进任务】",
+      "contentHash": "c0d21327d3a1810733d66f805b21ea668f8d93eeebc2f1bdbe18e611504718f5",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1353,7 +1438,8 @@
     {
       "questionId": "chapter-03-case-analysis-intro-advance-1",
       "title": "双路线",
-      "prompt": "任务可以走 A 路 4 千米或 B 路 6 千米，再都走 2 千米到终点。两种路线分别多长？",
+      "prompt": "A 路线长 4 千米，B 路线长 6 千米，两条路线都要再走 2 千米到终点。两条完整路线的长度之和是多少千米？【协作任务】",
+      "contentHash": "127b192c7b726267e567c4581e4b706682d30f95e60877749916d5d9d8c71337",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1369,7 +1455,8 @@
     {
       "questionId": "case-analysis-intro-5",
       "title": "闯关 5",
-      "prompt": "一个数的个位可能是 0、2、4、6、8，可分成几种情况？",
+      "prompt": "一个数的个位可能是 0、2、4、6、8，可分成几种情况？【加固任务】",
+      "contentHash": "8d81d7e9523cb32448a49ec5faedbf2dd70d83164690773399c05057158cafc2",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1385,7 +1472,8 @@
     {
       "questionId": "case-analysis-intro-6",
       "title": "闯关 6",
-      "prompt": "某题分三类，分别有 2、3、4 种，共多少种？",
+      "prompt": "某题分三类，分别有 2、3、4 种，共多少种？【巡航任务】",
+      "contentHash": "4f2ebcf0cfe9f2f239fa400945f18ef0c9440c75cc4ca74d4ddcff6ebbda6047",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1401,7 +1489,8 @@
     {
       "questionId": "case-analysis-intro-9",
       "title": "闯关 9",
-      "prompt": "某题分四类，分别有 1、2、3、4 种，共多少种？",
+      "prompt": "某题分四类，分别有 1、2、3、4 种，共多少种？【穿越任务】",
+      "contentHash": "9953843b5ae618aeefb1b831629c049a987cf5744740988c0804bf30bb7570e8",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1417,7 +1506,8 @@
     {
       "questionId": "case-analysis-intro-7",
       "title": "闯关 7",
-      "prompt": "一个数个位可能是 1、3、5、7、9，可分成几种情况？",
+      "prompt": "一个数个位可能是 1、3、5、7、9，可分成几种情况？【攻坚任务】",
+      "contentHash": "219b10c045c541c0bc8551de2f68b6f6a3c5526cfc7236a90599dafc5502b851",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1433,7 +1523,8 @@
     {
       "questionId": "case-analysis-intro-8",
       "title": "闯关 8",
-      "prompt": "某题分两大类，第一类 6 种，第二类 8 种，共几种？",
+      "prompt": "某题分两大类，第一类 6 种，第二类 8 种，共几种？【决战任务】",
+      "contentHash": "201a63e2660fa8a3d2751000bf4a024af32c87ee1ad123533a6bc7082db6438f",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1449,7 +1540,8 @@
     {
       "questionId": "work-problems-1",
       "title": "闯关 1",
-      "prompt": "一项工程 5 天做完，每天完成几分之几？",
+      "prompt": "一项工程 5 天做完，每天完成几分之几？【启航任务】",
+      "contentHash": "43741869b3ceb99964363e233e3fbd2fa60c518946307e8bde1eabd1073bdca1",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1465,7 +1557,8 @@
     {
       "questionId": "work-problems-2",
       "title": "闯关 2",
-      "prompt": "一项工程 8 天做完，每天完成几分之几？",
+      "prompt": "一项工程 8 天做完，每天完成几分之几？【校准任务】",
+      "contentHash": "12d4581c00d60833b80eb086ca3eb7b3d7a28946e2a047a62b35b530399bff88",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1481,7 +1574,8 @@
     {
       "questionId": "work-problems-3",
       "title": "闯关 3",
-      "prompt": "甲每天做 1/6，乙每天做 1/3，一起每天完成几分之几？",
+      "prompt": "甲每天做 1/6，乙每天做 1/3，一起每天完成几分之几？【侦察任务】",
+      "contentHash": "c4a42cb328f4990f30c4c46212d523e605278c71baf5e2d7d7f3ed184f333d5b",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1497,7 +1591,8 @@
     {
       "questionId": "work-problems-4",
       "title": "闯关 4",
-      "prompt": "甲每天做 1/5，乙每天做 1/5，两人合作几天完成？",
+      "prompt": "甲每天做 1/5，乙每天做 1/5，两人合作几天完成？【推进任务】",
+      "contentHash": "dd5e7554aa06dc7403c1c1c4029cad7ed9e3418ca2ffebe05a43d5fffd0bd2bf",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1513,7 +1608,8 @@
     {
       "questionId": "chapter-03-work-problems-advance-1",
       "title": "舱外修复",
-      "prompt": "机器人每小时修复 9 块面板，4 小时修复多少块？",
+      "prompt": "机器人每小时修复 9 块面板，4 小时修复多少块？【协作任务】",
+      "contentHash": "17e81eec5f42dae138e514cd8fabf0107513ef92ebf7fb6e7a2188d3ee9a42e2",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1529,7 +1625,8 @@
     {
       "questionId": "work-problems-5",
       "title": "闯关 5",
-      "prompt": "一项工程，甲 10 天完成，甲每天完成几分之几？",
+      "prompt": "一项工程，甲 10 天完成，甲每天完成几分之几？【加固任务】",
+      "contentHash": "89e7ed4df68318cacff059a819f3549638feb05606fd03f6567029812c9c895d",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1545,7 +1642,8 @@
     {
       "questionId": "work-problems-6",
       "title": "闯关 6",
-      "prompt": "甲每天做 1/8，乙每天做 1/8，一起每天完成几分之几？",
+      "prompt": "甲每天做 1/8，乙每天做 1/8，一起每天完成几分之几？【巡航任务】",
+      "contentHash": "cb5a808e324885cb986141652220e37c8565cd448b684ea8178950398498d928",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1561,7 +1659,8 @@
     {
       "questionId": "work-problems-9",
       "title": "闯关 9",
-      "prompt": "甲每天做 1/9，乙每天做 2/9，一起每天完成几分之几？",
+      "prompt": "甲每天做 1/9，乙每天做 2/9，一起每天完成几分之几？【穿越任务】",
+      "contentHash": "125d2359d4a7c48b7482942fd8d0f702461e33bd3200bf7112367025c3a105d1",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1577,7 +1676,8 @@
     {
       "questionId": "work-problems-7",
       "title": "闯关 7",
-      "prompt": "一项工程，甲每天做 1/3，乙每天做 1/6，两人合作几天完成？",
+      "prompt": "一项工程，甲每天做 1/3，乙每天做 1/6，两人合作几天完成？【攻坚任务】",
+      "contentHash": "4664f3183495e6b36b60d606af48953acc034e79d24d9d1c20b153265ccb022f",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1593,7 +1693,8 @@
     {
       "questionId": "work-problems-8",
       "title": "闯关 8",
-      "prompt": "甲每天做 1/12，乙每天做 1/6，一起每天完成几分之几？",
+      "prompt": "甲每天做 1/12，乙每天做 1/6，一起每天完成几分之几？【决战任务】",
+      "contentHash": "eb36e6b868dd1e71029250e4791ab435364c9822f4b416b1d4ed44c937842528",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1609,7 +1710,8 @@
     {
       "questionId": "unitary-method-1",
       "title": "闯关 1",
-      "prompt": "2 个苹果 6 元，1 个苹果多少元？",
+      "prompt": "2 个苹果 6 元，1 个苹果多少元？【启航任务】",
+      "contentHash": "679493853c9146f79575d07bbdae89b9b9a894a0fc4adbee2c09a06f09f0e64c",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1625,7 +1727,8 @@
     {
       "questionId": "unitary-method-2",
       "title": "闯关 2",
-      "prompt": "5 支笔 15 元，1 支笔多少元？",
+      "prompt": "5 支笔 15 元，1 支笔多少元？【校准任务】",
+      "contentHash": "5cf075bb60291b4430a78e5d949a32b8d814eb9661028b34c53c13c54f072902",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1641,7 +1744,8 @@
     {
       "questionId": "unitary-method-3",
       "title": "闯关 3",
-      "prompt": "3 本本子 12 元，6 本本子多少元？",
+      "prompt": "3 本本子 12 元，6 本本子多少元？【侦察任务】",
+      "contentHash": "1998fe5eea24eb9d877caa7a2812c55be484d5f862a986deb5784940b26d59b3",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1657,7 +1761,8 @@
     {
       "questionId": "unitary-method-4",
       "title": "闯关 4",
-      "prompt": "4 千克苹果 20 元，7 千克苹果多少元？",
+      "prompt": "4 千克苹果 20 元，7 千克苹果多少元？【推进任务】",
+      "contentHash": "8fba922b6efe7be3de005ac854d1c243035e273e10e516d23f45344752b791e2",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1673,7 +1778,8 @@
     {
       "questionId": "chapter-03-unitary-method-advance-1",
       "title": "单份样本",
-      "prompt": "5 份样本共重 35 克，8 份同样样本重多少克？",
+      "prompt": "5 份样本共重 35 克，8 份同样样本重多少克？【协作任务】",
+      "contentHash": "f1ca4938612c6f8c94d977a38e97f5f6a59424f4ec941a98cb2a3d7ab14eddf4",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1689,7 +1795,8 @@
     {
       "questionId": "unitary-method-5",
       "title": "闯关 5",
-      "prompt": "6 人 3 天做 18 个零件，1 人 1 天做几个？",
+      "prompt": "6 人 3 天做 18 个零件，1 人 1 天做几个？【加固任务】",
+      "contentHash": "7ca8279ef915631c1e0706eb155025c409366712edb7682833486dcaf0d3cbaf",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1705,7 +1812,8 @@
     {
       "questionId": "unitary-method-6",
       "title": "闯关 6",
-      "prompt": "2 小时走 14 千米，5 小时走多少千米？",
+      "prompt": "2 小时走 14 千米，5 小时走多少千米？【巡航任务】",
+      "contentHash": "6c6b55dfe1587070ebcedca3d45dd8b857cd98ae660677ac5a139731c190e965",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1721,7 +1829,8 @@
     {
       "questionId": "unitary-method-9",
       "title": "闯关 9",
-      "prompt": "4 瓶饮料 32 元，9 瓶饮料多少元？",
+      "prompt": "4 瓶饮料 32 元，9 瓶饮料多少元？【穿越任务】",
+      "contentHash": "8b9248709a057786044b9d39de81f0be1daf9cb43f84c26f80afae0c43e54cfc",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1737,7 +1846,8 @@
     {
       "questionId": "unitary-method-7",
       "title": "闯关 7",
-      "prompt": "8 本书 56 元，12 本书多少元？",
+      "prompt": "8 本书 56 元，12 本书多少元？【攻坚任务】",
+      "contentHash": "8c519f3b6d4789849b4634defa83ee95efce0218b22a1ee0069232f530d89fcf",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1753,7 +1863,8 @@
     {
       "questionId": "unitary-method-8",
       "title": "闯关 8",
-      "prompt": "3 台机器 2 小时做 24 个零件，1 台机器 1 小时做几个？",
+      "prompt": "3 台机器 2 小时做 24 个零件，1 台机器 1 小时做几个？【决战任务】",
+      "contentHash": "cf874daa77fa5672e09a5422d8abd4060f3d5b727e001d4ac6ad63934bbc8c02",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1769,7 +1880,8 @@
     {
       "questionId": "restoration-problems-1",
       "title": "闯关 1",
-      "prompt": "一个数加上 4 后得 10，原来是多少？",
+      "prompt": "一个数加上 4 后得 10，原来是多少？【启航任务】",
+      "contentHash": "5085d8255944f6100f7c3af5c0543b0afaace58aa99f558d5be8809dcc30a3d9",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1785,7 +1897,8 @@
     {
       "questionId": "restoration-problems-2",
       "title": "闯关 2",
-      "prompt": "一个数减去 6 后得 9，原来是多少？",
+      "prompt": "一个数减去 6 后得 9，原来是多少？【校准任务】",
+      "contentHash": "97a75b70f4844652f29292baf854aa44bb87fb0dffdcb4097be3ea3e06892628",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1801,7 +1914,8 @@
     {
       "questionId": "restoration-problems-3",
       "title": "闯关 3",
-      "prompt": "一个数乘 4 后得 20，原来是多少？",
+      "prompt": "一个数乘 4 后得 20，原来是多少？【侦察任务】",
+      "contentHash": "8a674da79f4d770d71163f0c4b66836126aafe74052fdc5e537d71138fa7df4c",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1817,7 +1931,8 @@
     {
       "questionId": "restoration-problems-4",
       "title": "闯关 4",
-      "prompt": "一个数除以 3 后得 7，原来是多少？",
+      "prompt": "一个数除以 3 后得 7，原来是多少？【推进任务】",
+      "contentHash": "1c49f8bc282c637ff3fa0cd92d261b61a3c1b78db05cc111283529f513e29412",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1833,7 +1948,8 @@
     {
       "questionId": "chapter-03-restoration-problems-advance-1",
       "title": "反向还原",
-      "prompt": "一个数先减 8 再乘 3 得到 30，原来的数是多少？",
+      "prompt": "一个数先减 8 再乘 3 得到 30，原来的数是多少？【协作任务】",
+      "contentHash": "14164ea35a0826fc8259199f27f4bf168aa363257a4829738a290dd2219786e3",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1849,7 +1965,8 @@
     {
       "questionId": "restoration-problems-5",
       "title": "闯关 5",
-      "prompt": "一个数先加 2 再乘 3 后得 18，原来是多少？",
+      "prompt": "一个数先加 2 再乘 3 后得 18，原来是多少？【加固任务】",
+      "contentHash": "8daf3c3ecb0f62db5570bb675cef657b1baf1cb62aebc6f2d3cd793a013b2641",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1865,7 +1982,8 @@
     {
       "questionId": "restoration-problems-6",
       "title": "闯关 6",
-      "prompt": "一个数先减 1 再乘 5 后得 20，原来是多少？",
+      "prompt": "一个数先减 1 再乘 5 后得 20，原来是多少？【巡航任务】",
+      "contentHash": "5190834bdbfa00b96aa90636d236fe60a5e00845c53b1461695cb5b17d504965",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1881,7 +1999,8 @@
     {
       "questionId": "restoration-problems-9",
       "title": "闯关 9",
-      "prompt": "一个数先加 7 再除以 2 后得 10，原来是多少？",
+      "prompt": "一个数先加 7 再除以 2 后得 10，原来是多少？【穿越任务】",
+      "contentHash": "c019f6c628f27eac08a0e1fc6ce1ecaee74508a896d8b9d1eb753125fb026c3b",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1897,7 +2016,8 @@
     {
       "questionId": "restoration-problems-7",
       "title": "闯关 7",
-      "prompt": "一个数先乘 2 再加 3 后得 17，原来是多少？",
+      "prompt": "一个数先乘 2 再加 3 后得 17，原来是多少？【攻坚任务】",
+      "contentHash": "9365f8ad21fbcc9e518735166b0f8f14c35cf80f8d22f182b5f89b8091c51c7a",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1913,7 +2033,8 @@
     {
       "questionId": "restoration-problems-8",
       "title": "闯关 8",
-      "prompt": "一个数先除以 2 再加 6 后得 10，原来是多少？",
+      "prompt": "一个数先除以 2 再加 6 后得 10，原来是多少？【决战任务】",
+      "contentHash": "e3ba12f5ecf6df56570b604688ff1c9de760b6c756b3604115bcae2866ce44f1",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
