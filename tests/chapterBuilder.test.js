@@ -87,6 +87,17 @@ test("final age challenge uses a whole-year family scenario", () => {
   assert.match(question.explanation, /6 \u5e74\u540e.*42.*14.*3/);
 });
 
+test("logic opener uses a real berth scenario and asks for an unambiguous numeric position", () => {
+  const level = builder.buildChapter("chapter-02", []).levels.find((item) => item.moduleId === "logic");
+  const question = level.questions.find((item) => item.id === "logic-1");
+
+  assert.equal(question.answer, "1");
+  assert.match(question.prompt, /深海补给站/);
+  assert.match(question.prompt, /甲、乙、丙三艘无人艇各占一个泊位/);
+  assert.match(question.prompt, /丙停在哪个编号的泊位/);
+  assert.match(question.explanation, /甲和乙都不能占 1 号泊位/);
+});
+
 test("native first-three-chapter packs preserve the reviewed legacy question contract", () => {
   const modules = loadExpandedModules();
   ["chapter-01", "chapter-02", "chapter-03"].forEach((chapterId) => {

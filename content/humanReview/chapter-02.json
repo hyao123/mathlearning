@@ -3,8 +3,8 @@
   "chapterId": "chapter-02",
   "status": "approved",
   "reviewer": "项目负责人确认",
-  "reviewedAt": "2026-07-30",
-  "contentHash": "af36108ba3b753a04e75a60805b9eb06d5308ac192c92dae9de6e2e0dc9b9ca4",
+  "reviewedAt": "2026-08-09",
+  "contentHash": "e55fb8bfd9747bf9e91954da50c061fcec8ad1be04e24935c5981f643c01a9c1",
   "notes": "根据项目负责人的第二、三章完整内容审核确认予以签核。",
   "records": [
     {
@@ -1540,10 +1540,10 @@
     {
       "questionId": "logic-1",
       "title": "闯关 1",
-      "prompt": "A、B、C 三人的编号分别为 1、2、3。A 不是第一，B 也不是第一，那么第一位置的编号是多少？【启航任务】",
-      "contentHash": "cdd837302adabd228777f69a8ef24890015796450c258fcc137a2b427baafa9a",
+      "prompt": "深海补给站有 3 个编号为 1、2、3 的停泊位，甲、乙、丙三艘无人艇各占一个泊位。甲不在 1 号泊位，乙也不在 1 号泊位。丙停在哪个编号的泊位？【启航任务】",
+      "contentHash": "885842c3b7a9342f1725d55738822e4f5b1f60500b60955b4a8d1f0c8728fc44",
       "reviewer": "项目负责人确认",
-      "reviewedAt": "2026-07-30",
+      "reviewedAt": "2026-08-09",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1552,7 +1552,7 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": "已完成六项课程审核。"
+      "notes": "已复核题干、唯一解与数值答案；生活场景和泊位编号表达清晰。"
     },
     {
       "questionId": "logic-2",
