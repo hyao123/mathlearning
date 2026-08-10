@@ -317,6 +317,18 @@ export function createGameRenderers(app) {
     root.append(main);
   }
 
+  function renderRewardChain(parent, levelId) {
+    const track = LevelRewardConfig.getRewardTrack(levelId);
+    const chain = track?.rewardChain;
+    if (!chain) return;
+    const names = [chain.rawItemId, chain.materialItemId, chain.componentItemId, chain.partItemId]
+      .map((itemId) => GameItemCatalog.getItem(itemId)?.name || itemId)
+      .filter(Boolean);
+    if (names.length !== 4) return;
+    const line = appendText(parent, "p", names.join(" → "), "reward-preview__chain");
+    line.dataset.rewardChain = "";
+  }
+
   function renderRewardPreview(parent, run) {
     const { root, chapter, state, campaign, screen, answerFeedback, rewardReveal, craftingFeedback, saveFeedback, answerDraft, allChapters, getLevel } = app;
     const rewardTrack = LevelRewardConfig.getQuestionRewardTrack(run.levelId, run.questionIndex + 1);
@@ -332,6 +344,7 @@ export function createGameRenderers(app) {
         }, "reward-chip");
       }
     }
+    renderRewardChain(parent, run.levelId);
     if (hasRandomBonus) {
       const note = appendText(parent, "p", "进阶挑战：额外随机补给", "reward-preview__bonus");
       note.dataset.randomRewardBonus = "";

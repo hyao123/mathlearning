@@ -65,6 +65,10 @@ async function main() {
     assert.equal(await page.locator("[data-challenge-return-map]").count(), 1, "challenge screen should offer a return-to-map save action");
     assert.equal((await page.locator("[data-reward-preview]").textContent()).includes("橡木原木"), true);
     assert.equal(await page.locator("[data-reward-preview] img[alt='橡木原木的高写实微缩模型']").count(), 1);
+    assert.equal(await page.locator("[data-reward-chain]").count(), 1, "challenge reward should explain its construction destination");
+    assert.equal((await page.locator("[data-reward-chain]").textContent()).includes("橡木原木"), true);
+    assert.equal((await page.locator("[data-reward-chain]").textContent()).includes("机体肋梁"), true);
+    assert.equal((await page.locator("[data-reward-chain]").textContent()).includes("机身结构部件"), true);
     assert.equal((await page.locator("[data-question-story-beat]").textContent()).trim().length > 0, true, "every challenge should introduce its mission context");
     assert.equal(await page.locator("[data-answer-option]").count(), 0, "numeric questions must not render text-choice answers");
     assert.equal(await page.locator("[data-submit-answer]").isVisible(), true, "numeric questions should use the answer input submit flow");

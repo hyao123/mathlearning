@@ -140,9 +140,7 @@ test("each project exposes a twelve-step raw-material processing layer before co
     const project = items.getSuperProject(chapterId);
     assert.equal(project.materialRecipes.length, 12, chapterId);
     assert.equal(project.materialRecipes.every((recipe) => recipe.type === "material-processing"), true, chapterId);
-    assert.equal(project.materialRecipes.every((recipe) => recipe.output.itemId === "tank-track-steel"
-      ? recipe.inputs.length === 1 && recipe.inputs[0].itemId === "tank-steel-ingot" && recipe.inputs[0].quantity === 1
-      : recipe.inputs.length === 1 && recipe.inputs[0].quantity === 3), true, chapterId);
+    assert.equal(project.materialRecipes.every((recipe) => recipe.inputs.length === 1 && recipe.inputs[0].quantity === 3), true, chapterId);
     assert.equal(project.componentRecipes.every((recipe, index) => recipe.inputs[0].itemId === project.materialRecipes[index].output.itemId), true, chapterId);
   }
 
@@ -151,6 +149,7 @@ test("each project exposes a twelve-step raw-material processing layer before co
   const tracks = tank.componentRecipes.find((recipe) => recipe.output.itemId === "tank-7");
   assert.ok(steel);
   assert.equal(tracks.inputs[0].itemId, "tank-track-steel");
+  assert.equal(tank.materialRecipes.find((recipe) => recipe.output.itemId === "tank-track-steel").inputs[0].itemId, "maglev-track-link");
 });
 
 test("every chapter reward track has distinct raw materials plus optional exploration bonuses", () => {

@@ -17,7 +17,7 @@ const MATERIAL_LAYERS = Object.freeze({
     ]
   },
   "chapter-02": {
-    rawIds: ["prismarine-shard", "nautilus-shell", "sponge", "ink-sac", "glow-ink-sac", "turtle-scute", "clay-ball", "amethyst-shard", "conduit-core", "coral-fan", "heart-of-the-sea", "prismarine-shard"],
+    rawIds: ["prismarine-shard", "nautilus-shell", "sponge", "ink-sac", "glow-ink-sac", "turtle-scute", "clay-ball", "amethyst-shard", "conduit-core", "coral-fan", "heart-of-the-sea", "heart-of-the-sea"],
     refined: [
       ["sub-pressure-steel", "耐压钢板", "uncommon", "panel"],
       ["sub-ballast-ceramic", "压载陶瓷", "uncommon", "stone"],
@@ -34,7 +34,7 @@ const MATERIAL_LAYERS = Object.freeze({
     ]
   },
   "chapter-03": {
-    rawIds: ["quartz", "glowstone-dust", "ender-pearl", "echo-shard", "blaze-rod", "phantom-membrane", "obsidian", "nether-star", "shulker-shell", "slimeball", "firework-star", "quartz"],
+    rawIds: ["quartz", "glowstone-dust", "ender-pearl", "echo-shard", "blaze-rod", "phantom-membrane", "obsidian", "nether-star", "shulker-shell", "slimeball", "firework-star", "nether-star"],
     refined: [
       ["station-truss-alloy", "桁架合金", "uncommon", "ingot"],
       ["station-solar-cell", "太阳能电池片", "uncommon", "panel"],
@@ -51,7 +51,7 @@ const MATERIAL_LAYERS = Object.freeze({
     ]
   },
   "chapter-04": {
-    rawIds: ["ice-crystal-shard", "cold-iron-ingot", "aurora-core", "thermal-alloy", "polar-quartz", "compass-core", "icebreaker-plate", "insulation-fiber", "deep-sea-battery", "snow-beacon", "aurora-prism", "cold-iron-ingot"],
+    rawIds: ["ice-crystal-shard", "cold-iron-ingot", "aurora-core", "thermal-alloy", "polar-quartz", "compass-core", "icebreaker-plate", "insulation-fiber", "deep-sea-battery", "snow-beacon", "aurora-prism", "aurora-prism"],
     refined: [
       ["icebreaker-steel", "破冰钢锭", "uncommon", "ingot"],
       ["icebreaker-keel-core", "龙骨核心", "rare", "core"],
@@ -68,8 +68,7 @@ const MATERIAL_LAYERS = Object.freeze({
     ]
   },
   "chapter-05": {
-    rawIds: ["carbon-titanium-plate", "nano-ceramic-chip", "quantum-armor-fiber", "reactive-armor-unit", "thermal-imaging-chip", "pulse-circuit", "maglev-track-link", "coolant-gel", "plasma-energy-core", "tactical-data-core", "fusion-drive-rod", "carbon-titanium-plate"],
-    materialInputs: { 6: [{ itemId: "tank-steel-ingot", quantity: 1 }] },
+    rawIds: ["carbon-titanium-plate", "nano-ceramic-chip", "quantum-armor-fiber", "reactive-armor-unit", "thermal-imaging-chip", "pulse-circuit", "maglev-track-link", "coolant-gel", "plasma-energy-core", "tactical-data-core", "fusion-drive-rod", "fusion-drive-rod"],
     materialOutputQuantities: { 0: 2 },
     refined: [
       ["tank-steel-ingot", "装甲钢锭", "uncommon", "ingot"],
@@ -175,4 +174,9 @@ function getMaterialLayer(chapterId) {
   return MATERIAL_LAYERS[chapterId] || null;
 }
 
-module.exports = { MATERIAL_LAYERS, createMaterialLayer, getMaterialLayer };
+function getRewardMaterialIds(chapterId) {
+  const definition = MATERIAL_LAYERS[chapterId];
+  return definition ? [...definition.rawIds] : [];
+}
+
+module.exports = { MATERIAL_LAYERS, createMaterialLayer, getMaterialLayer, getRewardMaterialIds };

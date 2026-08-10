@@ -1,24 +1,10 @@
 const GameItemCatalog = require("./itemCatalog.js");
 const { CHAPTER_IDS, FIRST_CHAPTER_ID } = require("./chapterConfig.js");
+const MaterialProcessingData = require("./materialProcessingData.js");
 
 function createRepeatedRewards(questionSlotItems) {
   return questionSlotItems.map((itemId, index) => ({ questionSlot: index + 1, itemId, quantity: 1 }));
 }
-
-const CHAPTER_ONE_FIXED_MATERIALS = Object.freeze([
-  ["oak-log", "oak-log", "oak-log", "oak-log", "oak-log", "oak-log", "oak-log", "oak-log", "oak-log", "oak-log"],
-  ["cobblestone", "cobblestone", "cobblestone", "cobblestone", "cobblestone", "cobblestone", "cobblestone", "cobblestone", "cobblestone", "cobblestone"],
-  ["coal", "coal", "coal", "coal", "coal", "coal", "coal", "coal", "coal", "coal"],
-  ["redstone-dust", "redstone-dust", "redstone-dust", "redstone-dust", "redstone-dust", "redstone-dust", "redstone-dust", "redstone-dust", "redstone-dust", "redstone-dust"],
-  ["iron-ingot", "iron-ingot", "iron-ingot", "iron-ingot", "iron-ingot", "iron-ingot", "iron-ingot", "iron-ingot", "iron-ingot", "iron-ingot"],
-  ["lapis-lazuli", "lapis-lazuli", "lapis-lazuli", "lapis-lazuli", "lapis-lazuli", "lapis-lazuli", "lapis-lazuli", "lapis-lazuli", "lapis-lazuli", "lapis-lazuli"],
-  ["emerald", "lapis-lazuli", "emerald", "lapis-lazuli", "emerald", "lapis-lazuli", "emerald", "lapis-lazuli", "emerald", "lapis-lazuli"],
-  ["gold-ingot", "iron-ingot", "gold-ingot", "iron-ingot", "gold-ingot", "iron-ingot", "gold-ingot", "iron-ingot", "gold-ingot", "iron-ingot"],
-  ["diamond", "diamond", "diamond", "diamond", "diamond", "diamond", "diamond", "diamond", "diamond", "diamond"],
-  ["netherite-scrap", "netherite-scrap", "netherite-scrap", "netherite-scrap", "netherite-scrap", "netherite-scrap", "netherite-scrap", "netherite-scrap", "netherite-scrap", "netherite-scrap"],
-  ["diamond", "redstone-dust", "diamond", "redstone-dust", "diamond", "redstone-dust", "diamond", "redstone-dust", "diamond", "redstone-dust"],
-  ["expedition-core", "expedition-core", "expedition-core", "expedition-core", "expedition-core", "expedition-core", "expedition-core", "expedition-core", "expedition-core", "expedition-core"]
-]);
 
 function cloneReward(reward) {
   return { questionSlot: reward.questionSlot, itemId: reward.itemId, quantity: reward.quantity };
@@ -35,14 +21,11 @@ function cloneRecipe(recipe) {
 }
 
 function materialPlanForChapter(chapterId, project) {
-  if (chapterId === FIRST_CHAPTER_ID) return CHAPTER_ONE_FIXED_MATERIALS;
-  const byOutput = new Map(project.materialRecipes.map((recipe) => [recipe.output.itemId, recipe]));
-  const rawSource = (itemId, visited = new Set()) => {
-    const recipe = byOutput.get(itemId);
-    if (!recipe || visited.has(itemId)) return itemId;
-    return rawSource(recipe.inputs[0].itemId, new Set([...visited, itemId]));
-  };
-  return project.materialRecipes.map((recipe) => Array.from({ length: 10 }, () => rawSource(recipe.output.itemId)));
+  const rawIds = MaterialProcessingData.getRewardMaterialIds(chapterId);
+  if (rawIds.length !== project.materialRecipes.length) {
+    throw new Error(`${chapterId} raw reward ledger must have one source per material recipe`);
+  }
+  return rawIds.map((itemId) => Array.from({ length: 10 }, () => itemId));
 }
 
 function createConfigs() {
@@ -96,6 +79,12 @@ function getRewardTrack(levelId) {
     materialRecipe: cloneRecipe(config.materialRecipe),
     componentRecipe: cloneRecipe(config.componentRecipe),
     stageRecipe: cloneRecipe(config.stageRecipe),
+    rewardChain: {
+      rawItemId: config.fixedRewards[0]?.itemId,
+      materialItemId: config.materialRecipe?.output.itemId,
+      componentItemId: config.componentRecipe?.output.itemId,
+      partItemId: config.stagePartId
+    },
     bonusPool: bonusPool.map((reward) => ({ ...reward })),
     streakItemId: GameItemCatalog.getStreakRewardItem(config.chapterId),
     questionSlots: config.fixedRewards.map((fixedReward) => ({
@@ -110,7 +99,8 @@ function getRewardTrack(levelId) {
 function getQuestionRewardTrack(levelId, questionSlot) {
   const track = getRewardTrack(levelId);
   if (!track || !Number.isInteger(questionSlot)) return null;
-  return track.questionSlots.find((entry) => entry.questionSlot === questionSlot) || null;
+  const entry = track.questionSlots.find((slot) => slot.questionSlot === questionSlot);
+  return entry ? { ...entry, rewardChain: { ...track.rewardChain } } : null;
 }
 
 function listLevelIds(chapterId) {
@@ -164,9 +154,43 @@ function validateMainlineEconomy(chapterId = FIRST_CHAPTER_ID) {
     const slots = config.fixedRewards.map(({ questionSlot }) => questionSlot);
     if (slots.length !== 10 || slots.some((slot, index) => slot !== index + 1)) errors.push(`${levelId} 的固定奖励题位不完整`);
   });
+  errors.push(...validateRewardAssemblyAlignment(chapterId).errors);
   const simulation = simulateFullClearCraft(chapterId);
   errors.push(...simulation.errors);
   return { ok: errors.length === 0, errors, simulation };
+}
+
+function validateRewardAssemblyAlignment(chapterId) {
+  const errors = [];
+  const project = GameItemCatalog.getSuperProject(chapterId);
+  const rows = listLevelIds(chapterId).map((levelId) => CONFIG_BY_LEVEL_ID[levelId]);
+  if (!project || rows.length !== 12) {
+    return { ok: false, errors: [`${chapterId} reward chain requires a 12-level project`] };
+  }
+
+  rows.forEach((row, index) => {
+    const fixedIds = new Set(row.fixedRewards.map((reward) => reward.itemId));
+    const rawInputId = row.materialRecipe?.inputs?.[0]?.itemId;
+    if (fixedIds.size !== 1 || !fixedIds.has(rawInputId)) {
+      errors.push(`${row.levelId} fixed reward must match ${rawInputId || "material input"}`);
+    }
+    if (row.componentRecipe?.inputs?.[0]?.itemId !== row.materialRecipe?.output?.itemId) {
+      errors.push(`${row.levelId} refined material must feed its component`);
+    }
+    if (!row.stageRecipe?.inputs?.some(({ itemId }) => itemId === row.componentRecipe?.output?.itemId)) {
+      errors.push(`${row.levelId} component must feed ${row.stagePartId || "its stage part"}`);
+    }
+    if (index === 0 && row.fixedRewards[0]?.itemId === rows.at(-1)?.fixedRewards[0]?.itemId) {
+      errors.push(`${chapterId} final raw source must not repeat the first raw source`);
+    }
+  });
+
+  const partIds = new Set(project.partRecipes.map((recipe) => recipe.output.itemId));
+  const finalInputs = new Set(project.finalRecipe.inputs.map(({ itemId }) => itemId));
+  partIds.forEach((partId) => {
+    if (!finalInputs.has(partId)) errors.push(`${chapterId} final recipe is missing ${partId}`);
+  });
+  return { ok: errors.length === 0, errors };
 }
 
 module.exports = {
@@ -176,5 +200,6 @@ module.exports = {
   getQuestionRewardTrack,
   listLevelIds,
   simulateFullClearCraft,
-  validateMainlineEconomy
+  validateMainlineEconomy,
+  validateRewardAssemblyAlignment
 };

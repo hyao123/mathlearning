@@ -77,6 +77,32 @@ test("fixed rewards can traverse raw materials through processing before final a
   }
 });
 
+test("fixed rewards, processing, components, and parts form one chapter reward chain", () => {
+  for (const chapterId of CHAPTER_IDS) {
+    const rows = config.listLevelIds(chapterId).map((levelId) => config.getLevelRewardConfig(levelId));
+    const report = config.validateRewardAssemblyAlignment(chapterId);
+
+    assert.equal(report.ok, true, `${chapterId}: ${report.errors.join("; ")}`);
+    rows.forEach((row) => {
+      const fixedIds = new Set(row.fixedRewards.map((reward) => reward.itemId));
+      assert.deepEqual([...fixedIds], [row.materialRecipe.inputs[0].itemId], row.levelId);
+      assert.equal(row.componentRecipe.inputs[0].itemId, row.materialRecipe.output.itemId, row.levelId);
+      assert.equal(row.stageRecipe.inputs.some(({ itemId }) => itemId === row.componentRecipe.output.itemId), true, row.levelId);
+    });
+    assert.notEqual(rows[0].fixedRewards[0].itemId, rows.at(-1).fixedRewards[0].itemId, `${chapterId}: final source must not be the first source`);
+  }
+});
+
+test("reward track exposes the four-step chain for the current level", () => {
+  const track = config.getRewardTrack("chapter-05-level-7");
+  assert.deepEqual(track.rewardChain, {
+    rawItemId: "maglev-track-link",
+    materialItemId: "tank-track-steel",
+    componentItemId: "tank-7",
+    partItemId: "tank-part-3"
+  });
+});
+
 test("the canonical reward track resolves by level and question slot", () => {
   const track = config.getRewardTrack("chapter-01-level-1");
   assert.equal(track.chapterId, "chapter-01");
