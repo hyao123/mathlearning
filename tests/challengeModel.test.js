@@ -38,16 +38,17 @@ test("missing-material analysis follows the project chain down to raw rewards", 
 });
 
 test("missing-material analysis aggregates duplicate raw materials before subtracting inventory", () => {
-  const deepSeaMissing = ChallengeModel.getMissingRawMaterials("chapter-02", { "prismarine-shard": 3 });
-  assert.equal(deepSeaMissing.find((entry) => entry.itemId === "prismarine-shard")?.quantity, 3);
+  const deepSeaMissing = ChallengeModel.getMissingRawMaterials("chapter-02", { "heart-of-the-sea": 3 });
+  assert.equal(deepSeaMissing.find((entry) => entry.itemId === "heart-of-the-sea")?.quantity, 3);
 
   const armoredMissing = ChallengeModel.getMissingRawMaterials("chapter-05", { "carbon-titanium-plate": 3 });
-  assert.equal(armoredMissing.find((entry) => entry.itemId === "carbon-titanium-plate")?.quantity, 3);
+  assert.equal(armoredMissing.find((entry) => entry.itemId === "fusion-drive-rod")?.quantity, 6);
 });
 
 test("missing-material analysis respects multi-output processing recipes", () => {
   const missing = ChallengeModel.getMissingRawMaterials("chapter-05", {});
-  assert.equal(missing.find((entry) => entry.itemId === "carbon-titanium-plate")?.quantity, 6);
+  assert.equal(missing.find((entry) => entry.itemId === "carbon-titanium-plate")?.quantity, 3);
+  assert.equal(missing.find((entry) => entry.itemId === "maglev-track-link")?.quantity, 3);
 });
 
 test("review challenge prefers mistakes, awards one capped target material, and persists", () => {
