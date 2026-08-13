@@ -5,6 +5,7 @@ function getModule(globalName, request) {
 }
 
 const DifficultyEngine = getModule("DifficultyEngine", "./difficultyEngine.js");
+const QuestionQualityV3 = getModule("QuestionQualityV3", "./questionQualityV3.js");
 
 function isObject(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -13,6 +14,8 @@ function isObject(value) {
 function adaptQuestionV3(question, topic) {
   try {
     if (!isObject(question) || !isObject(topic)) return null;
+    const validationErrors = QuestionQualityV3?.validateQuestionV3?.(question, topic);
+    if (!Array.isArray(validationErrors) || validationErrors.length) return null;
     if (!Number.isInteger(question.level) || question.level < 1) return null;
     if (typeof question.id !== "string" || !question.id.trim() || question.topicId !== topic.id) return null;
     if (typeof question.prompt !== "string" || !question.prompt.trim()) return null;

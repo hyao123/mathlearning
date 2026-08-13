@@ -16,7 +16,9 @@ async function loadCommonJs(load, registryKey) {
   try {
     const namespace = await load();
     const exported = namespace.default || localModule.exports;
-    commonJsRegistry.set(registryKey, exported);
+    for (const key of Array.isArray(registryKey) ? registryKey : [registryKey]) {
+      commonJsRegistry.set(key, exported);
+    }
     return exported;
   } finally {
     if (previousModule === undefined) delete globalThis.module;
@@ -44,15 +46,27 @@ const Chapter07QuestionPacks = await loadCommonJs(() => import("../game/chapter0
 const Chapter08QuestionPacks = await loadCommonJs(() => import("../game/chapter08QuestionPacks.js"), "./chapter08QuestionPacks.js");
 const Chapter09QuestionPacks = await loadCommonJs(() => import("../game/chapter09QuestionPacks.js"), "./chapter09QuestionPacks.js");
 const NativeQuestionPacks = await loadCommonJs(() => import("../game/nativeQuestionPacks.js"), "./nativeQuestionPacks.js");
-const AnswerPolicy = await loadCommonJs(() => import("../game/curriculum/answerPolicy.js"), "./curriculum/answerPolicy.js");
-const QuestionContract = await loadCommonJs(() => import("../game/questionContract.js"), "./questionContract.js");
-const CurriculumContract = await loadCommonJs(() => import("../game/curriculum/curriculumContract.js"), "./curriculum/curriculumContract.js");
-const SolutionEngine = await loadCommonJs(() => import("../game/curriculum/solutionEngine.js"), "./curriculum/solutionEngine.js");
-const DifficultyEngine = await loadCommonJs(() => import("../game/curriculum/difficultyEngine.js"), "./curriculum/difficultyEngine.js");
-const QuestionQualityV3 = await loadCommonJs(() => import("../game/curriculum/questionQualityV3.js"), "./curriculum/questionQualityV3.js");
-const RuntimeAdapter = await loadCommonJs(() => import("../game/curriculum/runtimeAdapter.js"), "./curriculum/runtimeAdapter.js");
+const AnswerPolicy = await loadCommonJs(() => import("../game/curriculum/answerPolicy.js"), [
+  "./curriculum/answerPolicy.js", "./answerPolicy.js", "./game/curriculum/answerPolicy.js"
+]);
+const AnswerMatcher = await loadCommonJs(() => import("../answerMatcher.js"), ["../answerMatcher.js", "../../answerMatcher.js"]);
+const QuestionContract = await loadCommonJs(() => import("../game/questionContract.js"), ["./questionContract.js", "../questionContract.js"]);
+const CurriculumContract = await loadCommonJs(() => import("../game/curriculum/curriculumContract.js"), [
+  "./curriculum/curriculumContract.js", "./curriculumContract.js"
+]);
+const SolutionEngine = await loadCommonJs(() => import("../game/curriculum/solutionEngine.js"), [
+  "./curriculum/solutionEngine.js", "./solutionEngine.js"
+]);
+const DifficultyEngine = await loadCommonJs(() => import("../game/curriculum/difficultyEngine.js"), [
+  "./curriculum/difficultyEngine.js", "./difficultyEngine.js"
+]);
+const QuestionQualityV3 = await loadCommonJs(() => import("../game/curriculum/questionQualityV3.js"), [
+  "./curriculum/questionQualityV3.js", "./questionQualityV3.js"
+]);
+const RuntimeAdapter = await loadCommonJs(() => import("../game/curriculum/runtimeAdapter.js"), [
+  "./curriculum/runtimeAdapter.js", "./runtimeAdapter.js"
+]);
 const QuestionContractFixes = await loadCommonJs(() => import("../game/questionContractFixes.js"), "./questionContractFixes.js");
-const AnswerMatcher = await loadCommonJs(() => import("../answerMatcher.js"), "../answerMatcher.js");
 const StoryMissionModel = await loadCommonJs(() => import("../game/storyMissionModel.js"), "./storyMissionModel.js");
 const QuestionQuality = await loadCommonJs(() => import("../game/questionQuality.js"), "./questionQuality.js");
 const ChapterQualityProfiles = await loadCommonJs(() => import("../game/chapterQualityProfiles.js"), "./chapterQualityProfiles.js");

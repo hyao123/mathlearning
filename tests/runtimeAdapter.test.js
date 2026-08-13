@@ -1,5 +1,8 @@
 const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
 const test = require("node:test");
+const vm = require("node:vm");
 
 const adapter = require("../game/curriculum/runtimeAdapter.js");
 const curriculum = require("../game/curriculum/curriculumMap.js");
@@ -76,4 +79,65 @@ test("returns null rather than throwing for malformed adapter input", () => {
   assert.doesNotThrow(() => adapter.adaptQuestionV3(null, null));
   assert.equal(adapter.adaptQuestionV3(null, null), null);
   assert.equal(adapter.adaptQuestionV3(validQuestion(), null), null);
+});
+
+test("rejects semantically invalid V3 questions before exposing runtime fields", () => {
+  const topic = curriculum.getCurriculumTopic("chicken-rabbit");
+  const invalidQuestions = [
+    validQuestion({ schemaVersion: 2 }),
+    validQuestion({ answerFormat: "decimal" }),
+    validQuestion({ answerPolicy: { kind: "unknown" } }),
+    validQuestion({ verification: { strategy: "substitute-counts", summary: "verified", steps: [] } }),
+    validQuestion({ reviewMetadata: undefined })
+  ];
+
+  for (const question of invalidQuestions) {
+    assert.equal(adapter.adaptQuestionV3(question, topic), null);
+  }
+});
+
+test("browser CommonJS loader registers every V3 curriculum dependency request", async () => {
+  const source = fs.readFileSync(path.join(__dirname, "..", "src", "game-main.js"), "utf8");
+  const registration = (name) => {
+    const start = source.indexOf(`const ${name} = await loadCommonJs`);
+    const end = source.indexOf("\nconst ", start + 1);
+    return source.slice(start, end === -1 ? source.length : end);
+  };
+
+  for (const [name, requests] of [
+    ["AnswerMatcher", ["../answerMatcher.js", "../../answerMatcher.js"]],
+    ["AnswerPolicy", ["./curriculum/answerPolicy.js", "./answerPolicy.js", "./game/curriculum/answerPolicy.js"]],
+    ["QuestionContract", ["./questionContract.js", "../questionContract.js"]],
+    ["CurriculumContract", ["./curriculum/curriculumContract.js", "./curriculumContract.js"]],
+    ["SolutionEngine", ["./curriculum/solutionEngine.js", "./solutionEngine.js"]],
+    ["DifficultyEngine", ["./curriculum/difficultyEngine.js", "./difficultyEngine.js"]],
+    ["QuestionQualityV3", ["./curriculum/questionQualityV3.js", "./questionQualityV3.js"]],
+    ["RuntimeAdapter", ["./curriculum/runtimeAdapter.js", "./runtimeAdapter.js"]]
+  ]) {
+    const entry = registration(name);
+    assert.notEqual(entry, "", `${name} must be registered`);
+    for (const request of requests) assert.ok(entry.includes(`"${request}"`), `${name} must register ${request}`);
+  }
+
+  const prelude = source.slice(0, source.indexOf("const GameChapterConfig ="))
+    .replace(/^import "\.\.\/game\/game\.css";\s*/, "")
+    .concat("\nglobalThis.__testLoadCommonJs = loadCommonJs;");
+  const context = vm.createContext({});
+  vm.runInContext(prelude, context);
+
+  await vm.runInContext(`
+    (async () => {
+      await globalThis.__testLoadCommonJs(async () => ({ default: { normalizeText() {} } }), ["../answerMatcher.js", "../../answerMatcher.js"]);
+      await globalThis.__testLoadCommonJs(async () => ({ default: { matcher: require("../../answerMatcher.js") } }), ["./curriculum/answerPolicy.js", "./answerPolicy.js", "./game/curriculum/answerPolicy.js"]);
+      await globalThis.__testLoadCommonJs(async () => ({ default: { policy: require("./curriculum/answerPolicy.js") } }), ["./questionContract.js", "../questionContract.js"]);
+      await globalThis.__testLoadCommonJs(async () => ({ default: {} }), ["./curriculum/curriculumContract.js", "./curriculumContract.js"]);
+      await globalThis.__testLoadCommonJs(async () => ({ default: { policy: require("./answerPolicy.js") } }), ["./curriculum/solutionEngine.js", "./solutionEngine.js"]);
+      await globalThis.__testLoadCommonJs(async () => ({ default: { contract: require("./curriculumContract.js"), solution: require("./solutionEngine.js") } }), ["./curriculum/difficultyEngine.js", "./difficultyEngine.js"]);
+      await globalThis.__testLoadCommonJs(async () => ({ default: { contract: require("./curriculumContract.js"), policy: require("./answerPolicy.js"), question: require("../questionContract.js"), solution: require("./solutionEngine.js"), difficulty: require("./difficultyEngine.js") } }), ["./curriculum/questionQualityV3.js", "./questionQualityV3.js"]);
+      globalThis.__runtimeAdapter = await globalThis.__testLoadCommonJs(async () => ({ default: { quality: require("./questionQualityV3.js"), difficulty: require("./difficultyEngine.js") } }), ["./curriculum/runtimeAdapter.js", "./runtimeAdapter.js"]);
+    })()
+  `, context);
+
+  assert.ok(context.__runtimeAdapter.quality);
+  assert.ok(context.__runtimeAdapter.difficulty);
 });
