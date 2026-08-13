@@ -1,0 +1,191 @@
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const test = require("node:test");
+
+const builder = require("../game/chapterBuilder.js");
+const registry = require("../game/curriculum/contentBatchRegistry.js");
+const compatibility = require("../game/curriculum/compatibilityMap.js");
+
+const CHICKEN_RABBIT_SLOT_IDS = [
+  "chicken-rabbit-1",
+  "chicken-rabbit-2",
+  "chicken-rabbit-3",
+  "chicken-rabbit-4",
+  "chapter-01-chicken-rabbit-advance-1",
+  "chicken-rabbit-5",
+  "chicken-rabbit-6",
+  "chicken-rabbit-9",
+  "chicken-rabbit-7",
+  "chicken-rabbit-8"
+];
+
+function validQuestion(level, id, overrides = {}) {
+  return {
+    schemaVersion: 3,
+    id,
+    topicId: "chicken-rabbit",
+    level,
+    slot: level,
+    title: `Chicken rabbit ${level}`,
+    prompt: `There are 10 animals and 28 legs. How many rabbits are there? Task ${level}.`,
+    answer: "4",
+    answerType: "numeric",
+    answerFormat: "integer",
+    answerPolicy: { kind: "integer" },
+    conditionRoles: ["animal-total", "leg-total"],
+    representation: "table",
+    questionDirection: "find-parameter",
+    reasoningMoves: ["assume", "substitute", "verify"],
+    supportingConcepts: [],
+    strategyChoices: [],
+    solution: {
+      strategy: "assume-all-chickens",
+      observation: "Assume every animal is a chicken.",
+      summary: "(28 - 20) / 2 = 4",
+      steps: [
+        { id: "difference", kind: "calculate", operation: "subtract", operands: [28, 20], result: 8, explanation: "There are eight extra legs." },
+        { id: "rabbits", kind: "verify", operation: "divide", operands: ["$difference", 2], result: 4, explanation: "Each rabbit contributes two extra legs." }
+      ]
+    },
+    verification: {
+      strategy: "substitute-counts",
+      summary: "Four rabbits and six chickens have 28 legs.",
+      steps: [
+        { id: "rabbit-legs", kind: "calculate", operation: "multiply", operands: [4, 4], result: 16, explanation: "Rabbit legs." },
+        { id: "chicken-legs", kind: "calculate", operation: "multiply", operands: [6, 2], result: 12, explanation: "Chicken legs." },
+        { id: "total-legs", kind: "verify", operation: "add", operands: ["$rabbit-legs", "$chicken-legs"], result: 28, explanation: "The total matches." },
+        { id: "answer", kind: "verify", operation: "divide", operands: ["$rabbit-legs", 4], result: 4, explanation: "There are four rabbits." }
+      ]
+    },
+    reviewMetadata: {
+      reviewer: "Curriculum reviewer",
+      reviewedAt: "2026-08-13T00:00:00.000Z",
+      evidence: "Independently checked the reasoning and answer."
+    },
+    commonPitfall: "Do not count every rabbit leg as an extra leg.",
+    storyBeat: "Check the animal inventory.",
+    ...overrides
+  };
+}
+
+function approvedBatch(contentVersion = "2026.08.13-gold.1") {
+  return {
+    id: "test-chicken-rabbit-v3",
+    schemaVersion: 3,
+    status: "approved",
+    contentVersion,
+    reviewManifest: { schemaVersion: 3, status: "approved" },
+    topics: [{
+      chapterId: "chapter-01",
+      moduleId: "chicken-rabbit",
+      questions: CHICKEN_RABBIT_SLOT_IDS.map((id, index) => validQuestion(index + 1, id))
+    }]
+  };
+}
+
+test("compatibility slots retain the stable identity of all three approved curriculum topics", () => {
+  assert.deepEqual(compatibility.GOLD_SLOT_IDS["chicken-rabbit"], CHICKEN_RABBIT_SLOT_IDS);
+  assert.deepEqual(compatibility.GOLD_SLOT_IDS["shortest-path"], Array.from({ length: 10 }, (_, index) => `chapter-08-shortest-path-${index + 1}`));
+  assert.deepEqual(compatibility.GOLD_SLOT_IDS["integrated-modeling"], Array.from({ length: 10 }, (_, index) => `chapter-09-integrated-modeling-${index + 1}`));
+});
+
+test("candidate batches never activate and the builder retains the legacy fallback", () => {
+  const before = builder.buildChapter("chapter-08", []).levels.find((level) => level.moduleId === "shortest-path");
+  const candidate = { ...approvedBatch(), status: "candidate" };
+
+  assert.equal(registry.registerContentBatch(candidate), false);
+  assert.equal(registry.getActiveTopicQuestions("chapter-01", "chicken-rabbit"), null);
+
+  const after = builder.buildChapter("chapter-08", []).levels.find((level) => level.moduleId === "shortest-path");
+  assert.deepEqual(after.questions.map((question) => question.id), before.questions.map((question) => question.id));
+  assert.equal(Object.hasOwn(after, "contentVersion"), false);
+});
+
+test("approved batches without an explicit approved review never activate", () => {
+  const unreviewed = approvedBatch("2026.08.13-gold.0");
+  delete unreviewed.reviewManifest;
+
+  assert.equal(registry.registerContentBatch(unreviewed), false);
+});
+
+test("an explicitly approved reviewed batch activates V3 questions in stable slots", () => {
+  const batch = approvedBatch();
+
+  assert.equal(registry.registerContentBatch(batch), true);
+  const active = registry.getActiveTopicQuestions("chapter-01", "chicken-rabbit");
+  assert.equal(active.contentVersion, batch.contentVersion);
+  assert.deepEqual(active.questions.map((question) => question.id), CHICKEN_RABBIT_SLOT_IDS);
+
+  const level = builder.buildChapter("chapter-01", []).levels.find((entry) => entry.moduleId === "chicken-rabbit");
+  assert.equal(level.contentVersion, batch.contentVersion);
+  assert.deepEqual(level.questions.map((question) => question.id), CHICKEN_RABBIT_SLOT_IDS);
+  assert.deepEqual(level.questions.map((question) => question.slot), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  assert.equal(level.questions.every((question) => question.schemaVersion === 3), true);
+});
+
+test("an invalid newer replacement is atomic and cannot alter the active batch", () => {
+  const replacement = approvedBatch("2026.08.13-gold.2");
+  replacement.topics[0].questions[4].id = "not-a-compatible-slot";
+
+  assert.equal(registry.registerContentBatch(replacement), false);
+  const active = registry.getActiveTopicQuestions("chapter-01", "chicken-rabbit");
+  assert.equal(active.contentVersion, "2026.08.13-gold.1");
+  assert.deepEqual(active.questions.map((question) => question.id), CHICKEN_RABBIT_SLOT_IDS);
+});
+
+test("a dotted contentVersion replacement treats .10 as newer than .2", () => {
+  const versionTwo = approvedBatch("2026.08.13-gold.2");
+  const versionTen = approvedBatch("2026.08.13-gold.10");
+
+  assert.equal(registry.registerContentBatch(versionTwo), true);
+  assert.equal(registry.registerContentBatch(versionTen), true);
+  assert.equal(registry.getActiveTopicQuestions("chapter-01", "chicken-rabbit").contentVersion, "2026.08.13-gold.10");
+});
+
+test("active content is returned as defensive copies", () => {
+  const first = registry.getActiveTopicQuestions("chapter-01", "chicken-rabbit");
+  first.questions[0].prompt = "mutated";
+  first.questions.push({ id: "injected" });
+
+  const second = registry.getActiveTopicQuestions("chapter-01", "chicken-rabbit");
+  assert.equal(second.questions.length, 10);
+  assert.notEqual(second.questions[0].prompt, "mutated");
+});
+
+test("batch validation rejects incomplete, unknown-topic, and mismapped slots", () => {
+  const incomplete = approvedBatch();
+  incomplete.topics[0].questions.pop();
+
+  const unknownTopic = approvedBatch();
+  unknownTopic.topics[0].questions[0].topicId = "unknown-topic";
+
+  const wrongSlot = approvedBatch();
+  wrongSlot.topics[0].questions[3].slot = 8;
+
+  assert.match(registry.validateContentBatch(incomplete).join("\n"), /exactly 10 questions/);
+  assert.match(registry.validateContentBatch(unknownTopic).join("\n"), /topicId/);
+  assert.match(registry.validateContentBatch(wrongSlot).join("\n"), /slot/);
+});
+
+test("browser loader registers curriculum batch dependencies before chapter builder", () => {
+  const source = fs.readFileSync(path.join(__dirname, "..", "src", "game-main.js"), "utf8");
+  const entries = [
+    ["CurriculumMap", "./curriculum/curriculumMap.js"],
+    ["CompatibilityMap", "./curriculum/compatibilityMap.js"],
+    ["ContentBatchRegistry", "./curriculum/contentBatchRegistry.js"]
+  ].map(([name, request]) => ({
+    name,
+    request,
+    start: source.indexOf(`const ${name} = await loadCommonJs`)
+  }));
+
+  entries.forEach(({ name, request, start }) => {
+    assert.notEqual(start, -1, `${name} must be loaded`);
+    const end = source.indexOf("\nconst ", start + 1);
+    assert.ok(source.slice(start, end === -1 ? source.length : end).includes(`"${request}"`), `${name} must register ${request}`);
+  });
+  assert.ok(entries[0].start < entries[1].start);
+  assert.ok(entries[1].start < entries[2].start);
+  assert.ok(entries[2].start < source.indexOf("const GameChapterBuilder = await loadCommonJs"));
+});
