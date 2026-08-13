@@ -54,6 +54,10 @@ function getStarCount(correctCount, skippedCount) {
   return 1;
 }
 
+function getContentVersion(value) {
+  return typeof value === "string" && value.trim() ? value : null;
+}
+
 function createDefaultExtensions() {
   return {
     crafting: { enabled: GameChapterConfig.FEATURE_FLAGS.crafting === true },
@@ -126,6 +130,8 @@ function startLevel(state, levelId) {
     earnedItems: [],
     rewardTransactions: []
   };
+  const contentVersion = getContentVersion(level.contentVersion);
+  if (contentVersion) run.contentVersion = contentVersion;
   return attachChapter({ ...state, activeRun: run, lastSettlement: null }, chapter);
 }
 
@@ -284,7 +290,11 @@ function unlockNextLevel(unlockedLevelIds, chapter, levelId) {
 function settleRun(state, run, chapter) {
   const starCount = getStarCount(run.correctCount, run.skippedCount);
   const existingRecord = state.levelRecords[run.levelId];
-  const record = { starCount: Math.max(existingRecord?.starCount || 0, starCount) };
+  const contentVersion = getContentVersion(run.contentVersion) || getContentVersion(existingRecord?.contentVersion);
+  const record = {
+    starCount: Math.max(existingRecord?.starCount || 0, starCount),
+    ...(contentVersion ? { contentVersion } : {})
+  };
   const settlement = {
     levelId: run.levelId,
     starCount,
@@ -462,6 +472,7 @@ function getChapterCompletion(state, chapter = null) {
 }
 
 function serialize(state) {
+  const activeRunContentVersion = getContentVersion(state?.activeRun?.contentVersion);
   const activeRun = state?.activeRun
     ? {
       levelId: state.activeRun.levelId,
@@ -479,7 +490,8 @@ function serialize(state) {
         attemptId: state.activeRun.resolved.attemptId,
         resolvedAt: state.activeRun.resolved.resolvedAt,
         advanced: false
-      } : undefined
+      } : undefined,
+      ...(activeRunContentVersion ? { contentVersion: activeRunContentVersion } : {})
     }
     : null;
   const inventory = sanitizeInventory(state?.inventory);
@@ -574,8 +586,9 @@ function sanitizeRecords(records, chapter, unlockedLevelIds) {
   const knownIds = new Set(unlockedLevelIds);
   return Object.fromEntries(Object.entries(records).flatMap(([levelId, record]) => {
     const starCount = record?.starCount;
+    const contentVersion = getContentVersion(record?.contentVersion);
     return knownIds.has(levelId) && Number.isInteger(starCount) && starCount >= 1 && starCount <= 3
-      ? [[levelId, { starCount }]]
+      ? [[levelId, { starCount, ...(contentVersion ? { contentVersion } : {}) }]]
       : [];
   }));
 }
@@ -663,6 +676,8 @@ function hydrateActiveRun(activeRun, chapter, unlockedLevelIds, storedChapterId)
   } catch {
     return null;
   }
+  const contentVersion = getContentVersion(activeRun.contentVersion);
+  if (contentVersion !== getContentVersion(level.contentVersion)) return null;
   if (!unlockedLevelIds.includes(level.levelId)) return null;
   if (!Number.isInteger(activeRun.questionIndex) || activeRun.questionIndex < 0 || activeRun.questionIndex >= level.questions.length) return null;
   if (!PERSISTABLE_RUN_STATUSES.has(activeRun.status)) return null;
@@ -695,6 +710,7 @@ function hydrateActiveRun(activeRun, chapter, unlockedLevelIds, storedChapterId)
     skippedQuestionIds,
     rewardTransactions,
     earnedItems: summarizeEarnedItems(rewardTransactions),
+    ...(contentVersion ? { contentVersion } : {}),
     ...(resolved ? { resolved } : {})
   };
 }
@@ -734,8 +750,13 @@ function hydrate(serialized, chapter) {
   const levelRecords = sanitizeRecords(stored.levelRecords, compiled, unlockedLevelIds);
   const mistakeQuestionIds = sanitizeMistakeQuestionIds(stored.mistakeQuestionIds, compiled);
   if (lastSettlement) {
-    const previousStarCount = levelRecords[lastSettlement.levelId]?.starCount || 0;
-    levelRecords[lastSettlement.levelId] = { starCount: Math.max(previousStarCount, lastSettlement.starCount) };
+    const previousRecord = levelRecords[lastSettlement.levelId];
+    const previousStarCount = previousRecord?.starCount || 0;
+    const contentVersion = getContentVersion(previousRecord?.contentVersion);
+    levelRecords[lastSettlement.levelId] = {
+      starCount: Math.max(previousStarCount, lastSettlement.starCount),
+      ...(contentVersion ? { contentVersion } : {})
+    };
   }
   return attachChapter({
     ...initial,
