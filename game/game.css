@@ -379,6 +379,10 @@ input:focus-visible {
   color: var(--ink-soft);
 }
 
+.level-node[data-content-status="updated"] .level-node__status {
+  color: var(--trail);
+}
+
 .quest-game--challenge {
   display: grid;
   align-content: start;

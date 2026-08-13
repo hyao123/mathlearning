@@ -1,7 +1,7 @@
 import { CHINESE_NUMERALS, appendItem, appendRewardOutcome, appendText, createFighterArt, createItemIcon, createProjectHeroArt, getLevelNumber } from "./gameAppView.js";
 
 export function createGameRenderers(app) {
-  const { GameItemCatalog, InventoryModel, LevelRewardConfig, RewardPresentation, ChapterMissionModel, ProgressionModel, ChallengeModel } = app.dependencies;
+  const { GameItemCatalog, InventoryModel, LevelRewardConfig, RewardPresentation, ChapterMissionModel, ProgressionModel, ChallengeModel, ContentVersionModel } = app.dependencies;
   function renderHeader(parent, eyebrow, title, allowInventory = true) {
     const { root, chapter, state, campaign, screen, answerFeedback, rewardReveal, craftingFeedback, saveFeedback, answerDraft, allChapters, getLevel } = app;
     const header = document.createElement("header");
@@ -300,17 +300,19 @@ export function createGameRenderers(app) {
       const unlocked = state.unlockedLevelIds.includes(level.levelId);
       const isPausedLevel = state.activeRun?.levelId === level.levelId;
       const status = isPausedLevel ? "paused" : !unlocked ? "locked" : record?.starCount === 3 ? "full-star" : record ? "cleared" : "current";
+      const contentStatus = ContentVersionModel.getLevelContentStatus(level, record);
       const button = document.createElement("button");
       button.type = "button";
       button.className = "level-node";
       button.dataset.levelId = level.levelId;
       button.dataset.focusKey = level.levelId;
       button.dataset.status = status;
+      button.dataset.contentStatus = contentStatus;
       button.disabled = !unlocked || Boolean(state.activeRun && !isPausedLevel);
-      button.setAttribute("aria-label", `第 ${index + 1} 关 ${level.title}，${status === "paused" ? "继续挑战" : status === "locked" ? "未解锁" : "可挑战"}`);
+      button.setAttribute("aria-label", `第 ${index + 1} 关 ${level.title}，${status === "paused" ? "继续挑战" : status === "locked" ? "未解锁" : contentStatus === "updated" ? "内容已更新，可重新挑战" : "可挑战"}`);
       appendText(button, "span", String(index + 1).padStart(2, "0"), "level-node__number");
       appendText(button, "strong", level.title, "level-node__title");
-      appendText(button, "small", status === "paused" ? "继续挑战" : record ? `${"★".repeat(record.starCount)}${"☆".repeat(3 - record.starCount)}` : status === "locked" ? "待解锁" : "开始挑战", "level-node__status");
+      appendText(button, "small", status === "paused" ? "继续挑战" : contentStatus === "updated" ? "内容已更新 · 可重新挑战" : record ? `${"★".repeat(record.starCount)}${"☆".repeat(3 - record.starCount)}` : status === "locked" ? "待解锁" : "开始挑战", "level-node__status");
       map.append(button);
     });
     main.append(map);

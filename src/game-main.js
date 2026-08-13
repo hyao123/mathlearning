@@ -76,6 +76,7 @@ const CompatibilityMap = await loadCommonJs(() => import("../game/curriculum/com
   "./curriculum/compatibilityMap.js", "./compatibilityMap.js"
 ]);
 const ContentBatchRegistry = await loadCommonJs(() => import("../game/curriculum/contentBatchRegistry.js"), "./curriculum/contentBatchRegistry.js");
+const ContentVersionModel = await loadCommonJs(() => import("../game/curriculum/contentVersionModel.js"), "./curriculum/contentVersionModel.js");
 const QuestionContractFixes = await loadCommonJs(() => import("../game/questionContractFixes.js"), "./questionContractFixes.js");
 const StoryMissionModel = await loadCommonJs(() => import("../game/storyMissionModel.js"), "./storyMissionModel.js");
 const QuestionQuality = await loadCommonJs(() => import("../game/questionQuality.js"), "./questionQuality.js");
@@ -125,6 +126,7 @@ Object.assign(globalThis, {
   CurriculumMap,
   CompatibilityMap,
   ContentBatchRegistry,
+  ContentVersionModel,
   ChapterRegistrations,
   GameChapterRegistry,
   QuestionContract,
