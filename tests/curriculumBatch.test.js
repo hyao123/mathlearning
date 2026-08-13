@@ -66,6 +66,7 @@ function validQuestion(level, id, overrides = {}) {
     },
     commonPitfall: "Do not count every rabbit leg as an extra leg.",
     storyBeat: "Check the animal inventory.",
+    readingProfile: { unfamiliarTerms: [] },
     ...overrides
   };
 }

@@ -47,6 +47,7 @@ function validQuestion(overrides = {}) {
     reviewMetadata: { reviewer: "课程组", reviewedAt: "2026-08-13T00:00:00.000Z", evidence: "独立复算。" },
     commonPitfall: "不要把每只兔多出的脚数算成 4。",
     storyBeat: "帮助农场管理员核对动物数量。",
+    readingProfile: { unfamiliarTerms: [] },
     authorNotes: "这不是运行时字段。",
     ...overrides
   };

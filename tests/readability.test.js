@@ -37,6 +37,8 @@ test("accepts valid higher-grade profiles and counts Unicode code points", () =>
 });
 
 test("returns errors for malformed profiles, questions, and grade bands", () => {
+  assert.ok(readability.validateReadability({ prompt: "Ready" }, "grade-3")
+    .includes("readingProfile.unfamiliarTerms must be an array of non-empty strings"));
   assert.ok(readability.validateReadability({ prompt: "Ready", readingProfile: { unfamiliarTerms: ["valid", " "] } }, "grade-3")
     .includes("readingProfile.unfamiliarTerms must be an array of non-empty strings"));
   assert.ok(readability.validateReadability({ prompt: "Ready", readingProfile: { unfamiliarTerms: "term" } }, "grade-3")

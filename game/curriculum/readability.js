@@ -31,13 +31,11 @@ function validateReadability(question, gradeBand) {
     }
 
     const readingProfile = question.readingProfile;
-    if (readingProfile !== undefined) {
-      const unfamiliarTerms = isObject(readingProfile) ? readingProfile.unfamiliarTerms : undefined;
-      if (!Array.isArray(unfamiliarTerms) || unfamiliarTerms.some((term) => !hasText(term))) {
-        errors.push("readingProfile.unfamiliarTerms must be an array of non-empty strings");
-      } else if (limit && unfamiliarTerms.length > limit.unfamiliarTerms) {
-        errors.push(`unfamiliar terms exceed ${limit.unfamiliarTerms}`);
-      }
+    const unfamiliarTerms = isObject(readingProfile) ? readingProfile.unfamiliarTerms : undefined;
+    if (!Array.isArray(unfamiliarTerms) || unfamiliarTerms.some((term) => !hasText(term))) {
+      errors.push("readingProfile.unfamiliarTerms must be an array of non-empty strings");
+    } else if (limit && unfamiliarTerms.length > limit.unfamiliarTerms) {
+      errors.push(`unfamiliar terms exceed ${limit.unfamiliarTerms}`);
     }
   } catch {
     errors.push("question could not be read");
