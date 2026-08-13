@@ -123,8 +123,8 @@ function validateFinalResults(solutionResult, verificationResult, answer, policy
     if (verificationResult && !nearlyEqual(verificationResult.finalValue, expectedValue)) {
       errors.push("verification final result does not match answer policy");
     }
-  } catch (error) {
-    errors.push(`answerPolicy validation failed: ${error.message}`);
+  } catch {
+    errors.push("answerPolicy validation failed");
   }
 }
 

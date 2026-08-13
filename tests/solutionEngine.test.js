@@ -200,5 +200,23 @@ test("returns validation errors instead of throwing for malformed policies and a
     }
   };
   assert.doesNotThrow(() => engine.validateSolution(malformedPolicy));
-  assert.match(engine.validateSolution(malformedPolicy).join("\n"), /answerPolicy validation failed: malformed policy/);
+  assert.match(engine.validateSolution(malformedPolicy).join("\n"), /answerPolicy validation failed/);
+});
+
+test("returns a validation error when policy normalization throws non-Error values", () => {
+  for (const thrownValue of [null, 42, {
+    get message() {
+      throw new Error("message getter must not be read");
+    }
+  }]) {
+    const question = validQuestion();
+    question.answerPolicy = {
+      get kind() {
+        throw thrownValue;
+      }
+    };
+
+    assert.doesNotThrow(() => engine.validateSolution(question));
+    assert.deepEqual(engine.validateSolution(question), ["answerPolicy validation failed"]);
+  }
 });
