@@ -17,6 +17,7 @@ function validV3Question(overrides = {}) {
     answerType: "numeric",
     answerFormat: "integer",
     answerPolicy: { kind: "integer", min: 0 },
+    difficulty: "introductory",
     primaryConcept: "assumption method",
     supportingConcepts: ["substitution"],
     structureFamily: "assume-and-adjust",
@@ -28,6 +29,10 @@ function validV3Question(overrides = {}) {
     strategyChoices: ["assume-all-chickens", "equation"],
     shortcutType: "none",
     transfer: "representation-shift",
+    explanation: {
+      summary: "Replace each rabbit with a chicken, then divide the extra legs by two.",
+      cues: ["extra legs", "two per rabbit"]
+    },
     solution: {
       strategy: "assume-all-chickens",
       observation: "Assume every animal is a chicken.",
@@ -178,6 +183,7 @@ test("V3 hashes cover each pedagogical field", () => {
     ["answerType", "structured"],
     ["answerFormat", "decimal"],
     ["answerPolicy", { kind: "integer", min: 1 }],
+    ["difficulty", "advanced"],
     ["primaryConcept", "equation model"],
     ["supportingConcepts", ["substitution", "comparison"]],
     ["structureFamily", "equation"],
@@ -189,6 +195,7 @@ test("V3 hashes cover each pedagogical field", () => {
     ["strategyChoices", ["equation"]],
     ["shortcutType", "guess"],
     ["transfer", "cross-concept"],
+    ["explanation", { summary: "Changed explanation.", cues: [] }],
     ["solution", { ...base.solution, strategy: "changed-strategy" }],
     ["verification", { ...base.verification, summary: "Changed verification." }],
     ["commonPitfall", "Changed pitfall."],
