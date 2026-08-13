@@ -94,9 +94,51 @@ test("reports an uncompensated score regression in ordered topic progression", (
   assert.match(errors.join("\n"), /prerequisite\/dependency complexity regression at index 1/);
 });
 
-test("returns string validation errors instead of throwing on malformed input", () => {
+test("allows the documented one-point same-transfer score tolerance", () => {
+  const errors = difficultyEngine.validateTopicProgression([
+    question({ stepCount: 2 }),
+    question({ stepCount: 1 })
+  ]);
+
+  assert.doesNotMatch(errors.join("\n"), /score regression at index 1/);
+});
+
+test("rejects a regression that a small transfer increase cannot compensate", () => {
+  const errors = difficultyEngine.validateTopicProgression([
+    question({ stepCount: 9 }),
+    question({ representationShift: true })
+  ]);
+
+  assert.match(errors.join("\n"), /score regression at index 1/);
+});
+
+test("returns explicit validation errors instead of throwing on malformed input", () => {
   assert.doesNotThrow(() => difficultyEngine.extractStructure(null));
   assert.equal(difficultyEngine.extractStructure(null), "question must be an object");
-  assert.equal(difficultyEngine.evaluateDifficulty({ solution: { steps: [{}] } }), "conditionRoles must be an array");
+  assert.ok(difficultyEngine.evaluateDifficulty({ solution: { steps: [{}] } }).errors.includes("conditionRoles must be an array"));
   assert.deepEqual(difficultyEngine.validateTopicProgression(null), ["questions must be an array"]);
+});
+
+test("returns explicit errors for malformed V3 difficulty inputs", () => {
+  const malformedQuestions = [
+    [question({ stepCount: 0 }), "solution steps must be a non-empty array"],
+    [question({ conditions: 1, }), "step at index 0 must be an object", (value) => { value.solution.steps[0] = null; }],
+    [question(), "unsupported operation at step 0: power", (value) => { value.solution.steps[0].operation = "power"; }],
+    [question(), "operands at step 0 must be an array", (value) => { value.solution.steps[0].operands = "1, 2"; }],
+    [question(), "result at step 0 must be a finite number", (value) => { value.solution.steps[0].result = Infinity; }],
+    [question(), "conditionRoles member at index 0 must be a non-empty string", (value) => { value.conditionRoles[0] = " "; }],
+    [question({ supportingConcepts: ["ratio", "ratio"] }), "supportingConcepts must not contain duplicates"],
+    [question({ supportingConcepts: [""] }), "supportingConcepts member at index 0 must be a non-empty string"],
+    [question({ representation: "poster" }), "invalid representation: poster"],
+    [question({ direction: "sideways" }), "invalid questionDirection: sideways"],
+    [question({ representationShift: "yes" }), "representationShift must be a boolean"]
+  ];
+
+  for (const [malformed, expectedError, mutate] of malformedQuestions) {
+    if (mutate) mutate(malformed);
+    const result = difficultyEngine.evaluateDifficulty(malformed);
+    assert.ok(Array.isArray(result.errors), expectedError);
+    assert.ok(result.errors.includes(expectedError), result.errors.join("\n"));
+    assert.match(difficultyEngine.validateTopicProgression([malformed]).join("\n"), new RegExp(expectedError));
+  }
 });

@@ -1,3 +1,6 @@
+const { QUESTION_DIRECTIONS, REPRESENTATIONS } = require("./curriculumContract.js");
+const { OPERATIONS } = require("./solutionEngine.js");
+
 const TRANSFER_WEIGHTS = Object.freeze({
   direct: 0,
   "representation-shift": 1,
@@ -7,6 +10,8 @@ const TRANSFER_WEIGHTS = Object.freeze({
 
 const ABRUPT_JUMP = 5;
 const MILD_DEPENDENCY_VARIATION = 1;
+// Adjacent questions may vary by one structural score point without regressing.
+const SCORE_TOLERANCE = 1;
 
 function isObject(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -18,40 +23,90 @@ function optionalArray(question, field) {
   return Array.isArray(value) ? value : `${field} must be an array`;
 }
 
-function extractStructure(question) {
-  if (!isObject(question)) return "question must be an object";
+function validateStringMembers(values, field, errors) {
+  values.forEach((value, index) => {
+    if (typeof value !== "string" || !value.trim()) {
+      errors.push(`${field} member at index ${index} must be a non-empty string`);
+    }
+  });
+}
+
+function validateSteps(steps, errors) {
+  steps.forEach((step, index) => {
+    if (!isObject(step)) {
+      errors.push(`step at index ${index} must be an object`);
+      return;
+    }
+    if (!Object.hasOwn(OPERATIONS, step.operation)) {
+      errors.push(`unsupported operation at step ${index}: ${String(step.operation)}`);
+    }
+    if (!Array.isArray(step.operands)) errors.push(`operands at step ${index} must be an array`);
+    if (!Number.isFinite(step.result)) errors.push(`result at step ${index} must be a finite number`);
+  });
+}
+
+function validateQuestionStructure(question) {
+  if (!isObject(question)) return ["question must be an object"];
+
+  const errors = [];
 
   try {
-    if (!isObject(question.solution)) return "solution must be an object";
-    if (!Array.isArray(question.solution.steps) || !question.solution.steps.length) {
-      return "solution steps must be a non-empty array";
+    if (!isObject(question.solution)) {
+      errors.push("solution must be an object");
+    } else if (!Array.isArray(question.solution.steps) || !question.solution.steps.length) {
+      errors.push("solution steps must be a non-empty array");
+    } else {
+      validateSteps(question.solution.steps, errors);
     }
-    if (!Array.isArray(question.conditionRoles)) return "conditionRoles must be an array";
-    if (typeof question.representation !== "string" || !question.representation.trim()) {
-      return "representation must be a non-empty string";
+    if (!Array.isArray(question.conditionRoles)) {
+      errors.push("conditionRoles must be an array");
+    } else {
+      validateStringMembers(question.conditionRoles, "conditionRoles", errors);
     }
-    if (typeof question.questionDirection !== "string" || !question.questionDirection.trim()) {
-      return "questionDirection must be a non-empty string";
+    if (!REPRESENTATIONS.includes(question.representation)) {
+      errors.push(`invalid representation: ${String(question.representation)}`);
+    }
+    if (!QUESTION_DIRECTIONS.includes(question.questionDirection)) {
+      errors.push(`invalid questionDirection: ${String(question.questionDirection)}`);
     }
 
     const supportingConcepts = optionalArray(question, "supportingConcepts");
-    if (typeof supportingConcepts === "string") return supportingConcepts;
+    if (typeof supportingConcepts === "string") {
+      errors.push(supportingConcepts);
+    } else {
+      validateStringMembers(supportingConcepts, "supportingConcepts", errors);
+      if (new Set(supportingConcepts).size !== supportingConcepts.length) {
+        errors.push("supportingConcepts must not contain duplicates");
+      }
+    }
     const strategyChoices = optionalArray(question, "strategyChoices");
-    if (typeof strategyChoices === "string") return strategyChoices;
+    if (typeof strategyChoices === "string") errors.push(strategyChoices);
     if (question.representationShift !== undefined && typeof question.representationShift !== "boolean") {
-      return "representationShift must be a boolean";
+      errors.push("representationShift must be a boolean");
+    }
+    if (question.transfer !== undefined && !Object.hasOwn(TRANSFER_WEIGHTS, question.transfer)) {
+      errors.push(`invalid transfer: ${String(question.transfer)}`);
     }
 
-    return {
-      steps: question.solution.steps.length,
-      conditions: question.conditionRoles.length,
-      representation: question.representation,
-      direction: question.questionDirection,
-      transfer: determineTransfer(question.representationShift === true, supportingConcepts, strategyChoices)
-    };
+    return errors;
   } catch {
-    return "question structure could not be read";
+    return ["question structure could not be read"];
   }
+}
+
+function extractStructure(question) {
+  const errors = validateQuestionStructure(question);
+  if (errors.length) return errors[0];
+
+  const supportingConcepts = optionalArray(question, "supportingConcepts");
+  const strategyChoices = optionalArray(question, "strategyChoices");
+  return {
+    steps: question.solution.steps.length,
+    conditions: question.conditionRoles.length,
+    representation: question.representation,
+    direction: question.questionDirection,
+    transfer: determineTransfer(question.representationShift === true, supportingConcepts, strategyChoices)
+  };
 }
 
 function determineTransfer(representationShift, supportingConcepts, strategyChoices) {
@@ -64,8 +119,10 @@ function determineTransfer(representationShift, supportingConcepts, strategyChoi
 }
 
 function evaluateDifficulty(question) {
+  const errors = validateQuestionStructure(question);
+  if (errors.length) return { errors };
+
   const structure = extractStructure(question);
-  if (typeof structure === "string") return structure;
 
   const reverseDirection = structure.direction === "reverse" || structure.direction === "find-parameter";
   return {
@@ -97,19 +154,23 @@ function validateTopicProgression(questions) {
 
   questions.forEach((question, index) => {
     const difficulty = evaluateDifficulty(question);
-    const dependencies = dependencyComplexity(question);
-    if (typeof difficulty === "string") {
-      errors.push(`question at index ${index}: ${difficulty}`);
+    if (difficulty.errors) {
+      errors.push(...difficulty.errors.map((error) => `question at index ${index}: ${error}`));
       return;
     }
+    const dependencies = dependencyComplexity(question);
     if (typeof dependencies === "string") {
       errors.push(`question at index ${index}: ${dependencies}`);
       return;
     }
 
     if (previous) {
-      const transferStrengthened = TRANSFER_WEIGHTS[difficulty.transfer] > TRANSFER_WEIGHTS[previous.difficulty.transfer];
-      if (difficulty.score < previous.difficulty.score && !transferStrengthened) {
+      const transferGain = Math.max(
+        0,
+        TRANSFER_WEIGHTS[difficulty.transfer] - TRANSFER_WEIGHTS[previous.difficulty.transfer]
+      );
+      const permittedScoreDrop = SCORE_TOLERANCE + transferGain;
+      if (previous.difficulty.score - difficulty.score > permittedScoreDrop) {
         errors.push(`score regression at index ${index}`);
       }
       if (difficulty.score - previous.difficulty.score > ABRUPT_JUMP) {
