@@ -1,49 +1,82 @@
-﻿# Task 2 checkpoint report: Deep-sea resource set
+# Task 2 Report: Answer Policies and Backward-Compatible Judging
 
-## Status
+## Implementation
 
-Task 2 was stopped at the user-requested safe checkpoint after seven of the twenty-two chapter-02 image-generation calls completed. No further image generation was started after the stop instruction.
+- Added `game/curriculum/answerPolicy.js` with explicit policies for integer, decimal (optional fixed precision), fraction (required simplification), percent, quotient-remainder, and multi-number responses.
+- Policy validation reports invalid policy configuration, invalid answer shape, non-simplified fractions, negative remainders, and incorrect multi-number counts.
+- Policy matching accepts Chinese `余` and `...` quotient-remainder notation, numeric multi-number values, optional unordered results, and returns `null` when no policy is supplied so legacy matching remains authoritative.
+- `AnswerMatcher.isAnswerCorrect` delegates only when `options.answerPolicy` is present; its exact/unit, numeric-equivalence, boolean, unordered-token, and accepted-answer flow is otherwise unchanged.
+- Schema V3 question contracts require `answerPolicy`, validate the policy against the authored answer, and require `answerFormat === answerPolicy.kind`. Legacy questions retain the original four-format numeric validation.
+- `questionAccess.judgeAnswer` forwards `question.answerPolicy`.
+- Added the minimal CommonJS browser-loader registration in `src/game-main.js` so the shipped application can load the policy before question contract and matcher modules.
 
-## Completed assets (7/22)
+## TDD Evidence
 
-All completed images were generated with the built-in image generator, one call per manifest entry, using the entry's manifest prompt plus the shared deep-sea art constraints. The generated PNG outputs were preserved as high-quality WebP project assets at their declared manifest filenames.
+### RED 1: new module
 
-### Mission badges (5/5)
+Command:
 
-- `public/assets/items/chapter-02-mission-1-v2.webp`
-- `public/assets/items/chapter-02-mission-2-v2.webp`
-- `public/assets/items/chapter-02-mission-3-v2.webp`
-- `public/assets/items/chapter-02-mission-4-v2.webp`
-- `public/assets/items/chapter-02-mission-5-v2.webp`
+```powershell
+node --test tests/answerPolicy.test.js tests/answerMatcher.test.js tests/questionAccess.test.js
+```
 
-### Project components (2/12)
+Result: failed as expected with `Cannot find module '../game/curriculum/answerPolicy.js'`.
 
-- `public/assets/items/sub-1-v2.webp`
-- `public/assets/items/sub-2-v2.webp`
+### RED 2: integration routing
 
-## Remaining assets (15/22)
+After adding the policy module and then temporarily restoring the three integration points, ran:
 
-- Components: `sub-3-v2.webp` through `sub-12-v2.webp` (10)
-- Large parts: `sub-part-1-v2.webp` through `sub-part-4-v2.webp` (4)
-- Final project: `deep-sea-explorer-v2.webp` (1)
+```powershell
+node --test tests/answerPolicy.test.js tests/answerMatcher.test.js tests/questionAccess.test.js tests/questionQuality.test.js
+```
 
-## Visual inspection
+Result: three expected failures:
 
-A 128px contact-sheet review was performed for every completed asset. The five mission badges have distinct silhouettes (round medallion, shield, manta triangle, four-lobed compass, and five-point star). The two completed components also read distinctly at 128px (pressure-hull ring and ducted thruster). The images are cohesive polished 3D child-friendly game art in a deep cyan/teal/sea-crystal palette. No visible text, logos, or watermarks were observed.
+- legacy numeric equivalence incorrectly accepted `2/6` for a simplified-fraction policy;
+- `judgeAnswer` did not forward the policy;
+- V3 `quotient-remainder` answers were rejected by legacy answer-format validation.
 
-The four required large parts could not be inspected because their generation had not begun when the stop instruction arrived.
+### RED 3: no-policy fallback
+
+Command:
+
+```powershell
+node --test tests/answerPolicy.test.js
+```
+
+Result: failed as expected because `matchesAnswerPolicy("0.5", "1/2")` returned `false`, before the policy-null fallback was added.
+
+### GREEN
+
+Focused command:
+
+```powershell
+node --test tests/answerPolicy.test.js tests/answerMatcher.test.js tests/questionAccess.test.js tests/questionQuality.test.js
+```
+
+Result: passed, 24 tests passed and 0 failed.
 
 ## Verification
 
-- Completed file count: 7
-- Format/dimensions: seven valid WebP files, each 1254 x 1254 RGB
-- Uniqueness: seven distinct SHA-256 hashes
-- Chapter-03 assets created, altered, or staged by Task 2: none
-- Shared-workspace note: seven untracked chapter-03 files are present from separate concurrent work; Task 2 did not touch or stage them
-- Source/code changed: none
-- Aborted generation: the attempted module-3 call was interrupted before completion and created no output file
+```powershell
+npm test
+npm run build
+git diff --check
+```
 
-## Blocker
+Results:
 
-The only blocker is the explicit user instruction to stop image generation at the current checkpoint. There is no known technical blocker. Completing Task 2 requires fifteen additional built-in image-generation calls.
+- `npm test`: passed, 190 tests passed and 0 failed.
+- `npm run build`: passed; Vite emitted the production bundle, including answer-policy chunks.
+- `git diff --check`: no whitespace errors.
 
+## Self-Review
+
+- Checked that policy routing is opt-in, preserving all legacy matcher behavior when `answerPolicy` is absent.
+- Checked that a malformed explicit policy rejects rather than falling back to legacy numeric matching.
+- Checked that V3 only gains its extended formats; legacy `answerFormat` validation still permits exactly its original four values.
+- Checked that the browser CommonJS registry loads the policy before its two consumers, avoiding a runtime-only missing-dependency error.
+
+## Concerns
+
+None.

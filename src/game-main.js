@@ -44,6 +44,7 @@ const Chapter07QuestionPacks = await loadCommonJs(() => import("../game/chapter0
 const Chapter08QuestionPacks = await loadCommonJs(() => import("../game/chapter08QuestionPacks.js"), "./chapter08QuestionPacks.js");
 const Chapter09QuestionPacks = await loadCommonJs(() => import("../game/chapter09QuestionPacks.js"), "./chapter09QuestionPacks.js");
 const NativeQuestionPacks = await loadCommonJs(() => import("../game/nativeQuestionPacks.js"), "./nativeQuestionPacks.js");
+const AnswerPolicy = await loadCommonJs(() => import("../game/curriculum/answerPolicy.js"), "./curriculum/answerPolicy.js");
 const QuestionContract = await loadCommonJs(() => import("../game/questionContract.js"), "./questionContract.js");
 const QuestionContractFixes = await loadCommonJs(() => import("../game/questionContractFixes.js"), "./questionContractFixes.js");
 const AnswerMatcher = await loadCommonJs(() => import("../answerMatcher.js"), "../answerMatcher.js");
@@ -85,6 +86,7 @@ Object.assign(globalThis, {
   Chapter08QuestionPacks,
   Chapter09QuestionPacks,
   NativeQuestionPacks,
+  AnswerPolicy,
   ChapterRegistrations,
   GameChapterRegistry,
   QuestionContract,
