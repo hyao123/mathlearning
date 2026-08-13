@@ -46,6 +46,11 @@ const Chapter09QuestionPacks = await loadCommonJs(() => import("../game/chapter0
 const NativeQuestionPacks = await loadCommonJs(() => import("../game/nativeQuestionPacks.js"), "./nativeQuestionPacks.js");
 const AnswerPolicy = await loadCommonJs(() => import("../game/curriculum/answerPolicy.js"), "./curriculum/answerPolicy.js");
 const QuestionContract = await loadCommonJs(() => import("../game/questionContract.js"), "./questionContract.js");
+const CurriculumContract = await loadCommonJs(() => import("../game/curriculum/curriculumContract.js"), "./curriculum/curriculumContract.js");
+const SolutionEngine = await loadCommonJs(() => import("../game/curriculum/solutionEngine.js"), "./curriculum/solutionEngine.js");
+const DifficultyEngine = await loadCommonJs(() => import("../game/curriculum/difficultyEngine.js"), "./curriculum/difficultyEngine.js");
+const QuestionQualityV3 = await loadCommonJs(() => import("../game/curriculum/questionQualityV3.js"), "./curriculum/questionQualityV3.js");
+const RuntimeAdapter = await loadCommonJs(() => import("../game/curriculum/runtimeAdapter.js"), "./curriculum/runtimeAdapter.js");
 const QuestionContractFixes = await loadCommonJs(() => import("../game/questionContractFixes.js"), "./questionContractFixes.js");
 const AnswerMatcher = await loadCommonJs(() => import("../answerMatcher.js"), "../answerMatcher.js");
 const StoryMissionModel = await loadCommonJs(() => import("../game/storyMissionModel.js"), "./storyMissionModel.js");
@@ -87,6 +92,11 @@ Object.assign(globalThis, {
   Chapter09QuestionPacks,
   NativeQuestionPacks,
   AnswerPolicy,
+  CurriculumContract,
+  SolutionEngine,
+  DifficultyEngine,
+  QuestionQualityV3,
+  RuntimeAdapter,
   ChapterRegistrations,
   GameChapterRegistry,
   QuestionContract,
