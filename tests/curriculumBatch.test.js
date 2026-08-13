@@ -99,6 +99,106 @@ function createStructureFingerprint(question) {
   ].join("|");
 }
 
+function assertDeepFrozen(value, path = "root", seen = new Set()) {
+  if (!value || typeof value !== "object" || seen.has(value)) return;
+  seen.add(value);
+  assert.equal(Object.isFrozen(value), true, `${path} must be frozen`);
+  for (const [key, child] of Object.entries(value)) assertDeepFrozen(child, `${path}.${key}`, seen);
+}
+
+function learnerVisibleText(question) {
+  return [
+    question.title,
+    question.prompt,
+    question.solution.summary,
+    ...question.solution.steps.map((step) => step.explanation),
+    question.verification.summary,
+    ...question.verification.steps.map((step) => step.explanation),
+    question.commonPitfall,
+    question.storyBeat
+  ];
+}
+
+function operationGraphFamily(question) {
+  return JSON.stringify({
+    conditions: question.conditionRoles,
+    operations: question.solution.steps.map((step) => step.operation),
+    dependencies: question.solution.steps.map((step) => step.operands.some((operand) => typeof operand === "string"))
+  });
+}
+
+test("chicken-rabbit gold questions use Chinese learner text, honest representations, and recursive freezing", () => {
+  const questions = require("../game/curriculum/gold/chickenRabbit.js");
+
+  assertDeepFrozen(questions);
+  assert.equal(new Set(questions.map(operationGraphFamily)).size >= 5, true);
+  for (const question of questions) {
+    assert.equal(/[A-Za-z]/u.test(question.title), false, `${question.id} title must be Chinese`);
+    assert.equal(/[A-Za-z]/u.test(question.prompt), false, `${question.id} prompt must be Chinese`);
+    assert.equal(question.prompt.includes("共"), true, `${question.id} prompt must state the total`);
+    assert.equal(question.prompt.includes("多少"), true, `${question.id} prompt must ask for a quantity`);
+    assert.equal(question.prompt.length <= 70, true, `${question.id} prompt must fit grade 3`);
+    assert.equal(question.prompt.split(/[。！？]/u).filter(Boolean).length <= 2, true, `${question.id} prompt has too many sentences`);
+    if (question.representation === "table") {
+      assert.match(question.prompt, /表格/u, `${question.id} must show its claimed table`);
+    }
+    if (question.representation === "bar-model") {
+      assert.match(question.prompt, /条形图/u, `${question.id} must show its claimed bar model`);
+    }
+    if (question.representation === "diagram") {
+      assert.match(question.prompt, /图/u, `${question.id} must show its claimed diagram`);
+    }
+    for (const text of learnerVisibleText(question)) {
+      assert.equal(/[A-Za-z]/u.test(text), false, `${question.id} learner-visible text must be Chinese`);
+    }
+  }
+});
+
+test("Q9 derives both robot groups from the total and difference before verifying", () => {
+  const question = require("../game/curriculum/gold/chickenRabbit.js")[8];
+  const steps = question.verification.steps;
+
+  assert.equal(question.answer, "8");
+  assert.match(question.prompt, /24个机器人/);
+  assert.match(question.prompt, /四脚机器人比两脚机器人少8个/);
+  assert.deepEqual(steps.map((step) => [step.operation, step.operands, step.result]), [
+    ["subtract", [24, 8], 16],
+    ["divide", ["$去掉差", 2], 8],
+    ["add", ["$四脚", 8], 16],
+    ["add", ["$四脚", "$两脚"], 24],
+    ["subtract", ["$两脚", "$四脚"], 8],
+    ["multiply", ["$四脚", 4], 32],
+    ["multiply", ["$两脚", 2], 32],
+    ["add", ["$四脚轮子", "$两脚轮子"], 64],
+    ["divide", ["$四脚轮子", 4], 8]
+  ]);
+});
+
+test("Q10 restores the missing wheels before solving the boss problem", () => {
+  const question = require("../game/curriculum/gold/chickenRabbit.js")[9];
+
+  assert.equal(question.answer, "10");
+  assert.equal(question.supportingConcepts.includes("sum-diff"), true);
+  assert.equal(question.transfer, "boss-integration");
+  assert.match(question.prompt, /22辆自行车和三轮车/);
+  assert.match(question.prompt, /5辆三轮车各少了1个轮子/);
+  assert.match(question.prompt, /共数到49个轮子/);
+  assert.deepEqual(question.solution.steps.map((step) => [step.operation, step.operands, step.result]), [
+    ["add", [49, 5], 54],
+    ["multiply", [22, 2], 44],
+    ["subtract", ["$原来轮子", "$全是自行车"], 10],
+    ["divide", ["$多出的轮子", 1], 10]
+  ]);
+  assert.deepEqual(question.verification.steps.map((step) => [step.operation, step.operands, step.result]), [
+    ["subtract", [22, 10], 12],
+    ["multiply", [10, 3], 30],
+    ["multiply", ["$自行车", 2], 24],
+    ["add", ["$三轮车轮子", "$自行车轮子"], 54],
+    ["subtract", ["$原来轮子", 5], 49],
+    ["divide", ["$三轮车轮子", 3], 10]
+  ]);
+});
+
 test("chicken-rabbit candidate gold questions progress from wheel differences to a restoration boss", () => {
   const questions = require("../game/curriculum/gold/chickenRabbit.js");
 
