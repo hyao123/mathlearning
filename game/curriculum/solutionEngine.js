@@ -75,6 +75,14 @@ function validateSolution(question) {
   if (!isObject(question)) return ["question must be an object"];
 
   const errors = [];
+  let answer;
+  let answerPolicy;
+  try {
+    answer = question.answer;
+    answerPolicy = question.answerPolicy;
+  } catch {
+    return ["answerPolicy validation failed"];
+  }
   const solutionResult = evaluatePath(question.solution, "solution", errors);
   const verificationResult = evaluatePath(question.verification, "verification", errors);
 
@@ -85,10 +93,10 @@ function validateSolution(question) {
     errors.push("verification strategy must differ from solution strategy");
   }
 
-  if (!isObject(question.answerPolicy)) {
+  if (!isObject(answerPolicy)) {
     errors.push("answerPolicy must be an object");
   } else {
-    validateFinalResults(solutionResult, verificationResult, question.answer, question.answerPolicy, errors);
+    validateFinalResults(solutionResult, verificationResult, answer, answerPolicy, errors);
   }
 
   if (solutionResult && verificationResult

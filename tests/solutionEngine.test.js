@@ -220,3 +220,23 @@ test("returns a validation error when policy normalization throws non-Error valu
     assert.deepEqual(engine.validateSolution(question), ["answerPolicy validation failed"]);
   }
 });
+
+test("returns a validation error when top-level answer accessors throw", () => {
+  for (const property of ["answer", "answerPolicy"]) {
+    for (const thrownValue of [null, 42, {
+      get message() {
+        throw new Error("message getter must not be read");
+      }
+    }]) {
+      const question = validQuestion();
+      Object.defineProperty(question, property, {
+        get() {
+          throw thrownValue;
+        }
+      });
+
+      assert.doesNotThrow(() => engine.validateSolution(question));
+      assert.deepEqual(engine.validateSolution(question), ["answerPolicy validation failed"]);
+    }
+  }
+});
