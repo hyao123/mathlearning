@@ -47,6 +47,15 @@ test("returns errors for malformed profiles, questions, and grade bands", () => 
   assert.ok(readability.validateReadability({ prompt: "Ready" }, "grade-7").includes("invalid gradeBand: grade-7"));
 });
 
+test("rejects inherited property names as grade bands without throwing", () => {
+  const question = { prompt: "Ready", readingProfile: { unfamiliarTerms: [] } };
+
+  for (const gradeBand of ["__proto__", "constructor", "toString"]) {
+    assert.doesNotThrow(() => readability.validateReadability(question, gradeBand));
+    assert.ok(readability.validateReadability(question, gradeBand).includes(`invalid gradeBand: ${gradeBand}`));
+  }
+});
+
 test("browser loader registers the readability dependency before the V3 quality gate", () => {
   const source = fs.readFileSync(path.join(__dirname, "..", "src", "game-main.js"), "utf8");
   const start = source.indexOf("const Readability = await loadCommonJs");

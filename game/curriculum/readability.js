@@ -16,7 +16,7 @@ function hasText(value) {
 
 function validateReadability(question, gradeBand) {
   const errors = [];
-  const limit = typeof gradeBand === "string" ? LIMITS[gradeBand] : null;
+  const limit = typeof gradeBand === "string" && Object.hasOwn(LIMITS, gradeBand) ? LIMITS[gradeBand] : null;
   if (!limit) errors.push(typeof gradeBand === "string" ? `invalid gradeBand: ${gradeBand}` : "invalid gradeBand");
   if (!isObject(question)) return [...errors, "question must be an object"];
 
