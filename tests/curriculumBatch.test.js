@@ -7,6 +7,9 @@ const vm = require("node:vm");
 const builder = require("../game/chapterBuilder.js");
 const registry = require("../game/curriculum/contentBatchRegistry.js");
 const compatibility = require("../game/curriculum/compatibilityMap.js");
+const curriculum = require("../game/curriculum/curriculumMap.js");
+const quality = require("../game/curriculum/questionQualityV3.js");
+const difficulty = require("../game/curriculum/difficultyEngine.js");
 
 const CHICKEN_RABBIT_SLOT_IDS = [
   "chicken-rabbit-1",
@@ -85,6 +88,40 @@ function approvedBatch(contentVersion = "2026.08.13-gold.1") {
     }]
   };
 }
+
+function createStructureFingerprint(question) {
+  return [
+    question.structureFamily,
+    question.representation,
+    question.questionDirection,
+    question.solution.strategy,
+    question.supportingConcepts.join(",")
+  ].join("|");
+}
+
+test("chicken-rabbit candidate gold questions progress from wheel differences to a restoration boss", () => {
+  const questions = require("../game/curriculum/gold/chickenRabbit.js");
+
+  assert.equal(Object.isFrozen(questions), true);
+  assert.equal(questions.length, 10);
+  assert.deepEqual(questions.map((question) => question.id), CHICKEN_RABBIT_SLOT_IDS);
+  assert.deepEqual(questions.map((question) => question.slot), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  assert.equal(new Set(questions.map(createStructureFingerprint)).size >= 5, true);
+  assert.deepEqual(difficulty.validateTopicProgression(questions), []);
+  assert.equal(questions[9].supportingConcepts.includes("sum-diff"), true);
+  assert.equal(questions[9].transfer, "boss-integration");
+  assert.equal(questions.every(Object.isFrozen), true);
+
+  const topic = curriculum.getCurriculumTopic("chicken-rabbit");
+  for (const question of questions) {
+    assert.deepEqual(quality.validateQuestionV3(question, topic), [], question.id);
+  }
+  assert.deepEqual(compatibility.validateCompatibilityMap({
+    chapterId: "chapter-01",
+    moduleId: "chicken-rabbit",
+    questions
+  }), []);
+});
 
 test("compatibility slots retain the stable identity of all three approved curriculum topics", () => {
   assert.deepEqual(compatibility.GOLD_SLOT_IDS["chicken-rabbit"], CHICKEN_RABBIT_SLOT_IDS);
