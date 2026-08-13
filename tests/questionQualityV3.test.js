@@ -89,3 +89,16 @@ test("returns errors instead of throwing for malformed V3 values", () => {
   assert.doesNotThrow(() => quality.validateQuestionV3(null, null));
   assert.deepEqual(quality.validateQuestionV3(null, null), ["question must be an object"]);
 });
+
+test("composes readability errors with the registered topic grade band", () => {
+  const errors = quality.validateQuestionV3(
+    validQuestion({
+      prompt: "a".repeat(71),
+      readingProfile: { unfamiliarTerms: ["term one", "term two"] }
+    }),
+    curriculum.getCurriculumTopic("chicken-rabbit")
+  );
+
+  assert.ok(errors.includes("prompt exceeds 70 characters"));
+  assert.ok(errors.includes("unfamiliar terms exceed 1"));
+});

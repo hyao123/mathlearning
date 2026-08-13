@@ -29,7 +29,7 @@ function validQuestion(level, id, overrides = {}) {
     level,
     slot: level,
     title: `Chicken rabbit ${level}`,
-    prompt: `There are 10 animals and 28 legs. How many rabbits are there? Task ${level}.`,
+    prompt: `Ten animals have 28 legs; how many rabbits are there in task ${level}?`,
     answer: "4",
     answerType: "numeric",
     answerFormat: "integer",
@@ -193,6 +193,7 @@ test("browser loader evaluates the content batch registry with short-path depend
     ["../game/questionContract.js", "game/questionContract.js"],
     ["../game/curriculum/solutionEngine.js", "game/curriculum/solutionEngine.js"],
     ["../game/curriculum/difficultyEngine.js", "game/curriculum/difficultyEngine.js"],
+    ["../game/curriculum/readability.js", "game/curriculum/readability.js"],
     ["../game/curriculum/questionQualityV3.js", "game/curriculum/questionQualityV3.js"],
     ["../game/curriculum/curriculumMap.js", "game/curriculum/curriculumMap.js"],
     ["../game/curriculum/compatibilityMap.js", "game/curriculum/compatibilityMap.js"],
@@ -214,6 +215,7 @@ test("browser loader evaluates the content batch registry with short-path depend
   await load("../game/questionContract.js", ["./questionContract.js", "../questionContract.js"]);
   await load("../game/curriculum/solutionEngine.js", ["./curriculum/solutionEngine.js", "./solutionEngine.js"]);
   await load("../game/curriculum/difficultyEngine.js", ["./curriculum/difficultyEngine.js", "./difficultyEngine.js"]);
+  await load("../game/curriculum/readability.js", ["./curriculum/readability.js", "./readability.js"]);
   await load("../game/curriculum/questionQualityV3.js", ["./curriculum/questionQualityV3.js", "./questionQualityV3.js"]);
 
   const registryLoads = source.match(/const CurriculumMap = await loadCommonJs[\s\S]*?const ContentBatchRegistry = await loadCommonJs[\s\S]*?;\r?\n/)?.[0];

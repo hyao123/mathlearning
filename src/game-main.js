@@ -60,6 +60,9 @@ const SolutionEngine = await loadCommonJs(() => import("../game/curriculum/solut
 const DifficultyEngine = await loadCommonJs(() => import("../game/curriculum/difficultyEngine.js"), [
   "./curriculum/difficultyEngine.js", "./difficultyEngine.js"
 ]);
+const Readability = await loadCommonJs(() => import("../game/curriculum/readability.js"), [
+  "./curriculum/readability.js", "./readability.js"
+]);
 const QuestionQualityV3 = await loadCommonJs(() => import("../game/curriculum/questionQualityV3.js"), [
   "./curriculum/questionQualityV3.js", "./questionQualityV3.js"
 ]);
@@ -116,6 +119,7 @@ Object.assign(globalThis, {
   CurriculumContract,
   SolutionEngine,
   DifficultyEngine,
+  Readability,
   QuestionQualityV3,
   RuntimeAdapter,
   CurriculumMap,

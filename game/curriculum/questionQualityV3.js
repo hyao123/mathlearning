@@ -9,6 +9,7 @@ const AnswerPolicy = getModule("AnswerPolicy", "./answerPolicy.js");
 const QuestionContract = getModule("QuestionContract", "../questionContract.js");
 const SolutionEngine = getModule("SolutionEngine", "./solutionEngine.js");
 const DifficultyEngine = getModule("DifficultyEngine", "./difficultyEngine.js");
+const Readability = getModule("Readability", "./readability.js");
 
 const STEP_KINDS = new Set(["observe", "model", "calculate", "verify"]);
 
@@ -42,6 +43,7 @@ function validateQuestionV3(question, topic) {
     validateSolutionFields(question, errors);
     validateReviewMetadata(question.reviewMetadata, errors);
     validateLearnerVisibleFields(question, errors);
+    validateReadability(question, topic, errors);
 
     if (Object.hasOwn(question, "difficultyProfile")) errors.push("difficultyProfile must not be authored");
     if (Object.hasOwn(question, "computedDifficulty")) errors.push("computedDifficulty must not be authored");
@@ -51,6 +53,12 @@ function validateQuestionV3(question, topic) {
   } catch {
     return ["question could not be read"];
   }
+}
+
+function validateReadability(question, topic, errors) {
+  const gradeBand = isObject(topic) ? topic.gradeBand : undefined;
+  const readabilityErrors = Readability?.validateReadability?.(question, gradeBand) || ["readability gate is unavailable"];
+  errors.push(...readabilityErrors);
 }
 
 function validateTopic(question, topic, errors) {

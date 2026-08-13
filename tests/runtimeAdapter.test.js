@@ -111,6 +111,7 @@ test("browser CommonJS loader registers every V3 curriculum dependency request",
     ["CurriculumContract", ["./curriculum/curriculumContract.js", "./curriculumContract.js"]],
     ["SolutionEngine", ["./curriculum/solutionEngine.js", "./solutionEngine.js"]],
     ["DifficultyEngine", ["./curriculum/difficultyEngine.js", "./difficultyEngine.js"]],
+    ["Readability", ["./curriculum/readability.js", "./readability.js"]],
     ["QuestionQualityV3", ["./curriculum/questionQualityV3.js", "./questionQualityV3.js"]],
     ["RuntimeAdapter", ["./curriculum/runtimeAdapter.js", "./runtimeAdapter.js"]]
   ]) {
