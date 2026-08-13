@@ -3,6 +3,55 @@ const test = require("node:test");
 
 const validation = require("../scripts/validate-game-content.js");
 const reviewTemplate = require("../scripts/generate-human-review-template.js");
+const integrity = require("../scripts/humanReviewIntegrity.js");
+
+function validV3Question(overrides = {}) {
+  return {
+    schemaVersion: 3,
+    id: "v3-hash-1",
+    topicId: "chicken-rabbit",
+    level: 1,
+    title: "Chicken and rabbit count",
+    prompt: "Ten animals have 28 legs. How many rabbits are there?",
+    answer: "4",
+    answerType: "numeric",
+    answerFormat: "integer",
+    answerPolicy: { kind: "integer", min: 0 },
+    primaryConcept: "assumption method",
+    supportingConcepts: ["substitution"],
+    structureFamily: "assume-and-adjust",
+    conditionRoles: ["animal-total", "leg-total"],
+    reasoningMoves: ["assume", "substitute", "verify"],
+    representation: "table",
+    representationShift: true,
+    questionDirection: "find-parameter",
+    strategyChoices: ["assume-all-chickens", "equation"],
+    shortcutType: "none",
+    transfer: "representation-shift",
+    solution: {
+      strategy: "assume-all-chickens",
+      observation: "Assume every animal is a chicken.",
+      summary: "(28 - 20) / 2 = 4",
+      steps: [{ id: "difference", kind: "calculate", operation: "subtract", operands: [28, 20], result: 8, explanation: "There are eight extra legs." }]
+    },
+    verification: {
+      strategy: "substitute-counts",
+      summary: "Four rabbits and six chickens have 28 legs.",
+      steps: [{ id: "total", kind: "verify", operation: "add", operands: [16, 12], result: 28, explanation: "The total matches." }]
+    },
+    commonPitfall: "Do not count each rabbit leg as an extra leg.",
+    storyBeat: "Check the animal inventory.",
+    readingProfile: { unfamiliarTerms: ["inventory"], sentenceCount: 2 },
+    authorNotes: "Use after the introductory assumption lesson.",
+    ...overrides
+  };
+}
+
+function reverseObjectKeys(value) {
+  if (Array.isArray(value)) return value.map(reverseObjectKeys);
+  if (!value || typeof value !== "object") return value;
+  return Object.fromEntries(Object.keys(value).reverse().map((key) => [key, reverseObjectKeys(value[key])]));
+}
 
 test("built first chapter has 120 structured questions before human approval", () => {
   const modules = validation.loadExpandedModules();
@@ -95,4 +144,85 @@ test("every chapter uses the same raw-to-material-to-component reward contract",
   CHAPTER_IDS.forEach((chapterId) => {
     assert.deepEqual(validation.validateProjectChain(chapterId), [], chapterId);
   });
+});
+
+test("legacy reviewed question hashes retain their established payload", () => {
+  const legacy = {
+    id: "legacy-hash-1",
+    title: "Legacy title",
+    prompt: "Solve 2 + 2.",
+    answer: "4",
+    explanation: "Add the two values.",
+    difficulty: 2,
+    knowledgeGoal: "addition",
+    typicalModel: "number line",
+    commonPitfall: "Do not subtract.",
+    transferType: "direct",
+    verificationMethod: "Add again.",
+    learningObjective: "Practice addition.",
+    storyBeat: "A short legacy story."
+  };
+
+  assert.equal(integrity.getQuestionContentHash(legacy), "59bf3477220a2a7eac5e6f1bdf8bb89931faffdd55d47d5a69d7de5ec134739c");
+});
+
+test("V3 hashes cover each pedagogical field", () => {
+  const base = validV3Question();
+  const changes = [
+    ["id", "v3-hash-2"],
+    ["topicId", "shortest-path"],
+    ["level", 2],
+    ["title", "Changed title"],
+    ["prompt", "Changed prompt"],
+    ["answer", "5"],
+    ["answerType", "structured"],
+    ["answerFormat", "decimal"],
+    ["answerPolicy", { kind: "integer", min: 1 }],
+    ["primaryConcept", "equation model"],
+    ["supportingConcepts", ["substitution", "comparison"]],
+    ["structureFamily", "equation"],
+    ["conditionRoles", ["animal-total"]],
+    ["reasoningMoves", ["assume", "compare", "verify"]],
+    ["representation", "equation"],
+    ["representationShift", false],
+    ["questionDirection", "reverse"],
+    ["strategyChoices", ["equation"]],
+    ["shortcutType", "guess"],
+    ["transfer", "cross-concept"],
+    ["solution", { ...base.solution, strategy: "changed-strategy" }],
+    ["verification", { ...base.verification, summary: "Changed verification." }],
+    ["commonPitfall", "Changed pitfall."],
+    ["storyBeat", "Changed story beat."],
+    ["readingProfile", { unfamiliarTerms: ["different"], sentenceCount: 2 }],
+    ["authorNotes", "Changed teaching note."]
+  ];
+
+  const baseHash = integrity.getQuestionContentHash(base);
+  for (const [field, value] of changes) {
+    assert.notEqual(integrity.getQuestionContentHash({ ...base, [field]: value }), baseHash, field);
+  }
+});
+
+test("V3 pedagogical hashes are recursive-key-order independent and ignore runtime review fields", () => {
+  const base = validV3Question();
+  const reordered = reverseObjectKeys(base);
+
+  assert.equal(integrity.getQuestionContentHash(reordered), integrity.getQuestionContentHash(base));
+  assert.equal(
+    integrity.getQuestionContentHash({
+      ...base,
+      reviewMetadata: { reviewer: "Different reviewer", reviewedAt: "2099-01-01T00:00:00.000Z" },
+      rewardPreview: { coins: 999 },
+      contentVersion: "2099.01.01",
+      batchStatus: "pending",
+      slot: "different runtime slot",
+      slotText: "Different slot text",
+      difficultyProfile: { score: 999 },
+      computedDifficulty: { score: 999 },
+      isBoss: true,
+      learningObjective: "Runtime-derived objective",
+      solutionReview: { method: "Runtime review" }
+    }),
+    integrity.getQuestionContentHash(base)
+  );
 });
