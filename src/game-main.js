@@ -66,8 +66,12 @@ const QuestionQualityV3 = await loadCommonJs(() => import("../game/curriculum/qu
 const RuntimeAdapter = await loadCommonJs(() => import("../game/curriculum/runtimeAdapter.js"), [
   "./curriculum/runtimeAdapter.js", "./runtimeAdapter.js"
 ]);
-const CurriculumMap = await loadCommonJs(() => import("../game/curriculum/curriculumMap.js"), "./curriculum/curriculumMap.js");
-const CompatibilityMap = await loadCommonJs(() => import("../game/curriculum/compatibilityMap.js"), "./curriculum/compatibilityMap.js");
+const CurriculumMap = await loadCommonJs(() => import("../game/curriculum/curriculumMap.js"), [
+  "./curriculum/curriculumMap.js", "./curriculumMap.js"
+]);
+const CompatibilityMap = await loadCommonJs(() => import("../game/curriculum/compatibilityMap.js"), [
+  "./curriculum/compatibilityMap.js", "./compatibilityMap.js"
+]);
 const ContentBatchRegistry = await loadCommonJs(() => import("../game/curriculum/contentBatchRegistry.js"), "./curriculum/contentBatchRegistry.js");
 const QuestionContractFixes = await loadCommonJs(() => import("../game/questionContractFixes.js"), "./questionContractFixes.js");
 const StoryMissionModel = await loadCommonJs(() => import("../game/storyMissionModel.js"), "./storyMissionModel.js");

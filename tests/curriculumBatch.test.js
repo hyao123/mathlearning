@@ -2,6 +2,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const test = require("node:test");
+const vm = require("node:vm");
 
 const builder = require("../game/chapterBuilder.js");
 const registry = require("../game/curriculum/contentBatchRegistry.js");
@@ -90,11 +91,11 @@ test("compatibility slots retain the stable identity of all three approved curri
   assert.deepEqual(compatibility.GOLD_SLOT_IDS["integrated-modeling"], Array.from({ length: 10 }, (_, index) => `chapter-09-integrated-modeling-${index + 1}`));
 });
 
-test("candidate batches never activate and the builder retains the legacy fallback", () => {
+test("rejected batches never activate and the builder retains the legacy fallback", () => {
   const before = builder.buildChapter("chapter-08", []).levels.find((level) => level.moduleId === "shortest-path");
-  const candidate = { ...approvedBatch(), status: "candidate" };
+  const rejected = { ...approvedBatch(), status: "rejected" };
 
-  assert.equal(registry.registerContentBatch(candidate), false);
+  assert.equal(registry.registerContentBatch(rejected), false);
   assert.equal(registry.getActiveTopicQuestions("chapter-01", "chicken-rabbit"), null);
 
   const after = builder.buildChapter("chapter-08", []).levels.find((level) => level.moduleId === "shortest-path");
@@ -124,7 +125,7 @@ test("an explicitly approved reviewed batch activates V3 questions in stable slo
   assert.equal(level.questions.every((question) => question.schemaVersion === 3), true);
 });
 
-test("an invalid newer replacement is atomic and cannot alter the active batch", () => {
+test("a malformed registration after a valid active batch leaves that batch unchanged", () => {
   const replacement = approvedBatch("2026.08.13-gold.2");
   replacement.topics[0].questions[4].id = "not-a-compatible-slot";
 
@@ -132,6 +133,15 @@ test("an invalid newer replacement is atomic and cannot alter the active batch",
   const active = registry.getActiveTopicQuestions("chapter-01", "chicken-rabbit");
   assert.equal(active.contentVersion, "2026.08.13-gold.1");
   assert.deepEqual(active.questions.map((question) => question.id), CHICKEN_RABBIT_SLOT_IDS);
+});
+
+test("same and older contentVersion registrations leave the active batch unchanged", () => {
+  const before = registry.getActiveTopicQuestions("chapter-01", "chicken-rabbit");
+
+  assert.equal(registry.registerContentBatch(approvedBatch("2026.08.13-gold.1")), false);
+  assert.equal(registry.registerContentBatch(approvedBatch("2026.08.13-gold.0")), false);
+
+  assert.deepEqual(registry.getActiveTopicQuestions("chapter-01", "chicken-rabbit"), before);
 });
 
 test("a dotted contentVersion replacement treats .10 as newer than .2", () => {
@@ -168,24 +178,52 @@ test("batch validation rejects incomplete, unknown-topic, and mismapped slots", 
   assert.match(registry.validateContentBatch(wrongSlot).join("\n"), /slot/);
 });
 
-test("browser loader registers curriculum batch dependencies before chapter builder", () => {
+test("browser loader evaluates the content batch registry with short-path dependencies", async () => {
   const source = fs.readFileSync(path.join(__dirname, "..", "src", "game-main.js"), "utf8");
-  const entries = [
-    ["CurriculumMap", "./curriculum/curriculumMap.js"],
-    ["CompatibilityMap", "./curriculum/compatibilityMap.js"],
-    ["ContentBatchRegistry", "./curriculum/contentBatchRegistry.js"]
-  ].map(([name, request]) => ({
-    name,
-    request,
-    start: source.indexOf(`const ${name} = await loadCommonJs`)
-  }));
+  const prelude = source.slice(0, source.indexOf("const GameChapterConfig ="))
+    .replace(/^import "\.\.\/game\/game\.css";\s*/, "")
+    .concat("\nglobalThis.__testLoadCommonJs = loadCommonJs;");
+  const context = vm.createContext({ structuredClone });
+  vm.runInContext(prelude, context, { filename: "game-main-loader.js" });
 
-  entries.forEach(({ name, request, start }) => {
-    assert.notEqual(start, -1, `${name} must be loaded`);
-    const end = source.indexOf("\nconst ", start + 1);
-    assert.ok(source.slice(start, end === -1 ? source.length : end).includes(`"${request}"`), `${name} must register ${request}`);
-  });
-  assert.ok(entries[0].start < entries[1].start);
-  assert.ok(entries[1].start < entries[2].start);
-  assert.ok(entries[2].start < source.indexOf("const GameChapterBuilder = await loadCommonJs"));
+  const fileByRequest = new Map([
+    ["../answerMatcher.js", "answerMatcher.js"],
+    ["../game/curriculum/curriculumContract.js", "game/curriculum/curriculumContract.js"],
+    ["../game/curriculum/answerPolicy.js", "game/curriculum/answerPolicy.js"],
+    ["../game/questionContract.js", "game/questionContract.js"],
+    ["../game/curriculum/solutionEngine.js", "game/curriculum/solutionEngine.js"],
+    ["../game/curriculum/difficultyEngine.js", "game/curriculum/difficultyEngine.js"],
+    ["../game/curriculum/questionQualityV3.js", "game/curriculum/questionQualityV3.js"],
+    ["../game/curriculum/curriculumMap.js", "game/curriculum/curriculumMap.js"],
+    ["../game/curriculum/compatibilityMap.js", "game/curriculum/compatibilityMap.js"],
+    ["../game/curriculum/contentBatchRegistry.js", "game/curriculum/contentBatchRegistry.js"]
+  ]);
+  const importCommonJs = async (request) => {
+    const relativePath = fileByRequest.get(request);
+    if (!relativePath) throw new Error(`Unexpected browser import: ${request}`);
+    const commonJsSource = fs.readFileSync(path.join(__dirname, "..", relativePath), "utf8");
+    vm.runInContext(`(function () {\n${commonJsSource}\n})()`, context, { filename: relativePath });
+    return { default: context.module.exports };
+  };
+  context.__testImport = importCommonJs;
+  const load = (request, aliases) => context.__testLoadCommonJs(() => importCommonJs(request), aliases);
+
+  await load("../game/curriculum/curriculumContract.js", ["./curriculum/curriculumContract.js", "./curriculumContract.js"]);
+  await load("../game/curriculum/answerPolicy.js", ["./curriculum/answerPolicy.js", "./answerPolicy.js", "./game/curriculum/answerPolicy.js"]);
+  await load("../answerMatcher.js", ["../answerMatcher.js", "../../answerMatcher.js"]);
+  await load("../game/questionContract.js", ["./questionContract.js", "../questionContract.js"]);
+  await load("../game/curriculum/solutionEngine.js", ["./curriculum/solutionEngine.js", "./solutionEngine.js"]);
+  await load("../game/curriculum/difficultyEngine.js", ["./curriculum/difficultyEngine.js", "./difficultyEngine.js"]);
+  await load("../game/curriculum/questionQualityV3.js", ["./curriculum/questionQualityV3.js", "./questionQualityV3.js"]);
+
+  const registryLoads = source.match(/const CurriculumMap = await loadCommonJs[\s\S]*?const ContentBatchRegistry = await loadCommonJs[\s\S]*?;\r?\n/)?.[0];
+  assert.ok(registryLoads, "game-main must load the content batch registry");
+  await vm.runInContext(`(async () => {\n${registryLoads.replaceAll("import(", "globalThis.__testImport(")}\nglobalThis.__contentBatchRegistry = ContentBatchRegistry;\n})()`, context);
+
+  assert.equal(typeof context.__contentBatchRegistry.registerContentBatch, "function");
+  assert.equal(context.__contentBatchRegistry.getActiveTopicQuestions("chapter-01", "chicken-rabbit"), null);
+  await assert.rejects(
+    context.__testLoadCommonJs(() => vm.runInContext('require("./unknown.js")', context), "./unknown.js"),
+    /Game module dependency was not loaded: \.\/unknown\.js/
+  );
 });
