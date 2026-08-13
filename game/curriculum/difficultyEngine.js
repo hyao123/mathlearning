@@ -12,6 +12,7 @@ const ABRUPT_JUMP = 5;
 const MILD_DEPENDENCY_VARIATION = 1;
 // Adjacent questions may vary by one structural score point without regressing.
 const SCORE_TOLERANCE = 1;
+const BINARY_OPERATIONS = new Set(["add", "subtract", "multiply", "divide", "ceilDivide", "remainder"]);
 
 function isObject(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -32,6 +33,8 @@ function validateStringMembers(values, field, errors) {
 }
 
 function validateSteps(steps, errors) {
+  const completedStepIds = new Set();
+
   steps.forEach((step, index) => {
     if (!isObject(step)) {
       errors.push(`step at index ${index} must be an object`);
@@ -40,8 +43,35 @@ function validateSteps(steps, errors) {
     if (!Object.hasOwn(OPERATIONS, step.operation)) {
       errors.push(`unsupported operation at step ${index}: ${String(step.operation)}`);
     }
-    if (!Array.isArray(step.operands)) errors.push(`operands at step ${index} must be an array`);
+    validateStepOperands(step, index, completedStepIds, errors);
     if (!Number.isFinite(step.result)) errors.push(`result at step ${index} must be a finite number`);
+
+    if (typeof step.id === "string" && step.id.trim()) completedStepIds.add(step.id);
+  });
+}
+
+function validateStepOperands(step, stepIndex, completedStepIds, errors) {
+  if (!Array.isArray(step.operands)) {
+    errors.push(`operands at step ${stepIndex} must be an array`);
+    return;
+  }
+  if (!step.operands.length) errors.push(`operands at step ${stepIndex} must be a non-empty array`);
+  if (BINARY_OPERATIONS.has(step.operation) && step.operands.length !== 2) {
+    errors.push(`${step.operation} at step ${stepIndex} requires exactly two operands`);
+  }
+
+  step.operands.forEach((operand, operandIndex) => {
+    if (Number.isFinite(operand)) return;
+
+    const reference = typeof operand === "string" && /^\$(\S+)$/.exec(operand);
+    if (reference) {
+      if (!completedStepIds.has(reference[1])) {
+        errors.push(`operand at step ${stepIndex} index ${operandIndex} has an invalid or forward reference: ${operand}`);
+      }
+      return;
+    }
+
+    errors.push(`operand at step ${stepIndex} index ${operandIndex} must be a finite number or a prior-step reference`);
   });
 }
 

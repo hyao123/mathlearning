@@ -142,3 +142,38 @@ test("returns explicit errors for malformed V3 difficulty inputs", () => {
     assert.match(difficultyEngine.validateTopicProgression([malformed]).join("\n"), new RegExp(expectedError));
   }
 });
+
+test("validates V3 step operands for difficulty evaluation and progression", () => {
+  const validReference = question({ stepCount: 2 });
+  validReference.solution.steps[1].operands = ["$step-1", 1];
+  assert.equal(difficultyEngine.evaluateDifficulty(validReference).errors, undefined);
+
+  const malformedOperands = [
+    ["add", [], "operands at step 0 must be a non-empty array"],
+    ["sum", [], "operands at step 0 must be a non-empty array"],
+    ["min", [], "operands at step 0 must be a non-empty array"],
+    ["max", [], "operands at step 0 must be a non-empty array"],
+    ["add", [1], "add at step 0 requires exactly two operands"],
+    ["subtract", [1, 2, 3], "subtract at step 0 requires exactly two operands"],
+    ["multiply", [1], "multiply at step 0 requires exactly two operands"],
+    ["divide", [1], "divide at step 0 requires exactly two operands"],
+    ["ceilDivide", [1], "ceilDivide at step 0 requires exactly two operands"],
+    ["remainder", [1], "remainder at step 0 requires exactly two operands"],
+    ["add", [true, 1], "operand at step 0 index 0 must be a finite number or a prior-step reference"],
+    ["add", [{}, 1], "operand at step 0 index 0 must be a finite number or a prior-step reference"],
+    ["add", ["not-a-reference", 1], "operand at step 0 index 0 must be a finite number or a prior-step reference"],
+    ["add", ["$step-1", 1], "operand at step 0 index 0 has an invalid or forward reference: $step-1"]
+  ];
+
+  for (const [operation, operands, expectedError] of malformedOperands) {
+    const malformed = question();
+    malformed.solution.steps[0].operation = operation;
+    malformed.solution.steps[0].operands = operands;
+
+    assert.ok(difficultyEngine.evaluateDifficulty(malformed).errors?.includes(expectedError), expectedError);
+    assert.ok(
+      difficultyEngine.validateTopicProgression([malformed]).includes(`question at index 0: ${expectedError}`),
+      expectedError
+    );
+  }
+});
