@@ -137,6 +137,20 @@ function operandTopology(steps) {
   ]);
 }
 
+function hasPairedAddSubtractRoundTrip(steps) {
+  return steps.some((addStep, addIndex) => {
+    if (addStep.operation !== "add") return false;
+
+    return steps.slice(addIndex + 1).some((subtractStep) => {
+      if (subtractStep.operation !== "subtract") return false;
+      const sharedAddend = addStep.operands.find((operand) => subtractStep.operands.includes(operand));
+      return subtractStep.operands.includes(`$${addStep.id}`)
+        && sharedAddend !== undefined
+        && addStep.operands.includes(subtractStep.result);
+    });
+  });
+}
+
 test("shortest-path gold questions form a frozen Chinese Grade-6 progression through the cup-entry route", () => {
   const modulePath = path.join(__dirname, "..", "game", "curriculum", "gold", "shortestPath.js");
   assert.equal(fs.existsSync(modulePath), true, "shortest-path gold module must exist");
@@ -314,6 +328,11 @@ test("integrated-modeling source graphs use independent verification without fil
       operandTopology(question.solution.steps),
       `${question.id} verification must use a distinct operand topology`
     );
+    assert.equal(
+      hasPairedAddSubtractRoundTrip(question.verification.steps),
+      false,
+      `${question.id} verification must not recover an addend by subtracting it from its reconstructed total`
+    );
 
     for (const path of [question.solution, question.verification]) {
       const derivedResults = new Set();
@@ -340,7 +359,13 @@ test("integrated-modeling fixes keep learner outputs, representations, and seria
   const [q3, q5, q6, , , q9, q10] = [questions[2], questions[4], questions[5], null, null, questions[8], questions[9]];
 
   assert.deepEqual(q3.verification.steps.map((step) => step.id), ["六箱容量复算", "七箱容量", "最少箱数"]);
-  assert.deepEqual(q5.verification.steps.map((step) => step.id), ["前两轮复算", "三轮总分", "平均分", "第三轮分数"]);
+  assert.deepEqual(q5.verification.steps.map((step) => [step.id, step.operation, step.operands, step.result]), [
+    ["验算目标总分", "multiply", [84, 3], 252],
+    ["验算前两轮总分", "add", [80, 86], 166],
+    ["已知分数最高值", "max", [80, 86, 84], 86],
+    ["应得第三轮", "subtract", ["$验算目标总分", "$验算前两轮总分"], 86],
+    ["第三轮至少得分", "max", ["$应得第三轮", "$已知分数最高值"], 86]
+  ]);
 
   assert.equal(q6.representation, "table");
   assert.match(q6.prompt, /配送表格/u);
