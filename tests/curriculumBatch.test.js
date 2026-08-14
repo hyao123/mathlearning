@@ -181,6 +181,26 @@ test("shortest-path fixes expose their geometry, costs, reverse endpoint, and in
   const questions = require("../game/curriculum/gold/shortestPath.js");
   const [q3, q4, q5, q6, , , q9, q10] = questions.slice(2);
 
+  assert.deepEqual(q4.solution.steps.map((step) => [step.operation, step.operands, step.result]), [
+    ["multiply", [3, 2], 6],
+    ["multiply", ["$3的阶乘", 4], 24],
+    ["multiply", [2, 2], 4],
+    ["divide", ["$4的阶乘", "$两个2的阶乘积"], 6]
+  ]);
+  assert.deepEqual(q4.verification.steps.map((step) => step.result), [3, 3, 6]);
+  assert.deepEqual(q6.verification.steps.at(-1).operands, [10, "$已走横向格数"]);
+  assert.equal(q6.verification.steps.at(-1).result, 6);
+  assert.equal(q9.solution.steps.at(-1).operation, "add");
+  assert.equal(q9.solution.steps.at(-1).result, 13);
+  assert.deepEqual(q9.solution.steps.at(-2), {
+    id: "较长必经段",
+    kind: "calculate",
+    operation: "max",
+    operands: ["$到检查点", "$后段"],
+    result: 7,
+    explanation: "两段都必须走，其中较长的一段是7格。"
+  });
+
   assert.equal(q3.answer, "7");
   assert.match(q3.prompt, /6列2行/);
   assert.match(q3.prompt, /第2列第0行到第3列第0行/);
@@ -215,6 +235,30 @@ test("shortest-path fixes expose their geometry, costs, reverse endpoint, and in
       operandTopology(question.solution.steps),
       `${question.id} verification must use a distinct operand topology`
     );
+  }
+});
+
+test("shortest-path source graphs contain no filler calculations", () => {
+  const questions = require("../game/curriculum/gold/shortestPath.js");
+
+  for (const question of questions) {
+    for (const path of [question.solution, question.verification]) {
+      const derivedResults = new Set();
+      for (const step of path.steps) {
+        assert.equal(
+          step.operation === "divide" && step.operands.at(-1) === 1,
+          false,
+          `${question.id} must not divide by 1 as a filler`
+        );
+        assert.equal(
+          ["min", "max"].includes(step.operation)
+          && step.operands.some((operand) => typeof operand === "number" && derivedResults.has(operand)),
+          false,
+          `${question.id} must not compare a derived value with the same literal as confirmation`
+        );
+        derivedResults.add(step.result);
+      }
+    }
   }
 });
 
