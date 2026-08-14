@@ -110,6 +110,8 @@ function learnerVisibleText(question) {
   return [
     question.title,
     question.prompt,
+    question.solution.strategy,
+    ...question.strategyChoices,
     question.solution.summary,
     ...question.solution.steps.map((step) => step.explanation),
     question.verification.summary,
