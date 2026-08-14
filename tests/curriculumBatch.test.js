@@ -262,6 +262,78 @@ test("shortest-path source graphs contain no filler calculations", () => {
   }
 });
 
+test("integrated-modeling gold questions form a frozen Chinese cup-entry progression", () => {
+  const modulePath = path.join(__dirname, "..", "game", "curriculum", "gold", "integratedModeling.js");
+  assert.equal(fs.existsSync(modulePath), true, "integrated-modeling gold module must exist");
+
+  const questions = require("../game/curriculum/gold/integratedModeling.js");
+  assertDeepFrozen(questions);
+  assert.equal(questions.length, 10);
+  assert.deepEqual(
+    questions.map((question) => question.id),
+    Array.from({ length: 10 }, (_, index) => `chapter-09-integrated-modeling-${index + 1}`)
+  );
+  assert.deepEqual(questions.map((question) => [question.level, question.slot]), Array.from({ length: 10 }, (_, index) => [index + 1, index + 1]));
+  assert.equal(new Set(questions.map(operationGraphFamily)).size >= 6, true);
+  assert.deepEqual(difficulty.validateTopicProgression(questions), []);
+
+  const topic = curriculum.getCurriculumTopic("integrated-modeling");
+  for (const question of questions) {
+    assert.deepEqual(quality.validateQuestionV3(question, topic), [], question.id);
+    for (const text of learnerVisibleText(question)) {
+      assert.equal(/[A-Za-z]/u.test(text), false, `${question.id} learner-visible text must be Chinese`);
+    }
+    if (question.representation === "table") assert.match(question.prompt, /表格/u, `${question.id} must show its table`);
+    if (question.representation === "route-map") assert.match(question.prompt, /路线图/u, `${question.id} must show its route map`);
+    if (question.representation === "diagram") assert.match(question.prompt, /示意图|方格图/u, `${question.id} must show its diagram`);
+    if (question.representation === "equation") assert.match(question.prompt, /算式/u, `${question.id} must show its equation`);
+  }
+
+  assert.equal(questions[9].transfer, "boss-integration");
+  assert.equal(questions[9].supportingConcepts.length >= 2, true);
+  assert.match(questions[9].prompt, /竞赛|杯赛/u);
+  assert.deepEqual(compatibility.validateCompatibilityMap({
+    chapterId: "chapter-09",
+    moduleId: "integrated-modeling",
+    questions
+  }), []);
+});
+
+test("integrated-modeling source graphs use independent verification without filler operations", () => {
+  const questions = require("../game/curriculum/gold/integratedModeling.js");
+
+  for (const question of questions) {
+    const solutionIds = new Set(question.solution.steps.map((step) => `$${step.id}`));
+    const verificationRefs = question.verification.steps
+      .flatMap((step) => step.operands)
+      .filter((operand) => typeof operand === "string");
+    assert.equal(verificationRefs.some((operand) => solutionIds.has(operand)), false, `${question.id} verification must not reuse solution outputs`);
+    assert.notDeepEqual(
+      operandTopology(question.verification.steps),
+      operandTopology(question.solution.steps),
+      `${question.id} verification must use a distinct operand topology`
+    );
+
+    for (const path of [question.solution, question.verification]) {
+      const derivedResults = new Set();
+      for (const step of path.steps) {
+        assert.equal(
+          step.operation === "divide" && step.operands.at(-1) === 1,
+          false,
+          `${question.id} must not divide by 1 as filler`
+        );
+        assert.equal(
+          ["min", "max"].includes(step.operation)
+          && step.operands.some((operand) => typeof operand === "number" && derivedResults.has(operand)),
+          false,
+          `${question.id} must not compare a derived value with the same literal as confirmation`
+        );
+        derivedResults.add(step.result);
+      }
+    }
+  }
+});
+
 test("chicken-rabbit gold questions use Chinese learner text, honest representations, and recursive freezing", () => {
   const questions = require("../game/curriculum/gold/chickenRabbit.js");
 
