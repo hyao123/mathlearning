@@ -84,11 +84,10 @@ const INTEGRATED_MODELING_GOLD_QUESTIONS = deepFreeze([
       s("超过六箱的橙子", "subtract", [53, "$六箱容量"], 5, "还剩5个橙子，必须再用一箱。"),
       s("答案", "ceilDivide", [53, 8], 7, "53除以8向上取整，至少需要7箱。")
     ] },
-    verification: { strategy: "检查相邻箱数验算", summary: "7箱可装56个而6箱只装48个，53个正好只能取7箱。", steps: [
-      s("七箱容量", "multiply", [7, 8], 56, "7箱一共能装56个，装得下53个。"),
+    verification: { strategy: "检查相邻箱数验算", summary: "6箱只能装48个，不足53个；7箱能装56个，已经够装53个。", steps: [
       s("六箱容量复算", "multiply", [6, 8], 48, "6箱一共只能装48个，装不下53个。"),
-      s("六箱与七箱差", "subtract", [7, 6], 1, "箱数从6增加1箱才跨过53个。"),
-      s("验算答案", "add", [6, "$六箱与七箱差"], 7, "所以最少箱数是7。")
+      s("七箱容量", "multiply", [7, 8], 56, "7箱一共能装56个，装得下53个。"),
+      s("最少箱数", "ceilDivide", [53, 8], 7, "既然6箱不够而7箱够装，53个按每箱8个向上取整，最少是7箱。")
     ] },
     commonPitfall: "不能把余下的5个橙子当作不用箱子。", storyBeat: "先看6箱是否够装，再决定是否增加一箱。"
   }),
@@ -124,21 +123,20 @@ const INTEGRATED_MODELING_GOLD_QUESTIONS = deepFreeze([
       s("前两轮总分", "add", [80, 86], 166, "前两轮一共得到166分。"),
       s("答案", "subtract", ["$目标总分", "$前两轮总分"], 86, "252分减去166分，第三轮至少得86分。")
     ] },
-    verification: { strategy: "代回平均数验算", summary: "80、86、86三轮共252分，平均正好84分。", steps: [
+    verification: { strategy: "代回平均数验算", summary: "80、86、86三轮重新合计为252分，平均正好84分。", steps: [
       s("前两轮复算", "add", [80, 86], 166, "前两轮仍是166分。"),
       s("三轮总分", "add", ["$前两轮复算", 86], 252, "加上候选的86分后，总分是252分。"),
       s("平均分", "divide", ["$三轮总分", 3], 84, "252分平均分成三轮，正好84分。"),
-      s("候选与首轮差", "subtract", [86, 80], 6, "候选86分比首轮80分多6分。"),
-      s("验算答案", "add", [80, "$候选与首轮差"], 86, "由首轮80分加6分，再次得到86分。")
+      s("第三轮分数", "subtract", ["$三轮总分", "$前两轮复算"], 86, "达到252分总分且平均84分时，扣除前两轮166分，第三轮就是86分。")
     ] },
     commonPitfall: "平均84分不是第三轮直接写84分，要先补足前两轮的差额。", storyBeat: "先把平均数变成三轮必须达到的总分。"
   }),
   q({
     id: "chapter-09-integrated-modeling-6", level: 6, slot: 6,
     title: "配送路线与车次", difficulty: "advanced", answer: "20",
-    prompt: "路线图：要送45箱物资。甲车每趟运9箱、每趟耗4点资源；乙车每趟运15箱、每趟耗7点资源。选耗资源最少的方案，要多少点？",
+    prompt: "配送表格：要送45箱物资。车辆方案｜每趟容量｜每趟耗资源：甲车｜9箱｜4点；乙车｜15箱｜7点。选耗资源最少的方案，要多少点？",
     conditionRoles: ["delivery-total", "route-a-capacity-cost", "route-b-capacity-cost", "minimum-resource"],
-    structureFamily: "route-resource-tradeoff", representation: "route-map", questionDirection: "compare-plans",
+    structureFamily: "route-resource-tradeoff", representation: "table", questionDirection: "compare-plans",
     supportingConcepts: [], strategyChoices: ["先算两条路线的车次", "再比较资源"],
     solution: { strategy: "车次乘单趟资源比较法", summary: "甲车要5趟耗20点，乙车要3趟耗21点，应选甲车的20点。", steps: [
       s("甲车趟数", "divide", [45, 9], 5, "45箱按每趟9箱，需要5趟。"),
@@ -204,7 +202,7 @@ const INTEGRATED_MODELING_GOLD_QUESTIONS = deepFreeze([
   q({
     id: "chapter-09-integrated-modeling-9", level: 9, slot: 9,
     title: "两种补给箱的最省方案", difficulty: "challenge", answer: "86",
-    prompt: "补给表格：甲箱装8瓶需20元，乙箱装5瓶需13元。必须买5箱且至少有34瓶水，怎样组合花钱最少？最少多少元？",
+    prompt: "补给表格：甲箱装8瓶需20元，乙箱装5瓶需13元。必须买5箱且至少有34瓶水。满足两项条件的最少花费是多少元？",
     conditionRoles: ["exact-box-count", "minimum-bottles", "type-a-capacity-cost", "type-b-capacity-cost"],
     structureFamily: "two-constraint-optimization", representation: "table", questionDirection: "compare-plans",
     supportingConcepts: ["integer-optimization", "capacity-constraint"], strategyChoices: ["枚举满足数量的组合", "比较总价"], transfer: "boss-integration",
@@ -237,11 +235,11 @@ const INTEGRATED_MODELING_GOLD_QUESTIONS = deepFreeze([
   q({
     id: "chapter-09-integrated-modeling-10", level: 10, slot: 10,
     title: "杯赛彩带总工时", difficulty: "challenge", answer: "11",
-    prompt: "杯赛布置表格：3.6米彩带每段剪15厘米，甲组每分钟剪3段并先剪4分钟，乙组每分钟剪2段，负责把全部彩带每5段装一盒，每盒装好需1分钟。乙组开始后到全部完成至少几分钟？",
+    prompt: "杯赛布置表格：3.6米彩带每段剪15厘米，甲组每分钟剪3段并先剪4分钟，乙组每分钟剪2段，负责把全部彩带每5段装一盒，每盒装好需1分钟。所有彩带都剪完后才能开始装盒，剪裁和装盒不能同时进行。乙组开始后到全部完成至少几分钟？",
     conditionRoles: ["ribbon-length-conversion", "segment-length", "first-stage-rate-time", "second-stage-rate", "packing-capacity-time"],
     structureFamily: "cup-entry-three-concept-boss", representation: "table", questionDirection: "find-parameter",
     supportingConcepts: ["unit-conversion", "work-rate", "capacity", "cup-entry"], strategyChoices: ["先统一单位", "分阶段求剪裁时间", "容量向上取整"], transfer: "boss-integration",
-    solution: { strategy: "换算、接力和装盒综合法", summary: "共24段，甲组剪12段，乙组剪余下12段要6分钟；24段装5盒要5分钟，共11分钟。", steps: [
+    solution: { strategy: "换算、接力和装盒综合法", summary: "共24段，甲组剪12段，乙组剪余下12段要6分钟；全部剪完后再装5盒要5分钟，串行共11分钟。", steps: [
       s("彩带总厘米数", "multiply", [3.6, 100], 360, "3.6米换成360厘米。"),
       s("彩带总段数", "divide", ["$彩带总厘米数", 15], 24, "360厘米每段15厘米，共能剪24段。"),
       s("甲组段数", "multiply", [3, 4], 12, "甲组每分钟3段，4分钟剪12段。"),
@@ -249,17 +247,16 @@ const INTEGRATED_MODELING_GOLD_QUESTIONS = deepFreeze([
       s("乙组剪裁时间", "divide", ["$乙组剩余段数", 2], 6, "乙组每分钟剪2段，剪12段要6分钟。"),
       s("最后一盒段数", "remainder", ["$彩带总段数", 5], 4, "24段除以5余4，最后一盒装4段也要花时间。"),
       s("装盒数", "ceilDivide", ["$彩带总段数", 5], 5, "24段每盒5段向上取整，要装5盒。"),
-      s("答案", "add", ["$乙组剪裁时间", "$装盒数"], 11, "乙组剪6分钟，再装5盒用5分钟，共11分钟。")
+      s("答案", "add", ["$乙组剪裁时间", "$装盒数"], 11, "剪裁和装盒不能同时进行，乙组剪6分钟后再装5盒用5分钟，共11分钟。")
     ] },
-    verification: { strategy: "按完成条件逐项复原验算", summary: "乙组若用11分钟，先剪6分钟得12段，再用5分钟装5盒；加上甲组12段正好24段。", steps: [
+    verification: { strategy: "按剪裁全部结束后再装盒的顺序验算", summary: "乙组若用11分钟，先剪6分钟得12段；全部24段剪完后再用5分钟装5盒，两个阶段串行相加。", steps: [
       s("乙组剪裁分钟", "subtract", [11, 5], 6, "从候选11分钟中先扣掉装5盒的5分钟，剪裁有6分钟。"),
       s("乙组剪出段数", "multiply", ["$乙组剪裁分钟", 2], 12, "乙组6分钟每分钟2段，剪出12段。"),
       s("全部段数复算", "add", [12, "$乙组剪出段数"], 24, "甲组12段加乙组12段，正好24段。"),
       s("全部彩带厘米数复算", "multiply", ["$全部段数复算", 15], 360, "24段每段15厘米，正好用360厘米彩带。"),
-      s("装盒容量", "multiply", [5, 5], 25, "5盒每盒5段，最多可装25段。"),
-      s("装盒余量", "subtract", ["$装盒容量", "$全部段数复算"], 1, "5盒装24段还余1个位置，说明5盒足够。"),
       s("四盒容量", "multiply", [4, 5], 20, "4盒只能装20段，不够装24段。"),
-      s("验算答案", "add", ["$乙组剪裁分钟", 5], 11, "剪裁6分钟加装盒5分钟，乙组至少需11分钟。")
+      s("装盒容量", "multiply", [5, 5], 25, "5盒每盒5段，能装下24段。"),
+      s("验算答案", "add", ["$乙组剪裁分钟", 5], 11, "剪裁全部结束后才能装盒，6分钟剪裁和5分钟装盒不能重叠，合计11分钟。")
     ] },
     commonPitfall: "乙组的时间既包括剪剩余彩带，也包括最后不足一盒时的装盒时间。", storyBeat: "像杯赛现场排任务一样，先统一长度，再接力剪裁，最后安排装盒。"
   })

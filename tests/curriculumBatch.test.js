@@ -106,7 +106,7 @@ function assertDeepFrozen(value, path = "root", seen = new Set()) {
   for (const [key, child] of Object.entries(value)) assertDeepFrozen(child, `${path}.${key}`, seen);
 }
 
-function learnerVisibleText(question) {
+function learnerVisibleText(question, includeVerificationStrategy = false) {
   return [
     question.title,
     question.prompt,
@@ -114,6 +114,7 @@ function learnerVisibleText(question) {
     ...question.strategyChoices,
     question.solution.summary,
     ...question.solution.steps.map((step) => step.explanation),
+    ...(includeVerificationStrategy ? [question.verification.strategy] : []),
     question.verification.summary,
     ...question.verification.steps.map((step) => step.explanation),
     question.commonPitfall,
@@ -280,7 +281,7 @@ test("integrated-modeling gold questions form a frozen Chinese cup-entry progres
   const topic = curriculum.getCurriculumTopic("integrated-modeling");
   for (const question of questions) {
     assert.deepEqual(quality.validateQuestionV3(question, topic), [], question.id);
-    for (const text of learnerVisibleText(question)) {
+    for (const text of learnerVisibleText(question, true)) {
       assert.equal(/[A-Za-z]/u.test(text), false, `${question.id} learner-visible text must be Chinese`);
     }
     if (question.representation === "table") assert.match(question.prompt, /表格/u, `${question.id} must show its table`);
@@ -332,6 +333,36 @@ test("integrated-modeling source graphs use independent verification without fil
       }
     }
   }
+});
+
+test("integrated-modeling fixes keep learner outputs, representations, and serial verification precise", () => {
+  const questions = require("../game/curriculum/gold/integratedModeling.js");
+  const [q3, q5, q6, , , q9, q10] = [questions[2], questions[4], questions[5], null, null, questions[8], questions[9]];
+
+  assert.deepEqual(q3.verification.steps.map((step) => step.id), ["六箱容量复算", "七箱容量", "最少箱数"]);
+  assert.deepEqual(q5.verification.steps.map((step) => step.id), ["前两轮复算", "三轮总分", "平均分", "第三轮分数"]);
+
+  assert.equal(q6.representation, "table");
+  assert.match(q6.prompt, /配送表格/u);
+  assert.match(q6.prompt, /车辆方案/u);
+  assert.match(q6.prompt, /每趟容量/u);
+  assert.match(q6.prompt, /每趟耗资源/u);
+  assert.match(q6.prompt, /甲车/u);
+  assert.match(q6.prompt, /乙车/u);
+
+  assert.equal(q9.answer, "86");
+  assert.match(q9.prompt, /满足两项条件的最少花费是多少元？/u);
+  assert.doesNotMatch(q9.prompt, /怎样组合/u);
+
+  assert.equal(q10.answer, "11");
+  assert.match(q10.prompt, /所有彩带都剪完后才能开始装盒/u);
+  assert.match(q10.prompt, /剪裁和装盒不能同时进行/u);
+  assert.match(q10.verification.strategy, /剪裁全部结束后再装盒/u);
+  assert.deepEqual(q10.verification.steps.slice(-3).map((step) => [step.operation, step.operands, step.result]), [
+    ["multiply", [4, 5], 20],
+    ["multiply", [5, 5], 25],
+    ["add", ["$乙组剪裁分钟", 5], 11]
+  ]);
 });
 
 test("chicken-rabbit gold questions use Chinese learner text, honest representations, and recursive freezing", () => {
