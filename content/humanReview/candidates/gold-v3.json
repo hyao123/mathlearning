@@ -1,0 +1,459 @@
+{
+  "schemaVersion": 3,
+  "batchId": "gold-v3",
+  "contentVersion": "2026.08.13-gold.1",
+  "status": "pending",
+  "contentHash": "62099dbd0a607037ae235c2f9b071ed60ff2f004ecb10add07366b8522932c9f",
+  "records": [
+    {
+      "questionId": "chicken-rabbit-1",
+      "contentHash": "ef16321905676ce786600fe533f644f7a07ba793ccc416ead5e6336ca129a121",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chicken-rabbit-2",
+      "contentHash": "3b829f42517714917737eea80d4a7bbda5756c8d75016709a42c0e3a8b9ebfc1",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chicken-rabbit-3",
+      "contentHash": "5ec0fdc6e8e757c5b8f19878c7ea02d94ab5b7a3021de36154ff4152255eef12",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chicken-rabbit-4",
+      "contentHash": "62c71275027bcaf537a68611e6a8a8cb08d5fc00cd4367fdf1fdbd4e4cf6b440",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-01-chicken-rabbit-advance-1",
+      "contentHash": "3effa5e4fc3c2cae2070303960df53f91fe492425e6ba8ba14f2180c17a6faa9",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chicken-rabbit-5",
+      "contentHash": "8d0cd7f170d27b97c540ca5dadf22d1a6d11d3a3db7ef9f04b47d9a6dce26662",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chicken-rabbit-6",
+      "contentHash": "b50c58b5e0bbf9b8df59d549f63fc12faa7bd5df41a51d3b571281a410882af7",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chicken-rabbit-9",
+      "contentHash": "d4a061a26b9d2ed4217decf21e0b2fef9d0abb18d16539e03ef570972da51154",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chicken-rabbit-7",
+      "contentHash": "f91dd7aba33242571efb6cd0843dffb9cedd6ee618e252562c0d08c3d84bd2e2",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chicken-rabbit-8",
+      "contentHash": "c7dc9601fbaa44323483fef789cf31e7ff522e72d5d56742f20b7c2b231c25a5",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-08-shortest-path-1",
+      "contentHash": "38ea20739f28ef083cc19dfad26cff65851be58b0ff5a33fdc7406ca67cc2dd4",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-08-shortest-path-2",
+      "contentHash": "59fe88b013264ad97b2215e3fac88ef94f8f4f84ae83c7aebecc015de8d71e9f",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-08-shortest-path-3",
+      "contentHash": "6b4236eaa87c546f412c2cd4612686f8bababbbe55f066391d03a34c39d75b55",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-08-shortest-path-4",
+      "contentHash": "fcf16190567a225dc3957b183bbc682f3b3ffa6b0296bab957e7c715228697c2",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-08-shortest-path-5",
+      "contentHash": "3eacae52559fa138f94783d039614973803114bd6f41008e72f6c456fdf5b3ea",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-08-shortest-path-6",
+      "contentHash": "b6a32003d49a1bf2acfa7aa142eac578d1ea11db9ac6f18ff429572e6604b541",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-08-shortest-path-7",
+      "contentHash": "601a9fe04bff588e930f19e930f073c767d7d30f372297bfb5f924cd2ff71115",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-08-shortest-path-8",
+      "contentHash": "e2d41b5bcb769d7826fcbf29547a3159df77849a38ea2f6d103f3538c7b6d416",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-08-shortest-path-9",
+      "contentHash": "511fa4f2e6f4d6186374718f79be21cdefc0c51a9c7424951cccb4dbb3203b52",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-08-shortest-path-10",
+      "contentHash": "57b5b5ffd9e6a9a5ce538d7b0ef2fa18e71f18f7606c7445ffb51871ba32ea6f",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-1",
+      "contentHash": "d2aad97a1aac4b99eb71c4b93df1d5f20c466af018e468cf5fb547c44db8e98b",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-2",
+      "contentHash": "b3106e8677221deb63aea21bee4ff34b6e4eef5858c1a1def2b48c46051a79ad",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-3",
+      "contentHash": "83626d6412d61535e047a8a661ca95ae4004b20c7d714d6195fe7513503d16ca",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-4",
+      "contentHash": "28434dc4c8fbf6c51f0a9f01907249f92b05b6597b709bba0cc30bac34233f68",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-5",
+      "contentHash": "e5a6c4a5fddf1aa6e54fdd0701b8f13e22fe917f21a97b4d410063b96a270acc",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-6",
+      "contentHash": "5e52a1472be8a3b6c5836385115716fdbad2617395148d7365b49aa019cafa09",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-7",
+      "contentHash": "f4a133f6853d826b6412a2d1e890521c4bf9dc63b22e992a0dcde6870aee0e32",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-8",
+      "contentHash": "f32b140f30506af7fe526cc258fec163c496fe615fe18d9bc7a0031b077cfbdc",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-9",
+      "contentHash": "058c0f0091532d5b0f3a287ad3c41c941eed277a30e9aac89eda7bf3221573a8",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    },
+    {
+      "questionId": "chapter-09-integrated-modeling-10",
+      "contentHash": "bed25cfd5713825b3ed6977ecff3a88ca7ce907c21ab43e655c6f95b87733236",
+      "reviewer": null,
+      "reviewedAt": null,
+      "evidence": "",
+      "decisions": {
+        "conceptAccurate": null,
+        "difficultyValid": null,
+        "contextNecessary": null,
+        "answerUnique": null,
+        "solutionChildExecutable": null,
+        "pitfallAuthentic": null
+      }
+    }
+  ]
+}

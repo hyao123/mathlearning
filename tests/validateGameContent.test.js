@@ -1,4 +1,5 @@
 const assert = require("node:assert/strict");
+const childProcess = require("node:child_process");
 const test = require("node:test");
 
 const validation = require("../scripts/validate-game-content.js");
@@ -57,6 +58,95 @@ function reverseObjectKeys(value) {
   if (!value || typeof value !== "object") return value;
   return Object.fromEntries(Object.keys(value).reverse().map((key) => [key, reverseObjectKeys(value[key])]));
 }
+
+function approvedCurriculumManifest(batch = reviewTemplate.GOLD_V3_BATCH) {
+  const manifest = reviewTemplate.buildCurriculumBatchReviewTemplate(batch);
+  return {
+    ...manifest,
+    status: "approved",
+    records: manifest.records.map((record) => ({
+      ...record,
+      reviewer: "Curriculum reviewer",
+      reviewedAt: "2026-08-13T00:00:00.000Z",
+      evidence: "Checked the mathematical model, answer, and learner-facing solution.",
+      decisions: Object.fromEntries(reviewTemplate.V3_REVIEW_CRITERIA.map((criterion) => [criterion, true]))
+    }))
+  };
+}
+
+test("gold V3 review templates are deterministic pending manifests for every candidate question", () => {
+  const before = reviewTemplate.GOLD_V3_BATCH.topics.map((topic) => topic.questions.map((question) => question.id));
+  const batch = reviewTemplate.buildGoldV3Batch();
+  const manifest = reviewTemplate.buildCurriculumBatchReviewTemplate(batch);
+
+  assert.equal(batch.id, "gold-v3");
+  assert.equal(batch.contentVersion, "2026.08.13-gold.1");
+  assert.equal(batch.topics.length, 3);
+  assert.equal(batch.topics.flatMap((topic) => topic.questions).length, 30);
+  assert.deepEqual(reviewTemplate.GOLD_V3_BATCH.topics.map((topic) => topic.questions.map((question) => question.id)), before);
+  assert.equal(manifest.schemaVersion, 3);
+  assert.equal(manifest.status, "pending");
+  assert.equal(manifest.records.length, 30);
+  assert.equal(manifest.records.every((record) => /^[a-f0-9]{64}$/.test(record.contentHash)), true);
+  assert.equal(manifest.records.every((record) => record.reviewer === null && record.reviewedAt === null && record.evidence === ""), true);
+  assert.equal(manifest.records.every((record) => reviewTemplate.V3_REVIEW_CRITERIA.every((criterion) => record.decisions[criterion] === null)), true);
+});
+
+test("curriculum review validation requires evidence and true decisions before approval", () => {
+  const manifest = approvedCurriculumManifest();
+  const approved = validation.validateCurriculumBatch(reviewTemplate.GOLD_V3_BATCH, manifest);
+  assert.equal(approved.publishable, true);
+  manifest.records[0].evidence = "";
+  const report = validation.validateCurriculumBatch(reviewTemplate.GOLD_V3_BATCH, manifest);
+
+  assert.equal(report.questionCount, 30);
+  assert.equal(report.publishable, false);
+  assert.match(report.errors.join("\n"), /evidence is required/);
+});
+
+test("curriculum review validation catches V3 teaching-field hash mutations", () => {
+  const manifest = approvedCurriculumManifest();
+  const alteredBatch = structuredClone(reviewTemplate.GOLD_V3_BATCH);
+  alteredBatch.topics[0].questions[0].solution.summary = "A different child-executable teaching summary.";
+  const report = validation.validateCurriculumBatch(alteredBatch, manifest);
+
+  assert.equal(report.publishable, false);
+  assert.match(report.errors.join("\n"), /content hash mismatch/);
+});
+
+test("curriculum review validation rejects incomplete records and non-publishable statuses", () => {
+  const manifest = approvedCurriculumManifest();
+  manifest.records.pop();
+  const incomplete = validation.validateCurriculumBatch(reviewTemplate.GOLD_V3_BATCH, manifest);
+  assert.match(incomplete.errors.join("\n"), /exactly 30 records/);
+
+  const duplicate = approvedCurriculumManifest();
+  duplicate.records[1].questionId = duplicate.records[0].questionId;
+  const duplicateReport = validation.validateCurriculumBatch(reviewTemplate.GOLD_V3_BATCH, duplicate);
+  assert.match(duplicateReport.errors.join("\n"), /duplicate review record/);
+
+  const pending = reviewTemplate.buildCurriculumBatchReviewTemplate(reviewTemplate.GOLD_V3_BATCH);
+  const pendingReport = validation.validateCurriculumBatch(reviewTemplate.GOLD_V3_BATCH, pending);
+  assert.equal(pendingReport.publishable, false);
+  assert.match(pendingReport.errors.join("\n"), /pending.*publishable/i);
+
+  const rejected = approvedCurriculumManifest();
+  rejected.status = "rejected";
+  const rejectedReport = validation.validateCurriculumBatch(reviewTemplate.GOLD_V3_BATCH, rejected);
+  assert.equal(rejectedReport.publishable, false);
+  assert.match(rejectedReport.errors.join("\n"), /rejected.*false decision/i);
+});
+
+test("curriculum candidate CLI fails pending review while automated question gates remain clean", () => {
+  const result = childProcess.spawnSync(process.execPath, ["scripts/validate-curriculum-batch.js", "--batch", "gold-v3"], {
+    cwd: require("node:path").resolve(__dirname, ".."),
+    encoding: "utf8"
+  });
+
+  assert.notEqual(result.status, 0);
+  assert.match(`${result.stdout}\n${result.stderr}`, /pending/i);
+  assert.doesNotMatch(`${result.stdout}\n${result.stderr}`, /automated question errors: [1-9]/i);
+});
 
 test("built first chapter has 120 structured questions before human approval", () => {
   const modules = validation.loadExpandedModules();

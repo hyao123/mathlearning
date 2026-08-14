@@ -8,6 +8,9 @@ const { CHAPTER_IDS } = require(path.join(root, "game", "chapterConfig.js"));
 const GameItemCatalog = require(path.join(root, "game", "itemCatalog.js"));
 const { RUNTIME_SOURCE_FILES } = require(path.join(root, "game", "runtimeSources.js"));
 const { getManifestContentHash, getQuestionContentHash, normalizeReviewedPrompt } = require("./humanReviewIntegrity.js");
+const ContentBatchRegistry = require(path.join(root, "game", "curriculum", "contentBatchRegistry.js"));
+
+const V3_REVIEW_CRITERIA = Object.freeze(["conceptAccurate", "difficultyValid", "contextNecessary", "answerUnique", "solutionChildExecutable", "pitfallAuthentic"]);
 
 const contentFiles = RUNTIME_SOURCE_FILES;
 
@@ -24,6 +27,97 @@ function loadReviewManifest(chapterId = "chapter-01", reviewPath = path.join(roo
     throw new Error("Human review manifest must be an object");
   }
   return payload;
+}
+
+function hasText(value) {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function hasReviewTimestamp(value) {
+  return typeof value === "string"
+    && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?(?:Z|[+-]\d{2}:\d{2})$/.test(value)
+    && Number.isFinite(Date.parse(value));
+}
+
+function validateCurriculumBatch(batch, manifest) {
+  const automatedErrors = ContentBatchRegistry.validateContentBatch(batch);
+  const errors = [...automatedErrors];
+  const warnings = [];
+  const questions = Array.isArray(batch?.topics)
+    ? batch.topics.flatMap((topic) => Array.isArray(topic?.questions) ? topic.questions : [])
+    : [];
+  const expectedById = new Map(questions.map((question) => [question.id, question]));
+  const records = Array.isArray(manifest?.records) ? manifest.records : [];
+
+  if (!manifest || typeof manifest !== "object" || Array.isArray(manifest)) {
+    errors.push("curriculum review manifest must be an object");
+  } else {
+    if (manifest.schemaVersion !== 3) errors.push("curriculum review manifest schemaVersion must be 3");
+    if (manifest.batchId !== batch?.id) errors.push("curriculum review manifest batch identity does not match");
+    if (manifest.contentVersion !== batch?.contentVersion) errors.push("curriculum review manifest contentVersion does not match");
+    if (!['pending', 'candidate', 'approved', 'rejected'].includes(manifest.status)) errors.push("curriculum review manifest status is invalid");
+  }
+
+  if (questions.length !== 30) errors.push(`curriculum batch must contain exactly 30 questions; found ${questions.length}`);
+  if (records.length !== 30) errors.push(`curriculum review manifest must contain exactly 30 records; found ${records.length}`);
+
+  const recordsById = new Map();
+  records.forEach((record, index) => {
+    const label = `review record ${index + 1}`;
+    if (!record || typeof record !== "object" || Array.isArray(record)) {
+      errors.push(`${label} must be an object`);
+      return;
+    }
+    if (typeof record.questionId !== "string" || !record.questionId.trim()) {
+      errors.push(`${label} has an invalid questionId`);
+      return;
+    }
+    if (recordsById.has(record.questionId)) errors.push(`duplicate review record: ${record.questionId}`);
+    recordsById.set(record.questionId, record);
+    const question = expectedById.get(record.questionId);
+    if (!question) {
+      errors.push(`unexpected review record: ${record.questionId}`);
+      return;
+    }
+    if (record.contentHash !== getQuestionContentHash(question)) errors.push(`content hash mismatch: ${record.questionId}`);
+    if (!hasText(record.evidence)) errors.push(`review evidence is required: ${record.questionId}`);
+    if (!hasText(record.reviewer)) errors.push(`reviewer is required: ${record.questionId}`);
+    if (!hasReviewTimestamp(record.reviewedAt)) errors.push(`reviewedAt must be an ISO timestamp: ${record.questionId}`);
+    V3_REVIEW_CRITERIA.forEach((criterion) => {
+      if (typeof record.decisions?.[criterion] !== "boolean") errors.push(`review decision ${criterion} must be boolean: ${record.questionId}`);
+    });
+  });
+  expectedById.forEach((_, questionId) => {
+    if (!recordsById.has(questionId)) errors.push(`missing review record: ${questionId}`);
+  });
+
+  if (manifest?.contentHash !== getManifestContentHash(records)) errors.push("curriculum review manifest content hash mismatch");
+  if (manifest?.status === "pending" || manifest?.status === "candidate") {
+    errors.push(`curriculum review status ${manifest.status} is not publishable`);
+  }
+  if (manifest?.status === "approved") {
+    records.forEach((record) => {
+      if (!V3_REVIEW_CRITERIA.every((criterion) => record?.decisions?.[criterion] === true)) {
+        errors.push(`approved review requires every decision true: ${record?.questionId || "unknown"}`);
+      }
+    });
+  }
+  if (manifest?.status === "rejected") {
+    const hasFalseDecision = records.some((record) => V3_REVIEW_CRITERIA.some((criterion) => record?.decisions?.[criterion] === false));
+    const hasConcreteEvidence = records.some((record) => hasText(record?.evidence) && record.evidence.trim().length >= 12);
+    if (!hasFalseDecision) errors.push("rejected review requires at least one false decision");
+    if (!hasConcreteEvidence) errors.push("rejected review requires concrete evidence");
+    errors.push("curriculum review status rejected is not publishable");
+  }
+
+  return {
+    valid: errors.length === 0,
+    publishable: errors.length === 0 && manifest?.status === "approved",
+    errors,
+    automatedErrors,
+    warnings,
+    questionCount: questions.length
+  };
 }
 
 function validateBuiltChapter(chapter, { requireHumanReview = false, reviewManifest = null } = {}) {
@@ -204,4 +298,4 @@ if (require.main === module) {
   runCli();
 }
 
-module.exports = { contentFiles, loadExpandedModules, loadReviewManifest, shouldRequireHumanReview, validateBuiltChapter, validateProjectChain, runCli };
+module.exports = { contentFiles, V3_REVIEW_CRITERIA, loadExpandedModules, loadReviewManifest, shouldRequireHumanReview, validateBuiltChapter, validateCurriculumBatch, validateProjectChain, runCli };

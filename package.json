@@ -11,6 +11,7 @@
     "test": "node --test",
     "check": "node scripts/check-syntax.js",
     "validate:game": "node scripts/validate-game-content.js",
+    "validate:curriculum": "node scripts/validate-curriculum-batch.js --batch gold-v3",
     "validate:release": "node scripts/validate-game-content.js --strict",
     "generate:expansion-visuals": "node scripts/generate-expansion-item-visuals.js",
     "check:visual-assets": "node scripts/check-visual-assets.js",
