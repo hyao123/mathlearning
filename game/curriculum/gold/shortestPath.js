@@ -64,25 +64,22 @@ const SHORTEST_PATH_GOLD_QUESTIONS = deepFreeze([
     commonPitfall: "水站是必须经过的点，不能从起点直接连到终点。", storyBeat: "到水站后再重新数下一段。"
   }),
   q({
-    id: "chapter-08-shortest-path-3", level: 3, slot: 3, title: "封边的绕行", difficulty: "intermediate", answer: "10",
-    prompt: "方格图从第0列第0行到第5列第3行，底边第2列到第3列封闭。必须绕开封边，最少走多少格？",
+    id: "chapter-08-shortest-path-3", level: 3, slot: 3, title: "封边的绕行", difficulty: "intermediate", answer: "7",
+    prompt: "方格图有6列2行，从第0列第0行到第5列第0行只能沿格边走；第2列第0行到第3列第0行的边封闭，其他格边可走。最少走多少格？",
     conditionRoles: ["start", "end", "blocked-edge", "grid-rule"], structureFamily: "blocked-edge-detour", representation: "diagram", questionDirection: "find-parameter",
     supportingConcepts: [], strategyChoices: ["先算直达再补绕行"],
-    solution: { strategy: "封边补两格法", summary: "原来要走8格，绕过封边多走2格，共10格。", steps: [
+    solution: { strategy: "封边补两格法", summary: "底行直达要走5格，绕过封边多走2格，共7格。", steps: [
       s("直达横向", "subtract", [5, 0], 5, "不看封边时，横向原本要走5格。"),
-      s("直达竖向", "subtract", [3, 0], 3, "竖向原本要走3格。"),
-      s("直达长度", "add", ["$直达横向", "$直达竖向"], 8, "直达路线原本共8格。"),
-      s("答案", "add", ["$直达长度", 2], 10, "为绕开一条封边，要先上再下，多走2格。")
+      s("答案", "add", ["$直达横向", 2], 7, "为绕开封边，要先上再下，多走2格。")
     ] },
-    verification: { strategy: "逐段绕行验算", summary: "右2、上1、右1、下1、右2、上3，共10格。", steps: [
-      s("绕行总长", "sum", [2, 1, 1, 1, 2, 3], 10, "按方格图逐段相加，绕行路线共10格。"),
-      s("答案确认", "divide", ["$绕行总长", 1], 10, "这条路线没有经过封边，所以答案是10格。")
+    verification: { strategy: "逐段绕行验算", summary: "右2、上1、右1、下1、右2，共7格。", steps: [
+      s("绕行总长", "sum", [2, 1, 1, 1, 2], 7, "按方格图逐段相加，路线在封边上方通过，共7格。")
     ] },
     commonPitfall: "封边不能直接跨过去，绕开它会多走两格。", storyBeat: "先找到封边两端，再画出上去又下来的小绕路。"
   }),
   q({
     id: "chapter-08-shortest-path-4", level: 4, slot: 4, title: "相同最短路线的条数", difficulty: "intermediate", answer: "6",
-    prompt: "方格图从左下角到右上角，要走2格向右和2格向上。表格列出第一步的两种选择，最短路线有几条？",
+    prompt: "方格图从左下角到右上角，要走2格向右和2格向上。路线表格：第一步向右时余下1次右、2次上；第一步向上时余下2次右、1次上。最短路线有几条？",
     conditionRoles: ["horizontal-steps", "vertical-steps", "route-count"], structureFamily: "equal-route-count", representation: "table", representationShift: true, questionDirection: "find-parameter",
     supportingConcepts: [], strategyChoices: ["按第一步分类"],
     solution: { strategy: "第一步分类计数", summary: "先向右有3条，先向上也有3条，共6条。", steps: [
@@ -97,39 +94,51 @@ const SHORTEST_PATH_GOLD_QUESTIONS = deepFreeze([
     commonPitfall: "先向右和先向上是两类不同路线，都要算进去。", storyBeat: "用表格把第一步的两种情况分开。"
   }),
   q({
-    id: "chapter-08-shortest-path-5", level: 5, slot: 5, title: "收费不同的两条路", difficulty: "intermediate", answer: "7",
-    prompt: "路线图有两条路：甲路分成3格和4格，乙路分成2格、2格和5格。每格收费相同，选哪条最短路要走多少格？",
-    conditionRoles: ["route-a-segments", "route-b-segments", "equal-cost"], structureFamily: "weighted-road", representation: "route-map", questionDirection: "compare-plans",
+    id: "chapter-08-shortest-path-5", level: 5, slot: 5, title: "收费不同的两条路", difficulty: "intermediate", answer: "11",
+    prompt: "路线图的路段表：甲：3格每格1元和4格每格2元；乙：2格每格3元、2格每格1元、5格每格1元。选花费最少的路，要花多少元？",
+    conditionRoles: ["route-a-segments", "route-b-segments", "different-segment-costs"], structureFamily: "weighted-road", representation: "route-map", questionDirection: "compare-plans",
     supportingConcepts: [], strategyChoices: ["分别求和再比较"],
-    solution: { strategy: "两路总长比较法", summary: "甲路7格，乙路9格，选甲路走7格。", steps: [
-      s("甲路", "add", [3, 4], 7, "甲路两段相加是7格。"),
-      s("乙路前两段", "add", [2, 2], 4, "乙路前两段一共4格。"),
-      s("乙路", "add", ["$乙路前两段", 5], 9, "乙路三段一共9格。"),
-      s("答案", "min", ["$甲路", "$乙路"], 7, "比较7和9，较短的是7格。")
+    solution: { strategy: "两路总花费比较法", summary: "甲路花11元，乙路花13元，选甲路。", steps: [
+      s("甲路首段花费", "multiply", [3, 1], 3, "甲路首段3格，每格1元，花3元。"),
+      s("甲路末段花费", "multiply", [4, 2], 8, "甲路末段4格，每格2元，花8元。"),
+      s("甲路总花费", "add", ["$甲路首段花费", "$甲路末段花费"], 11, "甲路共花11元。"),
+      s("乙路首段花费", "multiply", [2, 3], 6, "乙路首段2格，每格3元，花6元。"),
+      s("乙路中段花费", "multiply", [2, 1], 2, "乙路中段2格，每格1元，花2元。"),
+      s("乙路前段花费", "add", ["$乙路首段花费", "$乙路中段花费"], 8, "乙路前两段共花8元。"),
+      s("乙路总花费", "add", ["$乙路前段花费", 5], 13, "乙路末段5格，每格1元，所以共花13元。"),
+      s("答案", "min", ["$甲路总花费", "$乙路总花费"], 11, "比较11元和13元，最少花11元。")
     ] },
-    verification: { strategy: "差额回推验算", summary: "两路共16格，相差2格，乙路减2格就是7格。", steps: [
-      s("两路合计", "add", [7, 9], 16, "把两条路的总长相加是16格。"),
-      s("相差", "subtract", [9, 7], 2, "乙路比甲路多2格。"),
-      s("答案确认", "subtract", [9, "$相差"], 7, "从较长的乙路减去差额，得到较短的7格。")
+    verification: { strategy: "基准价加价验算", summary: "甲路按每格1元是7元，再给末段加4元，共11元；乙路是13元。", steps: [
+      s("甲路基准价", "add", [3, 4], 7, "甲路两段先都按每格1元，合计7元。"),
+      s("甲路末段加价", "multiply", [4, 1], 4, "甲路末段每格多收1元，4格多收4元。"),
+      s("甲路复算总价", "add", ["$甲路基准价", "$甲路末段加价"], 11, "甲路复算后是11元。"),
+      s("乙路基准价", "sum", [2, 2, 5], 9, "乙路三段都先按每格1元，合计9元。"),
+      s("乙路首段加价", "multiply", [2, 2], 4, "乙路首段每格多收2元，2格多收4元。"),
+      s("乙路复算总价", "add", ["$乙路基准价", "$乙路首段加价"], 13, "乙路复算后是13元。"),
+      s("验算答案", "min", ["$甲路复算总价", "$乙路复算总价"], 11, "两条路重新比较后，最少仍是11元。")
     ] },
-    commonPitfall: "不能只看路段的条数，要把每段格数加起来。", storyBeat: "先给两条路各算一张小账单。"
+    commonPitfall: "不能只看格数，要把每一段的格数和每格收费相乘。", storyBeat: "先给两条路各算一张收费账单。"
   }),
   q({
-    id: "chapter-08-shortest-path-6", level: 6, slot: 6, title: "反推终点位置", difficulty: "advanced", answer: "6",
-    prompt: "方格图从第2列第3行出发，向右4格、向上5格。算式可写成横坐标2加4，终点在第几列？",
-    conditionRoles: ["start-coordinate", "horizontal-move", "vertical-move"], structureFamily: "reverse-endpoint", representation: "equation", representationShift: true, questionDirection: "reverse",
-    supportingConcepts: [], strategyChoices: ["先写终点坐标"],
-    solution: { strategy: "终点坐标反推法", summary: "横坐标是6，纵坐标是8，因此终点在第6列。", steps: [
-      s("终点横坐标", "add", [2, 4], 6, "起点在第2列，向右4格后到第6列。"),
-      s("终点纵坐标", "add", [3, 5], 8, "起点在第3行，向上5格后到第8行。"),
-      s("坐标和", "add", ["$终点横坐标", "$终点纵坐标"], 14, "终点两个坐标相加是14，便于检查。"),
-      s("答案", "subtract", ["$坐标和", "$终点纵坐标"], 6, "从坐标和去掉纵坐标，横坐标仍是6。")
+    id: "chapter-08-shortest-path-6", level: 6, slot: 6, title: "反推起点位置", difficulty: "advanced", answer: "6",
+    prompt: "方格图的终点在第10列第8行，路线向右4格、向上5格。算式是起点列数加4等于10，出发点在第几列？",
+    conditionRoles: ["end-coordinate", "horizontal-move", "vertical-move"], structureFamily: "reverse-endpoint", representation: "equation", representationShift: true, questionDirection: "reverse",
+    supportingConcepts: [], strategyChoices: ["从终点倒着减"],
+    solution: { strategy: "终点倒推起点法", summary: "终点第10列减去右移4格得到第6列；再用起点坐标和和正向复原检查，出发点仍在第6列。", steps: [
+      s("起点横坐标", "subtract", [10, 4], 6, "终点在第10列，倒着减去向右的4格，起点在第6列。"),
+      s("起点纵坐标", "subtract", [8, 5], 3, "终点第8行倒着减去向上的5格，起点是第3行。"),
+      s("起点坐标和", "add", ["$起点横坐标", "$起点纵坐标"], 9, "起点第6列第3行，坐标和是9。"),
+      s("终点列复原", "add", ["$起点横坐标", 4], 10, "从候选起点第6列向右4格，正好复原到终点第10列。"),
+      s("答案", "subtract", ["$起点坐标和", "$起点纵坐标"], 6, "起点坐标和去掉第3行，出发点在第6列。")
     ] },
-    verification: { strategy: "坐标和复原验算", summary: "6加8等于14，再去掉8仍是6。", steps: [
-      s("终点坐标和", "add", [6, 8], 14, "终点第6列第8行的两个数相加是14。"),
-      s("答案确认", "subtract", ["$终点坐标和", 8], 6, "去掉第8行，留下第6列。")
+    verification: { strategy: "正向复原验算", summary: "从第6列向右4格到第10列，从第3行向上5格到第8行，正好回到终点。", steps: [
+      s("反推起点列", "subtract", [10, 4], 6, "终点第10列倒着减4格，候选起点是第6列。"),
+      s("反推起点行", "subtract", [8, 5], 3, "终点第8行倒着减5格，候选起点是第3行。"),
+      s("复原终点列", "add", ["$反推起点列", 4], 10, "从第6列向右4格，正好回到第10列。"),
+      s("复原终点行", "add", ["$反推起点行", 5], 8, "从第3行向上5格，正好回到第8行。"),
+      s("验算答案", "subtract", ["$复原终点列", 4], 6, "复原终点列后再退4格，仍得到第6列。")
     ] },
-    commonPitfall: "向上改变的是行，向右改变的是列。", storyBeat: "先把终点的列和行分别写出来。"
+    commonPitfall: "题目给的是终点，不能再把移动格数往终点上加。", storyBeat: "先从终点向左退4格，找到出发列。"
   }),
   q({
     id: "chapter-08-shortest-path-7", level: 7, slot: 7, title: "长方形边上的近路", difficulty: "advanced", answer: "13",
@@ -173,39 +182,40 @@ const SHORTEST_PATH_GOLD_QUESTIONS = deepFreeze([
     conditionRoles: ["start", "checkpoint", "end", "two-stage-route"], structureFamily: "checkpoint-route", representation: "route-map", questionDirection: "find-parameter",
     supportingConcepts: ["coordinates-routes"], strategyChoices: ["两段分别求最短"],
     solution: { strategy: "检查点分段优化法", summary: "前段6格，后段7格，合起来13格。", steps: [
-      s("前段横向", "add", [4, 0], 4, "起点到检查点横向走4格。"),
-      s("前段纵向", "add", [2, 0], 2, "起点到检查点纵向走2格。"),
-      s("到检查点", "add", ["$前段横向", "$前段纵向"], 6, "前段最短路线是6格。"),
+      s("到检查点", "add", [4, 2], 6, "起点到检查点向右4格、向上2格，共6格。"),
       s("后段", "add", [3, 4], 7, "检查点到终点横竖相加是7格。"),
       s("全程", "add", ["$到检查点", "$后段"], 13, "两段都不可少，全程最短是13格。"),
-      s("答案", "divide", ["$全程", 1], 13, "检查点已经过，所以答案是13格。")
+      s("答案", "min", ["$全程", 13], 13, "检查点已经过，最短长度是13格。")
     ] },
     verification: { strategy: "逐段路线复算", summary: "4加2加3加4等于13。", steps: [
-      s("前两段", "add", [4, 2], 6, "到检查点的两个方向共6格。"),
-      s("后两段", "add", [3, 4], 7, "离开检查点的两个方向共7格。"),
-      s("答案确认", "add", ["$前两段", "$后两段"], 13, "逐段复算仍得到13格。")
+      s("路线格数总和", "sum", [4, 2, 3, 4], 13, "按题目给出的四段路线直接相加，得到13格。")
     ] },
     commonPitfall: "检查点是不可避免的，不能把两段路线当成可以任选一段。", storyBeat: "把检查点当作必须换乘的中间站。"
   }),
   q({
-    id: "chapter-08-shortest-path-10", level: 10, slot: 10, title: "杯赛入门路线优化", difficulty: "challenge", answer: "12",
-    prompt: "杯赛入门表格中，甲路经签到点为4格、3格、6格；乙路经签到点为2格、6格、4格。两路都必须签到，选最短路要走多少格？",
+    id: "chapter-08-shortest-path-10", level: 10, slot: 10, title: "杯赛入门路线优化", difficulty: "challenge", answer: "11",
+    prompt: "杯赛入门路线表格：维修点封闭不能经过，两方案均从校门到签到点再到终点；甲方案为3格每格1分、4格每格2分、2格每格1分，乙方案为2格每格2分、3格每格1分、4格每格1分。最少花费多少分？",
     conditionRoles: ["route-a-parts", "route-b-parts", "entry-checkpoint", "finish", "cost-unit"], structureFamily: "cup-entry-route", representation: "table", questionDirection: "compare-plans",
-    supportingConcepts: ["coordinates-routes", "cup-entry"], strategyChoices: ["分段求和", "比较总长度"], transfer: "boss-integration",
-    solution: { strategy: "入门路线优化法", summary: "甲路13格，乙路12格，杯赛应选乙路。", steps: [
-      s("甲路前段", "add", [4, 3], 7, "甲路到签到点前两段共7格。"),
-      s("甲路总长", "add", ["$甲路前段", 6], 13, "甲路经过签到点后共13格。"),
-      s("乙路前段", "add", [2, 6], 8, "乙路到签到点前两段共8格。"),
-      s("乙路总长", "add", ["$乙路前段", 4], 12, "乙路经过签到点后共12格。"),
-      s("答案", "min", ["$甲路总长", "$乙路总长"], 12, "比较13和12，杯赛入门选12格的乙路。")
+    supportingConcepts: ["coordinates-routes", "cup-entry"], strategyChoices: ["分段算花费", "比较总花费"], transfer: "boss-integration",
+    solution: { strategy: "入门路线花费优化法", summary: "甲方案花13分，乙方案花11分，杯赛应选乙方案。", steps: [
+      s("甲路首尾花费", "add", [3, 2], 5, "甲方案首段3格和末段2格都是每格1分，共5分。"),
+      s("甲路中段花费", "multiply", [4, 2], 8, "甲站到签到点4格，每格2分，花8分。"),
+      s("甲路总花费", "add", ["$甲路首尾花费", "$甲路中段花费"], 13, "甲方案共花13分。"),
+      s("乙路首段花费", "multiply", [2, 2], 4, "乙方案校门到乙站2格，每格2分，花4分。"),
+      s("乙路其余花费", "add", [3, 4], 7, "乙站到签到点3格和签到点到终点4格都是每格1分，共7分。"),
+      s("乙路总花费", "add", ["$乙路首段花费", "$乙路其余花费"], 11, "乙方案共花11分。"),
+      s("答案", "min", ["$甲路总花费", "$乙路总花费"], 11, "比较13分和11分，杯赛入门选乙方案的11分。")
     ] },
-    verification: { strategy: "差额复原验算", summary: "甲路比乙路多1格，13减1等于12。", steps: [
-      s("甲路复算", "sum", [4, 3, 6], 13, "按路线表复算甲路三段，得到13格。"),
-      s("乙路复算", "sum", [2, 6, 4], 12, "按路线表复算乙路三段，得到12格。"),
-      s("两路差额", "subtract", ["$甲路复算", "$乙路复算"], 1, "甲路确实比乙路多1格。"),
-      s("答案确认", "subtract", ["$甲路复算", "$两路差额"], 12, "从甲路减去多出的1格，得到乙路的12格。")
+    verification: { strategy: "基准花费验算", summary: "甲方案首尾按每格1分为5分，再加中段8分是13分；乙方案按每格1分是9分，再加首段2分是11分。", steps: [
+      s("甲路中段复算", "multiply", [4, 2], 8, "甲方案中段4格，每格2分，花8分。"),
+      s("甲路首尾格数", "add", [3, 2], 5, "甲方案首段和末段都是每格1分，共5分。"),
+      s("甲路复算总价", "add", ["$甲路中段复算", "$甲路首尾格数"], 13, "甲方案复算共13分。"),
+      s("乙路基准价", "sum", [2, 3, 4], 9, "乙方案三段都先按每格1分，合计9分。"),
+      s("乙路首段加价", "multiply", [2, 1], 2, "乙方案首段每格多收1分，2格多收2分。"),
+      s("乙路复算总价", "add", ["$乙路基准价", "$乙路首段加价"], 11, "乙方案复算共11分。"),
+      s("验算答案", "min", ["$甲路复算总价", "$乙路复算总价"], 11, "两种完整报名方案比较后，最少是11分。")
     ] },
-    commonPitfall: "两条路都要经过签到点，不能省掉表格中的任一段。", storyBeat: "像赛前选路线一样，先核对每段再比较总长。"
+    commonPitfall: "维修点封闭不能穿过，且不能只比较格数，必须比较完整方案的花费。", storyBeat: "像赛前选路线一样，先核对签到点前后每段的收费。"
   })
 ]);
 

@@ -129,6 +129,13 @@ function operationGraphFamily(question) {
   });
 }
 
+function operandTopology(steps) {
+  return steps.map((step) => [
+    step.operation,
+    ...step.operands.map((operand) => typeof operand === "string" ? "derived" : "fact")
+  ]);
+}
+
 test("shortest-path gold questions form a frozen Chinese Grade-6 progression through the cup-entry route", () => {
   const modulePath = path.join(__dirname, "..", "game", "curriculum", "gold", "shortestPath.js");
   assert.equal(fs.existsSync(modulePath), true, "shortest-path gold module must exist");
@@ -168,6 +175,47 @@ test("shortest-path gold questions form a frozen Chinese Grade-6 progression thr
     moduleId: "shortest-path",
     questions
   }), []);
+});
+
+test("shortest-path fixes expose their geometry, costs, reverse endpoint, and independent verification", () => {
+  const questions = require("../game/curriculum/gold/shortestPath.js");
+  const [q3, q4, q5, q6, , , q9, q10] = questions.slice(2);
+
+  assert.equal(q3.answer, "7");
+  assert.match(q3.prompt, /6列2行/);
+  assert.match(q3.prompt, /第2列第0行到第3列第0行/);
+  assert.deepEqual(q3.verification.steps[0].operands, [2, 1, 1, 1, 2]);
+
+  assert.match(q4.prompt, /路线表/);
+  assert.match(q5.prompt, /甲：3格每格1元和4格每格2元/);
+  assert.match(q5.prompt, /乙：2格每格3元、2格每格1元、5格每格1元/);
+  assert.equal(q5.answer, "11");
+  assert.equal(q5.solution.steps.some((step) => step.operation === "multiply"), true);
+
+  assert.match(q6.prompt, /终点在第10列第8行/);
+  assert.match(q6.prompt, /向右4格、向上5格/);
+  assert.match(q6.prompt, /出发点在第几列/);
+  assert.equal(q6.solution.steps[0].operation, "subtract");
+  assert.deepEqual(q6.solution.steps[0].operands, [10, 4]);
+
+  assert.match(q10.prompt, /路线表/);
+  assert.match(q10.prompt, /维修点封闭.*不能经过/);
+  assert.match(q10.prompt, /甲方案/);
+  assert.match(q10.prompt, /乙方案/);
+  assert.equal(q10.answer, "11");
+
+  for (const question of [q5, q6, q9, q10]) {
+    const solutionIds = new Set(question.solution.steps.map((step) => `$${step.id}`));
+    const verificationRefs = question.verification.steps
+      .flatMap((step) => step.operands)
+      .filter((operand) => typeof operand === "string");
+    assert.equal(verificationRefs.some((operand) => solutionIds.has(operand)), false, `${question.id} verification must not reuse solution outputs`);
+    assert.notDeepEqual(
+      operandTopology(question.verification.steps),
+      operandTopology(question.solution.steps),
+      `${question.id} verification must use a distinct operand topology`
+    );
+  }
 });
 
 test("chicken-rabbit gold questions use Chinese learner text, honest representations, and recursive freezing", () => {
