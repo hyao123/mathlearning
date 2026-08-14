@@ -138,18 +138,38 @@ function operandTopology(steps) {
 }
 
 function hasPairedAddSubtractRoundTrip(steps) {
+  const resultByStepId = new Map(steps.map((step) => [step.id, step.result]));
+  const resolveOperand = (operand) => typeof operand === "string" && operand.startsWith("$")
+    ? resultByStepId.get(operand.slice(1))
+    : operand;
+
   return steps.some((addStep, addIndex) => {
     if (addStep.operation !== "add") return false;
+    const resolvedAddends = addStep.operands.map(resolveOperand);
 
     return steps.slice(addIndex + 1).some((subtractStep) => {
       if (subtractStep.operation !== "subtract") return false;
-      const sharedAddend = addStep.operands.find((operand) => subtractStep.operands.includes(operand));
+      const restoredAddend = subtractStep.operands
+        .filter((operand) => operand !== `$${addStep.id}`)
+        .map(resolveOperand)
+        .some((operand) => resolvedAddends.includes(operand));
       return subtractStep.operands.includes(`$${addStep.id}`)
-        && sharedAddend !== undefined
-        && addStep.operands.includes(subtractStep.result);
+        && restoredAddend
+        && resolvedAddends.includes(subtractStep.result);
     });
   });
 }
+
+test("paired add-subtract round-trip guard resolves derived addends", () => {
+  const steps = [
+    { id: "base", operation: "multiply", operands: [2, 3], result: 6 },
+    { id: "candidate", operation: "subtract", operands: [9, 5], result: 4 },
+    { id: "total", operation: "add", operands: ["$base", "$candidate"], result: 10 },
+    { id: "recovered-candidate", operation: "subtract", operands: ["$total", "$base"], result: 4 }
+  ];
+
+  assert.equal(hasPairedAddSubtractRoundTrip(steps), true);
+});
 
 test("shortest-path gold questions form a frozen Chinese Grade-6 progression through the cup-entry route", () => {
   const modulePath = path.join(__dirname, "..", "game", "curriculum", "gold", "shortestPath.js");
