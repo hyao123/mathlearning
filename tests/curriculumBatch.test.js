@@ -129,6 +129,47 @@ function operationGraphFamily(question) {
   });
 }
 
+test("shortest-path gold questions form a frozen Chinese Grade-6 progression through the cup-entry route", () => {
+  const modulePath = path.join(__dirname, "..", "game", "curriculum", "gold", "shortestPath.js");
+  assert.equal(fs.existsSync(modulePath), true, "shortest-path gold module must exist");
+
+  const questions = require("../game/curriculum/gold/shortestPath.js");
+  assertDeepFrozen(questions);
+  assert.equal(questions.length, 10);
+  assert.deepEqual(
+    questions.map((question) => question.id),
+    Array.from({ length: 10 }, (_, index) => `chapter-08-shortest-path-${index + 1}`)
+  );
+  assert.deepEqual(questions.map((question) => [question.level, question.slot]), Array.from({ length: 10 }, (_, index) => [index + 1, index + 1]));
+  assert.equal(new Set(questions.map(operationGraphFamily)).size >= 5, true);
+  assert.deepEqual(difficulty.validateTopicProgression(questions), []);
+
+  const topic = curriculum.getCurriculumTopic("shortest-path");
+  for (const question of questions) {
+    assert.deepEqual(quality.validateQuestionV3(question, topic), [], question.id);
+    for (const text of learnerVisibleText(question)) {
+      assert.equal(/[A-Za-z]/u.test(text), false, `${question.id} learner-visible text must be Chinese`);
+    }
+    if (question.representation === "table") assert.match(question.prompt, /表格/u, `${question.id} must show its table`);
+    if (question.representation === "route-map") assert.match(question.prompt, /路线图/u, `${question.id} must show its route map`);
+    if (question.representation === "diagram") assert.match(question.prompt, /示意图|方格图/u, `${question.id} must show its diagram`);
+    if (question.representation === "equation") assert.match(question.prompt, /算式/u, `${question.id} must show its equation`);
+  }
+
+  assert.deepEqual(
+    questions.map((question) => question.structureFamily),
+    ["direct-manhattan", "forced-waypoint", "blocked-edge-detour", "equal-route-count", "weighted-road", "reverse-endpoint", "perimeter-shortcut", "reflection-symmetry", "checkpoint-route", "cup-entry-route"]
+  );
+  assert.equal(questions[9].transfer, "boss-integration");
+  assert.equal(questions[9].supportingConcepts.includes("cup-entry"), true);
+  assert.match(questions[9].prompt, /竞赛|杯赛/u);
+  assert.deepEqual(compatibility.validateCompatibilityMap({
+    chapterId: "chapter-08",
+    moduleId: "shortest-path",
+    questions
+  }), []);
+});
+
 test("chicken-rabbit gold questions use Chinese learner text, honest representations, and recursive freezing", () => {
   const questions = require("../game/curriculum/gold/chickenRabbit.js");
 
