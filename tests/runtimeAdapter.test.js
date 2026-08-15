@@ -123,6 +123,7 @@ test("browser CommonJS loader registers every V3 curriculum dependency request",
 
   const prelude = source.slice(0, source.indexOf("const GameChapterConfig ="))
     .replace(/^import "\.\.\/game\/game\.css";\s*/, "")
+    .replace(/^import goldReviewManifest from .*;\s*$/m, "")
     .concat("\nglobalThis.__testLoadCommonJs = loadCommonJs;");
   const context = vm.createContext({});
   vm.runInContext(prelude, context);

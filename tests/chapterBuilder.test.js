@@ -223,3 +223,31 @@ test("reports every malformed supplemental-pack invariant", () => {
   assert.match(errors, /quick-calculation\[0\]: id must start with "chapter-01-"/);
   assert.match(errors, /arithmetic-series\[0\]: duplicate supplemental id "outside-quick-calculation"/);
 });
+
+test("builds approved gold topics as versioned V3 levels", () => {
+  const gold = require("../game/curriculum/gold/index.js");
+  const registry = require("../game/curriculum/contentBatchRegistry.js");
+  const manifest = structuredClone(require("../content/humanReview/candidates/gold-v3.json"));
+  manifest.status = "approved";
+  manifest.records.forEach((record) => {
+    record.reviewer = "test fixture";
+    record.reviewedAt = "2026-08-14T00:00:00.000Z";
+    record.evidence = `test fixture evidence for ${record.questionId}`;
+    record.decisions = {
+      conceptAccurate: true,
+      difficultyValid: true,
+      contextNecessary: true,
+      answerUnique: true,
+      solutionChildExecutable: true,
+      pitfallAuthentic: true
+    };
+  });
+  const batch = gold.buildGoldV3Batch(manifest);
+
+  assert.equal(registry.registerContentBatch(batch), true);
+  for (const topic of batch.topics) {
+    const level = builder.buildChapter(topic.chapterId, []).levels.find((entry) => entry.moduleId === topic.moduleId);
+    assert.equal(level.contentVersion, batch.contentVersion);
+    assert.equal(level.questions.every((question) => question.schemaVersion === 3), true);
+  }
+});

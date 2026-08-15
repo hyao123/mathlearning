@@ -5,6 +5,7 @@ const { validateTopicProgression } = require("./difficultyEngine.js");
 
 const BATCH_STATUSES = Object.freeze(["candidate", "approved", "active", "rejected"]);
 const activeContentByTopic = new Map();
+const activeBatches = new Map();
 
 function clone(value) {
   return structuredClone(value);
@@ -102,6 +103,13 @@ function registerContentBatch(batch) {
     return current && compareContentVersions(current.contentVersion, contentVersion) >= 0;
   })) return false;
   replacements.forEach(({ key, questions, contentVersion }) => activeContentByTopic.set(key, { questions, contentVersion }));
+  activeBatches.set(batch.id, {
+    id: batch.id,
+    status: "active",
+    contentVersion: batch.contentVersion,
+    topicCount: replacements.length,
+    questionCount: replacements.reduce((sum, replacement) => sum + replacement.questions.length, 0)
+  });
   return true;
 }
 
@@ -110,4 +118,9 @@ function getActiveTopicQuestions(chapterId, moduleId) {
   return active ? clone(active) : null;
 }
 
-module.exports = { BATCH_STATUSES, registerContentBatch, getActiveTopicQuestions, validateContentBatch };
+function getActiveBatch(batchId) {
+  const active = activeBatches.get(batchId);
+  return active ? { ...active } : null;
+}
+
+module.exports = { BATCH_STATUSES, registerContentBatch, getActiveTopicQuestions, getActiveBatch, validateContentBatch };

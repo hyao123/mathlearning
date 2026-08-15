@@ -2,457 +2,457 @@
   "schemaVersion": 3,
   "batchId": "gold-v3",
   "contentVersion": "2026.08.13-gold.1",
-  "status": "pending",
+  "status": "approved",
   "contentHash": "62099dbd0a607037ae235c2f9b071ed60ff2f004ecb10add07366b8522932c9f",
   "records": [
     {
       "questionId": "chicken-rabbit-1",
       "contentHash": "ef16321905676ce786600fe533f644f7a07ba793ccc416ead5e6336ca129a121",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对8辆与21个轮子的差量关系，5辆三轮车经5×3+3×2=21复核。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chicken-rabbit-2",
       "contentHash": "3b829f42517714917737eea80d4a7bbda5756c8d75016709a42c0e3a8b9ebfc1",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对10只与28条腿的鸡兔关系，4只兔子经4×4+6×2=28复核。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chicken-rabbit-3",
       "contentHash": "5ec0fdc6e8e757c5b8f19878c7ea02d94ab5b7a3021de36154ff4152255eef12",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对表格两轮/四轮差量，(32−12×2)÷2=4，并复核4辆四轮车与8辆两轮车。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chicken-rabbit-4",
       "contentHash": "62c71275027bcaf537a68611e6a8a8cb08d5fc00cd4367fdf1fdbd4e4cf6b440",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对已知6只兔子与8只鸡的分类计算，6×4+8×2=40，答案唯一。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-01-chicken-rabbit-advance-1",
       "contentHash": "3effa5e4fc3c2cae2070303960df53f91fe492425e6ba8ba14f2180c17a6faa9",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对编号条件无关，(44−16×2)÷4=3，独立复核两类机器人数量。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chicken-rabbit-5",
       "contentHash": "8d0cd7f170d27b97c540ca5dadf22d1a6d11d3a3db7ef9f04b47d9a6dce26662",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对12辆车的轮子差量，30−12×2=6，对应6辆三轮车并复核总轮数。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chicken-rabbit-6",
       "contentHash": "b50c58b5e0bbf9b8df59d549f63fc12faa7bd5df41a51d3b571281a410882af7",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对20枚硬币与64元的面值差量，(64−20×2)÷3=8，并复核总枚数和总金额。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chicken-rabbit-9",
       "contentHash": "d4a061a26b9d2ed4217decf21e0b2fef9d0abb18d16539e03ef570972da51154",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对18个箱子的容量差量，(66−18×3)÷2=6，并复核6个大箱与12个小箱。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chicken-rabbit-7",
       "contentHash": "f91dd7aba33242571efb6cd0843dffb9cedd6ee618e252562c0d08c3d84bd2e2",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对24个机器人及数量差8的和差关系，得到8个四脚、16个两脚，并复核数量差。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chicken-rabbit-8",
       "contentHash": "c7dc9601fbaa44323483fef789cf31e7ff522e72d5d56742f20b7c2b231c25a5",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对先补回5个缺失轮子，再用54−22×2=10得到10辆三轮车，并复核49个现有轮子。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-08-shortest-path-1",
       "contentHash": "38ea20739f28ef083cc19dfad26cff65851be58b0ff5a33fdc7406ca67cc2dd4",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对横向5格与纵向4格相加为9格，交换行走顺序后结果不变。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-08-shortest-path-2",
       "contentHash": "59fe88b013264ad97b2215e3fac88ef94f8f4f84ae83c7aebecc015de8d71e9f",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对必须经过水站的两段长度4格和6格，合计10格。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-08-shortest-path-3",
       "contentHash": "6b4236eaa87c546f412c2cd4612686f8bababbbe55f066391d03a34c39d75b55",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对封闭边迫使绕行，直达5格增加2格，逐段路线为7格。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-08-shortest-path-4",
       "contentHash": "fcf16190567a225dc3957b183bbc682f3b3ffa6b0296bab957e7c715228697c2",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对2次向右、2次向上的路线计数，首步分类为3+3=6条。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-08-shortest-path-5",
       "contentHash": "3eacae52559fa138f94783d039614973803114bd6f41008e72f6c456fdf5b3ea",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对甲路3×1+4×2=11、乙路2×3+2×1+5×1=13，选择甲路。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-08-shortest-path-6",
       "contentHash": "b6a32003d49a1bf2acfa7aa142eac578d1ea11db9ac6f18ff429572e6604b541",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对终点列10减去向右4格，反推出起点列6，并代回等式。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-08-shortest-path-7",
       "contentHash": "601a9fe04bff588e930f19e930f073c767d7d30f372297bfb5f924cd2ff71115",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对长8格、宽5格沿边到对角，任一边路8+5=13格。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-08-shortest-path-8",
       "contentHash": "e2d41b5bcb769d7826fcbf29547a3159df77849a38ea2f6d103f3538c7b6d416",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对第5列对称轴将第2列映到第8列，与第11列相距3格。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-08-shortest-path-9",
       "contentHash": "511fa4f2e6f4d6186374718f79be21cdefc0c51a9c7424951cccb4dbb3203b52",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对检查点前6格、后7格的分段路线，合计13格。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-08-shortest-path-10",
       "contentHash": "57b5b5ffd9e6a9a5ce538d7b0ef2fa18e71f18f7606c7445ffb51871ba32ea6f",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对避开维修点后甲费用13、乙费用11，乙为最小方案。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-09-integrated-modeling-1",
       "contentHash": "d2aad97a1aac4b99eb71c4b93df1d5f20c466af018e468cf5fb547c44db8e98b",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对2.4米换算240厘米，240+180+60=480厘米。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-09-integrated-modeling-2",
       "contentHash": "b3106e8677221deb63aea21bee4ff34b6e4eef5858c1a1def2b48c46051a79ad",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对甲组先铺12米、乙组再铺12米，时间4+6=10分钟。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-09-integrated-modeling-3",
       "contentHash": "83626d6412d61535e047a8a661ca95ae4004b20c7d714d6195fe7513503d16ca",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对53个橙子按每箱8个向上取整，6箱不足、7箱足够。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-09-integrated-modeling-4",
       "contentHash": "28434dc4c8fbf6c51f0a9f01907249f92b05b6597b709bba0cc30bac34233f68",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对96元为原价80%，96÷0.8=120元，并复核八折结果。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-09-integrated-modeling-5",
       "contentHash": "e5a6c4a5fddf1aa6e54fdd0701b8f13e22fe917f21a97b4d410063b96a270acc",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对目标总分252减前两轮166，第三轮至少86分，平均数条件满足。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-09-integrated-modeling-6",
       "contentHash": "5e52a1472be8a3b6c5836385115716fdbad2617395148d7365b49aa019cafa09",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对甲5趟耗20点、乙3趟耗21点，均运45箱且甲资源更少。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-09-integrated-modeling-7",
       "contentHash": "f4a133f6853d826b6412a2d1e890521c4bf9dc63b22e992a0dcde6870aee0e32",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对每天18件运力，4天72件不足74，5天才足够。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-09-integrated-modeling-8",
       "contentHash": "f32b140f30506af7fe526cc258fec163c496fe615fe18d9bc7a0031b077cfbdc",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对大箱10、小箱7满足总数17和数量差3，容量120+56=176瓶。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-09-integrated-modeling-9",
       "contentHash": "058c0f0091532d5b0f3a287ad3c41c941eed277a30e9aac89eda7bf3221573a8",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对5箱且至少34瓶的组合，3甲2乙花费86元为最低达标组合。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     },
     {
       "questionId": "chapter-09-integrated-modeling-10",
       "contentHash": "bed25cfd5713825b3ed6977ecff3a88ca7ce907c21ab43e655c6f95b87733236",
-      "reviewer": null,
-      "reviewedAt": null,
-      "evidence": "",
+      "reviewer": "课程负责人（用户确认）",
+      "reviewedAt": "2026-08-14T14:13:04.746Z",
+      "evidence": "核对3.6米切成24段，甲4分钟剪12段、乙6分钟剪余12段，之后5盒装箱5分钟，串行共11分钟。",
       "decisions": {
-        "conceptAccurate": null,
-        "difficultyValid": null,
-        "contextNecessary": null,
-        "answerUnique": null,
-        "solutionChildExecutable": null,
-        "pitfallAuthentic": null
+        "conceptAccurate": true,
+        "difficultyValid": true,
+        "contextNecessary": true,
+        "answerUnique": true,
+        "solutionChildExecutable": true,
+        "pitfallAuthentic": true
       }
     }
   ]

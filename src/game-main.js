@@ -1,4 +1,5 @@
 import "../game/game.css";
+import goldReviewManifest from "../content/humanReview/candidates/gold-v3.json";
 
 const commonJsRegistry = new Map();
 
@@ -76,6 +77,22 @@ const CompatibilityMap = await loadCommonJs(() => import("../game/curriculum/com
   "./curriculum/compatibilityMap.js", "./compatibilityMap.js"
 ]);
 const ContentBatchRegistry = await loadCommonJs(() => import("../game/curriculum/contentBatchRegistry.js"), "./curriculum/contentBatchRegistry.js");
+await loadCommonJs(() => import("../game/curriculum/gold/chickenRabbit.js"), [
+  "./curriculum/gold/chickenRabbit.js", "./gold/chickenRabbit.js", "./chickenRabbit.js"
+]);
+await loadCommonJs(() => import("../game/curriculum/gold/shortestPath.js"), [
+  "./curriculum/gold/shortestPath.js", "./gold/shortestPath.js", "./shortestPath.js"
+]);
+await loadCommonJs(() => import("../game/curriculum/gold/integratedModeling.js"), [
+  "./curriculum/gold/integratedModeling.js", "./gold/integratedModeling.js", "./integratedModeling.js"
+]);
+const GoldContentBatch = await loadCommonJs(() => import("../game/curriculum/gold/index.js"), [
+  "./curriculum/gold/index.js", "./gold/index.js"
+]);
+const approvedGoldBatch = GoldContentBatch.buildGoldV3Batch(goldReviewManifest);
+if (approvedGoldBatch.status !== "approved" || !ContentBatchRegistry.registerContentBatch(approvedGoldBatch)) {
+  throw new Error("Reviewed gold-v3 content batch could not be activated");
+}
 const ContentVersionModel = await loadCommonJs(() => import("../game/curriculum/contentVersionModel.js"), "./curriculum/contentVersionModel.js");
 const QuestionContractFixes = await loadCommonJs(() => import("../game/questionContractFixes.js"), "./questionContractFixes.js");
 const StoryMissionModel = await loadCommonJs(() => import("../game/storyMissionModel.js"), "./storyMissionModel.js");
@@ -126,6 +143,7 @@ Object.assign(globalThis, {
   CurriculumMap,
   CompatibilityMap,
   ContentBatchRegistry,
+  GoldContentBatch,
   ContentVersionModel,
   ChapterRegistrations,
   GameChapterRegistry,

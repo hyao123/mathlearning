@@ -4,6 +4,8 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const reviewTemplate = require("./generate-human-review-template.js");
 const { validateCurriculumBatch } = require("./validate-game-content.js");
+const GoldBatch = require(path.join(root, "game", "curriculum", "gold", "index.js"));
+const ContentBatchRegistry = require(path.join(root, "game", "curriculum", "contentBatchRegistry.js"));
 
 function runCli(argv = process.argv) {
   const batchIndex = argv.indexOf("--batch");
@@ -27,7 +29,8 @@ function runCli(argv = process.argv) {
     return 1;
   }
 
-  const report = validateCurriculumBatch(reviewTemplate.buildGoldV3Batch(), manifest);
+  const batch = GoldBatch.buildGoldV3Batch(manifest);
+  const report = validateCurriculumBatch(batch, manifest);
   if (report.automatedErrors.length) {
     console.error(`FAIL curriculum batch ${batchId}: automated question errors: ${report.automatedErrors.length}`);
     report.automatedErrors.forEach((error) => console.error(`- ${error}`));
@@ -35,7 +38,12 @@ function runCli(argv = process.argv) {
     console.log(`OK curriculum batch ${batchId}: automated question errors: 0 (${report.questionCount} questions)`);
   }
   if (report.publishable) {
-    console.log(`OK curriculum batch ${batchId}: approved and publishable`);
+    if (!ContentBatchRegistry.registerContentBatch(batch)) {
+      console.error(`FAIL curriculum batch ${batchId}: approved batch could not become active`);
+      return 1;
+    }
+    const active = ContentBatchRegistry.getActiveBatch(batchId);
+    console.log(`OK curriculum batch ${batchId}: active, ${active.topicCount} topics, ${active.questionCount} questions`);
     return 0;
   }
 

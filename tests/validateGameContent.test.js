@@ -137,14 +137,14 @@ test("curriculum review validation rejects incomplete records and non-publishabl
   assert.match(rejectedReport.errors.join("\n"), /rejected.*false decision/i);
 });
 
-test("curriculum candidate CLI fails pending review while automated question gates remain clean", () => {
+test("curriculum candidate CLI accepts the reviewed gold batch while automated gates remain clean", () => {
   const result = childProcess.spawnSync(process.execPath, ["scripts/validate-curriculum-batch.js", "--batch", "gold-v3"], {
     cwd: require("node:path").resolve(__dirname, ".."),
     encoding: "utf8"
   });
 
-  assert.notEqual(result.status, 0);
-  assert.match(`${result.stdout}\n${result.stderr}`, /pending/i);
+  assert.equal(result.status, 0);
+  assert.match(`${result.stdout}\n${result.stderr}`, /active, 3 topics, 30 questions/i);
   assert.doesNotMatch(`${result.stdout}\n${result.stderr}`, /automated question errors: [1-9]/i);
 });
 

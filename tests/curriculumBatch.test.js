@@ -603,6 +603,7 @@ test("browser loader evaluates the content batch registry with short-path depend
   const source = fs.readFileSync(path.join(__dirname, "..", "src", "game-main.js"), "utf8");
   const prelude = source.slice(0, source.indexOf("const GameChapterConfig ="))
     .replace(/^import "\.\.\/game\/game\.css";\s*/, "")
+    .replace(/^import goldReviewManifest from .*;\s*/m, "")
     .concat("\nglobalThis.__testLoadCommonJs = loadCommonJs;");
   const context = vm.createContext({ structuredClone });
   vm.runInContext(prelude, context, { filename: "game-main-loader.js" });
@@ -649,4 +650,54 @@ test("browser loader evaluates the content batch registry with short-path depend
     context.__testLoadCommonJs(() => vm.runInContext('require("./unknown.js")', context), "./unknown.js"),
     /Game module dependency was not loaded: \.\/unknown\.js/
   );
+});
+
+test("browser entrypoint registers the reviewed gold batch before building chapters", () => {
+  const source = fs.readFileSync(path.join(__dirname, "..", "src", "game-main.js"), "utf8");
+  const manifestImport = source.indexOf("gold-v3.json");
+  const goldLoader = source.indexOf("game/curriculum/gold/index.js");
+  const registration = source.indexOf("ContentBatchRegistry.registerContentBatch");
+  const chapterBuild = source.indexOf("const chapters =");
+
+  assert.ok(manifestImport >= 0, "game-main must load the reviewed gold manifest");
+  assert.ok(goldLoader >= 0, "game-main must load the gold batch module");
+  assert.ok(registration >= 0, "game-main must register the reviewed gold batch");
+  assert.ok(registration < chapterBuild, "gold registration must precede chapter compilation");
+});
+
+test("approved gold manifest activates all three stable topic slots", () => {
+  const gold = require("../game/curriculum/gold/index.js");
+  const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "content", "humanReview", "candidates", "gold-v3.json"), "utf8"));
+  manifest.status = "approved";
+  manifest.records.forEach((record) => {
+    record.reviewer = "test fixture";
+    record.reviewedAt = "2026-08-14T00:00:00.000Z";
+    record.evidence = `test fixture evidence for ${record.questionId}`;
+    record.decisions = {
+      conceptAccurate: true,
+      difficultyValid: true,
+      contextNecessary: true,
+      answerUnique: true,
+      solutionChildExecutable: true,
+      pitfallAuthentic: true
+    };
+  });
+  const batch = gold.buildGoldV3Batch(manifest);
+  batch.contentVersion = "2026.08.13-gold.99";
+
+  assert.equal(batch.status, "approved");
+  assert.equal(registry.registerContentBatch(batch), true);
+  assert.deepEqual(registry.getActiveBatch("gold-v3"), {
+    id: "gold-v3",
+    status: "active",
+    contentVersion: "2026.08.13-gold.99",
+    topicCount: 3,
+    questionCount: 30
+  });
+  for (const topic of batch.topics) {
+    const level = builder.buildChapter(topic.chapterId, []).levels.find((entry) => entry.moduleId === topic.moduleId);
+    assert.equal(level.contentVersion, "2026.08.13-gold.99");
+    assert.equal(level.questions.every((question) => question.schemaVersion === 3), true);
+    assert.deepEqual(level.questions.map((question) => question.id), topic.questions.map((question) => question.id));
+  }
 });
