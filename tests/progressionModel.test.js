@@ -35,6 +35,12 @@ function createChapter() {
   };
 }
 
+function createVersionedChapter(contentVersion = "2026.08.13-gold.1") {
+  const chapter = createChapter();
+  chapter.levels[0].contentVersion = contentVersion;
+  return chapter;
+}
+
 function getCurrentAnswer(state, chapter) {
   const level = chapter.levels.find((entry) => entry.levelId === state.activeRun.levelId);
   return level.questions[state.activeRun.questionIndex].answer;
@@ -225,6 +231,99 @@ test("skipping retains the better star record", () => {
   }
   assert.equal(model.getSettlement(replay).starCount, 1);
   assert.equal(replay.levelRecords["chapter-01-level-1"].starCount, 2);
+});
+
+test("persists a V3 content version from run start through settlement without replaying fixed rewards", () => {
+  const chapter = createVersionedChapter();
+  const levelId = "chapter-01-level-1";
+  let state = model.hydrate(JSON.stringify({
+    unlockedLevelIds: [levelId],
+    levelRecords: { [levelId]: { starCount: 3 } },
+    inventory: { "oak-log": 1 },
+    claimedFixedRewards: { "level-1-question-1": true },
+    attemptSettlements: {
+      "legacy-attempt": { questionId: "level-1-question-1", resolution: "correct", transactionIds: ["legacy-tx"] }
+    }
+  }), chapter);
+
+  state = model.startLevel(state, levelId);
+  assert.equal(state.activeRun.contentVersion, "2026.08.13-gold.1");
+  for (let index = 0; index < 10; index += 1) {
+    state = model.skipQuestion(state);
+    state = model.continueFromResolved(state);
+  }
+
+  assert.deepEqual(state.levelRecords[levelId], { starCount: 3, contentVersion: "2026.08.13-gold.1" });
+  assert.deepEqual(state.claimedFixedRewards, { "level-1-question-1": true });
+  assert.deepEqual(state.attemptSettlements["legacy-attempt"], {
+    questionId: "level-1-question-1",
+    resolution: "correct",
+    transactionIds: ["legacy-tx"]
+  });
+  assert.deepEqual(state.inventory, { "oak-log": 1 });
+});
+
+test("serializes and hydrates only valid content versions while retaining legacy record shapes", () => {
+  const chapter = createVersionedChapter();
+  const levelId = "chapter-01-level-1";
+  const started = model.startLevel(model.createInitialState(chapter), levelId);
+  const serialized = JSON.parse(model.serialize(started));
+
+  assert.equal(serialized.activeRun.contentVersion, "2026.08.13-gold.1");
+
+  const hydrated = model.hydrate(JSON.stringify({
+    unlockedLevelIds: [levelId],
+    levelRecords: {
+      [levelId]: { starCount: 2, contentVersion: "2026.08.13-gold.1" },
+      "chapter-01-level-2": { starCount: 1, contentVersion: "   " }
+    },
+    activeRun: serialized.activeRun
+  }), chapter);
+  assert.deepEqual(hydrated.levelRecords[levelId], { starCount: 2, contentVersion: "2026.08.13-gold.1" });
+  assert.equal(hydrated.activeRun.contentVersion, "2026.08.13-gold.1");
+
+  const invalid = model.hydrate(JSON.stringify({
+    unlockedLevelIds: [levelId, "chapter-01-level-2"],
+    levelRecords: {
+      [levelId]: { starCount: 1, contentVersion: 3 },
+      "chapter-01-level-2": { starCount: 2, contentVersion: "" }
+    }
+  }), chapter);
+  assert.deepEqual(invalid.levelRecords, {
+    [levelId]: { starCount: 1 },
+    "chapter-01-level-2": { starCount: 2 }
+  });
+
+  const legacyChapter = createChapter();
+  const legacyRun = model.startLevel(model.createInitialState(legacyChapter), levelId);
+  assert.equal(Object.hasOwn(legacyRun.activeRun, "contentVersion"), false);
+  assert.equal(Object.hasOwn(JSON.parse(model.serialize(legacyRun)).activeRun, "contentVersion"), false);
+});
+
+test("hydration discards a mismatched V3 active run but retains a matching version", () => {
+  const chapter = createVersionedChapter("2026.08.13-gold.2");
+  const activeRun = {
+    levelId: "chapter-01-level-1",
+    questionIndex: 0,
+    questionId: "level-1-question-1",
+    status: "active",
+    correctCount: 0,
+    skippedCount: 0,
+    rewardedQuestionIds: [],
+    skippedQuestionIds: []
+  };
+  const stored = {
+    activeChapterId: "chapter-01",
+    unlockedLevelIds: ["chapter-01-level-1"],
+    activeRun: { ...activeRun, contentVersion: "2026.08.13-gold.1" }
+  };
+
+  assert.equal(model.hydrate(JSON.stringify(stored), chapter).activeRun, null);
+  const matching = model.hydrate(JSON.stringify({
+    ...stored,
+    activeRun: { ...activeRun, contentVersion: "2026.08.13-gold.2" }
+  }), chapter);
+  assert.equal(matching.activeRun.contentVersion, "2026.08.13-gold.2");
 });
 
 test("skipped questions grant no mainline materials while a full clear grants all ten", () => {

@@ -174,6 +174,61 @@ async function main() {
 
   await withPage(chromium, async ({ baseUrl, page, pageErrors }) => {
     await page.goto(baseUrl, { waitUntil: "networkidle" });
+    await page.evaluate(async () => {
+      const { default: GameApp } = await import("/game/gameApp.js");
+      const contentVersion = "2026.08.13-gold.1";
+      const chapter = globalThis.GameChapterBuilder.buildChapter("chapter-01");
+      chapter.levels[0].contentVersion = contentVersion;
+      chapter.levels[1].contentVersion = contentVersion;
+      const stateStore = {
+        load() {
+          return JSON.stringify({
+            activeChapterId: chapter.chapterId,
+            chapterStates: {
+              [chapter.chapterId]: {
+                unlockedLevelIds: chapter.levels.slice(0, 3).map((level) => level.levelId),
+                levelRecords: {
+                  [chapter.levels[0].levelId]: { starCount: 3 },
+                  [chapter.levels[1].levelId]: { starCount: 2, contentVersion: "2026.08.13-gold.1" }
+                }
+              }
+            }
+          });
+        },
+        save(serialized) {
+          globalThis.__updatedLevelReplayState = JSON.parse(serialized);
+        }
+      };
+      const mountedRoot = document.getElementById("game-root");
+      const root = mountedRoot.cloneNode(false);
+      mountedRoot.replaceWith(root);
+      delete globalThis.__updatedLevelReplayState;
+      GameApp.mount({ root, chapters: [chapter], stateStore });
+    });
+    await page.locator("[data-level-id='chapter-01-level-1']").waitFor({ state: "visible" });
+    const updatedLevel = page.locator("[data-level-id='chapter-01-level-1']");
+    assert.equal(await updatedLevel.getAttribute("data-content-status"), "updated");
+    assert.equal(await updatedLevel.isEnabled(), true, "an updated completed level must remain replayable");
+    assert.equal((await updatedLevel.locator(".level-node__status").textContent()).trim(), "内容已更新 · 可重新挑战");
+    assert.match(await updatedLevel.getAttribute("aria-label"), /内容已更新.*可重新挑战/);
+    assert.equal(await page.locator("[data-level-id='chapter-01-level-2']").getAttribute("data-content-status"), "current");
+    assert.equal(await page.locator("[data-level-id='chapter-01-level-3']").getAttribute("data-content-status"), "unplayed");
+    assert.equal(await page.locator("[data-level-id='chapter-01-level-3']").isEnabled(), true, "an unlocked unplayed level remains available");
+    assert.equal(await page.locator("[data-level-id='chapter-01-level-4']").getAttribute("data-content-status"), "unplayed");
+    assert.equal(await page.locator("[data-level-id='chapter-01-level-4']").isDisabled(), true, "a locked unplayed level remains unavailable");
+    await updatedLevel.click();
+    await page.locator("[data-game-screen='challenge']").waitFor({ state: "visible" });
+    assert.equal(
+      await page.evaluate(() => globalThis.__updatedLevelReplayState?.chapterStates?.["chapter-01"]?.activeRun?.contentVersion),
+      "2026.08.13-gold.1",
+      "replaying an updated level must start the V3 content run from the legacy completed record"
+    );
+    assert.deepEqual(pageErrors, [], `browser console/page errors:\n${pageErrors.join("\n")}`);
+    console.log(`OK updated curriculum level UI behavior test at ${baseUrl}`);
+  }, { port: process.env.GAME_UI_CONTENT_VERSION_PORT || "4195" });
+
+  await withPage(chromium, async ({ baseUrl, page, pageErrors }) => {
+    await page.goto(baseUrl, { waitUntil: "networkidle" });
     await page.evaluate(() => {
       localStorage.clear();
       localStorage.setItem("math-quest-game-v1", JSON.stringify({

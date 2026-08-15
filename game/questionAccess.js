@@ -36,7 +36,8 @@ function judgeAnswer(question, userAnswer, answerMatcher) {
 
   return {
     correct: Boolean(answerMatcher.isAnswerCorrect(userAnswer, question.answer, {
-      acceptedAnswers: question.acceptedAnswers
+      acceptedAnswers: question.acceptedAnswers,
+      answerPolicy: question.answerPolicy
     }))
   };
 }

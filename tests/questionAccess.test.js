@@ -65,3 +65,13 @@ test("buildSolutionReview returns a detached, display-ready review only after re
   assert.notEqual(review.steps, fullQuestion.solutionReview.steps);
   assert.equal(access.buildSolutionReview({}), null);
 });
+
+test("judgeAnswer passes a V3 answer policy to the matcher", () => {
+  const question = {
+    answer: "1/3",
+    answerPolicy: { kind: "fraction", simplified: true }
+  };
+
+  assert.deepEqual(access.judgeAnswer(question, "2/6", matcher), { correct: false });
+  assert.deepEqual(access.judgeAnswer(question, "1/3", matcher), { correct: true });
+});

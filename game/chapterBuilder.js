@@ -5,6 +5,9 @@ const ChapterQualityProfiles = require("./chapterQualityProfiles.js");
 const ChapterQuestionOverrides = require("./chapterQuestionOverrides.js");
 const QuestionContract = require("./questionContract.js");
 const QuestionContractFixes = require("./questionContractFixes.js");
+const ContentBatchRegistry = require("./curriculum/contentBatchRegistry.js");
+const CurriculumMap = require("./curriculum/curriculumMap.js");
+const RuntimeAdapter = require("./curriculum/runtimeAdapter.js");
 
 const REQUIRED_SUPPLEMENTAL_FIELDS = ["id", "title", "prompt", "answer", "explanation"];
 const MISSION_PHASES = Object.freeze(["启航", "校准", "侦察", "推进", "协作", "加固", "巡航", "穿越", "攻坚", "决战"]);
@@ -92,17 +95,38 @@ function findModule(moduleId, modules = [], chapterId = null) {
 function buildLevel(levelConfig, modules = [], chapterId = null) {
   const module = findModule(levelConfig.moduleId, modules, chapterId);
   if (!module) throw new Error(`Missing configured module: ${levelConfig.moduleId}`);
+  const versioned = ContentBatchRegistry.getActiveTopicQuestions(chapterId, module.id);
+  const topic = versioned ? CurriculumMap.getCurriculumTopic(module.id) : null;
   const supplemental = ChapterRegistry.getSupplementalQuestions(chapterId, module.id);
-  const allPractices = [...(module.practices || []), ...supplemental].map((practice) => ({ ...practice }));
+  const allPractices = versioned
+    ? versioned.questions.map((question) => RuntimeAdapter.adaptQuestionV3(question, topic))
+    : [...(module.practices || []), ...supplemental].map((practice) => ({ ...practice }));
   const slots = DIFFICULTY_SLOTS.map((difficulty, index) => ({ difficulty, slot: index + 1 }));
   const selectedIds = new Set();
   const questions = slots.map(({ difficulty, slot }) => {
-    const candidate = allPractices.find((practice) => practice.difficulty === difficulty && !selectedIds.has(practice.id));
+    const candidate = versioned
+      ? allPractices.find((practice) => practice?.slot === slot)
+      : allPractices.find((practice) => practice.difficulty === difficulty && !selectedIds.has(practice.id));
     if (!candidate) throw new Error(`${module.id} 缺少第 ${slot} 题所需的${difficulty}题`);
     selectedIds.add(candidate.id);
-    return enrichQuestion(candidate, module, slot, difficulty, chapterId);
+    return versioned ? compileVersionedQuestion(candidate, slot, difficulty) : enrichQuestion(candidate, module, slot, difficulty, chapterId);
   });
-  return { levelId: levelConfig.id, moduleId: module.id, title: module.title, questions };
+  return {
+    levelId: levelConfig.id,
+    moduleId: module.id,
+    title: module.title,
+    ...(versioned ? { contentVersion: versioned.contentVersion } : {}),
+    questions
+  };
+}
+
+function compileVersionedQuestion(question, slot, difficulty) {
+  const compiled = { ...question, slot, difficulty, isBoss: slot === 10 };
+  for (const field of ["answer", "answerType", "answerFormat", "answerPolicy", "solution", "verification", "reviewMetadata", "solutionReview"]) {
+    const descriptor = Object.getOwnPropertyDescriptor(question, field);
+    if (descriptor) Object.defineProperty(compiled, field, descriptor);
+  }
+  return compiled;
 }
 
 function buildChapter(chapterId, modules) {

@@ -1,4 +1,5 @@
 (function attachAnswerMatcher(root) {
+  const AnswerPolicy = root.AnswerPolicy || require("./game/curriculum/answerPolicy.js");
   const YES_WORDS = new Set(["是", "对", "正确", "yes", "y", "true"]);
   const NO_WORDS = new Set(["不是", "否", "不对", "错误", "错", "no", "n", "false"]);
   const CHINESE_DIGITS = {
@@ -128,6 +129,9 @@
   }
 
   function isAnswerCorrect(userAnswer, expectedAnswer, options = {}) {
+    if (options.answerPolicy) {
+      return AnswerPolicy.matchesAnswerPolicy(userAnswer, expectedAnswer, options.answerPolicy);
+    }
     const acceptedAnswers = getAcceptedAnswers(expectedAnswer, options.acceptedAnswers);
     return acceptedAnswers.some((acceptedAnswer) =>
       exactOrUnitMatch(userAnswer, acceptedAnswer) ||

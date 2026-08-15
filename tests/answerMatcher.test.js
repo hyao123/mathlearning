@@ -40,3 +40,9 @@ test("rejects different answers", () => {
   assert.equal(isAnswerCorrect("不是", "是"), false);
   assert.equal(isAnswerCorrect("12", "12 和 8"), false);
 });
+
+test("uses an explicit answer policy instead of legacy numeric equivalence", () => {
+  assert.equal(isAnswerCorrect("0.5", "1/2"), true);
+  assert.equal(isAnswerCorrect("2/6", "1/3", { answerPolicy: { kind: "fraction", simplified: true } }), false);
+  assert.equal(isAnswerCorrect("1/3", "1/3", { answerPolicy: { kind: "fraction", simplified: true } }), true);
+});
