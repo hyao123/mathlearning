@@ -1265,3 +1265,231 @@ input:focus-visible {
 .recovery-reward {
   margin: 12px 0;
 }
+
+/* Header action group and sound toggle */
+.quest-game__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pixel-button--sound {
+  padding: 8px 12px;
+  font-size: 1.15rem;
+  background: var(--paper, #fffaf0);
+  border: 2px solid var(--line, #28354d);
+  box-shadow: 2px 2px 0 var(--line, #28354d);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.pixel-button--sound:hover {
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0 var(--line, #28354d);
+}
+
+.pixel-button--sound:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--line, #28354d);
+}
+
+/* Question Visualizer Card */
+.question-visual {
+  margin: 14px 0 16px;
+  padding: 16px;
+  background: #fffaf0;
+  border: 2px solid var(--line, #28354d);
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 rgba(40, 53, 77, 0.25);
+  animation: visual-pop-in 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.question-visual__svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  background: #fbf7ee;
+  border: 1px solid #d8ccb1;
+  border-radius: 6px;
+}
+
+.question-visual__legend {
+  margin: 10px 0 0;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink-soft, #47536a);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Question Visual Table */
+.question-visual__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 4px 0;
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.question-visual__table th,
+.question-visual__table td {
+  padding: 10px 12px;
+  border: 1px solid #c2b092;
+}
+
+.question-visual__table th {
+  background: #eee0bd;
+  color: #18243a;
+  font-weight: bold;
+}
+
+.question-visual__table tbody tr:nth-child(even) {
+  background: #fdfaf3;
+}
+
+.question-visual__table tfoot td {
+  background: #f7edd4;
+  font-weight: bold;
+  color: #6d58a6;
+}
+
+/* Question Visual Equation Box */
+.question-visual__equation-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px;
+  background: #18243a;
+  color: #fffaf0;
+  border-radius: 6px;
+  border: 2px solid #e9b949;
+  box-shadow: inset 0 0 8px rgba(233, 185, 73, 0.2);
+}
+
+.question-visual__equation-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #e9b949;
+  color: #18243a;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 4px;
+}
+
+.question-visual__equation-formula {
+  font-size: 1.15rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Tiered Hints Scaffolding */
+.tiered-hints {
+  margin: 14px 0;
+  padding: 12px 16px;
+  background: #f5efe1;
+  border: 2px dashed #b89a67;
+  border-radius: 8px;
+  animation: visual-pop-in 0.2s ease-out;
+}
+
+.tiered-hints__summary {
+  font-weight: bold;
+  color: #5c441b;
+  cursor: pointer;
+  padding: 4px 0;
+  user-select: none;
+}
+
+.tiered-hints__summary:hover {
+  color: #18243a;
+}
+
+.tiered-hints__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.tiered-hints__item {
+  padding: 10px 14px;
+  background: #fffaf0;
+  border-left: 4px solid #6d58a6;
+  border-radius: 0 6px 6px 0;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.tiered-hints__item:nth-child(2) {
+  border-left-color: #258366;
+}
+
+.tiered-hints__item:nth-child(3) {
+  border-left-color: #e9b949;
+}
+
+.tiered-hints__label {
+  display: block;
+  font-size: 0.82rem;
+  color: #665a48;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.tiered-hints__text {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: #18243a;
+  white-space: pre-line;
+}
+
+/* Engaging Micro-animations */
+@keyframes visual-pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes star-burst {
+  0% {
+    transform: scale(0.5) rotate(-15deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.2) rotate(5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes streak-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(233, 185, 73, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 12px 3px rgba(233, 185, 73, 0.7);
+  }
+}
+
+.answer-feedback--correct {
+  animation: visual-pop-in 0.25s ease-out;
+}
+
+.reward-popover {
+  animation: visual-pop-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tactical-review__streak {
+  animation: streak-glow 2s infinite ease-in-out;
+}

@@ -1,7 +1,7 @@
 import { createSubmissionFeedback } from "./gameAppView.js";
 
 export function createGameInteractions(app) {
-  const { AnswerMatcher, GameItemCatalog, InventoryModel, ChallengeModel, ProgressionModel } = app.dependencies;
+  const { AnswerMatcher, GameItemCatalog, InventoryModel, ChallengeModel, ProgressionModel, SoundEngine } = app.dependencies;
   function openInventory() {
     if (app.screen === "challenge" || app.screen === "recovery-challenge") app.answerDraft = app.root.querySelector("[data-answer-input]")?.value || "";
     app.rewardReveal = null;
@@ -29,12 +29,23 @@ export function createGameInteractions(app) {
     app.answerDraft = "";
     app.state = ProgressionModel.submitAnswer(app.state, value, AnswerMatcher);
     app.answerFeedback = createSubmissionFeedback(app.state.activeRun?.status === "retry" ? "retry" : "correct");
-    if (app.answerFeedback.type === "retry") app.recordMetric("recordQuestionOutcome", app.chapter.chapterId, "retry");
-    if (!app.state.activeRun && app.state.lastSettlement?.levelId === beforeRun?.levelId) app.recordMetric("recordLevelClear", app.chapter.chapterId);
+    if (app.answerFeedback.type === "retry") {
+      app.recordMetric("recordQuestionOutcome", app.chapter.chapterId, "retry");
+      SoundEngine.playRetry();
+    }
+    if (!app.state.activeRun && app.state.lastSettlement?.levelId === beforeRun?.levelId) {
+      app.recordMetric("recordLevelClear", app.chapter.chapterId);
+      SoundEngine.playLevelClear();
+    }
     if (app.answerFeedback.type === "correct") {
       const transactions = (app.state.activeRun?.rewardTransactions || app.state.lastSettlement?.rewardTransactions || [])
         .slice(previousRewardCount);
       app.rewardReveal = { transactions };
+      if (app.state.activeRun && (app.state.streak >= 3 || transactions.some((t) => t.isRare || t.isStreak))) {
+        SoundEngine.playStreak();
+      } else if (app.state.activeRun) {
+        SoundEngine.playCorrect();
+      }
     } else {
       app.rewardReveal = null;
     }
@@ -53,7 +64,12 @@ export function createGameInteractions(app) {
     app.answerDraft = "";
     app.state = ProgressionModel.submitChallengeAnswer(app.state, value, AnswerMatcher);
     app.answerFeedback = createSubmissionFeedback(app.state.activeChallengeRun?.status === "retry" ? "retry" : "correct");
-    if (app.answerFeedback.type === "retry") app.recordMetric("recordQuestionOutcome", app.chapter.chapterId, "retry");
+    if (app.answerFeedback.type === "retry") {
+      app.recordMetric("recordQuestionOutcome", app.chapter.chapterId, "retry");
+      SoundEngine.playRetry();
+    } else {
+      SoundEngine.playCorrect();
+    }
     app.persist();
     app.render();
   }
@@ -61,6 +77,12 @@ export function createGameInteractions(app) {
   function handleClick(event) {
     const target = event.target.closest("button");
     if (!target || !app.root.contains(target)) return;
+    if (target.matches("[data-sound-toggle]")) {
+      SoundEngine.toggleMute();
+      app.render();
+      return;
+    }
+    SoundEngine.playClick();
     if (target.matches("[data-chapter-id]") && !target.disabled) {
       const nextChapter = app.chaptersById[target.dataset.chapterId];
       if (!nextChapter || !app.campaign.unlockedChapterIds.includes(nextChapter.chapterId)) return;
@@ -113,6 +135,7 @@ export function createGameInteractions(app) {
         const output = recipe.outputs[0];
         const item = output ? GameItemCatalog.getItem(output.itemId) : null;
         app.craftingFeedback = { itemId: output?.itemId, name: item?.name || recipe.name };
+        SoundEngine.playCraft();
         app.persist();
         app.render();
       }
@@ -124,6 +147,7 @@ export function createGameInteractions(app) {
         const output = recipe.outputs[0];
         const item = output ? GameItemCatalog.getItem(output.itemId) : null;
         app.craftingFeedback = { itemId: output?.itemId, name: item?.name || recipe.name };
+        SoundEngine.playCraft();
         app.persist();
         app.render();
       }

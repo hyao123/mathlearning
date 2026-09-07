@@ -1,7 +1,7 @@
 import { CHINESE_NUMERALS, appendItem, appendRewardOutcome, appendText, createFighterArt, createItemIcon, createProjectHeroArt, getLevelNumber } from "./gameAppView.js";
 
 export function createGameRenderers(app) {
-  const { GameItemCatalog, InventoryModel, LevelRewardConfig, RewardPresentation, ChapterMissionModel, ProgressionModel, ChallengeModel, ContentVersionModel } = app.dependencies;
+  const { GameItemCatalog, InventoryModel, LevelRewardConfig, RewardPresentation, ChapterMissionModel, ProgressionModel, ChallengeModel, ContentVersionModel, SoundEngine, QuestionVisualizer, HintScaffold } = app.dependencies;
   function renderHeader(parent, eyebrow, title, allowInventory = true) {
     const { root, chapter, state, campaign, screen, answerFeedback, rewardReveal, craftingFeedback, saveFeedback, answerDraft, allChapters, getLevel } = app;
     const header = document.createElement("header");
@@ -10,13 +10,23 @@ export function createGameRenderers(app) {
     appendText(heading, "p", eyebrow, "quest-game__eyebrow");
     appendText(heading, "h1", title);
     header.append(heading);
+
+    const controls = document.createElement("div");
     if (allowInventory) {
-      const button = appendText(header, "button", "背包", "pixel-button pixel-button--inventory");
+      const soundMuted = SoundEngine?.isMuted?.() || false;
+      const soundButton = appendText(controls, "button", soundMuted ? "🔇" : "🔊", "pixel-button pixel-button--sound");
+      soundButton.type = "button";
+      soundButton.dataset.soundToggle = "";
+      soundButton.title = soundMuted ? "开启音效" : "静音";
+      soundButton.setAttribute("aria-label", soundMuted ? "开启音效" : "静音");
+
+      const button = appendText(controls, "button", "背包", "pixel-button pixel-button--inventory");
       button.type = "button";
       button.dataset.openInventory = "";
       button.dataset.focusKey = "open-inventory";
       button.setAttribute("aria-label", "打开背包");
     }
+    header.append(controls);
     parent.append(header);
   }
 
@@ -461,6 +471,8 @@ export function createGameRenderers(app) {
     }
     const prompt = appendText(challenge, "p", run.question.prompt, "question-prompt");
     prompt.dataset.questionPrompt = "";
+    const visual = QuestionVisualizer.createQuestionVisual(run.question);
+    if (visual) challenge.append(visual);
     if (run.status === "resolved") {
       renderTacticalReview(challenge, run);
     } else {
@@ -493,8 +505,27 @@ export function createGameRenderers(app) {
     }
 
     if (run.status === "retry") {
-      const feedback = appendText(challenge, "p", "这次没有通过。可以再试一次，或跳过继续前进。", "retry-message");
+      const feedback = appendText(challenge, "p", "这次没有通过。可以参考下方的阶梯思路再试一次，或跳过继续前进。", "retry-message");
       feedback.setAttribute("role", "status");
+
+      const hintPanel = document.createElement("details");
+      hintPanel.className = "tiered-hints";
+      hintPanel.dataset.tieredHints = "";
+      hintPanel.open = true;
+      const hintSummary = appendText(hintPanel, "summary", "💡 展开阶梯思路与解题脚手架", "tiered-hints__summary");
+      hintSummary.setAttribute("aria-label", "展开阶梯思路与解题脚手架");
+      const hints = HintScaffold.buildTieredHints(run.question);
+      const hintList = document.createElement("div");
+      hintList.className = "tiered-hints__list";
+      hints.forEach((hint) => {
+        const item = document.createElement("div");
+        item.className = "tiered-hints__item";
+        appendText(item, "strong", hint.label, "tiered-hints__label");
+        appendText(item, "p", hint.text, "tiered-hints__text");
+        hintList.append(item);
+      });
+      hintPanel.append(hintList);
+      challenge.append(hintPanel);
     }
     renderRewardPopover(challenge);
     main.append(challenge);
@@ -576,6 +607,8 @@ export function createGameRenderers(app) {
       card.append(methodHint);
     }
     appendText(card, "p", run.question?.prompt || "读取补给线索中……", "question-prompt");
+    const visual = QuestionVisualizer.createQuestionVisual(run.question);
+    if (visual) card.append(visual);
     if (run.status === "resolved") {
       renderRecoveryReview(card, run);
     } else {
@@ -605,7 +638,26 @@ export function createGameRenderers(app) {
       skip.hidden = run.status !== "retry";
       card.append(form);
     }
-    if (run.status === "retry") appendText(card, "p", "答案还没对上。可以再试一次，也可以跳过继续补给。", "retry-message");
+    if (run.status === "retry") {
+      appendText(card, "p", "答案还没对上。可以参考下方的阶梯思路再试一次，也可以跳过继续补给。", "retry-message");
+      const hintPanel = document.createElement("details");
+      hintPanel.className = "tiered-hints";
+      hintPanel.dataset.tieredHints = "";
+      hintPanel.open = true;
+      appendText(hintPanel, "summary", "💡 展开阶梯思路与解题脚手架", "tiered-hints__summary");
+      const hints = HintScaffold.buildTieredHints(run.question);
+      const hintList = document.createElement("div");
+      hintList.className = "tiered-hints__list";
+      hints.forEach((hint) => {
+        const item = document.createElement("div");
+        item.className = "tiered-hints__item";
+        appendText(item, "strong", hint.label, "tiered-hints__label");
+        appendText(item, "p", hint.text, "tiered-hints__text");
+        hintList.append(item);
+      });
+      hintPanel.append(hintList);
+      card.append(hintPanel);
+    }
     main.append(card);
     root.append(main);
     if (run.status === "active") root.querySelector("[data-answer-input]")?.focus({ preventScroll: true });

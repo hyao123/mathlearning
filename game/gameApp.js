@@ -7,7 +7,8 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
   const allChapters = Array.isArray(chapters) && chapters.length ? chapters : [initialChapter];
   if (!allChapters.every((entry) => entry?.levels?.length)) throw new Error("GameApp.mount requires compiled chapters");
   const chaptersById = Object.fromEntries(allChapters.map((entry) => [entry.chapterId, entry]));
-  const { AnswerMatcher, GameItemCatalog, InventoryModel, LevelRewardConfig, RewardPresentation, ChapterMissionModel, CampaignModel, ProgressionModel, ChallengeModel, ContentVersionModel } = requireDependencies();
+  const dependencies = requireDependencies();
+  const { AnswerMatcher, GameItemCatalog, InventoryModel, LevelRewardConfig, RewardPresentation, ChapterMissionModel, CampaignModel, ProgressionModel, ChallengeModel, ContentVersionModel, SoundEngine, QuestionVisualizer, HintScaffold } = dependencies;
   let storedState = null;
   const primaryStore = saveStore || stateStore;
   try {
@@ -104,7 +105,7 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
 
 
   const appContext = {
-    dependencies: { AnswerMatcher, GameItemCatalog, InventoryModel, LevelRewardConfig, RewardPresentation, ChapterMissionModel, CampaignModel, ProgressionModel, ChallengeModel, ContentVersionModel },
+    dependencies,
     allChapters,
     chaptersById,
     getLevel,

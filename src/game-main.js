@@ -115,8 +115,14 @@ const ProgressionModel = await loadCommonJs(() => import("../game/progressionMod
 const CampaignModel = await loadCommonJs(() => import("../game/campaignModel.js"), "./campaignModel.js");
 const StorageAdapter = await loadCommonJs(() => import("../game/storageAdapter.js"), "./storageAdapter.js");
 const ExperienceMetrics = await loadCommonJs(() => import("../game/experienceMetrics.js"), "./experienceMetrics.js");
+const SoundEngine = await loadCommonJs(() => import("../game/soundEngine.js"), "./soundEngine.js");
+const QuestionVisualizer = await loadCommonJs(() => import("../game/questionVisualizer.js"), "./questionVisualizer.js");
+const HintScaffold = await loadCommonJs(() => import("../game/hintScaffold.js"), "./hintScaffold.js");
 
 Object.assign(globalThis, {
+  SoundEngine,
+  QuestionVisualizer,
+  HintScaffold,
   GameChapterConfig,
   ChapterExpansionData,
   MaterialProcessingData,

@@ -44,7 +44,10 @@ function requireDependencies() {
     CampaignModel: globalThis.CampaignModel,
     ProgressionModel: globalThis.ProgressionModel,
     ChallengeModel: globalThis.ChallengeModel,
-    ContentVersionModel: globalThis.ContentVersionModel
+    ContentVersionModel: globalThis.ContentVersionModel,
+    SoundEngine: globalThis.SoundEngine,
+    QuestionVisualizer: globalThis.QuestionVisualizer,
+    HintScaffold: globalThis.HintScaffold
   };
   for (const [name, dependency] of Object.entries(dependencies)) {
     if (!dependency) throw new Error(`${name} is required before GameApp.mount`);
