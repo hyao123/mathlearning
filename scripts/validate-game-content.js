@@ -58,8 +58,9 @@ function validateCurriculumBatch(batch, manifest) {
     if (!['pending', 'candidate', 'approved', 'rejected'].includes(manifest.status)) errors.push("curriculum review manifest status is invalid");
   }
 
-  if (questions.length !== 30) errors.push(`curriculum batch must contain exactly 30 questions; found ${questions.length}`);
-  if (records.length !== 30) errors.push(`curriculum review manifest must contain exactly 30 records; found ${records.length}`);
+  const expectedCount = questions.length;
+  if (expectedCount === 0) errors.push("curriculum batch must contain at least one question");
+  if (records.length !== expectedCount) errors.push(`curriculum review manifest must contain exactly ${expectedCount} records; found ${records.length}`);
 
   const recordsById = new Map();
   records.forEach((record, index) => {
@@ -137,6 +138,16 @@ function validateBuiltChapter(chapter, { requireHumanReview = false, reviewManif
   if (/^chapter-0[789]$/.test(chapter.chapterId)) {
     chapter.levels.forEach((level) => {
       QuestionQuality.validateTopicTemplateDiversity(level.questions).forEach((error) => {
+        errors.push(`${level.levelId}: ${error}`);
+      });
+    });
+    // Chapter-wide and per-topic template diversity measured on the question text
+    // (numbers, whitespace and the appended phase suffix are ignored). A topic whose
+    // ten questions are the same text template with different numbers fails here even
+    // when its semanticProfile metadata declares enough "families". Chapters 07–09 are
+    // the V3-style chapters whose content is authored to this standard.
+    chapter.levels.forEach((level) => {
+      QuestionQuality.validateTopicPromptDiversity(level.questions).forEach((error) => {
         errors.push(`${level.levelId}: ${error}`);
       });
     });

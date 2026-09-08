@@ -79,6 +79,44 @@ function normalizePrompt(prompt) {
   return String(prompt || "").replace(/\d+(?:\.\d+)?/g, "#").replace(/\s+/g, "").trim();
 }
 
+// Normalize a prompt for text-based template fingerprinting: strip the trailing
+// phase suffix (【启航任务】…【决战任务】), then replace every number with "#" and
+// collapse whitespace. What remains is the mathematical/semantic skeleton of the
+// question, independent of the values that fill it.
+function normalizePromptText(prompt) {
+  return String(prompt || "")
+    .replace(/【[^】]*任务】\s*$/u, "")
+    .replace(/\d+(?:\.\d+)?/g, "#")
+    .replace(/\s+/g, "")
+    .trim();
+}
+
+// Template diversity measured on the actual prompt text, not on metadata. A topic
+// must contain at least `minimumFamilies` distinct text skeletons, and no single
+// skeleton may be reused more than `maxReuse` times (a pair of number-swapped
+// siblings is acceptable, but a whole 10-question run built from one template is
+// not). This catches the "change only the numbers" failure mode that
+// semanticProfile diversity cannot see.
+function validateTopicPromptDiversity(questions, { minimumFamilies = 4, maxReuse = 2 } = {}) {
+  const rows = (questions || [])
+    .map((question) => normalizePromptText(question?.prompt))
+    .filter((prompt) => prompt.length > 0);
+  if (!rows.length) return [];
+  const errors = [];
+  const families = new Set(rows);
+  if (families.size < minimumFamilies) {
+    errors.push(`prompt template diversity requires at least ${minimumFamilies} distinct question texts; found ${families.size}`);
+  }
+  const counts = new Map();
+  rows.forEach((prompt) => counts.set(prompt, (counts.get(prompt) || 0) + 1));
+  counts.forEach((count, prompt) => {
+    if (count > maxReuse) {
+      errors.push(`prompt template reused ${count} times in the same topic (max ${maxReuse}): ${prompt}`);
+    }
+  });
+  return errors;
+}
+
 function detectTemplateDuplicates(questions) {
   const groups = new Map();
   (questions || []).forEach((question) => {
@@ -121,4 +159,4 @@ function validateHumanReviewRecords(records, questionIds) {
   return errors;
 }
 
-module.exports = { REASONING_TYPES, REVIEW_SCORES, REVIEW_STEP_KINDS, validateQuestionQuality, validateSemanticProfile, validateSolutionReviewConsistency, detectTemplateDuplicates, validateTopicTemplateDiversity, validateHumanReviewRecords, normalizePrompt };
+module.exports = { REASONING_TYPES, REVIEW_SCORES, REVIEW_STEP_KINDS, validateQuestionQuality, validateSemanticProfile, validateSolutionReviewConsistency, detectTemplateDuplicates, validateTopicTemplateDiversity, validateTopicPromptDiversity, validateHumanReviewRecords, normalizePrompt, normalizePromptText };
