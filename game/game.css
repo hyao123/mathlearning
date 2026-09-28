@@ -593,9 +593,442 @@ input:focus-visible {
 }
 
 .difficulty-badge {
-  padding: 5px 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
   color: #fff;
   background: var(--trail);
+  border: 1px solid transparent;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.difficulty-badge:hover {
+  transform: translateY(-1px);
+}
+
+.difficulty-badge--foundation {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  border-color: #34d399;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.28);
+}
+
+.difficulty-badge--progressive {
+  background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+  border-color: #7dd3fc;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.28);
+}
+
+.difficulty-badge--advanced {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  border-color: #c084fc;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.32);
+}
+
+.difficulty-badge--breakthrough {
+  background: linear-gradient(135deg, #d97706 0%, #fbbf24 100%);
+  border-color: #fde68a;
+  color: #451a03;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+}
+
+.difficulty-badge--boss {
+  background: linear-gradient(135deg, #991b1b 0%, #dc2626 55%, #f59e0b 100%);
+  border-color: #fca5a5;
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(220, 38, 38, 0.45), 0 0 10px rgba(245, 158, 11, 0.3);
+  animation: badge-boss-glow 2.4s infinite ease-in-out;
+}
+
+@keyframes badge-boss-glow {
+  0%, 100% {
+    box-shadow: 0 2px 10px rgba(220, 38, 38, 0.4), 0 0 8px rgba(245, 158, 11, 0.25);
+  }
+  50% {
+    box-shadow: 0 3px 18px rgba(220, 38, 38, 0.75), 0 0 16px rgba(245, 158, 11, 0.55);
+  }
+}
+
+.difficulty-badge__stars {
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.difficulty-badge__text {
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.difficulty-badge__focus {
+  font-size: 0.72rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.24);
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.difficulty-badge--breakthrough .difficulty-badge__focus {
+  background: rgba(255, 255, 255, 0.4);
+  color: #451a03;
+}
+
+/* Boss Card Special Aura */
+.challenge-card--boss {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 30px rgba(220, 38, 38, 0.24), 8px 8px 0 #7f1d1d !important;
+  background: linear-gradient(to bottom, #fffdfd 0%, #ffffff 180px);
+  animation: challenge-boss-ambient 4s infinite alternate ease-in-out;
+}
+
+@keyframes challenge-boss-ambient {
+  0% {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.2), 8px 8px 0 #7f1d1d;
+  }
+  100% {
+    box-shadow: 0 0 34px rgba(220, 38, 38, 0.38), 8px 8px 0 #991b1b;
+  }
+}
+
+/* Cognitive Blueprint Banner */
+.cognitive-blueprint {
+  margin: 10px 0 14px;
+  padding: 12px 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid var(--trail);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cognitive-blueprint--foundation {
+  border-left-color: #10b981;
+}
+
+.cognitive-blueprint--progressive {
+  border-left-color: #0ea5e9;
+}
+
+.cognitive-blueprint--advanced {
+  border-left-color: #8b5cf6;
+}
+
+.cognitive-blueprint--breakthrough {
+  border-left-color: #f59e0b;
+}
+
+.cognitive-blueprint--boss {
+  border-left-color: #dc2626;
+  background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+  border-color: #fecaca;
+}
+
+.cognitive-blueprint__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.cognitive-blueprint__tag {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #475569;
+  letter-spacing: 0.5px;
+}
+
+.cognitive-blueprint__tier {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.cognitive-blueprint__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+}
+
+.cognitive-blueprint__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 6px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.cognitive-blueprint__k {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.cognitive-blueprint__v {
+  font-size: 0.84rem;
+  color: #0f172a;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* Active Thinking Scaffold (In-Challenge Dropdown) */
+.active-hints-scaffold {
+  margin: 12px 0 16px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  background: #fafbfc;
+  transition: all 220ms ease;
+  overflow: hidden;
+}
+
+.active-hints-scaffold[open] {
+  border-style: solid;
+  border-color: #94a3b8;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.active-hints-scaffold__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #334155;
+  user-select: none;
+  list-style: none;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.active-hints-scaffold__summary::-webkit-details-marker {
+  display: none;
+}
+
+.active-hints-scaffold__summary:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.active-hints-scaffold__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.active-hints-scaffold__badge {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: #e2e8f0;
+  color: #475569;
+  font-weight: 600;
+}
+
+.active-hints-scaffold__content {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.active-hints-scaffold__card {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border-left: 3px solid #cbd5e1;
+  background: #f8fafc;
+}
+
+.active-hints-scaffold__card--tier1 {
+  border-left-color: #0ea5e9;
+  background: #f0f9ff;
+}
+
+.active-hints-scaffold__card--tier2 {
+  border-left-color: #8b5cf6;
+  background: #f5f3ff;
+}
+
+.active-hints-scaffold__card--tier3 {
+  border-left-color: #10b981;
+  background: #ecfdf5;
+}
+
+.active-hints-scaffold__card-header {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.active-hints-scaffold__card-body {
+  font-size: 0.86rem;
+  color: #334155;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+/* Diagnostic Feedback Card (Retry) */
+.diagnostic-feedback-card {
+  margin: 12px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  border-left: 4px solid #f59e0b;
+}
+
+.diagnostic-feedback__badge {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #92400e;
+  margin-bottom: 4px;
+}
+
+.diagnostic-feedback__text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #78350f;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+/* Tiered Hints (Retry Scaffold) */
+.tiered-hints {
+  margin: 14px 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+  padding: 10px 14px;
+}
+
+.tiered-hints__summary {
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 8px;
+  user-select: none;
+}
+
+.tiered-hints__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tiered-hints__item {
+  padding: 8px 12px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.tiered-hints__label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #475569;
+  margin-bottom: 2px;
+}
+
+.tiered-hints__text {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #1e293b;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+/* Tactical Review Enhanced Layout */
+.tactical-review {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.tactical-review__tier-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+}
+
+.tactical-review__tier-badge {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.tactical-review__tier-metrics {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.tactical-review__transfer-card {
+  margin: 10px 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #f8fafc 100%);
+  border: 1px solid #bbf7d0;
+}
+
+.tactical-review__transfer-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #166534;
+  margin-bottom: 8px;
+}
+
+.tactical-review__transfer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 8px;
+}
+
+.tactical-review__transfer-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 10px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.tactical-review__transfer-item strong {
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+.tactical-review__transfer-item span {
+  font-size: 0.84rem;
+  color: #0f172a;
+  line-height: 1.4;
+  font-weight: 600;
 }
 
 .challenge-card__heading {

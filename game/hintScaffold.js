@@ -169,8 +169,46 @@ function diagnoseMistake(question, studentAnswer) {
   return "审题指引：仔细对比题目所求量与中间计算量，先列出线段图或等量关系再验算一步。";
 }
 
+function renderActiveThinkingScaffold(question) {
+  if (!question || typeof question !== "object" || typeof document === "undefined") return null;
+  const hints = buildTieredHints(question);
+  if (!hints || hints.length === 0) return null;
+
+  const container = document.createElement("details");
+  container.className = "active-hints-scaffold";
+  container.dataset.activeHintsScaffold = "";
+
+  const summary = document.createElement("summary");
+  summary.className = "active-hints-scaffold__summary";
+  summary.innerHTML = `
+    <span class="active-hints-scaffold__title">💡 解题遇到卡点？点击获取【阶梯思维点拨】</span>
+    <span class="active-hints-scaffold__badge">分层启发 · 保护独立思考</span>
+  `;
+  container.append(summary);
+
+  const content = document.createElement("div");
+  content.className = "active-hints-scaffold__content";
+
+  hints.forEach((hint) => {
+    const card = document.createElement("div");
+    card.className = `active-hints-scaffold__card active-hints-scaffold__card--tier${hint.tier}`;
+    const header = document.createElement("div");
+    header.className = "active-hints-scaffold__card-header";
+    header.textContent = hint.label;
+    const body = document.createElement("div");
+    body.className = "active-hints-scaffold__card-body";
+    body.textContent = hint.text;
+    card.append(header, body);
+    content.append(card);
+  });
+
+  container.append(content);
+  return container;
+}
+
 const HintScaffold = {
   buildTieredHints,
-  diagnoseMistake
+  diagnoseMistake,
+  renderActiveThinkingScaffold
 };
 module.exports = HintScaffold;

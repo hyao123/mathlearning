@@ -1210,6 +1210,112 @@ export function createGameRenderers(app) {
     }
   }
 
+  function getDifficultyTier(question, slotIndex) {
+    const isBoss = Boolean(question?.isBoss || slotIndex === 9 || question?.slot === 10);
+    const diff = question?.difficulty || "基础";
+    const slot = (typeof slotIndex === "number" ? slotIndex + 1 : question?.slot) || 1;
+    const steps = question?.difficultyProfile?.steps || (isBoss ? 4 : slot <= 2 ? 1 : slot <= 5 ? 2 : 3);
+    const conditions = question?.difficultyProfile?.conditions || (isBoss ? 3 : slot <= 2 ? 1 : 2);
+
+    if (isBoss) {
+      return {
+        tier: 5,
+        code: "boss",
+        title: "决战首领",
+        stars: "⭐️⭐️⭐️⭐️👑",
+        badgeText: "Boss · 终极挑战",
+        stepLabel: `${steps}步综合推演`,
+        conditionLabel: `${conditions}重约束`,
+        cognitiveFocus: "全维建模 · 终极突破",
+        summaryText: "首领战 · 全章综合建模与多步逻辑攻坚"
+      };
+    }
+    if (diff === "挑战" || slot === 9) {
+      return {
+        tier: 4,
+        code: "breakthrough",
+        title: "突破攻坚",
+        stars: "⭐️⭐️⭐️⭐️",
+        badgeText: "挑战 · 突破攻坚",
+        stepLabel: `${steps}步多维转化`,
+        conditionLabel: `${conditions}重关联`,
+        cognitiveFocus: "思维跃迁 · 策略转化",
+        summaryText: "高阶挑战 · 复杂情境转化与综合解题策略"
+      };
+    }
+    if (diff === "提高" || slot >= 6) {
+      return {
+        tier: 3,
+        code: "advanced",
+        title: "拓维深研",
+        stars: "⭐️⭐️⭐️",
+        badgeText: "提高 · 拓维深研",
+        stepLabel: `${steps}步逻辑递推`,
+        conditionLabel: `${conditions}重条件`,
+        cognitiveFocus: "逆向反推 · 规律深化",
+        summaryText: "思维提高 · 结构化逆推与模型深度应用"
+      };
+    }
+    if (diff === "进阶" || slot >= 3) {
+      return {
+        tier: 2,
+        code: "progressive",
+        title: "进阶贯通",
+        stars: "⭐️⭐️",
+        badgeText: "进阶 · 拓展进阶",
+        stepLabel: `${steps}步经典递推`,
+        conditionLabel: `${conditions}组已知量`,
+        cognitiveFocus: "模型拆解 · 关系转化",
+        summaryText: "拓展进阶 · 经典模型拆解与双步关系转化"
+      };
+    }
+    return {
+      tier: 1,
+      code: "foundation",
+      title: "启航奠基",
+      stars: "⭐️",
+      badgeText: "基础 · 启航奠基",
+      stepLabel: `${steps}步直接推导`,
+      conditionLabel: `${conditions}组已知量`,
+      cognitiveFocus: "概念锚定 · 规则理解",
+      summaryText: "基础启航 · 核心概念直推与数理直觉建立"
+    };
+  }
+
+  function renderCognitiveBlueprint(parent, question, tierInfo) {
+    if (!question || typeof question !== "object") return;
+    const blueprint = document.createElement("div");
+    blueprint.className = `cognitive-blueprint cognitive-blueprint--${tierInfo.code}`;
+    blueprint.dataset.cognitiveBlueprint = "";
+
+    const goal = question.knowledgeGoal || question.learningObjective || "掌握核心数理规律";
+    const model = question.typicalModel || question.reasoningType || "经典数理解析";
+    const steps = tierInfo.stepLabel || "分步推导";
+    const conditions = tierInfo.conditionLabel || "关联约束";
+
+    blueprint.innerHTML = `
+      <div class="cognitive-blueprint__header">
+        <span class="cognitive-blueprint__tag">🧭 战术思维蓝图</span>
+        <span class="cognitive-blueprint__tier">${tierInfo.stars} ${tierInfo.title}</span>
+      </div>
+      <div class="cognitive-blueprint__grid">
+        <div class="cognitive-blueprint__item">
+          <span class="cognitive-blueprint__k">🎯 认知目标</span>
+          <span class="cognitive-blueprint__v">${goal}</span>
+        </div>
+        <div class="cognitive-blueprint__item">
+          <span class="cognitive-blueprint__k">🧩 核心模型</span>
+          <span class="cognitive-blueprint__v">${model}</span>
+        </div>
+        <div class="cognitive-blueprint__item">
+          <span class="cognitive-blueprint__k">📐 推演深度</span>
+          <span class="cognitive-blueprint__v">${steps} · ${conditions}</span>
+        </div>
+      </div>
+    `;
+    parent.append(blueprint);
+  }
+
   function renderTacticalReview(parent, run) {
     const { root, chapter, state, campaign, screen, answerFeedback, rewardReveal, craftingFeedback, saveFeedback, answerDraft, allChapters, getLevel } = app;
     const reviewPanel = document.createElement("section");
@@ -1236,9 +1342,40 @@ export function createGameRenderers(app) {
     summary.setAttribute("aria-label", "展开战术复盘");
     const review = ProgressionModel.getResolvedReview(state);
     if (review) {
+      const tierInfo = getDifficultyTier(run.question, run.questionIndex);
+
+      const reviewTierBanner = document.createElement("div");
+      reviewTierBanner.className = `tactical-review__tier-banner tactical-review__tier-banner--${tierInfo.code}`;
+      reviewTierBanner.innerHTML = `
+        <span class="tactical-review__tier-badge">${tierInfo.stars} ${tierInfo.title}</span>
+        <span class="tactical-review__tier-metrics">${tierInfo.stepLabel} · ${tierInfo.conditionLabel} 达成</span>
+      `;
+      details.append(reviewTierBanner);
+
       // 1. 动态动图演绎与极简三拍卡片（彻底告别文字说教）
       const minimalCard = KnowledgeMotionExplainer.renderMinimalTacticalCard(review, run.question);
       details.append(minimalCard);
+
+      const transferCard = document.createElement("div");
+      transferCard.className = "tactical-review__transfer-card";
+      transferCard.innerHTML = `
+        <div class="tactical-review__transfer-title">🌟 数学思维精要 · 举一反三</div>
+        <div class="tactical-review__transfer-grid">
+          <div class="tactical-review__transfer-item">
+            <strong>🎯 核心模型</strong>
+            <span>${run.question?.typicalModel || review.method || "经典数理解析"}</span>
+          </div>
+          <div class="tactical-review__transfer-item">
+            <strong>⚠️ 避坑要点</strong>
+            <span>${run.question?.commonPitfall || review.pitfall || review.errorTrap || "审清题意，避免漏算条件。"}</span>
+          </div>
+          <div class="tactical-review__transfer-item">
+            <strong>🔍 验算心法</strong>
+            <span>${run.question?.verificationMethod || review.verification || review.check || "将结果代回原题验证闭环。"}</span>
+          </div>
+        </div>
+      `;
+      details.append(transferCard);
 
       if (run.question.thinkingMethodLabel) appendText(details, "p", `思维方法：${run.question.thinkingMethodLabel}`, "tactical-review__thinking-method");
       if (run.question.methodReview) appendText(details, "p", `方法复盘：${run.question.methodReview}`, "tactical-review__method-review");
@@ -1290,8 +1427,22 @@ export function createGameRenderers(app) {
     meta.className = "challenge-meta";
     const counter = appendText(meta, "p", `第 ${run.questionIndex + 1} / 10 题`, "question-counter");
     counter.dataset.questionCounter = "";
-    const difficulty = appendText(meta, "p", run.question.isBoss ? "Boss · 挑战" : run.question.difficulty, "difficulty-badge");
-    difficulty.dataset.difficulty = "";
+    const tierInfo = getDifficultyTier(run.question, run.questionIndex);
+    const difficulty = document.createElement("div");
+    difficulty.className = `difficulty-badge difficulty-badge--${tierInfo.code}`;
+    difficulty.dataset.difficulty = tierInfo.code;
+    difficulty.dataset.tier = String(tierInfo.tier);
+    difficulty.innerHTML = `
+      <span class="difficulty-badge__stars">${tierInfo.stars}</span>
+      <span class="difficulty-badge__text">${tierInfo.badgeText}</span>
+      <span class="difficulty-badge__focus">${tierInfo.cognitiveFocus}</span>
+    `;
+    difficulty.title = `难度梯级【${tierInfo.title}】：${tierInfo.summaryText} (${tierInfo.stepLabel} · ${tierInfo.conditionLabel})`;
+    meta.append(difficulty);
+
+    if (tierInfo.tier === 5) {
+      challenge.classList.add("challenge-card--boss");
+    }
 
     const scratchpadToggle = appendText(meta, "button", "📝 草稿纸", "pixel-button pixel-button--quiet scratchpad-toggle-btn");
     scratchpadToggle.type = "button";
@@ -1372,6 +1523,7 @@ export function createGameRenderers(app) {
       if (run.question.methodPrompt) appendText(methodHint, "span", run.question.methodPrompt, "thinking-method-hint__prompt");
       challenge.append(methodHint);
     }
+    renderCognitiveBlueprint(challenge, run.question, tierInfo);
     const prompt = appendText(challenge, "p", run.question.prompt, "question-prompt");
     prompt.dataset.questionPrompt = "";
 
@@ -1386,6 +1538,13 @@ export function createGameRenderers(app) {
         visual.classList.add("is-active");
       }
       challenge.append(visual);
+    }
+
+    if (run.status === "active") {
+      const activeScaffold = HintScaffold.renderActiveThinkingScaffold?.(run.question);
+      if (activeScaffold) {
+        challenge.append(activeScaffold);
+      }
     }
 
     if (run.status === "resolved") {
@@ -1478,9 +1637,39 @@ export function createGameRenderers(app) {
     appendText(details, "summary", "展开战术复盘", "tactical-review__summary");
     const review = ProgressionModel.getChallengeReview(state);
     if (review) {
+      const tierInfo = getDifficultyTier(run.question, run.questionIndex);
+      const reviewTierBanner = document.createElement("div");
+      reviewTierBanner.className = `tactical-review__tier-banner tactical-review__tier-banner--${tierInfo.code}`;
+      reviewTierBanner.innerHTML = `
+        <span class="tactical-review__tier-badge">${tierInfo.stars} ${tierInfo.title}</span>
+        <span class="tactical-review__tier-metrics">${tierInfo.stepLabel} · ${tierInfo.conditionLabel} 达成</span>
+      `;
+      details.append(reviewTierBanner);
+
       // 动态动图演绎与极简三拍卡片
       const minimalCard = KnowledgeMotionExplainer.renderMinimalTacticalCard(review, run.question || {});
       details.append(minimalCard);
+
+      const transferCard = document.createElement("div");
+      transferCard.className = "tactical-review__transfer-card";
+      transferCard.innerHTML = `
+        <div class="tactical-review__transfer-title">🌟 数学思维精要 · 举一反三</div>
+        <div class="tactical-review__transfer-grid">
+          <div class="tactical-review__transfer-item">
+            <strong>🎯 核心模型</strong>
+            <span>${run.question?.typicalModel || review.method || "经典数理解析"}</span>
+          </div>
+          <div class="tactical-review__transfer-item">
+            <strong>⚠️ 避坑要点</strong>
+            <span>${run.question?.commonPitfall || review.pitfall || review.errorTrap || "审清题意，避免漏算条件。"}</span>
+          </div>
+          <div class="tactical-review__transfer-item">
+            <strong>🔍 验算心法</strong>
+            <span>${run.question?.verificationMethod || review.verification || review.check || "将结果代回原题验证闭环。"}</span>
+          </div>
+        </div>
+      `;
+      details.append(transferCard);
 
       appendText(details, "p", review.observation || "先找出题目中的已知量和目标量。", "tactical-review__observation");
       if (review.steps?.length) {
@@ -1525,7 +1714,18 @@ export function createGameRenderers(app) {
     const meta = document.createElement("div");
     meta.className = "challenge-meta";
     appendText(meta, "p", `挑战题 ${run.questionIndex + 1} / ${run.questions.length}`, "question-counter");
-    appendText(meta, "p", run.question?.difficulty || "复习", "difficulty-badge");
+    const tierInfo = getDifficultyTier(run.question, run.questionIndex);
+    const difficultyBadge = document.createElement("div");
+    difficultyBadge.className = `difficulty-badge difficulty-badge--${tierInfo.code}`;
+    difficultyBadge.dataset.difficulty = tierInfo.code;
+    difficultyBadge.dataset.tier = String(tierInfo.tier);
+    difficultyBadge.innerHTML = `
+      <span class="difficulty-badge__stars">${tierInfo.stars}</span>
+      <span class="difficulty-badge__text">${tierInfo.badgeText}</span>
+      <span class="difficulty-badge__focus">${tierInfo.cognitiveFocus}</span>
+    `;
+    difficultyBadge.title = `难度梯级【${tierInfo.title}】：${tierInfo.summaryText} (${tierInfo.stepLabel} · ${tierInfo.conditionLabel})`;
+    meta.append(difficultyBadge);
     card.append(meta);
     appendText(card, "h2", "补给线索", "challenge-card__heading");
     const target = ChallengeModel.getTargetMaterial(chapter.chapterId, state.inventory);
@@ -1539,6 +1739,7 @@ export function createGameRenderers(app) {
       if (run.question.methodPrompt) appendText(methodHint, "span", run.question.methodPrompt, "thinking-method-hint__prompt");
       card.append(methodHint);
     }
+    renderCognitiveBlueprint(card, run.question, tierInfo);
     appendText(card, "p", run.question?.prompt || "读取补给线索中……", "question-prompt");
     const visual = QuestionVisualizer.createQuestionVisual(run.question, { status: run.status });
     if (visual) {
@@ -1550,6 +1751,12 @@ export function createGameRenderers(app) {
         visual.classList.add("is-active");
       }
       card.append(visual);
+    }
+    if (run.status === "active") {
+      const activeScaffold = HintScaffold.renderActiveThinkingScaffold?.(run.question);
+      if (activeScaffold) {
+        card.append(activeScaffold);
+      }
     }
     if (run.status === "resolved") {
       renderRecoveryReview(card, run);

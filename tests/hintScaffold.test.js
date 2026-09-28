@@ -76,3 +76,51 @@ test("HintScaffold.diagnoseMistake identifies scale and unit conversion errors",
   assert.ok(diag60x.includes("相差 60 倍"));
 });
 
+test("HintScaffold.renderActiveThinkingScaffold returns null when document is undefined or question invalid", () => {
+  const result = HintScaffold.renderActiveThinkingScaffold(null);
+  assert.equal(result, null);
+});
+
+test("HintScaffold.renderActiveThinkingScaffold creates a details element with 3 progressive cards in DOM", () => {
+  // Simple mock DOM
+  const prevDoc = globalThis.document;
+  function createMockEl(tag) {
+    const el = {
+      tagName: tag.toUpperCase(),
+      className: "",
+      dataset: {},
+      innerHTML: "",
+      textContent: "",
+      children: [],
+      append(...items) {
+        el.children.push(...items);
+      }
+    };
+    return el;
+  }
+  globalThis.document = { createElement: createMockEl };
+
+  try {
+    const q = {
+      prompt: "5只兔子和3只鸡共有多少只脚？",
+      commonPitfall: "兔子有4只脚，鸡有2只脚，不要混淆。",
+      typicalModel: "chicken-rabbit",
+      methodPrompt: "先计算兔子的脚数，再计算鸡的脚数，最后相加。"
+    };
+    const el = HintScaffold.renderActiveThinkingScaffold(q);
+    assert.ok(el, "Should return an element");
+    assert.equal(el.tagName, "DETAILS");
+    assert.equal(el.className, "active-hints-scaffold");
+    assert.equal(el.children.length, 2); // summary and content
+    const summary = el.children[0];
+    assert.equal(summary.className, "active-hints-scaffold__summary");
+    const content = el.children[1];
+    assert.equal(content.children.length, 3); // 3 cards
+    assert.ok(content.children[0].className.includes("card--tier1"));
+    assert.ok(content.children[1].className.includes("card--tier2"));
+    assert.ok(content.children[2].className.includes("card--tier3"));
+  } finally {
+    globalThis.document = prevDoc;
+  }
+});
+
