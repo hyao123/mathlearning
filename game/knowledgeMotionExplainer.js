@@ -188,6 +188,14 @@ export const MOTION_MODELS = Object.freeze({
     keywords: ["奇偶不变量", "奇偶性与不变量", "奇数", "偶数", "整除", "奇偶", "parity-divisibility", "parity-invariant"],
     type: "parity-divisibility"
   },
+  "factors-multiples": {
+    id: "factors-multiples",
+    title: "短除梯级 · 因倍数分解模型",
+    spark: "公质因数连续除，左列乘GCD，L型环乘LCM！",
+    formula: "左侧竖列相乘 = 最大公因数(GCD)；“L”型回路整环连乘 = 最小公倍数(LCM)",
+    keywords: ["短除梯级", "质因数分解与短除法", "短除法", "最大公因数", "最小公倍数", "最大公约数", "公倍数", "公因数", "质因数", "因数", "倍数", "互质", "分解质因数", "factors-multiples", "prime-factorization", "factor-decomposition", "gcd", "lcm"],
+    type: "factors-multiples"
+  },
   "general-logic": {
     id: "general-logic",
     title: "网格矩阵 · 逻辑排除模型",
@@ -229,6 +237,7 @@ export function matchMotionModel(hint = {}) {
   }
 
   // 3. 模块与方法 ID 别名映射（特殊关键字优先，如 surplus 先于 sum-diff）
+  if (methodId.includes("factor") || methodId.includes("multiple") || methodId.includes("prime") || methodId.includes("gcd") || methodId.includes("lcm")) return MOTION_MODELS["factors-multiples"];
   if (methodId.includes("pattern") || methodId.includes("recurrence")) return MOTION_MODELS["patterns"];
   if (methodId.includes("quick") || methodId.includes("calc")) return MOTION_MODELS["quick-calculation"];
   if (methodId.includes("series") || methodId.includes("arithmetic") || methodId.includes("gauss")) return MOTION_MODELS["arithmetic-series"];
@@ -1393,6 +1402,70 @@ function renderGeneralLogicAnimation() {
 }
 
 /**
+ * 24. 质因数分解与短除法动图：阶梯试除、左竖列最大公因数光轨、L型最小公倍数光轨
+ */
+function renderFactorsMultiplesAnimation() {
+  const svg = createMotionSvg("0 0 360 170");
+  svg.innerHTML = `
+    <rect width="360" height="170" rx="8" fill="#131b2e" />
+    
+    <!-- 左半区：短除阶梯 (24 与 36) -->
+    <g transform="translate(18, 16)">
+      <!-- 阶梯 1: 除以 2 -->
+      <path class="motion-ladder-bracket" d="M 32 10 L 32 26 L 105 26" stroke="#38bdf8" stroke-width="2" fill="none" />
+      <text x="24" y="22" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="end">2</text>
+      <text x="44" y="22" fill="#f8fafc" font-size="12" font-weight="bold">24   36</text>
+
+      <!-- 阶梯 2: 除以 2 -->
+      <path class="motion-ladder-bracket" d="M 32 30 L 32 46 L 105 46" stroke="#38bdf8" stroke-width="2" fill="none" />
+      <text x="24" y="42" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="end">2</text>
+      <text x="44" y="42" fill="#f8fafc" font-size="12" font-weight="bold">12   18</text>
+
+      <!-- 阶梯 3: 除以 3 -->
+      <path class="motion-ladder-bracket" d="M 32 50 L 32 66 L 105 66" stroke="#38bdf8" stroke-width="2" fill="none" />
+      <text x="24" y="62" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="end">3</text>
+      <text x="44" y="62" fill="#f8fafc" font-size="12" font-weight="bold"> 6    9</text>
+
+      <!-- 底行：互质商 2 和 3 -->
+      <text x="44" y="82" fill="#22c55e" font-size="13" font-weight="bold"> 2    3</text>
+      
+      <!-- 互质微标签 -->
+      <rect x="75" y="72" width="46" height="14" rx="7" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" stroke-width="1" />
+      <text x="98" y="83" fill="#22c55e" font-size="8" font-weight="bold" text-anchor="middle">✔ 互质停</text>
+
+      <!-- 动态高亮 1: 左竖列 GCD 光轨 -->
+      <rect class="motion-gcd-glow" x="8" y="8" width="22" height="60" rx="4" fill="rgba(56, 189, 248, 0.18)" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3,2" />
+
+      <!-- 动态高亮 2: L型 LCM 光轨 -->
+      <path class="motion-lcm-loop-glow" d="M 6 8 L 6 90 L 72 90" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3" fill="none" />
+    </g>
+
+    <!-- 右半区：数学原理分解卡片 -->
+    <g transform="translate(150, 14)">
+      <!-- GCD 卡片 -->
+      <rect x="0" y="0" width="195" height="42" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" />
+      <text x="8" y="16" fill="#38bdf8" font-size="11" font-weight="bold">🔵 最大公因数 (GCD)：左竖列乘积</text>
+      <text x="8" y="32" fill="#f8fafc" font-size="11" font-family="monospace">2 × 2 × 3 = <tspan fill="#38bdf8" font-weight="bold">12</tspan> <tspan fill="#94a3b8" font-size="9">（公有交集）</tspan></text>
+
+      <!-- LCM 卡片 -->
+      <rect x="0" y="48" width="195" height="42" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2" />
+      <text x="8" y="64" fill="#f59e0b" font-size="11" font-weight="bold">🟡 最小公倍数 (LCM)：“L”型回路连乘</text>
+      <text x="8" y="80" fill="#f8fafc" font-size="10" font-family="monospace">12 × 2 × 3 = <tspan fill="#22c55e" font-weight="bold">72</tspan> <tspan fill="#94a3b8" font-size="9">（完全并集）</tspan></text>
+
+      <!-- 恒等式条 -->
+      <rect x="0" y="96" width="195" height="24" rx="4" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="1" />
+      <text x="97" y="112" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle">✨ 24 × 36 = 12 × 72 = 864 恒等自检</text>
+    </g>
+
+    <!-- 底部结论口诀 -->
+    <text x="180" y="154" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">
+      短除法口诀：除到互质为止，半边相乘是公因数，一圈相乘是公倍数 🔢
+    </text>
+  `;
+  return svg;
+}
+
+/**
  * 渲染趣味动态动图卡片组件
  * @param {Object} hint - 题型或模块提示
  * @param {Object} options - 可选配置 (title, compact, autoplay)
@@ -1447,6 +1520,7 @@ export function renderMotionCard(hint = {}, options = {}) {
     case "reverse-thinking": svgElement = renderReverseThinkingAnimation(); break;
     case "equation-balance": svgElement = renderBalanceAnimation(); break;
     case "parity-divisibility": svgElement = renderParityDivisibilityAnimation(); break;
+    case "factors-multiples": svgElement = renderFactorsMultiplesAnimation(); break;
     case "general-logic": svgElement = renderGeneralLogicAnimation(); break;
     default: svgElement = renderPatternsAnimation(); break;
   }

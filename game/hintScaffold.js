@@ -8,6 +8,9 @@ function buildTieredHints(question) {
   if (!question || typeof question !== "object") return [];
 
   const hints = [];
+  const prompt = String(question.prompt || "");
+  const moduleId = String(question.moduleId || "");
+  const isFactorProblem = /最大公因数|最大公约数|最小公倍数|公因数|公约数|公倍数|质因数|短除|互质/.test(prompt) || ["factors-multiples", "prime-factorization"].includes(moduleId);
 
   // Tier 1: Clue & Condition Focus (关键审题与避坑)
   let tier1Text = "";
@@ -17,6 +20,8 @@ function buildTieredHints(question) {
     tier1Text = `⚠️ 避坑提醒：${question.solutionReview.pitfall}`;
   } else if (question.storyBeat) {
     tier1Text = `🔍 审题线索：${question.storyBeat}`;
+  } else if (isFactorProblem) {
+    tier1Text = "🔍 审题线索：圈出题目中的两个关键数字，明确求的是【最大公因数 (GCD)】还是【最小公倍数 (LCM)】，倍数因数关系莫混淆。";
   } else {
     tier1Text = "🔍 审题线索：圈出题目中的已知数字和单位，明确最终所求的单一量还是总量。";
   }
@@ -38,6 +43,8 @@ function buildTieredHints(question) {
     tier2Text = `💡 思维模型：本题可运用【${question.thinkingMethodLabel}】进行结构化分析。`;
   } else if (question.typicalModel) {
     tier2Text = `💡 思维模型：本题对应【${question.typicalModel}】经典数学模型。`;
+  } else if (isFactorProblem) {
+    tier2Text = "💡 推荐策略【短除法与因倍数分解】：两数并排画出短除阶梯，从公质因数 2、3、5... 依次试除，直到商互质（公因数只有 1）为止。";
   } else {
     tier2Text = "💡 思维模型：通过画线段图或列表，对比前后变化量或建立等量关系。";
   }
@@ -76,6 +83,8 @@ function buildTieredHints(question) {
     tier3Text = `📐 算式骨架：解题运算路径为【${maskedCalc}】，请独立计算得出最终数值。`;
   } else if (question.verification?.summary) {
     tier3Text = `📐 验算指引：${question.verification.summary}，可根据此对应关系倒推算式。`;
+  } else if (isFactorProblem) {
+    tier3Text = "📐 算式骨架：\n• 半边（左竖列公质因数）相乘 ＝ 最大公因数 (GCD)；\n• 一圈（“L”型整环所有因数）连乘 ＝ 最小公倍数 (LCM)；\n• 恒等定理验算：两数之积 ＝ GCD × LCM。";
   } else {
     tier3Text = "📐 算式指引：分步列出算式，先计算中间差量或单位量，再计算最终所求。";
   }
@@ -161,7 +170,18 @@ function diagnoseMistake(question, studentAnswer) {
     return "还原逆推问题口诀：从最后的结果倒着推回去，加变减、减变加、乘变除、除变乘！";
   }
 
-  // 7. 若有针对性的 commonPitfall 则作为高价值诊断
+  // 7. 最大公因数与最小公倍数混淆，或短除未除尽到互质
+  if (/最大公因数|最大公约数|最小公倍数|公因数|公约数|公倍数|短除|质因数|互质/.test(prompt) && isNumeric) {
+    if (/最大公因数|最大公约数/.test(prompt) && sNum > cNum) {
+      return "你计算的可能是【最小公倍数(LCM)】或两者乘积！短除法中，最大公因数(GCD)只乘【左侧竖列】的公质因数，结果不会大于任何一个原数。";
+    }
+    if (/最小公倍数|公倍数/.test(prompt) && sNum < cNum) {
+      return "你计算的可能是【最大公因数(GCD)】！求最小公倍数(LCM)时，必须把【左侧竖列公质因数】和【底行互质商】呈“L”型全部连乘。";
+    }
+    return "短除法关键警示：必须连续除以公质因数，直到商【互质】（公因数只有 1）为止！检查底部的商是否还能继续提取公因数。";
+  }
+
+  // 8. 若有针对性的 commonPitfall 则作为高价值诊断
   if (question.commonPitfall) {
     return `诊断提醒：${question.commonPitfall}`;
   }

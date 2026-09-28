@@ -195,9 +195,8 @@ function createQuestionVisual(question, options = {}) {
     ["tree-counting", "enumeration", "add-multiply-principle", "counting-transfer", "enumeration-method", "tree-diagram"].includes(moduleId) ||
     typicalModel === "tree" ||
     prompt.includes("搭配") ||
-    prompt.includes("没有重复") ||
-    prompt.includes("两位数") ||
-    prompt.includes("三位数") ||
+    (prompt.includes("两位数") && !prompt.includes("因数") && !prompt.includes("倍数")) ||
+    (prompt.includes("三位数") && !prompt.includes("因数") && !prompt.includes("倍数")) ||
     prompt.includes("握手") ||
     prompt.includes("照相") ||
     prompt.includes("共有多少种走法") ||
@@ -340,11 +339,17 @@ function createQuestionVisual(question, options = {}) {
     // 23. 因数与倍数质因数
     ["factors-multiples", "prime-factorization"].includes(moduleId) ||
     prompt.includes("最大公因数") ||
+    prompt.includes("最大公约数") ||
+    prompt.includes("公因数") ||
+    prompt.includes("公约数") ||
     prompt.includes("最小公倍数") ||
+    prompt.includes("公倍数") ||
     prompt.includes("质因数") ||
+    prompt.includes("分解质因数") ||
     prompt.includes("因数") ||
     prompt.includes("短除") ||
-    prompt.includes("互质")
+    prompt.includes("互质") ||
+    (prompt.includes("倍数") && !prompt.includes("和倍") && !prompt.includes("差倍") && !prompt.includes("几倍"))
   ) {
     visual = renderFactorTreeVisual(question, options);
   } else if (

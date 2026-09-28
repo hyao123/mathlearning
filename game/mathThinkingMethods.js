@@ -46,7 +46,8 @@ const METHODS = Object.freeze([
   method("compare-plans", "方案比较", "策略选择", "comparison-table", "把多个方案的成本、数量、时间或效果放入同一张表比较。", "统一比较单位→列出指标→计算总值→选择方案。", "不同方案的计算口径不一致。", "用同一条件重新计算两种方案。", "比较生活中的不同方案"),
   method("optimization", "最优配置", "策略选择", "optimization", "在总量、预算或空间有限时寻找最合适的配置。", "明确限制→列出配置→计算效果→比较最优。", "只追求一个指标，忽略其他限制条件。", "检查最优方案是否满足所有限制。", "在限制下寻找最优方案"),
   method("result-verification", "结果验证", "逻辑推理", "verification", "用估算、代回、逆向或单位检查结果。", "选择验证方法→代回条件→检查范围和单位→确认答案。", "只重复原来的计算，不能发现原来的错误。", "使用不同于原解法的方式验证。", "用多种方式确认结果"),
-  method("integrated-modeling", "综合生活建模", "关系建模", "integrated-model", "把真实情境转成数量、图表、方程和策略组合。", "读题拆解→选择模型→计算方案→比较验证。", "模型没有对应真实情境，答案失去实际意义。", "解释答案在生活场景中的含义和单位。", "综合解决真实生活问题")
+  method("integrated-modeling", "综合生活建模", "关系建模", "integrated-model", "把真实情境转成数量、图表、方程和策略组合。", "读题拆解→选择模型→计算方案→比较验证。", "模型没有对应真实情境，答案失去实际意义。", "解释答案在生活场景中的含义和单位。", "综合解决真实生活问题"),
+  method("factor-decomposition", "质因数分解与短除法", "关系建模", "factor-ladder", "用公质因数连续试除，画出阶梯短除，商互质时看左列与L型回路。", "两数同除公质因数→阶梯下移直至商互质→左列相乘得最大公因数(GCD)→L型整环相乘得最小公倍数(LCM)。", "混淆GCD与LCM；商还没除到互质就提前停止；算LCM时漏乘底部的互质商。", "验证两数之积是否恒等于最大公因数与最小公倍数之积：A × B = GCD × LCM。", "用短除法求最大公因数和最小公倍数")
 ]);
 
 const METHOD_BY_ID = Object.freeze(Object.fromEntries(METHODS.map((entry) => [entry.id, entry])));
@@ -99,4 +100,22 @@ function getMethodForModule(module) {
   return getThinkingMethod(methodId) || getThinkingMethod("read-conditions");
 }
 
-module.exports = { METHODS, CHAPTER_METHOD_IDS, getThinkingMethod, getChapterMethodIds, getMethodForModule };
+function getEffectiveThinkingMethod(itemOrModule) {
+  if (!itemOrModule) return getThinkingMethod("read-conditions");
+  const idStr = String(itemOrModule.id || itemOrModule.moduleId || itemOrModule.thinkingMethodId || "").toLowerCase();
+  const promptStr = String(itemOrModule.prompt || itemOrModule.title || "").toLowerCase();
+  if (
+    /factors|multiples|prime|divisor|gcd|lcm|coprime|公因数|公倍数|最大公约数|最小公倍数|短除法|互质|质因数/.test(idStr) ||
+    /公因数|公倍数|最大公约数|最小公倍数|短除法|质因数|互质/.test(promptStr)
+  ) {
+    return getThinkingMethod("factor-decomposition");
+  }
+  const explicitId = itemOrModule.thinkingMethodId || (typeof itemOrModule.id === "string" && METHOD_BY_ID[itemOrModule.id] ? itemOrModule.id : null);
+  if (explicitId && METHOD_BY_ID[explicitId]) {
+    return METHOD_BY_ID[explicitId];
+  }
+  return getMethodForModule(itemOrModule);
+}
+
+module.exports = { METHODS, CHAPTER_METHOD_IDS, getThinkingMethod, getChapterMethodIds, getMethodForModule, getEffectiveThinkingMethod };
+

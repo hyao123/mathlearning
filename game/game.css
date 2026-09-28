@@ -3497,6 +3497,33 @@ input:focus-visible {
   100% { opacity: 0; }
 }
 
+/* 24. 质因数阶梯短除法微动效 */
+.motion-gcd-glow {
+  animation: motionGcdPulse 2.4s ease-in-out infinite;
+}
+@keyframes motionGcdPulse {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(56, 189, 248, 0.4)); opacity: 0.85; }
+  50% { filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.95)); opacity: 1; }
+}
+
+.motion-lcm-loop-glow {
+  animation: motionLcmDash 3s linear infinite;
+}
+@keyframes motionLcmDash {
+  0% { stroke-dashoffset: 0; filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.4)); }
+  50% { filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.95)); }
+  100% { stroke-dashoffset: -28; filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.4)); }
+}
+
+.motion-ladder-bracket {
+  animation: motionLadderBracketDraw 3s ease-in-out infinite;
+}
+@keyframes motionLadderBracketDraw {
+  0%, 15% { opacity: 0.75; }
+  50%, 85% { opacity: 1; filter: drop-shadow(0 0 5px #38bdf8); }
+  100% { opacity: 0.75; }
+}
+
 /* ==========================================================================
    22. 题目形象化图形与动图呈现系统 (Question Visualizer Design System)
    ========================================================================== */

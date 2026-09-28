@@ -743,8 +743,124 @@ function renderFractionPercentVisual(question) {
 }
 
 /**
- * 27. 溶液浓度与溶质配比模型 (Concentration Model)
+ * 28. 质因数分解与阶梯短除法 (Short Division Ladder & Factorization)
+ * 求最大公因数 (GCD)、最小公倍数 (LCM) 与质因数分解的深层数理模型
  */
+
+function isPrimeNumber(n) {
+  if (n < 2) return false;
+  if (n === 2 || n === 3) return true;
+  if (n % 2 === 0 || n % 3 === 0) return false;
+  for (let i = 5; i * i <= n; i += 6) {
+    if (n % i === 0 || n % (i + 2) === 0) return false;
+  }
+  return true;
+}
+
+function computeShortDivisionLadder(numA, numB) {
+  let a = Math.abs(Math.round(numA));
+  let b = Math.abs(Math.round(numB));
+  if (!a || a < 1) a = 24;
+  if (!b || b < 1) b = 36;
+
+  const steps = [];
+  const commonDivisors = [];
+  let curA = a;
+  let curB = b;
+
+  function findSmallestCommonPrime(x, y) {
+    const minVal = Math.min(x, y);
+    if (minVal < 2) return null;
+    if (x % 2 === 0 && y % 2 === 0) return 2;
+    for (let p = 3; p * p <= minVal; p += 2) {
+      if (x % p === 0 && y % p === 0 && isPrimeNumber(p)) return p;
+    }
+    // Check remaining divisors
+    for (let d = 3; d <= minVal; d += 2) {
+      if (x % d === 0 && y % d === 0 && isPrimeNumber(d)) return d;
+    }
+    if (isPrimeNumber(minVal) && x % minVal === 0 && y % minVal === 0) return minVal;
+    return null;
+  }
+
+  let safety = 0;
+  while (safety++ < 12) {
+    const p = findSmallestCommonPrime(curA, curB);
+    if (!p) break;
+    const nextA = curA / p;
+    const nextB = curB / p;
+    steps.push({
+      stepIndex: steps.length + 1,
+      divisor: p,
+      inA: curA,
+      inB: curB,
+      outA: nextA,
+      outB: nextB
+    });
+    commonDivisors.push(p);
+    curA = nextA;
+    curB = nextB;
+  }
+
+  const gcd = commonDivisors.length > 0 ? commonDivisors.reduce((acc, v) => acc * v, 1) : 1;
+  const lcm = gcd * curA * curB;
+
+  return {
+    mode: "two-numbers",
+    origA: a,
+    origB: b,
+    steps,
+    commonDivisors,
+    finalA: curA,
+    finalB: curB,
+    gcd,
+    lcm,
+    isAlreadyCoprime: commonDivisors.length === 0
+  };
+}
+
+function computeSingleNumberLadder(num) {
+  let val = Math.abs(Math.round(num));
+  if (!val || val < 2) val = 24;
+
+  const steps = [];
+  const primeFactors = [];
+  let cur = val;
+
+  function findSmallestPrime(x) {
+    if (x < 2) return null;
+    if (x % 2 === 0) return 2;
+    for (let p = 3; p * p <= x; p += 2) {
+      if (x % p === 0) return p;
+    }
+    return x; // x is prime
+  }
+
+  let safety = 0;
+  while (cur > 1 && safety++ < 12) {
+    const p = findSmallestPrime(cur);
+    const next = cur / p;
+    steps.push({
+      stepIndex: steps.length + 1,
+      divisor: p,
+      inVal: cur,
+      outVal: next
+    });
+    primeFactors.push(p);
+    if (isPrimeNumber(next) || next === 1) {
+      break;
+    }
+    cur = next;
+  }
+
+  return {
+    mode: "single-number",
+    origVal: val,
+    steps,
+    primeFactors,
+    finalVal: steps.length > 0 ? steps[steps.length - 1].outVal : val
+  };
+}
 
 function renderFactorTreeVisual(question) {
   const prompt = question.prompt || "";
@@ -752,63 +868,330 @@ function renderFactorTreeVisual(question) {
   card.className = "question-visual question-visual--factor-tree";
   card.dataset.visualType = "factor-tree";
 
-  const nums = parseNumbers(prompt);
-  const n1 = nums[0] || 24;
-  const n2 = nums[1] || 36;
+  const parsed = parseNumbers(prompt);
+  let n1 = 24;
+  let n2 = 36;
+  let isSingle = false;
+
+  if (parsed.length >= 2) {
+    // If prompt contains multiple numbers like "30 以内既是 2 的倍数又是 3 的倍数"
+    if (prompt.includes("既是") && prompt.includes("又是") && parsed.length >= 3) {
+      n1 = parsed[1];
+      n2 = parsed[2];
+    } else {
+      n1 = parsed[0];
+      n2 = parsed[1];
+    }
+  } else if (parsed.length === 1) {
+    // Single number decomposition
+    if (prompt.includes("因数") && !prompt.includes("公因数") && !prompt.includes("公倍数")) {
+      isSingle = true;
+      n1 = parsed[0];
+    } else {
+      n1 = parsed[0];
+      n2 = n1 === 24 ? 36 : 24;
+    }
+  }
 
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
-    <span class="question-visual__badge">🔢 质因数分解与因倍数短除法</span>
-    <span class="question-visual__subbadge">最大公因数与最小公倍数求法</span>
+    <span class="question-visual__badge">🔢 质因数阶梯短除法 (Short Division Ladder)</span>
+    <span class="question-visual__subbadge">${isSingle ? `合数 ${n1} 的质因数结构分解` : `求 ${n1} 与 ${n2} 的最大公因数 (GCD) 与 最小公倍数 (LCM)`}</span>
   `;
   card.append(header);
 
-  const svgWidth = 460;
-  const svgHeight = 140;
-  const svg = createSvg(svgWidth, svgHeight, `0 0 ${svgWidth} ${svgHeight}`);
+  if (isSingle) {
+    // 单数质因数分解阶梯
+    const singleData = computeSingleNumberLadder(n1);
+    const steps = singleData.steps;
+    const rowCount = Math.max(steps.length, 1);
+    const rowHeight = 32;
+    const startY = 36;
+    const totalHeight = Math.max(160, startY + rowCount * rowHeight + 35);
+    const svgWidth = 520;
+    const svg = createSvg(svgWidth, totalHeight, `0 0 ${svgWidth} ${totalHeight}`);
 
-  const l1 = document.createElementNS(SVG_NS, "path");
-  l1.setAttribute("d", "M 100 40 L 100 65 L 220 65");
-  l1.setAttribute("stroke", "#38bdf8"); l1.setAttribute("stroke-width", "2"); l1.setAttribute("fill", "none");
-  svg.append(l1);
+    // 背景卡片
+    const bg = document.createElementNS(SVG_NS, "rect");
+    bg.setAttribute("width", String(svgWidth));
+    bg.setAttribute("height", String(totalHeight));
+    bg.setAttribute("rx", "8");
+    bg.setAttribute("fill", "#0b1329");
+    svg.append(bg);
 
-  const dNum = document.createElementNS(SVG_NS, "text");
-  dNum.setAttribute("x", "85"); dNum.setAttribute("y", "58");
-  dNum.setAttribute("font-size", "14"); dNum.setAttribute("font-weight", "bold");
-  dNum.setAttribute("fill", "#f59e0b"); dNum.textContent = "2";
-  svg.append(dNum);
+    // 阶梯绘制
+    steps.forEach((st, idx) => {
+      const curY = startY + idx * rowHeight;
+      // 阶梯折线 L 形
+      const path = document.createElementNS(SVG_NS, "path");
+      path.setAttribute("d", `M 65 ${curY - 14} L 65 ${curY + 8} L 155 ${curY + 8}`);
+      path.setAttribute("stroke", "#38bdf8");
+      path.setAttribute("stroke-width", "2");
+      path.setAttribute("fill", "none");
+      svg.append(path);
 
-  const topNums = document.createElementNS(SVG_NS, "text");
-  topNums.setAttribute("x", "120"); topNums.setAttribute("y", "58");
-  topNums.setAttribute("font-size", "14"); topNums.setAttribute("font-weight", "bold");
-  topNums.setAttribute("fill", "#f8fafc"); topNums.textContent = `${n1}    ${n2}`;
-  svg.append(topNums);
+      // 左侧质因数除数
+      const dText = document.createElementNS(SVG_NS, "text");
+      dText.setAttribute("x", "52");
+      dText.setAttribute("y", String(curY + 2));
+      dText.setAttribute("font-size", "14");
+      dText.setAttribute("font-weight", "bold");
+      dText.setAttribute("fill", "#f59e0b");
+      dText.setAttribute("text-anchor", "end");
+      dText.textContent = String(st.divisor);
+      svg.append(dText);
 
-  const btmNums = document.createElementNS(SVG_NS, "text");
-  btmNums.setAttribute("x", "120"); btmNums.setAttribute("y", "88");
-  btmNums.setAttribute("font-size", "14"); btmNums.setAttribute("font-weight", "bold");
-  btmNums.setAttribute("fill", "#94a3b8"); btmNums.textContent = `${Math.round(n1/2)}    ${Math.round(n2/2)}`;
-  svg.append(btmNums);
+      // 被除数
+      const inText = document.createElementNS(SVG_NS, "text");
+      inText.setAttribute("x", "100");
+      inText.setAttribute("y", String(curY + 2));
+      inText.setAttribute("font-size", "14");
+      inText.setAttribute("font-weight", "bold");
+      inText.setAttribute("fill", "#f8fafc");
+      inText.textContent = String(st.inVal);
+      svg.append(inText);
 
-  const rx = 250;
-  const gcdText = document.createElementNS(SVG_NS, "text");
-  gcdText.setAttribute("x", String(rx)); gcdText.setAttribute("y", "55");
-  gcdText.setAttribute("font-size", "12"); gcdText.setAttribute("font-weight", "bold");
-  gcdText.setAttribute("fill", "#38bdf8"); gcdText.textContent = "最大公因数 (GCD): 左侧公质因数之积";
-  svg.append(gcdText);
+      // 最后一步底部的最终质数商
+      if (idx === steps.length - 1) {
+        const outY = curY + rowHeight;
+        const outText = document.createElementNS(SVG_NS, "text");
+        outText.setAttribute("x", "100");
+        outText.setAttribute("y", String(outY + 2));
+        outText.setAttribute("font-size", "14");
+        outText.setAttribute("font-weight", "bold");
+        outText.setAttribute("fill", "#22c55e");
+        outText.textContent = String(st.outVal);
+        svg.append(outText);
 
-  const lcmText = document.createElementNS(SVG_NS, "text");
-  lcmText.setAttribute("x", String(rx)); lcmText.setAttribute("y", "85");
-  lcmText.setAttribute("font-size", "12"); lcmText.setAttribute("font-weight", "bold");
-  lcmText.setAttribute("fill", "#22c55e"); lcmText.textContent = "最小公倍数 (LCM): 左侧因数 × 底部商连乘";
-  svg.append(lcmText);
+        const badge = document.createElementNS(SVG_NS, "text");
+        badge.setAttribute("x", "140");
+        badge.setAttribute("y", String(outY + 2));
+        badge.setAttribute("font-size", "11");
+        badge.setAttribute("fill", "#10b981");
+        badge.textContent = "✔ 质数底 (短除终止)";
+        svg.append(badge);
+      }
+    });
+
+    // 右侧原理说明
+    const rx = 200;
+    const factorFormula = singleData.primeFactors.join(" × ") + (singleData.finalVal > 1 && singleData.finalVal !== singleData.primeFactors[singleData.primeFactors.length - 1] ? ` × ${singleData.finalVal}` : "");
+    const titleText = document.createElementNS(SVG_NS, "text");
+    titleText.setAttribute("x", String(rx));
+    titleText.setAttribute("y", "42");
+    titleText.setAttribute("font-size", "13");
+    titleText.setAttribute("font-weight", "bold");
+    titleText.setAttribute("fill", "#38bdf8");
+    titleText.textContent = `🎯 质因数分解：${n1} = ${factorFormula}`;
+    svg.append(titleText);
+
+    const desc1 = document.createElementNS(SVG_NS, "text");
+    desc1.setAttribute("x", String(rx));
+    desc1.setAttribute("y", "72");
+    desc1.setAttribute("font-size", "12");
+    desc1.setAttribute("fill", "#cbd5e1");
+    desc1.textContent = "💡 数理本质：算术基本定理（唯一质因数分解定理）";
+    svg.append(desc1);
+
+    const desc2 = document.createElementNS(SVG_NS, "text");
+    desc2.setAttribute("x", String(rx));
+    desc2.setAttribute("y", "98");
+    desc2.setAttribute("font-size", "11");
+    desc2.setAttribute("fill", "#94a3b8");
+    desc2.textContent = "合数由质数像积木一样乘积构成，短除法能逐层提取这些基础原子。";
+    svg.append(desc2);
+
+    card.append(svg);
+    return card;
+  }
+
+  // 双数短除法求 GCD 与 LCM
+  const ladder = computeShortDivisionLadder(n1, n2);
+  const steps = ladder.steps;
+  const rowCount = Math.max(steps.length, 1);
+  const rowHeight = 32;
+  const startY = 38;
+  const totalHeight = Math.max(180, startY + (rowCount + 1) * rowHeight + 25);
+  const svgWidth = 530;
+  const svg = createSvg(svgWidth, totalHeight, `0 0 ${svgWidth} ${totalHeight}`);
+
+  // 背景底板
+  const bg = document.createElementNS(SVG_NS, "rect");
+  bg.setAttribute("width", String(svgWidth));
+  bg.setAttribute("height", String(totalHeight));
+  bg.setAttribute("rx", "10");
+  bg.setAttribute("fill", "#0c152a");
+  svg.append(bg);
+
+  if (steps.length === 0) {
+    // 已经互质的情况 (例如 4 和 5)
+    const curY = startY + 10;
+    const textCoprime = document.createElementNS(SVG_NS, "text");
+    textCoprime.setAttribute("x", "30");
+    textCoprime.setAttribute("y", String(curY));
+    textCoprime.setAttribute("font-size", "14");
+    textCoprime.setAttribute("font-weight", "bold");
+    textCoprime.setAttribute("fill", "#38bdf8");
+    textCoprime.textContent = `${n1} 与 ${n2} 本身已经互质（公因数只有 1）`;
+    svg.append(textCoprime);
+
+    const textGCD = document.createElementNS(SVG_NS, "text");
+    textGCD.setAttribute("x", "30");
+    textGCD.setAttribute("y", String(curY + 32));
+    textGCD.setAttribute("font-size", "13");
+    textGCD.setAttribute("fill", "#f59e0b");
+    textGCD.textContent = `最大公因数 (GCD)：1`;
+    svg.append(textGCD);
+
+    const textLCM = document.createElementNS(SVG_NS, "text");
+    textLCM.setAttribute("x", "30");
+    textLCM.setAttribute("y", String(curY + 60));
+    textLCM.setAttribute("font-size", "13");
+    textLCM.setAttribute("fill", "#22c55e");
+    textLCM.textContent = `最小公倍数 (LCM)：${n1} × ${n2} = ${n1 * n2}`;
+    svg.append(textLCM);
+
+    const textTheory = document.createElementNS(SVG_NS, "text");
+    textTheory.setAttribute("x", "30");
+    textTheory.setAttribute("y", String(curY + 95));
+    textTheory.setAttribute("font-size", "12");
+    textTheory.setAttribute("fill", "#94a3b8");
+    textTheory.textContent = `💡 原理：两数互质时无大于1的公质因数，最小公倍数直接为两数乘积，A × B = GCD × LCM 恒成立。`;
+    svg.append(textTheory);
+
+    card.append(svg);
+    return card;
+  }
+
+  // 1. 绘制短除梯级 (Ladder steps)
+  steps.forEach((st, idx) => {
+    const curY = startY + idx * rowHeight;
+    // 短除折线 L (bracket)
+    const bracket = document.createElementNS(SVG_NS, "path");
+    bracket.setAttribute("d", `M 52 ${curY - 14} L 52 ${curY + 8} L 175 ${curY + 8}`);
+    bracket.setAttribute("stroke", "#38bdf8");
+    bracket.setAttribute("stroke-width", "2");
+    bracket.setAttribute("fill", "none");
+    svg.append(bracket);
+
+    // 左列除数 (公质因数)
+    const dText = document.createElementNS(SVG_NS, "text");
+    dText.setAttribute("x", "42");
+    dText.setAttribute("y", String(curY + 2));
+    dText.setAttribute("font-size", "14");
+    dText.setAttribute("font-weight", "bold");
+    dText.setAttribute("fill", "#f59e0b");
+    dText.setAttribute("text-anchor", "end");
+    dText.textContent = String(st.divisor);
+    svg.append(dText);
+
+    // 梯内两数
+    const numText = document.createElementNS(SVG_NS, "text");
+    numText.setAttribute("x", "75");
+    numText.setAttribute("y", String(curY + 2));
+    numText.setAttribute("font-size", "14");
+    numText.setAttribute("font-weight", "bold");
+    numText.setAttribute("fill", "#f8fafc");
+    numText.textContent = `${String(st.inA).padEnd(6, " ")}${String(st.inB)}`;
+    svg.append(numText);
+  });
+
+  // 2. 底部互质商 (Bottom coprime quotients)
+  const bottomY = startY + steps.length * rowHeight;
+  const btmText = document.createElementNS(SVG_NS, "text");
+  btmText.setAttribute("x", "75");
+  btmText.setAttribute("y", String(bottomY + 2));
+  btmText.setAttribute("font-size", "14");
+  btmText.setAttribute("font-weight", "bold");
+  btmText.setAttribute("fill", "#22c55e");
+  btmText.textContent = `${String(ladder.finalA).padEnd(6, " ")}${String(ladder.finalB)}`;
+  svg.append(btmText);
+
+  // 互质终止胶囊徽章
+  const coprimePill = document.createElementNS(SVG_NS, "g");
+  coprimePill.innerHTML = `
+    <rect x="155" y="${bottomY - 12}" width="80" height="20" rx="10" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" stroke-width="1.2" />
+    <text x="195" y="${bottomY + 2}" fill="#22c55e" font-size="10" font-weight="bold" text-anchor="middle">✔ 商互质·停止</text>
+  `;
+  svg.append(coprimePill);
+
+  // 3. 左侧竖列高亮光轨 (GCD Track)
+  const topDivY = startY - 12;
+  const btmDivY = startY + (steps.length - 1) * rowHeight + 10;
+  const gcdTrack = document.createElementNS(SVG_NS, "rect");
+  gcdTrack.setAttribute("x", "18");
+  gcdTrack.setAttribute("y", String(topDivY));
+  gcdTrack.setAttribute("width", "32");
+  gcdTrack.setAttribute("height", String(btmDivY - topDivY));
+  gcdTrack.setAttribute("rx", "6");
+  gcdTrack.setAttribute("fill", "rgba(56, 189, 248, 0.12)");
+  gcdTrack.setAttribute("stroke", "#38bdf8");
+  gcdTrack.setAttribute("stroke-width", "1.5");
+  gcdTrack.setAttribute("stroke-dasharray", "3,2");
+  svg.append(gcdTrack);
+
+  // 4. “L”型回路光轨 (LCM L-loop)
+  const lPath = document.createElementNS(SVG_NS, "path");
+  lPath.setAttribute("d", `M 15 ${topDivY + 2} L 15 ${bottomY + 12} L 150 ${bottomY + 12}`);
+  lPath.setAttribute("stroke", "#f59e0b");
+  lPath.setAttribute("stroke-width", "2.5");
+  lPath.setAttribute("stroke-linecap", "round");
+  lPath.setAttribute("stroke-linejoin", "round");
+  lPath.setAttribute("stroke-dasharray", "4,3");
+  lPath.setAttribute("fill", "none");
+  svg.append(lPath);
+
+  // 5. 右侧数理本质与定理面板 (Deep Mathematical Principles)
+  const rx = 248;
+  const gcdFormulaStr = ladder.commonDivisors.join(" × ");
+  const lcmFormulaStr = `${gcdFormulaStr} × ${ladder.finalA} × ${ladder.finalB}`;
+
+  // GCD 卡片
+  const gcdCard = document.createElementNS(SVG_NS, "g");
+  gcdCard.innerHTML = `
+    <rect x="${rx}" y="22" width="268" height="52" rx="6" fill="#131d36" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.2" />
+    <text x="${rx + 10}" y="40" fill="#38bdf8" font-size="12" font-weight="bold">🔵 最大公因数 (GCD)：左竖列乘积</text>
+    <text x="${rx + 10}" y="60" fill="#f8fafc" font-size="12" font-family="monospace">${gcdFormulaStr} = <tspan fill="#38bdf8" font-weight="bold">${ladder.gcd}</tspan></text>
+    <text x="${rx + 145}" y="60" fill="#94a3b8" font-size="11">（两数共有质因数的交集）</text>
+  `;
+  svg.append(gcdCard);
+
+  // LCM 卡片
+  const lcmCard = document.createElementNS(SVG_NS, "g");
+  lcmCard.innerHTML = `
+    <rect x="${rx}" y="80" width="268" height="52" rx="6" fill="#131d36" stroke="rgba(245, 158, 11, 0.4)" stroke-width="1.2" />
+    <text x="${rx + 10}" y="98" fill="#f59e0b" font-size="12" font-weight="bold">🟡 最小公倍数 (LCM)：“L”型回路整环连乘</text>
+    <text x="${rx + 10}" y="118" fill="#f8fafc" font-size="11" font-family="monospace">${lcmFormulaStr} = <tspan fill="#22c55e" font-weight="bold">${ladder.lcm}</tspan></text>
+    <text x="${rx + 175}" y="118" fill="#94a3b8" font-size="11">（质因数完整并集）</text>
+  `;
+  svg.append(lcmCard);
+
+  // 核心定理验算卡片: A × B = GCD × LCM
+  const theoremCard = document.createElementNS(SVG_NS, "g");
+  const prodAB = n1 * n2;
+  const prodGL = ladder.gcd * ladder.lcm;
+  theoremCard.innerHTML = `
+    <rect x="${rx}" y="138" width="268" height="34" rx="6" fill="rgba(16, 185, 129, 0.12)" stroke="#10b981" stroke-width="1" />
+    <text x="${rx + 10}" y="154" fill="#10b981" font-size="11" font-weight="bold">✨ 底层恒等定理验算：A × B = GCD × LCM</text>
+    <text x="${rx + 10}" y="166" fill="#cbd5e1" font-size="10">${n1} × ${n2} = ${prodAB} 恒等于 ${ladder.gcd} × ${ladder.lcm} = ${prodGL}</text>
+  `;
+  svg.append(theoremCard);
 
   card.append(svg);
 
-  const legend = document.createElement("p");
-  legend.className = "question-visual__legend";
-  legend.textContent = "🔢 短除法口诀：两个数同时除以公有的质因数，除到互质为止。半边乘起来是最大公因数，一圈乘起来是最小公倍数。";
+  // 底部极简思维要诀
+  const legend = document.createElement("div");
+  legend.className = "question-visual__legend factor-ladder-legend";
+  legend.innerHTML = `
+    <div class="factor-ladder-legend__summary">
+      <strong>🔢 短除法通透口诀：</strong>
+      <span>① 两数并排用公质因数连续除；</span>
+      <span>② 商互质（公因数只有 1）即终止；</span>
+      <span>③ <strong>半边（左竖列）相乘得最大公因数 (GCD)</strong>；</span>
+      <span>④ <strong>一圈（“L”型整环）连乘得最小公倍数 (LCM)</strong>。</span>
+    </div>
+  `;
   card.append(legend);
 
   return card;

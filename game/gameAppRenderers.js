@@ -6,7 +6,7 @@ import { generateProjectCertificate, openCertificateModal } from "./certificateG
 import { createScratchpad } from "./scratchpadCanvas.js";
 
 export function createGameRenderers(app) {
-  const { GameItemCatalog, InventoryModel, LevelRewardConfig, RewardPresentation, ChapterMissionModel, ProgressionModel, ChallengeModel, ContentVersionModel, SoundEngine, QuestionVisualizer, HintScaffold, AchievementModel, StorageAdapter } = app.dependencies;
+  const { GameItemCatalog, InventoryModel, LevelRewardConfig, RewardPresentation, ChapterMissionModel, ProgressionModel, ChallengeModel, ContentVersionModel, SoundEngine, QuestionVisualizer, HintScaffold, AchievementModel, StorageAdapter, MathThinkingMethods } = app.dependencies;
   function renderHeader(parent, eyebrow, title, allowInventory = true) {
     const { root, chapter, state, campaign, screen, answerFeedback, rewardReveal, craftingFeedback, saveFeedback, answerDraft, allChapters, getLevel } = app;
     const header = document.createElement("header");
@@ -1377,8 +1377,11 @@ export function createGameRenderers(app) {
       `;
       details.append(transferCard);
 
-      if (run.question.thinkingMethodLabel) appendText(details, "p", `思维方法：${run.question.thinkingMethodLabel}`, "tactical-review__thinking-method");
-      if (run.question.methodReview) appendText(details, "p", `方法复盘：${run.question.methodReview}`, "tactical-review__method-review");
+      const effectiveMethod = MathThinkingMethods?.getEffectiveThinkingMethod?.(run.question);
+      const thinkingMethodLabel = effectiveMethod?.label || run.question.thinkingMethodLabel;
+      const methodReview = effectiveMethod?.review || run.question.methodReview;
+      if (thinkingMethodLabel) appendText(details, "p", `思维方法：${thinkingMethodLabel}`, "tactical-review__thinking-method");
+      if (methodReview) appendText(details, "p", `方法复盘：${methodReview}`, "tactical-review__method-review");
       appendText(details, "p", `关键观察：${review.observation || "观察题目中的数量关系。"}`, "tactical-review__observation");
       if (review.steps?.length) {
         const steps = document.createElement("ol");
@@ -1515,12 +1518,16 @@ export function createGameRenderers(app) {
       "question-story-beat"
     );
     storyBeat.dataset.questionStoryBeat = "";
-    if (run.question.thinkingMethodLabel) {
+    const effectiveMethod = MathThinkingMethods?.getEffectiveThinkingMethod?.(run.question);
+    const thinkingMethodLabel = effectiveMethod?.label || run.question.thinkingMethodLabel;
+    const thinkingMethodId = effectiveMethod?.id || run.question.thinkingMethodId || "";
+    const methodPrompt = effectiveMethod?.prompt || run.question.methodPrompt;
+    if (thinkingMethodLabel) {
       const methodHint = document.createElement("div");
       methodHint.className = "thinking-method-hint";
-      methodHint.dataset.thinkingMethod = run.question.thinkingMethodId || "";
-      appendText(methodHint, "strong", `🧭 思维方法：${run.question.thinkingMethodLabel}`, "thinking-method-hint__label");
-      if (run.question.methodPrompt) appendText(methodHint, "span", run.question.methodPrompt, "thinking-method-hint__prompt");
+      methodHint.dataset.thinkingMethod = thinkingMethodId;
+      appendText(methodHint, "strong", `🧭 思维方法：${thinkingMethodLabel}`, "thinking-method-hint__label");
+      if (methodPrompt) appendText(methodHint, "span", methodPrompt, "thinking-method-hint__prompt");
       challenge.append(methodHint);
     }
     renderCognitiveBlueprint(challenge, run.question, tierInfo);
@@ -1731,12 +1738,16 @@ export function createGameRenderers(app) {
     const target = ChallengeModel.getTargetMaterial(chapter.chapterId, state.inventory);
     appendText(card, "p", target ? `答对可补给：${GameItemCatalog.getItem(target.itemId)?.name || target.itemId} × 1（还缺 ${target.quantity}）` : "当前工程材料已暂时齐备。", "recovery-target");
     appendText(card, "p", run.question?.storyBeat || "从本章知识点中抽取一道补给线索。", "question-story-beat");
-    if (run.question?.thinkingMethodLabel) {
+    const effectiveMethod = MathThinkingMethods?.getEffectiveThinkingMethod?.(run.question);
+    const thinkingMethodLabel = effectiveMethod?.label || run.question?.thinkingMethodLabel;
+    const thinkingMethodId = effectiveMethod?.id || run.question?.thinkingMethodId || "";
+    const methodPrompt = effectiveMethod?.prompt || run.question?.methodPrompt;
+    if (thinkingMethodLabel) {
       const methodHint = document.createElement("div");
       methodHint.className = "thinking-method-hint";
-      methodHint.dataset.thinkingMethod = run.question.thinkingMethodId || "";
-      appendText(methodHint, "strong", `🧭 思维方法：${run.question.thinkingMethodLabel}`, "thinking-method-hint__label");
-      if (run.question.methodPrompt) appendText(methodHint, "span", run.question.methodPrompt, "thinking-method-hint__prompt");
+      methodHint.dataset.thinkingMethod = thinkingMethodId;
+      appendText(methodHint, "strong", `🧭 思维方法：${thinkingMethodLabel}`, "thinking-method-hint__label");
+      if (methodPrompt) appendText(methodHint, "span", methodPrompt, "thinking-method-hint__prompt");
       card.append(methodHint);
     }
     renderCognitiveBlueprint(card, run.question, tierInfo);

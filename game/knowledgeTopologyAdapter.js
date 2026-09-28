@@ -368,11 +368,37 @@ const MODULE_TOPOLOGY = Object.freeze({
     learningBridge: {
       prerequisiteSummary: "理解偶数、奇数与整除乘除性质",
       methodSummary: { label: "奇偶不变量", description: "利用奇+偶=奇、奇×奇=奇等运算守恒律，无需精确计算直接判定结果的不可能性" },
-      transferTargets: [{ topicId: "logic", reason: "构建数论反证法" }]
+      transferTargets: [{ topicId: "factors-multiples", reason: "深入因数倍数与短除法" }, { topicId: "logic", reason: "构建数论反证法" }]
     },
     engineeringAffinity: {
       subsystem: "万米水声扩频抗干扰通信",
       algorithmRole: "水下低频通信奇偶校验纠错：在海流噪声干扰中利用奇偶校验码快速纠正误码"
+    }
+  },
+  "factors-multiples": {
+    strand: "observation",
+    prerequisiteIds: ["parity-divisibility"],
+    learningBridge: {
+      prerequisiteSummary: "已掌握自然数整除规律与质数、合数概念",
+      methodSummary: { label: "阶梯短除法", description: "用公质因数阶梯试除，商互质时左竖列得最大公因数(GCD)，L型回路得最小公倍数(LCM)" },
+      transferTargets: [{ topicId: "prime-factorization", reason: "合数唯一分解定理" }, { topicId: "periodicity", reason: "公倍周期与同余规律" }]
+    },
+    engineeringAffinity: {
+      subsystem: "空间站椭圆轨道交会对接控制",
+      algorithmRole: "双星运行公倍周期相位共振：计算追赶飞行器与目标空间站公转周期的最小公倍数，实现微重力无冲量精准交会"
+    }
+  },
+  "prime-factorization": {
+    strand: "observation",
+    prerequisiteIds: ["factors-multiples"],
+    learningBridge: {
+      prerequisiteSummary: "熟练掌握短除法连续试除与提取公因数",
+      methodSummary: { label: "质因数解构", description: "将自然数唯一拆解为质数的标准幂乘积形式，把握数的微观基因构成" },
+      transferTargets: [{ topicId: "logic", reason: "数论不可逆散列与公钥加密" }]
+    },
+    engineeringAffinity: {
+      subsystem: "墨子号量子通信密钥安全网关",
+      algorithmRole: "超大合数质因数分解单向计算复杂度：基于大质数因数分解不可逆陷门，构建绝对安全的量子保密通信密钥"
     }
   }
 });
