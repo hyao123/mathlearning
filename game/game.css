@@ -190,17 +190,196 @@ input:focus-visible {
 }
 
 .campaign-overview {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr;
 }
 
-.campaign-overview > .quest-game__eyebrow,
-.chapter-missions > .quest-game__eyebrow,
-.chapter-missions__title {
+.campaign-overview__header {
   grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px dashed rgba(60, 50, 40, 0.15);
+}
+
+.campaign-overview__title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.campaign-overview__subtitle {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
   margin: 0;
 }
 
-.campaign-chapter,
+.campaign-overview__bulk-toggle {
+  font-size: 0.82rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.campaign-overview__bulk-toggle--active {
+  background: #2e7d32;
+  color: #fff;
+  border-color: #1b5e20;
+  box-shadow: 0 2px 6px rgba(46, 125, 50, 0.35);
+}
+
+.campaign-overview__grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.campaign-chapter {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  background: #f8f6ea;
+  color: var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  position: relative;
+}
+
+.campaign-chapter:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.campaign-chapter[data-chapter-status="active"] {
+  border-color: var(--leaf);
+  background: #e6f5db;
+  box-shadow: 0 0 0 1px var(--leaf);
+}
+
+.campaign-chapter[data-free-practice="true"] {
+  border-color: #388e3c;
+  background: #f1f8e9;
+}
+
+.campaign-chapter[data-chapter-status="active"][data-free-practice="true"] {
+  border-color: var(--leaf);
+  background: #e2f5d5;
+}
+
+.campaign-chapter[data-chapter-status="locked"]:not([data-free-practice="true"]) {
+  opacity: 0.85;
+  background: #f0ede0;
+}
+
+.campaign-chapter__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.campaign-chapter__number {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.campaign-chapter__badge {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.campaign-chapter__badge--active {
+  background: var(--leaf);
+  color: #fff;
+}
+
+.campaign-chapter__badge--free {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #81c784;
+}
+
+.campaign-chapter__badge--unlocked {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.campaign-chapter__badge--locked {
+  background: #e5e7eb;
+  color: #6b7280;
+}
+
+.campaign-chapter__entry {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.campaign-chapter__entry:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.campaign-chapter__name {
+  font-size: 0.96rem;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.campaign-chapter__progress {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.campaign-chapter__footer {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(60, 50, 40, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.campaign-chapter__toggle {
+  font-size: 0.76rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.campaign-chapter__toggle--active,
+.campaign-chapter__toggle.is-active {
+  background: #2e7d32;
+  color: #ffffff;
+  border-color: #1b5e20;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(46, 125, 50, 0.3);
+}
+
+.chapter-missions { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .chapter-mission {
   min-width: 0;
   display: grid;
@@ -211,20 +390,20 @@ input:focus-visible {
   padding: 10px;
   background: #f8f6ea;
   color: var(--ink);
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
 }
-
-.campaign-chapter[data-chapter-status="active"] { border-color: var(--leaf); background: #e6f5db; }
-.campaign-chapter[data-chapter-status="locked"] { opacity: .58; filter: grayscale(.45); }
-.campaign-chapter__number,
-.campaign-chapter__progress { color: var(--ink-soft); font-size: .78rem; }
-
-.chapter-missions { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-.chapter-mission { grid-template-columns: 38px minmax(0, 1fr); align-items: center; }
 .chapter-mission[data-mission-status="claimed"] { border-color: var(--gold); background: #fff4c8; }
 .chapter-mission__icon { width: 36px; height: 36px; object-fit: contain; }
 
+@media (max-width: 900px) {
+  .campaign-overview__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 @media (max-width: 700px) {
   .campaign-overview { grid-template-columns: 1fr; }
+  .campaign-overview__grid { grid-template-columns: 1fr; }
+  .campaign-overview__header { flex-direction: column; align-items: flex-start; }
   .chapter-missions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
@@ -557,21 +736,32 @@ input:focus-visible {
 }
 
 .fighter-art[data-fighter-state="blueprint"] {
-  padding: 8px;
-  border: 2px dashed rgba(49, 90, 147, 0.45);
+  padding: 12px 16px;
+  border: 2px dashed rgba(56, 189, 248, 0.55);
+  border-radius: 12px;
   background:
-    linear-gradient(rgba(49, 90, 147, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(49, 90, 147, 0.08) 1px, transparent 1px),
-    #eef6ff;
-  background-size: 18px 18px;
+    linear-gradient(rgba(56, 189, 248, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.1) 1px, transparent 1px),
+    radial-gradient(ellipse at 50% 50%, rgba(30, 58, 138, 0.4), transparent 80%),
+    #08162d;
+  background-size: 20px 20px, 20px 20px, 100% 100%, 100% 100%;
+  box-shadow: inset 0 0 24px rgba(3, 105, 161, 0.25), 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 .fighter-art[data-fighter-state="completed"] {
-  padding: 8px;
-  border: 2px solid var(--gold);
+  padding: 14px 18px;
+  border: 2px solid #38bdf8;
+  border-radius: 12px;
   background:
-    radial-gradient(circle at 50% 45%, rgba(245, 208, 111, 0.28), transparent 45%),
-    linear-gradient(135deg, rgba(124, 92, 255, 0.18), rgba(22, 27, 51, 0.08));
+    linear-gradient(rgba(56, 189, 248, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.12) 1px, transparent 1px),
+    radial-gradient(ellipse at 50% 50%, rgba(14, 165, 233, 0.22), transparent 70%),
+    #070d1a;
+  background-size: 24px 24px, 24px 24px, 100% 100%, 100% 100%;
+  box-shadow:
+    0 0 35px rgba(56, 189, 248, 0.35),
+    0 0 15px rgba(245, 208, 111, 0.2),
+    inset 0 0 35px rgba(11, 19, 38, 0.95);
 }
 
 .fighter-art--item {
@@ -580,7 +770,10 @@ input:focus-visible {
   max-width: none;
   padding: 2px;
   border: 0;
-  background: var(--night);
+  background: #0f172a;
+  border-radius: 4px;
+  box-shadow: none;
+  animation: none !important;
 }
 
 .project-hero {
@@ -1493,3 +1686,4689 @@ input:focus-visible {
 .tactical-review__streak {
   animation: streak-glow 2s infinite ease-in-out;
 }
+
+/* =========================================================
+   Knowledge Constellation & Mind Compass System (知识星图与思维罗盘)
+   ========================================================= */
+
+@keyframes energy-pulse {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -200; }
+}
+
+@keyframes node-pulse {
+  0%, 100% {
+    box-shadow: 0 0 12px var(--node-accent, rgba(56, 189, 248, 0.3)), 0 0 0 0 rgba(56, 189, 248, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 24px var(--node-accent, rgba(56, 189, 248, 0.6)), 0 0 0 6px rgba(56, 189, 248, 0);
+  }
+}
+
+.chapter-route-section {
+  width: 100%;
+  margin: 16px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.level-node.is-dimmed {
+  opacity: 0.28;
+  filter: grayscale(80%);
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+.knowledge-constellation-section {
+  width: 100%;
+  margin: 16px 0 24px;
+  padding: 20px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(11, 16, 32, 0.88), rgba(15, 23, 42, 0.96));
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  box-shadow: 0 16px 40px rgba(2, 6, 23, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+.constellation-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.constellation-filter {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.constellation-filter__item {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 16px;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.constellation-filter__item:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #f8fafc;
+  background: rgba(30, 41, 59, 0.8);
+}
+
+.constellation-filter__item.is-active {
+  background: var(--strand-color, #38bdf8);
+  color: #0b1020;
+  font-weight: 900;
+  border-color: transparent;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+}
+
+.constellation-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.free-practice-toggle {
+  min-height: 44px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.free-practice-toggle:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #f8fafc;
+  background: rgba(30, 41, 59, 0.85);
+}
+
+.free-practice-toggle.is-active {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(5, 150, 105, 0.4));
+  border-color: #10b981;
+  color: #34d399;
+  font-weight: 800;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.35);
+}
+
+.level-node[data-status="free-practice"] {
+  border-color: rgba(52, 211, 153, 0.6);
+  background: radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.15), rgba(15, 23, 42, 0.9));
+}
+
+.level-node[data-status="free-practice"] .level-node__status {
+  color: #34d399;
+}
+
+.constellation-view-switch {
+  display: flex;
+  gap: 6px;
+}
+
+.constellation-view-switch button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 14px;
+}
+
+.constellation-view-switch button.is-active {
+  background: var(--gold, #f5d06f);
+  color: #0b1020;
+  font-weight: 900;
+}
+
+.constellation-display {
+  position: relative;
+  width: 100%;
+}
+
+.constellation-board {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 58%; /* 1000:580 宽屏比例 */
+  background: radial-gradient(circle at 50% 50%, rgba(30, 41, 59, 0.5) 0%, rgba(11, 16, 32, 0.95) 80%);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.constellation-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.constellation-line {
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke 0.3s ease;
+}
+
+.constellation-line--cleared {
+  stroke: url(#energy-line-cleared);
+  stroke-width: 3.5;
+  stroke-dasharray: 8 4;
+  animation: energy-pulse 20s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(245, 208, 111, 0.6));
+}
+
+.constellation-line--active {
+  stroke: url(#energy-line-unlocked);
+  stroke-width: 2.5;
+  stroke-dasharray: 6 3;
+  animation: energy-pulse 15s linear infinite;
+  filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.4));
+}
+
+.constellation-line--locked {
+  stroke: rgba(51, 65, 85, 0.4);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.constellation-nodes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}
+
+.constellation-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  min-width: 48px;
+  min-height: 48px;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease;
+}
+
+.constellation-node:hover:not(:disabled) {
+  transform: translate(-50%, -55%) scale(1.1);
+  z-index: 10;
+}
+
+.constellation-node:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.constellation-node.is-dimmed {
+  opacity: 0.18;
+  filter: grayscale(80%);
+}
+
+.constellation-node__core {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f172a;
+  border: 2.5px solid var(--node-color, #38bdf8);
+  box-shadow: 0 0 16px var(--node-accent, rgba(56, 189, 248, 0.3));
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.constellation-node--full-star .constellation-node__core {
+  border-color: #f5d06f;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  box-shadow: 0 0 20px rgba(245, 208, 111, 0.5);
+}
+
+.constellation-node--available .constellation-node__core {
+  animation: node-pulse 2s infinite ease-in-out;
+}
+
+.constellation-node--paused .constellation-node__core {
+  border-color: #38bdf8;
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.8);
+}
+
+.constellation-node__num {
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #f8fafc;
+}
+
+.constellation-node__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  pointer-events: none;
+  text-align: center;
+  max-width: 140px;
+}
+
+.constellation-node__title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #f8fafc;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+  line-height: 1.2;
+}
+
+.constellation-node__method {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--node-color, #38bdf8);
+  background: rgba(15, 23, 42, 0.85);
+  padding: 1px 7px;
+  border-radius: 6px;
+  border: 1px solid var(--node-accent, rgba(56, 189, 248, 0.3));
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.constellation-node__stars {
+  font-size: 12px;
+  color: #f5d06f;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(245, 208, 111, 0.6);
+}
+
+.constellation-node__action {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+}
+
+/* 列表增强模式 */
+.level-map--enhanced .level-node__tags {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.level-node__strand-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--strand-color, #38bdf8);
+  background: rgba(56, 189, 248, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.level-node__method-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #f5d06f;
+  background: rgba(245, 208, 111, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* 思维罗盘战术简报横幅与弹窗 */
+.mind-compass-banner {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(2, 6, 23, 0.3);
+}
+
+.mind-compass-banner__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.mind-compass-banner__badge {
+  font-size: 12px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--strand-accent, rgba(56, 189, 248, 0.2));
+  color: var(--strand-color, #38bdf8);
+  border: 1px solid var(--strand-color, #38bdf8);
+}
+
+.mind-compass-banner__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.mind-compass-step {
+  background: rgba(11, 16, 32, 0.6);
+  padding: 10px 14px;
+  border-radius: 10px;
+  border-left: 3px solid var(--strand-color, #38bdf8);
+}
+
+.mind-compass-step__tag {
+  font-size: 11px;
+  font-weight: 800;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.mind-compass-step__text {
+  font-size: 13px;
+  color: #f8fafc;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.mind-compass-tech-line {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  color: #f5d06f;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 结算页思维卡牌点亮 */
+.settlement-mind-card {
+  margin: 16px 0;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(245, 208, 111, 0.15), rgba(56, 189, 248, 0.15));
+  border: 1.5px solid rgba(245, 208, 111, 0.4);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.settlement-mind-card__title {
+  color: #f5d06f;
+  font-size: 16px;
+  font-weight: 900;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settlement-mind-card__desc {
+  color: #e2e8f0;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+.settlement-mind-card__branch {
+  font-size: 12px;
+  color: #38bdf8;
+  font-weight: 700;
+  background: rgba(15, 23, 42, 0.7);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border-left: 3px solid #38bdf8;
+}
+
+/* 终极工程数学算法共振看板 */
+.algorithm-resonance-board {
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(22, 36, 60, 0.95));
+  border: 1px solid rgba(245, 208, 111, 0.35);
+  box-shadow: 0 14px 32px rgba(2, 6, 23, 0.35);
+}
+
+.algorithm-resonance-board__title {
+  color: #f5d06f;
+  margin: 4px 0 12px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.algorithm-resonance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.algorithm-resonance-card {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(11, 16, 32, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+
+.algorithm-resonance-card.is-active {
+  border-color: rgba(56, 189, 248, 0.4);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(56, 189, 248, 0.12));
+  box-shadow: 0 4px 16px rgba(56, 189, 248, 0.15);
+}
+
+.algorithm-resonance-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.algorithm-resonance-card__subsystem {
+  font-size: 13px;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.algorithm-resonance-card__status {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.algorithm-resonance-card.is-active .algorithm-resonance-card__status {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+}
+
+.algorithm-resonance-card:not(.is-active) .algorithm-resonance-card__status {
+  color: #64748b;
+  background: rgba(100, 116, 139, 0.15);
+}
+
+.algorithm-resonance-card__role {
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ==========================================================================
+   知识点趣味动图与极简图解样式 (Motion Explainer & Minimal Tactical Cards)
+   ========================================================================== */
+
+.knowledge-motion-card {
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 12px;
+  padding: 12px;
+  margin: 10px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.knowledge-motion-card--compact {
+  padding: 8px 10px;
+  margin: 6px 0 10px;
+}
+
+.knowledge-motion-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.knowledge-motion-card__title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #38bdf8;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.knowledge-motion-card__spark {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fef08a;
+  background: rgba(245, 208, 111, 0.18);
+  border: 1px solid rgba(245, 208, 111, 0.4);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.knowledge-motion-card__viewport {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0b1020;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.motion-graphic__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.knowledge-motion-card__formula-pill {
+  margin-top: 8px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 8px;
+  padding: 6px 12px;
+  text-align: center;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.knowledge-motion-card__formula-pill strong {
+  color: #38bdf8;
+  margin-right: 4px;
+}
+
+.knowledge-motion-card__formula-pill code {
+  color: #f5d06f;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: monospace;
+}
+
+/* 动图快捷按钮与抽屉 */
+.mind-compass-motion-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #0284c7, #7c3aed);
+  border: 1px solid #38bdf8;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(56, 189, 248, 0.25);
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+
+.mind-compass-motion-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.45);
+}
+
+.mind-compass-motion-drawer {
+  margin-top: 10px;
+  animation: motionFadeIn 0.25s ease-out;
+}
+
+/* 极简三拍战术复盘卡片 */
+.minimal-tactical-board {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.minimal-tactical-beats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.tactical-beat-card {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tactical-beat__tag {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tactical-beat--observe .tactical-beat__tag {
+  color: #38bdf8;
+}
+
+.tactical-beat--calculate .tactical-beat__tag {
+  color: #f5d06f;
+}
+
+.tactical-beat--verify .tactical-beat__tag {
+  color: #10b981;
+}
+
+.tactical-beat__content {
+  font-size: 12px;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.tactical-beat__calc {
+  margin-top: 2px;
+}
+
+.tactical-beat__calc code {
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fef08a;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.tactical-pitfall-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(244, 63, 94, 0.12);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.tactical-pitfall__icon {
+  font-size: 14px;
+}
+
+.tactical-pitfall__label {
+  color: #f43f5e;
+  font-weight: 800;
+}
+
+.tactical-pitfall__text {
+  color: #fecdd3;
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   SVG 纯 CSS 矢量动效微动画 (Micro-Animations @keyframes)
+   ========================================================================== */
+
+@keyframes motionFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 1. 和差剪刀与差值移走 */
+.motion-scissors {
+  animation: motionScissorsPulse 1.8s ease-in-out infinite;
+  transform-origin: 214px 38px;
+}
+@keyframes motionScissorsPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15) rotate(-10deg); opacity: 1; }
+}
+
+.motion-bar-diff-group {
+  animation: motionDiffTranslate 3.2s ease-in-out infinite;
+}
+@keyframes motionDiffTranslate {
+  0%, 30% { transform: translate(0, 0); opacity: 1; }
+  55%, 85% { transform: translate(16px, 12px); opacity: 0.35; }
+  100% { transform: translate(0, 0); opacity: 1; }
+}
+
+/* 2. 鸡兔小动物跳动与置换 */
+.motion-cr--chicken {
+  animation: motionChickenWalk 1.6s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+@keyframes motionChickenWalk {
+  0%, 100% { transform: translate(60px, 50px) rotate(0deg); }
+  50% { transform: translate(60px, 46px) rotate(3deg); }
+}
+
+.motion-cr--rabbit {
+  animation: motionRabbitHop 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+@keyframes motionRabbitHop {
+  0%, 100% { transform: translate(260px, 40px); }
+  35% { transform: translate(260px, 24px); }
+}
+
+.motion-add-legs {
+  animation: motionAddLegsDrop 2.4s ease-in-out infinite;
+}
+@keyframes motionAddLegsDrop {
+  0%, 20% { opacity: 0; transform: translateY(-8px); }
+  40%, 80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(6px); }
+}
+
+/* 3. 行程相遇相撞 */
+.motion-car--left {
+  animation: motionCarDriveR 3s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes motionCarDriveR {
+  0% { transform: translate(30px, 60px); }
+  50%, 75% { transform: translate(150px, 60px); }
+  100% { transform: translate(30px, 60px); }
+}
+
+.motion-car--right {
+  animation: motionCarDriveL 3s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@keyframes motionCarDriveL {
+  0% { transform: translate(300px, 60px); }
+  50%, 75% { transform: translate(185px, 60px); }
+  100% { transform: translate(300px, 60px); }
+}
+
+.motion-pulse-ring {
+  animation: motionRingBoom 3s ease-out infinite;
+  transform-origin: 0 0;
+}
+@keyframes motionRingBoom {
+  0%, 48% { opacity: 0; transform: scale(0.2); }
+  52% { opacity: 1; transform: scale(1); }
+  75% { opacity: 0; transform: scale(2.2); }
+  100% { opacity: 0; }
+}
+
+/* 4. 周期传送带滚动 */
+.motion-conveyor-belt {
+  animation: motionBeltScroll 4s linear infinite;
+}
+@keyframes motionBeltScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-140px); }
+}
+
+.motion-target-period {
+  animation: motionTargetPulse 1.2s ease-in-out infinite;
+}
+@keyframes motionTargetPulse {
+  0%, 100% { filter: drop-shadow(0 0 2px #f5d06f); opacity: 0.9; }
+  50% { filter: drop-shadow(0 0 10px #f5d06f); opacity: 1; }
+}
+
+/* 5. 几何割补平移 */
+.motion-shift-vertical {
+  animation: motionShiftV 3s ease-in-out infinite;
+}
+@keyframes motionShiftV {
+  0%, 25% { transform: translateX(0); }
+  55%, 85% { transform: translateX(70px); }
+  100% { transform: translateX(0); }
+}
+
+.motion-shift-horizontal {
+  animation: motionShiftH 3s ease-in-out infinite;
+}
+@keyframes motionShiftH {
+  0%, 25% { transform: translateY(0); }
+  55%, 85% { transform: translateY(-40px); }
+  100% { transform: translateY(0); }
+}
+
+/* 6. 容斥集合重叠消融 */
+.motion-venn--a {
+  animation: motionVennSlideA 3s ease-in-out infinite;
+}
+@keyframes motionVennSlideA {
+  0%, 100% { transform: translate(120px, 70px); }
+  50% { transform: translate(145px, 70px); }
+}
+
+.motion-venn--b {
+  animation: motionVennSlideB 3s ease-in-out infinite;
+}
+@keyframes motionVennSlideB {
+  0%, 100% { transform: translate(240px, 70px); }
+  50% { transform: translate(215px, 70px); }
+}
+
+.motion-venn-overlap {
+  animation: motionOverlapFlash 1.5s ease-in-out infinite;
+}
+@keyframes motionOverlapFlash {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; filter: drop-shadow(0 0 8px #f43f5e); }
+}
+
+/* 7. 植树破土而出 */
+.motion-tree {
+  animation: motionTreeSprout 2.5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+.motion-tree--1 { animation-delay: 0.1s; }
+.motion-tree--2 { animation-delay: 0.3s; }
+.motion-tree--3 { animation-delay: 0.5s; }
+.motion-tree--4 { animation-delay: 0.7s; }
+
+@keyframes motionTreeSprout {
+  0%, 20% { opacity: 0; transform: scale(0.3) translateY(20px); }
+  45%, 85% { opacity: 1; transform: scale(1) translateY(0); }
+  100% { opacity: 0; transform: scale(0.3) translateY(20px); }
+}
+
+/* 8. 倒推逆运算流光 */
+.motion-reverse-stream {
+  animation: motionReverseGlow 2s ease-in-out infinite;
+}
+@keyframes motionReverseGlow {
+  0%, 100% { filter: drop-shadow(0 0 2px #f5d06f); }
+  50% { filter: drop-shadow(0 0 10px #f5d06f); }
+}
+
+/* 9. 等量天平轻微摆动 */
+.motion-balance-beam {
+  animation: motionBalanceSway 3s ease-in-out infinite;
+  transform-origin: 180px 65px;
+}
+@keyframes motionBalanceSway {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3.5deg); }
+  75% { transform: rotate(3.5deg); }
+}
+
+/* 10. 特征识别跳跃与显形 */
+.motion-pattern-hop {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: motionHopDash 2.4s ease-in-out infinite;
+}
+.motion-pattern-hop--1 { animation-delay: 0.1s; }
+.motion-pattern-hop--2 { animation-delay: 0.3s; }
+.motion-pattern-hop--3 { animation-delay: 0.5s; }
+.motion-pattern-hop--target { animation-delay: 0.7s; }
+
+@keyframes motionHopDash {
+  0% { stroke-dashoffset: 60; opacity: 0.2; }
+  30%, 80% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.2; }
+}
+
+.motion-pattern-target {
+  animation: motionTargetGlow 2.4s ease-in-out infinite;
+}
+.motion-pattern-target__q {
+  animation: motionTargetQ 2.4s ease-in-out infinite;
+}
+.motion-pattern-target__ans {
+  animation: motionTargetAns 2.4s ease-in-out infinite;
+}
+@keyframes motionTargetGlow {
+  0%, 40% { filter: drop-shadow(0 0 2px rgba(245, 208, 111, 0.2)); }
+  60%, 85% { filter: drop-shadow(0 0 12px #10b981); }
+  100% { filter: drop-shadow(0 0 2px rgba(245, 208, 111, 0.2)); }
+}
+@keyframes motionTargetQ {
+  0%, 45% { opacity: 1; }
+  55%, 100% { opacity: 0; }
+}
+@keyframes motionTargetAns {
+  0%, 45% { opacity: 0; }
+  55%, 90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* 11. 凑整拆补磁吸与聚能 */
+.motion-snap-left {
+  animation: motionSnapMoveL 2.8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+@keyframes motionSnapMoveL {
+  0%, 20% { transform: translate(60px, 52px); }
+  50%, 80% { transform: translate(100px, 52px); }
+  100% { transform: translate(60px, 52px); }
+}
+.motion-snap-right {
+  animation: motionSnapMoveR 2.8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+@keyframes motionSnapMoveR {
+  0%, 20% { transform: translate(240px, 52px); }
+  50%, 80% { transform: translate(200px, 52px); }
+  100% { transform: translate(240px, 52px); }
+}
+.motion-snap-result {
+  animation: motionSnapGlow 2.8s ease-in-out infinite;
+}
+@keyframes motionSnapGlow {
+  0%, 42% { opacity: 0; transform: translate(130px, 52px) scale(0.85); }
+  50%, 80% { opacity: 1; transform: translate(130px, 52px) scale(1); filter: drop-shadow(0 0 10px #f5d06f); }
+  100% { opacity: 0; transform: translate(130px, 52px) scale(0.85); }
+}
+
+/* 12. 有序分类分枝与打勾 */
+.motion-tree-check {
+  animation: motionCheckPop 2s ease-out infinite;
+  transform-origin: center;
+}
+.motion-tree-check--1 { animation-delay: 0.2s; }
+.motion-tree-check--2 { animation-delay: 0.5s; }
+.motion-tree-check--3 { animation-delay: 0.8s; }
+@keyframes motionCheckPop {
+  0%, 20% { opacity: 0; transform: scale(0.2); }
+  40%, 85% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+/* 13. 加乘分步光子穿梭 */
+.motion-photon--upper {
+  animation: motionPhotonA 2.5s linear infinite;
+}
+@keyframes motionPhotonA {
+  0% { transform: translate(45px, 80px); opacity: 0; }
+  10% { opacity: 1; }
+  45% { transform: translate(140px, 48px); }
+  90% { transform: translate(270px, 48px); opacity: 1; }
+  100% { transform: translate(270px, 48px); opacity: 0; }
+}
+.motion-photon--lower {
+  animation: motionPhotonB 2.5s linear infinite;
+  animation-delay: 0.6s;
+}
+@keyframes motionPhotonB {
+  0% { transform: translate(45px, 80px); opacity: 0; }
+  10% { opacity: 1; }
+  45% { transform: translate(140px, 112px); }
+  90% { transform: translate(270px, 112px); opacity: 1; }
+  100% { transform: translate(270px, 112px); opacity: 0; }
+}
+
+/* 14. 盈亏双方案对比 */
+.motion-surplus-glow {
+  animation: motionSurplusPulse 1.8s ease-in-out infinite;
+}
+@keyframes motionSurplusPulse {
+  0%, 100% { filter: drop-shadow(0 0 2px #10b981); opacity: 0.85; }
+  50% { filter: drop-shadow(0 0 8px #34d399); opacity: 1; }
+}
+.motion-deficit-pulse {
+  animation: motionDeficitBlink 1.8s ease-in-out infinite;
+}
+@keyframes motionDeficitBlink {
+  0%, 100% { stroke: #f43f5e; opacity: 0.6; }
+  50% { stroke: #fb7185; opacity: 1; filter: drop-shadow(0 0 6px #f43f5e); }
+}
+
+/* 15. 移多补少削峰填谷 */
+.motion-bar-excess {
+  animation: motionExcessSlice 3.2s ease-in-out infinite;
+}
+@keyframes motionExcessSlice {
+  0%, 25% { transform: translate(0, 0); opacity: 1; }
+  50%, 80% { transform: translate(-170px, 30px); opacity: 0.9; }
+  100% { transform: translate(0, 0); opacity: 1; }
+}
+.motion-slice-fall {
+  animation: motionSliceLine 3.2s ease-in-out infinite;
+}
+@keyframes motionSliceLine {
+  0%, 20% { opacity: 0; }
+  35%, 75% { opacity: 1; }
+  90%, 100% { opacity: 0; }
+}
+
+/* 16. 最不利抽屉空降物品 */
+.motion-pigeon-drop {
+  animation: motionDropKey 2.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+@keyframes motionDropKey {
+  0%, 25% { transform: translateY(-35px); opacity: 0; }
+  45%, 85% { transform: translateY(0); opacity: 1; filter: drop-shadow(0 0 6px #fef08a); }
+  100% { transform: translateY(-35px); opacity: 0; }
+}
+
+/* 17. 火车过桥全长行进 */
+.motion-train-drive {
+  animation: motionTrainCross 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes motionTrainCross {
+  0% { transform: translate(20px, 72px); }
+  55%, 75% { transform: translate(245px, 72px); }
+  100% { transform: translate(20px, 72px); }
+}
+
+/* 18. 年龄差值不变量时间轴推进 */
+.motion-timeline-node {
+  animation: motionTimelineSlide 3s ease-in-out infinite;
+}
+@keyframes motionTimelineSlide {
+  0%, 15% { transform: translateX(0); }
+  50%, 75% { transform: translateX(45px); }
+  100% { transform: translateX(0); }
+}
+
+/* 19. 工程总量化一双向充水 */
+.motion-flow-fill {
+  animation: motionFillProgress 3s ease-in-out infinite;
+}
+@keyframes motionFillProgress {
+  0%, 15% { width: 0; }
+  60%, 80% { width: 260px; }
+  100% { width: 0; }
+}
+
+/* 20. 奇偶单飞点碰撞配对 */
+.motion-odd-dot-a {
+  animation: motionOddSnapA 2.5s ease-in-out infinite;
+}
+@keyframes motionOddSnapA {
+  0%, 20% { transform: translate(0, 0); }
+  50%, 80% { transform: translate(75px, 30px); }
+  100% { transform: translate(0, 0); }
+}
+.motion-odd-dot-b {
+  animation: motionOddSnapB 2.5s ease-in-out infinite;
+}
+@keyframes motionOddSnapB {
+  0%, 20% { transform: translate(0, 0); }
+  50%, 80% { transform: translate(-35px, 32px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* 21. 逻辑真值表排查盖戳 */
+.motion-cross-stamp {
+  animation: motionStampIn 2.4s ease-out infinite;
+  transform-origin: center;
+}
+@keyframes motionStampIn {
+  0%, 20% { opacity: 0; transform: scale(2.2); }
+  35%, 85% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; }
+}
+.motion-check-glow {
+  animation: motionCheckGlow 2.4s ease-out infinite;
+}
+@keyframes motionCheckGlow {
+  0%, 35% { opacity: 0; transform: scale(0.6); }
+  45%, 85% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 8px #10b981); }
+  100% { opacity: 0; }
+}
+
+/* ==========================================================================
+   22. 题目形象化图形与动图呈现系统 (Question Visualizer Design System)
+   ========================================================================== */
+
+.question-visual {
+  position: relative;
+  width: 100%;
+  margin: 12px 0 16px 0;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0.85) 0%, rgba(30, 41, 59, 0.75) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.question-visual:hover {
+  border-color: rgba(96, 165, 250, 0.4);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45), 0 0 16px rgba(59, 130, 246, 0.15);
+}
+
+/* 顶部色彩流光指示线 */
+.question-visual::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+  opacity: 0.85;
+}
+
+.question-visual--sequence::before {
+  background: linear-gradient(90deg, #10b981 0%, #3b82f6 50%, #06b6d4 100%);
+}
+.question-visual--cycle::before {
+  background: linear-gradient(90deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%);
+}
+.question-visual--chicken-rabbit::before {
+  background: linear-gradient(90deg, #3b82f6 0%, #10b981 50%, #f59e0b 100%);
+}
+.question-visual--surplus-deficit::before {
+  background: linear-gradient(90deg, #ec4899 0%, #f59e0b 50%, #10b981 100%);
+}
+.question-visual--quick-calc::before {
+  background: linear-gradient(90deg, #8b5cf6 0%, #3b82f6 50%, #06b6d4 100%);
+}
+.question-visual--venn::before {
+  background: linear-gradient(90deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%);
+}
+.question-visual--tree-planting::before {
+  background: linear-gradient(90deg, #10b981 0%, #84cc16 50%, #eab308 100%);
+}
+.question-visual--train-bridge::before {
+  background: linear-gradient(90deg, #f97316 0%, #eab308 50%, #3b82f6 100%);
+}
+.question-visual--average::before {
+  background: linear-gradient(90deg, #3b82f6 0%, #14b8a6 50%, #10b981 100%);
+}
+.question-visual--unit-rate::before {
+  background: linear-gradient(90deg, #a855f7 0%, #ec4899 50%, #f97316 100%);
+}
+.question-visual--pigeonhole::before {
+  background: linear-gradient(90deg, #ec4899 0%, #f59e0b 50%, #38bdf8 100%);
+}
+.question-visual--motion::before {
+  background: linear-gradient(90deg, #38bdf8 0%, #22c55e 50%, #a855f7 100%);
+}
+.question-visual--geometry-counting::before {
+  background: linear-gradient(90deg, #06b6d4 0%, #3b82f6 50%, #10b981 100%);
+}
+.question-visual--logic::before {
+  background: linear-gradient(90deg, #f59e0b 0%, #ec4899 50%, #22c55e 100%);
+}
+.question-visual--age::before {
+  background: linear-gradient(90deg, #f59e0b 0%, #38bdf8 50%, #22c55e 100%);
+}
+.question-visual--engineering::before {
+  background: linear-gradient(90deg, #3b82f6 0%, #10b981 50%, #f59e0b 100%);
+}
+.question-visual--parity::before {
+  background: linear-gradient(90deg, #38bdf8 0%, #ec4899 50%, #22c55e 100%);
+}
+.question-visual--angle::before {
+  background: linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+}
+.question-visual--polygon::before {
+  background: linear-gradient(90deg, #06b6d4 0%, #3b82f6 50%, #10b981 100%);
+}
+.question-visual--solid3d::before {
+  background: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+}
+.question-visual--barchart::before {
+  background: linear-gradient(90deg, #0284c7 0%, #0ea5e9 50%, #38bdf8 100%);
+}
+.question-visual--linechart::before {
+  background: linear-gradient(90deg, #10b981 0%, #06b6d4 50%, #3b82f6 100%);
+}
+.question-visual--spinner::before {
+  background: linear-gradient(90deg, #f59e0b 0%, #ec4899 50%, #8b5cf6 100%);
+}
+.question-visual--balance::before {
+  background: linear-gradient(90deg, #f59e0b 0%, #10b981 50%, #38bdf8 100%);
+}
+.question-visual--fraction::before {
+  background: linear-gradient(90deg, #8b5cf6 0%, #06b6d4 50%, #10b981 100%);
+}
+.question-visual--concentration::before {
+  background: linear-gradient(90deg, #0284c7 0%, #06b6d4 50%, #10b981 100%);
+}
+.question-visual--square-array::before {
+  background: linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #34d399 100%);
+}
+.question-visual--tiered-pricing::before {
+  background: linear-gradient(90deg, #f97316 0%, #f59e0b 50%, #10b981 100%);
+}
+.question-visual--factor-tree::before {
+  background: linear-gradient(90deg, #10b981 0%, #06b6d4 50%, #8b5cf6 100%);
+}
+.question-visual--reverse-flow::before {
+  background: linear-gradient(90deg, #ec4899 0%, #8b5cf6 50%, #38bdf8 100%);
+}
+.question-visual--gantt::before {
+  background: linear-gradient(90deg, #f59e0b 0%, #3b82f6 50%, #10b981 100%);
+}
+.question-visual--route-map::before {
+  background: linear-gradient(90deg, #0284c7 0%, #38bdf8 50%, #34d399 100%);
+}
+.question-visual--plan-design::before {
+  background: linear-gradient(90deg, #10b981 0%, #06b6d4 50%, #3b82f6 100%);
+}
+.question-visual--case-analysis::before {
+  background: linear-gradient(90deg, #8b5cf6 0%, #ec4899 50%, #f59e0b 100%);
+}
+
+.question-visual__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.question-visual__title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.question-visual__icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.question-visual__title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: 0.02em;
+}
+
+.question-visual__badge {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-weight: 600;
+  background: rgba(59, 130, 246, 0.16);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.32);
+}
+
+.question-visual__subbadge {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-weight: 500;
+  background: rgba(148, 163, 184, 0.12);
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.question-visual__logic-table {
+  width: 100%;
+  margin: 8px 0;
+  border-collapse: collapse;
+}
+
+.logic-cell--check {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #4ade80;
+  background: rgba(34, 197, 94, 0.18);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.logic-cell--cross {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.question-visual__stage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background: rgba(10, 15, 29, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 8px 4px;
+  box-sizing: border-box;
+}
+
+.question-visual__stage svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   题目示意图显隐与防泄题机制 (Question Visualizer Anti-Leak Rules)
+   核心契约：作答中(未提交)下方绝对不显示答案或推导解析；
+   只有在提交错误重试(is-retry)或结算复盘(is-resolved)后，才展示图解下方的答案与详细解析导引。
+   ========================================================================== */
+
+/* 作答状态下（未提交或作答中），示意图下方绝对不展示答案与解析导引 */
+.question-visual:not(.is-retry):not(.is-resolved) .question-visual__legend {
+  display: none !important;
+}
+
+/* 提交错误重试(is-retry)或复盘(is-resolved)时，展示示意图下方的答案与深度解析导引 */
+.question-visual.is-retry .question-visual__legend,
+.question-visual.is-resolved .question-visual__legend {
+  display: block !important;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  line-height: 1.5;
+  font-size: 0.84rem;
+  animation: fadeInVisualLegend 0.3s ease-out;
+}
+
+.question-visual.is-retry .question-visual__legend {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fde68a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.question-visual.is-resolved .question-visual__legend {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  color: #bbf7d0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeInVisualLegend {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 作答阶段隐藏一键直达/作弊配平按钮及内部直接透露答案的标记 */
+.question-visual:not(.is-retry):not(.is-resolved) [data-solve-btn],
+.question-visual:not(.is-retry):not(.is-resolved) [data-meet-btn],
+.question-visual:not(.is-retry):not(.is-resolved) [data-catch-btn],
+.question-visual:not(.is-retry):not(.is-resolved) .question-visual__answer-leak {
+  display: none !important;
+}
+
+.question-visual__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: rgba(30, 41, 59, 0.7);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  font-size: 0.76rem;
+}
+
+.question-visual__pill strong {
+  color: #f5d06f;
+  font-weight: 700;
+}
+
+/* 题目表格样式 */
+.question-visual__table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.question-visual__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  color: #e2e8f0;
+}
+
+.question-visual__table th,
+.question-visual__table td {
+  padding: 6px 10px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  text-align: center;
+}
+
+.question-visual__table th {
+  background: rgba(30, 41, 59, 0.85);
+  color: #93c5fd;
+  font-weight: 600;
+}
+
+.question-visual__table td {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+/* SVG 专用动效定义 */
+@keyframes pulseGlow {
+  0%, 100% { filter: drop-shadow(0 0 2px #f5d06f); opacity: 0.9; }
+  50% { filter: drop-shadow(0 0 10px #f5d06f); opacity: 1; }
+}
+
+@keyframes leapHop {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes beltSlide {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -40; }
+}
+
+@keyframes waveBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.05); }
+}
+
+@keyframes beamFlow {
+  0% { stroke-dashoffset: 60; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes carDrive {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(12px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes scaleTilt {
+  0%, 100% { transform: rotate(0deg); }
+  35% { transform: rotate(-3deg); }
+  70% { transform: rotate(3deg); }
+}
+
+@keyframes treeSway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(1.5deg); }
+}
+
+@keyframes trainMove {
+  0% { transform: translateX(-30px); }
+  60% { transform: translateX(180px); }
+  100% { transform: translateX(-30px); }
+}
+
+@keyframes barRise {
+  0% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0.4); }
+}
+
+/* ==========================================================================
+   可交互认知推演台 (Interactive Manipulative Controls)
+   ========================================================================== */
+.question-visual__controls {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.question-visual.is-balanced .question-visual__controls {
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.15), inset 0 1px 0 rgba(34, 197, 94, 0.2);
+}
+
+.question-visual__control-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.question-visual__btn {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 14px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.question-visual__btn:hover {
+  background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+  border-color: #38bdf8;
+  color: #ffffff;
+}
+
+.question-visual__btn:active {
+  transform: scale(0.97);
+}
+
+.question-visual__btn--play {
+  background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+  border-color: #38bdf8;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
+}
+
+.question-visual__btn--play:hover {
+  background: linear-gradient(180deg, #0369a1 0%, #075985 100%);
+}
+
+.question-visual__slider-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.question-visual__slider-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.question-visual__slider-label strong {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.question-visual__slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #334155;
+  outline: none;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.question-visual__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #38bdf8;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.question-visual__slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
+}
+
+.question-visual__slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #38bdf8;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+  cursor: pointer;
+}
+
+.question-visual__metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 8px 10px;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 8px;
+  font-size: 0.78rem;
+  color: #cbd5e1;
+}
+
+.question-visual__metric strong {
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+.question-visual__metric--highlight strong {
+  color: #f59e0b;
+}
+
+.question-visual__status {
+  padding: 8px 12px;
+  background: rgba(15, 23, 42, 0.5);
+  border-left: 3px solid #38bdf8;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #94a3b8;
+  line-height: 1.4;
+  min-height: 20px;
+}
+
+.question-visual__status.is-balanced {
+  border-left-color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+  color: #86efac;
+  font-weight: 600;
+  animation: balanceGlowPulse 2s ease-in-out infinite;
+}
+
+@keyframes balanceGlowPulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(34, 197, 94, 0); }
+  50% { box-shadow: inset 0 0 12px rgba(34, 197, 94, 0.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .question-visual__btn,
+  .question-visual__slider::-webkit-slider-thumb,
+  .question-visual__status.is-balanced {
+    transition-duration: 0.01s !important;
+    animation: none !important;
+  }
+}
+
+/* 响应式调整 */
+@media (max-width: 640px) {
+  .question-visual {
+    padding: 10px 12px;
+    margin: 10px 0 14px 0;
+  }
+  .question-visual__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .question-visual__title {
+    font-size: 0.82rem;
+  }
+  .question-visual__badge {
+    align-self: flex-start;
+  }
+  .question-visual__pill {
+    padding: 2px 6px;
+    font-size: 0.72rem;
+  }
+}
+
+/* ==========================================================================
+   终极组装大典动画 (Grand Assembly Sequence) 样式
+   ========================================================================== */
+
+.super-project__replay-btn {
+  margin: 8px 0 12px;
+  background: linear-gradient(135deg, #f5d06f, #ff9f43) !important;
+  color: #101827 !important;
+  font-weight: 900 !important;
+  box-shadow: 0 0 16px rgba(245, 208, 111, 0.45);
+  animation: pulse-glow-btn 2.2s infinite alternate;
+}
+
+@keyframes pulse-glow-btn {
+  0% { box-shadow: 0 0 8px rgba(245, 208, 111, 0.3); }
+  100% { box-shadow: 0 0 22px rgba(245, 208, 111, 0.7); }
+}
+
+.assembly-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #fff;
+  user-select: none;
+}
+
+.assembly-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(20, 35, 75, 0.88), #060913 90%),
+    linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 36px 36px, 36px 36px;
+  z-index: 0;
+}
+
+.assembly-modal__hud {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: rgba(10, 16, 32, 0.85);
+  border-bottom: 2px solid rgba(0, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+}
+
+.assembly-modal__title-badge {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: #8ce7ff;
+  font-family: Consolas, monospace;
+}
+
+.assembly-modal__hud-title {
+  margin: 2px 0 0;
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 12px rgba(245, 208, 111, 0.5);
+}
+
+.assembly-modal__steps {
+  display: flex;
+  gap: 8px;
+}
+
+.assembly-modal__step-pill {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.3s ease;
+}
+
+.assembly-modal__step-pill.is-active {
+  background: rgba(0, 255, 255, 0.18);
+  color: #00ffff;
+  border-color: #00ffff;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+}
+
+.assembly-modal__step-pill.is-completed {
+  background: rgba(245, 208, 111, 0.15);
+  color: #f5d06f;
+  border-color: #f5d06f;
+}
+
+.assembly-modal__back-btn,
+.assembly-modal__skip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.assembly-modal__back-btn:hover,
+.assembly-modal__skip-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #00ffff;
+  color: #00ffff;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+  transform: translateX(-2px);
+}
+
+/* 舞台工位 */
+.assembly-modal__stage {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+}
+
+.assembly-stage-scanner {
+  position: absolute;
+  width: min(80vw, 540px);
+  height: min(80vw, 540px);
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 255, 255, 0.2);
+  pointer-events: none;
+  animation: radar-spin 16s linear infinite;
+}
+
+.assembly-stage-scanner::after {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 208, 111, 0.18);
+}
+
+@keyframes radar-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.assembly-shockwave-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
+}
+
+/* 中央主装配体 */
+.assembly-core-target {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min(85vw, 560px);
+  max-height: 50vh;
+  z-index: 10;
+  transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.assembly-core-target .project-hero,
+.assembly-core-target .fighter-art {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  filter: drop-shadow(0 0 24px rgba(0, 220, 255, 0.4));
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* 阶段 1: 零件入场咬合动画 */
+.assembly-dock-part {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(15, 25, 55, 0.85);
+  border: 2px solid #00e1ff;
+  box-shadow: 0 0 16px rgba(0, 225, 255, 0.35);
+  border-radius: 6px;
+  z-index: 12;
+  transition: all 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.15);
+  pointer-events: none;
+}
+
+.assembly-dock-part__icon {
+  width: 42px;
+  height: 42px;
+}
+
+.assembly-dock-part__label {
+  font-size: 0.92rem;
+  font-weight: 900;
+  color: #e6ffff;
+  white-space: nowrap;
+}
+
+.assembly-dock-part__reticle {
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid #00e1ff;
+  border-bottom: 2px solid #00e1ff;
+}
+
+.assembly-dock-part.dock-tl { top: 14%; left: 8%; }
+.assembly-dock-part.dock-tr { top: 14%; right: 8%; }
+.assembly-dock-part.dock-bl { bottom: 14%; left: 8%; }
+.assembly-dock-part.dock-br { bottom: 14%; right: 8%; }
+
+.assembly-modal__stage[data-assembly-stage="1"] .assembly-dock-part {
+  animation: dock-snap-in 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dock-snap-in {
+  0% { transform: scale(1.15); opacity: 0.6; }
+  75% { transform: scale(0.98); opacity: 1; }
+  100% {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%) scale(0.25);
+    opacity: 0;
+  }
+}
+
+.assembly-modal__stage:not([data-assembly-stage="1"]) .assembly-dock-part {
+  display: none;
+}
+
+/* 阶段 2: 激光回路贯通 */
+.assembly-laser-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.laser-circuit-path {
+  fill: none;
+  stroke: url(#laser-glow-cyan);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+
+.assembly-modal__stage[data-assembly-stage="2"] .assembly-laser-overlay {
+  opacity: 1;
+}
+
+.assembly-modal__stage[data-assembly-stage="2"] .laser-circuit-path.path-1 {
+  animation: laser-dash 0.9s ease-out forwards;
+}
+
+.assembly-modal__stage[data-assembly-stage="2"] .laser-circuit-path.path-2 {
+  animation: laser-dash 0.9s 0.1s ease-out forwards;
+}
+
+.assembly-modal__stage[data-assembly-stage="2"] .laser-circuit-path.path-3 {
+  animation: laser-dash 0.9s 0.2s ease-out forwards;
+}
+
+@keyframes laser-dash {
+  to { stroke-dashoffset: 0; }
+}
+
+/* 阶段 3: 动力觉醒 */
+.assembly-modal__stage[data-assembly-stage="3"] .assembly-core-target {
+  animation: stage-rumble 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes stage-rumble {
+  0% { transform: translate(0, 0) scale(1.02); filter: drop-shadow(0 0 32px #ff8800); }
+  50% { transform: translate(-2px, 1px) scale(1.03); filter: drop-shadow(0 0 45px #00ffff); }
+  100% { transform: translate(2px, -1px) scale(1.04); filter: drop-shadow(0 0 55px #ffd000); }
+}
+
+/* 阶段 4: 典藏卡片容器 */
+.assembly-dossier-wrapper {
+  display: none;
+  position: relative;
+  z-index: 25;
+  width: min(92vw, 440px);
+}
+
+.assembly-modal__stage[data-assembly-stage="4"] .assembly-core-target,
+.assembly-modal__stage[data-assembly-stage="4"] .assembly-stage-scanner {
+  display: none;
+}
+
+.assembly-modal__stage[data-assembly-stage="4"] .assembly-dossier-wrapper {
+  display: block;
+  animation: dossier-card-pop 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.25) forwards;
+}
+
+@keyframes dossier-card-pop {
+  from { opacity: 0; transform: scale(0.85) translateY(30px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* 典藏档案卡 */
+.assembly-dossier-card {
+  --sheen-x: 50%;
+  --sheen-y: 50%;
+  position: relative;
+  padding: 22px;
+  background:
+    radial-gradient(circle at var(--sheen-x) var(--sheen-y), rgba(255, 255, 255, 0.18), transparent 55%),
+    linear-gradient(145deg, #0e1529 0%, #162447 50%, #0d1322 100%);
+  border: 2px solid #f5d06f;
+  border-radius: 12px;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.65),
+    0 0 24px rgba(245, 208, 111, 0.35);
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.assembly-dossier-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(135deg, #f5d06f, rgba(255, 255, 255, 0.2), #00e1ff, #f5d06f);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.assembly-dossier-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 0.8rem;
+  font-family: Consolas, monospace;
+}
+
+.assembly-dossier-card__tag {
+  color: #f5d06f;
+  font-weight: 800;
+}
+
+.assembly-dossier-card__serial {
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.05em;
+}
+
+.assembly-dossier-card__hero-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.assembly-dossier-card__hero-wrap .project-hero,
+.assembly-dossier-card__hero-wrap .fighter-art {
+  max-width: 280px;
+  height: auto;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.5));
+}
+
+.assembly-dossier-card__title {
+  margin: 14px 0 6px;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(245, 208, 111, 0.5);
+}
+
+.assembly-dossier-card__desc {
+  margin: 0 0 14px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+  text-align: center;
+}
+
+.assembly-dossier-card__specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.assembly-dossier-spec {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+
+.assembly-dossier-spec__label {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.assembly-dossier-spec__val {
+  font-size: 0.9rem;
+  color: #8ce7ff;
+}
+
+.assembly-dossier-card__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.assembly-dossier-card__actions button {
+  flex: 1;
+  padding: 10px 8px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   最后组装成品极致炫酷视觉系统 (Ultra-Cool Assembled Product FX)
+   ========================================================================== */
+
+/* 1. 战机巡航微悬浮动力浮沉 */
+[data-fighter-art][data-fighter-state="completed"] {
+  display: block;
+  margin: 12px auto;
+  max-width: 480px;
+  filter: drop-shadow(0 0 20px rgba(0, 220, 255, 0.45)) drop-shadow(0 0 40px rgba(245, 208, 111, 0.25));
+  animation: fighter-cruising-levitation 4s ease-in-out infinite alternate;
+  transform-origin: center center;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  user-select: none;
+}
+
+@keyframes fighter-cruising-levitation {
+  0% {
+    filter: drop-shadow(0 4px 18px rgba(0, 220, 255, 0.4)) drop-shadow(0 0 30px rgba(245, 208, 111, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 10px 32px rgba(0, 220, 255, 0.68)) drop-shadow(0 0 52px rgba(245, 208, 111, 0.42));
+  }
+  100% {
+    filter: drop-shadow(0 5px 22px rgba(0, 220, 255, 0.45)) drop-shadow(0 0 36px rgba(245, 208, 111, 0.25));
+  }
+}
+
+/* 2. 双发等离子矢量加力与马赫环 */
+.fighter-afterburner-group {
+  transform-origin: 21px 70px;
+  animation: afterburner-plasma-pulse 0.18s ease-in-out infinite alternate;
+}
+
+@keyframes afterburner-plasma-pulse {
+  0% { transform: scaleX(0.96) scaleY(0.97); opacity: 0.92; }
+  100% { transform: scaleX(1.06) scaleY(1.03); opacity: 1; filter: drop-shadow(0 0 8px #ff7700); }
+}
+
+.mach-diamond {
+  transform-origin: center;
+  animation: mach-diamond-flicker 0.12s linear infinite alternate;
+}
+
+@keyframes mach-diamond-flicker {
+  0% { opacity: 0.75; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1.08); filter: drop-shadow(0 0 5px #00ffff); }
+}
+
+.mach-shock-ring {
+  animation: shock-ring-flow 1.2s ease-out infinite;
+}
+
+@keyframes shock-ring-flow {
+  0% { opacity: 0.9; transform: translateX(0) scale(1); }
+  100% { opacity: 0; transform: translateX(-16px) scale(1.4); }
+}
+
+/* 3. 超音速加力音爆突破 (is-supersonic-overdrive) */
+[data-fighter-art].is-supersonic-overdrive {
+  animation: supersonic-burst-anim 0.85s cubic-bezier(0.18, 0.89, 0.32, 1.28) !important;
+}
+
+@keyframes supersonic-burst-anim {
+  0% { transform: scale(1) translateX(0); }
+  25% { transform: scale(1.08) translateX(12px); filter: drop-shadow(0 0 50px #ffe600) drop-shadow(0 0 80px #00ffff); }
+  50% { transform: scale(1.05) translateX(6px); }
+  100% { transform: scale(1) translateX(0); }
+}
+
+[data-fighter-art].is-supersonic-overdrive .plasma-plume-outer {
+  transform: scaleX(1.8) scaleY(1.3);
+  filter: drop-shadow(0 0 20px #ff6600);
+  transition: transform 0.15s ease;
+}
+
+/* 4. 全息战术 HUD 瞄准准星 */
+.fighter-tactical-hud {
+  pointer-events: none;
+}
+
+.hud-ring-outer {
+  transform-origin: 220px 70px;
+  animation: hud-reticle-spin 12s linear infinite;
+}
+
+.hud-ring-inner {
+  transform-origin: 220px 70px;
+  animation: hud-reticle-spin 8s linear infinite reverse;
+}
+
+@keyframes hud-reticle-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.hud-text {
+  font-family: Consolas, monospace;
+  letter-spacing: 0.08em;
+  animation: hud-text-blink 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes hud-text-blink {
+  0% { opacity: 0.65; }
+  100% { opacity: 1; fill: #ffffff; text-shadow: 0 0 8px #00ffff; }
+}
+
+/* 5. 蜂窝能量护盾与航标灯 */
+.fighter-energy-shield {
+  transition: opacity 0.4s ease;
+}
+
+.shield-hex {
+  animation: shield-hex-breathe 3s ease-in-out infinite alternate;
+}
+
+@keyframes shield-hex-breathe {
+  0% { opacity: 0.25; stroke-width: 0.7; }
+  100% { opacity: 0.75; stroke-width: 1.4; fill: rgba(0, 255, 255, 0.08); }
+}
+
+.nav-beacon--strobe {
+  animation: strobe-flash 1.2s steps(2, start) infinite;
+}
+
+@keyframes strobe-flash {
+  0%, 82% { opacity: 0.15; }
+  85%, 90% { opacity: 1; filter: drop-shadow(0 0 6px #fff); }
+  94%, 100% { opacity: 0.15; }
+}
+
+.nav-beacon--red {
+  filter: drop-shadow(0 0 6px #ff2244);
+}
+
+.nav-beacon--green {
+  filter: drop-shadow(0 0 6px #00ff88);
+}
+
+/* 6. 算法回路走线流水 */
+.circuit-path {
+  stroke-dasharray: 8 6;
+  animation: circuit-flow 1.5s linear infinite;
+}
+
+@keyframes circuit-flow {
+  to { stroke-dashoffset: -28; }
+}
+
+/* 7. 战术模式切换 (X-Ray & Shield) */
+[data-fighter-art][data-tactical-mode="xray"] .fighter-xray-skeleton {
+  opacity: 1 !important;
+  display: block;
+}
+
+[data-fighter-art]:not([data-tactical-mode="xray"]) .fighter-xray-skeleton {
+  opacity: 0;
+  display: none;
+}
+
+[data-fighter-art][data-tactical-mode="xray"] [data-fighter-detail="stealth-airframe"] path {
+  fill: rgba(10, 25, 60, 0.25) !important;
+  stroke: #00e1ff !important;
+  stroke-dasharray: 4 3;
+}
+
+[data-fighter-art][data-tactical-mode="shield"] .fighter-energy-shield .shield-hex {
+  opacity: 1 !important;
+  fill: rgba(0, 255, 255, 0.18) !important;
+  stroke: #00ffff !important;
+  stroke-width: 1.8 !important;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.75));
+}
+
+/* 8. 战术控制台按钮 */
+.super-project__tactical-console {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 14px;
+}
+
+.tactical-mode-btn {
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: rgba(15, 25, 55, 0.85);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: #7cf6ff;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tactical-mode-btn:hover {
+  background: rgba(0, 255, 255, 0.2);
+  border-color: #00ffff;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+  color: #fff;
+}
+
+/* 9. 总师档案卡全息彩虹流光层与烫金印章 */
+.assembly-dossier-holo-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 0, 128, 0.08) 25%,
+    rgba(0, 255, 255, 0.12) 50%,
+    rgba(255, 215, 0, 0.1) 75%,
+    rgba(255, 255, 255, 0.12) 100%
+  );
+  background-size: 200% 200%;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.65;
+  transition: opacity 0.3s;
+}
+
+.assembly-dossier-card:hover .assembly-dossier-holo-layer {
+  opacity: 0.95;
+}
+
+.assembly-dossier-card__seal {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 2px dashed rgba(245, 208, 111, 0.7);
+  box-shadow: 0 0 14px rgba(245, 208, 111, 0.45);
+  background: radial-gradient(circle, rgba(245, 208, 111, 0.25), rgba(20, 15, 5, 0.9));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 0.52rem;
+  font-weight: 900;
+  color: #f5d06f;
+  line-height: 1.15;
+  transform: rotate(-8deg);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.assembly-dossier-card__seal .seal-star {
+  font-size: 0.75rem;
+  color: #ffe600;
+  text-shadow: 0 0 6px #ffe600;
+}
+
+.assembly-dossier-card__seal .seal-title {
+  font-size: 0.7rem;
+  color: #fff;
+  font-weight: 900;
+}
+
+.assembly-dossier-card__seal .seal-grade {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: #8ce7ff;
+  font-family: Consolas, monospace;
+}
+
+/* 10. 五维战力算法全息评估面板 */
+.assembly-dossier-card__radar-section {
+  margin: 10px 0;
+  padding: 8px 12px;
+  background: rgba(10, 16, 32, 0.75);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 6px;
+}
+
+.radar-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #8ce7ff;
+  margin-bottom: 6px;
+}
+
+.radar-score {
+  color: #f5d06f;
+}
+
+.radar-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(68px, 1fr));
+  gap: 6px;
+}
+
+.radar-metric {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.radar-metric strong {
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.metric-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.metric-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffff, #f5d06f);
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   地图页大国重器工程简报卡与军备总装导航样式
+   ========================================================================== */
+
+.pixel-button--inventory {
+  background: linear-gradient(135deg, #1e293b, #0f172a) !important;
+  color: #f7d774 !important;
+  border: 2px solid #f5d06f !important;
+  font-weight: 900 !important;
+  box-shadow: 0 0 10px rgba(245, 208, 111, 0.35);
+  transition: all 0.2s ease;
+}
+
+.pixel-button--inventory:hover {
+  background: linear-gradient(135deg, #334155, #1e293b) !important;
+  box-shadow: 0 0 18px rgba(245, 208, 111, 0.6);
+  transform: translateY(-1px);
+}
+
+.super-project-hub {
+  margin: 12px 0 16px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(12, 24, 48, 0.95), rgba(18, 38, 76, 0.92));
+  border: 2px solid rgba(0, 220, 255, 0.4);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 220, 255, 0.18), inset 0 0 18px rgba(0, 220, 255, 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.super-project-hub__left {
+  flex: 1 1 280px;
+}
+
+.super-project-hub__tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #7cf6ff;
+  letter-spacing: 0.8px;
+  margin-bottom: 4px;
+}
+
+.super-project-hub__title {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #f7d774;
+  letter-spacing: 0.5px;
+}
+
+.super-project-hub__desc {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.super-project-hub__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.super-project-hub__btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 16px;
+  font-size: 0.92rem;
+  font-weight: bold;
+}
+
+.super-project__preview-btn {
+  margin: 8px 0 12px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 16px;
+  background: rgba(14, 165, 233, 0.15) !important;
+  border: 2px solid rgba(56, 189, 248, 0.6) !important;
+  color: #7cf6ff !important;
+  font-size: 0.88rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.super-project__preview-btn:hover {
+  background: rgba(14, 165, 233, 0.35) !important;
+  border-color: #38bdf8 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.5);
+}
+
+.super-project__preview-btn.is-active-preview {
+  background: #0284c7 !important;
+  border-color: #7dd3fc !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.7);
+}
+
+.super-project__preview-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0 12px;
+  padding: 10px 14px;
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  border-radius: 8px;
+  color: #0369a1;
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.preview-status-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  flex-shrink: 0;
+  animation: pulse-dot 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(0.9); opacity: 0.75; }
+  50% { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.75; }
+}
+
+.inventory-chapter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  background: rgba(14, 165, 233, 0.08);
+  border: 2px solid rgba(56, 189, 248, 0.35);
+  border-radius: 8px;
+}
+
+.inventory-chapter-tabs__label {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--ink);
+  margin-right: 4px;
+}
+
+.inventory-chapter-tab {
+  min-height: 38px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.inventory-chapter-tab.is-active-chapter {
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+  border-color: #38bdf8;
+}
+
+/* ==========================================================================
+   Deep Sea Submersible (深海探测艇) Tactical Art & Animations
+   ========================================================================== */
+.submersible-art {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin: 0 auto 12px;
+  border-radius: 8px;
+  background: radial-gradient(circle at 65% 50%, #08213b 0%, #030f1c 100%);
+  border: 2px solid #0284c7;
+  box-shadow: 0 0 25px rgba(2, 132, 199, 0.3), inset 0 0 15px rgba(2, 132, 199, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.submersible-art.is-completed {
+  background: radial-gradient(circle at 65% 50%, #0c2b4d 0%, #041426 100%);
+  border-color: #38bdf8;
+  box-shadow: 0 0 35px rgba(56, 189, 248, 0.45), inset 0 0 20px rgba(34, 211, 238, 0.2);
+}
+
+.submersible-art:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(56, 189, 248, 0.5), inset 0 0 25px rgba(34, 211, 238, 0.25);
+}
+
+/* Searchlight Pulsing */
+.submersible-art .searchlight-beam {
+  animation: searchlight-pulse 3s ease-in-out infinite;
+  transform-origin: 216px 70px;
+}
+
+@keyframes searchlight-pulse {
+  0%, 100% { opacity: 0.8; transform: scaleY(0.98); }
+  50% { opacity: 1; transform: scaleY(1.04); }
+}
+
+/* Sonar Wave Expansion */
+.submersible-art .sonar-ring.ring-1 {
+  animation: sonar-pulse 3s linear infinite;
+  transform-origin: 220px 70px;
+}
+
+.submersible-art .sonar-ring.ring-2 {
+  animation: sonar-pulse 3s linear infinite 1s;
+  transform-origin: 220px 70px;
+}
+
+.submersible-art .sonar-ring.ring-3 {
+  animation: sonar-pulse 3s linear infinite 2s;
+  transform-origin: 220px 70px;
+}
+
+@keyframes sonar-pulse {
+  0% { r: 20px; opacity: 0.8; }
+  100% { r: 110px; opacity: 0; }
+}
+
+/* Cavitation Micro-bubbles */
+.submersible-art .cavitation-bubble {
+  animation: bubble-drift 1.6s ease-out infinite;
+}
+
+@keyframes bubble-drift {
+  0% { transform: translate(0, 0); opacity: 0.85; }
+  50% { opacity: 0.6; }
+  100% { transform: translate(-28px, -3px); opacity: 0; }
+}
+
+/* Strobe light on sail */
+.submersible-art .sub-beacon-light {
+  animation: beacon-strobe 1s steps(2, start) infinite;
+}
+
+@keyframes beacon-strobe {
+  0%, 100% { opacity: 1; fill: #ef4444; }
+  50% { opacity: 0.2; fill: #7f1d1d; }
+}
+
+/* Deep Sea Dive Impulse Overdrive */
+.submersible-art.is-deepsea-dive {
+  animation: deepsea-dive-burst 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes deepsea-dive-burst {
+  0% {
+    filter: drop-shadow(0 0 0px #00ffff);
+    transform: scale(1);
+  }
+  30% {
+    filter: drop-shadow(0 0 40px #00ffff) drop-shadow(0 0 15px #38bdf8) brightness(1.35);
+    transform: scale(1.035) translateY(-2px);
+  }
+  100% {
+    filter: drop-shadow(0 0 10px #0284c7);
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   Cybernetic Synthesis Toast & Energy Burst
+   ========================================================================== */
+.cyber-synthesis-toast {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, rgba(7, 24, 46, 0.96) 0%, rgba(14, 44, 77, 0.96) 100%);
+  border: 2px solid #38bdf8;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.35), inset 0 0 18px rgba(56, 189, 248, 0.2);
+  animation: cyber-toast-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-synthesis-toast::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+  animation: toast-glow-rotate 6s linear infinite;
+}
+
+@keyframes toast-glow-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes cyber-toast-in {
+  0% { transform: translateY(-18px) scale(0.92); opacity: 0; }
+  60% { transform: translateY(2px) scale(1.02); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.cyber-synthesis-toast__icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  background: rgba(14, 165, 233, 0.2);
+  border: 1.5px solid #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+  flex-shrink: 0;
+  animation: icon-float 2.5s ease-in-out infinite;
+}
+
+@keyframes icon-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.cyber-synthesis-toast__icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.cyber-synthesis-toast__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.cyber-synthesis-toast__eyebrow {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #facc15;
+  text-transform: uppercase;
+}
+
+.cyber-synthesis-toast__title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.cyber-synthesis-toast__desc {
+  font-size: 0.78rem;
+  color: #93c5fd;
+  line-height: 1.3;
+}
+
+.cyber-synthesis-toast__close {
+  background: transparent;
+  border: 1px solid rgba(147, 197, 253, 0.4);
+  color: #93c5fd;
+  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.cyber-synthesis-toast__close:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+/* ==========================================================================
+   Restructured Inventory Section & Grand Super Project Card
+   ========================================================================== */
+.inventory-arsenal-section {
+  margin: 18px 0 24px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 2px solid var(--line, #28354d);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 rgba(40, 53, 77, 0.2);
+}
+
+.inventory-arsenal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid rgba(40, 53, 77, 0.15);
+}
+
+.inventory-arsenal-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ink, #18243a);
+  margin: 0;
+}
+
+.inventory-arsenal-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #0284c7;
+  background: #e0f2fe;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+}
+
+.inventory-item--grand-project {
+  grid-column: 1 / -1;
+  display: flex !important;
+  align-items: center;
+  gap: 18px;
+  background: linear-gradient(135deg, #07172c 0%, #0d284a 100%) !important;
+  border: 2px solid #facc15 !important;
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.4), 3px 3px 0 rgba(0, 0, 0, 0.4) !important;
+  border-radius: 12px;
+  color: #f8fafc !important;
+  padding: 16px 20px !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inventory-item--grand-project:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(250, 204, 21, 0.6), 4px 6px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+.inventory-item--grand-project img.item-visual,
+.inventory-item--grand-project .pixel-icon {
+  width: 88px !important;
+  height: 88px !important;
+  min-width: 88px !important;
+  border-radius: 10px !important;
+  border: 2px solid #facc15 !important;
+  box-shadow: 0 0 16px rgba(250, 204, 21, 0.35) !important;
+  object-fit: cover !important;
+  background: #000 !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.inventory-item--grand-project:hover img.item-visual {
+  transform: scale(1.05);
+  box-shadow: 0 0 24px rgba(250, 204, 21, 0.6) !important;
+}
+
+.inventory-item--grand-project strong {
+  color: #facc15 !important;
+  font-size: 1.15rem !important;
+}
+
+.inventory-item--grand-project .inventory-item__detail {
+  color: #93c5fd !important;
+}
+
+.inventory-arsenal-section .inventory-item:not(.inventory-item--grand-project) {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #0a1628;
+  border: 1.5px solid #1e3a5f;
+  color: #f1f5f9;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inventory-arsenal-section .inventory-item:not(.inventory-item--grand-project):hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+}
+
+.inventory-arsenal-section .inventory-item:not(.inventory-item--grand-project) img.item-visual {
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 58px !important;
+  border-radius: 6px !important;
+  border: 1.5px solid rgba(56, 189, 248, 0.4) !important;
+  object-fit: cover !important;
+  background: #020817 !important;
+}
+
+.inventory-arsenal-section .inventory-item:not(.inventory-item--grand-project) strong {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   大国重器实景写真图层 (Photorealistic Realistic Mode Layers)
+   ========================================================================== */
+
+.fighter-photo-layer,
+.submersible-photo-layer {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-fighter-art][data-tactical-mode="photo"] .fighter-photo-layer,
+[data-submersible-art][data-tactical-mode="photo"] .submersible-photo-layer {
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+
+[data-fighter-art][data-tactical-mode="photo"] > g:not(.fighter-photo-layer):not(.fighter-hud-group),
+[data-fighter-art][data-tactical-mode="photo"] > path,
+[data-fighter-art][data-tactical-mode="photo"] > ellipse,
+[data-fighter-art][data-tactical-mode="photo"] > line,
+[data-fighter-art][data-tactical-mode="photo"] [data-fighter-detail]:not([data-fighter-detail="photo-layer"]):not([data-fighter-detail="hud-avionics"]),
+[data-submersible-art][data-tactical-mode="photo"] > g:not(.submersible-photo-layer):not(.sub-tactical-hud):not(.sub-sonar-waves),
+[data-submersible-art][data-tactical-mode="photo"] [data-sub-detail]:not([data-sub-detail="photo-layer"]) {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+[data-fighter-art][data-tactical-mode="photo"] [data-fighter-detail="hud-avionics"],
+[data-submersible-art][data-tactical-mode="photo"] .sub-tactical-hud,
+[data-submersible-art][data-tactical-mode="photo"] .sub-sonar-waves {
+  opacity: 0.85 !important;
+  filter: drop-shadow(0 0 6px #38bdf8) !important;
+}
+
+.is-photo-pulse {
+  animation: photo-pulse-burst 0.85s cubic-bezier(0.2, 0.9, 0.3, 1) !important;
+}
+
+@keyframes photo-pulse-burst {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 0 rgba(56, 189, 248, 0));
+    transform: scale(1);
+  }
+  40% {
+    filter: brightness(1.35) drop-shadow(0 0 32px rgba(56, 189, 248, 0.85));
+    transform: scale(1.04);
+  }
+  100% {
+    filter: brightness(1) drop-shadow(0 0 10px rgba(56, 189, 248, 0.25));
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   INVENTORY STRATEGIC ZONES ARCHITECTURE
+   (Assembly Deck / Completed Vault / Raw Materials Workshop)
+   ========================================================================== */
+
+.inventory-zone-nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+  background: rgba(13, 22, 38, 0.88);
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.inventory-zone-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.inventory-zone-btn:hover {
+  background: rgba(56, 189, 248, 0.12);
+  color: #f8fafc;
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.inventory-zone-btn.is-active {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border-color: #38bdf8;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+}
+
+.inventory-zone-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.inventory-zone-label {
+  letter-spacing: 0.03em;
+}
+
+.inventory-zone-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.4);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  font-family: ui-monospace, SFMono-Regular, monospace;
+}
+
+.inventory-zone-btn.is-active .inventory-zone-badge {
+  background: #ffffff;
+  color: #0369a1;
+  border-color: #ffffff;
+}
+
+.inventory-zone-content {
+  display: none;
+}
+
+.inventory-zone-content.is-active,
+.inventory-zone-content.is-active-zone {
+  display: block;
+  animation: inventoryZoneFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes inventoryZoneFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Zone Portal Cards (In Assembly Zone) */
+.zone-portals-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 24px 0 16px;
+}
+
+.zone-portal-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 41, 59, 0.82) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.zone-portal-card:hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
+}
+
+.zone-portal-card.zone-portal-vault {
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.zone-portal-card.zone-portal-vault:hover {
+  border-color: #f59e0b;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.25);
+}
+
+.zone-portal-icon {
+  font-size: 28px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  flex-shrink: 0;
+}
+
+.zone-portal-vault .zone-portal-icon {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.zone-portal-info {
+  flex: 1;
+}
+
+.zone-portal-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 4px;
+}
+
+.zone-portal-desc {
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+.zone-portal-btn {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.zone-portal-btn:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+}
+
+.zone-portal-vault .zone-portal-btn {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.zone-portal-vault .zone-portal-btn:hover {
+  background: #d97706;
+  color: #ffffff;
+  border-color: #f59e0b;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+}
+
+/* Completed Components Vault Zone */
+.vault-zone-container {
+  padding: 8px 0 24px;
+}
+
+.vault-header {
+  margin-bottom: 16px;
+  padding: 18px 24px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(30, 41, 59, 0.86) 100%);
+  border-left: 4px solid #f59e0b;
+  border-top: 1px solid rgba(245, 158, 11, 0.25);
+  border-right: 1px solid rgba(245, 158, 11, 0.15);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.vault-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.vault-header-title h3 {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: 0.05em;
+}
+
+.vault-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.vault-stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+}
+
+.vault-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vault-stat-val {
+  font-size: 18px;
+  font-weight: 800;
+  color: #f59e0b;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+}
+
+.vault-stat-lbl {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.vault-switch-assembly-btn {
+  margin-left: auto;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vault-switch-assembly-btn:hover {
+  background: #d97706;
+  color: #ffffff;
+  border-color: #f59e0b;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.45);
+}
+
+.vault-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.vault-seal-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.18);
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  width: fit-content;
+}
+
+.is-vault-card {
+  border-color: rgba(245, 158, 11, 0.35) !important;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.88) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+}
+
+.is-vault-card:hover {
+  border-color: #f59e0b !important;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.25) !important;
+}
+
+.vault-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 2px dashed rgba(255, 255, 255, 0.12);
+  margin: 20px 0;
+}
+
+.vault-empty-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+.vault-empty-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 8px;
+}
+
+.vault-empty-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  max-width: 440px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.vault-goto-assembly-btn {
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border: 1px solid #38bdf8;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+  transition: all 0.2s ease;
+}
+
+.vault-goto-assembly-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.5);
+}
+
+/* Raw Materials Zone */
+.raw-materials-zone-container {
+  padding: 8px 0 24px;
+}
+
+.raw-zone-nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+}
+
+.raw-back-assembly-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.raw-back-assembly-btn:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+.raw-zone-hint {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* =========================================================
+   Commercial Elevation: Sound Toggle & Header Buttons
+   ========================================================= */
+.pixel-button--sound {
+  font-size: 16px;
+  padding: 6px 12px;
+  min-width: 44px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pixel-button--sound:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+.pixel-button--achievements {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+  border: 1px solid rgba(234, 179, 8, 0.5);
+  color: #fef08a;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(254, 240, 138, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pixel-button--achievements:hover {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.25), rgba(30, 41, 59, 0.95));
+  border-color: #facc15;
+  box-shadow: 0 0 14px rgba(234, 179, 8, 0.45);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   Commercial Elevation: Real-Time Tactical HUD (Streak & Pity)
+   ========================================================= */
+.challenge-tactical-hud {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 6px 0 14px;
+  flex-wrap: wrap;
+}
+
+.streak-hud {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 9999px;
+  font-size: 12px;
+  color: #cbd5e1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.streak-hud__icon {
+  font-size: 14px;
+}
+
+.streak-hud__label {
+  font-size: 11px;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}
+
+.streak-hud__count {
+  color: #fbbf24;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+@keyframes streak-hot-pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.4), inset 0 0 6px rgba(245, 158, 11, 0.2);
+    border-color: #f59e0b;
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.7), inset 0 0 10px rgba(245, 158, 11, 0.35);
+    border-color: #fbbf24;
+  }
+}
+
+.streak-hud--hot {
+  background: linear-gradient(135deg, rgba(120, 53, 15, 0.35), rgba(15, 23, 42, 0.85));
+  border-color: #f59e0b;
+  color: #fef08a;
+  animation: streak-hot-pulse 1.6s infinite ease-in-out;
+}
+
+.streak-hud--hot .streak-hud__count {
+  color: #fffbeb;
+  text-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
+}
+
+.pity-hud {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  border-radius: 9999px;
+  font-size: 12px;
+  color: #cbd5e1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.pity-hud__icon {
+  font-size: 13px;
+}
+
+.pity-hud__label {
+  font-size: 11px;
+  color: #7dd3fc;
+  letter-spacing: 0.5px;
+}
+
+.pity-hud__meter {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.pity-hud__cell {
+  display: inline-block;
+  width: 7px;
+  height: 11px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.pity-hud__cell.is-filled {
+  background: #38bdf8;
+  box-shadow: 0 0 6px #38bdf8;
+}
+
+.pity-hud__val {
+  font-size: 11px;
+  font-weight: 700;
+  color: #93c5fd;
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   Commercial Elevation: Quantum Loot Crate Reveal Visuals
+   ========================================================= */
+.quantum-crate-reveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.quantum-crate-aura {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.3) 0%, rgba(15, 23, 42, 0) 70%);
+  position: relative;
+  animation: crate-float 2.5s infinite ease-in-out;
+}
+
+@keyframes crate-float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-4px) scale(1.04); }
+}
+
+.quantum-crate-core {
+  font-size: 32px;
+  color: #38bdf8;
+  text-shadow: 0 0 12px #38bdf8, 0 0 24px rgba(56, 189, 248, 0.6);
+  animation: core-rotate 12s infinite linear;
+}
+
+@keyframes core-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.quantum-crate-aura.is-rare-glow {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, rgba(15, 23, 42, 0) 70%);
+}
+
+.quantum-crate-aura.is-rare-glow .quantum-crate-core {
+  color: #c084fc;
+  text-shadow: 0 0 14px #a855f7, 0 0 28px rgba(168, 85, 247, 0.8);
+}
+
+.quantum-crate-aura.is-streak-wings {
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.45) 0%, rgba(15, 23, 42, 0) 70%);
+}
+
+.quantum-crate-aura.is-streak-wings .quantum-crate-core {
+  color: #fde047;
+  text-shadow: 0 0 16px #eab308, 0 0 32px rgba(234, 179, 8, 0.8);
+}
+
+.quantum-crate-banner {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fde047;
+  background: rgba(120, 53, 15, 0.6);
+  border: 1px solid rgba(234, 179, 8, 0.6);
+  border-radius: 9999px;
+  padding: 3px 14px;
+  margin-top: 6px;
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.3);
+}
+
+/* =========================================================
+   Commercial Elevation: Military Medals Museum Modal
+   ========================================================= */
+.achievements-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.88);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  animation: modal-fade-in 0.25s ease-out;
+}
+
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.achievements-modal {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 15, 26, 0.99));
+  border: 1px solid rgba(234, 179, 8, 0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(234, 179, 8, 0.15);
+  border-radius: 20px;
+  max-width: 860px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modal-slide-up 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modal-slide-up {
+  from { transform: translateY(20px) scale(0.97); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.achievements-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: rgba(30, 41, 59, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.achievements-modal__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.achievements-modal__eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #f59e0b;
+  letter-spacing: 1px;
+}
+
+.achievements-modal__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.achievements-modal__stats {
+  display: flex;
+  gap: 8px;
+}
+
+.achievements-stat-pill {
+  font-size: 12px;
+  padding: 4px 10px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  border-radius: 9999px;
+  color: #cbd5e1;
+}
+
+.achievements-stat-pill strong {
+  color: #fde047;
+}
+
+.achievements-modal__close-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  font-size: 16px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.achievements-modal__close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+.achievements-modal__grid {
+  padding: 24px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 16px;
+}
+
+.achievement-card {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(30, 41, 59, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+
+.achievement-card.is-unlocked {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.65), rgba(15, 23, 42, 0.85));
+  border-color: rgba(234, 179, 8, 0.45);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.achievement-card.is-locked {
+  opacity: 0.65;
+  filter: grayscale(40%);
+}
+
+.achievement-card.badge-bronze.is-unlocked {
+  border-color: rgba(217, 119, 6, 0.6);
+}
+
+.achievement-card.badge-silver.is-unlocked {
+  border-color: rgba(148, 163, 184, 0.6);
+}
+
+.achievement-card.badge-gold.is-unlocked {
+  border-color: rgba(234, 179, 8, 0.7);
+  box-shadow: 0 0 14px rgba(234, 179, 8, 0.18);
+}
+
+.achievement-card.badge-platinum.is-unlocked {
+  border-color: rgba(56, 189, 248, 0.7);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.22);
+}
+
+.achievement-card__icon-wrap {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 24px;
+}
+
+.achievement-card.is-unlocked .achievement-card__icon-wrap {
+  border-color: rgba(234, 179, 8, 0.5);
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.2) 0%, rgba(15, 23, 42, 0.9) 80%);
+}
+
+.achievement-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.achievement-card__top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.achievement-card__name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.achievement-card__points {
+  font-size: 11px;
+  font-weight: 800;
+  color: #facc15;
+  background: rgba(234, 179, 8, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.achievement-card__desc {
+  margin: 0;
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+.achievement-card__progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.achievement-card__bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.achievement-card__fill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #facc15);
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.achievement-card__status {
+  font-size: 11px;
+  font-weight: 600;
+  color: #cbd5e1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.achievement-card.is-unlocked .achievement-card__status {
+  color: #4ade80;
+}
+
+/* =========================================================
+   System Upgrade: Question Presentation & Visualizer Polish
+   ========================================================= */
+.question-visual {
+  width: 100%;
+  max-width: 780px;
+  margin: 14px auto 18px;
+  padding: 16px 20px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.75), rgba(30, 41, 59, 0.9));
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 24px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.question-visual.is-resolved {
+  border-color: rgba(74, 222, 128, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 20px rgba(74, 222, 128, 0.15);
+}
+
+.question-prompt {
+  font-size: 1.12rem;
+  line-height: 1.75;
+  color: #0f172a;
+  letter-spacing: 0.2px;
+  margin: 12px 0 16px;
+  font-weight: 500;
+}
+
+.thinking-method-hint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  margin: 8px 0 14px;
+  background: linear-gradient(135deg, rgba(240, 249, 255, 0.95), rgba(224, 242, 254, 0.85));
+  border-left: 4px solid #0284c7;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);
+}
+
+.thinking-method-hint__label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0369a1;
+  white-space: nowrap;
+}
+
+.thinking-method-hint__prompt {
+  font-size: 12.5px;
+  color: #0c4a6e;
+}
+
+/* =========================================================
+   System Upgrade: Reward Celebrations & Achievement Banners
+   ========================================================= */
+.achievement-unlocked-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  border: 2px solid #facc15;
+  box-shadow: 0 8px 28px rgba(250, 204, 21, 0.3), 0 0 16px rgba(129, 140, 248, 0.35);
+  color: #fff;
+  animation: achievement-slide-down 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 100;
+}
+
+@keyframes achievement-slide-down {
+  from { opacity: 0; transform: translateY(-24px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.achievement-unlocked-banner__badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fde047 0%, #d97706 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 0 14px #facc15;
+  flex-shrink: 0;
+  animation: badge-wobble 2.5s infinite ease-in-out;
+}
+
+@keyframes badge-wobble {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-8deg) scale(1.06); }
+  75% { transform: rotate(8deg) scale(1.06); }
+}
+
+.achievement-unlocked-banner__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.achievement-unlocked-banner__label {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fde047;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.achievement-unlocked-banner__title {
+  margin: 2px 0 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.achievement-unlocked-banner__desc {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #c7d2fe;
+}
+
+.achievement-unlocked-banner__close {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  line-height: 1;
+  transition: all 0.15s ease;
+}
+
+.achievement-unlocked-banner__close:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Pity Overloaded State */
+.pity-hud.is-overloaded {
+  background: linear-gradient(135deg, rgba(120, 53, 15, 0.45), rgba(245, 158, 11, 0.25));
+  border-color: #f59e0b;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.5), inset 0 0 8px rgba(245, 158, 11, 0.3);
+  animation: pity-overload-pulse 1.4s infinite alternate;
+}
+
+@keyframes pity-overload-pulse {
+  from { border-color: #f59e0b; box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
+  to { border-color: #fbbf24; box-shadow: 0 0 20px rgba(251, 191, 36, 0.7); }
+}
+
+.pity-hud.is-overloaded .pity-hud__cell.is-filled {
+  background: #fbbf24;
+  box-shadow: 0 0 8px #f59e0b;
+}
+
+.pity-hud__badge {
+  font-size: 9px;
+  font-weight: 800;
+  color: #fff;
+  background: #ea580c;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  letter-spacing: 0.5px;
+  animation: bounce-badge 1s infinite alternate ease-in-out;
+}
+
+@keyframes bounce-badge {
+  from { transform: scale(0.94); }
+  to { transform: scale(1.06); }
+}
+
+.streak-hud__flare {
+  font-size: 9px;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(90deg, #ea580c, #f59e0b);
+  padding: 1px 5px;
+  border-radius: 9999px;
+  margin-left: 2px;
+}
+
+/* Quantum Crate Aura Expansions */
+.quantum-crate-aura.is-epic-glow {
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.5) 0%, rgba(15, 23, 42, 0) 70%);
+}
+
+.quantum-crate-aura.is-epic-glow .quantum-crate-core {
+  color: #e879f9;
+  text-shadow: 0 0 16px #c084fc, 0 0 32px rgba(192, 132, 252, 0.8);
+}
+
+.quantum-crate-aura.is-legendary-glow {
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.55) 0%, rgba(15, 23, 42, 0) 70%);
+}
+
+.quantum-crate-aura.is-legendary-glow .quantum-crate-core {
+  color: #fef08a;
+  text-shadow: 0 0 18px #facc15, 0 0 36px rgba(250, 204, 21, 0.85);
+}
+
+.quantum-crate-rings {
+  position: absolute;
+  inset: -6px;
+  border: 1px dashed rgba(56, 189, 248, 0.5);
+  border-radius: 50%;
+  animation: rings-spin 8s infinite linear;
+}
+
+@keyframes rings-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.reward-popover__subcopy {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 12px;
+  color: #065f46;
+  font-weight: 600;
+}
+
+/* =========================================================
+   P1: Commander Expedition Save & Disaster Recovery Modal
+   ========================================================= */
+.pixel-button--save {
+  background: linear-gradient(135deg, #0e7490, #0891b2);
+  color: #ecfeff;
+  border-color: #22d3ee;
+  box-shadow: 0 4px 0 #0e7490, 0 0 10px rgba(34, 211, 238, 0.25);
+}
+.pixel-button--save:hover {
+  background: linear-gradient(135deg, #0891b2, #06b6d4);
+  box-shadow: 0 4px 0 #0e7490, 0 0 16px rgba(34, 211, 238, 0.45);
+}
+
+.save-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.88);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  animation: modal-fade-in 0.25s ease-out;
+}
+
+.save-modal {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(11, 15, 26, 0.99));
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(34, 211, 238, 0.15);
+  border-radius: 20px;
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modal-slide-up 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.save-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: rgba(30, 41, 59, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 16px;
+}
+
+.save-modal__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.save-modal__eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #38bdf8;
+  letter-spacing: 1px;
+}
+
+.save-modal__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.save-modal__close-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  font-size: 16px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.save-modal__close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #f87171;
+}
+
+.save-modal__body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.save-modal__stats-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.save-modal__stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.save-modal__stat-label {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.save-modal__stat-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.save-modal__stat-value.text-gold {
+  color: #fbbf24;
+}
+
+.save-modal__stat-value.text-cyan {
+  color: #38bdf8;
+}
+
+.save-modal__feedback {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 600;
+  animation: modal-fade-in 0.2s ease-out;
+}
+
+.save-modal__feedback.is-success {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}
+
+.save-modal__feedback.is-error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #f87171;
+}
+
+.save-modal__feedback.is-info {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+}
+
+.save-modal__section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.save-modal__section h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.save-modal__hint {
+  margin: 0;
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.save-modal__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.save-modal__textarea {
+  width: 100%;
+  box-sizing: border-box;
+  height: 80px;
+  background: rgba(2, 6, 23, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #f1f5f9;
+  font-family: monospace;
+  font-size: 12px;
+  resize: vertical;
+}
+
+.save-modal__textarea:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+.save-modal__file-picker {
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* =========================================================
+   P2 Enhancements: Smart Diagnostic, Scratchpad, Certificate
+   ========================================================= */
+
+/* Smart Diagnostic Feedback Card */
+.diagnostic-feedback-card {
+  margin: 12px 0 16px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(254, 243, 199, 0.95), rgba(253, 230, 138, 0.85));
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-left: 5px solid #d97706;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: diagSlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes diagSlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.diagnostic-feedback__badge {
+  font-size: 13px;
+  font-weight: 700;
+  color: #92400e;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.diagnostic-feedback__text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #78350f;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Virtual Scratchpad Drawer & Canvas */
+.quest-scratchpad {
+  position: relative;
+  width: 100%;
+  margin: 12px 0 16px;
+  box-sizing: border-box;
+}
+
+.quest-scratchpad--collapsed .quest-scratchpad__panel {
+  display: none;
+}
+
+.quest-scratchpad--expanded .quest-scratchpad__toggle-btn {
+  display: none;
+}
+
+.quest-scratchpad__toggle-btn {
+  font-size: 13px;
+  padding: 6px 14px;
+}
+
+.quest-scratchpad__panel {
+  background: #0f172a;
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.quest-scratchpad__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(30, 41, 59, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quest-scratchpad__title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.quest-scratchpad__tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.scratchpad-tool-btn {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scratchpad-tool-btn:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+}
+
+.scratchpad-tool-btn.is-active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+.scratchpad-tool-btn--close {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  font-weight: 700;
+}
+
+.scratchpad-tool-btn--close:hover {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.quest-scratchpad__options {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scratchpad-colors {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.scratchpad-color-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s ease;
+}
+
+.scratchpad-color-dot:hover {
+  transform: scale(1.15);
+}
+
+.scratchpad-color-dot.is-selected {
+  border-color: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  transform: scale(1.2);
+}
+
+.scratchpad-sizes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.scratchpad-size-btn {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.scratchpad-size-btn.is-selected {
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  border-color: #38bdf8;
+}
+
+.quest-scratchpad__canvas-wrapper {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  background-color: #0b1120;
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  touch-action: none;
+}
+
+.quest-scratchpad__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+/* Certificate Modal */
+.certificate-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+.certificate-modal {
+  background: #0f172a;
+  border: 2px solid #eab308;
+  border-radius: 14px;
+  box-shadow: 0 0 40px rgba(234, 179, 8, 0.25), 0 20px 50px rgba(0, 0, 0, 0.6);
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.certificate-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(30, 41, 59, 0.8);
+  border-bottom: 1px solid rgba(234, 179, 8, 0.2);
+}
+
+.certificate-modal__header h2 {
+  font-size: 1.15rem;
+  margin: 0;
+  color: #facc15;
+  font-weight: 700;
+}
+
+.certificate-modal__body {
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  background: #090d16;
+}
+
+.certificate-modal__image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.certificate-modal__footer {
+  display: flex;
+  justify-content: center;
+  padding: 14px 18px;
+  background: rgba(30, 41, 59, 0.8);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.certificate-modal__download-btn {
+  text-decoration: none;
+  font-weight: 700;
+  padding: 8px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+

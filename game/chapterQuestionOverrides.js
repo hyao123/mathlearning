@@ -34,7 +34,13 @@ const QUESTION_OVERRIDES = Object.freeze({
   "chicken-rabbit-6": { title: "十台巡逻车", prompt: "两轮巡逻车和四轮巡逻车一共 10 台，轮子有 32 个。两轮巡逻车有几台？" },
   "chicken-rabbit-7": { title: "十二台任务车", prompt: "任务车有两轮型和四轮型共 12 台，车轮一共 34 个。四轮型有几台？" },
   "chicken-rabbit-8": { title: "十一台推车", prompt: "推车由两轮车和四轮车组成，共 11 台，轮子总数为 30 个。两轮车有几台？" },
-  "chicken-rabbit-9": { title: "十三台补给车", prompt: "补给车有两轮型和四轮型共 13 台，轮子总数为 38 个。四轮型有几台？" }
+  "chicken-rabbit-9": { title: "十三台补给车", prompt: "补给车有两轮型和四轮型共 13 台，轮子总数为 38 个。四轮型有几台？" },
+
+  "geometry-12": {
+    title: "线段逆推",
+    prompt: "一条直线上有若干个点，两两连线一共可以组成 36 条线段。这条直线上共有多少个点？",
+    explanation: "n 个点可以组成 n×(n-1)÷2 条线段。因为 9×8÷2 = 36，所以这条直线上共有 9 个点。"
+  }
 });
 
 function getQuestionOverride(questionId) {

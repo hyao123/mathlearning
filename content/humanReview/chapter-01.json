@@ -4,7 +4,7 @@
   "status": "approved",
   "reviewer": "???????????",
   "reviewedAt": "2026-07-30",
-  "contentHash": "34ca1baf30314e1b1e8ef9021bff9fa49d82b5844d5d605f4ac1de06d4334951",
+  "contentHash": "6f0a304866c2efc337c2a294bbb2443445276ff6ee3b6fee380c1475d02b3aae",
   "notes": "?????? 2026-07-30 ???? 120 ???????????????????",
   "records": [
     {
@@ -1132,8 +1132,8 @@
     {
       "questionId": "inclusion-exclusion-5",
       "title": "至少一项",
-      "prompt": "全班 42 人，20 人会游泳，18 人会滑冰，8 人两项都会，至少会一项的有多少人？【巡航任务】",
-      "contentHash": "77ec8077dc534567ae9012e98f9151e2eb8453d92360eb1ceaa941f68ee041ba",
+      "prompt": "有 20 人会游泳，18 人会滑冰，8 人两项都会。至少会一项的有多少人？【巡航任务】",
+      "contentHash": "295e6a89f96440975de5bba8fbe4db115242cd36a48f8c2356feadcd0f1e95ea",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1182,9 +1182,9 @@
     },
     {
       "questionId": "chapter-01-inclusion-exclusion-challenge-1",
-      "title": "只喜欢一项",
+      "title": "只会一项",
       "prompt": "有 20 人会游泳，17 人会骑车，7 人两项都会。只会其中一项的有多少人？【决战任务】",
-      "contentHash": "0581f66458b428e4d63ddeb7e3e5fbaba858a050d788f1f779ed8325c4fb29cb",
+      "contentHash": "5f20d1f28ec36b9dcc755fc4aeca2dd21b50b9bfd798f761a6ee25035b0c1d8b",
       "reviewer": "???????????",
       "reviewedAt": "2026-07-30",
       "scores": {

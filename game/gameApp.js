@@ -58,7 +58,15 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
   let craftingFeedback = null;
   let missionFeedback = [];
   let saveFeedback = null;
+  let activeAssemblySequence = null;
+  let showAchievementsModal = false;
+  let showSaveModal = false;
+  let saveModalFeedback = null;
+  let unlockedAchievementIds = [];
+  let inventoryZone = "assembly";
   let pendingFocusKey = null;
+  let scratchpad = null;
+  let lastSubmittedAnswer = "";
   let destroyed = false;
 
   const recordMetric = (method, ...args) => {
@@ -93,6 +101,9 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
     if (!saveStore && inventoryStore && typeof inventoryStore.saveInventory === "function") {
       inventoryStore.saveInventory(state.inventory);
     }
+    try {
+      StorageAdapter?.createSessionBackup?.(() => globalThis.sessionStorage || globalThis.localStorage, primaryStore);
+    } catch {}
   };
 
   const getLevel = (levelId) => chapter.levels.find((level) => level.levelId === levelId);
@@ -125,10 +136,19 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
     rewardReveal: { get: () => rewardReveal, set: (value) => { rewardReveal = value; } },
     craftingFeedback: { get: () => craftingFeedback, set: (value) => { craftingFeedback = value; } },
     saveFeedback: { get: () => saveFeedback, set: (value) => { saveFeedback = value; } },
+    activeAssemblySequence: { get: () => activeAssemblySequence, set: (value) => { activeAssemblySequence = value; } },
+    showAchievementsModal: { get: () => showAchievementsModal, set: (value) => { showAchievementsModal = value; } },
+    showSaveModal: { get: () => showSaveModal, set: (value) => { showSaveModal = value; } },
+    saveModalFeedback: { get: () => saveModalFeedback, set: (value) => { saveModalFeedback = value; } },
+    saveStore: { get: () => saveStore || stateStore },
+    unlockedAchievementIds: { get: () => unlockedAchievementIds, set: (value) => { unlockedAchievementIds = value; } },
     answerDraft: { get: () => answerDraft, set: (value) => { answerDraft = value; } },
     inventoryReturnScreen: { get: () => inventoryReturnScreen, set: (value) => { inventoryReturnScreen = value; } },
     pendingFocusKey: { get: () => pendingFocusKey, set: (value) => { pendingFocusKey = value; } },
-    chaptersById: { get: () => chaptersById }
+    inventoryZone: { get: () => inventoryZone, set: (value) => { inventoryZone = value; } },
+    chaptersById: { get: () => chaptersById },
+    scratchpad: { get: () => scratchpad, set: (value) => { scratchpad = value; } },
+    lastSubmittedAnswer: { get: () => lastSubmittedAnswer, set: (value) => { lastSubmittedAnswer = value; } }
   });
   const renderers = createGameRenderers(appContext);
   Object.defineProperties(appContext, {
@@ -138,8 +158,54 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
   const interactions = createGameInteractions(appContext);
 
 
+  let lastScreenRendered = null;
+  let lastScreenStateKey = null;
+
+  function computeScreenStateKey() {
+    const seqKey = activeAssemblySequence ? `${activeAssemblySequence.projectId}:${activeAssemblySequence.step}` : "";
+    if (screen === "challenge") {
+      const run = state.activeRun;
+      return `${screen}:${run?.levelId}:${run?.questionIndex}:${run?.status}:${answerFeedback?.type}:${rewardReveal ? "reveal" : "no-reveal"}:${seqKey}`;
+    }
+    if (screen === "recovery-challenge") {
+      const run = state.activeChallengeRun;
+      return `${screen}:${run?.targetSkill}:${run?.questionIndex}:${run?.status}:${answerFeedback?.type}:${seqKey}`;
+    }
+    if (screen === "settlement") {
+      return `${screen}:${state.lastSettlement?.levelId}:${state.lastSettlement?.starCount}:${seqKey}`;
+    }
+    if (screen === "inventory") {
+      return `${screen}:${inventoryZone}:${craftingFeedback?.name || ""}:${seqKey}`;
+    }
+    const freePracticeSignature = Object.entries(campaign.chapterStates || {}).map(([id, s]) => `${id}:${s.freePractice ? 1 : 0}`).join(";");
+    return `${screen}:${chapter.chapterId}:${state.freePractice}:${campaign.unlockedChapterIds.join(",")}:${freePracticeSignature}:${state.unlockedLevelIds.length}:${Object.keys(state.levelRecords || {}).length}:${seqKey}`;
+  }
+
+  function updateOverlaysOnly() {
+    root.querySelectorAll(".achievements-modal-overlay, .save-modal-overlay, .assembly-modal, .save-feedback, [data-live-status]").forEach((el) => el.remove());
+    renderers.renderStatusOverlays();
+    const soundMuted = dependencies.SoundEngine?.isMuted?.() || false;
+    const soundBtn = root.querySelector("[data-sound-toggle]");
+    if (soundBtn) {
+      soundBtn.textContent = soundMuted ? "🔇" : "🔊";
+      soundBtn.title = soundMuted ? "开启音效" : "静音";
+      soundBtn.setAttribute("aria-label", soundMuted ? "开启音效" : "静音");
+    }
+  }
+
   function render() {
     if (destroyed) return;
+    const currentScreenStateKey = computeScreenStateKey();
+
+    if (lastScreenRendered === screen && lastScreenStateKey === currentScreenStateKey && root.firstElementChild) {
+      updateOverlaysOnly();
+      handlePostRenderFocus();
+      return;
+    }
+
+    const scrollContainer = root.querySelector("[data-game-screen]") || root;
+    const prevScrollTop = (lastScreenRendered === screen) ? scrollContainer.scrollTop : 0;
+
     root.replaceChildren();
     if (screen === "challenge") renderers.renderChallenge();
     else if (screen === "recovery-challenge") renderers.renderRecoveryChallenge();
@@ -147,8 +213,21 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
     else if (screen === "inventory") renderers.renderInventory();
     else renderers.renderMap();
     renderers.renderStatusOverlays();
+
+    lastScreenRendered = screen;
+    lastScreenStateKey = currentScreenStateKey;
+
+    if (prevScrollTop > 0) {
+      const newScrollContainer = root.querySelector("[data-game-screen]") || root;
+      newScrollContainer.scrollTop = prevScrollTop;
+    }
+
+    handlePostRenderFocus();
+  }
+
+  function handlePostRenderFocus() {
     const activeAnswer = root.querySelector("[data-answer-input]:not([disabled])");
-    if (activeAnswer) {
+    if (activeAnswer && !showAchievementsModal && !showSaveModal && !activeAssemblySequence) {
       activeAnswer.focus({ preventScroll: true });
       pendingFocusKey = null;
       return;
@@ -162,7 +241,8 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
   }
 
   root.addEventListener("click", interactions.handleClick);
-  root.addEventListener("keydown", interactions.handleKeydown);
+  root.addEventListener("change", interactions.handleChange);
+  window.addEventListener("keydown", interactions.handleKeydown);
   render();
 
   return {
@@ -170,7 +250,8 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
     destroy() {
       destroyed = true;
       root.removeEventListener("click", interactions.handleClick);
-      root.removeEventListener("keydown", interactions.handleKeydown);
+      root.removeEventListener("change", interactions.handleChange);
+      window.removeEventListener("keydown", interactions.handleKeydown);
       root.replaceChildren();
     }
   };

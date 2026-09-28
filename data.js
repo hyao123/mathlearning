@@ -3088,7 +3088,7 @@ window.MATH_LEARNING_DATA = [
       {
         "title": "再看重复",
         "difficulty": "进阶",
-        "question": "会唱歌的有 6 人，会跳舞的有 5 人，两样都会的有 2 人，至少会一样的有多少人？",
+        "question": "会唱歌的有 6 人，会跳舞的有 5 人，两样都会的有 2 人，至少会一种的有多少人？",
         "answer": "9",
         "analysis": "6+5-2=9。"
       },
@@ -3120,7 +3120,7 @@ window.MATH_LEARNING_DATA = [
         "id": "inclusion-exclusion-intro-2",
         "title": "闯关 2",
         "difficulty": "基础",
-        "prompt": "会游泳的有 7 人，会跑步的有 6 人，两样都会的有 2 人，至少会一样的有多少人？",
+        "prompt": "会游泳的有 7 人，会跑步的有 6 人，两样都会的有 2 人，至少会一种的有多少人？",
         "answer": "11",
         "explanation": "7+6-2=11。"
       },
@@ -3136,7 +3136,7 @@ window.MATH_LEARNING_DATA = [
         "id": "inclusion-exclusion-intro-4",
         "title": "闯关 4",
         "difficulty": "进阶",
-        "prompt": "会踢球的有 9 人，会跳绳的有 4 人，两样都会的有 1 人，至少会一样的有多少人？",
+        "prompt": "会踢球的有 9 人，会跳绳的有 4 人，两样都会的有 1 人，至少会一种的有多少人？",
         "answer": "12",
         "explanation": "9+4-1=12。"
       },
@@ -3160,7 +3160,7 @@ window.MATH_LEARNING_DATA = [
         "id": "inclusion-exclusion-intro-7",
         "title": "闯关 7",
         "difficulty": "挑战",
-        "prompt": "会英语的有 12 人，会数学竞赛的有 9 人，两样都会的有 5 人，至少会一样的有多少人？",
+        "prompt": "参加英语竞赛的有 12 人，参加数学竞赛的有 9 人，两项都参加的有 5 人，至少参加一项的有多少人？",
         "answer": "16",
         "explanation": "12+9-5=16。"
       },

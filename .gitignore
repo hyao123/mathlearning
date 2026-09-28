@@ -7,3 +7,6 @@ dev-server-error.log
 .superpowers/
 .vite-dev.pid
 artifacts/
+scratch/
+scratch_*.json
+public/assets/items/*.png

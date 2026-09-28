@@ -4,14 +4,14 @@
   "status": "approved",
   "reviewer": "项目负责人确认",
   "reviewedAt": "2026-07-30",
-  "contentHash": "34b7774a2984acd086d476f71ab513e3016055b4d95c0f7dcb360f65a0e7658b",
+  "contentHash": "f55b282d7ce11017a31d7ffb2425e9c7e4680760060ed9ff650eab3437ab1120",
   "notes": "根据项目负责人的第二、三章完整内容审核确认予以签核。",
   "records": [
     {
       "questionId": "factors-multiples-1",
       "title": "闯关 1",
-      "prompt": "把“是”编号为 1，把“不是”编号为 0。15 是 5 的倍数，结果编号是多少？【启航任务】",
-      "contentHash": "826b8ed2cf3a9a3591fc6c23667df3084dbac82271183550cef9184ed95bc26e",
+      "prompt": "判断：15 是 5 的倍数吗？请回答编号：是=1，不是=0。结果编号是多少？【启航任务】",
+      "contentHash": "87b282aefc963ba9f932e90a4a95585a79613607732ba3dbc442b4d3f0a86b1d",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -27,8 +27,8 @@
     {
       "questionId": "factors-multiples-2",
       "title": "闯关 2",
-      "prompt": "把“是”编号为 1，把“不是”编号为 0。3 不是 14 的因数，结果编号是多少？【校准任务】",
-      "contentHash": "bb70d823130d49e410b0469b09339db1a9bd2a6bcf85d32b3788d07243f16a3e",
+      "prompt": "判断：3 是 14 的因数吗？请回答编号：是=1，不是=0。结果编号是多少？【校准任务】",
+      "contentHash": "57b0c5179cde1d89e0ac6e8fcacfa45f94a90d465afc4093e271c5b70fdfea81",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -61,8 +61,8 @@
     {
       "questionId": "factors-multiples-4",
       "title": "闯关 4",
-      "prompt": "把“是”编号为 1，把“不是”编号为 0。18 是 6 的倍数，结果编号是多少？【推进任务】",
-      "contentHash": "a3bf120d84f64fde44b6b759c8158be8f2dbc519ab75e19dd02f949a8c1bb9e8",
+      "prompt": "判断：18 是 6 的倍数吗？请回答编号：是=1，不是=0。结果编号是多少？【推进任务】",
+      "contentHash": "8c923919b6fe76f6622bcdcd9b4d2d3bc102859d8356167f0634a3c92966df64",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {

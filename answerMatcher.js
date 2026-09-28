@@ -22,6 +22,8 @@
     return String(value ?? "")
       .trim()
       .toLowerCase()
+      .replace(/[\uff01-\uff5e]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
+      .replace(/[￥$¥]/g, "")
       .replace(/[，。！？；：、]/g, (mark) => ({ "，": ",", "。": ".", "！": "!", "？": "?", "；": ";", "：": ":", "、": "," }[mark]))
       .replace(/[（）]/g, (mark) => (mark === "（" ? "(" : ")"))
       .replace(/[×xX]/g, "*")
@@ -61,9 +63,24 @@
       return Number(normalized);
     }
 
+    // Percentage like 80%
+    if (/^-?\d+(\.\d+)?%$/.test(normalized)) {
+      return Number(normalized.slice(0, -1));
+    }
+
     const fractionMatch = normalized.match(/^(-?\d+)\/(\d+)$/);
     if (fractionMatch && Number(fractionMatch[2]) !== 0) {
       return Number(fractionMatch[1]) / Number(fractionMatch[2]);
+    }
+
+    // Chinese fraction: e.g. 三分之二 -> 2/3
+    const cnFracMatch = normalized.match(/^([零〇一二两三四五六七八九十]+)分之([零〇一二两三四五六七八九十]+)$/);
+    if (cnFracMatch) {
+      const denom = parseChineseInteger(cnFracMatch[1]);
+      const num = parseChineseInteger(cnFracMatch[2]);
+      if (denom && denom !== 0 && num !== null) {
+        return num / denom;
+      }
     }
 
     const chineseInteger = parseChineseInteger(normalized);

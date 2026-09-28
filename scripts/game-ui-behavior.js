@@ -289,7 +289,9 @@ async function main() {
     await page.locator("[data-open-inventory]").click();
     await page.locator("[data-game-screen='inventory']").waitFor({ state: "visible" });
     assert.equal(await page.locator("[data-material-recipe-card-id='refine-j20-processed-frame-plate']").count(), 1, "material processing should show its first recipe");
+    await page.locator("[data-inventory-zone='raw-materials']").click();
     await page.locator("[data-material-recipe-id='refine-j20-processed-frame-plate']").click();
+    await page.locator("[data-inventory-zone='assembly']").click();
     assert.equal(await page.locator("[data-project-recipe-card-id='craft-j20-frame-rib'] [data-project-art='j20-frame-rib']").count(), 1, "component recipe should show its output art");
     assert.equal(await page.locator("[data-project-recipe-id='craft-j20-frame-rib']").isEnabled(), true);
     await page.locator("[data-project-recipe-id='craft-j20-frame-rib']").click();
@@ -566,7 +568,7 @@ async function main() {
     await page.locator("[data-game-screen='challenge']").waitFor({ state: "visible" });
     assert.equal(await page.locator("[data-thinking-method='read-conditions']").count(), 1, "method label should be visible on new chapter questions");
     assert.equal(await page.locator("[data-answer-input]").evaluate((input) => document.activeElement === input), true, "new chapter answer input should autofocus");
-    await page.locator("[data-answer-input]").fill("21");
+    await page.locator("[data-answer-input]").fill("5");
     await page.locator("[data-submit-answer]").click();
     await page.locator("[data-answer-feedback='correct']").waitFor({ state: "visible" });
     assert.equal(await page.locator("[data-tactical-review] details").evaluate((details) => details.open), false, "new chapter review should be collapsed by default");
@@ -708,6 +710,105 @@ async function main() {
     assert.deepEqual(pageErrors, [], `browser console/page errors:\n${pageErrors.join("\n")}`);
     console.log(`OK game full chapter playthrough test at ${baseUrl}`);
   }, { port: process.env.GAME_UI_FULL_CHAPTER_PORT || "4189" });
+
+  await withPage(chromium, async ({ baseUrl, page, pageErrors }) => {
+    await page.goto(baseUrl, { waitUntil: "networkidle" });
+    await page.evaluate(() => localStorage.clear());
+    await page.reload({ waitUntil: "networkidle" });
+
+    await page.locator("[data-game-screen='map']").waitFor({ state: "visible" });
+    const inventoryBtn = page.locator("[data-open-inventory], [data-hub-open-inventory]").first();
+    await inventoryBtn.click();
+    await page.locator("[data-game-screen='inventory']").waitFor({ state: "visible" });
+
+    const cruiseBtn = page.locator("[data-replay-assembly]").first();
+    await cruiseBtn.click();
+
+    const modal = page.locator(".assembly-modal");
+    await modal.waitFor({ state: "visible" });
+
+    const backBtn = modal.locator(".assembly-modal__back-btn");
+    await backBtn.waitFor({ state: "visible" });
+    assert.ok((await backBtn.textContent()).includes("返回"), "Cruise modal button must show '返回'");
+
+    await backBtn.click();
+    await page.waitForTimeout(200);
+    assert.equal(await page.locator(".assembly-modal").count(), 0, "Assembly modal should be closed");
+    assert.equal(await page.locator("[data-game-screen='inventory']").count(), 1, "Should return to inventory screen");
+
+    await cruiseBtn.click();
+    await modal.waitFor({ state: "visible" });
+    await page.keyboard.press("Escape");
+    await page.waitForTimeout(200);
+    assert.equal(await page.locator(".assembly-modal").count(), 0, "Assembly modal should be closed after Escape");
+    assert.equal(await page.locator("[data-game-screen='inventory']").count(), 1, "Should stay on inventory screen after Escape");
+
+    assert.deepEqual(pageErrors, [], `browser console/page errors:\n${pageErrors.join("\n")}`);
+    console.log(`OK cruise modal return button and Escape test at ${baseUrl}`);
+  }, { port: process.env.GAME_UI_CRUISE_MODAL_PORT || "4196" });
+
+  await withPage(chromium, async ({ baseUrl, page, pageErrors }) => {
+    await page.goto(baseUrl, { waitUntil: "networkidle" });
+    await page.evaluate(() => localStorage.clear());
+    await page.reload({ waitUntil: "networkidle" });
+
+    await page.locator("[data-game-screen='map']").waitFor({ state: "visible" });
+    const overview = page.locator("[data-campaign-overview]");
+    assert.equal(await overview.count(), 1, "Campaign overview must be visible on map screen");
+    assert.equal(await overview.locator(".campaign-chapter").count(), 9, "All 9 chapters must be displayed");
+
+    // Chapter 3 is initially locked in campaign
+    const ch3Card = overview.locator(".campaign-chapter[data-chapter-id='chapter-03']");
+    assert.equal(await ch3Card.getAttribute("data-chapter-status"), "locked");
+
+    // Click Chapter 3's free practice toggle
+    const ch3Toggle = ch3Card.locator("[data-toggle-free-practice='chapter-03']");
+    assert.equal(await ch3Toggle.textContent(), "⚡ 开启自由答题");
+    await ch3Toggle.click();
+
+    // Chapter 3 is now unlocked with free practice
+    assert.equal(await ch3Card.getAttribute("data-chapter-status"), "unlocked");
+    assert.equal(await ch3Card.getAttribute("data-free-practice"), "true");
+    assert.equal(await ch3Toggle.textContent(), "🔓 自由答题：开");
+
+    // Click Chapter 3 entry to enter chapter 3
+    const ch3Entry = ch3Card.locator(".campaign-chapter__entry");
+    await ch3Entry.click();
+
+    // Map screen updates to chapter 3
+    await page.locator("[data-game-screen='map']").waitFor({ state: "visible" });
+    const ch3ConstellationToggle = page.locator(".constellation-actions [data-toggle-free-practice='chapter-03']");
+    assert.equal(await ch3ConstellationToggle.count(), 1);
+    assert.equal(await ch3ConstellationToggle.textContent(), "🔓 自由答题：开");
+
+    // All 12 levels in chapter 3 are unlocked and playable
+    const allLevelButtons = page.locator("[data-level-id]");
+    assert.equal(await allLevelButtons.count(), 12);
+    for (let i = 0; i < 12; i++) {
+      assert.equal(await allLevelButtons.nth(i).isDisabled(), false, `Level ${i + 1} should be unlocked in free practice`);
+    }
+
+    // Click bulk toggle to enable free practice on ALL chapters
+    const bulkToggle = overview.locator("[data-toggle-free-practice='all']");
+    await bulkToggle.click();
+    for (let c = 1; c <= 9; c++) {
+      const chId = `chapter-0${c}`;
+      const card = overview.locator(`.campaign-chapter[data-chapter-id='${chId}']`);
+      assert.equal(await card.getAttribute("data-free-practice"), "true", `${chId} should have free practice`);
+    }
+
+    // Refresh page: persisted state keeps all 9 chapters in free practice
+    await page.reload({ waitUntil: "networkidle" });
+    await page.locator("[data-game-screen='map']").waitFor({ state: "visible" });
+    for (let c = 1; c <= 9; c++) {
+      const chId = `chapter-0${c}`;
+      const card = page.locator(`[data-campaign-overview] .campaign-chapter[data-chapter-id='${chId}']`);
+      assert.equal(await card.getAttribute("data-free-practice"), "true", `${chId} should persist free practice after reload`);
+    }
+
+    assert.deepEqual(pageErrors, [], `browser console/page errors:\n${pageErrors.join("\n")}`);
+    console.log(`OK chapter free practice toggle and campaign overview test at ${baseUrl}`);
+  }, { port: process.env.GAME_UI_FREE_PRACTICE_PORT || "4197" });
 
   for (const [index, viewport] of RESPONSIVE_VIEWPORTS.entries()) {
     await withPage(chromium, async ({ baseUrl, page, pageErrors }) => {

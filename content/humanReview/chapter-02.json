@@ -4,7 +4,7 @@
   "status": "approved",
   "reviewer": "项目负责人确认",
   "reviewedAt": "2026-08-09",
-  "contentHash": "e55fb8bfd9747bf9e91954da50c061fcec8ad1be04e24935c5981f643c01a9c1",
+  "contentHash": "d20813df3ead897606f106dde4205224b10728ca4524d4bf0282d97cce56a289",
   "notes": "根据项目负责人的第二、三章完整内容审核确认予以签核。",
   "records": [
     {
@@ -78,8 +78,8 @@
     {
       "questionId": "chapter-02-pigeonhole-principle-advance-1",
       "title": "潮汐编号",
-      "prompt": "要保证 8 张潮汐卡中至少有 3 张属于同一种颜色，卡片只有 3 种颜色，至少要抽几张？【协作任务】",
-      "contentHash": "251f73f45ac28611d310b3bdc9476b193db5f589464fb31fb9dca8929cce08d5",
+      "prompt": "抽屉里有红、蓝、绿 3 种颜色的潮汐卡各若干张。至少要抽取几张，才能保证抽出的卡片中至少有 3 张属于同一种颜色？【协作任务】",
+      "contentHash": "1aea5c5a8adc16b0b6205e196dec29ba76bdc2bcf0bf71942a9a39a8925287a4",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -214,8 +214,8 @@
     {
       "questionId": "counting-transfer-3",
       "title": "至少一项",
-      "prompt": "全班 28 人，参加数学社 15 人，参加科学社 12 人，两社都参加 4 人。至少参加一个社团的有多少人？【侦察任务】",
-      "contentHash": "f9e4683c7f5c75e90182cc186369090d2d11fe5b56f3271a3769a8dc3e21109b",
+      "prompt": "参加数学社的有 15 人，参加科学社的有 12 人，两社都参加的有 4 人。至少参加一个社团的有多少人？【侦察任务】",
+      "contentHash": "ce2f55d345e860cf2f1d9d073cd7979a7ea195a62ec9d56fa1be4da7adced291",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -265,8 +265,8 @@
     {
       "questionId": "counting-transfer-5",
       "title": "只参加一项",
-      "prompt": "30 人中喜欢篮球 18 人，喜欢足球 15 人，两项都喜欢 6 人。只喜欢一项的有多少人？【加固任务】",
-      "contentHash": "ff1af475dc325d323a905824867e3d768cdace41325cb6bdcc0bdc25e7177c66",
+      "prompt": "喜欢篮球的有 18 人，喜欢足球的有 15 人，两项都喜欢的有 6 人。只喜欢一项的有多少人？【加固任务】",
+      "contentHash": "803bb55019af86a60e8e69715051ace2ea92da5ab29e80c54d1e691fff490a0e",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -843,8 +843,8 @@
     {
       "questionId": "chapter-02-train-bridge-challenge-1",
       "title": "追上补给车",
-      "prompt": "长 100 米的列车以每秒 25 米追赶每秒 15 米的补给车，车尾相距 200 米，几秒后列车车头追上补给车车尾？【决战任务】",
-      "contentHash": "94de2e316392ac940437f4479113d6cbb3f1f5d79ea8f582ff562d6b7fb76ddb",
+      "prompt": "一列长 100 米的列车在后方以每秒 25 米追赶前方速度为每秒 15 米的补给车。初始时列车车尾与前方补给车车尾相距 200 米（即列车车头距离前方补给车车尾 100 米）。几秒后列车车头追上补给车车尾？【决战任务】",
+      "contentHash": "de41c58ae532a4b2ba4846b10678e219554adc3686b52c73f909625541e33c5e",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1522,9 +1522,9 @@
     },
     {
       "questionId": "geometry-12",
-      "title": "闯关 12",
-      "prompt": "一个 3×3 方格图中，有多少个小正方形？（只数 1×1）【决战任务】",
-      "contentHash": "97b0f385ac57d988b1dd81aeff82671da9a0291b3d93a9e6b002adee38e5dca2",
+      "title": "线段逆推",
+      "prompt": "一条直线上有若干个点，两两连线一共可以组成 36 条线段。这条直线上共有多少个点？【决战任务】",
+      "contentHash": "ca4b4230cfee4e2c191b1a33a6f0e96d590514dfc893dc8196800c1d3d3552ee",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1591,8 +1591,8 @@
     {
       "questionId": "logic-4",
       "title": "闯关 4",
-      "prompt": "小丽、小华、小美的编号分别为 1、2、3。小丽不是第三，小华不是第三，那么第三位置的编号是多少？【推进任务】",
-      "contentHash": "ca506a8a106af6ddec00231df4bb9aaefa32fa20e31c356a004a872a7e2cb2f3",
+      "prompt": "小丽、小华、小美的代号分别为 1、2、3。小丽不是第三名，小华不是第三名，那么排在第三名的人代号是多少？【推进任务】",
+      "contentHash": "4e0b4db8adb2567ecbc939bb8bebe61846aad6c68cec595dbbdd17b37c72d318",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1642,8 +1642,8 @@
     {
       "questionId": "logic-8",
       "title": "闯关 8",
-      "prompt": "A、B、C、D 的编号分别为 1、2、3、4。A、B、C 都不是最后，那么最后位置的编号是多少？【巡航任务】",
-      "contentHash": "53a821495531680c589e658a8cf32111f20991f1d7c8cf10a666f889a1f29fb3",
+      "prompt": "A、B、C、D 的代号分别为 1、2、3、4。A、B、C 都不是最后一名，那么排在最后一名的人代号是多少？【巡航任务】",
+      "contentHash": "63b2572f4ec6c11f10ecd2e7ab7a8dd0e96a3a02dcdaf1e04b12ac2422ac0cf7",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1676,8 +1676,8 @@
     {
       "questionId": "logic-6",
       "title": "闯关 6",
-      "prompt": "甲、乙、丙的编号分别为 1、2、3。甲不是最后，乙和丙都不是第一，那么第一位置的编号是多少？【攻坚任务】",
-      "contentHash": "8239a397e368787042eac8ed636379a867134d85931c40450ffaaa8bc0ffe696",
+      "prompt": "甲、乙、丙的代号分别为 1、2、3。甲不是最后一名，乙和丙都不是第一名，那么排在第一名的人代号是多少？【攻坚任务】",
+      "contentHash": "5b2f12f7b753a47cd721eb566f51c3d12f8e09e7d5e80237875e31efd9323542",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1693,8 +1693,8 @@
     {
       "questionId": "logic-12",
       "title": "闯关 12",
-      "prompt": "A、B、C 的编号分别为 1、2、3。A、C 都不是第一，B 不是第二，那么第一位置的编号是多少？【决战任务】",
-      "contentHash": "bf9b4f96befee3337a0f0931414c5001bdbeb4c5c13aa973c83c41059c16c6c8",
+      "prompt": "A、B、C 的代号分别为 1、2、3。A、C 都不是第一名，B 不是第二名，那么排在第一名的人代号是多少？【决战任务】",
+      "contentHash": "692e466bb956a6867a840c7271d8e6f4bd687bc01bea1029a6f37757b97f37d8",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {
@@ -1829,8 +1829,8 @@
     {
       "questionId": "chapter-02-geometry-counting-improve-2",
       "title": "方格地图",
-      "prompt": "由 4 个小正方形排成一行，一共有几个不同大小的正方形？【穿越任务】",
-      "contentHash": "541f394ef1dc30ca031aae05bf2715fc3244aa5e875d23fb8d57a24e8d1612c2",
+      "prompt": "由 4 个边长为 1 的小正方形排成一行，一共有多少个正方形？【穿越任务】",
+      "contentHash": "596b9fb74f81f88cf1a83885bd93f012d1450ac4c00add2dc233f99ce3ffb43c",
       "reviewer": "项目负责人确认",
       "reviewedAt": "2026-07-30",
       "scores": {

@@ -5,9 +5,9 @@ the quest runtime directly and the old learning dashboard entry has been removed
 
 ## Features
 
-- **Six chapters with 72 levels.** Follow each chapter map in sequence; later
+- **Nine chapters with 108 levels.** Follow each chapter map in sequence; later
   chapters unlock after the previous expedition and final project are complete.
-- **Ten escalating questions per level.** Every level is a focused challenge run with
+- **Ten escalating questions per level (1080 total).** Every level is a focused challenge run with
   a fixed ten-question progression and a final boss question.
 - **Fixed or random rewards by question.** Some questions preview a fixed item,
   while others preview a random reward pool. Correct answers grant the configured
@@ -17,14 +17,20 @@ the quest runtime directly and the old learning dashboard entry has been removed
 - **Persistent inventory and crafting.** Correct answers award raw materials. Materials
   refine through a chapter-specific material-processing layer before becoming themed components; every three topic components combine into a major part,
   and the major parts assemble each chapter project: J-20, deep-sea probe, orbital
-  station, polar icebreaker, and 99A main battle tank.
+  station, polar icebreaker, 99A main battle tank, quantum communication satellite,
+  Mars explorer rover, deep-space navigation ship, and smart city hub.
 - **Recovery challenges.** After all twelve topics in a chapter are cleared, an incomplete
   project unlocks a ten-question recovery challenge. Learners can choose wrong-answer
   review or a chapter-wide random set; correct answers provide one capped missing raw material,
   while skipping provides no material.
-- **Numeric question contract.** All 720 shipped questions use automatically judged
+- **Numeric question contract.** All 1080 shipped questions use automatically judged
   numeric answers (integers, decimals, fractions, or percentages); the challenge UI
   uses one focused input instead of text-choice questions.
+- **28+ mathematical visualizer models & dynamic animations.** Visualizers for chicken-rabbit,
+  balance scales, motion tracks, pigeonhole drawers, fraction bars, coordinate routes, and more
+  provide dynamic manipulative demonstrations for abstract mathematical concepts.
+- **Synthesized Web Audio sound engine & military medals.** Zero-dependency browser-synthesized
+  retro audio, combined with an achievement system covering battle badges and honors.
 - **Story missions and tactical review.** Each topic has stable, child-readable
   expedition scenes with at least four story variants. After a result, the tactical
   review stays collapsed by default and expands into a difficulty-scaled checklist.
@@ -43,7 +49,7 @@ npm install
 npm run dev
 ```
 
-Open the Vite URL shown in the terminal to play the six-chapter expedition. Build a static
+Open the Vite URL shown in the terminal to play the nine-chapter expedition. Build a static
 production bundle with:
 
 ```bash
@@ -58,19 +64,27 @@ npm run preview
 npm test
 npm run check
 
-# Game chapter validation: expects 6 chapters, 72 levels, and 720 questions
+# Game chapter validation: expects 9 chapters, 108 levels, and 1080 questions
 npm run validate:game
+
+# Curriculum and release gates
+npm run validate:curriculum
+npm run validate:release
+
+# Visual assets coverage check
+npm run check:visual-assets
 
 # Browser behavior checks for the game-only runtime
 npm run test:game-ui
 npm run audit:ui
 npm run smoke
+npm run audit:low-performance
 
 # Production bundle budget check
 npm run check:bundle
 ```
 
-`validate:game` validates the compiled quest chapter used by the shipped game
+`validate:game` validates the compiled quest chapters used by the shipped game
 entrypoint.
 
 ## Project entrypoints

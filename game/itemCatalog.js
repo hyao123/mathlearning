@@ -208,8 +208,11 @@ const cloneRecipe = (recipe) => ({
   inputs: recipe.inputs.map(({ itemId, quantity }) => ({ itemId, quantity })),
   output: { itemId: recipe.output.itemId, quantity: recipe.output.quantity }
 });
-const getSuperProject = (chapterId) => {
-  const project = SUPER_PROJECTS[chapterId];
+const getSuperProject = (chapterOrProjectId) => {
+  let project = SUPER_PROJECTS[chapterOrProjectId];
+  if (!project) {
+    project = Object.values(SUPER_PROJECTS).find((candidate) => candidate.id === chapterOrProjectId);
+  }
   if (!project) return null;
   return {
     id: project.id,

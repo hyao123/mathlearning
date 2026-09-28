@@ -73,6 +73,7 @@ function createInitialState(chapter) {
   return attachChapter({
     activeChapterId: compiled.chapterId,
     unlockedLevelIds: [firstLevel.levelId],
+    freePractice: false,
     levelRecords: {},
     inventory: InventoryModel.createInventory(),
     attemptSequence: 0,
@@ -90,6 +91,14 @@ function createInitialState(chapter) {
     lastChallengeSettlement: null,
     ...extensions
   }, compiled);
+}
+
+function setFreePractice(state, enabled) {
+  const chapter = getAttachedChapter(state);
+  return attachChapter({
+    ...state,
+    freePractice: Boolean(enabled)
+  }, chapter);
 }
 
 function sanitizeCraftedProjectRecipeIds(value, inventory, chapter) {
@@ -116,8 +125,9 @@ function copyRunWithQuestion(run, level) {
 function startLevel(state, levelId) {
   const chapter = getAttachedChapter(state);
   const level = getLevel(chapter, levelId);
-  if (!state.unlockedLevelIds.includes(levelId)) throw new Error(`Level is locked: ${levelId}`);
-  if (state.activeRun) throw new Error("A level is already active");
+  const isUnlocked = state.freePractice === true || state.unlockedLevelIds.includes(levelId);
+  if (!isUnlocked) throw new Error(`Level is locked: ${levelId}`);
+  if (state.activeRun && !state.freePractice) throw new Error("A level is already active");
   const run = {
     levelId,
     questionIndex: 0,
@@ -508,6 +518,7 @@ function serialize(state) {
     attemptSettlements: sanitizeAttemptSettlements(state?.attemptSettlements),
     unlockedLevelIds: [...(state?.unlockedLevelIds || [])],
     levelRecords: state?.levelRecords || {},
+    freePractice: state?.freePractice === true,
     inventory,
     activeRun,
     activeChallengeRun: challengeRun,
@@ -573,21 +584,32 @@ function sanitizeShop(shop) {
 
 function sanitizeUnlockedLevelIds(ids, chapter) {
   const provided = new Set(Array.isArray(ids) ? ids : []);
-  const result = [];
-  for (const level of chapter.levels) {
-    if (result.length === 0 || provided.has(level.levelId)) result.push(level.levelId);
-    else break;
+  const validLevelIds = new Set(chapter.levels.map((level) => level.levelId));
+
+  const result = new Set();
+  if (chapter.levels.length > 0) {
+    result.add(chapter.levels[0].levelId);
   }
-  return result;
+
+  // 保留历史所有属于本章的已解锁关卡（升级不回退，不因中间缺口而提前中断）
+  for (const id of provided) {
+    if (validLevelIds.has(id)) {
+      result.add(id);
+    }
+  }
+
+  return chapter.levels.filter((level) => result.has(level.levelId)).map((level) => level.levelId);
 }
 
-function sanitizeRecords(records, chapter, unlockedLevelIds) {
+function sanitizeRecords(records, chapter, unlockedLevelIds, isFreePractice = false) {
   if (!records || typeof records !== "object" || Array.isArray(records)) return {};
   const knownIds = new Set(unlockedLevelIds);
+  const validLevelIds = new Set(chapter.levels.map((level) => level.levelId));
   return Object.fromEntries(Object.entries(records).flatMap(([levelId, record]) => {
     const starCount = record?.starCount;
     const contentVersion = getContentVersion(record?.contentVersion);
-    return knownIds.has(levelId) && Number.isInteger(starCount) && starCount >= 1 && starCount <= 3
+    const isAllowed = isFreePractice ? validLevelIds.has(levelId) : knownIds.has(levelId);
+    return isAllowed && Number.isInteger(starCount) && starCount >= 1 && starCount <= 3
       ? [[levelId, { starCount, ...(contentVersion ? { contentVersion } : {}) }]]
       : [];
   }));
@@ -667,7 +689,7 @@ function sanitizeRewardTransactions(transactions, permittedQuestionIds) {
   });
 }
 
-function hydrateActiveRun(activeRun, chapter, unlockedLevelIds, storedChapterId) {
+function hydrateActiveRun(activeRun, chapter, unlockedLevelIds, storedChapterId, isFreePractice = false) {
   if (!activeRun || typeof activeRun !== "object" || Array.isArray(activeRun)) return null;
   if (storedChapterId !== undefined && storedChapterId !== chapter.chapterId) return null;
   let level;
@@ -678,7 +700,7 @@ function hydrateActiveRun(activeRun, chapter, unlockedLevelIds, storedChapterId)
   }
   const contentVersion = getContentVersion(activeRun.contentVersion);
   if (contentVersion !== getContentVersion(level.contentVersion)) return null;
-  if (!unlockedLevelIds.includes(level.levelId)) return null;
+  if (!isFreePractice && !unlockedLevelIds.includes(level.levelId)) return null;
   if (!Number.isInteger(activeRun.questionIndex) || activeRun.questionIndex < 0 || activeRun.questionIndex >= level.questions.length) return null;
   if (!PERSISTABLE_RUN_STATUSES.has(activeRun.status)) return null;
   const currentQuestion = getQuestion(level, activeRun.questionIndex);
@@ -715,9 +737,9 @@ function hydrateActiveRun(activeRun, chapter, unlockedLevelIds, storedChapterId)
   };
 }
 
-function sanitizeSettlement(settlement, chapter, unlockedLevelIds) {
+function sanitizeSettlement(settlement, chapter, unlockedLevelIds, isFreePractice = false) {
   if (!settlement || typeof settlement !== "object" || Array.isArray(settlement)) return null;
-  if (!unlockedLevelIds.includes(settlement.levelId)) return null;
+  if (!isFreePractice && !unlockedLevelIds.includes(settlement.levelId)) return null;
   const keys = ["starCount", "correctCount", "skippedCount"];
   if (!keys.every((key) => Number.isInteger(settlement[key]) && settlement[key] >= 0)) return null;
   if (settlement.starCount < 1 || settlement.starCount > 3 || settlement.correctCount + settlement.skippedCount !== 10) return null;
@@ -743,11 +765,12 @@ function hydrate(serialized, chapter) {
   }
   if (!stored || typeof stored !== "object" || Array.isArray(stored)) return initial;
   const compiled = getAttachedChapter(initial);
+  const isFreePractice = stored.freePractice === true;
   const unlockedLevelIds = sanitizeUnlockedLevelIds(stored.unlockedLevelIds, compiled);
   const inventory = sanitizeInventory(stored.inventory);
   const craftedProjectRecipeIds = sanitizeCraftedProjectRecipeIds(stored.craftedProjectRecipeIds, inventory, compiled);
-  const lastSettlement = sanitizeSettlement(stored.lastSettlement, compiled, unlockedLevelIds);
-  const levelRecords = sanitizeRecords(stored.levelRecords, compiled, unlockedLevelIds);
+  const lastSettlement = sanitizeSettlement(stored.lastSettlement, compiled, unlockedLevelIds, isFreePractice);
+  const levelRecords = sanitizeRecords(stored.levelRecords, compiled, unlockedLevelIds, isFreePractice);
   const mistakeQuestionIds = sanitizeMistakeQuestionIds(stored.mistakeQuestionIds, compiled);
   if (lastSettlement) {
     const previousRecord = levelRecords[lastSettlement.levelId];
@@ -761,6 +784,7 @@ function hydrate(serialized, chapter) {
   return attachChapter({
     ...initial,
     activeChapterId: compiled.chapterId,
+    freePractice: isFreePractice,
     attemptSequence: sanitizeAttemptSequence(stored.attemptSequence),
     challengeSequence: sanitizeAttemptSequence(stored.challengeSequence),
     claimedFixedRewards: sanitizeClaimedFixedRewards(stored.claimedFixedRewards),
@@ -772,7 +796,7 @@ function hydrate(serialized, chapter) {
     unlockedLevelIds,
     levelRecords,
     inventory,
-    activeRun: hydrateActiveRun(stored.activeRun, compiled, unlockedLevelIds, stored.activeChapterId),
+    activeRun: hydrateActiveRun(stored.activeRun, compiled, unlockedLevelIds, stored.activeChapterId, isFreePractice),
     activeChallengeRun: ChallengeModel.hydrateChallengeRun(stored.activeChallengeRun, compiled, inventory),
     mistakeQuestionIds,
     lastSettlement,
@@ -787,6 +811,7 @@ const ProgressionModel = {
   STORAGE_KEY,
   createInitialState,
   startLevel,
+  setFreePractice,
   startChallenge,
   submitAnswer,
   submitChallengeAnswer,

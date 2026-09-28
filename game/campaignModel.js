@@ -66,9 +66,14 @@ function withInventory(state, chapter, inventory) {
   }), chapter);
 }
 
-function resolveUnlockedChapterIds(chapters, chapterStates) {
+function resolveUnlockedChapterIds(chapters, chapterStates, previouslyUnlockedIds = []) {
   const byId = Object.fromEntries(chapters.map((chapter) => [chapter.chapterId, chapter]));
-  const unlocked = new Set(chapters.filter((chapter) => !chapter.prerequisiteChapterId).map((chapter) => chapter.chapterId));
+  const validPrevUnlocked = (Array.isArray(previouslyUnlockedIds) ? previouslyUnlockedIds : []).filter((id) => byId[id]);
+  const unlocked = new Set([
+    ...chapters.filter((chapter) => !chapter.prerequisiteChapterId).map((chapter) => chapter.chapterId),
+    ...validPrevUnlocked,
+    ...chapters.filter((chapter) => chapterStates?.[chapter.chapterId]?.freePractice === true).map((chapter) => chapter.chapterId)
+  ]);
   let changed = true;
   while (changed) {
     changed = false;
@@ -97,7 +102,8 @@ function createCampaign(chapters, storedValue, inventory = {}, legacyValue = nul
     const state = ProgressionModel.hydrate(raw ? JSON.stringify(raw) : null, chapter);
     return [chapter.chapterId, withInventory(state, chapter, globalInventory)];
   }));
-  const unlockedChapterIds = resolveUnlockedChapterIds(chapters, chapterStates);
+  const storedUnlockedIds = Array.isArray(stored?.unlockedChapterIds) ? stored.unlockedChapterIds : [];
+  const unlockedChapterIds = resolveUnlockedChapterIds(chapters, chapterStates, storedUnlockedIds);
   const requestedId = stored?.activeChapterId;
   const activeChapterId = unlockedChapterIds.includes(requestedId) && byId[requestedId] ? requestedId : unlockedChapterIds.at(-1) || chapters[0]?.chapterId;
   return { version: STORAGE_KEY, activeChapterId, unlockedChapterIds, inventory: { ...globalInventory }, chapterStates };
@@ -109,7 +115,7 @@ function synchronizeInventory(campaign, chapters, inventory) {
     chapter.chapterId,
     withInventory(campaign.chapterStates[chapter.chapterId] || ProgressionModel.createInitialState(chapter), chapter, globalInventory)
   ]));
-  const unlockedChapterIds = resolveUnlockedChapterIds(chapters, chapterStates);
+  const unlockedChapterIds = resolveUnlockedChapterIds(chapters, chapterStates, campaign.unlockedChapterIds);
   return {
     ...campaign,
     inventory: globalInventory,
@@ -136,4 +142,59 @@ function serializeCampaign(campaign) {
   });
 }
 
-module.exports = { STORAGE_KEY, createCampaign, synchronizeInventory, serializeCampaign, resolveUnlockedChapterIds };
+function setChapterFreePractice(campaign, chapters, chapterId, enabled) {
+  const targetChapter = chapters.find((c) => c.chapterId === chapterId);
+  if (!targetChapter) return campaign;
+  const isFree = Boolean(enabled);
+  const currentState = campaign.chapterStates[chapterId] || ProgressionModel.createInitialState(targetChapter);
+  const nextState = ProgressionModel.setFreePractice(currentState, isFree);
+  const nextChapterStates = {
+    ...campaign.chapterStates,
+    [chapterId]: nextState
+  };
+  const prevUnlocked = isFree
+    ? [...campaign.unlockedChapterIds, chapterId]
+    : campaign.unlockedChapterIds.filter((id) => id !== chapterId);
+  const unlockedChapterIds = resolveUnlockedChapterIds(chapters, nextChapterStates, prevUnlocked);
+  const activeChapterId = unlockedChapterIds.includes(campaign.activeChapterId)
+    ? campaign.activeChapterId
+    : unlockedChapterIds[0] || chapters[0]?.chapterId;
+  return {
+    ...campaign,
+    activeChapterId,
+    unlockedChapterIds,
+    chapterStates: nextChapterStates
+  };
+}
+
+function setAllChaptersFreePractice(campaign, chapters, enabled) {
+  const isFree = Boolean(enabled);
+  const nextChapterStates = {};
+  for (const ch of chapters) {
+    const currentState = campaign.chapterStates[ch.chapterId] || ProgressionModel.createInitialState(ch);
+    nextChapterStates[ch.chapterId] = ProgressionModel.setFreePractice(currentState, isFree);
+  }
+  const prevUnlocked = isFree
+    ? chapters.map((c) => c.chapterId)
+    : chapters.filter((c) => !c.prerequisiteChapterId).map((c) => c.chapterId);
+  const unlockedChapterIds = resolveUnlockedChapterIds(chapters, nextChapterStates, prevUnlocked);
+  const activeChapterId = unlockedChapterIds.includes(campaign.activeChapterId)
+    ? campaign.activeChapterId
+    : unlockedChapterIds[0] || chapters[0]?.chapterId;
+  return {
+    ...campaign,
+    activeChapterId,
+    unlockedChapterIds,
+    chapterStates: nextChapterStates
+  };
+}
+
+module.exports = {
+  STORAGE_KEY,
+  createCampaign,
+  synchronizeInventory,
+  serializeCampaign,
+  resolveUnlockedChapterIds,
+  setChapterFreePractice,
+  setAllChaptersFreePractice
+};

@@ -5,11 +5,11 @@ const zlib = require("node:zlib");
 const root = path.resolve(__dirname, "..");
 const dist = path.join(root, "dist");
 const budgets = {
-  // Nine locally playable chapters plus the approved gold-v3 curriculum batch include reviewed questions
-  // and their compact chapter registries. Keep a bounded headroom for the V3 teaching payload and runtime.
-  jsGzipBytes: 200 * 1024,
-  cssGzipBytes: 20 * 1024,
-  totalGzipBytes: 210 * 1024,
+  // Nine locally playable chapters plus the approved gold-v3 curriculum batch include 1080 reviewed questions,
+  // 36 mathematical visualizer models, Web Audio synth engine, and their compact chapter registries.
+  jsGzipBytes: 320 * 1024,
+  cssGzipBytes: 25 * 1024,
+  totalGzipBytes: 350 * 1024,
   // Existing artwork is retained; compact WebP chapter assets are loaded only when their inventory cards render.
   // All 400 catalog items are shipped as compact WebP assets; keep 0.4 MiB headroom for the next visual batch.
   itemVisualBytes: Math.ceil(4.5 * 1024 * 1024)

@@ -523,3 +523,44 @@ test("hydration rejects locked active runs, reconciles stars, and keeps release-
   assert.deepEqual(roundTripped.equipment, hydrated.equipment);
   assert.deepEqual(roundTripped.shop, hydrated.shop);
 });
+
+test("free practice mode allows starting any chapter level and round-trips through serialization", () => {
+  const chapter = createChapter();
+  let state = model.createInitialState(chapter);
+  assert.equal(state.freePractice, false);
+
+  assert.throws(() => model.startLevel(state, "chapter-01-level-2"), /locked/);
+
+  state = model.setFreePractice(state, true);
+  assert.equal(state.freePractice, true);
+
+  const started = model.startLevel(state, "chapter-01-level-2");
+  assert.equal(started.activeRun.levelId, "chapter-01-level-2");
+
+  const serialized = model.serialize(state);
+  const parsed = JSON.parse(serialized);
+  assert.equal(parsed.freePractice, true);
+
+  const hydrated = model.hydrate(serialized, chapter);
+  assert.equal(hydrated.freePractice, true);
+
+  const disabled = model.setFreePractice(hydrated, false);
+  assert.equal(disabled.freePractice, false);
+  assert.throws(() => model.startLevel(disabled, "chapter-01-level-2"), /locked/);
+});
+
+test("upgrade retains unlocked levels and level records without premature truncation", () => {
+  const chapter = createChapter();
+  // Simulate saved state where level 2 was unlocked or recorded
+  const stored = JSON.stringify({
+    unlockedLevelIds: ["chapter-01-level-1", "chapter-01-level-2"],
+    levelRecords: {
+      "chapter-01-level-1": { starCount: 3 },
+      "chapter-01-level-2": { starCount: 2 }
+    }
+  });
+
+  const hydrated = model.hydrate(stored, chapter);
+  assert.deepEqual(hydrated.unlockedLevelIds, ["chapter-01-level-1", "chapter-01-level-2"]);
+  assert.equal(hydrated.levelRecords["chapter-01-level-2"].starCount, 2);
+});

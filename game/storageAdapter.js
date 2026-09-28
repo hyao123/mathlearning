@@ -271,4 +271,115 @@ function createAtomicSaveStore(storageProvider, options = {}) {
   };
 }
 
-module.exports = { ATOMIC_SAVE_STORAGE_KEY, INVENTORY_STORAGE_KEY, canonicalizeAtomicSave, createAtomicSaveStore, createInventoryStore, createResilientStateStore, mergeInventories, serializeInventory };
+const BACKUP_STORAGE_KEY = "math-quest-save-backup-v1";
+
+function encodeSaveCode(payload) {
+  const json = typeof payload === "string" ? payload : JSON.stringify(payload);
+  if (typeof Buffer !== "undefined") {
+    return Buffer.from(json, "utf8").toString("base64");
+  }
+  if (typeof btoa === "function" && typeof encodeURIComponent === "function") {
+    return btoa(unescape(encodeURIComponent(json)));
+  }
+  return json;
+}
+
+function decodeSaveCode(code) {
+  const trimmed = String(code || "").trim();
+  if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
+    return trimmed;
+  }
+  try {
+    if (typeof Buffer !== "undefined") {
+      return Buffer.from(trimmed, "base64").toString("utf8");
+    }
+    if (typeof atob === "function" && typeof decodeURIComponent === "function") {
+      return decodeURIComponent(escape(atob(trimmed)));
+    }
+  } catch {
+    // Return original string if base64 decode fails
+  }
+  return trimmed;
+}
+
+function exportSavePayload(saveStore) {
+  const raw = saveStore?.load?.();
+  const parsed = parseStoredObject(raw) || {};
+  const canonical = canonicalizeAtomicSave(parsed);
+  const jsonString = JSON.stringify(canonical, null, 2);
+  return {
+    app: "knowledge-quest",
+    version: ATOMIC_SAVE_STORAGE_KEY,
+    exportedAt: new Date().toISOString(),
+    save: canonical,
+    jsonString,
+    saveCode: encodeSaveCode(canonical)
+  };
+}
+
+function validateAndImportSave(saveStore, input) {
+  try {
+    let obj = input;
+    if (typeof input === "string") {
+      const decoded = decodeSaveCode(input);
+      obj = JSON.parse(decoded);
+    }
+    const savePayload = obj?.save || obj;
+    if (!savePayload || typeof savePayload !== "object" || Array.isArray(savePayload)) {
+      return { ok: false, error: "档案数据结构不符合规范" };
+    }
+    if (!savePayload.chapterStates && !savePayload.activeChapterId && !savePayload.inventory) {
+      return { ok: false, error: "未发现有效远征进度数据" };
+    }
+    const canonical = canonicalizeAtomicSave(savePayload);
+    const saveResult = saveStore?.save?.(JSON.stringify(canonical));
+    return { ok: true, canonical, saveResult };
+  } catch (err) {
+    return { ok: false, error: "档案解析失败: " + (err.message || String(err)) };
+  }
+}
+
+function createSessionBackup(storageProvider, saveStore) {
+  try {
+    const raw = saveStore?.load?.();
+    if (raw) {
+      storageProvider()?.setItem(BACKUP_STORAGE_KEY, raw);
+      return true;
+    }
+  } catch {}
+  return false;
+}
+
+function restoreSessionBackup(storageProvider, saveStore) {
+  try {
+    const backup = storageProvider()?.getItem(BACKUP_STORAGE_KEY);
+    if (backup) {
+      return validateAndImportSave(saveStore, backup);
+    }
+  } catch {}
+  return { ok: false, error: "未找到可恢复的备用快照" };
+}
+
+const StorageAdapter = {
+  ATOMIC_SAVE_STORAGE_KEY,
+  INVENTORY_STORAGE_KEY,
+  BACKUP_STORAGE_KEY,
+  canonicalizeAtomicSave,
+  createAtomicSaveStore,
+  createInventoryStore,
+  createResilientStateStore,
+  mergeInventories,
+  serializeInventory,
+  exportSavePayload,
+  validateAndImportSave,
+  encodeSaveCode,
+  decodeSaveCode,
+  createSessionBackup,
+  restoreSessionBackup
+};
+
+if (typeof globalThis !== "undefined" && !globalThis.StorageAdapter) {
+  globalThis.StorageAdapter = StorageAdapter;
+}
+
+module.exports = StorageAdapter;

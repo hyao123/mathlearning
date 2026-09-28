@@ -1,6 +1,18 @@
 const assert = require("node:assert/strict");
 const test = require("node:test");
-const { INVENTORY_STORAGE_KEY, ATOMIC_SAVE_STORAGE_KEY, createAtomicSaveStore, createInventoryStore, createResilientStateStore } = require("../game/storageAdapter.js");
+const {
+  INVENTORY_STORAGE_KEY,
+  ATOMIC_SAVE_STORAGE_KEY,
+  createAtomicSaveStore,
+  createInventoryStore,
+  createResilientStateStore,
+  exportSavePayload,
+  validateAndImportSave,
+  encodeSaveCode,
+  decodeSaveCode,
+  createSessionBackup,
+  restoreSessionBackup
+} = require("../game/storageAdapter.js");
 
 test("storage read failures fall back to an empty in-memory state", () => {
   const store = createResilientStateStore(() => ({
@@ -207,3 +219,105 @@ test("atomic save store reports when it had to fall back to memory", () => {
 
   assert.deepEqual(result, { ok: false, mode: "memory", revision: 1 });
 });
+
+test("exportSavePayload extracts canonical save and generates valid JSON string and save code", () => {
+  const storage = new Map();
+  const provider = () => ({
+    getItem(k) { return storage.get(k) ?? null; },
+    setItem(k, v) { storage.set(k, v); }
+  });
+  const store = createAtomicSaveStore(provider);
+  store.save(JSON.stringify({
+    version: "math-quest-campaign-v2",
+    activeChapterId: "chapter-02",
+    chapterStates: {
+      "chapter-01": { levelRecords: { "chapter-01-level-1": { starCount: 3 } } }
+    },
+    inventory: { "oak-log": 5 }
+  }));
+
+  const exported = exportSavePayload(store);
+  assert.equal(exported.app, "knowledge-quest");
+  assert.equal(exported.version, ATOMIC_SAVE_STORAGE_KEY);
+  assert.equal(typeof exported.exportedAt, "string");
+  assert.equal(exported.save.activeChapterId, "chapter-02");
+  assert.deepEqual(exported.save.inventory, { "oak-log": 5 });
+  assert.equal(typeof exported.saveCode, "string");
+  assert.ok(exported.saveCode.length > 20);
+
+  const decoded = decodeSaveCode(exported.saveCode);
+  const parsedDecoded = JSON.parse(decoded);
+  assert.equal(parsedDecoded.activeChapterId, "chapter-02");
+  assert.deepEqual(parsedDecoded.inventory, { "oak-log": 5 });
+});
+
+test("validateAndImportSave accepts JSON string, save object, and base64 save code", () => {
+  const storage = new Map();
+  const provider = () => ({
+    getItem(k) { return storage.get(k) ?? null; },
+    setItem(k, v) { storage.set(k, v); }
+  });
+  const store = createAtomicSaveStore(provider);
+
+  // 1. Import from valid object
+  const validObj = {
+    activeChapterId: "chapter-03",
+    chapterStates: {
+      "chapter-01": { levelRecords: {} },
+      "chapter-02": { levelRecords: {} }
+    },
+    inventory: { diamond: 2 }
+  };
+  const res1 = validateAndImportSave(store, validObj);
+  assert.equal(res1.ok, true);
+  assert.equal(JSON.parse(store.load()).activeChapterId, "chapter-03");
+  assert.deepEqual(JSON.parse(store.load()).inventory, { diamond: 2 });
+
+  // 2. Import from base64 save code
+  const code = encodeSaveCode({
+    activeChapterId: "chapter-05",
+    chapterStates: { "chapter-05": {} },
+    inventory: { emerald: 4 }
+  });
+  const res2 = validateAndImportSave(store, code);
+  assert.equal(res2.ok, true);
+  assert.equal(JSON.parse(store.load()).activeChapterId, "chapter-05");
+  assert.deepEqual(JSON.parse(store.load()).inventory, { emerald: 4 });
+
+  // 3. Reject invalid input
+  const res3 = validateAndImportSave(store, "invalid gibberish {[[");
+  assert.equal(res3.ok, false);
+  assert.match(res3.error, /档案解析失败/);
+
+  const res4 = validateAndImportSave(store, JSON.stringify({ randomField: 123 }));
+  assert.equal(res4.ok, false);
+  assert.match(res4.error, /未发现有效远征进度数据/);
+});
+
+test("createSessionBackup and restoreSessionBackup safeguard campaign state", () => {
+  const storage = new Map();
+  const provider = () => ({
+    getItem(k) { return storage.get(k) ?? null; },
+    setItem(k, v) { storage.set(k, v); }
+  });
+  const store = createAtomicSaveStore(provider);
+  store.save(JSON.stringify({
+    version: "math-quest-campaign-v2",
+    activeChapterId: "chapter-01",
+    chapterStates: { "chapter-01": {} },
+    inventory: { "oak-log": 10 }
+  }));
+
+  const backedUp = createSessionBackup(provider, store);
+  assert.equal(backedUp, true);
+
+  // Simulate loss / corruption in main save store
+  store.save(JSON.stringify({ activeChapterId: "chapter-01", chapterStates: {}, inventory: {} }));
+  assert.deepEqual(JSON.parse(store.load()).inventory, {});
+
+  // Restore from session backup
+  const restored = restoreSessionBackup(provider, store);
+  assert.equal(restored.ok, true);
+  assert.deepEqual(JSON.parse(store.load()).inventory, { "oak-log": 10 });
+});
+

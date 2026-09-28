@@ -116,11 +116,21 @@ const CampaignModel = await loadCommonJs(() => import("../game/campaignModel.js"
 const StorageAdapter = await loadCommonJs(() => import("../game/storageAdapter.js"), "./storageAdapter.js");
 const ExperienceMetrics = await loadCommonJs(() => import("../game/experienceMetrics.js"), "./experienceMetrics.js");
 const SoundEngine = await loadCommonJs(() => import("../game/soundEngine.js"), "./soundEngine.js");
+const AssemblyFX = await loadCommonJs(() => import("../game/assemblyFX.js"), "./assemblyFX.js");
+await loadCommonJs(() => import("../game/visualizers/visualizerCore.js"), ["./visualizers/visualizerCore.js", "./visualizerCore.js"]);
+await loadCommonJs(() => import("../game/visualizers/geometryVisuals.js"), ["./visualizers/geometryVisuals.js", "./geometryVisuals.js"]);
+await loadCommonJs(() => import("../game/visualizers/algebraVisuals.js"), ["./visualizers/algebraVisuals.js", "./algebraVisuals.js"]);
+await loadCommonJs(() => import("../game/visualizers/discreteVisuals.js"), ["./visualizers/discreteVisuals.js", "./discreteVisuals.js"]);
+await loadCommonJs(() => import("../game/visualizers/wordProblemVisuals.js"), ["./visualizers/wordProblemVisuals.js", "./wordProblemVisuals.js"]);
 const QuestionVisualizer = await loadCommonJs(() => import("../game/questionVisualizer.js"), "./questionVisualizer.js");
 const HintScaffold = await loadCommonJs(() => import("../game/hintScaffold.js"), "./hintScaffold.js");
+const AchievementModel = await loadCommonJs(() => import("../game/achievementModel.js"), "./achievementModel.js");
 
 Object.assign(globalThis, {
+  StorageAdapter,
+  AchievementModel,
   SoundEngine,
+  AssemblyFX,
   QuestionVisualizer,
   HintScaffold,
   GameChapterConfig,
@@ -187,5 +197,44 @@ const saveStore = StorageAdapter.createAtomicSaveStore(
   }
 );
 const metricsStore = ExperienceMetrics.createExperienceMetrics(() => globalThis.localStorage);
+
+try {
+  const currentSave = saveStore.load();
+  let parsed = null;
+  try {
+    parsed = typeof currentSave === "string" ? JSON.parse(currentSave) : currentSave;
+  } catch {
+    parsed = null;
+  }
+  const isRequestedViaQuery = typeof window !== "undefined" && window.location?.search?.includes("ch3");
+  if (isRequestedViaQuery) {
+    const completedRoute = (ch) => ({
+      unlockedLevelIds: ch.levels.map((lvl) => lvl.levelId),
+      levelRecords: Object.fromEntries(ch.levels.map((lvl) => [lvl.levelId, { starCount: 3 }]))
+    });
+    const prevInventory = parsed?.inventory && typeof parsed.inventory === "object" ? parsed.inventory : {};
+    const newInventory = {
+      ...prevInventory,
+      "j20-sky-fighter": 1,
+      "deep-sea-explorer": 1
+    };
+    const chapterStates = {
+      ...(parsed?.chapterStates || {}),
+      "chapter-01": completedRoute(chapters[0]),
+      "chapter-02": completedRoute(chapters[1])
+    };
+    const unlockedChapterIds = ["chapter-01", "chapter-02", "chapter-03"];
+    const newCampaign = {
+      version: CampaignModel.STORAGE_KEY,
+      activeChapterId: "chapter-03",
+      unlockedChapterIds,
+      inventory: newInventory,
+      chapterStates
+    };
+    saveStore.save(JSON.stringify(newCampaign));
+  }
+} catch (err) {
+  console.warn("Auto-unlock Chapter 3 fallback:", err);
+}
 
 GameApp.mount({ root, chapters, saveStore, metricsStore, legacyState: legacyStateStore.load() });

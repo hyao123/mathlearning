@@ -120,14 +120,14 @@
       examples: [
         { title: "先乘后减", difficulty: "基础", question: "用 1、2、3、4 组成没有重复数字的两位数，且个位不是 4，有多少个？", answer: "9 个", analysis: "全部两位数 4×3=12 个，个位是 4 的有 3 个，所以 12-3=9。" },
         { title: "分类分步", difficulty: "进阶", question: "早餐可选中式或西式，中式 2 种主食配 2 种饮品，西式 3 种套餐，共多少种？", answer: "7 种", analysis: "中式 2×2=4 种，西式 3 种，分类相加 7 种。" },
-        { title: "容斥综合", difficulty: "提高", question: "30 人中喜欢画画 16 人，喜欢唱歌 14 人，两项都喜欢 5 人，至少喜欢一项的有多少人？", answer: "25 人", analysis: "16+14-5=25。" }
+        { title: "容斥综合", difficulty: "提高", question: "有 16 人喜欢画画，14 人喜欢唱歌，5 人两项都喜欢。至少喜欢一项的有多少人？", answer: "25 人", analysis: "16+14-5=25。" }
       ],
       practices: [
         { id: "counting-transfer-1", title: "限制位置", difficulty: "基础", prompt: "用 1、2、3 可以组成多少个没有重复数字的两位数？", answer: "6", explanation: "十位 3 种，个位剩 2 种，共 3×2=6。", hints: ["先选十位。", "不能重复。"], solutionSteps: ["十位有 3 种。", "个位有 2 种。", "3×2=6。"], commonMistakes: ["把 11、22、33 算进去。", "只列部分情况。"] },
         { id: "counting-transfer-2", title: "分类路线", difficulty: "基础", prompt: "从 A 到 C，可以直达有 2 条路；也可以经 B，A 到 B 有 2 条路，B 到 C 有 3 条路。共有多少种走法？", answer: "8", explanation: "直达 2 种，经 B 有 2×3=6 种，共 8 种。", hints: ["先分成直达和经 B 两类。", "经 B 是分步。"], solutionSteps: ["直达：2 种。", "经 B：2×3=6 种。", "总数 2+6=8 种。"], commonMistakes: ["把 2、2、3 全部相乘。", "只算经 B 的路线。"] },
-        { id: "counting-transfer-3", title: "至少一项", difficulty: "进阶", prompt: "全班 28 人，参加数学社 15 人，参加科学社 12 人，两社都参加 4 人。至少参加一个社团的有多少人？", answer: "23", explanation: "15+12-4=23。", hints: ["两社都参加的人被加了两次。", "要减去一次重叠。"], solutionSteps: ["数学社 15 人。", "科学社 12 人。", "重叠 4 人减一次。", "15+12-4=23。"], commonMistakes: ["直接 15+12=27。", "把重叠减了两次。"] },
+        { id: "counting-transfer-3", title: "至少一项", difficulty: "进阶", prompt: "参加数学社的有 15 人，参加科学社的有 12 人，两社都参加的有 4 人。至少参加一个社团的有多少人？", answer: "23", explanation: "15+12-4=23。", hints: ["两社都参加的人被加了两次。", "要减去一次重叠。"], solutionSteps: ["数学社 15 人。", "科学社 12 人。", "重叠 4 人减一次。", "15+12-4=23。"], commonMistakes: ["直接 15+12=27。", "把重叠减了两次。"] },
         { id: "counting-transfer-4", title: "不符合条件", difficulty: "进阶", prompt: "用 0、1、2、3 组成没有重复数字的两位数，一共有多少个？", answer: "9", explanation: "十位不能是 0，有 3 种；个位剩 3 种，共 9 个。", hints: ["两位数十位不能为 0。", "十位确定后个位还剩 3 种。"], solutionSteps: ["十位可选 1、2、3，共 3 种。", "个位可从剩下 3 个数字中选。", "3×3=9。"], commonMistakes: ["把 0 放到十位。", "用 4×3=12。"] },
-        { id: "counting-transfer-5", title: "只参加一项", difficulty: "提高", prompt: "30 人中喜欢篮球 18 人，喜欢足球 15 人，两项都喜欢 6 人。只喜欢一项的有多少人？", answer: "21", explanation: "只喜欢篮球 18-6=12，只喜欢足球 15-6=9，共 21 人。", hints: ["只喜欢要从每一类中去掉重叠。", "不要把两项都喜欢的人算进去。"], solutionSteps: ["只篮球：18-6=12。", "只足球：15-6=9。", "只一项：12+9=21。"], commonMistakes: ["用 18+15-6=27，那是至少一项。", "把重叠算进只一项。"] },
+        { id: "counting-transfer-5", title: "只参加一项", difficulty: "提高", prompt: "喜欢篮球的有 18 人，喜欢足球的有 15 人，两项都喜欢的有 6 人。只喜欢一项的有多少人？", answer: "21", explanation: "只喜欢篮球 18-6=12，只喜欢足球 15-6=9，共 21 人。", hints: ["只喜欢要从每一类中去掉重叠。", "不要把两项都喜欢的人算进去。"], solutionSteps: ["只篮球：18-6=12。", "只足球：15-6=9。", "只一项：12+9=21。"], commonMistakes: ["用 18+15-6=27，那是至少一项。", "把重叠算进只一项。"] },
         { id: "counting-transfer-6", title: "综合换乘", difficulty: "挑战", prompt: "用 1、2、3、4 组成没有重复数字的三位数，要求百位是奇数，且个位不是 4，一共有多少个？", answer: "8", explanation: "百位可选 1 或 3。若百位确定，剩 3 个数，个位不能是 4：当 4 还在可选中时个位 2 种，十位 2 种，共每个百位 4 种，两种百位共 8 种。", hints: ["先选百位。", "再处理个位限制。"], solutionSteps: ["百位可选 1、3，共 2 种。", "百位确定后，剩 3 个数字。", "个位不能选 4，所以个位有 2 种。", "十位剩 2 种。", "2×2×2=8。"], commonMistakes: ["先算全部再乱减。", "忘记百位奇数限制。"] }
       ],
       mathEssence: {

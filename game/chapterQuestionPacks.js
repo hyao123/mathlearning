@@ -45,7 +45,7 @@ const supplementalQuestionsByModule = Object.freeze({
     { id: "chapter-01-inclusion-exclusion-basic-1", title: "两项爱好", difficulty: "基础", prompt: "有 9 人喜欢足球，8 人喜欢绘画，3 人两项都喜欢。至少喜欢一项的有多少人？", answer: "14", explanation: "9+8-3=14，重叠的 3 人只算一次。" },
     { id: "chapter-01-inclusion-exclusion-advance-1", title: "反求重叠", difficulty: "进阶", prompt: "喜欢读书的有 18 人，喜欢运动的有 15 人，至少喜欢一项的有 27 人。两项都喜欢的有多少人？", answer: "6", explanation: "18+15=33，比 27 多出的 6 人就是被重复算到的重叠部分。" },
     { id: "chapter-01-inclusion-exclusion-improve-1", title: "都不喜欢", difficulty: "提高", prompt: "全班 40 人，16 人喜欢棋类，19 人喜欢球类，5 人两项都喜欢。两项都不喜欢的有多少人？", answer: "10", explanation: "至少喜欢一项的有 16+19-5=30 人，所以都不喜欢的有 40-30=10 人。" },
-    { id: "chapter-01-inclusion-exclusion-challenge-1", title: "只喜欢一项", difficulty: "挑战", prompt: "有 20 人会游泳，17 人会骑车，7 人两项都会。只会其中一项的有多少人？", answer: "23", explanation: "只会游泳有 20-7=13 人，只会骑车有 17-7=10 人，共 23 人。" }
+    { id: "chapter-01-inclusion-exclusion-challenge-1", title: "只会一项", difficulty: "挑战", prompt: "有 20 人会游泳，17 人会骑车，7 人两项都会。只会其中一项的有多少人？", answer: "23", explanation: "只会游泳有 20-7=13 人，只会骑车有 17-7=10 人，共 23 人。" }
   ]),
   "unit-rate": Object.freeze([
     { id: "chapter-01-unit-rate-advance-1", title: "每本价格", difficulty: "进阶", prompt: "6 本练习册共 48 元，买 9 本同样的练习册需要多少元？", answer: "72", explanation: "每本 48÷6=8 元，9 本是 8×9=72 元。" },
