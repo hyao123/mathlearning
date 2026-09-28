@@ -738,6 +738,7 @@ function appendRewardOutcome(parent, item, transaction, className = "reward-chip
   chip.dataset.itemId = item.id;
   chip.dataset.rewardStatus = transaction.status;
   chip.dataset.rewardType = transaction.rewardType || "fixed";
+  chip.dataset.rarity = item.rarity || "common";
   if (transaction.previewKind === "random-option") chip.dataset.randomRewardOption = "";
   const highPriority = parent.matches?.("[data-reward-preview], [data-reward-popover]") || parent.closest?.("[data-reward-preview], [data-reward-popover]");
   chip.append(createItemIcon(item, "pixel-icon", { priority: highPriority ? "high" : "auto" }));

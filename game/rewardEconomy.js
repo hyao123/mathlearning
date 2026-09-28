@@ -116,8 +116,29 @@ function settleResolution(args) {
   };
 }
 
+function getPityProgress(pityEnergy) {
+  const energy = Number.isInteger(pityEnergy) && pityEnergy >= 0 ? pityEnergy : 0;
+  return {
+    current: energy,
+    max: PITY_THRESHOLD,
+    isOverloaded: energy >= PITY_THRESHOLD
+  };
+}
+
+function getStreakProgress(streak) {
+  const count = Number.isInteger(streak) && streak >= 0 ? streak : 0;
+  const remainder = count % 3;
+  return {
+    count,
+    nextChestIn: remainder === 0 && count > 0 ? 3 : 3 - remainder,
+    isStreakHot: count >= 3
+  };
+}
+
 module.exports = {
   DIFFICULTY_RANK,
   PITY_THRESHOLD,
-  settleResolution
+  settleResolution,
+  getPityProgress,
+  getStreakProgress
 };

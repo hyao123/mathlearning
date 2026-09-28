@@ -37,4 +37,26 @@ function getRewardPresentation(transactions, getItem) {
   };
 }
 
-module.exports = { FULL_REVEAL_RARITIES, awardedTransactions, nonAwardedTransactions, getRewardPresentation };
+function getRewardSummary(transactions = [], getItem = () => null) {
+  const awarded = awardedTransactions(transactions);
+  const count = awarded.reduce((sum, t) => sum + (t.awardedQuantity || 0), 0);
+  const items = awarded.map((t) => {
+    const item = getItem(t.itemId);
+    return {
+      itemId: t.itemId,
+      name: item?.name || t.itemId,
+      rarity: item?.rarity || "common",
+      quantity: t.awardedQuantity,
+      rewardType: t.rewardType
+    };
+  });
+  return { totalCount: count, items };
+}
+
+module.exports = {
+  FULL_REVEAL_RARITIES,
+  awardedTransactions,
+  nonAwardedTransactions,
+  getRewardPresentation,
+  getRewardSummary
+};

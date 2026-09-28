@@ -394,21 +394,18 @@ export function createGameRenderers(app) {
     if (!transactions.length) return;
     const overlay = document.createElement("aside");
     overlay.className = `reward-popover reward-popover--${presentation.mode}`;
-    if (presentation.mode === "reveal") overlay.dataset.rewardPopover = "";
-    else overlay.dataset.rewardToast = "";
-    overlay.setAttribute("role", "status");
-    appendText(overlay, "p", presentation.mode === "reveal" ? "特别补给揭晓" : "材料已入库", "quest-game__eyebrow");
-    appendText(overlay, "h2", presentation.mode === "reveal" ? "获得特别补给！" : "材料已装进背包", "reward-popover__title");
-    if (presentation.mode === "toast") {
-      appendText(overlay, "p", "🎯 战利品已同步至军备总装库，稳步推进大国重器研发！", "reward-popover__subcopy");
+    if (presentation.mode === "reveal") {
+      overlay.dataset.rewardPopover = "";
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+    } else {
+      overlay.dataset.rewardToast = "";
+      overlay.setAttribute("role", "status");
     }
-    const rewards = document.createElement("div");
-    rewards.className = "reward-popover__items";
-    transactions.forEach((transaction) => {
-      const item = GameItemCatalog.getItem(transaction.itemId);
-      if (item) appendRewardOutcome(rewards, item, transaction, "item-chip reward-popover__item");
-    });
-    overlay.append(rewards);
+
+    const contentBox = document.createElement("div");
+    contentBox.className = presentation.mode === "reveal" ? "reward-popover__card" : "reward-toast__content";
+
     if (presentation.mode === "reveal") {
       const crateVisual = document.createElement("div");
       crateVisual.className = "quantum-crate-reveal";
@@ -428,12 +425,30 @@ export function createGameRenderers(app) {
         </div>
         ${hasStreakChest ? `<div class="quantum-crate-banner">🔥 战术连胜达成！专属量子补给箱空投成功</div>` : ""}
       `;
-      overlay.prepend(crateVisual);
+      contentBox.append(crateVisual);
+    }
 
-      const button = appendText(overlay, "button", "继续前进", "pixel-button pixel-button--primary reward-popover__action");
+    appendText(contentBox, "p", presentation.mode === "reveal" ? "特别补给揭晓" : "材料已入库", "quest-game__eyebrow");
+    appendText(contentBox, "h2", presentation.mode === "reveal" ? (presentation.hasStreakChest ? "🔥 连胜空投战备补给！" : "获得特别补给！") : "材料已装进背包", "reward-popover__title");
+    if (presentation.mode === "toast") {
+      appendText(contentBox, "p", "🎯 战利品已同步至军备总装库，稳步推进大国重器研发！", "reward-popover__subcopy");
+    }
+
+    const rewards = document.createElement("div");
+    rewards.className = "reward-popover__items";
+    transactions.forEach((transaction) => {
+      const item = GameItemCatalog.getItem(transaction.itemId);
+      if (item) appendRewardOutcome(rewards, item, transaction, "item-chip reward-popover__item");
+    });
+    contentBox.append(rewards);
+
+    if (presentation.mode === "reveal") {
+      const button = appendText(contentBox, "button", "继续前进", "pixel-button pixel-button--primary reward-popover__action");
       button.type = "button";
       button.dataset.dismissRewardPopover = "";
     }
+
+    overlay.append(contentBox);
     parent.append(overlay);
   }
 
@@ -1165,8 +1180,12 @@ export function createGameRenderers(app) {
       .map((itemId) => GameItemCatalog.getItem(itemId)?.name || itemId)
       .filter(Boolean);
     if (names.length !== 4) return;
-    const line = appendText(parent, "p", names.join(" → "), "reward-preview__chain");
+    const line = document.createElement("p");
+    line.className = "reward-preview__chain";
     line.dataset.rewardChain = "";
+    line.title = `研发链条：${names.join(" → ")}`;
+    line.innerHTML = `<span class="reward-chain-pill"><span class="reward-chain-prefix">研发链:</span><span class="chain-step is-source">${names[0]}</span><span class="chain-arrow">→</span><span class="chain-step">${names[1]}</span><span class="chain-arrow">→</span><span class="chain-step">${names[2]}</span><span class="chain-arrow">→</span><span class="chain-step is-target">${names[3]}</span></span>`;
+    parent.append(line);
   }
 
   function renderRewardPreview(parent, run) {
@@ -1629,9 +1648,7 @@ export function createGameRenderers(app) {
     const unlock = appendText(celebration, "p", unlockText, "settlement-celebration__unlock");
     unlock.dataset.unlockedNextLevel = "";
     section.append(celebration);
-    renderSettlementMindCard(section, level, chapter);
-    renderStageCraftingCallout(section, levelNumber);
-    renderChapterFinale(section);
+
     const stars = appendText(section, "output", `${"★".repeat(settlement.starCount)}${"☆".repeat(3 - settlement.starCount)}`, "settlement-stars");
     stars.dataset.settlementStars = "";
     stars.setAttribute("aria-label", `获得 ${settlement.starCount} 星`);
@@ -1669,6 +1686,9 @@ export function createGameRenderers(app) {
       mapButton.type = "button";
       mapButton.dataset.returnMap = "";
     }
+    renderSettlementMindCard(section, level, chapter);
+    renderStageCraftingCallout(section, levelNumber);
+    renderChapterFinale(section);
     root.append(section);
   }
 
