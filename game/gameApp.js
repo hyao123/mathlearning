@@ -232,6 +232,12 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
       pendingFocusKey = null;
       return;
     }
+    const primaryAction = root.querySelector("[data-continue-resolved]:not([disabled]), [data-continue-recovery-resolved]:not([disabled]), [data-next-level]:not([disabled])");
+    if (primaryAction && !showAchievementsModal && !showSaveModal && !activeAssemblySequence) {
+      primaryAction.focus({ preventScroll: true });
+      pendingFocusKey = null;
+      return;
+    }
     if (pendingFocusKey) {
       const target = Array.from(root.querySelectorAll("[data-focus-key]"))
         .find((element) => element.dataset.focusKey === pendingFocusKey);

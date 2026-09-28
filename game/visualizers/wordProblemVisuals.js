@@ -1907,16 +1907,44 @@ function renderEngineeringProgress(question) {
  * 18. 奇偶与整除特性卡 (Parity & Divisibility Card)
  */
 
-function renderConcentrationVisual(question) {
+function renderConcentrationVisual(question, options = {}) {
+  const isRevealed = options && options.status ? (options.status === "retry" || options.status === "resolved") : true;
   const prompt = question.prompt || "";
   const card = document.createElement("div");
   card.className = "question-visual question-visual--concentration";
   card.dataset.visualType = "concentration";
 
   const nums = parseNumbers(prompt);
-  const solute = nums[0] || 20;
-  const solution = nums[1] || 100;
-  const conc = Math.round((solute / solution) * 100) || 20;
+  let solute = 2;
+  let solution = 10;
+  let conc = 20;
+
+  // Detect percentage in prompt if present
+  const pctMatch = prompt.match(/(\d+(?:\.\d+)?)\s*%/);
+  const waterMatch = prompt.match(/(\d+)\s*克水.*加入\s*(\d+)\s*克/);
+  if (waterMatch) {
+    const water = Number(waterMatch[1]);
+    solute = Number(waterMatch[2]);
+    solution = water + solute;
+    conc = Math.round((solute / solution) * 100);
+  } else if (pctMatch) {
+    conc = Number(pctMatch[1]);
+    const otherNums = nums.filter(n => n !== conc);
+    solution = otherNums[0] || 10;
+    solute = Math.round(solution * (conc / 100) * 10) / 10;
+  } else if (nums.length >= 2) {
+    if (nums[0] > nums[1]) {
+      solution = nums[0];
+      solute = nums[1];
+    } else {
+      solute = nums[0];
+      solution = nums[1];
+    }
+    conc = Math.round((solute / solution) * 100);
+  }
+
+  const isAskingConc = prompt.includes("浓度") || prompt.includes("含盐率") || prompt.includes("含糖率") || prompt.includes("百分之几");
+  const isAskingSolute = prompt.includes("含溶质") || prompt.includes("需要溶质") || prompt.includes("需要多少克盐") || prompt.includes("需要多少克糖");
 
   const header = document.createElement("div");
   header.className = "question-visual__header";
@@ -1930,59 +1958,69 @@ function renderConcentrationVisual(question) {
   const svgHeight = 150;
   const svg = createSvg(svgWidth, svgHeight, `0 0 ${svgWidth} ${svgHeight}`);
 
-  const bx = 100, by = 35, bw = 80, bh = 85;
+  const bx = 65, by = 25, bw = 85, bh = 95;
   const beaker = document.createElementNS(SVG_NS, "rect");
   beaker.setAttribute("x", String(bx)); beaker.setAttribute("y", String(by));
   beaker.setAttribute("width", String(bw)); beaker.setAttribute("height", String(bh));
-  beaker.setAttribute("rx", "4");
-  beaker.setAttribute("fill", "rgba(15, 23, 42, 0.6)");
+  beaker.setAttribute("rx", "6");
+  beaker.setAttribute("fill", "rgba(15, 23, 42, 0.65)");
   beaker.setAttribute("stroke", "#38bdf8"); beaker.setAttribute("stroke-width", "2");
   svg.append(beaker);
 
+  const waterH = Math.round(bh * 0.75);
   const water = document.createElementNS(SVG_NS, "rect");
-  water.setAttribute("x", String(bx + 3)); water.setAttribute("y", String(by + 25));
-  water.setAttribute("width", String(bw - 6)); water.setAttribute("height", String(bh - 28));
-  water.setAttribute("rx", "2");
+  water.setAttribute("x", String(bx + 3)); water.setAttribute("y", String(by + bh - waterH));
+  water.setAttribute("width", String(bw - 6)); water.setAttribute("height", String(waterH - 3));
+  water.setAttribute("rx", "3");
   water.setAttribute("fill", "rgba(56, 189, 248, 0.4)");
   svg.append(water);
 
+  const soluteH = Math.max(8, Math.round(waterH * (conc / 100)));
   const soluteLayer = document.createElementNS(SVG_NS, "rect");
-  soluteLayer.setAttribute("x", String(bx + 3)); soluteLayer.setAttribute("y", String(by + bh - 18));
-  soluteLayer.setAttribute("width", String(bw - 6)); soluteLayer.setAttribute("height", "15");
+  soluteLayer.setAttribute("x", String(bx + 3)); soluteLayer.setAttribute("y", String(by + bh - soluteH));
+  soluteLayer.setAttribute("width", String(bw - 6)); soluteLayer.setAttribute("height", String(soluteH - 2));
+  soluteLayer.setAttribute("rx", "2");
   soluteLayer.setAttribute("fill", "#f59e0b"); soluteLayer.setAttribute("opacity", "0.85");
   svg.append(soluteLayer);
 
   const bkrTag = document.createElementNS(SVG_NS, "text");
-  bkrTag.setAttribute("x", String(bx + bw / 2)); bkrTag.setAttribute("y", String(by + 52));
+  bkrTag.setAttribute("x", String(bx + bw / 2)); bkrTag.setAttribute("y", String(by + bh / 2));
   bkrTag.setAttribute("text-anchor", "middle");
-  bkrTag.setAttribute("font-size", "11"); bkrTag.setAttribute("font-weight", "bold");
-  bkrTag.setAttribute("fill", "#f8fafc"); bkrTag.textContent = `${conc}% 溶液`;
+  bkrTag.setAttribute("font-size", "12"); bkrTag.setAttribute("font-weight", "bold");
+  bkrTag.setAttribute("fill", "#f8fafc");
+  bkrTag.textContent = (!isRevealed && isAskingConc) ? "? % 溶液" : `${conc}% 溶液`;
   svg.append(bkrTag);
 
-  const rx = 220;
+  const rx = 185;
+  const soluteDisplay = (!isRevealed && isAskingSolute) ? "? 升" : `${solute} 升/克`;
   const t1 = document.createElementNS(SVG_NS, "text");
-  t1.setAttribute("x", String(rx)); t1.setAttribute("y", "50");
+  t1.setAttribute("x", String(rx)); t1.setAttribute("y", "45");
   t1.setAttribute("font-size", "12"); t1.setAttribute("font-weight", "bold");
-  t1.setAttribute("fill", "#f59e0b"); t1.textContent = `▪ 溶质质量 (纯物): ${solute} 克`;
+  t1.setAttribute("fill", "#f59e0b"); t1.textContent = `▪ 溶质质量 (有效成分): ${soluteDisplay}`;
   svg.append(t1);
 
   const t2 = document.createElementNS(SVG_NS, "text");
-  t2.setAttribute("x", String(rx)); t2.setAttribute("y", "75");
+  t2.setAttribute("x", String(rx)); t2.setAttribute("y", "72");
   t2.setAttribute("font-size", "12"); t2.setAttribute("font-weight", "bold");
-  t2.setAttribute("fill", "#38bdf8"); t2.textContent = `▪ 溶剂质量 (水): ${solution - solute} 克`;
+  t2.setAttribute("fill", "#38bdf8"); t2.textContent = `▪ 溶液总质量 (溶质+水): ${solution} 升/克`;
   svg.append(t2);
 
+  const formulaText = isAskingConc
+    ? (isRevealed ? `▪ 浓度 ＝ ${solute} ÷ ${solution} ＝ ${question.answer || conc}%` : `▪ 浓度 ＝ ${solute} ÷ ${solution} ＝ ? %`)
+    : (isRevealed ? `▪ 溶质 ＝ ${solution} × ${conc}% ＝ ${question.answer || solute}` : `▪ 溶质 ＝ ${solution} × ${conc}% ＝ ?`);
+
   const t3 = document.createElementNS(SVG_NS, "text");
-  t3.setAttribute("x", String(rx)); t3.setAttribute("y", "100");
-  t3.setAttribute("font-size", "12"); t3.setAttribute("font-weight", "bold");
-  t3.setAttribute("fill", "#22c55e"); t3.textContent = `▪ 溶液总质量 = ${solution} 克`;
+  t3.setAttribute("x", String(rx)); t3.setAttribute("y", "102");
+  t3.setAttribute("font-size", "13"); t3.setAttribute("font-weight", "bold");
+  t3.setAttribute("fill", isRevealed ? "#22c55e" : "#f59e0b");
+  t3.textContent = formulaText;
   svg.append(t3);
 
   card.append(svg);
 
   const legend = document.createElement("p");
   legend.className = "question-visual__legend";
-  legend.textContent = "🧪 浓度问题不变量解法：加水稀释时“溶质质量永远不变”；蒸发水分时“溶质质量依然不变”。";
+  legend.textContent = "🧪 浓度不变量解法：加水稀释时溶质质量保持不变；溶质质量 ＝ 溶液质量 × 浓度。";
   card.append(legend);
 
   return card;

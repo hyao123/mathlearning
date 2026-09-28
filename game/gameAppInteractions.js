@@ -607,8 +607,44 @@ export function createGameInteractions(app) {
   }
 
   function handleKeydown(event) {
-    if (event.key === "Enter" && event.target.matches?.("[data-answer-input]") && app.screen === "challenge" && app.state.activeRun?.status === "active") submitCurrentAnswer();
-    if (event.key === "Enter" && event.target.matches?.("[data-answer-input]") && app.screen === "recovery-challenge" && app.state.activeChallengeRun?.status === "active") submitCurrentRecoveryAnswer();
+    if (event.key === "Enter") {
+      if (app.screen === "challenge") {
+        if (app.state.activeRun?.status === "active" && event.target.matches?.("[data-answer-input]")) {
+          submitCurrentAnswer();
+          return;
+        }
+        if (app.state.activeRun?.status === "resolved") {
+          const continueBtn = app.root.querySelector("[data-continue-resolved]");
+          if (continueBtn && !continueBtn.disabled) {
+            continueBtn.click();
+            return;
+          }
+        }
+      } else if (app.screen === "recovery-challenge") {
+        if (app.state.activeChallengeRun?.status === "active" && event.target.matches?.("[data-answer-input]")) {
+          submitCurrentRecoveryAnswer();
+          return;
+        }
+        if (app.state.activeChallengeRun?.status === "resolved") {
+          const continueBtn = app.root.querySelector("[data-continue-recovery-resolved]");
+          if (continueBtn && !continueBtn.disabled) {
+            continueBtn.click();
+            return;
+          }
+        }
+      } else if (app.screen === "settlement") {
+        const nextLevelBtn = app.root.querySelector("[data-next-level]");
+        if (nextLevelBtn && !nextLevelBtn.disabled) {
+          nextLevelBtn.click();
+          return;
+        }
+        const returnMapBtn = app.root.querySelector("[data-return-map]");
+        if (returnMapBtn && !returnMapBtn.disabled) {
+          returnMapBtn.click();
+          return;
+        }
+      }
+    }
     if ((event.key === "d" || event.key === "D") && !["INPUT", "TEXTAREA"].includes(event.target.tagName) && app.screen === "challenge") {
       app.scratchpad?.toggle();
       return;

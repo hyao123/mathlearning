@@ -588,6 +588,120 @@ function renderGeometryCounting(question, options = {}) {
     return card;
   }
 
+  if (prompt.includes("三角形")) {
+    const isDiagonalRect = (prompt.includes("对角线") || prompt.includes("交于一点")) && (prompt.includes("长方形") || prompt.includes("正方形"));
+    const segMatch = prompt.match(/分成\s*(\d+)\s*段/);
+    const lineMatch = prompt.match(/(\d+)\s*条分割线/);
+    const baseSegs = segMatch ? Number(segMatch[1]) : (lineMatch ? Number(lineMatch[1]) + 1 : (nums.find((n) => n >= 2 && n <= 8) || 5));
+    const totalTris = Math.round(baseSegs * (baseSegs + 1) / 2);
+
+    const header = document.createElement("div");
+    header.className = "question-visual__header";
+    header.innerHTML = `
+      <span class="question-visual__badge">📐 三角形图形有序计数</span>
+      <span class="question-visual__subbadge">${isDiagonalRect ? "对角线交汇区域分解" : "底边线段与顶点组合对应"}</span>
+    `;
+    card.append(header);
+
+    const svgWidth = 460;
+    const svgHeight = 155;
+    const svg = createSvg(svgWidth, svgHeight, `0 0 ${svgWidth} ${svgHeight}`);
+
+    if (isDiagonalRect) {
+      const rx = 55, ry = 25, rw = 120, rh = 90;
+      const rect = document.createElementNS(SVG_NS, "rect");
+      rect.setAttribute("x", String(rx)); rect.setAttribute("y", String(ry));
+      rect.setAttribute("width", String(rw)); rect.setAttribute("height", String(rh));
+      rect.setAttribute("fill", "rgba(56, 189, 248, 0.1)");
+      rect.setAttribute("stroke", "#38bdf8"); rect.setAttribute("stroke-width", "2");
+      svg.append(rect);
+
+      const d1 = document.createElementNS(SVG_NS, "line");
+      d1.setAttribute("x1", String(rx)); d1.setAttribute("y1", String(ry));
+      d1.setAttribute("x2", String(rx + rw)); d1.setAttribute("y2", String(ry + rh));
+      d1.setAttribute("stroke", "#f59e0b"); d1.setAttribute("stroke-width", "2");
+      svg.append(d1);
+
+      const d2 = document.createElementNS(SVG_NS, "line");
+      d2.setAttribute("x1", String(rx + rw)); d2.setAttribute("y1", String(ry));
+      d2.setAttribute("x2", String(rx)); d2.setAttribute("y2", String(ry + rh));
+      d2.setAttribute("stroke", "#f59e0b"); d2.setAttribute("stroke-width", "2");
+      svg.append(d2);
+
+      const tx = 210;
+      const l1 = document.createElementNS(SVG_NS, "text");
+      l1.setAttribute("x", String(tx)); l1.setAttribute("y", "48");
+      l1.setAttribute("font-size", "12"); l1.setAttribute("font-weight", "bold");
+      l1.setAttribute("fill", "#38bdf8"); l1.textContent = "▪ 基本三角形区域 (单个): 4 个";
+      svg.append(l1);
+
+      const l2 = document.createElementNS(SVG_NS, "text");
+      l2.setAttribute("x", String(tx)); l2.setAttribute("y", "76");
+      l2.setAttribute("font-size", "12"); l2.setAttribute("font-weight", "bold");
+      l2.setAttribute("fill", "#a78bfa"); l2.textContent = "▪ 组合三角形区域 (由2个拼接): 4 个";
+      svg.append(l2);
+
+      const l3 = document.createElementNS(SVG_NS, "text");
+      l3.setAttribute("x", String(tx)); l3.setAttribute("y", "106");
+      l3.setAttribute("font-size", "13"); l3.setAttribute("font-weight", "bold");
+      l3.setAttribute("fill", isRevealed ? "#22c55e" : "#f59e0b");
+      l3.textContent = isRevealed ? "▪ 三角形总数 ＝ 4 ＋ 4 ＝ 8 个" : "▪ 三角形总数 ＝ 4 ＋ 4 ＝ ? 个";
+      svg.append(l3);
+    } else {
+      const apexX = 110, apexY = 25;
+      const baseY = 120;
+      const bStartX = 25, bEndX = 195;
+      const step = (bEndX - bStartX) / baseSegs;
+
+      for (let i = 0; i <= baseSegs; i++) {
+        const bx = bStartX + i * step;
+        const line = document.createElementNS(SVG_NS, "line");
+        line.setAttribute("x1", String(apexX)); line.setAttribute("y1", String(apexY));
+        line.setAttribute("x2", String(bx)); line.setAttribute("y2", String(baseY));
+        line.setAttribute("stroke", i === 0 || i === baseSegs ? "#38bdf8" : "#94a3b8");
+        line.setAttribute("stroke-width", i === 0 || i === baseSegs ? "2.5" : "1.5");
+        svg.append(line);
+      }
+
+      const bLine = document.createElementNS(SVG_NS, "line");
+      bLine.setAttribute("x1", String(bStartX)); bLine.setAttribute("y1", String(baseY));
+      bLine.setAttribute("x2", String(bEndX)); bLine.setAttribute("y2", String(baseY));
+      bLine.setAttribute("stroke", "#38bdf8"); bLine.setAttribute("stroke-width", "3");
+      svg.append(bLine);
+
+      const tx = 220;
+      const l1 = document.createElementNS(SVG_NS, "text");
+      l1.setAttribute("x", String(tx)); l1.setAttribute("y", "45");
+      l1.setAttribute("font-size", "12"); l1.setAttribute("font-weight", "bold");
+      l1.setAttribute("fill", "#38bdf8"); l1.textContent = `▪ 底边基本线段数: ${baseSegs} 段`;
+      svg.append(l1);
+
+      const l2 = document.createElementNS(SVG_NS, "text");
+      l2.setAttribute("x", String(tx)); l2.setAttribute("y", "72");
+      l2.setAttribute("font-size", "12"); l2.setAttribute("font-weight", "bold");
+      l2.setAttribute("fill", "#a78bfa"); l2.textContent = "▪ 对应法则: 底边每条线段对应 1 个三角形";
+      svg.append(l2);
+
+      const l3 = document.createElementNS(SVG_NS, "text");
+      l3.setAttribute("x", String(tx)); l3.setAttribute("y", "102");
+      l3.setAttribute("font-size", "13"); l3.setAttribute("font-weight", "bold");
+      l3.setAttribute("fill", isRevealed ? "#22c55e" : "#f59e0b");
+      l3.textContent = isRevealed
+        ? `▪ 三角形总数 ＝ ${baseSegs} × (${baseSegs} + 1) ÷ 2 ＝ ${totalTris} 个`
+        : `▪ 三角形总数 ＝ ${baseSegs} × (${baseSegs} + 1) ÷ 2 ＝ ? 个`;
+      svg.append(l3);
+    }
+
+    card.append(svg);
+
+    const legend = document.createElement("p");
+    legend.className = "question-visual__legend";
+    legend.textContent = `📐 计数原理：从三角形顶点向底边引分割线时，底边上共有多少条线段，就能组成多少个三角形。`;
+    card.append(legend);
+
+    return card;
+  }
+
   const is3x3 = prompt.includes("3×3") || prompt.includes("九宫");
   const is2x3 = prompt.includes("2×3");
   const is2x2 = prompt.includes("2×2") || prompt.includes("2 行 2 列");
@@ -1115,11 +1229,302 @@ function renderSolid3DVisual(question, options = {}) {
  * 22. 条形统计图与数据频数分布 (Bar Chart & Frequency Distribution)
  */
 
+function renderAreaUnitsVisual(question, options = {}) {
+  const isRevealed = options && options.status ? (options.status === "retry" || options.status === "resolved") : true;
+  const prompt = question.prompt || "";
+  const card = document.createElement("div");
+  card.className = "question-visual question-visual--area-units";
+  card.dataset.visualType = "area-units";
+
+  const header = document.createElement("div");
+  header.className = "question-visual__header";
+  header.innerHTML = `
+    <span class="question-visual__badge">📐 面积单位进率与空间网格矩阵</span>
+    <span class="question-visual__subbadge">1m² ＝ 100dm² ＝ 10,000cm² | 1km² ＝ 100公顷 ＝ 1,000,000m²</span>
+  `;
+  card.append(header);
+
+  const svgWidth = 460;
+  const svgHeight = 155;
+  const svg = createSvg(svgWidth, svgHeight, `0 0 ${svgWidth} ${svgHeight}`);
+
+  // Left: 10x10 Micro Grid Matrix visual (100 cells)
+  const mx = 25, my = 25, sz = 95;
+  const bgBox = document.createElementNS(SVG_NS, "rect");
+  bgBox.setAttribute("x", String(mx)); bgBox.setAttribute("y", String(my));
+  bgBox.setAttribute("width", String(sz)); bgBox.setAttribute("height", String(sz));
+  bgBox.setAttribute("fill", "rgba(15, 23, 42, 0.6)");
+  bgBox.setAttribute("stroke", "#38bdf8"); bgBox.setAttribute("stroke-width", "2");
+  bgBox.setAttribute("rx", "4");
+  svg.append(bgBox);
+
+  // 10x10 grid cells
+  const cellSize = sz / 10;
+  for (let r = 0; r < 10; r++) {
+    for (let c = 0; c < 10; c++) {
+      const cell = document.createElementNS(SVG_NS, "rect");
+      cell.setAttribute("x", String(mx + c * cellSize + 0.5));
+      cell.setAttribute("y", String(my + r * cellSize + 0.5));
+      cell.setAttribute("width", String(cellSize - 1));
+      cell.setAttribute("height", String(cellSize - 1));
+      cell.setAttribute("fill", (r + c) % 2 === 0 ? "rgba(56, 189, 248, 0.3)" : "rgba(56, 189, 248, 0.15)");
+      svg.append(cell);
+    }
+  }
+
+  const gTag = document.createElementNS(SVG_NS, "text");
+  gTag.setAttribute("x", String(mx + sz / 2));
+  gTag.setAttribute("y", String(my + sz + 18));
+  gTag.setAttribute("text-anchor", "middle");
+  gTag.setAttribute("font-size", "11");
+  gTag.setAttribute("font-weight", "bold");
+  gTag.setAttribute("fill", "#38bdf8");
+  gTag.textContent = "10 × 10 ＝ 100 格小单位";
+  svg.append(gTag);
+
+  // Parse prompt units and numbers
+  const nums = parseNumbers(prompt);
+  const val = nums[0] !== undefined ? nums[0] : 3;
+
+  let srcUnit = "平方米";
+  let targetUnit = "平方分米";
+  let factor = 100;
+  let isMul = true;
+
+  if (prompt.includes("平方厘米") && prompt.includes("平方分米")) {
+    if (prompt.indexOf("平方厘米") < prompt.indexOf("平方分米")) {
+      srcUnit = "平方厘米"; targetUnit = "平方分米"; factor = 100; isMul = false;
+    } else {
+      srcUnit = "平方分米"; targetUnit = "平方厘米"; factor = 100; isMul = true;
+    }
+  } else if (prompt.includes("平方米") && prompt.includes("平方分米")) {
+    if (prompt.indexOf("平方米") < prompt.indexOf("平方分米")) {
+      srcUnit = "平方米"; targetUnit = "平方分米"; factor = 100; isMul = true;
+    } else {
+      srcUnit = "平方分米"; targetUnit = "平方米"; factor = 100; isMul = false;
+    }
+  } else if (prompt.includes("平方千米") && prompt.includes("公顷")) {
+    if (prompt.indexOf("平方千米") < prompt.indexOf("公顷")) {
+      srcUnit = "平方千米"; targetUnit = "公顷"; factor = 100; isMul = true;
+    } else {
+      srcUnit = "公顷"; targetUnit = "平方千米"; factor = 100; isMul = false;
+    }
+  } else if (prompt.includes("公顷") && prompt.includes("平方米")) {
+    if (prompt.indexOf("公顷") < prompt.indexOf("平方米")) {
+      srcUnit = "公顷"; targetUnit = "平方米"; factor = 10000; isMul = true;
+    } else {
+      srcUnit = "平方米"; targetUnit = "公顷"; factor = 10000; isMul = false;
+    }
+  } else if (prompt.includes("平方厘米") && prompt.includes("平方米")) {
+    if (prompt.indexOf("平方厘米") < prompt.indexOf("平方米")) {
+      srcUnit = "平方厘米"; targetUnit = "平方米"; factor = 10000; isMul = false;
+    } else {
+      srcUnit = "平方米"; targetUnit = "平方厘米"; factor = 10000; isMul = true;
+    }
+  } else if (prompt.includes("平方米") && prompt.includes("平方千米")) {
+    if (prompt.indexOf("平方米") < prompt.indexOf("平方千米")) {
+      srcUnit = "平方米"; targetUnit = "平方千米"; factor = 1000000; isMul = false;
+    } else {
+      srcUnit = "平方千米"; targetUnit = "平方米"; factor = 1000000; isMul = true;
+    }
+  }
+
+  const calcResult = isMul ? val * factor : (val / factor);
+
+  // Right side: Unit staircase & calculation capsule
+  const rx = 145;
+  const ladderUnits = ["cm²", "dm²", "m²", "公顷", "km²"];
+  const ladderRates = ["×100", "×100", "×10000", "×100"];
+  const ladderX = rx + 16;
+  const stepW = 56;
+  ladderUnits.forEach((u, i) => {
+    const lx = ladderX + i * stepW;
+    const ly = 38;
+    const uDot = document.createElementNS(SVG_NS, "circle");
+    uDot.setAttribute("cx", String(lx)); uDot.setAttribute("cy", String(ly));
+    uDot.setAttribute("r", "13");
+    uDot.setAttribute("fill", "#1e293b");
+    uDot.setAttribute("stroke", (srcUnit.includes(u.slice(0, 2)) || targetUnit.includes(u.slice(0, 2))) ? "#f59e0b" : "#64748b");
+    uDot.setAttribute("stroke-width", "2");
+    svg.append(uDot);
+
+    const uTxt = document.createElementNS(SVG_NS, "text");
+    uTxt.setAttribute("x", String(lx)); uTxt.setAttribute("y", String(ly + 4));
+    uTxt.setAttribute("text-anchor", "middle");
+    uTxt.setAttribute("font-size", "10");
+    uTxt.setAttribute("font-weight", "bold");
+    uTxt.setAttribute("fill", "#f8fafc");
+    uTxt.textContent = u;
+    svg.append(uTxt);
+
+    if (i < ladderRates.length) {
+      const arrTxt = document.createElementNS(SVG_NS, "text");
+      arrTxt.setAttribute("x", String(lx + stepW / 2)); arrTxt.setAttribute("y", String(ly - 5));
+      arrTxt.setAttribute("text-anchor", "middle");
+      arrTxt.setAttribute("font-size", "9");
+      arrTxt.setAttribute("fill", "#38bdf8");
+      arrTxt.textContent = ladderRates[i];
+      svg.append(arrTxt);
+
+      const arrLine = document.createElementNS(SVG_NS, "line");
+      arrLine.setAttribute("x1", String(lx + 15)); arrLine.setAttribute("y1", String(ly));
+      arrLine.setAttribute("x2", String(lx + stepW - 15)); arrLine.setAttribute("y2", String(ly));
+      arrLine.setAttribute("stroke", "rgba(56, 189, 248, 0.4)");
+      arrLine.setAttribute("stroke-width", "1.5");
+      svg.append(arrLine);
+    }
+  });
+
+  const capBox = document.createElementNS(SVG_NS, "rect");
+  capBox.setAttribute("x", String(rx + 10)); capBox.setAttribute("y", "72");
+  capBox.setAttribute("width", "280"); capBox.setAttribute("height", "45");
+  capBox.setAttribute("rx", "6");
+  capBox.setAttribute("fill", "rgba(30, 41, 59, 0.7)");
+  capBox.setAttribute("stroke", "#3b82f6"); capBox.setAttribute("stroke-width", "1.5");
+  svg.append(capBox);
+
+  const opSign = isMul ? "×" : "÷";
+  const formulaText = isRevealed
+    ? `${val} ${srcUnit} ${opSign} ${factor} ＝ ${question.answer !== undefined ? question.answer : calcResult} ${targetUnit}`
+    : `${val} ${srcUnit} ${opSign} ${factor} ＝ ? ${targetUnit}`;
+
+  const fTxt = document.createElementNS(SVG_NS, "text");
+  fTxt.setAttribute("x", String(rx + 150)); fTxt.setAttribute("y", "100");
+  fTxt.setAttribute("text-anchor", "middle");
+  fTxt.setAttribute("font-size", "13");
+  fTxt.setAttribute("font-weight", "bold");
+  fTxt.setAttribute("fill", isRevealed ? "#22c55e" : "#f59e0b");
+  fTxt.textContent = formulaText;
+  svg.append(fTxt);
+
+  card.append(svg);
+
+  const legend = document.createElement("p");
+  legend.className = "question-visual__legend";
+  legend.textContent = `📐 面积进率核心：长度进率是 10 时，面积进率是 10×10 ＝ 100；高级单位化低级单位乘进率，低级单位化高级单位除以进率。`;
+  card.append(legend);
+
+  return card;
+}
+
+function renderCapacityVisual(question, options = {}) {
+  const isRevealed = options && options.status ? (options.status === "retry" || options.status === "resolved") : true;
+  const prompt = question.prompt || "";
+  const card = document.createElement("div");
+  card.className = "question-visual question-visual--capacity";
+  card.dataset.visualType = "capacity";
+
+  const header = document.createElement("div");
+  header.className = "question-visual__header";
+  header.innerHTML = `
+    <span class="question-visual__badge">💧 容积与液体度量模型</span>
+    <span class="question-visual__subbadge">1升 (L) ＝ 1000毫升 (mL) ＝ 1立方分米 (dm³) | 1立方米 (m³) ＝ 1000升 (L)</span>
+  `;
+  card.append(header);
+
+  const svgWidth = 460;
+  const svgHeight = 155;
+  const svg = createSvg(svgWidth, svgHeight, `0 0 ${svgWidth} ${svgHeight}`);
+
+  const fx = 45, fy = 20, fw = 75, fh = 105;
+  const glass = document.createElementNS(SVG_NS, "rect");
+  glass.setAttribute("x", String(fx)); glass.setAttribute("y", String(fy));
+  glass.setAttribute("width", String(fw)); glass.setAttribute("height", String(fh));
+  glass.setAttribute("rx", "6");
+  glass.setAttribute("fill", "rgba(15, 23, 42, 0.6)");
+  glass.setAttribute("stroke", "#38bdf8"); glass.setAttribute("stroke-width", "2");
+  svg.append(glass);
+
+  for (let i = 1; i <= 4; i++) {
+    const ty = fy + fh - (i * fh / 4);
+    const tick = document.createElementNS(SVG_NS, "line");
+    tick.setAttribute("x1", String(fx)); tick.setAttribute("y1", String(ty));
+    tick.setAttribute("x2", String(fx + 10)); tick.setAttribute("y2", String(ty));
+    tick.setAttribute("stroke", "#94a3b8"); tick.setAttribute("stroke-width", "1.5");
+    svg.append(tick);
+  }
+
+  const waterH = Math.round(fh * 0.65);
+  const water = document.createElementNS(SVG_NS, "rect");
+  water.setAttribute("x", String(fx + 3)); water.setAttribute("y", String(fy + fh - waterH));
+  water.setAttribute("width", String(fw - 6)); water.setAttribute("height", String(waterH - 3));
+  water.setAttribute("rx", "3");
+  water.setAttribute("fill", "rgba(56, 189, 248, 0.45)");
+  svg.append(water);
+
+  const wave = document.createElementNS(SVG_NS, "ellipse");
+  wave.setAttribute("cx", String(fx + fw / 2)); wave.setAttribute("cy", String(fy + fh - waterH));
+  wave.setAttribute("rx", String(fw / 2 - 4)); wave.setAttribute("ry", "4");
+  wave.setAttribute("fill", "#7dd3fc"); wave.setAttribute("opacity", "0.6");
+  svg.append(wave);
+
+  const nums = parseNumbers(prompt);
+  const val = nums[0] !== undefined ? nums[0] : 8;
+
+  let isLtoMl = prompt.includes("升") && prompt.includes("毫升") && prompt.indexOf("升") < prompt.indexOf("毫升");
+  let isMltoL = prompt.includes("毫升") && prompt.includes("升") && prompt.indexOf("毫升") < prompt.indexOf("升");
+  let isM3toL = prompt.includes("立方米") && prompt.includes("升");
+
+  const rx = 150;
+  const t1 = document.createElementNS(SVG_NS, "text");
+  t1.setAttribute("x", String(rx)); t1.setAttribute("y", "42");
+  t1.setAttribute("font-size", "12"); t1.setAttribute("font-weight", "bold");
+  t1.setAttribute("fill", "#38bdf8");
+  t1.textContent = "▪ 容积核心公式: 1 升 (L) ＝ 1000 毫升 (mL)";
+  svg.append(t1);
+
+  const t2 = document.createElementNS(SVG_NS, "text");
+  t2.setAttribute("x", String(rx)); t2.setAttribute("y", "68");
+  t2.setAttribute("font-size", "12"); t2.setAttribute("font-weight", "bold");
+  t2.setAttribute("fill", "#a78bfa");
+  t2.textContent = "▪ 几何容积对应: 1 升 ＝ 1 立方分米 | 1 立方米 ＝ 1000 升";
+  svg.append(t2);
+
+  const calcBox = document.createElementNS(SVG_NS, "rect");
+  calcBox.setAttribute("x", String(rx)); calcBox.setAttribute("y", "84");
+  calcBox.setAttribute("width", "285"); calcBox.setAttribute("height", "42");
+  calcBox.setAttribute("rx", "6");
+  calcBox.setAttribute("fill", "rgba(30, 41, 59, 0.7)");
+  calcBox.setAttribute("stroke", "#3b82f6"); calcBox.setAttribute("stroke-width", "1.5");
+  svg.append(calcBox);
+
+  let formulaText = "";
+  if (isLtoMl) {
+    formulaText = isRevealed ? `${val} 升 × 1000 ＝ ${question.answer || val * 1000} 毫升` : `${val} 升 × 1000 ＝ ? 毫升`;
+  } else if (isMltoL) {
+    formulaText = isRevealed ? `${val} 毫升 ÷ 1000 ＝ ${question.answer || val / 1000} 升` : `${val} 毫升 ÷ 1000 ＝ ? 升`;
+  } else if (isM3toL) {
+    formulaText = isRevealed ? `${val} 立方米 × 1000 ＝ ${question.answer || val * 1000} 升` : `${val} 立方米 × 1000 ＝ ? 升`;
+  } else {
+    formulaText = isRevealed ? `容积计算 ＝ ${question.answer || val}` : `容积计算 ＝ ?`;
+  }
+
+  const fTxt = document.createElementNS(SVG_NS, "text");
+  fTxt.setAttribute("x", String(rx + 142)); fTxt.setAttribute("y", "110");
+  fTxt.setAttribute("text-anchor", "middle");
+  fTxt.setAttribute("font-size", "13");
+  fTxt.setAttribute("font-weight", "bold");
+  fTxt.setAttribute("fill", isRevealed ? "#22c55e" : "#f59e0b");
+  fTxt.textContent = formulaText;
+  svg.append(fTxt);
+
+  card.append(svg);
+
+  const legend = document.createElement("p");
+  legend.className = "question-visual__legend";
+  legend.textContent = `💧 容积测量法则：容器所能容纳液体的体积即为容积，升与毫升进率为 1000，1 升水刚好充满 1 立方分米空间。`;
+  card.append(legend);
+
+  return card;
+}
+
 module.exports = {
   renderRouteMap,
   renderDiagram,
   renderGeometryCounting,
   renderAngleVisual,
   renderPolygonVisual,
-  renderSolid3DVisual
+  renderSolid3DVisual,
+  renderAreaUnitsVisual,
+  renderCapacityVisual
 };

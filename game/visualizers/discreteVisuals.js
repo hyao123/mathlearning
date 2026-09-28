@@ -1285,76 +1285,144 @@ function renderLineChartVisual(question) {
  * 24. 概率轮盘与随机事件模型 (Probability Spinner & Random Urn)
  */
 
-function renderProbabilitySpinnerVisual(question) {
+function renderProbabilitySpinnerVisual(question, options = {}) {
+  const isRevealed = options && options.status ? (options.status === "retry" || options.status === "resolved") : true;
   const prompt = question.prompt || "";
   const card = document.createElement("div");
   card.className = "question-visual question-visual--spinner";
   card.dataset.visualType = "spinner";
 
+  const nums = parseNumbers(prompt);
+  const isBallOrBag = prompt.includes("球") || prompt.includes("信标") || prompt.includes("芯片") || prompt.includes("袋中") || prompt.includes("盒中") || prompt.includes("抽签") || prompt.includes("签");
+  const isSpinner = prompt.includes("转盘") || prompt.includes("指针") || prompt.includes("扇区");
+
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
-    <span class="question-visual__badge">🎯 概率轮盘与随机事件模型</span>
-    <span class="question-visual__subbadge">面积占比与发生可能性对应</span>
+    <span class="question-visual__badge">🎯 概率事件与可能性模型</span>
+    <span class="question-visual__subbadge">${isBallOrBag ? "随机抽取样本空间模型" : isSpinner ? "几何测度转盘面积占比模型" : "古典概型等可能样本空间"}</span>
   `;
   card.append(header);
 
   const svgWidth = 460;
-  const svgHeight = 150;
+  const svgHeight = 155;
   const svg = createSvg(svgWidth, svgHeight, `0 0 ${svgWidth} ${svgHeight}`);
 
-  const cx = 140, cy = 80, r = 55;
+  if (isBallOrBag) {
+    // Draw Urn / Jar with colored spheres
+    const jx = 45, jy = 22, jw = 95, jh = 110;
+    const jar = document.createElementNS(SVG_NS, "rect");
+    jar.setAttribute("x", String(jx)); jar.setAttribute("y", String(jy));
+    jar.setAttribute("width", String(jw)); jar.setAttribute("height", String(jh));
+    jar.setAttribute("rx", "12");
+    jar.setAttribute("fill", "rgba(15, 23, 42, 0.65)");
+    jar.setAttribute("stroke", "#38bdf8"); jar.setAttribute("stroke-width", "2");
+    svg.append(jar);
 
-  const s1 = document.createElementNS(SVG_NS, "path");
-  s1.setAttribute("d", `M ${cx} ${cy} L ${cx + r} ${cy} A ${r} ${r} 0 0 1 ${cx - r} ${cy} Z`);
-  s1.setAttribute("fill", "#ef4444"); s1.setAttribute("opacity", "0.85");
-  svg.append(s1);
+    const n1 = nums[0] !== undefined ? nums[0] : 3;
+    const n2 = nums[1] !== undefined ? nums[1] : 3;
+    const total = nums.length >= 2 && prompt.includes("共") ? nums[0] : (n1 + n2);
+    const targetCount = prompt.includes("共") && nums.length >= 2 ? (nums[1] || n1) : n1;
 
-  const s2 = document.createElementNS(SVG_NS, "path");
-  s2.setAttribute("d", `M ${cx} ${cy} L ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx} ${cy - r} Z`);
-  s2.setAttribute("fill", "#3b82f6"); s2.setAttribute("opacity", "0.85");
-  svg.append(s2);
+    // Draw balls inside jar
+    const ballR = 7;
+    const drawTotal = Math.min(Math.max(total, 6), 12);
+    for (let i = 0; i < drawTotal; i++) {
+      const isFirst = i < Math.min(targetCount, 6);
+      const col = i % 3;
+      const row = Math.floor(i / 3);
+      const bx = jx + 22 + col * 26;
+      const by = jy + jh - 20 - row * 22;
 
-  const s3 = document.createElementNS(SVG_NS, "path");
-  s3.setAttribute("d", `M ${cx} ${cy} L ${cx} ${cy - r} A ${r} ${r} 0 0 1 ${cx + r} ${cy} Z`);
-  s3.setAttribute("fill", "#facc15"); s3.setAttribute("opacity", "0.85");
-  svg.append(s3);
+      const ball = document.createElementNS(SVG_NS, "circle");
+      ball.setAttribute("cx", String(bx)); ball.setAttribute("cy", String(by));
+      ball.setAttribute("r", String(ballR));
+      ball.setAttribute("fill", isFirst ? "#38bdf8" : "#ef4444");
+      ball.setAttribute("stroke", "#ffffff"); ball.setAttribute("stroke-width", "1");
+      svg.append(ball);
+    }
 
-  const needle = document.createElementNS(SVG_NS, "polygon");
-  needle.setAttribute("points", `${cx-4},${cy} ${cx+4},${cy} ${cx},${cy-45}`);
-  needle.setAttribute("fill", "#f8fafc"); needle.setAttribute("stroke", "#0f172a");
-  needle.setAttribute("stroke-width", "1.5");
-  svg.append(needle);
+    const rx = 165;
+    const t1 = document.createElementNS(SVG_NS, "text");
+    t1.setAttribute("x", String(rx)); t1.setAttribute("y", "46");
+    t1.setAttribute("font-size", "12"); t1.setAttribute("font-weight", "bold");
+    t1.setAttribute("fill", "#38bdf8"); t1.textContent = `▪ 目标数量 (有利基本事件): ${targetCount} 个`;
+    svg.append(t1);
 
-  const hub = document.createElementNS(SVG_NS, "circle");
-  hub.setAttribute("cx", String(cx)); hub.setAttribute("cy", String(cy));
-  hub.setAttribute("r", "7"); hub.setAttribute("fill", "#f59e0b");
-  svg.append(hub);
+    const t2 = document.createElementNS(SVG_NS, "text");
+    t2.setAttribute("x", String(rx)); t2.setAttribute("y", "74");
+    t2.setAttribute("font-size", "12"); t2.setAttribute("font-weight", "bold");
+    t2.setAttribute("fill", "#94a3b8"); t2.textContent = `▪ 样本总数 (全部可能结果): ${total} 个`;
+    svg.append(t2);
 
-  const rx = 240;
-  const p1 = document.createElementNS(SVG_NS, "text");
-  p1.setAttribute("x", String(rx)); p1.setAttribute("y", "55");
-  p1.setAttribute("font-size", "12"); p1.setAttribute("font-weight", "bold");
-  p1.setAttribute("fill", "#ef4444"); p1.textContent = "🔴 红色区域 (占 1/2) ➔ 可能性最大";
-  svg.append(p1);
+    const ansTxt = isRevealed ? (question.answer || `${targetCount}/${total}`) : "?";
+    const t3 = document.createElementNS(SVG_NS, "text");
+    t3.setAttribute("x", String(rx)); t3.setAttribute("y", "106");
+    t3.setAttribute("font-size", "13"); t3.setAttribute("font-weight", "bold");
+    t3.setAttribute("fill", isRevealed ? "#22c55e" : "#f59e0b");
+    t3.textContent = `▪ 发生概率 ＝ ${targetCount} ÷ ${total} ＝ ${ansTxt}`;
+    svg.append(t3);
+  } else {
+    // Spinner wheel
+    const cx = 110, cy = 80, r = 55;
+    const sectors = nums[0] && nums[0] <= 12 && nums[0] >= 2 ? nums[0] : 4;
+    const angleStep = 360 / sectors;
 
-  const p2 = document.createElementNS(SVG_NS, "text");
-  p2.setAttribute("x", String(rx)); p2.setAttribute("y", "85");
-  p2.setAttribute("font-size", "12"); p2.setAttribute("font-weight", "bold");
-  p2.setAttribute("fill", "#60a5fa"); p2.textContent = "🔵 蓝色区域 (占 1/4) ➔ 可能性居中";
-  svg.append(p2);
+    for (let i = 0; i < sectors; i++) {
+      const a1 = (i * angleStep - 90) * Math.PI / 180;
+      const a2 = ((i + 1) * angleStep - 90) * Math.PI / 180;
+      const x1 = cx + r * Math.cos(a1);
+      const y1 = cy + r * Math.sin(a1);
+      const x2 = cx + r * Math.cos(a2);
+      const y2 = cy + r * Math.sin(a2);
+      const largeArc = angleStep > 180 ? 1 : 0;
 
-  const p3 = document.createElementNS(SVG_NS, "text");
-  p3.setAttribute("x", String(rx)); p3.setAttribute("y", "115");
-  p3.setAttribute("font-size", "12"); p3.setAttribute("font-weight", "bold");
-  p3.setAttribute("fill", "#facc15"); p3.textContent = "🟡 黄色区域 (占 1/4) ➔ 可能性相同";
-  svg.append(p3);
+      const path = document.createElementNS(SVG_NS, "path");
+      path.setAttribute("d", `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`);
+      path.setAttribute("fill", i === 0 ? "#f59e0b" : i % 2 === 0 ? "#38bdf8" : "#3b82f6");
+      path.setAttribute("stroke", "#0f172a"); path.setAttribute("stroke-width", "1.5");
+      path.setAttribute("opacity", "0.85");
+      svg.append(path);
+    }
+
+    const needle = document.createElementNS(SVG_NS, "polygon");
+    needle.setAttribute("points", `${cx-4},${cy} ${cx+4},${cy} ${cx},${cy-48}`);
+    needle.setAttribute("fill", "#f8fafc"); needle.setAttribute("stroke", "#0f172a");
+    needle.setAttribute("stroke-width", "1.5");
+    svg.append(needle);
+
+    const hub = document.createElementNS(SVG_NS, "circle");
+    hub.setAttribute("cx", String(cx)); hub.setAttribute("cy", String(cy));
+    hub.setAttribute("r", "7"); hub.setAttribute("fill", "#f59e0b");
+    svg.append(hub);
+
+    const rx = 195;
+    const p1 = document.createElementNS(SVG_NS, "text");
+    p1.setAttribute("x", String(rx)); p1.setAttribute("y", "46");
+    p1.setAttribute("font-size", "12"); p1.setAttribute("font-weight", "bold");
+    p1.setAttribute("fill", "#f59e0b"); p1.textContent = `▪ 目标区域: 1 份 / ${sectors} 份`;
+    svg.append(p1);
+
+    const p2 = document.createElementNS(SVG_NS, "text");
+    p2.setAttribute("x", String(rx)); p2.setAttribute("y", "74");
+    p2.setAttribute("font-size", "12"); p2.setAttribute("font-weight", "bold");
+    p2.setAttribute("fill", "#38bdf8"); p2.textContent = `▪ 几何概率: 面积份额占整体的比例`;
+    svg.append(p2);
+
+    const ansTxt = isRevealed ? (question.answer || `1/${sectors}`) : "?";
+    const p3 = document.createElementNS(SVG_NS, "text");
+    p3.setAttribute("x", String(rx)); p3.setAttribute("y", "106");
+    p3.setAttribute("font-size", "13"); p3.setAttribute("font-weight", "bold");
+    p3.setAttribute("fill", isRevealed ? "#22c55e" : "#f59e0b");
+    p3.textContent = `▪ 发生概率 ＝ 1 ÷ ${sectors} ＝ ${ansTxt}`;
+    svg.append(p3);
+  }
 
   card.append(svg);
 
   const legend = document.createElement("p");
   legend.className = "question-visual__legend";
-  legend.textContent = "🎯 概率法则：某事件包含的基本结果数量（或面积份额）占总数量的比例越大，发生的可能性就越大。";
+  legend.textContent = "🎯 概率法则：某事件发生的可能性大小等于该事件包含的有利基本结果数除以全部可能结果总数。";
   card.append(legend);
 
   return card;

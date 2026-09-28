@@ -702,6 +702,92 @@ test("QuestionVisualizer routing fixes: avoids misrouting chicken-rabbit, averag
   assert.ok(closedText.includes("封闭环形"), "Should render closed loop tree planting model");
 });
 
+test("QuestionVisualizer renders Area Units and Capacity with high-fidelity visual diagrams", () => {
+  // Area units test
+  const qArea = {
+    id: "ch5-area-test",
+    moduleId: "area-units",
+    prompt: "1 平方米等于多少平方分米？请进行面积单位换算。",
+    answer: "100"
+  };
+  const vArea = QuestionVisualizer.createQuestionVisual(qArea);
+  assert.equal(vArea.dataset.visualType, "area-units");
+  assert.ok(vArea.classList.contains("question-visual--area-units"));
+
+  // Capacity test
+  const qCap = {
+    id: "ch5-cap-test",
+    moduleId: "capacity",
+    prompt: "净化水箱中有 3 升纯净水，每次装满一个 500 毫升水壶，可以装满多少壶？",
+    answer: "6"
+  };
+  const vCap = QuestionVisualizer.createQuestionVisual(qCap);
+  assert.equal(vCap.dataset.visualType, "capacity");
+  assert.ok(vCap.classList.contains("question-visual--capacity"));
+
+  // False positive exclusion: "温度上升" should not route to capacity or solid3d
+  const qTemp = {
+    id: "ch1-temp-test",
+    moduleId: "directed-numbers",
+    prompt: "空间站晨昏交界处，温度上升 15 度，当前气温是多少？",
+    answer: "15"
+  };
+  const vTemp = QuestionVisualizer.createQuestionVisual(qTemp);
+  assert.notEqual(vTemp.dataset.visualType, "capacity");
+  assert.notEqual(vTemp.dataset.visualType, "solid3d");
+});
+
+test("QuestionVisualizer renders Probability and Concentration with anti-leak protection", () => {
+  function getMockText(el) {
+    if (!el) return "";
+    let text = el.textContent || el.innerHTML || "";
+    if (Array.isArray(el.children)) {
+      text += " " + el.children.map(getMockText).join(" ");
+    }
+    return text;
+  }
+
+  // Probability test with colored balls/beacons
+  const qProb = {
+    id: "ch6-prob-test",
+    moduleId: "possibility-basics",
+    prompt: "密封仓中有 4 个红球和 6 个蓝球，随机摸出 1 个球，摸出红球的可能性是多少？",
+    answer: "2/5"
+  };
+  const vProbActive = QuestionVisualizer.createQuestionVisual(qProb, { status: "active" });
+  assert.equal(vProbActive.dataset.visualType, "spinner");
+  const probTextActive = getMockText(vProbActive);
+  assert.ok(probTextActive.includes("?"), "Active probability spinner should not leak answer");
+
+  // Concentration test
+  const qConc = {
+    id: "ch7-conc-test",
+    moduleId: "concentration-configuration",
+    prompt: "在 80 克水中加入 20 克盐，配制成盐水，这杯盐水的浓度是多少？",
+    answer: "20"
+  };
+  const vConcActive = QuestionVisualizer.createQuestionVisual(qConc, { status: "active" });
+  assert.equal(vConcActive.dataset.visualType, "concentration");
+  const concTextActive = getMockText(vConcActive);
+  assert.ok(concTextActive.includes("?"), "Active concentration should mask formula answer");
+
+  const vConcRetry = QuestionVisualizer.createQuestionVisual(qConc, { status: "retry" });
+  const concTextRetry = getMockText(vConcRetry);
+  assert.ok(concTextRetry.includes("20%"), "Retry concentration should reveal formula with percentage");
+});
+
+test("QuestionVisualizer renders Geometry Counting with apex ray division for triangles", () => {
+  const qTri = {
+    id: "ch4-geo-triangle",
+    moduleId: "geometry-counting",
+    prompt: "从三角形的一个顶点向对边引出 4 条线段，图中一共有多少个三角形？",
+    answer: "15"
+  };
+  const vTri = QuestionVisualizer.createQuestionVisual(qTri);
+  assert.equal(vTri.dataset.visualType, "geometry-counting");
+  assert.ok(vTri.classList.contains("question-visual--geometry-counting"));
+});
+
 
 
 
