@@ -4,7 +4,7 @@ const builder = require("../game/chapterBuilder.js");
 const { loadExpandedModules } = require("./validate-game-content.js");
 const { getQuestionContentHash, getManifestContentHash } = require("./humanReviewIntegrity.js");
 
-const targetChapters = ["chapter-02", "chapter-03", "chapter-05", "chapter-07"];
+const targetChapters = ["chapter-02", "chapter-03", "chapter-04", "chapter-05", "chapter-06", "chapter-07"];
 const modules = loadExpandedModules();
 
 const defaultScores = Object.freeze({
