@@ -1544,6 +1544,18 @@ export function renderMinimalTacticalCard(review = {}, question = {}) {
   const container = document.createElement("div");
   container.className = "minimal-tactical-board";
 
+  // 0. 认知阶梯演进标识 (Five-Stage Cognitive Ladder Tag)
+  const badge = question.cognitiveBadge || (question.slot === 10 ? "👑 复合建模" : question.slot >= 8 ? "⚡ 边界极值" : question.slot >= 6 ? "⏪ 逆向还原" : question.slot >= 3 ? "🔄 情境迁移" : "🎯 母题定模");
+  const goal = question.cognitiveGoal || (question.slot === 10 ? "多重约束与综合建模" : question.slot >= 8 ? "临界状态与极端逼近" : question.slot >= 6 ? "倒推反演与知果索因" : question.slot >= 3 ? "隐蔽条件与生活化换元" : "基准识别与公式锚定");
+
+  const cognitiveBar = document.createElement("div");
+  cognitiveBar.className = "tactical-cognitive-bar";
+  cognitiveBar.innerHTML = `
+    <span class="tactical-cognitive-bar__badge">${badge}</span>
+    <span class="tactical-cognitive-bar__goal"><strong>阶梯定位：</strong>${goal}</span>
+  `;
+  container.append(cognitiveBar);
+
   // 1. 插入该题型专属趣味动图
   const motionCard = renderMotionCard(
     {
@@ -1593,13 +1605,14 @@ export function renderMinimalTacticalCard(review = {}, question = {}) {
   container.append(stepsGrid);
 
   // 3. 避坑雷区警示（极简短句）
-  if (review.errorTrap || review.pitfall) {
+  const trapText = question.commonPitfall || review.errorTrap || review.pitfall;
+  if (trapText) {
     const trapCard = document.createElement("div");
     trapCard.className = "tactical-pitfall-alert";
     trapCard.innerHTML = `
       <span class="tactical-pitfall__icon">🚨</span>
       <strong class="tactical-pitfall__label">避坑警示：</strong>
-      <span class="tactical-pitfall__text">${review.errorTrap || review.pitfall}</span>
+      <span class="tactical-pitfall__text">${trapText}</span>
     `;
     container.append(trapCard);
   }

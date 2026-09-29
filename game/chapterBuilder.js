@@ -1,4 +1,4 @@
-const { DIFFICULTY_SLOTS } = require("./chapterConfig.js");
+const { DIFFICULTY_SLOTS, getCognitivePhaseSlot } = require("./chapterConfig.js");
 const ChapterRegistry = require("./chapterRegistry.js");
 const QuestionQuality = require("./questionQuality.js");
 const ChapterQualityProfiles = require("./chapterQualityProfiles.js");
@@ -39,10 +39,15 @@ function enrichQuestion(candidate, module, slot, difficulty, chapterId) {
     slot
   );
   const explanation = hasText(overriddenCandidate.explanation) ? overriddenCandidate.explanation : "根据题目条件一步一步计算。";
+  const cognitivePhaseInfo = getCognitivePhaseSlot(slot - 1);
   return {
     ...overriddenCandidate,
     moduleId: module.id,
     chapterId,
+    cognitivePhase: cognitivePhaseInfo.phase,
+    cognitiveLabel: cognitivePhaseInfo.label,
+    cognitiveBadge: cognitivePhaseInfo.badge,
+    cognitiveGoal: cognitivePhaseInfo.goal,
     prompt: `${overriddenCandidate.prompt}【${MISSION_PHASES[slot - 1]}任务】`,
     answerType: overriddenCandidate.answerType || "numeric",
     answerFormat: overriddenCandidate.answerFormat || QuestionContract.getAnswerFormat(overriddenCandidate.answer),
@@ -133,7 +138,17 @@ function buildLevel(levelConfig, modules = [], chapterId = null) {
 }
 
 function compileVersionedQuestion(question, slot, difficulty) {
-  const compiled = { ...question, slot, difficulty, isBoss: slot === 10 };
+  const cognitivePhaseInfo = getCognitivePhaseSlot(slot - 1);
+  const compiled = {
+    ...question,
+    slot,
+    difficulty,
+    isBoss: slot === 10,
+    cognitivePhase: cognitivePhaseInfo.phase,
+    cognitiveLabel: cognitivePhaseInfo.label,
+    cognitiveBadge: cognitivePhaseInfo.badge,
+    cognitiveGoal: cognitivePhaseInfo.goal
+  };
   for (const field of ["answer", "answerType", "answerFormat", "answerPolicy", "solution", "verification", "reviewMetadata", "solutionReview"]) {
     const descriptor = Object.getOwnPropertyDescriptor(question, field);
     if (descriptor) Object.defineProperty(compiled, field, descriptor);

@@ -1,4 +1,21 @@
 const DIFFICULTY_SLOTS = Object.freeze(["基础", "基础", "进阶", "进阶", "进阶", "提高", "提高", "提高", "挑战", "挑战"]);
+const COGNITIVE_PHASE_SLOTS = Object.freeze([
+  Object.freeze({ slot: 0, phase: "anchor", label: "原型母题", badge: "🎯 母题定模", goal: "基准识别与公式锚定" }),
+  Object.freeze({ slot: 1, phase: "anchor", label: "原型母题", badge: "🎯 母题定模", goal: "基准识别与公式锚定" }),
+  Object.freeze({ slot: 2, phase: "transfer", label: "情境变式", badge: "🔄 情境迁移", goal: "隐蔽条件与生活化换元" }),
+  Object.freeze({ slot: 3, phase: "transfer", label: "情境变式", badge: "🔄 情境迁移", goal: "隐蔽条件与生活化换元" }),
+  Object.freeze({ slot: 4, phase: "transfer", label: "情境变式", badge: "🔄 情境迁移", goal: "隐蔽条件与生活化换元" }),
+  Object.freeze({ slot: 5, phase: "inverse", label: "逆向探究", badge: "⏪ 逆向还原", goal: "倒推反演与知果索因" }),
+  Object.freeze({ slot: 6, phase: "inverse", label: "逆向探究", badge: "⏪ 逆向还原", goal: "倒推反演与知果索因" }),
+  Object.freeze({ slot: 7, phase: "boundary", label: "边界极值", badge: "⚡ 边界极值", goal: "临界状态与极端逼近" }),
+  Object.freeze({ slot: 8, phase: "boundary", label: "边界极值", badge: "⚡ 边界极值", goal: "临界状态与极端逼近" }),
+  Object.freeze({ slot: 9, phase: "mastery", label: "复合建模", badge: "👑 复合建模", goal: "多重约束与综合建模" })
+]);
+
+function getCognitivePhaseSlot(slotIndex) {
+  const index = Math.max(0, Math.min(COGNITIVE_PHASE_SLOTS.length - 1, Number(slotIndex) || 0));
+  return COGNITIVE_PHASE_SLOTS[index];
+}
 const FEATURE_FLAGS = Object.freeze({ crafting: false, shop: false, equipment: false });
 const FIRST_CHAPTER_ID = "chapter-01";
 const SECOND_CHAPTER_ID = "chapter-02";
@@ -123,4 +140,4 @@ const CHAPTERS = Object.freeze({
 
 const CHAPTER_IDS = Object.freeze([FIRST_CHAPTER_ID, SECOND_CHAPTER_ID, THIRD_CHAPTER_ID, FOURTH_CHAPTER_ID, FIFTH_CHAPTER_ID, SIXTH_CHAPTER_ID, SEVENTH_CHAPTER_ID, EIGHTH_CHAPTER_ID, NINTH_CHAPTER_ID]);
 
-module.exports = { CHAPTERS, CHAPTER_IDS, DIFFICULTY_SLOTS, FEATURE_FLAGS, FIRST_CHAPTER_ID, SECOND_CHAPTER_ID, THIRD_CHAPTER_ID, FOURTH_CHAPTER_ID, FIFTH_CHAPTER_ID, SIXTH_CHAPTER_ID, SEVENTH_CHAPTER_ID, EIGHTH_CHAPTER_ID, NINTH_CHAPTER_ID };
+module.exports = { CHAPTERS, CHAPTER_IDS, COGNITIVE_PHASE_SLOTS, DIFFICULTY_SLOTS, FEATURE_FLAGS, FIRST_CHAPTER_ID, SECOND_CHAPTER_ID, THIRD_CHAPTER_ID, FOURTH_CHAPTER_ID, FIFTH_CHAPTER_ID, SIXTH_CHAPTER_ID, SEVENTH_CHAPTER_ID, EIGHTH_CHAPTER_ID, NINTH_CHAPTER_ID, getCognitivePhaseSlot };

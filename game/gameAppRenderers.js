@@ -1288,6 +1288,9 @@ export function createGameRenderers(app) {
     blueprint.className = `cognitive-blueprint cognitive-blueprint--${tierInfo.code}`;
     blueprint.dataset.cognitiveBlueprint = "";
 
+    const ladderBadge = question.cognitiveBadge || (question.slot === 10 ? "👑 复合建模" : question.slot >= 8 ? "⚡ 边界极值" : question.slot >= 6 ? "⏪ 逆向还原" : question.slot >= 3 ? "🔄 情境迁移" : "🎯 母题定模");
+    const ladderGoal = question.cognitiveGoal || (question.slot === 10 ? "多重约束与综合建模" : question.slot >= 8 ? "临界状态与极端逼近" : question.slot >= 6 ? "倒推反演与知果索因" : question.slot >= 3 ? "隐蔽条件与生活化换元" : "基准识别与公式锚定");
+
     const goal = question.knowledgeGoal || question.learningObjective || "掌握核心数理规律";
     const model = question.typicalModel || question.reasoningType || "经典数理解析";
     const steps = tierInfo.stepLabel || "分步推导";
@@ -1295,13 +1298,13 @@ export function createGameRenderers(app) {
 
     blueprint.innerHTML = `
       <div class="cognitive-blueprint__header">
-        <span class="cognitive-blueprint__tag">🧭 战术思维蓝图</span>
+        <span class="cognitive-blueprint__tag">🧭 战术思维蓝图 · ${ladderBadge}</span>
         <span class="cognitive-blueprint__tier">${tierInfo.stars} ${tierInfo.title}</span>
       </div>
       <div class="cognitive-blueprint__grid">
         <div class="cognitive-blueprint__item">
-          <span class="cognitive-blueprint__k">🎯 认知目标</span>
-          <span class="cognitive-blueprint__v">${goal}</span>
+          <span class="cognitive-blueprint__k">🎯 认知定位</span>
+          <span class="cognitive-blueprint__v">${ladderGoal}</span>
         </div>
         <div class="cognitive-blueprint__item">
           <span class="cognitive-blueprint__k">🧩 核心模型</span>
@@ -1356,11 +1359,18 @@ export function createGameRenderers(app) {
       const minimalCard = KnowledgeMotionExplainer.renderMinimalTacticalCard(review, run.question);
       details.append(minimalCard);
 
+      const ladderBadge = run.question?.cognitiveBadge || (run.question?.slot === 10 ? "👑 复合建模" : run.question?.slot >= 8 ? "⚡ 边界极值" : run.question?.slot >= 6 ? "⏪ 逆向还原" : run.question?.slot >= 3 ? "🔄 情境迁移" : "🎯 母题定模");
+      const ladderGoal = run.question?.cognitiveGoal || (run.question?.slot === 10 ? "多重约束与综合建模" : run.question?.slot >= 8 ? "临界状态与极端逼近" : run.question?.slot >= 6 ? "倒推反演与知果索因" : run.question?.slot >= 3 ? "隐蔽条件与生活化换元" : "基准识别与公式锚定");
+
       const transferCard = document.createElement("div");
       transferCard.className = "tactical-review__transfer-card";
       transferCard.innerHTML = `
         <div class="tactical-review__transfer-title">🌟 数学思维精要 · 举一反三</div>
         <div class="tactical-review__transfer-grid">
+          <div class="tactical-review__transfer-item">
+            <strong>🧗 阶梯定位</strong>
+            <span>${ladderBadge}（${ladderGoal}）</span>
+          </div>
           <div class="tactical-review__transfer-item">
             <strong>🎯 核心模型</strong>
             <span>${run.question?.typicalModel || review.method || "经典数理解析"}</span>
@@ -1657,11 +1667,18 @@ export function createGameRenderers(app) {
       const minimalCard = KnowledgeMotionExplainer.renderMinimalTacticalCard(review, run.question || {});
       details.append(minimalCard);
 
+      const ladderBadge = run.question?.cognitiveBadge || (run.question?.slot === 10 ? "👑 复合建模" : run.question?.slot >= 8 ? "⚡ 边界极值" : run.question?.slot >= 6 ? "⏪ 逆向还原" : run.question?.slot >= 3 ? "🔄 情境迁移" : "🎯 母题定模");
+      const ladderGoal = run.question?.cognitiveGoal || (run.question?.slot === 10 ? "多重约束与综合建模" : run.question?.slot >= 8 ? "临界状态与极端逼近" : run.question?.slot >= 6 ? "倒推反演与知果索因" : run.question?.slot >= 3 ? "隐蔽条件与生活化换元" : "基准识别与公式锚定");
+
       const transferCard = document.createElement("div");
       transferCard.className = "tactical-review__transfer-card";
       transferCard.innerHTML = `
         <div class="tactical-review__transfer-title">🌟 数学思维精要 · 举一反三</div>
         <div class="tactical-review__transfer-grid">
+          <div class="tactical-review__transfer-item">
+            <strong>🧗 阶梯定位</strong>
+            <span>${ladderBadge}（${ladderGoal}）</span>
+          </div>
           <div class="tactical-review__transfer-item">
             <strong>🎯 核心模型</strong>
             <span>${run.question?.typicalModel || review.method || "经典数理解析"}</span>

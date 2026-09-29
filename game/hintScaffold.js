@@ -13,17 +13,18 @@ function buildTieredHints(question) {
   const isFactorProblem = /最大公因数|最大公约数|最小公倍数|公因数|公约数|公倍数|质因数|短除|互质/.test(prompt) || ["factors-multiples", "prime-factorization"].includes(moduleId);
 
   // Tier 1: Clue & Condition Focus (关键审题与避坑)
+  const cognitiveTag = question.cognitiveBadge ? `【${question.cognitiveBadge} · ${question.cognitiveGoal || "核心攻坚"}】\n` : "";
   let tier1Text = "";
   if (question.commonPitfall) {
-    tier1Text = `⚠️ 避坑提醒：${question.commonPitfall}`;
+    tier1Text = `${cognitiveTag}⚠️ 避坑提醒：${question.commonPitfall}`;
   } else if (question.solutionReview?.pitfall) {
-    tier1Text = `⚠️ 避坑提醒：${question.solutionReview.pitfall}`;
+    tier1Text = `${cognitiveTag}⚠️ 避坑提醒：${question.solutionReview.pitfall}`;
   } else if (question.storyBeat) {
-    tier1Text = `🔍 审题线索：${question.storyBeat}`;
+    tier1Text = `${cognitiveTag}🔍 审题线索：${question.storyBeat}`;
   } else if (isFactorProblem) {
-    tier1Text = "🔍 审题线索：圈出题目中的两个关键数字，明确求的是【最大公因数 (GCD)】还是【最小公倍数 (LCM)】，倍数因数关系莫混淆。";
+    tier1Text = `${cognitiveTag}🔍 审题线索：圈出题目中的两个关键数字，明确求的是【最大公因数 (GCD)】还是【最小公倍数 (LCM)】，倍数因数关系莫混淆。`;
   } else {
-    tier1Text = "🔍 审题线索：圈出题目中的已知数字和单位，明确最终所求的单一量还是总量。";
+    tier1Text = `${cognitiveTag}🔍 审题线索：圈出题目中的已知数字和单位，明确最终所求的单一量还是总量。`;
   }
   hints.push({
     tier: 1,
@@ -147,7 +148,41 @@ function diagnoseMistake(question, studentAnswer) {
     }
   }
 
-  // 4. 行程问题 (相遇与追及速度混淆)
+  // 4. 列车过桥与车身长度雷区
+  if (/列车|火车|过桥|隧道|车身|车长|错车|超车/.test(prompt) && isNumeric) {
+    if (/过桥|穿过隧道|通过隧道|过隧道|通过大桥|过大桥/.test(prompt)) {
+      return "⚠️ 触碰列车行程雷区：列车过桥或穿隧道时，从车头上桥到车尾离桥，列车实际行驶的总路程 ＝【桥长/隧道长 ＋ 列车车长】！请检查是否漏算了车身长度。";
+    }
+    if (/完全在桥上|完全在隧道内/.test(prompt)) {
+      return "⚠️ 触碰列车行程雷区：列车完全在桥上（或隧道内）时，行驶路程 ＝【桥长/隧道长 － 列车车长】！请检查是否多算或误算了车长。";
+    }
+    if (/错车|相向而行/.test(prompt)) {
+      return "⚠️ 触碰错车行程雷区：两列车相向错车，从车头相遇到车尾离开，相对行驶路程 ＝【两车车长之和】，相对速度 ＝【速度之和】！";
+    }
+    if (/超车|追及/.test(prompt)) {
+      return "⚠️ 触碰超车行程雷区：快车追及慢车并完全超车，相对行驶路程 ＝【两车车长之和】，相对速度 ＝【快车速 － 慢车速】！";
+    }
+  }
+
+  // 5. 平均速度致命陷阱 (不可直接算术平均)
+  if (/平均速度|往返/.test(prompt) && isNumeric) {
+    const speeds = [];
+    const speedMatches = prompt.matchAll(/(\d+(?:\.\d+)?)\s*(?:千米\/时|km\/h|米\/秒|m\/s|米\/分)/g);
+    for (const m of speedMatches) {
+      speeds.push(parseFloat(m[1]));
+    }
+    if (speeds.length >= 2) {
+      const avgSpeed = (speeds[0] + speeds[1]) / 2;
+      if (Math.abs(sNum - avgSpeed) < 0.1 && Math.abs(cNum - avgSpeed) > 0.1) {
+        return "⚠️ 触碰平均速度致命雷区：平均速度绝不是两个速度相加除以 2！由于往返（或两段路）耗时不同，必须严格用公式【总路程 ÷ 总时间】进行计算！";
+      }
+    }
+    if (/平均速度/.test(prompt)) {
+      return "⚠️ 平均速度核心要诀：平均速度 ＝【总路程 ÷ 总时间】！切忌直接取速度的算术平均值，先分别求出各段所用时间再求总平均。";
+    }
+  }
+
+  // 6. 行程问题 (相遇与追及速度混淆)
   if (/相遇|追及|相向|同向|背向|迎面|速度/.test(prompt)) {
     if (isNumeric && /相遇|相向/.test(prompt) && !/追及|追上/.test(prompt)) {
       return "相向而行时两人距离在快速缩短，求解相遇时间应用【路程和 ÷ 速度和】，注意不要误用速度差！";
@@ -157,7 +192,34 @@ function diagnoseMistake(question, studentAnswer) {
     }
   }
 
-  // 5. 和倍与差倍问题 (份数多算或少算 1 份)
+  // 7. 盈亏问题同异判定雷区 (同类相减，异类相加)
+  if (/(?:盈|亏|剩余|多出|还剩|缺少|不足|还差)/.test(prompt) && isNumeric) {
+    const conditionText = prompt.replace(/(?:多少|几[个只位两本条块棵辆支朵台]|有多[少女])/g, "");
+    const hasSurplus = /(?:剩|多出|多|盈)/.test(conditionText);
+    const hasDeficit = /(?:还差|缺少|不足|亏|少\s*\d+)/.test(conditionText);
+    const isSurplusDeficit = hasSurplus && hasDeficit;
+    if (isSurplusDeficit) {
+      return "⚠️ 盈亏口诀提醒：【一盈一亏，两次差量相加求总差】！一盈一亏时总差额 ＝ 盈 ＋ 亏，再除以两次分配的单人差量即可得出人数。";
+    }
+    return "⚠️ 盈亏口诀提醒：【同盈同亏，两次差量相减求总差】！若两次都是剩余（双盈）或都是不足（双亏），总差额应用大数减小数！";
+  }
+
+  // 8. 几何图形面积与高 (三角形/梯形遗漏除以 2)
+  if (/(?:三角形|梯形)/.test(prompt) && isNumeric && cNum > 0 && sNum > 0) {
+    if (Math.abs(sNum - cNum * 2) < 0.01) {
+      return "⚠️ 几何公式易漏项：你算出的数值正好是正确答案的 2 倍！三角形面积 ＝ 底 × 高 ÷ 2，梯形面积 ＝ (上底 ＋ 下底) × 高 ÷ 2，计算时切勿漏除了 2！";
+    }
+    if (Math.abs(sNum - cNum / 2) < 0.01) {
+      return "⚠️ 几何公式易漏项：你算出的数值正好是正确答案的一半！逆求高或底时，请先将面积乘 2（即 高 ＝ 面积 × 2 ÷ 底），再进行后续除法计算。";
+    }
+  }
+
+  // 9. 年龄问题核心铁律 (年龄差永恒不变)
+  if (/(?:年龄|岁|父子|母女|兄弟|姐妹|爸爸.*儿子|妈妈.*女儿)/.test(prompt) && isNumeric) {
+    return "⚠️ 年龄问题核心铁律：两人的【年龄差永恒不变】！不论过去多少年或未来多少年，年龄差始终保持同一数值，而倍数关系每一年都在动态改变。解题切记以‘恒定年龄差’为基准量！";
+  }
+
+  // 10. 和倍与差倍问题 (份数多算或少算 1 份)
   if (/倍/.test(prompt) && isNumeric) {
     const diff = sNum - cNum;
     if (Math.abs(diff) === 1) {
@@ -165,12 +227,12 @@ function diagnoseMistake(question, studentAnswer) {
     }
   }
 
-  // 6. 还原 / 逆推问题
+  // 11. 还原 / 逆推问题
   if (/还原|倒推|原来|又拿走|又放入/.test(prompt)) {
     return "还原逆推问题口诀：从最后的结果倒着推回去，加变减、减变加、乘变除、除变乘！";
   }
 
-  // 7. 最大公因数与最小公倍数混淆，或短除未除尽到互质
+  // 12. 最大公因数与最小公倍数混淆，或短除未除尽到互质
   if (/最大公因数|最大公约数|最小公倍数|公因数|公约数|公倍数|短除|质因数|互质/.test(prompt) && isNumeric) {
     if (/最大公因数|最大公约数/.test(prompt) && sNum > cNum) {
       return "你计算的可能是【最小公倍数(LCM)】或两者乘积！短除法中，最大公因数(GCD)只乘【左侧竖列】的公质因数，结果不会大于任何一个原数。";
@@ -181,7 +243,7 @@ function diagnoseMistake(question, studentAnswer) {
     return "短除法关键警示：必须连续除以公质因数，直到商【互质】（公因数只有 1）为止！检查底部的商是否还能继续提取公因数。";
   }
 
-  // 8. 若有针对性的 commonPitfall 则作为高价值诊断
+  // 13. 若有针对性的 commonPitfall 则作为高价值诊断
   if (question.commonPitfall) {
     return `诊断提醒：${question.commonPitfall}`;
   }

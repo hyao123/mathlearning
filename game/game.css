@@ -1031,6 +1031,39 @@ input:focus-visible {
   font-weight: 600;
 }
 
+.tactical-cognitive-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+  border: 1px solid #bfdbfe;
+}
+
+.tactical-cognitive-bar__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  border-radius: 9999px;
+  background: #1e3a8a;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.tactical-cognitive-bar__goal {
+  font-size: 0.82rem;
+  color: #1e293b;
+  line-height: 1.4;
+}
+
+.tactical-cognitive-bar__goal strong {
+  color: #2563eb;
+}
+
 .challenge-card__heading {
   margin: 0;
   font-size: clamp(1.2rem, 3vw, 1.8rem);

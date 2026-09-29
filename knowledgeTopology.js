@@ -257,11 +257,65 @@
     return ordered.map((module) => enrichModule(module, ordered));
   }
 
+  const OLYMPIAD_SPIRAL_AXES = Object.freeze([
+    Object.freeze({
+      id: "algebra-elimination",
+      title: "代数建模与消元演进轴",
+      strand: "代数与方程思想",
+      summary: "从线段和差走向极值假设、双向盈亏，再到消元表格与代数方程建模，形成系统的量化消元体系。",
+      milestones: Object.freeze([
+        { stage: "和差基准", moduleIds: ["sum-diff"], summary: "抓住线段图与基准量，以和与差为双锚点" },
+        { stage: "置换假设", moduleIds: ["chicken-rabbit"], summary: "全量极端假设与单体差量累加置换" },
+        { stage: "双向盈亏", moduleIds: ["surplus-deficit"], summary: "两次分配方案双向比较，同减异加" },
+        { stage: "倒推消元", moduleIds: ["restoration-problems", "elimination-table"], summary: "知果索因逆向还原与多未知量消元表格" },
+        { stage: "方程建模", moduleIds: ["equation-model", "integrated-modeling"], summary: "设立未知数构建等量守恒，终结复杂数量关系" }
+      ])
+    }),
+    Object.freeze({
+      id: "geometry-transformation",
+      title: "空间几何与割补演进轴",
+      strand: "空间与图形转化",
+      summary: "从平移周长面积、格点割补，到模型比例转化与立体空间透视，建立图形守恒与转化直觉。",
+      milestones: Object.freeze([
+        { stage: "周长与面积基准", moduleIds: ["geometry"], summary: "长正方形网格与平移巧算周长面积" },
+        { stage: "格点与割补等积", moduleIds: ["geometry-counting"], summary: "三角形梯形出入相友、旋转平移与等积变形" },
+        { stage: "模型分解与比例", moduleIds: ["geometry-decomposition"], summary: "鸟头、蝴蝶、燕尾模型与高底面积比" },
+        { stage: "空间展开与截面", moduleIds: ["cube-unfolding"], summary: "三维立体透视、展开图对立面与旋转体截面" }
+      ])
+    }),
+    Object.freeze({
+      id: "number-theory-structure",
+      title: "数论基石与结构演进轴",
+      strand: "数论与整除体系",
+      summary: "从奇偶判定、周期余数，到质因数短除分解、同余特征与不变量证明，掌握离散数论结构。",
+      milestones: Object.freeze([
+        { stage: "奇偶与周期余数", moduleIds: ["periodicity", "parity-divisibility"], summary: "同余余数定位与加乘奇偶不变性" },
+        { stage: "因倍数与短除法", moduleIds: ["factors-multiples", "prime-factorization"], summary: "质因数分解短除法，两数之积等于GCD乘LCM" },
+        { stage: "奇偶不变量与状态", moduleIds: ["parity-invariant"], summary: "操作变化中的奇偶守恒与周期状态判定" },
+        { stage: "整除特征与构造", moduleIds: ["congruence-intro"], summary: "高位整除特征判定与同余定理同余类" }
+      ])
+    }),
+    Object.freeze({
+      id: "combinatorics-optimization",
+      title: "组合离散与极值演进轴",
+      strand: "组合与运筹优化",
+      summary: "从不重不漏的加乘穷举，到容斥原理、抽屉最不利原则与博弈对策，训练极端与最优策略。",
+      milestones: Object.freeze([
+        { stage: "有序分类分步", moduleIds: ["enumeration", "add-multiply-principle"], summary: "树状图穷举与分类相加分步相乘" },
+        { stage: "容斥重叠抵消", moduleIds: ["inclusion-exclusion"], summary: "多集合韦恩图重叠项计算与至少至多反向容斥" },
+        { stage: "抽屉与最不利原则", moduleIds: ["pigeonhole-principle", "worst-case"], summary: "苹果与抽屉归宿原理、最倒霉极端情况兜底" },
+        { stage: "博弈策略与构造", moduleIds: ["optimal-strategy", "construction", "integrated-strategy"], summary: "倒推必胜态对称构造与最优统筹调度" }
+      ])
+    })
+  ]);
+
   const api = {
     applyKnowledgeTopology,
     getTopologyForModule,
     knowledgeTopologyByModule: topologyByModule,
     learningStrands,
+    olympiadSpiralAxes: OLYMPIAD_SPIRAL_AXES,
+    OLYMPIAD_SPIRAL_AXES,
     orderModulesByTopology,
     strandOrder
   };
