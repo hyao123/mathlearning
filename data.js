@@ -364,25 +364,25 @@ window.MATH_LEARNING_DATA = [
         "id": "geometry-2",
         "title": "闯关 2",
         "difficulty": "基础",
-        "prompt": "一个 1×1 的正方形图里有多少个正方形？",
-        "answer": "1",
-        "explanation": "只有 1 个正方形。"
+        "prompt": "从同一个端点引出 4 条射线，一共可以组成多少个角？",
+        "answer": "6",
+        "explanation": "任意两条射线组成一个角，以各射线向后组合：3+2+1 = 6 个角。"
       },
       {
         "id": "geometry-3",
         "title": "闯关 3",
         "difficulty": "进阶",
-        "prompt": "一个 2×2 方格图中，有多少个小正方形？",
-        "answer": "4",
-        "explanation": "横向 2 个，纵向 2 个，共 2×2 = 4 个小正方形。"
+        "prompt": "一个大三角形从顶点向底边引出 2 条线段，把底边分成了 3 个小线段。整个图形中一共有多少个三角形？",
+        "answer": "6",
+        "explanation": "所有三角形共用一个顶点，三角形的个数等于底边上线段的总数：3+2+1 = 6 个三角形。"
       },
       {
         "id": "geometry-4",
         "title": "闯关 4",
         "difficulty": "进阶",
-        "prompt": "一条直线上有 5 个点，可以组成多少条线段？",
+        "prompt": "由 4 个 1×1 小正方形排成的一行长条中，一共有多少个长方形（包含正方形）？",
         "answer": "10",
-        "explanation": "5 个点任选 2 个，5×4÷2 = 10。"
+        "explanation": "长方形长度可由 1 格、2 格、3 格、4 格组成，分别有 4、3、2、1 个，共有 4+3+2+1 = 10 个长方形。"
       },
       {
         "id": "geometry-5",
@@ -396,25 +396,25 @@ window.MATH_LEARNING_DATA = [
         "id": "geometry-6",
         "title": "闯关 6",
         "difficulty": "挑战",
-        "prompt": "一个 3×3 方格图中，有多少个 1×1 的小正方形？",
-        "answer": "9",
-        "explanation": "每行 3 个，共 3 行，所以有 9 个。"
+        "prompt": "一个 3×3 方格图中，一共有多少个正方形（包含 1×1、2×2、3×3 的所有正方形）？",
+        "answer": "14",
+        "explanation": "1×1 正方形有 3×3=9 个，2×2 正方形有 2×2=4 个，3×3 正方形有 1 个，共 9+4+1 = 14 个正方形。"
       },
       {
         "id": "geometry-8",
         "title": "闯关 8",
         "difficulty": "提高",
-        "prompt": "一条直线上有 6 个点，可以组成多少条线段？",
-        "answer": "15",
-        "explanation": "6 个点任选 2 个，6×5÷2 = 15。"
+        "prompt": "一个 2×3 的方格图中，一共有多少个正方形（包含小正方形和大正方形）？",
+        "answer": "8",
+        "explanation": "1×1 的小正方形有 2×3 = 6 个；2×2 的正方形横向有 2 个位置、纵向有 1 个位置，共 2×1 = 2 个；一共 6+2 = 8 个正方形。"
       },
       {
         "id": "geometry-9",
         "title": "闯关 9",
         "difficulty": "提高",
-        "prompt": "一个 2×3 方格图中，有多少个小正方形？",
-        "answer": "6",
-        "explanation": "横向 3 个，纵向 2 个，共 3×2 = 6 个小正方形。"
+        "prompt": "一个 2×3 的方格网中，一共有多少个长方形（包含正方形）？",
+        "answer": "18",
+        "explanation": "长边 3 格包含 3+2+1 = 6 条线段；宽边 2 格包含 2+1 = 3 条线段。根据乘法原理，长方形总数为 6×3 = 18 个。"
       },
       {
         "id": "geometry-11",
@@ -1172,9 +1172,9 @@ window.MATH_LEARNING_DATA = [
         "id": "factors-multiples-1",
         "title": "闯关 1",
         "difficulty": "基础",
-        "prompt": "15 是 5 的倍数吗？回答“是”或“不是”。",
-        "answer": "是",
-        "explanation": "15 ÷ 5 = 3，没有余数。"
+        "prompt": "自然数 12 一共有多少个不同的正因数？",
+        "answer": "6",
+        "explanation": "12 的全部正因数是 1、2、3、4、6、12，一共有 6 个因数。"
       },
       {
         "id": "factors-multiples-2",
@@ -1196,9 +1196,9 @@ window.MATH_LEARNING_DATA = [
         "id": "factors-multiples-4",
         "title": "闯关 4",
         "difficulty": "进阶",
-        "prompt": "18 是 6 的倍数吗？",
-        "answer": "是",
-        "explanation": "18 ÷ 6 = 3，所以是倍数。"
+        "prompt": "在 50 以内，既是 6 的倍数又是 8 的倍数的最大两位数是多少？",
+        "answer": "48",
+        "explanation": "6 和 8 的最小公倍数是 24。50 以内 24 的倍数有 24 和 48，其中最大的是 48。"
       },
       {
         "id": "factors-multiples-5",
@@ -1212,9 +1212,9 @@ window.MATH_LEARNING_DATA = [
         "id": "factors-multiples-6",
         "title": "闯关 6",
         "difficulty": "提高",
-        "prompt": "24 的最大因数是多少？",
-        "answer": "24",
-        "explanation": "任何自然数的最大因数都是它本身。"
+        "prompt": "除 24 本身以外，24 的最大因数是多少？",
+        "answer": "12",
+        "explanation": "24 的因数从小到大是 1、2、3、4、6、8、12、24。除去自身外，最大的因数是 24÷2 = 12。"
       },
       {
         "id": "factors-multiples-7",
@@ -1236,9 +1236,9 @@ window.MATH_LEARNING_DATA = [
         "id": "factors-multiples-9",
         "title": "闯关 9",
         "difficulty": "提高",
-        "prompt": "36 的最大因数是多少？",
-        "answer": "36",
-        "explanation": "一个数最大的因数是它本身。"
+        "prompt": "一个数的真因数（除去自身外的所有因数）之和等于它本身，叫完全数。在 10 以内的自然数中，唯一的完全数是多少？",
+        "answer": "6",
+        "explanation": "6 除去自身外的真因数是 1、2、3，且 1+2+3 = 6，因数和等于自身，因此 6 是完全数。"
       },
       {
         "id": "factors-multiples-10",
@@ -1657,81 +1657,81 @@ window.MATH_LEARNING_DATA = [
         "id": "prime-factorization-1",
         "title": "闯关 1",
         "difficulty": "基础",
-        "prompt": "8 分解质因数后写成什么？",
-        "answer": "2×2×2",
-        "explanation": "8 = 2×2×2。"
+        "prompt": "把 24 分解质因数写成连乘形式，其中最大的质因数是多少？",
+        "answer": "3",
+        "explanation": "短除法分解：24 ＝ 2 × 2 × 2 × 3。分解出的质因数有 2 和 3，其中最大的质因数是 3。"
       },
       {
         "id": "prime-factorization-2",
         "title": "闯关 2",
         "difficulty": "基础",
-        "prompt": "15 分解质因数后写成什么？",
-        "answer": "3×5",
-        "explanation": "15 = 3×5，且 3、5 都是质数。"
+        "prompt": "把 60 分解质因数后，包含多少个不同的质因数？",
+        "answer": "3",
+        "explanation": "60 ＝ 2 × 2 × 3 × 5，不同质因数有 2、3、5 共 3 个。"
       },
       {
         "id": "prime-factorization-3",
         "title": "闯关 3",
         "difficulty": "进阶",
-        "prompt": "24 分解质因数后有几个 2？",
+        "prompt": "72 分解质因数后写成连乘积（72 ＝ 2×2×2×3×3），其中质因数 2 出现了多少次？",
         "answer": "3",
-        "explanation": "24 = 2×2×2×3，所以有 3 个 2。"
+        "explanation": "72 ＝ 2 × 2 × 2 × 3 × 3，质因数 2 连续出现了 3 次。"
       },
       {
         "id": "prime-factorization-4",
         "title": "闯关 4",
         "difficulty": "进阶",
-        "prompt": "27 分解质因数后写成什么？",
-        "answer": "3×3×3",
-        "explanation": "27 = 3×3×3。"
+        "prompt": "自然数 84 的所有质因数的和是多少？（每个质因数按其分解次数重复累加）",
+        "answer": "16",
+        "explanation": "84 ＝ 2 × 2 × 3 × 7；各质因数累加和 ＝ 2 ＋ 2 ＋ 3 ＋ 7 ＝ 16。"
       },
       {
         "id": "prime-factorization-5",
         "title": "闯关 5",
-        "difficulty": "提高",
-        "prompt": "30 分解质因数后有几个不同的质因数？",
-        "answer": "3",
-        "explanation": "30 = 2×3×5，有 3 个不同的质因数。"
+        "difficulty": "进阶",
+        "prompt": "两个质数的和是 39，这两个质数的乘积是多少？",
+        "answer": "74",
+        "explanation": "两质数之和 39 是奇数，必为一奇一偶；唯一的偶质数是 2，另一个质数是 39 － 2 ＝ 37；两数之积 ＝ 2 × 37 ＝ 74。"
       },
       {
         "id": "prime-factorization-6",
         "title": "闯关 6",
         "difficulty": "提高",
-        "prompt": "45 分解质因数后写成什么？",
-        "answer": "3×3×5",
-        "explanation": "45 = 9×5 = 3×3×5。"
+        "prompt": "一个两位数分解质因数后是三个连续自然数的乘积，这个两位数是多少？",
+        "answer": "60",
+        "explanation": "连续自然数乘积：3 × 4 × 5 ＝ 60；60 分解质因数 ＝ 2 × 2 × 3 × 5，是符合条件的唯一两位数。"
       },
       {
         "id": "prime-factorization-7",
         "title": "闯关 7",
-        "difficulty": "挑战",
-        "prompt": "49 分解质因数后写成什么？",
-        "answer": "7×7",
-        "explanation": "49 = 7×7。"
+        "difficulty": "提高",
+        "prompt": "要把 45 乘以一个最小的正整数，使它们的乘积成为一个完全平方数，这个最小正整数是多少？",
+        "answer": "5",
+        "explanation": "完全平方数各质因数指数均为偶数；45 ＝ 3 × 3 × 5，质因数 5 只有 1 个，需再补乘一个 5 组成 45 × 5 ＝ 225 ＝ 15×15。"
       },
       {
         "id": "prime-factorization-8",
         "title": "闯关 8",
-        "difficulty": "挑战",
-        "prompt": "50 分解质因数后有几个 5？",
-        "answer": "2",
-        "explanation": "50 = 2×5×5，所以有两个 5。"
+        "difficulty": "提高",
+        "prompt": "计算从 1 乘到 15 的乘积（1×2×3×...×15），末尾连续有多少个 0？",
+        "answer": "3",
+        "explanation": "末尾 0 的个数取决于质因数 2 和 5 的对数；1 到 15 中质因数 5 分别来自 5、10、15，共有 3 个 5，因此末尾连续有 3 个 0。"
       },
       {
         "id": "prime-factorization-9",
         "title": "闯关 9",
-        "difficulty": "提高",
-        "prompt": "32 分解质因数后有几个 2？",
-        "answer": "5",
-        "explanation": "32 = 2×2×2×2×2。"
+        "difficulty": "挑战",
+        "prompt": "自然数 N 分解质因数后为 N ＝ 2 × 3 × 3 × 5，那么 N 一共有多少个正因数？",
+        "answer": "12",
+        "explanation": "因数个数定理：各质因数指数加 1 后连乘。N ＝ 2¹ × 3² × 5¹，因数个数 ＝ (1+1) × (2+1) × (1+1) ＝ 2 × 3 × 2 ＝ 12 个。"
       },
       {
         "id": "prime-factorization-10",
         "title": "闯关 10",
         "difficulty": "挑战",
-        "prompt": "42 分解质因数后写成什么？",
-        "answer": "2×3×7",
-        "explanation": "42 = 2×21 = 2×3×7。"
+        "prompt": "两个正整数的最大公因数是 6，最小公倍数是 72，且两数均不为 6。这两个数中较大的是多少？",
+        "answer": "24",
+        "explanation": "两数设为 6a 和 6b（a, b 互质）；LCM ＝ 6ab ＝ 72 得 ab ＝ 12；因两数不为 6，a、b 不能为 1，故 a＝3，b＝4；两数为 18 和 24，较大数为 24。"
       }
     ]
   },
@@ -3838,81 +3838,81 @@ window.MATH_LEARNING_DATA = [
         "id": "square-array-1",
         "title": "闯关 1",
         "difficulty": "基础",
-        "prompt": "2 行 2 列的方阵共有多少个点？",
-        "answer": "4",
-        "explanation": "2×2=4。"
+        "prompt": "阅兵式上，仪仗队员排成 6 行 6 列的正方形实心方阵，这个方阵一共有多少名队员？",
+        "answer": "36",
+        "explanation": "实心方阵总人数 ＝ 每边人数 × 每边人数，即 6 × 6 ＝ 36 名。"
       },
       {
         "id": "square-array-2",
         "title": "闯关 2",
         "difficulty": "基础",
-        "prompt": "5 行 5 列的方阵共有多少个点？",
-        "answer": "25",
-        "explanation": "5×5=25。"
+        "prompt": "一个 7 行 7 列的正方形方阵，最外层一周一共有多少个点？",
+        "answer": "24",
+        "explanation": "最外层总点数 ＝ (每边点数 - 1) × 4。四个角上的点各被两条边共用，所以 (7 - 1) × 4 ＝ 24 个。"
       },
       {
         "id": "square-array-3",
         "title": "闯关 3",
         "difficulty": "进阶",
-        "prompt": "4 行 4 列的方阵共有多少个点？",
-        "answer": "16",
-        "explanation": "4×4=16。"
+        "prompt": "一个实心方阵的最外层一周共有 28 盆鲜花，这个方阵每边摆了多少盆花？",
+        "answer": "8",
+        "explanation": "已知最外层总数逆求每边点数：每边点数 ＝ 最外层总数 ÷ 4 ＋ 1，即 28 ÷ 4 ＋ 1 ＝ 8 盆。"
       },
       {
         "id": "square-array-4",
         "title": "闯关 4",
         "difficulty": "进阶",
-        "prompt": "一个方阵每行 6 个点，共 6 行，一共有多少个点？",
-        "answer": "36",
-        "explanation": "6×6=36。"
+        "prompt": "一个 5 行 5 列的实心方阵，若要在最外层再向外围上一层形成新的方阵，需要增加多少个点？",
+        "answer": "24",
+        "explanation": "原方阵每边 5 个点，向外扩一层后新方阵每边为 5 ＋ 2 ＝ 7 个点；新增点数 ＝ (7 - 1) × 4 ＝ 24 个。"
       },
       {
         "id": "square-array-5",
         "title": "闯关 5",
-        "difficulty": "提高",
-        "prompt": "一个方阵共有 49 个点，每行有几个点？",
-        "answer": "7",
-        "explanation": "7×7=49。"
+        "difficulty": "进阶",
+        "prompt": "体操队员排成一个两层空心方阵，最外层每边 8 人，这个两层空心方阵一共有多少人？",
+        "answer": "48",
+        "explanation": "外层人数 (8 - 1) × 4 ＝ 28 人；内层每边 8 - 2 ＝ 6 人，内层人数 (6 - 1) × 4 ＝ 20 人；总人数 28 ＋ 20 ＝ 48 人（也可由大实心 64 减小实心 16 得到）。"
       },
       {
         "id": "square-array-6",
         "title": "闯关 6",
         "difficulty": "提高",
-        "prompt": "一个方阵共有 64 个点，每行有几个点？",
-        "answer": "8",
-        "explanation": "8×8=64。"
+        "prompt": "用若干块地砖刚好铺成一个 8 行 8 列的实心方阵。若要扩充成一个 9 行 9 列的方阵，还需增加多少块地砖？",
+        "answer": "17",
+        "explanation": "扩充一层只需要补全相邻的一行和一列以及角上一块：新方阵 9×9 ＝ 81 块，原方阵 8×8 ＝ 64 块，还需增加 81 － 64 ＝ 17 块（即 8 × 2 ＋ 1 ＝ 17 块）。"
       },
       {
         "id": "square-array-7",
         "title": "闯关 7",
-        "difficulty": "挑战",
-        "prompt": "7 行 7 列的方阵共有多少个点？",
-        "answer": "49",
-        "explanation": "7×7=49。"
+        "difficulty": "提高",
+        "prompt": "一个实心点阵由 100 个点组成，如果剥去它最外层的一周点，剩下的内部方阵共有多少个点？",
+        "answer": "64",
+        "explanation": "原方阵 100 个点，每边为 10 个；剥去最外层后，内层每边减少 2 个变为 8 个；内部剩下 8 × 8 ＝ 64 个点。"
       },
       {
         "id": "square-array-8",
         "title": "闯关 8",
-        "difficulty": "挑战",
-        "prompt": "一个方阵共有 81 个点，每行有几个点？",
-        "answer": "9",
-        "explanation": "9×9=81。"
+        "difficulty": "提高",
+        "prompt": "花坛摆放了三层空心花盆方阵，已知最外层每边有 10 盆花，那么最内层一周有多少盆花？",
+        "answer": "20",
+        "explanation": "方阵相邻两层人数恒差 8 人；最外层人数 ＝ (10 - 1) × 4 ＝ 36 盆；中间层 ＝ 36 － 8 ＝ 28 盆；最内层 ＝ 28 － 8 ＝ 20 盆。"
       },
       {
         "id": "square-array-9",
         "title": "闯关 9",
-        "difficulty": "提高",
-        "prompt": "8 行 8 列的方阵共有多少个点？",
-        "answer": "64",
-        "explanation": "8×8=64。"
+        "difficulty": "挑战",
+        "prompt": "排成 6 行 6 列的实心方队全部解散后，改排成每行 4 人的长方形队列，可以排成多少行？",
+        "answer": "9",
+        "explanation": "总人数总量守恒：6 × 6 ＝ 36 人；改排成每行 4 人的长方形队伍，行数 ＝ 36 ÷ 4 ＝ 9 行。"
       },
       {
         "id": "square-array-10",
         "title": "闯关 10",
         "difficulty": "挑战",
-        "prompt": "一个方阵共有 100 个点，每行有几个点？",
-        "answer": "10",
-        "explanation": "10×10=100。"
+        "prompt": "同学们排成一个实心方阵，还多出 5 人；如果横竖各增加一排排成大实心方阵，则还缺少 8 人。原来一共有多少名同学？",
+        "answer": "41",
+        "explanation": "横竖各增加一排共需增加 5 ＋ 8 ＝ 13 人；增加一排需 (原每边人数 × 2 ＋ 1) ＝ 13，得原每边人数 ＝ (13 - 1) ÷ 2 ＝ 6 人；原来共有 6 × 6 ＋ 5 ＝ 41 人。"
       }
     ]
   },
@@ -4198,81 +4198,81 @@ window.MATH_LEARNING_DATA = [
         "id": "work-problems-1",
         "title": "闯关 1",
         "difficulty": "基础",
-        "prompt": "一项工程 5 天做完，每天完成几分之几？",
-        "answer": "1/5",
-        "explanation": "把总量看成 1，每天完成 1/5。"
+        "prompt": "空间站太阳能翼板维护工程，甲工程师单独检修需要 6 天完成。他平均每天完成这项工程的几分之几？",
+        "answer": "1/6",
+        "explanation": "把整个工程总量看作单位“1”，工作效率 ＝ 工作总量 ÷ 工作时间，即 1 ÷ 6 ＝ 1/6。"
       },
       {
         "id": "work-problems-2",
         "title": "闯关 2",
         "difficulty": "基础",
-        "prompt": "一项工程 8 天做完，每天完成几分之几？",
-        "answer": "1/8",
-        "explanation": "每天完成 1/8。"
+        "prompt": "维修空间实验室管道，甲队每天完成全工程的 1/4，乙队每天完成 1/12。两队合作一天共完成几分之几？",
+        "answer": "1/3",
+        "explanation": "合作工作效率 ＝ 各队效率之和，即 1/4 ＋ 1/12 ＝ 3/12 ＋ 1/12 ＝ 4/12 ＝ 1/3。"
       },
       {
         "id": "work-problems-3",
         "title": "闯关 3",
         "difficulty": "进阶",
-        "prompt": "甲每天做 1/6，乙每天做 1/3，一起每天完成几分之几？",
-        "answer": "1/2",
-        "explanation": "1/6+1/3=1/2。"
+        "prompt": "一项太空舱段组装任务，甲组独做需要 6 天，乙组独做需要 12 天。两组合作需要多少天完成？",
+        "answer": "4",
+        "explanation": "甲组效率 1/6，乙组效率 1/12；合作效率 ＝ 1/6 ＋ 1/12 ＝ 1/4；合作工期 ＝ 1 ÷ (1/4) ＝ 4 天。"
       },
       {
         "id": "work-problems-4",
         "title": "闯关 4",
         "difficulty": "进阶",
-        "prompt": "甲每天做 1/5，乙每天做 1/5，两人合作几天完成？",
-        "answer": "2.5",
-        "explanation": "每天共做 2/5，1÷(2/5)=2.5。"
+        "prompt": "空间探测器轨道计算任务，主算法单独运行需要 10 小时完成。先单独运行 4 小时后，还剩下全部计算量的几分之几未完成？",
+        "answer": "3/5",
+        "explanation": "4 小时完成 4 × (1/10) ＝ 2/5；剩余未完成部分 ＝ 1 － 2/5 ＝ 3/5。"
       },
       {
         "id": "work-problems-5",
         "title": "闯关 5",
-        "difficulty": "提高",
-        "prompt": "一项工程，甲 10 天完成，甲每天完成几分之几？",
-        "answer": "1/10",
-        "explanation": "10 天完成，每天完成 1/10。"
+        "difficulty": "进阶",
+        "prompt": "铺设一条长 240 米的空间站内部通信光缆，甲队每天铺设 12 米，乙队每天铺设 8 米。两队从两端同时施工，几天可以铺设完成？",
+        "answer": "12",
+        "explanation": "两队合作每天总进度 ＝ 12 ＋ 8 ＝ 20 米；打通所需天数 ＝ 240 ÷ 20 ＝ 12 天。"
       },
       {
         "id": "work-problems-6",
         "title": "闯关 6",
         "difficulty": "提高",
-        "prompt": "甲每天做 1/8，乙每天做 1/8，一起每天完成几分之几？",
-        "answer": "1/4",
-        "explanation": "1/8+1/8=1/4。"
+        "prompt": "一项数据校验任务，甲乙两台超级计算机合作需要 6 小时完成。已知甲机单独运行需要 10 小时，那么乙机单独运行需要多少小时？",
+        "answer": "15",
+        "explanation": "合作总效率 1/6，甲机效率 1/10；乙机效率 ＝ 1/6 － 1/10 ＝ 5/30 － 3/30 ＝ 1/15；乙机独做所需时间 ＝ 1 ÷ (1/15) ＝ 15 小时。"
       },
       {
         "id": "work-problems-7",
         "title": "闯关 7",
-        "difficulty": "挑战",
-        "prompt": "一项工程，甲每天做 1/3，乙每天做 1/6，两人合作几天完成？",
-        "answer": "2",
-        "explanation": "每天共做 1/2，所以要 2 天。"
+        "difficulty": "提高",
+        "prompt": "加工一批精密星载仪器，甲技师独做需 8 天完成，乙技师独做需 12 天完成。在相同工作时间内，甲与乙完成的工作量最简整数比中，前项是多少？",
+        "answer": "3",
+        "explanation": "工作效率之比与完成时间成反比：甲效率为 1/8，乙为 1/12；工作量之比 ＝ 1/8 : 1/12 ＝ 3 : 2，前项是 3。"
       },
       {
         "id": "work-problems-8",
         "title": "闯关 8",
-        "difficulty": "挑战",
-        "prompt": "甲每天做 1/12，乙每天做 1/6，一起每天完成几分之几？",
-        "answer": "1/4",
-        "explanation": "1/12+1/6=1/4。"
+        "difficulty": "提高",
+        "prompt": "一项核心系统代码重构，甲专家单独重构需要 4 小时，乙专家单独需 6 小时，丙专家需 12 小时。三人协作同时开展，需要多少小时完成？",
+        "answer": "2",
+        "explanation": "三人合作效率之和 ＝ 1/4 ＋ 1/6 ＋ 1/12 ＝ 3/12 ＋ 2/12 ＋ 1/12 ＝ 6/12 ＝ 1/2；所需时间 ＝ 1 ÷ (1/2) ＝ 2 小时。"
       },
       {
         "id": "work-problems-9",
         "title": "闯关 9",
-        "difficulty": "提高",
-        "prompt": "甲每天做 1/9，乙每天做 2/9，一起每天完成几分之几？",
-        "answer": "1/3",
-        "explanation": "1/9+2/9=3/9=1/3。"
+        "difficulty": "挑战",
+        "prompt": "清运空间碎片，清运船 A 单独清运需 4 天，清运船 B 单独需 6 天。两船轮流清运，船 A 工作一天后船 B 工作一天，交替循环进行，完成全部清运一共需要多少天？",
+        "answer": "5",
+        "explanation": "以 2 天为一个交替周期，一个周期完成 1/4 ＋ 1/6 ＝ 5/12；经过 2 个周期（4天）共完成 5/12 × 2 ＝ 10/12 ＝ 5/6；剩下 1 － 5/6 ＝ 1/6；第 5 天轮到船 A（一天可做 1/4 > 1/6），所以在第 5 天内彻底完成，共计 5 天。"
       },
       {
         "id": "work-problems-10",
         "title": "闯关 10",
         "difficulty": "挑战",
-        "prompt": "甲每天做 1/6，乙每天做 1/6，两人合作几天完成？",
-        "answer": "3",
-        "explanation": "每天共做 1/3，所以 3 天完成。"
+        "prompt": "制造实验舱外防护外壳，甲车间独做需 12 天，乙车间独做需 18 天。两车间合作若干天后，乙车间因设备检修调离，剩下由甲车间单独工作 2 天全部完成。乙车间实际参与合作了多少天？",
+        "answer": "6",
+        "explanation": "甲车间最后 2 天完成工作量 ＝ 2 × (1/12) ＝ 1/6；两车间合作完成的工作总量 ＝ 1 － 1/6 ＝ 5/6；合作每日工作效率 ＝ 1/12 ＋ 1/18 ＝ 3/36 ＋ 2/36 ＝ 5/36；乙车间合作工作天数 ＝ (5/6) ÷ (5/36) ＝ 6 天。"
       }
     ]
   },
@@ -4471,10 +4471,10 @@ window.MATH_LEARNING_DATA = [
       {
         "id": "ratio-proportion-5",
         "title": "闯关 5",
-        "difficulty": "提高",
-        "prompt": "把 24 按 1:1:2 分成三份，最大的一份是多少？",
-        "answer": "12",
-        "explanation": "总份数 4，每份 6，最大一份 2 份。"
+        "difficulty": "进阶",
+        "prompt": "已知甲数与乙数的比是 2:3，乙数与丙数的比是 3:4。若三数之和为 45，那么丙数是多少？",
+        "answer": "20",
+        "explanation": "乙数份数相同，连比甲:乙:丙 ＝ 2:3:4；总份数 ＝ 2＋3＋4 ＝ 9 份；每份 45÷9 ＝ 5；丙数占 4 份，即 4 × 5 ＝ 20。"
       },
       {
         "id": "ratio-proportion-6",
@@ -4482,39 +4482,39 @@ window.MATH_LEARNING_DATA = [
         "difficulty": "提高",
         "prompt": "12:18 的最简整数比是多少？",
         "answer": "2:3",
-        "explanation": "同时除以 6，得 2:3。"
+        "explanation": "同时除以最大公因数 6，得 2:3。"
       },
       {
         "id": "ratio-proportion-7",
         "title": "闯关 7",
-        "difficulty": "挑战",
-        "prompt": "把 30 按 2:3:5 分成三份，最大的一份是多少？",
-        "answer": "15",
-        "explanation": "总份数 10，每份 3，最大一份 5 份。"
+        "difficulty": "提高",
+        "prompt": "兄弟二人共有 60 枚纪念币，原来哥哥与弟弟的枚数比是 3:2。哥哥送给弟弟多少枚后，两人的枚数比变为 1:1？",
+        "answer": "6",
+        "explanation": "总枚数 60 不变；原来哥哥有 60 × 3/5 ＝ 36 枚，弟弟有 24 枚；变为 1:1 后各 30 枚；哥哥送出 36 － 30 ＝ 6 枚。"
       },
       {
         "id": "ratio-proportion-8",
         "title": "闯关 8",
-        "difficulty": "挑战",
-        "prompt": "18:27 的最简整数比是多少？",
-        "answer": "2:3",
-        "explanation": "同时除以 9。"
+        "difficulty": "提高",
+        "prompt": "18:27 的最简整数比中，后项是多少？",
+        "answer": "3",
+        "explanation": "18 与 27 同时除以最大公因数 9 得最简整数比 2:3，后项是 3。"
       },
       {
         "id": "ratio-proportion-9",
         "title": "闯关 9",
-        "difficulty": "提高",
-        "prompt": "把 36 按 1:2:3 分成三份，最大的一份是多少？",
-        "answer": "18",
-        "explanation": "总份数 6，每份 6，最大一份 3 份。"
+        "difficulty": "挑战",
+        "prompt": "甲乙两个长方形面积相等。已知甲与乙的长之比为 4:5，那么甲与乙的宽之比化为最简整数比后，前项是多少？",
+        "answer": "5",
+        "explanation": "面积相等时宽与长成反比：宽之比 ＝ 1/4 : 1/5 ＝ 5:4，最简整数比的前项是 5。"
       },
       {
         "id": "ratio-proportion-10",
         "title": "闯关 10",
         "difficulty": "挑战",
-        "prompt": "24:32 的最简整数比是多少？",
-        "answer": "3:4",
-        "explanation": "同时除以 8，得 3:4。"
+        "prompt": "甲、乙两个仓库共存粮 120 吨，存粮吨数的比是 5:3。甲仓库比乙仓库多存粮多少吨？",
+        "answer": "30",
+        "explanation": "总份数是 5+3 = 8 份，每份为 120÷8 = 15 吨。甲比乙多 5-3 = 2 份，所以多存粮 15×2 = 30 吨。"
       }
     ]
   },
@@ -6038,9 +6038,9 @@ window.MATH_LEARNING_DATA = [
         "id": "recurrence-intro-4",
         "title": "闯关 4",
         "difficulty": "进阶",
-        "prompt": "从 2 开始每次乘 3，第三个数是多少？",
-        "answer": "18",
-        "explanation": "2、6、18。"
+        "prompt": "数列的前两项都是 1，从第三项开始每一项都等于前两项的和：1、1、2、3、5……这个数列的第 7 项是多少？",
+        "answer": "13",
+        "explanation": "第 1 项为 1，第 2 项为 1；第 3 项 1+1=2；第 4 项 1+2=3；第 5 项 2+3=5；第 6 项 3+5=8；第 7 项 5+8=13。"
       },
       {
         "id": "recurrence-intro-5",
@@ -6183,9 +6183,9 @@ window.MATH_LEARNING_DATA = [
         "id": "tiered-pricing-7",
         "title": "闯关 7",
         "difficulty": "挑战",
-        "prompt": "前 2 小时每小时 5 元，之后每小时 4 元，停 4 小时共多少元？",
-        "answer": "18",
-        "explanation": "前 2 小时 10 元，后 2 小时 8 元。"
+        "prompt": "出租车起步价 3 千米以内收费 10 元，超过 3 千米的部分每千米收 2 元。小明一次乘车共付费 24 元，他最多乘车行驶了多少千米？",
+        "answer": "10",
+        "explanation": "超出起步价的费用为 24-10 = 14 元。超出 3 千米后行驶了 14÷2 = 7 千米。总里程为 3+7 = 10 千米。"
       },
       {
         "id": "tiered-pricing-8",

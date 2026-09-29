@@ -70,7 +70,7 @@ const supplementalQuestionsByModule = Object.freeze({
   ]),
   "parity-divisibility": Object.freeze([
     q("chapter-02-parity-divisibility-improve-1", "偶数推进", "提高", "连续两个整数相乘，结果一定是奇数还是偶数？", "偶数", "连续整数中必有一个偶数，所以乘积是偶数。"),
-    q("chapter-02-parity-divisibility-improve-2", "整除校验", "提高", "54 能被 9 整除吗？", "能", "5+4=9，是 9 的倍数，所以 54 能被 9 整除。"),
+    q("chapter-02-parity-divisibility-improve-2", "整除校验", "提高", "一个两位数□4 能同时被 2 和 3 整除，且十位上的数字比 5 小，方框里的数字是多少？", 2, "个位是 4 能被 2 整除；要被 3 整除，十位与 4 之和必须是 3 的倍数，可填 2、5、8。因为十位数字比 5 小，所以方框里只能填 2。"),
     q("chapter-02-parity-divisibility-challenge-1", "余数记录", "挑战", "一个数除以 5 余 3，再加 7 后除以 5 余几？", 0, "3+7=10，10 除以 5 余 0。"),
     q("chapter-02-parity-divisibility-advance-1", "配对编号", "进阶", "1 到 20 中，既是 2 的倍数又是 3 的倍数的数有几个？", 3, "是 6 的倍数：6、12、18，共 3 个。")
   ])

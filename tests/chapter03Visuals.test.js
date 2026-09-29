@@ -90,22 +90,22 @@ test("Chapter 3 square-array advance question does not misroute to polygon visua
   assert.equal(visual.dataset.visualType, "square-array");
 });
 
-test("Chapter 3 boolean judgment questions in factors-multiples are unambiguous and correct", () => {
+test("Chapter 3 factors-multiples questions are unambiguous, pedagogically sound and correct", () => {
   const ch3 = GameChapterBuilder.buildChapter("chapter-03");
   const fmLevel = ch3.levels.find((lvl) => lvl.moduleId === "factors-multiples");
   const q1 = fmLevel.questions.find((q) => q.id === "factors-multiples-1");
   const q2 = fmLevel.questions.find((q) => q.id === "factors-multiples-2");
   const q4 = fmLevel.questions.find((q) => q.id === "factors-multiples-4");
 
-  assert.ok(q1.prompt.includes("15 是 5 的倍数吗"));
-  assert.equal(q1.answer, "1");
-  assert.ok(AnswerMatcher.isAnswerCorrect("1", q1.answer));
+  assert.ok(q1.prompt.includes("12 一共有多少个不同的正因数"));
+  assert.equal(q1.answer, "6");
+  assert.ok(AnswerMatcher.isAnswerCorrect("6", q1.answer));
 
   assert.ok(q2.prompt.includes("3 是 14 的因数吗"));
   assert.equal(q2.answer, "0");
   assert.ok(AnswerMatcher.isAnswerCorrect("0", q2.answer));
 
-  assert.ok(q4.prompt.includes("18 是 6 的倍数吗"));
-  assert.equal(q4.answer, "1");
-  assert.ok(AnswerMatcher.isAnswerCorrect("1", q4.answer));
+  assert.ok(q4.prompt.includes("既是 6 的倍数又是 8 的倍数"));
+  assert.equal(q4.answer, "48");
+  assert.ok(AnswerMatcher.isAnswerCorrect("48", q4.answer));
 });
