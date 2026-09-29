@@ -1,32 +1,91 @@
-const { SVG_NS, createSvg, parseNumbers, safeAddListener, createControlBtn, safeClassAdd, safeClassRemove } = require('./visualizerCore.js');
+const { SVG_NS, createSvg, parseNumbers, cleanPrompt, cleanParseNumbers, extractLabeledParams, extractSolutionContext, safeAddListener, createControlBtn, safeClassAdd, safeClassRemove } = require('./visualizerCore.js');
 
-function renderBarModel(question) {
+function renderBarModel(question, options = {}) {
+  const isRevealed = options && options.status ? (options.status === "retry" || options.status === "resolved") : true;
   const prompt = question.prompt || "";
+  const cleaned = cleanPrompt(prompt);
   const card = document.createElement("div");
   card.className = "question-visual question-visual--bar-model";
   card.dataset.visualType = "bar-model";
 
-  // Large box vs Small box (大箱 / 小箱和差倍)
-  const isBoxes = prompt.includes("大箱") && prompt.includes("小箱");
-  const nums = parseNumbers(prompt);
-  const diff = nums.length >= 2 ? nums[0] : 3;
-  const total = nums.length >= 2 ? nums[1] : 17;
+  // Entity label extraction
+  let labelSmall = "较小数";
+  let labelLarge = "较大数";
+  if (cleaned.includes("大箱") && cleaned.includes("小箱")) {
+    labelSmall = "小箱数量";
+    labelLarge = "大箱数量";
+  } else if (cleaned.includes("男生") && cleaned.includes("女生")) {
+    if (cleaned.includes("男生比女生多") || cleaned.includes("女生比男生少")) {
+      labelSmall = "女生人数";
+      labelLarge = "男生人数";
+    } else {
+      labelSmall = "男生人数";
+      labelLarge = "女生人数";
+    }
+  } else if (cleaned.includes("甲") && cleaned.includes("乙")) {
+    if (cleaned.includes("甲比乙多") || cleaned.includes("乙比甲少")) {
+      labelSmall = "乙";
+      labelLarge = "甲";
+    } else {
+      labelSmall = "甲";
+      labelLarge = "乙";
+    }
+  } else if (cleaned.includes("哥哥") && cleaned.includes("弟弟")) {
+    labelSmall = "弟弟";
+    labelLarge = "哥哥";
+  }
 
-  const svg = createSvg(420, 150, "0 0 420 150");
+  // Value extraction: difference & sum
+  const sumMatch = cleaned.match(/(?:和(?:是|为)?|共有|一共|合计|总共|总数(?:是|为)?)\s*(\d+)/);
+  const diffMatch = cleaned.match(/(?:相差|差(?:是|为)?|(?:比[^\s，。]+)?多|(?:比[^\s，。]+)?少)\s*(\d+)/);
 
-  // Bar 1: Small box
-  // Base bar
-  const baseWidth = 140;
+  let total = 17;
+  let diff = 3;
+
+  if (sumMatch && diffMatch) {
+    total = parseInt(sumMatch[1], 10);
+    diff = parseInt(diffMatch[1], 10);
+  } else {
+    const nums = cleanParseNumbers(cleaned);
+    if (nums.length >= 2) {
+      total = Math.max(nums[0], nums[1]);
+      diff = Math.min(nums[0], nums[1]);
+    }
+  }
+
+  // Safety: total must be >= diff
+  if (total < diff) {
+    const tmp = total;
+    total = diff;
+    diff = tmp;
+  }
+
+  const smallVal = (total - diff) / 2;
+  const largeVal = (total + diff) / 2;
+
+  const header = document.createElement("div");
+  header.className = "question-visual__header";
+  header.innerHTML = `
+    <span class="question-visual__badge">📊 和差倍数线段图模型</span>
+    <span class="question-visual__subbadge">移多补少与基准量消元法</span>
+  `;
+  card.append(header);
+
+  const svg = createSvg(440, 150, "0 0 440 150");
+
+  const baseWidth = 130;
   const barHeight = 24;
+  const diffRatio = total > 0 ? Math.min(diff / total, 0.6) : 0.2;
+  const diffWidth = Math.max(35, Math.min(95, Math.round(diffRatio * 160)));
 
-  // Small box label
+  // Bar 1: Small entity
   const text1 = document.createElementNS(SVG_NS, "text");
-  text1.setAttribute("x", "20");
+  text1.setAttribute("x", "15");
   text1.setAttribute("y", "42");
-  text1.setAttribute("font-size", "13");
+  text1.setAttribute("font-size", "12");
   text1.setAttribute("font-weight", "bold");
-  text1.setAttribute("fill", "#18243a");
-  text1.textContent = isBoxes ? "小箱数量：" : "较小数：";
+  text1.setAttribute("fill", "#cbd5e1");
+  text1.textContent = `${labelSmall}：`;
   svg.append(text1);
 
   const rect1 = document.createElementNS(SVG_NS, "rect");
@@ -34,78 +93,101 @@ function renderBarModel(question) {
   rect1.setAttribute("y", "24");
   rect1.setAttribute("width", String(baseWidth));
   rect1.setAttribute("height", String(barHeight));
-  rect1.setAttribute("fill", "#6d58a6");
-  rect1.setAttribute("rx", "3");
+  rect1.setAttribute("fill", "#3b82f6");
+  rect1.setAttribute("rx", "4");
   svg.append(rect1);
 
-  // Large box label
+  if (isRevealed && smallVal > 0) {
+    const tVal1 = document.createElementNS(SVG_NS, "text");
+    tVal1.setAttribute("x", String(95 + baseWidth / 2));
+    tVal1.setAttribute("y", "40");
+    tVal1.setAttribute("text-anchor", "middle");
+    tVal1.setAttribute("font-size", "11");
+    tVal1.setAttribute("font-weight", "bold");
+    tVal1.setAttribute("fill", "#ffffff");
+    tVal1.textContent = `基准 ＝ ${smallVal}`;
+    svg.append(tVal1);
+  }
+
+  // Bar 2: Large entity
   const text2 = document.createElementNS(SVG_NS, "text");
-  text2.setAttribute("x", "20");
+  text2.setAttribute("x", "15");
   text2.setAttribute("y", "86");
-  text2.setAttribute("font-size", "13");
+  text2.setAttribute("font-size", "12");
   text2.setAttribute("font-weight", "bold");
-  text2.setAttribute("fill", "#18243a");
-  text2.textContent = isBoxes ? "大箱数量：" : "较大数：";
+  text2.setAttribute("fill", "#cbd5e1");
+  text2.textContent = `${labelLarge}：`;
   svg.append(text2);
 
-  // Large box base bar
   const rect2Base = document.createElementNS(SVG_NS, "rect");
   rect2Base.setAttribute("x", "95");
   rect2Base.setAttribute("y", "68");
   rect2Base.setAttribute("width", String(baseWidth));
   rect2Base.setAttribute("height", String(barHeight));
-  rect2Base.setAttribute("fill", "#6d58a6");
-  rect2Base.setAttribute("rx", "3");
+  rect2Base.setAttribute("fill", "#3b82f6");
+  rect2Base.setAttribute("rx", "4");
   svg.append(rect2Base);
 
-  // Difference part
-  const diffWidth = 55;
+  // Difference segment
   const rect2Diff = document.createElementNS(SVG_NS, "rect");
   rect2Diff.setAttribute("x", String(95 + baseWidth));
   rect2Diff.setAttribute("y", "68");
   rect2Diff.setAttribute("width", String(diffWidth));
   rect2Diff.setAttribute("height", String(barHeight));
-  rect2Diff.setAttribute("fill", "#e9b949");
-  rect2Diff.setAttribute("stroke", "#18243a");
-  rect2Diff.setAttribute("stroke-width", "1");
+  rect2Diff.setAttribute("fill", "#f59e0b");
+  rect2Diff.setAttribute("stroke", "#fbbf24");
+  rect2Diff.setAttribute("stroke-width", "1.5");
   rect2Diff.setAttribute("stroke-dasharray", "3,2");
-  rect2Diff.setAttribute("rx", "3");
+  rect2Diff.setAttribute("rx", "4");
   svg.append(rect2Diff);
 
-  // Difference tag
   const diffTag = document.createElementNS(SVG_NS, "text");
   diffTag.setAttribute("x", String(95 + baseWidth + diffWidth / 2));
   diffTag.setAttribute("y", "84");
   diffTag.setAttribute("text-anchor", "middle");
   diffTag.setAttribute("font-size", "11");
   diffTag.setAttribute("font-weight", "bold");
-  diffTag.setAttribute("fill", "#18243a");
-  diffTag.textContent = `+${diff}`;
+  diffTag.setAttribute("fill", "#0f172a");
+  diffTag.textContent = `多 ${diff}`;
   svg.append(diffTag);
 
-  // Total curly bracket line
+  // Curly bracket line
+  const endX = 95 + baseWidth + diffWidth + 12;
   const totalLine = document.createElementNS(SVG_NS, "path");
-  const endX = 95 + baseWidth + diffWidth + 15;
-  totalLine.setAttribute("d", `M ${endX} 24 L ${endX + 10} 24 L ${endX + 10} 58 L ${endX + 18} 58 L ${endX + 10} 58 L ${endX + 10} 92 L ${endX} 92`);
+  totalLine.setAttribute("d", `M ${endX} 24 L ${endX + 8} 24 L ${endX + 8} 58 L ${endX + 16} 58 L ${endX + 8} 58 L ${endX + 8} 92 L ${endX} 92`);
   totalLine.setAttribute("fill", "none");
-  totalLine.setAttribute("stroke", "#258366");
+  totalLine.setAttribute("stroke", "#10b981");
   totalLine.setAttribute("stroke-width", "2");
   svg.append(totalLine);
 
   const totalTag = document.createElementNS(SVG_NS, "text");
-  totalTag.setAttribute("x", String(endX + 24));
-  totalTag.setAttribute("y", "62");
-  totalTag.setAttribute("font-size", "13");
+  totalTag.setAttribute("x", String(endX + 22));
+  totalTag.setAttribute("y", "63");
+  totalTag.setAttribute("font-size", "12");
   totalTag.setAttribute("font-weight", "bold");
-  totalTag.setAttribute("fill", "#258366");
-  totalTag.textContent = `合计 ${total} 个`;
+  totalTag.setAttribute("fill", "#10b981");
+  totalTag.textContent = `和: ${total}`;
   svg.append(totalTag);
 
+  // Bottom formula guidance
+  const bottomFormula = document.createElementNS(SVG_NS, "text");
+  bottomFormula.setAttribute("x", "220");
+  bottomFormula.setAttribute("y", "128");
+  bottomFormula.setAttribute("text-anchor", "middle");
+  bottomFormula.setAttribute("font-size", "12");
+  bottomFormula.setAttribute("fill", "#38bdf8");
+  bottomFormula.textContent = isRevealed
+    ? `基准较小数 ＝ (${total} - ${diff}) ÷ 2 ＝ ${smallVal} ｜ 较大数 ＝ ${smallVal} + ${diff} ＝ ${largeVal}`
+    : `线段公式：较小数 ＝ (和 - 差) ÷ 2 ｜ 较大数 ＝ (和 + 差) ÷ 2`;
+  svg.append(bottomFormula);
+
   card.append(svg);
+
   const legend = document.createElement("p");
   legend.className = "question-visual__legend";
-  legend.textContent = `线段图模型：两者相差 ${diff}，合计 ${total}。先移去多出的差量，即可求出基准量。`;
+  legend.textContent = `📊 和差极简心法：从总数 ${total} 中减去多出的差量 ${diff}，剩下就是 2 份完全相等的基准量 (${labelSmall})。`;
   card.append(legend);
+
   return card;
 }
 
@@ -446,11 +528,35 @@ function renderEquationBalanceVisual(question, options = {}) {
   card.className = "question-visual question-visual--balance";
   card.dataset.visualType = "balance";
 
-  const nums = parseNumbers(prompt);
-  const xCount = prompt.includes("2 个未知数") || prompt.includes("2个未知数") || prompt.includes("2x") ? 2 : 1;
-  const xWeight = nums[0] || 5;
-  const rightTotal = nums[1] || (xWeight * 2 + 10);
-  const targetX = Math.max(1, Math.round((rightTotal - xWeight) / xCount));
+  const cleaned = cleanPrompt(prompt);
+  let xCount = 1;
+  let xWeight = 5;
+  let rightTotal = 20;
+
+  const eqAddMatch = cleaned.match(/(\d*)\s*x\s*\+\s*(\d+)\s*=\s*(\d+)/i) || cleaned.match(/(\d+)\s*\+\s*(\d*)\s*x\s*=\s*(\d+)/i);
+  const eqSubMatch = cleaned.match(/(\d*)\s*x\s*-\s*(\d+)\s*=\s*(\d+)/i);
+
+  if (eqAddMatch) {
+    xCount = eqAddMatch[1] ? (parseInt(eqAddMatch[1], 10) || 1) : 1;
+    xWeight = parseInt(eqAddMatch[2], 10);
+    rightTotal = parseInt(eqAddMatch[3], 10);
+  } else if (eqSubMatch) {
+    xCount = eqSubMatch[1] ? (parseInt(eqSubMatch[1], 10) || 1) : 1;
+    xWeight = parseInt(eqSubMatch[2], 10);
+    rightTotal = parseInt(eqSubMatch[3], 10);
+  } else {
+    const nums = cleanParseNumbers(cleaned);
+    xCount = cleaned.includes("2 个未知数") || cleaned.includes("2个未知数") || cleaned.includes("2x") ? 2 : 1;
+    if (nums.length >= 2) {
+      xWeight = Math.min(nums[0], nums[1]);
+      rightTotal = Math.max(nums[0], nums[1]);
+    } else if (nums.length === 1) {
+      xWeight = nums[0];
+      rightTotal = xWeight * 2 + 10;
+    }
+  }
+
+  const targetX = Math.max(1, Math.round(Math.abs(rightTotal - xWeight) / xCount));
   const maxRange = Math.max(20, targetX * 2);
 
   const header = document.createElement("div");
@@ -666,8 +772,9 @@ function renderFractionPercentVisual(question) {
   card.className = "question-visual question-visual--fraction";
   card.dataset.visualType = "fraction";
 
-  const nums = parseNumbers(prompt);
-  const isPercent = prompt.includes("%") || prompt.includes("折") || prompt.includes("成");
+  const cleaned = cleanPrompt(prompt);
+  const nums = cleanParseNumbers(cleaned);
+  const isPercent = cleaned.includes("%") || cleaned.includes("折") || cleaned.includes("成");
   const pct = nums.find(n => n >= 10 && n <= 95) || 80;
 
   const header = document.createElement("div");
@@ -868,14 +975,15 @@ function renderFactorTreeVisual(question) {
   card.className = "question-visual question-visual--factor-tree";
   card.dataset.visualType = "factor-tree";
 
-  const parsed = parseNumbers(prompt);
+  const cleaned = cleanPrompt(prompt);
+  const parsed = cleanParseNumbers(cleaned);
   let n1 = 24;
   let n2 = 36;
   let isSingle = false;
 
   if (parsed.length >= 2) {
     // If prompt contains multiple numbers like "30 以内既是 2 的倍数又是 3 的倍数"
-    if (prompt.includes("既是") && prompt.includes("又是") && parsed.length >= 3) {
+    if (cleaned.includes("既是") && cleaned.includes("又是") && parsed.length >= 3) {
       n1 = parsed[1];
       n2 = parsed[2];
     } else {
@@ -884,7 +992,7 @@ function renderFactorTreeVisual(question) {
     }
   } else if (parsed.length === 1) {
     // Single number decomposition
-    if (prompt.includes("因数") && !prompt.includes("公因数") && !prompt.includes("公倍数")) {
+    if (cleaned.includes("因数") && !cleaned.includes("公因数") && !cleaned.includes("公倍数")) {
       isSingle = true;
       n1 = parsed[0];
     } else {

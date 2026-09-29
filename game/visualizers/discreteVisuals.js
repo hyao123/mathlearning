@@ -1,4 +1,4 @@
-const { SVG_NS, createSvg, parseNumbers, safeAddListener, createControlBtn, safeClassAdd, safeClassRemove } = require('./visualizerCore.js');
+const { SVG_NS, createSvg, parseNumbers, cleanPrompt, cleanParseNumbers, extractLabeledParams, extractSolutionContext, safeAddListener, createControlBtn, safeClassAdd, safeClassRemove } = require('./visualizerCore.js');
 
 function renderTable(question) {
   const prompt = question.prompt || "";
@@ -466,7 +466,9 @@ function renderVennDiagram(question, options = {}) {
   card.className = "question-visual question-visual--venn";
   card.dataset.visualType = "venn";
 
-  const nums = parseNumbers(prompt);
+  const cleaned = cleanPrompt(prompt);
+  const nums = cleanParseNumbers(prompt);
+  const totalMatch = cleaned.match(/(?:全班|一共有|共有|班级有|调查了)\s*(\d+)\s*人/);
 
   // Stop at clause boundaries so condition clauses don't bleed into question clauses
   const askNeither = /(两[项种样]?都不|都不)[^，,。；;！？?!]*?(多少|几人|是多少|几名)/.test(prompt);
@@ -478,7 +480,7 @@ function renderVennDiagram(question, options = {}) {
   let aCount = 9;
   let bCount = 8;
   let bothCount = 3;
-  let totalCount = null;
+  let totalCount = totalMatch ? Number(totalMatch[1]) : null;
   let unionCount = 14;
   let neitherCount = 0;
   let subbadgeText = "并集去重模型";
@@ -488,33 +490,35 @@ function renderVennDiagram(question, options = {}) {
   if (askNeither) {
     questionType = "neither";
     subbadgeText = "全集补集模型：全班总数 - 并集 = 两项都不选";
-    if (nums.length >= 4) {
+    if (totalCount !== null) {
+      const candidates = nums.filter(n => n !== totalCount);
+      aCount = candidates[0] || 18;
+      bCount = candidates[1] || 15;
+      bothCount = candidates[2] || 5;
+    } else if (nums.length >= 4) {
       totalCount = nums[0];
       aCount = nums[1];
       bCount = nums[2];
       bothCount = nums[3];
-      unionCount = aCount + bCount - bothCount;
-      neitherCount = totalCount - unionCount;
-      formulaText = `容斥公式：并集 = ${aCount} + ${bCount} - ${bothCount} = ${unionCount}；都不选 = ${totalCount} - ${unionCount} = ${neitherCount}`;
-    } else if (nums.length === 2) {
-      totalCount = nums[0];
-      unionCount = nums[1];
-      neitherCount = totalCount - unionCount;
-      formulaText = `容斥公式：都不选 = 全班 (${totalCount}) - 至少选一项 (${unionCount}) = ${neitherCount}`;
     } else {
       aCount = nums[0] || 18;
       bCount = nums[1] || 15;
       bothCount = nums[2] || 5;
-      totalCount = nums.length >= 1 ? nums[0] : 40;
-      unionCount = aCount + bCount - bothCount;
-      neitherCount = totalCount - unionCount;
-      formulaText = `容斥公式：并集 = ${aCount} + ${bCount} - ${bothCount} = ${unionCount}；都不选 = ${totalCount} - ${unionCount} = ${neitherCount}`;
+      totalCount = 40;
     }
+    unionCount = aCount + bCount - bothCount;
+    neitherCount = Math.max(0, totalCount - unionCount);
+    formulaText = `容斥公式：并集 = ${aCount} + ${bCount} - ${bothCount} = ${unionCount}；都不选 = ${totalCount} - ${unionCount} = ${neitherCount}`;
     legendText = `⭕ 容斥求补集：先求至少选一项的并集 (${unionCount}人)，再用全班总数 (${totalCount}人) 减去并集得到都不选的人数 (${neitherCount}人)。`;
   } else if (askOnlyOne) {
     questionType = "only-one";
     subbadgeText = "对称差模型：(A - 重叠) + (B - 重叠) = 只选一项";
-    if (nums.length >= 4 && (prompt.includes("全班") || prompt.includes("中") || prompt.includes("共"))) {
+    if (totalCount !== null) {
+      const candidates = nums.filter(n => n !== totalCount);
+      aCount = candidates[0] || 15;
+      bCount = candidates[1] || 13;
+      bothCount = candidates[2] || 4;
+    } else if (nums.length >= 4 && (prompt.includes("全班") || prompt.includes("中") || prompt.includes("共"))) {
       totalCount = nums[0];
       aCount = nums[1];
       bCount = nums[2];
@@ -533,7 +537,12 @@ function renderVennDiagram(question, options = {}) {
   } else if (askOverlap) {
     questionType = "overlap";
     subbadgeText = "反求重叠模型：A + B - 并集 = 两项都选";
-    if (nums.length >= 4) {
+    if (totalCount !== null) {
+      const candidates = nums.filter(n => n !== totalCount);
+      aCount = candidates[0] || 16;
+      bCount = candidates[1] || 14;
+      unionCount = candidates[2] || (aCount + bCount - 6);
+    } else if (nums.length >= 4) {
       totalCount = nums[0];
       aCount = nums[1];
       bCount = nums[2];
@@ -543,13 +552,18 @@ function renderVennDiagram(question, options = {}) {
       bCount = nums[1] || 14;
       unionCount = nums[2] || 24;
     }
-    bothCount = aCount + bCount - unionCount;
+    bothCount = Math.max(0, aCount + bCount - unionCount);
     formulaText = `容斥公式：两项都选 = A (${aCount}) + B (${bCount}) - 至少选一项 (${unionCount}) = ${bothCount}`;
     legendText = `⭕ 容斥反求重叠：两类人数直接相加比实际并集总人数多算出的量，就是两项都选的重叠部分 (${bothCount}人)。`;
   } else {
     questionType = "union";
     subbadgeText = "并集去重模型：A + B - 重叠 = 至少选一项";
-    if (nums.length >= 4 && (prompt.includes("全班") || prompt.includes("中") || prompt.includes("共") || prompt.includes("调查"))) {
+    if (totalCount !== null) {
+      const candidates = nums.filter(n => n !== totalCount);
+      aCount = candidates[0] || 9;
+      bCount = candidates[1] || 8;
+      bothCount = candidates[2] || 3;
+    } else if (nums.length >= 4 && (prompt.includes("全班") || prompt.includes("中") || prompt.includes("共") || prompt.includes("调查"))) {
       totalCount = nums[0];
       aCount = nums[1];
       bCount = nums[2];
@@ -1435,34 +1449,67 @@ function renderProbabilitySpinnerVisual(question, options = {}) {
 function renderSquareArrayVisual(question, options = {}) {
   const isRevealed = options && options.status ? (options.status === "retry" || options.status === "resolved") : true;
   const prompt = question.prompt || "";
+  const cleaned = cleanPrompt(prompt);
   const card = document.createElement("div");
   card.className = "question-visual question-visual--square-array";
   card.dataset.visualType = "square-array";
 
-  const nums = parseNumbers(prompt);
-  const n = nums[0] <= 8 && nums[0] >= 3 ? nums[0] : 5;
-  const outerCount = n * 4 - 4;
-  const totalCount = n * n;
+  const sideMatch = cleaned.match(/(?:每边|一边|每排|每行|每列)(?:一共有|一共|总共|共有|共|有|站)?\s*(\d+)\s*(?:人|个|颗|枚)?/);
+  const outerMatch = cleaned.match(/(?:最外层|外围|最外圈)(?:一共有|一共|总共|共有|共|有)?\s*(\d+)\s*(?:人|个|颗|枚)?/);
+  const totalMatch = cleaned.match(/(?:实心方阵|总人数|一共有|一共|共有|总共|全部)(?:一共有|一共|总共|共有|共|有)?\s*(\d+)\s*(?:人|个|颗|枚)?/);
+
+  let actualN = 5;
+  let isGivenOuter = false;
+
+  if (sideMatch) {
+    actualN = parseInt(sideMatch[1], 10);
+  } else if (outerMatch) {
+    const outerVal = parseInt(outerMatch[1], 10);
+    actualN = Math.max(3, Math.round((outerVal + 4) / 4));
+    isGivenOuter = true;
+  } else if (totalMatch) {
+    const totVal = parseInt(totalMatch[1], 10);
+    const sq = Math.round(Math.sqrt(totVal));
+    if (sq * sq === totVal && sq >= 3) {
+      actualN = sq;
+    }
+  } else {
+    const nums = cleanParseNumbers(cleaned);
+    if (nums.length > 0) {
+      if (nums[0] >= 3 && nums[0] <= 15) {
+        actualN = nums[0];
+      } else if (nums[0] > 15 && nums[0] % 4 === 0) {
+        actualN = Math.round((nums[0] + 4) / 4);
+        isGivenOuter = true;
+      }
+    }
+  }
+
+  const outerCount = actualN * 4 - 4;
+  const totalCount = actualN * actualN;
+
+  // Dot display sample grid (max 5x5 to prevent visual bloat, with indicator)
+  const displayN = Math.min(Math.max(actualN, 3), 5);
 
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
     <span class="question-visual__badge">🔲 方阵点阵排列与圈层模型</span>
-    <span class="question-visual__subbadge">最外层四角共用计数原理</span>
+    <span class="question-visual__subbadge">${isGivenOuter ? "已知最外层逆求每边人数" : "最外层四角共用计数原理"}</span>
   `;
   card.append(header);
 
   const svgWidth = 460;
-  const svgHeight = 155;
+  const svgHeight = 160;
   const svg = createSvg(svgWidth, svgHeight, `0 0 ${svgWidth} ${svgHeight}`);
 
-  const startX = 60, startY = 35;
+  const startX = 40, startY = 32;
   const spacing = 22;
 
-  for (let r = 0; r < n; r++) {
-    for (let c = 0; c < n; c++) {
-      const isCorner = (r === 0 || r === n - 1) && (c === 0 || c === n - 1);
-      const isBorder = r === 0 || r === n - 1 || c === 0 || c === n - 1;
+  for (let r = 0; r < displayN; r++) {
+    for (let c = 0; c < displayN; c++) {
+      const isCorner = (r === 0 || r === displayN - 1) && (c === 0 || c === displayN - 1);
+      const isBorder = r === 0 || r === displayN - 1 || c === 0 || c === displayN - 1;
 
       const dot = document.createElementNS(SVG_NS, "circle");
       dot.setAttribute("cx", String(startX + c * spacing));
@@ -1473,32 +1520,55 @@ function renderSquareArrayVisual(question, options = {}) {
     }
   }
 
-  const rx = startX + n * spacing + 40;
+  if (actualN !== displayN) {
+    const hint = document.createElementNS(SVG_NS, "text");
+    hint.setAttribute("x", String(startX + (displayN * spacing) / 2));
+    hint.setAttribute("y", String(startY + displayN * spacing + 18));
+    hint.setAttribute("text-anchor", "middle");
+    hint.setAttribute("font-size", "11");
+    hint.setAttribute("fill", "#94a3b8");
+    hint.textContent = `(结构图示: 实际每边 ${actualN} 人)`;
+    svg.append(hint);
+  }
+
+  const rx = startX + displayN * spacing + 35;
   const t1 = document.createElementNS(SVG_NS, "text");
-  t1.setAttribute("x", String(rx)); t1.setAttribute("y", "55");
+  t1.setAttribute("x", String(rx)); t1.setAttribute("y", "45");
   t1.setAttribute("font-size", "12"); t1.setAttribute("font-weight", "bold");
-  t1.setAttribute("fill", "#fbbf24"); t1.textContent = "★ 四个角顶点: 4 点 (被两条边共用)";
+  t1.setAttribute("fill", "#fbbf24"); t1.textContent = "★ 四个角顶点: 4 点 (被两条边重复计算)";
   svg.append(t1);
 
   const t2 = document.createElementNS(SVG_NS, "text");
-  t2.setAttribute("x", String(rx)); t2.setAttribute("y", "82");
+  t2.setAttribute("x", String(rx)); t2.setAttribute("y", "75");
   t2.setAttribute("font-size", "12"); t2.setAttribute("font-weight", "bold");
   t2.setAttribute("fill", "#38bdf8");
-  t2.textContent = isRevealed ? `▪ 最外层总人数: ${n} × 4 - 4 = ${outerCount} 人` : `▪ 最外层总人数: ${n} × 4 - 4 = ? 人`;
+  if (isGivenOuter) {
+    t2.textContent = isRevealed
+      ? `▪ 每边人数: (${outerCount} + 4) ÷ 4 = ${actualN} 人 (或 ${outerCount} ÷ 4 + 1)`
+      : `▪ 每边人数: (${outerCount} + 4) ÷ 4 = ? 人`;
+  } else {
+    t2.textContent = isRevealed
+      ? `▪ 最外层总人数: ${actualN} × 4 - 4 = ${outerCount} 人`
+      : `▪ 最外层总人数: ${actualN} × 4 - 4 = ? 人`;
+  }
   svg.append(t2);
 
   const t3 = document.createElementNS(SVG_NS, "text");
-  t3.setAttribute("x", String(rx)); t3.setAttribute("y", "110");
+  t3.setAttribute("x", String(rx)); t3.setAttribute("y", "105");
   t3.setAttribute("font-size", "12"); t3.setAttribute("font-weight", "bold");
   t3.setAttribute("fill", "#22c55e");
-  t3.textContent = isRevealed ? `▪ 实心方阵总人数: ${n} × ${n} = ${totalCount} 人` : `▪ 实心方阵总人数: ${n} × ${n} = ? 人`;
+  t3.textContent = isRevealed ? `▪ 实心方阵总人数: ${actualN} × ${actualN} = ${totalCount} 人` : `▪ 实心方阵总人数: ${actualN} × ${actualN} = ? 人`;
   svg.append(t3);
 
   card.append(svg);
 
   const legend = document.createElement("p");
   legend.className = "question-visual__legend";
-  legend.textContent = `🔲 方阵核心规律：最外层每边 ${n} 人，四角顶点都算了两次，最外层人数 ＝ ${n}×4 - 4 ＝ ${outerCount} 人。`;
+  if (isGivenOuter) {
+    legend.textContent = `🔲 方阵逆推规律：已知最外层 ${outerCount} 人，加上 4 个角补齐为 4 条完整边，每边人数 ＝ (${outerCount} + 4) ÷ 4 ＝ ${actualN} 人。`;
+  } else {
+    legend.textContent = `🔲 方阵核心规律：最外层每边 ${actualN} 人，四角顶点均被两条边共用，最外层总数 ＝ (${actualN} - 1) × 4 ＝ ${outerCount} 人。`;
+  }
   card.append(legend);
 
   return card;

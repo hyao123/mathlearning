@@ -1,4 +1,4 @@
-const { SVG_NS, createSvg, parseNumbers, safeAddListener, createControlBtn, safeClassAdd, safeClassRemove } = require('./visualizerCore.js');
+const { SVG_NS, createSvg, parseNumbers, cleanPrompt, cleanParseNumbers, extractLabeledParams, extractSolutionContext, safeAddListener, createControlBtn, safeClassAdd, safeClassRemove } = require('./visualizerCore.js');
 
 function renderChickenRabbitPen(question, options = {}) {
   const isRevealed = options && options.status ? (options.status === "retry" || options.status === "resolved") : true;
@@ -8,15 +8,89 @@ function renderChickenRabbitPen(question, options = {}) {
   card.dataset.visualType = "chicken-rabbit";
 
   const isVehicle = prompt.includes("轮") || prompt.includes("车");
-  const nums = parseNumbers(prompt);
-  const totalHeads = nums.length >= 2 ? nums[0] : 10;
-  const totalLegs = nums.length >= 2 ? nums[1] : 28;
+  const isCoin = prompt.includes("硬币") || prompt.includes("元硬币");
+  const isBox = prompt.includes("大箱") || prompt.includes("小箱");
+  const isRobot = prompt.includes("机器人");
+
+  const cleanNums = cleanParseNumbers(prompt);
+
+  // 1. 识别两类对象的单件特征与名称
+  let aRate = 2;
+  let bRate = 4;
+  let nameA = "鸡";
+  let nameB = "兔子";
+  let unitName = "只脚";
+  let itemUnit = "只";
+
+  if (isCoin) {
+    const coinMatch = prompt.match(/(\d+)元硬币.*?(\d+)元硬币/);
+    if (coinMatch) {
+      aRate = Math.min(Number(coinMatch[1]), Number(coinMatch[2]));
+      bRate = Math.max(Number(coinMatch[1]), Number(coinMatch[2]));
+    } else { aRate = 2; bRate = 5; }
+    nameA = `${aRate}元硬币`;
+    nameB = `${bRate}元硬币`;
+    unitName = "元";
+    itemUnit = "枚";
+  } else if (isBox) {
+    const boxMatch = prompt.match(/每个装\s*(\d+)\s*件.*?每个装\s*(\d+)\s*件/);
+    if (boxMatch) {
+      aRate = Math.min(Number(boxMatch[1]), Number(boxMatch[2]));
+      bRate = Math.max(Number(boxMatch[1]), Number(boxMatch[2]));
+    } else { aRate = 5; bRate = 8; }
+    nameA = `小箱(${aRate}件)`;
+    nameB = `大箱(${bRate}件)`;
+    unitName = "件";
+    itemUnit = "个";
+  } else if (isRobot) {
+    const robotMatch = prompt.match(/(\d+)脚.*?(\d+)脚/);
+    if (robotMatch) {
+      aRate = Math.min(Number(robotMatch[1]), Number(robotMatch[2]));
+      bRate = Math.max(Number(robotMatch[1]), Number(robotMatch[2]));
+    } else if (prompt.includes("六脚")) {
+      aRate = 2; bRate = 6;
+    }
+    nameA = `${aRate}脚机器人`;
+    nameB = `${bRate}脚机器人`;
+    unitName = "只脚";
+    itemUnit = "个";
+  } else if (isVehicle) {
+    const isTricycle = prompt.includes("三轮");
+    bRate = isTricycle ? 3 : 4;
+    aRate = 2;
+    nameA = "两轮车";
+    nameB = isTricycle ? "三轮车" : "四轮车";
+    unitName = "个轮子";
+    itemUnit = "辆";
+  }
+
+  // 2. 提取总量（物品总数与点数总和）
+  const headsMatch = prompt.match(/共(?:有)?\s*(\d+)\s*(?:只|辆|个|枚|顶|张|条|箱|位|人)/)
+    || prompt.match(/(\d+)\s*(?:只|辆|个|枚|顶|张|条|箱|位|人)(?:鸡|兔子|车|硬币|箱|机器人|玩具车)/);
+  const legsMatch = prompt.match(/(?:共(?:有)?|一共有)\s*(\d+)\s*(?:只脚|条腿|个轮子|个轮|元|件|只)/)
+    || prompt.match(/(\d+)\s*(?:只脚|条腿|个轮子|个轮|元|件)/);
+
+  let totalHeads = headsMatch ? Number(headsMatch[1]) : (cleanNums[0] || 10);
+  let totalLegs = legsMatch ? Number(legsMatch[1]) : (cleanNums[1] || (totalHeads * aRate + (bRate - aRate) * 4));
+
+  if (totalLegs < totalHeads * aRate) {
+    const candidateMax = Math.max(...cleanNums.filter((n) => n > totalHeads));
+    if (candidateMax > totalHeads * aRate) {
+      totalLegs = candidateMax;
+    } else {
+      totalLegs = totalHeads * aRate + (bRate - aRate) * 4;
+    }
+  }
+
+  const stepDiff = bRate - aRate;
+  const targetB = Math.max(0, Math.min(totalHeads, Math.round((totalLegs - totalHeads * aRate) / stepDiff)));
+  const targetA = totalHeads - targetB;
 
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
-    <span class="question-visual__badge">${isVehicle ? "🚗 车辆与轮子泊位检视台" : "🐔🐰 头脚方阵检视台"}</span>
-    <span class="question-visual__subbadge">假设置换修正模型</span>
+    <span class="question-visual__badge">${isVehicle ? "🚗 车辆与轮子泊位检视台" : isCoin ? "🪙 硬币与面值核算台" : isBox ? "📦 箱子与物资装箱台" : "🐔🐰 头脚方阵检视台"}</span>
+    <span class="question-visual__subbadge">假设置换修正模型（单位置换差 ＝ ${stepDiff} ${unitName}）</span>
   `;
   card.append(header);
 
@@ -46,7 +120,7 @@ function renderChickenRabbitPen(question, options = {}) {
   titleA.setAttribute("font-size", "14");
   titleA.setAttribute("font-weight", "bold");
   titleA.setAttribute("fill", "#38bdf8");
-  titleA.textContent = isVehicle ? "🚲 自行车 / 2轮车" : "🐔 鸡（标配 2 脚）";
+  titleA.textContent = `${nameA}`;
   svg.append(titleA);
 
   const subA = document.createElementNS(SVG_NS, "text");
@@ -55,13 +129,10 @@ function renderChickenRabbitPen(question, options = {}) {
   subA.setAttribute("text-anchor", "middle");
   subA.setAttribute("font-size", "12");
   subA.setAttribute("fill", "#94a3b8");
-  subA.textContent = isVehicle ? "单车轮数 = 2 轮" : "每只脚数 = 2 只";
+  subA.textContent = `单体规格 ＝ ${aRate} ${unitName}`;
   svg.append(subA);
 
   const rightX = 250;
-  const isTricycle = prompt.includes("三轮");
-  const bRate = isTricycle ? 3 : 4;
-
   const rectB = document.createElementNS(SVG_NS, "rect");
   rectB.setAttribute("x", String(rightX));
   rectB.setAttribute("y", "20");
@@ -80,7 +151,7 @@ function renderChickenRabbitPen(question, options = {}) {
   titleB.setAttribute("font-size", "14");
   titleB.setAttribute("font-weight", "bold");
   titleB.setAttribute("fill", "#a855f7");
-  titleB.textContent = isVehicle ? (isTricycle ? "🛺 三轮车（3轮）" : "🚗 四轮车（4轮）") : "🐰 兔子（标配 4 脚）";
+  titleB.textContent = `${nameB}`;
   svg.append(titleB);
 
   const subB = document.createElementNS(SVG_NS, "text");
@@ -89,7 +160,7 @@ function renderChickenRabbitPen(question, options = {}) {
   subB.setAttribute("text-anchor", "middle");
   subB.setAttribute("font-size", "12");
   subB.setAttribute("fill", "#94a3b8");
-  subB.textContent = isVehicle ? `单车轮数 = ${bRate} 轮` : "每只脚数 = 4 只";
+  subB.textContent = `单体规格 ＝ ${bRate} ${unitName}`;
   svg.append(subB);
 
   const bottomBox = document.createElementNS(SVG_NS, "rect");
@@ -110,7 +181,7 @@ function renderChickenRabbitPen(question, options = {}) {
   statsText.setAttribute("font-size", "12");
   statsText.setAttribute("font-weight", "bold");
   statsText.setAttribute("fill", "#f59e0b");
-  statsText.textContent = `总数：共 ${totalHeads} ${isVehicle ? "辆车" : "只头"}，实际共 ${totalLegs} ${isVehicle ? "个轮子" : "只脚"} ➔ 单次置换差 = ${bRate - 2}`;
+  statsText.textContent = `总数：共 ${totalHeads} ${itemUnit}，实际共 ${totalLegs} ${unitName} ➔ 置换差 ＝ ${stepDiff}`;
   svg.append(statsText);
 
   // Interactive manipulative control bar
@@ -121,13 +192,10 @@ function renderChickenRabbitPen(question, options = {}) {
   const btnRow = document.createElement("div");
   btnRow.className = "question-visual__control-row";
 
-  const nameA = isVehicle ? "两轮车" : "鸡";
-  const nameB = isVehicle ? (isTricycle ? "三轮车" : "四轮车") : "兔子";
-
   const btnAllA = createControlBtn(`全设为${nameA}`, "", `假设全部为${nameA}`);
   btnAllA.setAttribute("data-solve-btn", "true");
-  const btnSubB = createControlBtn("➖ 换回1只", "", `减少1只${nameB}`);
-  const btnAddB = createControlBtn(`➕ 置换1只为${nameB}`, "", `增加1只${nameB}`);
+  const btnSubB = createControlBtn(`➖ 换回1${itemUnit}`, "", `减少1${itemUnit}${nameB}`);
+  const btnAddB = createControlBtn(`➕ 置换1${itemUnit}为${nameB}`, "", `增加1${itemUnit}${nameB}`);
   const btnAllB = createControlBtn(`全设为${nameB}`, "", `假设全部为${nameB}`);
   btnAllB.setAttribute("data-solve-btn", "true");
   btnRow.append(btnAllA, btnSubB, btnAddB, btnAllB);
@@ -136,7 +204,7 @@ function renderChickenRabbitPen(question, options = {}) {
   sliderRow.className = "question-visual__slider-row";
   const sliderLabel = document.createElement("label");
   sliderLabel.className = "question-visual__slider-label";
-  sliderLabel.innerHTML = `<span>${isVehicle ? "🚗 多轮车" : "🐰 兔子"}置换数: <strong class="cr-count-b">0</strong> / ${totalHeads}</span>`;
+  sliderLabel.innerHTML = `<span>${nameB}置换数: <strong class="cr-count-b">0</strong> / ${totalHeads}</span>`;
 
   const slider = document.createElement("input");
   slider.type = "range";
@@ -158,14 +226,14 @@ function renderChickenRabbitPen(question, options = {}) {
   m2.innerHTML = `${nameB}: <strong class="cr-stat-b">0</strong>`;
   const m3 = document.createElement("span");
   m3.className = "question-visual__metric question-visual__metric--highlight";
-  m3.innerHTML = `总脚数: <strong class="cr-stat-legs">${totalHeads * 2}</strong> / 目标 ${totalLegs}`;
+  m3.innerHTML = `当前总计: <strong class="cr-stat-legs">${totalHeads * aRate}</strong> / 目标 ${totalLegs}`;
   metricsRow.append(m1, m2, m3);
 
   const statusBox = document.createElement("div");
   statusBox.className = "question-visual__status";
 
-  function updateCR(rabbitCount) {
-    const r = Math.max(0, Math.min(totalHeads, Number(rabbitCount) || 0));
+  function updateCR(bCount) {
+    const r = Math.max(0, Math.min(totalHeads, Number(bCount) || 0));
     slider.value = String(r);
     const countBLabel = sliderLabel.querySelector ? sliderLabel.querySelector(".cr-count-b") : null;
     if (countBLabel) countBLabel.textContent = String(r);
@@ -177,31 +245,30 @@ function renderChickenRabbitPen(question, options = {}) {
     if (statA) statA.textContent = String(a);
     if (statB) statB.textContent = String(r);
 
-    const calcLegs = a * 2 + r * bRate;
+    const calcLegs = a * aRate + r * bRate;
     if (statLegs) statLegs.textContent = String(calcLegs);
 
-    const stepDiff = bRate - 2;
     if (calcLegs === totalLegs) {
       statusBox.className = "question-visual__status is-balanced";
-      statusBox.textContent = isRevealed ? `🎉 达成完美平衡！${nameB} ${r} ${isVehicle ? "辆" : "只"}，${nameA} ${a} ${isVehicle ? "辆" : "只"}！` : `🎉 达成数量平衡！当前脚数与目标脚数完全吻合！`;
+      statusBox.textContent = isRevealed ? `🎉 达成完美平衡！${nameB} ${r} ${itemUnit}，${nameA} ${a} ${itemUnit}！` : `🎉 达成数量平衡！当前核算量与目标完全吻合！`;
       safeClassAdd(card, "is-balanced");
-      statsText.textContent = isRevealed ? `🌟 平衡达成！${nameB}=${r}, ${nameA}=${a}，脚数刚好为 ${totalLegs}` : `🌟 平衡达成！当前总脚数刚好为 ${totalLegs}`;
+      statsText.textContent = isRevealed ? `🌟 平衡达成！${nameB}=${r}, ${nameA}=${a}，总量刚好为 ${totalLegs} ${unitName}` : `🌟 平衡达成！当前总量刚好为 ${totalLegs} ${unitName}`;
       statsText.setAttribute("fill", "#22c55e");
     } else if (calcLegs < totalLegs) {
       statusBox.className = "question-visual__status";
       const need = totalLegs - calcLegs;
       const needR = Math.ceil(need / stepDiff);
-      statusBox.textContent = isRevealed ? `脚数尚缺 ${need} 只 ➔ 还需将 ${needR} 只${nameA}置换为${nameB}` : `脚数尚缺 ${need} 只 ➔ 尝试继续置换以补齐脚数`;
+      statusBox.textContent = isRevealed ? `尚缺 ${need} ${unitName} ➔ 还需将 ${needR} ${itemUnit}${nameA}置换为${nameB}` : `尚缺 ${need} ${unitName} ➔ 尝试继续置换以补齐总量`;
       safeClassRemove(card, "is-balanced");
-      statsText.textContent = `总数：共 ${totalHeads} ${isVehicle ? "辆车" : "只头"}，当前 ${calcLegs} 脚（缺 ${need} 脚）`;
+      statsText.textContent = `共 ${totalHeads} ${itemUnit}，当前 ${calcLegs} ${unitName}（缺 ${need} ${unitName}）`;
       statsText.setAttribute("fill", "#f59e0b");
     } else {
       statusBox.className = "question-visual__status";
       const over = calcLegs - totalLegs;
       const overR = Math.ceil(over / stepDiff);
-      statusBox.textContent = isRevealed ? `脚数超出 ${over} 只 ➔ 需将 ${overR} 只${nameB}换回为${nameA}` : `脚数超出 ${over} 只 ➔ 尝试减少置换以配平脚数`;
+      statusBox.textContent = isRevealed ? `超出 ${over} ${unitName} ➔ 需将 ${overR} ${itemUnit}${nameB}换回为${nameA}` : `超出 ${over} ${unitName} ➔ 尝试减少置换以配平总量`;
       safeClassRemove(card, "is-balanced");
-      statsText.textContent = `总数：共 ${totalHeads} ${isVehicle ? "辆车" : "只头"}，当前 ${calcLegs} 脚（多 ${over} 脚）`;
+      statsText.textContent = `共 ${totalHeads} ${itemUnit}，当前 ${calcLegs} ${unitName}（多 ${over} ${unitName}）`;
       statsText.setAttribute("fill", "#f59e0b");
     }
   }
@@ -220,7 +287,7 @@ function renderChickenRabbitPen(question, options = {}) {
 
   const legend = document.createElement("p");
   legend.className = "question-visual__legend";
-  legend.textContent = "💡 假设法导引：先假设全部是 2 脚（或 2 轮），算出脚数差额，再除以单件差值即可得出多脚对象数量。";
+  legend.textContent = `💡 假设法算理：假设全部为${nameA}（共 ${totalHeads * aRate} ${unitName}），差额为 ${totalLegs} － ${totalHeads * aRate} ＝ ${totalLegs - totalHeads * aRate} ${unitName}。每把1${itemUnit}${nameA}置换为${nameB}可补足 ${stepDiff} ${unitName}，故 ${nameB} ＝ ${totalLegs - totalHeads * aRate} ÷ ${stepDiff} ＝ ${targetB} ${itemUnit}。`;
   card.append(legend);
 
   return card;
@@ -237,17 +304,90 @@ function renderSurplusDeficitBalance(question, options = {}) {
   card.className = "question-visual question-visual--surplus-deficit";
   card.dataset.visualType = "surplus-deficit";
 
-  const nums = parseNumbers(prompt);
-  const r1Rate = nums.length >= 1 ? nums[0] : 4;
-  const r1Surplus = nums.length >= 2 ? nums[1] : 8;
-  const r2Rate = nums.length >= 3 ? nums[2] : 6;
-  const r2Deficit = nums.length >= 4 ? nums[3] : 2;
+  const cleanNums = cleanParseNumbers(prompt);
+
+  // 1. 提取两次分配的分配单价(rate)与盈亏(surplus/deficit)
+  const allRates = [...prompt.matchAll(/每(?:人|只|组|天|份|次|位|台|户)?\s*(\d+)\s*(?:个|颗|支|本|棵|件|元|米|条|只|箱)/g)].map((m) => Number(m[1]));
+  const allSurplus = [...prompt.matchAll(/(?:多|余|剩|还剩|还多|多了)\s*(\d+)\s*(?:个|颗|支|本|棵|件|元|米|条|只|箱)/g)].map((m) => Number(m[1]));
+  const allDeficit = [...prompt.matchAll(/(?:少|缺|差|还少|还差|少了)\s*(\d+)\s*(?:个|颗|支|本|棵|件|元|米|条|只|箱)/g)].map((m) => Number(m[1]));
+  const hasExact = prompt.includes("刚好") || prompt.includes("正好") || prompt.includes("恰好") || prompt.includes("正好分完") || prompt.includes("刚好分完");
+
+  const r1Rate = allRates[0] || cleanNums[0] || 4;
+  const r2Rate = allRates[1] || (cleanNums.find((n) => n !== r1Rate) || 6);
+
+  // 分类判断：双盈、双亏、一盈一亏、一盈一平、一亏一平
+  let type = "surplus-deficit"; // 默认一盈一亏
+  let s1 = 0, s2 = 0, d1 = 0, d2 = 0;
+  let label1 = "", label2 = "";
+  let color1 = "#22c55e", color2 = "#ef4444";
+  let bg1 = "rgba(34, 197, 94, 0.08)", bg2 = "rgba(239, 68, 68, 0.08)";
+  let totalDiff = 0;
+  let subbadge = "";
+
+  if (allSurplus.length >= 2) {
+    type = "dual-surplus";
+    s1 = allSurplus[0];
+    s2 = allSurplus[1];
+    label1 = `📦 剩余: +${s1} (盈)`;
+    label2 = `📦 剩余: +${s2} (盈)`;
+    color1 = "#22c55e"; color2 = "#22c55e";
+    bg1 = "rgba(34, 197, 94, 0.08)"; bg2 = "rgba(34, 197, 94, 0.08)";
+    totalDiff = Math.abs(s1 - s2);
+    subbadge = `双盈模型：两次都多 ➔ 总差额 ＝ 大盈 － 小盈 ＝ ${totalDiff}`;
+  } else if (allDeficit.length >= 2) {
+    type = "dual-deficit";
+    d1 = allDeficit[0];
+    d2 = allDeficit[1];
+    label1 = `⚠️ 缺少: -${d1} (亏)`;
+    label2 = `⚠️ 缺少: -${d2} (亏)`;
+    color1 = "#ef4444"; color2 = "#ef4444";
+    bg1 = "rgba(239, 68, 68, 0.08)"; bg2 = "rgba(239, 68, 68, 0.08)";
+    totalDiff = Math.abs(d1 - d2);
+    subbadge = `双亏模型：两次都少 ➔ 总差额 ＝ 大亏 － 小亏 ＝ ${totalDiff}`;
+  } else if (hasExact && allSurplus.length >= 1) {
+    type = "surplus-exact";
+    s1 = allSurplus[0];
+    label1 = `📦 剩余: +${s1} (盈)`;
+    label2 = "🎯 刚好分完: 0 (平)";
+    color1 = "#22c55e"; color2 = "#38bdf8";
+    bg1 = "rgba(34, 197, 94, 0.08)"; bg2 = "rgba(56, 189, 248, 0.08)";
+    totalDiff = s1;
+    subbadge = `盈平模型：一次多一次刚好 ➔ 总差额 ＝ 剩余量 ＝ ${totalDiff}`;
+  } else if (hasExact && allDeficit.length >= 1) {
+    type = "deficit-exact";
+    d1 = allDeficit[0];
+    label1 = `⚠️ 缺少: -${d1} (亏)`;
+    label2 = "🎯 刚好分完: 0 (平)";
+    color1 = "#ef4444"; color2 = "#38bdf8";
+    bg1 = "rgba(239, 68, 68, 0.08)"; bg2 = "rgba(56, 189, 248, 0.08)";
+    totalDiff = d1;
+    subbadge = `亏平模型：一次少一次刚好 ➔ 总差额 ＝ 缺少量 ＝ ${totalDiff}`;
+  } else {
+    type = "surplus-deficit";
+    s1 = allSurplus[0] || (cleanNums[1] || 8);
+    d1 = allDeficit[0] || (cleanNums[3] || 2);
+    label1 = `📦 剩余: +${s1} (盈)`;
+    label2 = `⚠️ 缺少: -${d1} (亏)`;
+    color1 = "#22c55e"; color2 = "#ef4444";
+    bg1 = "rgba(34, 197, 94, 0.08)"; bg2 = "rgba(239, 68, 68, 0.08)";
+    totalDiff = s1 + d1;
+    subbadge = `一盈一亏模型：一多一少 ➔ 总差额 ＝ 盈 ＋ 亏 ＝ ${totalDiff}`;
+  }
+
+  const singleDiff = Math.abs(r2Rate - r1Rate) || 1;
+  const people = Math.max(1, Math.round(totalDiff / singleDiff));
+  const totalItems = type === "dual-surplus" ? (r1Rate * people + s1)
+    : type === "dual-deficit" ? (r1Rate * people - d1)
+    : type === "surplus-exact" ? (r1Rate * people + s1)
+    : (r1Rate * people + s1);
+
+  const isAskTotal = prompt.includes("一共有多少") || prompt.includes("求总量") || prompt.includes("总共有多少");
 
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
     <span class="question-visual__badge">⚖️ 双方案盈亏天平对比台</span>
-    <span class="question-visual__subbadge">两次分配差额平衡</span>
+    <span class="question-visual__subbadge">${subbadge}</span>
   `;
   card.append(header);
 
@@ -261,8 +401,8 @@ function renderSurplusDeficitBalance(question, options = {}) {
   leftRect.setAttribute("width", "185");
   leftRect.setAttribute("height", "80");
   leftRect.setAttribute("rx", "10");
-  leftRect.setAttribute("fill", "rgba(34, 197, 94, 0.08)");
-  leftRect.setAttribute("stroke", "#22c55e");
+  leftRect.setAttribute("fill", bg1);
+  leftRect.setAttribute("stroke", color1);
   leftRect.setAttribute("stroke-width", "2");
   svg.append(leftRect);
 
@@ -272,19 +412,19 @@ function renderSurplusDeficitBalance(question, options = {}) {
   p1Title.setAttribute("text-anchor", "middle");
   p1Title.setAttribute("font-size", "13");
   p1Title.setAttribute("font-weight", "bold");
-  p1Title.setAttribute("fill", "#22c55e");
+  p1Title.setAttribute("fill", color1);
   p1Title.textContent = `方案一：每人分 ${r1Rate} 个`;
   svg.append(p1Title);
 
-  const p1Surplus = document.createElementNS(SVG_NS, "text");
-  p1Surplus.setAttribute("x", "122");
-  p1Surplus.setAttribute("y", "76");
-  p1Surplus.setAttribute("text-anchor", "middle");
-  p1Surplus.setAttribute("font-size", "15");
-  p1Surplus.setAttribute("font-weight", "bold");
-  p1Surplus.setAttribute("fill", "#4ade80");
-  p1Surplus.textContent = `📦 剩余: +${r1Surplus} 个 (盈)`;
-  svg.append(p1Surplus);
+  const p1Label = document.createElementNS(SVG_NS, "text");
+  p1Label.setAttribute("x", "122");
+  p1Label.setAttribute("y", "76");
+  p1Label.setAttribute("text-anchor", "middle");
+  p1Label.setAttribute("font-size", "14");
+  p1Label.setAttribute("font-weight", "bold");
+  p1Label.setAttribute("fill", color1);
+  p1Label.textContent = label1;
+  svg.append(p1Label);
 
   const rightRect = document.createElementNS(SVG_NS, "rect");
   rightRect.setAttribute("x", "245");
@@ -292,8 +432,8 @@ function renderSurplusDeficitBalance(question, options = {}) {
   rightRect.setAttribute("width", "185");
   rightRect.setAttribute("height", "80");
   rightRect.setAttribute("rx", "10");
-  rightRect.setAttribute("fill", "rgba(239, 68, 68, 0.08)");
-  rightRect.setAttribute("stroke", "#ef4444");
+  rightRect.setAttribute("fill", bg2);
+  rightRect.setAttribute("stroke", color2);
   rightRect.setAttribute("stroke-width", "2");
   svg.append(rightRect);
 
@@ -303,19 +443,19 @@ function renderSurplusDeficitBalance(question, options = {}) {
   p2Title.setAttribute("text-anchor", "middle");
   p2Title.setAttribute("font-size", "13");
   p2Title.setAttribute("font-weight", "bold");
-  p2Title.setAttribute("fill", "#ef4444");
+  p2Title.setAttribute("fill", color2);
   p2Title.textContent = `方案二：每人分 ${r2Rate} 个`;
   svg.append(p2Title);
 
-  const p2Deficit = document.createElementNS(SVG_NS, "text");
-  p2Deficit.setAttribute("x", "337");
-  p2Deficit.setAttribute("y", "76");
-  p2Deficit.setAttribute("text-anchor", "middle");
-  p2Deficit.setAttribute("font-size", "15");
-  p2Deficit.setAttribute("font-weight", "bold");
-  p2Deficit.setAttribute("fill", "#f87171");
-  p2Deficit.textContent = `⚠️ 短缺: -${r2Deficit} 个 (亏)`;
-  svg.append(p2Deficit);
+  const p2Label = document.createElementNS(SVG_NS, "text");
+  p2Label.setAttribute("x", "337");
+  p2Label.setAttribute("y", "76");
+  p2Label.setAttribute("text-anchor", "middle");
+  p2Label.setAttribute("font-size", "14");
+  p2Label.setAttribute("font-weight", "bold");
+  p2Label.setAttribute("fill", color2);
+  p2Label.textContent = label2;
+  svg.append(p2Label);
 
   const vsTag = document.createElementNS(SVG_NS, "text");
   vsTag.setAttribute("x", "230");
@@ -327,8 +467,6 @@ function renderSurplusDeficitBalance(question, options = {}) {
   vsTag.textContent = "VS";
   svg.append(vsTag);
 
-  const singleDiff = Math.abs(r2Rate - r1Rate) || 1;
-  const totalDiff = r1Surplus + r2Deficit;
   const fText = document.createElementNS(SVG_NS, "text");
   fText.setAttribute("x", "230");
   fText.setAttribute("y", "128");
@@ -336,14 +474,26 @@ function renderSurplusDeficitBalance(question, options = {}) {
   fText.setAttribute("font-size", "12");
   fText.setAttribute("font-weight", "bold");
   fText.setAttribute("fill", "#38bdf8");
-  fText.textContent = isRevealed ? `总差额 (${r1Surplus} + ${r2Deficit} = ${totalDiff}) ÷ 单人差额 (${r2Rate} - ${r1Rate} = ${singleDiff}) = 人数 (${Math.round(totalDiff / singleDiff) || "?"} 人)` : `总差额 (${r1Surplus} + ${r2Deficit} = ${totalDiff}) ÷ 单人差额 (|${r2Rate} - ${r1Rate}| = ${singleDiff}) = 人数 ?`;
+
+  const diffFormula = type === "surplus-deficit" ? `${s1} + ${d1}`
+    : type === "dual-surplus" ? `${Math.max(s1, s2)} - ${Math.min(s1, s2)}`
+    : type === "dual-deficit" ? `${Math.max(d1, d2)} - ${Math.min(d1, d2)}`
+    : `${totalDiff}`;
+
+  fText.textContent = isRevealed
+    ? (isAskTotal
+      ? `人数 ＝ ${totalDiff} ÷ ${singleDiff} ＝ ${people} 人 ➔ 总数 ＝ ${r1Rate} × ${people} ＋ ${s1} ＝ ${totalItems}`
+      : `总差额 (${diffFormula} ＝ ${totalDiff}) ÷ 单人差 (|${r2Rate} - ${r1Rate}| ＝ ${singleDiff}) ＝ ${people} 人`)
+    : `总差额 (${diffFormula} ＝ ${totalDiff}) ÷ 每人差 (|${r2Rate} - ${r1Rate}| ＝ ${singleDiff}) ＝ 人数 ?`;
   svg.append(fText);
 
   card.append(svg);
 
   const legend = document.createElement("p");
   legend.className = "question-visual__legend";
-  legend.textContent = "⚖️ 盈亏对比导引：一盈一亏，把剩余量与缺少量相加得到总差额，除以两次每人分配差即可。";
+  legend.textContent = isRevealed
+    ? `⚖️ 盈亏核心口诀：一盈一亏总差相加；同盈同亏总差相减。总差额 (${totalDiff}) ÷ 每人差额 (${singleDiff}) ＝ 人数 (${people}人)${isAskTotal ? `；总数 ＝ ${r1Rate} × ${people} ＋ ${s1} ＝ ${totalItems}` : ""}。`
+    : `⚖️ 盈亏核心口诀：一盈一亏总差相加；同盈同亏总差相减。总差额 ÷ 每人分配差额 ＝ 人数 ?。`;
   card.append(legend);
 
   return card;
@@ -785,16 +935,23 @@ function renderTrainBridgeTrack(question, options = {}) {
   card.className = "question-visual question-visual--train-bridge";
   card.dataset.visualType = "train-bridge";
 
-  const nums = parseNumbers(prompt);
+  const cleaned = cleanPrompt(prompt);
+  const cleanNums = cleanParseNumbers(prompt);
+  const solContext = extractSolutionContext(question);
 
   // Case 1: Chasing vehicle / relative speed (追赶补给车, 追上, 追及, 车尾相距)
   if (prompt.includes("追赶") || prompt.includes("追上") || prompt.includes("超过慢车") || prompt.includes("车尾相距") || prompt.includes("补给车")) {
     const isRearTailGiven = prompt.includes("车尾相距") || prompt.includes("车尾与");
-    const rearL = nums.length >= 1 ? nums[0] : 100;
-    const v1 = nums.length >= 2 ? nums[1] : 25;
-    const v2 = nums.length >= 3 ? nums[2] : 15;
-    const rawGap = nums.length >= 4 ? nums[3] : 200;
-    const netGap = isRearTailGiven ? (rawGap - rearL) : rawGap;
+    const rearLMatch = cleaned.match(/(?:后车|列车|快车)?长(?:度)?(?:为|是)?\s*(\d+)\s*米/) || cleaned.match(/(\d+)\s*米长的(?:列车|火车)/);
+    const rearL = rearLMatch ? Number(rearLMatch[1]) : (cleanNums.length >= 1 ? cleanNums[0] : 100);
+
+    const speedMatches = [...cleaned.matchAll(/(?:每秒|速度(?:为|是)?)\s*(?:行驶)?\s*(\d+)\s*米/g)];
+    const v1 = speedMatches[0] ? Number(speedMatches[0][1]) : (cleanNums[1] || 25);
+    const v2 = speedMatches[1] ? Number(speedMatches[1][1]) : (cleanNums[2] || 15);
+
+    const gapMatch = cleaned.match(/(?:相距|相隔|距离)\s*(\d+)\s*米/) || cleaned.match(/(\d+)\s*米/);
+    const rawGap = gapMatch ? Number(gapMatch[1]) : (cleanNums[3] || 200);
+    const netGap = isRearTailGiven ? Math.max(10, rawGap - rearL) : rawGap;
     const speedDiff = Math.abs(v1 - v2) || 10;
     const time = Math.round(netGap / speedDiff) || 10;
 
@@ -802,7 +959,7 @@ function renderTrainBridgeTrack(question, options = {}) {
     header.className = "question-visual__header";
     header.innerHTML = `
       <span class="question-visual__badge">🚄 列车追及与车距全景标尺</span>
-      <span class="question-visual__subbadge">净追及距离 ＝ 车尾间距 － 后车车长</span>
+      <span class="question-visual__subbadge">${isRearTailGiven ? "净追及距离 ＝ 车尾间距 － 后车车长" : "追及时间 ＝ 相对车距 ÷ 速度差"}</span>
     `;
     card.append(header);
 
@@ -861,10 +1018,10 @@ function renderTrainBridgeTrack(question, options = {}) {
     fText.setAttribute("font-size", "11");
     fText.setAttribute("font-weight", "bold");
     fText.setAttribute("fill", "#0f172a");
-    fText.textContent = `补给车 (${v2}m/s)`;
+    fText.textContent = `前车 (${v2}m/s)`;
     svg.append(fText);
 
-    // Top dimension: Tail to Tail = 200m
+    // Top dimension: Tail to Tail
     const d1 = document.createElementNS(SVG_NS, "path");
     d1.setAttribute("d", "M 30 45 L 230 45");
     d1.setAttribute("stroke", "#ec4899");
@@ -878,10 +1035,10 @@ function renderTrainBridgeTrack(question, options = {}) {
     d1Text.setAttribute("font-size", "11");
     d1Text.setAttribute("font-weight", "bold");
     d1Text.setAttribute("fill", "#ec4899");
-    d1Text.textContent = `车尾到车尾初始相距: ${rawGap}米`;
+    d1Text.textContent = `初始间距: ${rawGap}米`;
     svg.append(d1Text);
 
-    // Bottom dimension: Head to Tail = 100m
+    // Bottom dimension: Head to Tail
     const d2 = document.createElementNS(SVG_NS, "path");
     d2.setAttribute("d", "M 130 115 L 230 115");
     d2.setAttribute("stroke", "#22c55e");
@@ -923,22 +1080,55 @@ function renderTrainBridgeTrack(question, options = {}) {
 
     const legend = document.createElement("p");
     legend.className = "question-visual__legend";
-    legend.textContent = `🚆 追及原理：后车车尾到前车车尾相距 ${rawGap} 米，减去后车长 ${rearL} 米，后车车头追前车车尾的实际追及距离为 ${netGap} 米。追及时间 ＝ ${netGap} ÷ (${v1} - ${v2}) ＝ ${time} 秒。`;
+    legend.textContent = `🚆 追及原理：净追及距离 ＝ ${netGap} 米，速度差 ＝ ${v1} － ${v2} ＝ ${speedDiff} 米/秒。追及时间 ＝ ${netGap} ÷ ${speedDiff} ＝ ${time} 秒。`;
     card.append(legend);
 
     return card;
   }
 
   // Case 2: Standard train passing bridge or tunnel
-  const trainL = nums.length >= 1 ? nums[0] : 150;
-  const bridgeL = nums.length >= 2 ? nums[1] : 850;
-  const totalL = trainL + bridgeL;
+  // 语义提取车长、桥长、速度和时间，杜绝盲目位置索引
+  const trainMatch = cleaned.match(/(?:火车|列车|车身)?长(?:度)?(?:为|是)?\s*(\d+)\s*米/) || cleaned.match(/(\d+)\s*米长的一?列(?:火车|列车)/) || cleaned.match(/一?列(?:火车|列车)长\s*(\d+)\s*米/);
+  const bridgeMatch = cleaned.match(/(?:大桥|桥|隧道|铁桥)长(?:度)?(?:为|是)?\s*(\d+)\s*米/) || cleaned.match(/长\s*(\d+)\s*米的大桥/) || cleaned.match(/(\d+)\s*米(?:长)?的(?:大桥|桥|隧道|铁桥)/);
+  const speedMatch = cleaned.match(/(?:每秒|速度(?:为|是)?)\s*(?:行驶)?\s*(\d+)\s*米/) || cleaned.match(/(\d+)\s*米\s*\/\s*秒/) || cleaned.match(/每秒\s*(\d+)\s*米/);
+  const timeMatch = cleaned.match(/(?:用时|需要|经过|花了|用)\s*(\d+)\s*秒/);
+
+  let trainL = trainMatch ? Number(trainMatch[1]) : 150;
+  let bridgeL = bridgeMatch ? Number(bridgeMatch[1]) : 850;
+  const speed = speedMatch ? Number(speedMatch[1]) : null;
+  const timeGiven = timeMatch ? Number(timeMatch[1]) : null;
+
+  // 如果没有直接匹配到车长或桥长，从候选数字中排除速度和时间
+  if (!trainMatch || !bridgeMatch) {
+    const candidates = cleanNums.filter(n => n !== speed && n !== timeGiven);
+    if (!trainMatch && candidates.length >= 1) {
+      trainL = candidates.find(n => n < 500) || candidates[0] || 150;
+    }
+    if (!bridgeMatch && candidates.length >= 1) {
+      bridgeL = candidates.find(n => n >= 500) || candidates[candidates.length - 1] || 850;
+    }
+  }
+
+  const isAskTime = prompt.includes("多少秒") || prompt.includes("几秒") || prompt.includes("时间");
+  const isAskBridge = prompt.includes("桥长多少") || prompt.includes("大桥长多少") || prompt.includes("隧道长多少");
+  const isAskTrain = prompt.includes("车长多少") || prompt.includes("火车长多少") || prompt.includes("列车长多少");
+
+  let totalL = trainL + bridgeL;
+  let calcTime = speed ? Math.round(totalL / speed) : (timeGiven || 40);
+
+  if (isAskBridge && speed && timeGiven) {
+    totalL = speed * timeGiven;
+    bridgeL = totalL - trainL;
+  } else if (isAskTrain && speed && timeGiven) {
+    totalL = speed * timeGiven;
+    trainL = totalL - bridgeL;
+  }
 
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
     <span class="question-visual__badge">🚄 火车过桥全景动态标尺</span>
-    <span class="question-visual__subbadge">车身长度参与路程运动</span>
+    <span class="question-visual__subbadge">完全通过路程 ＝ 桥长 ＋ 车长</span>
   `;
   card.append(header);
 
@@ -1003,6 +1193,17 @@ function renderTrainBridgeTrack(question, options = {}) {
   dimLine.setAttribute("stroke-width", "2");
   svg.append(dimLine);
 
+  let formulaLabel = `完全通过路程 ＝ 桥长 (${bridgeL}) ＋ 车长 (${trainL}) ＝ ${totalL} 米`;
+  if (speed && isAskTime) {
+    formulaLabel = isRevealed
+      ? `路程 (${bridgeL} ＋ ${trainL} ＝ ${totalL}m) ÷ 速度 (${speed}m/s) ＝ ${calcTime} 秒`
+      : `路程 (${bridgeL} ＋ ${trainL} ＝ ${totalL}m) ÷ 速度 (${speed}m/s) ＝ ? 秒`;
+  } else if (isAskBridge && speed && timeGiven) {
+    formulaLabel = isRevealed
+      ? `桥长 ＝ 速度 × 时间 － 车长 ＝ ${speed} × ${timeGiven} － ${trainL} ＝ ${bridgeL} 米`
+      : `桥长 ＝ 速度 × 时间 － 车长 ＝ ? 米`;
+  }
+
   const dimTag = document.createElementNS(SVG_NS, "text");
   dimTag.setAttribute("x", "260");
   dimTag.setAttribute("y", "32");
@@ -1010,14 +1211,14 @@ function renderTrainBridgeTrack(question, options = {}) {
   dimTag.setAttribute("font-size", "12");
   dimTag.setAttribute("font-weight", "bold");
   dimTag.setAttribute("fill", "#22c55e");
-  dimTag.textContent = isRevealed ? `完全通过路程 ＝ 桥长 (${bridgeL}) ＋ 车长 (${trainL}) ＝ ${totalL} 米` : `完全通过路程 ＝ 桥长 (${bridgeL}) ＋ 车长 (${trainL}) ＝ ? 米`;
+  dimTag.textContent = formulaLabel;
   svg.append(dimTag);
 
   card.append(svg);
 
   const legend = document.createElement("p");
   legend.className = "question-visual__legend";
-  legend.textContent = "🚆 火车过桥导引：从车头上桥到车尾离桥，列车实际位移必须加上自身的车身长度。";
+  legend.textContent = `🚆 火车过桥导引：从车头上桥到车尾离桥，列车实际位移必须加上自身车长。总路程 ＝ 桥长 (${bridgeL}米) ＋ 车长 (${trainL}米) ＝ ${totalL}米${speed ? `。通过用时 ＝ ${totalL} ÷ ${speed} ＝ ${calcTime}秒。` : "。"}`;
   card.append(legend);
 
   return card;
@@ -1183,15 +1384,23 @@ function renderMotionTrack(question, options = {}) {
   card.className = "question-visual question-visual--motion";
   card.dataset.visualType = "motion";
 
-  const nums = parseNumbers(prompt);
+  const cleaned = cleanPrompt(prompt);
+  const cleanNums = cleanParseNumbers(prompt);
   const isEncounter = prompt.includes("相向") || prompt.includes("相遇");
-  const isChase = prompt.includes("追上") || prompt.includes("先跑") || prompt.includes("追");
+  const isChase = !isEncounter && (prompt.includes("追上") || prompt.includes("先跑") || prompt.includes("追") || prompt.includes("先行"));
+
+  // Detect unit systems
+  const isKm = prompt.includes("千米") || prompt.includes("公里");
+  const isHour = prompt.includes("小时") || prompt.includes("时");
+  const dUnit = isKm ? "千米" : "米";
+  const tUnit = isHour ? "小时" : "分";
+  const vUnit = `${dUnit}/${tUnit}`;
 
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
     <span class="question-visual__badge">🚀 行程问题空间动态轨迹</span>
-    <span class="question-visual__subbadge">${isEncounter ? "相向相遇：路程和 ＝ 速度和 × 时间" : isChase ? "同向追及：先行距离 ＝ 速度差 × 追及时间" : "速度、时间与路程核心关系"}</span>
+    <span class="question-visual__subbadge">${isEncounter ? `相向相遇：总路程 ＝ 速度和 × 相遇时间 (${vUnit})` : isChase ? `同向追及：先行距离 ＝ 速度差 × 追及时间 (${vUnit})` : "速度、时间与路程核心关系"}</span>
   `;
   card.append(header);
 
@@ -1200,10 +1409,36 @@ function renderMotionTrack(question, options = {}) {
   const svg = createSvg(svgWidth, svgHeight, `0 0 ${svgWidth} ${svgHeight}`);
 
   if (isEncounter) {
-    const totalDist = nums.find(n => n >= 50 && n <= 5000) || 720;
-    const v1 = nums[nums.indexOf(totalDist) === 0 ? 1 : 0] || 50;
-    const v2 = nums[nums.indexOf(totalDist) === 0 ? 2 : 1] || 40;
-    const time = Math.round(totalDist / (v1 + v2)) || 8;
+    // 语义提取总路程、两车速度、相遇时间
+    const distMatch = cleaned.match(/(?:相距|两地距离|全程|长)\s*(\d+)\s*(?:千米|公里|米)?/) || cleaned.match(/(\d+)\s*(?:千米|公里|米)的两地/);
+    const speedA = cleaned.match(/甲(?:车|队|人)?(?:每小时|每分|每分钟)?(?:行|行驶|走)?\s*(\d+)/);
+    const speedB = cleaned.match(/乙(?:车|队|人)?(?:每小时|每分|每分钟)?(?:行|行驶|走)?\s*(\d+)/);
+    const timeMatch = cleaned.match(/(?:经过|用时|走了|相遇)\s*(\d+)\s*(?:小时|分|分钟|秒)/);
+    const isAskDist = prompt.includes("两地相距多少") || prompt.includes("两地距离多少") || prompt.includes("全程多少") || prompt.includes("相距多少");
+
+    let v1 = speedA ? Number(speedA[1]) : (cleanNums[0] || 50);
+    let v2 = speedB ? Number(speedB[1]) : (cleanNums[1] || 40);
+    let totalDist = 720;
+    let time = 8;
+
+    if (isAskDist && speedA && speedB && timeMatch) {
+      v1 = Number(speedA[1]);
+      v2 = Number(speedB[1]);
+      time = Number(timeMatch[1]);
+      totalDist = (v1 + v2) * time;
+    } else if (distMatch) {
+      totalDist = Number(distMatch[1]);
+      const otherNums = cleanNums.filter(n => n !== totalDist);
+      if (!speedA && otherNums.length >= 1) v1 = otherNums[0];
+      if (!speedB && otherNums.length >= 2) v2 = otherNums[1];
+      time = Math.max(1, Math.round(totalDist / (v1 + v2))) || 8;
+    } else {
+      totalDist = cleanNums.find(n => n >= 100) || 720;
+      const otherNums = cleanNums.filter(n => n !== totalDist);
+      v1 = otherNums[0] || 50;
+      v2 = otherNums[1] || 40;
+      time = Math.max(1, Math.round(totalDist / (v1 + v2))) || 8;
+    }
 
     const line = document.createElementNS(SVG_NS, "line");
     line.setAttribute("x1", "50");
@@ -1238,7 +1473,7 @@ function renderMotionTrack(question, options = {}) {
     a1.setAttribute("font-size", "11");
     a1.setAttribute("font-weight", "bold");
     a1.setAttribute("fill", "#38bdf8");
-    a1.textContent = `甲 (${v1} 米/分) ──▶`;
+    a1.textContent = `甲 (${v1} ${vUnit}) ──▶`;
     svg.append(a1);
 
     const a2 = document.createElementNS(SVG_NS, "text");
@@ -1247,10 +1482,11 @@ function renderMotionTrack(question, options = {}) {
     a2.setAttribute("font-size", "11");
     a2.setAttribute("font-weight", "bold");
     a2.setAttribute("fill", "#a855f7");
-    a2.textContent = `◀── 乙 (${v2} 米/分)`;
+    a2.textContent = `◀── 乙 (${v2} ${vUnit})`;
     svg.append(a2);
 
-    const meetX = Math.round(50 + (360 * (v1 / (v1 + v2)))) || 250;
+    const meetRatio = v1 / (v1 + v2);
+    const meetX = Math.round(50 + (360 * meetRatio)) || 250;
     const meetFlag = document.createElementNS(SVG_NS, "text");
     meetFlag.setAttribute("x", String(meetX));
     meetFlag.setAttribute("y", "72");
@@ -1258,7 +1494,7 @@ function renderMotionTrack(question, options = {}) {
     meetFlag.setAttribute("font-size", "11");
     meetFlag.setAttribute("font-weight", "bold");
     meetFlag.setAttribute("fill", "#22c55e");
-    meetFlag.textContent = isRevealed ? `🤝 相遇点 (${time}分)` : `🤝 相遇点 (? 分)`;
+    meetFlag.textContent = isRevealed ? `🤝 相遇点 (${time}${tUnit})` : `🤝 相遇点 (? ${tUnit})`;
     svg.append(meetFlag);
 
     const dash = document.createElementNS(SVG_NS, "line");
@@ -1284,7 +1520,9 @@ function renderMotionTrack(question, options = {}) {
     dimT.setAttribute("font-size", "12");
     dimT.setAttribute("font-weight", "bold");
     dimT.setAttribute("fill", "#f8fafc");
-    dimT.textContent = `总相距路程 S ＝ ${totalDist} 米`;
+    dimT.textContent = isAskDist
+      ? (isRevealed ? `总相距路程 S ＝ (${v1} ＋ ${v2}) × ${time} ＝ ${totalDist} ${dUnit}` : `总相距路程 S ＝ (${v1} ＋ ${v2}) × ${time} ＝ ? ${dUnit}`)
+      : `总相距路程 S ＝ ${totalDist} ${dUnit}`;
     svg.append(dimT);
 
     // Dynamic marker circles on the track
@@ -1324,7 +1562,7 @@ function renderMotionTrack(question, options = {}) {
     sliderRow.className = "question-visual__slider-row";
     const sliderLabel = document.createElement("label");
     sliderLabel.className = "question-visual__slider-label";
-    sliderLabel.innerHTML = isRevealed ? `<span>⏱ 经过时间: <strong class="motion-time-val">0</strong> / ${time} 分钟</span>` : `<span>⏱ 经过时间: <strong class="motion-time-val">0</strong> 分钟</span>`;
+    sliderLabel.innerHTML = isRevealed ? `<span>⏱ 经过时间: <strong class="motion-time-val">0</strong> / ${time} ${tUnit}</span>` : `<span>⏱ 经过时间: <strong class="motion-time-val">0</strong> ${tUnit}</span>`;
 
     const slider = document.createElement("input");
     slider.type = "range";
@@ -1341,13 +1579,13 @@ function renderMotionTrack(question, options = {}) {
     metricsRow.className = "question-visual__metrics";
     const m1 = document.createElement("span");
     m1.className = "question-visual__metric";
-    m1.innerHTML = `甲已行: <strong class="motion-dist-a">0</strong> 米`;
+    m1.innerHTML = `甲已行: <strong class="motion-dist-a">0</strong> ${dUnit}`;
     const m2 = document.createElement("span");
     m2.className = "question-visual__metric";
-    m2.innerHTML = `乙已行: <strong class="motion-dist-b">0</strong> 米`;
+    m2.innerHTML = `乙已行: <strong class="motion-dist-b">0</strong> ${dUnit}`;
     const m3 = document.createElement("span");
     m3.className = "question-visual__metric question-visual__metric--highlight";
-    m3.innerHTML = `相隔距离: <strong class="motion-dist-gap">${totalDist}</strong> 米`;
+    m3.innerHTML = `相隔距离: <strong class="motion-dist-gap">${totalDist}</strong> ${dUnit}`;
     metricsRow.append(m1, m2, m3);
 
     const statusBox = document.createElement("div");
@@ -1382,11 +1620,11 @@ function renderMotionTrack(question, options = {}) {
 
       if (t >= time) {
         statusBox.className = "question-visual__status is-balanced";
-        statusBox.textContent = isRevealed ? `🎉 恰好相遇！用时 ${time} 分钟，两队共行进 ${totalDist} 米！` : `🎉 恰好相遇！两队完成会合！`;
+        statusBox.textContent = isRevealed ? `🎉 恰好相遇！用时 ${time} ${tUnit}，两队共行进 ${totalDist} ${dUnit}！` : `🎉 恰好相遇！两队完成会合！`;
         safeClassAdd(card, "is-balanced");
       } else {
         statusBox.className = "question-visual__status";
-        statusBox.textContent = `行进中：每分钟共同靠近 ${v1 + v2} 米，尚余 ${gap} 米相遇`;
+        statusBox.textContent = `行进中：每${tUnit}共同靠近 ${v1 + v2} ${dUnit}，尚余 ${gap} ${dUnit}相遇`;
         safeClassRemove(card, "is-balanced");
       }
     }
@@ -1453,17 +1691,39 @@ function renderMotionTrack(question, options = {}) {
 
     const legend = document.createElement("p");
     legend.className = "question-visual__legend";
-    legend.textContent = `🤝 相遇问题：每分钟两人共同走 ${v1} ＋ ${v2} ＝ ${v1 + v2} 米。相遇时间 ＝ ${totalDist} ÷ ${v1 + v2} ＝ ${time} 分钟。`;
+    legend.textContent = `🤝 相遇问题：每${tUnit}两人共同走 ${v1} ＋ ${v2} ＝ ${v1 + v2} ${dUnit}。相遇时间 ＝ ${totalDist} ÷ ${v1 + v2} ＝ ${time} ${tUnit}。`;
     card.append(legend);
     return card;
   }
 
-  const v1 = nums[0] || 100;
-  const v2 = nums[1] || 80;
-  const t0 = nums[2] || 5;
-  const leadDist = v2 * t0;
+  // Chasing case: 同向追及
+  const leadDistMatch = cleaned.match(/(?:先走|先行|相距|落后|前)\s*(\d+)\s*(?:米|千米|公里)/);
+  const leadTimeMatch = cleaned.match(/(?:先走|先行)\s*(\d+)\s*(?:分钟|分|小时)/);
+
+  let rawV1 = cleanNums[0] || 100;
+  let rawV2 = cleanNums[1] || 80;
+  let leadDist = 100;
+
+  if (leadDistMatch) {
+    leadDist = Number(leadDistMatch[1]);
+    const otherNums = cleanNums.filter(n => n !== leadDist);
+    if (otherNums.length >= 2) {
+      rawV1 = otherNums[0];
+      rawV2 = otherNums[1];
+    }
+  } else if (leadTimeMatch) {
+    const t0 = Number(leadTimeMatch[1]);
+    const otherNums = cleanNums.filter(n => n !== t0);
+    rawV1 = otherNums[0] || 100;
+    rawV2 = otherNums[1] || 80;
+    const vSlow = Math.min(rawV1, rawV2);
+    leadDist = vSlow * t0;
+  }
+
+  const v1 = Math.max(rawV1, rawV2);
+  const v2 = Math.min(rawV1, rawV2);
   const vDiff = (v1 - v2) > 0 ? (v1 - v2) : 20;
-  const chaseTime = Math.round(leadDist / vDiff) || 5;
+  const chaseTime = Math.max(1, Math.round(leadDist / vDiff)) || 5;
 
   const line = document.createElementNS(SVG_NS, "line");
   line.setAttribute("x1", "40");
@@ -1480,7 +1740,7 @@ function renderMotionTrack(question, options = {}) {
   chaser.setAttribute("font-size", "11");
   chaser.setAttribute("font-weight", "bold");
   chaser.setAttribute("fill", "#38bdf8");
-  chaser.textContent = `快者 (v=${v1})`;
+  chaser.textContent = `快者 (v=${v1} ${vUnit})`;
   svg.append(chaser);
 
   const startBX = 190;
@@ -1490,7 +1750,7 @@ function renderMotionTrack(question, options = {}) {
   leader.setAttribute("font-size", "11");
   leader.setAttribute("font-weight", "bold");
   leader.setAttribute("fill", "#ec4899");
-  leader.textContent = `慢者 (v=${v2})`;
+  leader.textContent = `慢者 (v=${v2} ${vUnit})`;
   svg.append(leader);
 
   const dim = document.createElementNS(SVG_NS, "path");
@@ -1506,7 +1766,7 @@ function renderMotionTrack(question, options = {}) {
   dimT.setAttribute("font-size", "11");
   dimT.setAttribute("font-weight", "bold");
   dimT.setAttribute("fill", "#fbbf24");
-  dimT.textContent = `先行距离差 ＝ ${leadDist} 米`;
+  dimT.textContent = `先行距离差 ＝ ${leadDist} ${dUnit}`;
   svg.append(dimT);
 
   const sTag = document.createElementNS(SVG_NS, "text");
@@ -1516,7 +1776,7 @@ function renderMotionTrack(question, options = {}) {
   sTag.setAttribute("font-size", "12");
   sTag.setAttribute("font-weight", "bold");
   sTag.setAttribute("fill", "#22c55e");
-  sTag.textContent = `速度差 ＝ ${v1} － ${v2} ＝ ${vDiff} 米/分`;
+  sTag.textContent = `速度差 ＝ ${v1} － ${v2} ＝ ${vDiff} ${vUnit}`;
   svg.append(sTag);
 
   // Dynamic chase markers
@@ -1546,7 +1806,7 @@ function renderMotionTrack(question, options = {}) {
   catchFlag.setAttribute("font-size", "11");
   catchFlag.setAttribute("font-weight", "bold");
   catchFlag.setAttribute("fill", "#22c55e");
-  catchFlag.textContent = isRevealed ? `🎯 追及点 (${chaseTime}分)` : `🎯 追及点 (? 分)`;
+  catchFlag.textContent = isRevealed ? `🎯 追及点 (${chaseTime}${tUnit})` : `🎯 追及点 (? ${tUnit})`;
   svg.append(catchFlag);
 
   // Chase interactive manipulative control bar
@@ -1567,7 +1827,7 @@ function renderMotionTrack(question, options = {}) {
   sliderRow.className = "question-visual__slider-row";
   const sliderLabel = document.createElement("label");
   sliderLabel.className = "question-visual__slider-label";
-  sliderLabel.innerHTML = isRevealed ? `<span>⏱ 追及时间: <strong class="chase-time-val">0</strong> / ${chaseTime} 分钟</span>` : `<span>⏱ 追及时间: <strong class="chase-time-val">0</strong> 分钟</span>`;
+  sliderLabel.innerHTML = isRevealed ? `<span>⏱ 追及时间: <strong class="chase-time-val">0</strong> / ${chaseTime} ${tUnit}</span>` : `<span>⏱ 追及时间: <strong class="chase-time-val">0</strong> ${tUnit}</span>`;
 
   const slider = document.createElement("input");
   slider.type = "range";
@@ -1584,13 +1844,13 @@ function renderMotionTrack(question, options = {}) {
   metricsRow.className = "question-visual__metrics";
   const m1 = document.createElement("span");
   m1.className = "question-visual__metric";
-  m1.innerHTML = `快者已行: <strong class="chase-dist-a">0</strong> 米`;
+  m1.innerHTML = `快者已行: <strong class="chase-dist-a">0</strong> ${dUnit}`;
   const m2 = document.createElement("span");
   m2.className = "question-visual__metric";
-  m2.innerHTML = `慢者位移: <strong class="chase-dist-b">${leadDist}</strong> 米`;
+  m2.innerHTML = `慢者位移: <strong class="chase-dist-b">${leadDist}</strong> ${dUnit}`;
   const m3 = document.createElement("span");
   m3.className = "question-visual__metric question-visual__metric--highlight";
-  m3.innerHTML = `差距剩余: <strong class="chase-gap">${leadDist}</strong> 米`;
+  m3.innerHTML = `差距剩余: <strong class="chase-gap">${leadDist}</strong> ${dUnit}`;
   metricsRow.append(m1, m2, m3);
 
   const statusBox = document.createElement("div");
@@ -1625,11 +1885,11 @@ function renderMotionTrack(question, options = {}) {
 
     if (t >= chaseTime) {
       statusBox.className = "question-visual__status is-balanced";
-      statusBox.textContent = `🎯 追及成功！快者用时 ${chaseTime} 分钟追上先行 ${leadDist} 米！`;
+      statusBox.textContent = `🎯 追及成功！快者用时 ${chaseTime} ${tUnit}追上先行 ${leadDist} ${dUnit}！`;
       safeClassAdd(card, "is-balanced");
     } else {
       statusBox.className = "question-visual__status";
-      statusBox.textContent = `追及中：每分钟拉近 ${vDiff} 米，尚差 ${gap} 米追上`;
+      statusBox.textContent = `追及中：每${tUnit}拉近 ${vDiff} ${dUnit}，尚差 ${gap} ${dUnit}追上`;
       safeClassRemove(card, "is-balanced");
     }
   }
@@ -1696,7 +1956,7 @@ function renderMotionTrack(question, options = {}) {
 
   const legend = document.createElement("p");
   legend.className = "question-visual__legend";
-  legend.textContent = `🏃 追及原理：追上所需时间 ＝ 先行距离 ÷ 速度差。每分钟拉近 ${v1 - v2} 米。`;
+  legend.textContent = `🏃 追及原理：追上所需时间 ＝ 先行距离 (${leadDist}${dUnit}) ÷ 速度差 (${vDiff}${vUnit}) ＝ ${chaseTime} ${tUnit}。`;
   card.append(legend);
 
   return card;
@@ -1712,16 +1972,60 @@ function renderAgeDifferenceBar(question) {
   card.className = "question-visual question-visual--age";
   card.dataset.visualType = "age";
 
-  const nums = parseNumbers(prompt);
-  const a1 = nums[0] || 14;
-  const a2 = nums[1] || 9;
-  const diff = Math.abs(a1 - a2) || 5;
+  const cleaned = cleanPrompt(prompt);
+  const cleanNums = cleanParseNumbers(prompt);
+
+  // Extract explicit components
+  const sumMatch = cleaned.match(/(?:年龄和|和为|和是|合起来)\s*(\d+)\s*岁/);
+  const diffMatch = cleaned.match(/(?:比.*?大|比.*?小|相差|年龄差)\s*(\d+)\s*岁/);
+  const multMatch = cleaned.match(/(\d+)\s*倍/);
+  const timeOffsetMatch = cleaned.match(/(\d+)\s*年(?:前|后)/);
+
+  // Age candidates (excluding time offsets like 3年前)
+  const timeOffset = timeOffsetMatch ? Number(timeOffsetMatch[1]) : null;
+  const ageCandidates = cleanNums.filter(n => n !== timeOffset && n > 0 && n < 120);
+
+  let a1 = 36;
+  let a2 = 10;
+  let diff = 26;
+  let subbadge = "核心性质：年龄差终身不变";
+  let explanation = "";
+
+  if (sumMatch && diffMatch) {
+    const sum = Number(sumMatch[1]);
+    diff = Number(diffMatch[1]);
+    a1 = Math.round((sum + diff) / 2);
+    a2 = Math.round((sum - diff) / 2);
+    subbadge = `和差模型：和 ＝ ${sum} 岁，差 ＝ ${diff} 岁`;
+    explanation = `长辈 ＝ (${sum} ＋ ${diff}) ÷ 2 ＝ ${a1} 岁；晚辈 ＝ (${sum} － ${diff}) ÷ 2 ＝ ${a2} 岁。`;
+  } else if (ageCandidates.length >= 2) {
+    a1 = Math.max(ageCandidates[0], ageCandidates[1]);
+    a2 = Math.min(ageCandidates[0], ageCandidates[1]);
+    diff = a1 - a2;
+    if (multMatch) {
+      const m = Number(multMatch[1]);
+      subbadge = `差倍对应：年龄差 ＝ ${diff} 岁 ➔ 对应 (${m} - 1) 倍`;
+      explanation = `无论过去多少年，年龄差恒为 ${diff} 岁。当长辈是晚辈 ${m} 倍时，晚辈年龄 ＝ ${diff} ÷ (${m} - 1) ＝ ${Math.round(diff / (m - 1))} 岁。`;
+    } else {
+      subbadge = `年龄差固定：${a1} － ${a2} ＝ ${diff} 岁`;
+      explanation = `无论过去多少年，两人的年龄差永远是 ${diff} 岁！`;
+    }
+  } else if (diffMatch) {
+    diff = Number(diffMatch[1]);
+    a1 = 36;
+    a2 = 36 - diff;
+    subbadge = `年龄差 ＝ ${diff} 岁终身不变`;
+    explanation = `抓住年龄差永远不变的性质，差值始终为 ${diff} 岁。`;
+  } else {
+    diff = Math.abs(a1 - a2);
+    explanation = `无论过去多少年，两人的年龄差永远是 ${diff} 岁！`;
+  }
 
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
     <span class="question-visual__badge">⏳ 年龄问题核心模型</span>
-    <span class="question-visual__subbadge">核心性质：年龄差终身不变</span>
+    <span class="question-visual__subbadge">${subbadge}</span>
   `;
   card.append(header);
 
@@ -1729,10 +2033,15 @@ function renderAgeDifferenceBar(question) {
   const svgHeight = 140;
   const svg = createSvg(svgWidth, svgHeight, `0 0 ${svgWidth} ${svgHeight}`);
 
+  const maxVal = Math.max(a1, 40);
+  const baseScale = 260 / maxVal;
+  const w1 = Math.max(60, Math.round(a1 * baseScale));
+  const w2 = Math.max(30, Math.round(a2 * baseScale));
+
   const bar1 = document.createElementNS(SVG_NS, "rect");
   bar1.setAttribute("x", "80");
   bar1.setAttribute("y", "35");
-  bar1.setAttribute("width", "260");
+  bar1.setAttribute("width", String(w1));
   bar1.setAttribute("height", "24");
   bar1.setAttribute("rx", "4");
   bar1.setAttribute("fill", "#f59e0b");
@@ -1744,13 +2053,13 @@ function renderAgeDifferenceBar(question) {
   t1.setAttribute("font-size", "11");
   t1.setAttribute("font-weight", "bold");
   t1.setAttribute("fill", "#fbbf24");
-  t1.textContent = "长辈/大";
+  t1.textContent = `长辈(${a1}岁)`;
   svg.append(t1);
 
   const bar2 = document.createElementNS(SVG_NS, "rect");
   bar2.setAttribute("x", "80");
   bar2.setAttribute("y", "75");
-  bar2.setAttribute("width", "180");
+  bar2.setAttribute("width", String(w2));
   bar2.setAttribute("height", "24");
   bar2.setAttribute("rx", "4");
   bar2.setAttribute("fill", "#38bdf8");
@@ -1762,23 +2071,23 @@ function renderAgeDifferenceBar(question) {
   t2.setAttribute("font-size", "11");
   t2.setAttribute("font-weight", "bold");
   t2.setAttribute("fill", "#38bdf8");
-  t2.textContent = "晚辈/小";
+  t2.textContent = `晚辈(${a2}岁)`;
   svg.append(t2);
 
   const diffBracket = document.createElementNS(SVG_NS, "path");
-  diffBracket.setAttribute("d", "M 260 72 L 340 72");
+  diffBracket.setAttribute("d", `M ${80 + w2} 72 L ${80 + w1} 72`);
   diffBracket.setAttribute("stroke", "#ec4899");
   diffBracket.setAttribute("stroke-width", "2");
   svg.append(diffBracket);
 
   const diffText = document.createElementNS(SVG_NS, "text");
-  diffText.setAttribute("x", "300");
+  diffText.setAttribute("x", String(80 + w2 + (w1 - w2) / 2));
   diffText.setAttribute("y", "66");
   diffText.setAttribute("text-anchor", "middle");
   diffText.setAttribute("font-size", "11");
   diffText.setAttribute("font-weight", "bold");
   diffText.setAttribute("fill", "#ec4899");
-  diffText.textContent = `年龄差 ＝ ${diff} 岁`;
+  diffText.textContent = `差 ＝ ${diff} 岁`;
   svg.append(diffText);
 
   const invTag = document.createElementNS(SVG_NS, "text");
@@ -1788,7 +2097,7 @@ function renderAgeDifferenceBar(question) {
   invTag.setAttribute("font-size", "12");
   invTag.setAttribute("font-weight", "bold");
   invTag.setAttribute("fill", "#22c55e");
-  invTag.textContent = `无论过去多少年，两人的年龄差永远是 ${diff} 岁！`;
+  invTag.textContent = explanation;
   svg.append(invTag);
 
   card.append(svg);
@@ -1811,11 +2120,31 @@ function renderEngineeringProgress(question) {
   card.className = "question-visual question-visual--engineering";
   card.dataset.visualType = "engineering";
 
+  const cleaned = cleanPrompt(prompt);
+  const cleanNums = cleanParseNumbers(prompt);
+
+  // Extract worker days
+  const matchA = cleaned.match(/甲(?:单独)?(?:做|需|要)?\s*(\d+)\s*天/);
+  const matchB = cleaned.match(/乙(?:单独)?(?:做|需|要)?\s*(\d+)\s*天/);
+
+  let dayA = matchA ? Number(matchA[1]) : (cleanNums[0] || 10);
+  let dayB = matchB ? Number(matchB[1]) : (cleanNums[1] || 15);
+
+  const effA = 1 / dayA;
+  const effB = 1 / dayB;
+  const coopEff = effA + effB;
+  const coopDays = Math.round((1 / coopEff) * 10) / 10;
+
+  // Proportional bar segments
+  const totalBarW = 380;
+  const wA = Math.round(totalBarW * (effA / coopEff));
+  const wB = totalBarW - wA;
+
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
     <span class="question-visual__badge">⚙️ 工程问题合作效率图</span>
-    <span class="question-visual__subbadge">工作总量看作整体“1”</span>
+    <span class="question-visual__subbadge">甲单独需 ${dayA} 天，乙单独需 ${dayB} 天 ➔ 合作需 ${coopDays} 天</span>
   `;
   card.append(header);
 
@@ -1837,7 +2166,7 @@ function renderEngineeringProgress(question) {
   const partA = document.createElementNS(SVG_NS, "rect");
   partA.setAttribute("x", "40");
   partA.setAttribute("y", "50");
-  partA.setAttribute("width", "160");
+  partA.setAttribute("width", String(wA));
   partA.setAttribute("height", "32");
   partA.setAttribute("rx", "6");
   partA.setAttribute("fill", "#3b82f6");
@@ -1845,32 +2174,32 @@ function renderEngineeringProgress(question) {
   svg.append(partA);
 
   const tA = document.createElementNS(SVG_NS, "text");
-  tA.setAttribute("x", "120");
+  tA.setAttribute("x", String(40 + wA / 2));
   tA.setAttribute("y", "70");
   tA.setAttribute("text-anchor", "middle");
   tA.setAttribute("font-size", "11");
   tA.setAttribute("font-weight", "bold");
   tA.setAttribute("fill", "#f8fafc");
-  tA.textContent = "甲的工效 1/A";
+  tA.textContent = `甲工效 1/${dayA}`;
   svg.append(tA);
 
   const partB = document.createElementNS(SVG_NS, "rect");
-  partB.setAttribute("x", "200");
+  partB.setAttribute("x", String(40 + wA));
   partB.setAttribute("y", "50");
-  partB.setAttribute("width", "120");
+  partB.setAttribute("width", String(wB));
   partB.setAttribute("height", "32");
   partB.setAttribute("fill", "#10b981");
   partB.setAttribute("opacity", "0.75");
   svg.append(partB);
 
   const tB = document.createElementNS(SVG_NS, "text");
-  tB.setAttribute("x", "260");
+  tB.setAttribute("x", String(40 + wA + wB / 2));
   tB.setAttribute("y", "70");
   tB.setAttribute("text-anchor", "middle");
   tB.setAttribute("font-size", "11");
   tB.setAttribute("font-weight", "bold");
   tB.setAttribute("fill", "#f8fafc");
-  tB.textContent = "乙的工效 1/B";
+  tB.textContent = `乙工效 1/${dayB}`;
   svg.append(tB);
 
   const topText = document.createElementNS(SVG_NS, "text");
@@ -1890,14 +2219,14 @@ function renderEngineeringProgress(question) {
   bText.setAttribute("font-size", "12");
   bText.setAttribute("font-weight", "bold");
   bText.setAttribute("fill", "#22c55e");
-  bText.textContent = "合作工效 ＝ 1/甲 ＋ 1/乙 ➔ 合作工期 ＝ 1 ÷ (合作工效)";
+  bText.textContent = `合作工效 ＝ 1/${dayA} ＋ 1/${dayB} ➔ 合作工期 ＝ 1 ÷ 合作工效 ＝ ${coopDays} 天`;
   svg.append(bText);
 
   card.append(svg);
 
   const legend = document.createElement("p");
   legend.className = "question-visual__legend";
-  legend.textContent = "⚙️ 工程问题原理：把总工程设为“1”，甲每天完成 1/甲，乙每天完成 1/乙。合做每天完成 (1/甲 + 1/乙)。";
+  legend.textContent = `⚙️ 工程问题原理：把总工程设为“1”，甲每天完成 1/${dayA}，乙每天完成 1/${dayB}。合做每天完成 (1/${dayA} + 1/${dayB})，合做用时 ＝ 1 ÷ (1/${dayA} + 1/${dayB}) ＝ ${coopDays}天。`;
   card.append(legend);
 
   return card;
@@ -2111,11 +2440,40 @@ function renderReverseWorkflowVisual(question) {
   card.className = "question-visual question-visual--reverse-flow";
   card.dataset.visualType = "reverse-flow";
 
+  const cleaned = cleanPrompt(prompt);
+  const cleanNums = cleanParseNumbers(prompt);
+  const ans = Number(question.answer);
+
+  // Scan operations in prompt
+  const ops = [];
+  const addMatch = cleaned.match(/(?:加上|增加|多)\s*(\d+)/);
+  const mulMatch = cleaned.match(/(?:乘以|乘|扩大)\s*(\d+)/);
+  const subMatch = cleaned.match(/(?:减去|少|减少)\s*(\d+)/);
+  const divMatch = cleaned.match(/(?:除以|除|缩小)\s*(\d+)/);
+  const resMatch = cleaned.match(/(?:得到|等于|结果是|还剩|剩下)\s*(\d+)/);
+
+  if (addMatch) ops.push({ fwd: `＋${addMatch[1]}`, rev: `－${addMatch[1]}`, op: "+", val: Number(addMatch[1]) });
+  if (mulMatch) ops.push({ fwd: `×${mulMatch[1]}`, rev: `÷${mulMatch[1]}`, op: "*", val: Number(mulMatch[1]) });
+  if (subMatch) ops.push({ fwd: `－${subMatch[1]}`, rev: `＋${subMatch[1]}`, op: "-", val: Number(subMatch[1]) });
+  if (divMatch) ops.push({ fwd: `÷${divMatch[1]}`, rev: `×${divMatch[1]}`, op: "/", val: Number(divMatch[1]) });
+
+  const finalVal = resMatch ? Number(resMatch[1]) : (cleanNums[cleanNums.length - 1] || 36);
+  const origVal = Number.isFinite(ans) ? ans : "?";
+
+  let forwardNodes = ["初始数", "＋加", "×乘", `结果 ${finalVal}`];
+  let reverseNodes = [`求原数 ${origVal}`, "－减", "÷除", `已知 ${finalVal}`];
+
+  if (ops.length >= 2) {
+    forwardNodes = ["初始数", ...ops.map(o => o.fwd), `＝ ${finalVal}`];
+    const revOps = ops.slice().reverse();
+    reverseNodes = [`原数 ＝ ${origVal}`, ...revOps.map(o => o.rev), `终点 ${finalVal}`];
+  }
+
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
     <span class="question-visual__badge">🔄 逆向思维与还原回溯流程图</span>
-    <span class="question-visual__subbadge">从已知结果倒推初始状态</span>
+    <span class="question-visual__subbadge">从已知结果 (${finalVal}) 倒推初始状态 (原数 ＝ ${origVal})</span>
   `;
   card.append(header);
 
@@ -2129,12 +2487,15 @@ function renderReverseWorkflowVisual(question) {
   fText.setAttribute("fill", "#94a3b8"); fText.textContent = "正向运算:";
   svg.append(fText);
 
-  const forwardNodes = ["初始数", "＋加", "×乘", "终点值"];
+  const stepCount = forwardNodes.length;
+  const boxW = Math.min(68, Math.floor(320 / stepCount));
+  const stepGap = Math.floor(330 / stepCount);
+
   forwardNodes.forEach((node, i) => {
-    const nx = 120 + i * 85;
+    const nx = 110 + i * stepGap;
     const box = document.createElementNS(SVG_NS, "rect");
-    box.setAttribute("x", String(nx - 32)); box.setAttribute("y", "30");
-    box.setAttribute("width", "64"); box.setAttribute("height", "24");
+    box.setAttribute("x", String(nx - boxW / 2)); box.setAttribute("y", "30");
+    box.setAttribute("width", String(boxW)); box.setAttribute("height", "24");
     box.setAttribute("rx", "4"); box.setAttribute("fill", "#1e293b");
     box.setAttribute("stroke", "#38bdf8"); box.setAttribute("stroke-width", "1.5");
     svg.append(box);
@@ -2142,14 +2503,15 @@ function renderReverseWorkflowVisual(question) {
     const txt = document.createElementNS(SVG_NS, "text");
     txt.setAttribute("x", String(nx)); txt.setAttribute("y", "46");
     txt.setAttribute("text-anchor", "middle");
-    txt.setAttribute("font-size", "11"); txt.setAttribute("fill", "#f8fafc");
+    txt.setAttribute("font-size", "10"); txt.setAttribute("fill", "#f8fafc");
     txt.textContent = node;
     svg.append(txt);
 
-    if (i < 3) {
+    if (i < forwardNodes.length - 1) {
       const arr = document.createElementNS(SVG_NS, "text");
-      arr.setAttribute("x", String(nx + 42)); arr.setAttribute("y", "47");
-      arr.setAttribute("font-size", "12"); arr.setAttribute("fill", "#38bdf8");
+      arr.setAttribute("x", String(nx + stepGap / 2)); arr.setAttribute("y", "47");
+      arr.setAttribute("font-size", "11"); arr.setAttribute("fill", "#38bdf8");
+      arr.setAttribute("text-anchor", "middle");
       arr.textContent = "➔";
       svg.append(arr);
     }
@@ -2161,12 +2523,11 @@ function renderReverseWorkflowVisual(question) {
   rText.setAttribute("fill", "#22c55e"); rText.textContent = "逆向还原:";
   svg.append(rText);
 
-  const reverseNodes = ["求原数", "－减", "÷除", "已知结果"];
   reverseNodes.forEach((node, i) => {
-    const nx = 120 + i * 85;
+    const nx = 110 + i * stepGap;
     const box = document.createElementNS(SVG_NS, "rect");
-    box.setAttribute("x", String(nx - 32)); box.setAttribute("y", "80");
-    box.setAttribute("width", "64"); box.setAttribute("height", "24");
+    box.setAttribute("x", String(nx - boxW / 2)); box.setAttribute("y", "80");
+    box.setAttribute("width", String(boxW)); box.setAttribute("height", "24");
     box.setAttribute("rx", "4"); box.setAttribute("fill", "rgba(34, 197, 94, 0.15)");
     box.setAttribute("stroke", "#22c55e"); box.setAttribute("stroke-width", "1.5");
     svg.append(box);
@@ -2174,14 +2535,15 @@ function renderReverseWorkflowVisual(question) {
     const txt = document.createElementNS(SVG_NS, "text");
     txt.setAttribute("x", String(nx)); txt.setAttribute("y", "96");
     txt.setAttribute("text-anchor", "middle");
-    txt.setAttribute("font-size", "11"); txt.setAttribute("fill", "#22c55e");
+    txt.setAttribute("font-size", "10"); txt.setAttribute("fill", "#22c55e");
     txt.textContent = node;
     svg.append(txt);
 
-    if (i < 3) {
+    if (i < reverseNodes.length - 1) {
       const arr = document.createElementNS(SVG_NS, "text");
-      arr.setAttribute("x", String(nx + 42)); arr.setAttribute("y", "97");
-      arr.setAttribute("font-size", "12"); arr.setAttribute("fill", "#22c55e");
+      arr.setAttribute("x", String(nx + stepGap / 2)); arr.setAttribute("y", "97");
+      arr.setAttribute("font-size", "11"); arr.setAttribute("fill", "#22c55e");
+      arr.setAttribute("text-anchor", "middle");
       arr.textContent = "⬅️";
       svg.append(arr);
     }
@@ -2191,7 +2553,7 @@ function renderReverseWorkflowVisual(question) {
 
   const legend = document.createElement("p");
   legend.className = "question-visual__legend";
-  legend.textContent = "🔄 还原问题金法则：从最后的结果出发，原来加上变为减去，原来乘以变为除以，步步逆推还原。";
+  legend.textContent = `🔄 还原问题金法则：从最终结果 (${finalVal}) 倒推，加变减、乘变除，步步还原求得原数 (${origVal})。`;
   card.append(legend);
 
   return card;

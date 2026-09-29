@@ -788,8 +788,123 @@ test("QuestionVisualizer renders Geometry Counting with apex ray division for tr
   assert.ok(vTri.classList.contains("question-visual--geometry-counting"));
 });
 
+test("QuestionVisualizer handles complex narrative noise, geometry, square array and word problem edge cases", () => {
+  function getMockText(el) {
+    if (!el) return "";
+    let text = el.textContent || el.innerHTML || "";
+    if (Array.isArray(el.children)) {
+      text += " " + el.children.map(getMockText).join(" ");
+    }
+    return text;
+  }
 
+  // 1. Venn diagram with class/grade noise: "三年级(2)班 全班 45 人" should NOT parse 3 or 2 as total
+  const qVennNoise = {
+    id: "test-venn-noise",
+    moduleId: "inclusion-exclusion",
+    prompt: "三年级(2)班全班 45 人，参加画画组的有 28 人，参加书法组的有 22 人，两组都参加的有 10 人。两组都不参加的有多少人？",
+    answer: "5"
+  };
+  const vVenn = QuestionVisualizer.createQuestionVisual(qVennNoise);
+  assert.equal(vVenn.dataset.visualType, "venn");
+  const textVenn = getMockText(vVenn);
+  assert.ok(textVenn.includes("全集 U: 45") || textVenn.includes("45"), "Should parse 45 as total, ignoring 3 and 2");
 
+  // 2. Train-bridge: speed should NOT overwrite bridge length
+  const qTrain = {
+    id: "test-train-speed",
+    moduleId: "train-bridge",
+    prompt: "一列长 150 米的列车，以每秒 25 米的速度穿过一座长 600 米的大桥，需要多少秒？",
+    answer: "30"
+  };
+  const vTrain = QuestionVisualizer.createQuestionVisual(qTrain, { status: "retry" });
+  assert.equal(vTrain.dataset.visualType, "train-bridge");
+  const textTrain = getMockText(vTrain);
+  assert.ok(textTrain.includes("150") && textTrain.includes("600"), "Should accurately extract train 150 and bridge 600");
+  assert.ok(textTrain.includes("25"), "Should display speed 25 m/s");
 
+  // 3. Square array: side 12 should correctly compute (12 - 1) * 4 = 44
+  const qSquare12 = {
+    id: "test-square-side12",
+    moduleId: "square-array",
+    prompt: "同学们排成一个实心方阵，最外层每边有 12 人。最外层一共有多少人？",
+    answer: "44"
+  };
+  const vSquare12 = QuestionVisualizer.createQuestionVisual(qSquare12, { status: "retry" });
+  assert.equal(vSquare12.dataset.visualType, "square-array");
+  const textSquare12 = getMockText(vSquare12);
+  assert.ok(textSquare12.includes("44"), "Should compute 12 * 4 - 4 = 44");
 
+  // 4. Square array reverse: outer count 36 should compute side = 10
+  const qSquareRev = {
+    id: "test-square-rev",
+    moduleId: "square-array",
+    prompt: "一个实心方阵的最外层一共有 36 人，最外层每边有多少人？",
+    answer: "10"
+  };
+  const vSquareRev = QuestionVisualizer.createQuestionVisual(qSquareRev, { status: "retry" });
+  assert.equal(vSquareRev.dataset.visualType, "square-array");
+  const textSquareRev = getMockText(vSquareRev);
+  assert.ok(textSquareRev.includes("10"), "Should reverse calculate (36 + 4) / 4 = 10");
 
+  // 5. Right triangle with single acute angle: should calculate other acute = 90 - 35 = 55
+  const qRightAngle = {
+    id: "test-triangle-right",
+    moduleId: "triangle-angles",
+    prompt: "直角三角形中一个锐角是 35°，另一个锐角是多少度？",
+    answer: "55"
+  };
+  const vAngle = QuestionVisualizer.createQuestionVisual(qRightAngle, { status: "retry" });
+  assert.equal(vAngle.dataset.visualType, "angle");
+  const textAngle = getMockText(vAngle);
+  assert.ok(textAngle.includes("55°") || textAngle.includes("55"), "Should compute 90 - 35 = 55°");
+
+  // 6. Polygon given area find height: triangle S = 36, a = 9 -> h = 36 * 2 / 9 = 8
+  const qPolyArea = {
+    id: "test-poly-area",
+    moduleId: "perimeter-area",
+    prompt: "一个三角形的面积是 36 平方厘米，底边长 9 厘米，高是多少厘米？",
+    answer: "8"
+  };
+  const vPoly = QuestionVisualizer.createQuestionVisual(qPolyArea, { status: "retry" });
+  assert.equal(vPoly.dataset.visualType, "polygon");
+  const textPoly = getMockText(vPoly);
+  assert.ok(textPoly.includes("h ＝ 36 × 2 ÷ 9 ＝ 8") || textPoly.includes("8"), "Should compute h = 36 * 2 / 9 = 8");
+
+  // 7. Sum-difference with sum first, diff second: sum 48, diff 8
+  const qSumDiff = {
+    id: "test-sum-diff-order",
+    representation: "bar-model",
+    prompt: "甲乙两人共有 48 本书，甲比乙多 8 本，求两人各有多少本？",
+    answer: "28"
+  };
+  const vSumDiff = QuestionVisualizer.createQuestionVisual(qSumDiff, { status: "retry" });
+  assert.equal(vSumDiff.dataset.visualType, "bar-model");
+  const textSumDiff = getMockText(vSumDiff);
+  assert.ok(textSumDiff.includes("48") && textSumDiff.includes("8"), "Should identify sum 48 and diff 8 without inversion");
+  assert.ok(textSumDiff.includes("20") && textSumDiff.includes("28"), "Should compute small = 20, large = 28");
+
+  // 8. Equation balance: 2x + 10 = 30 -> targetX = 10
+  const qBalance = {
+    id: "test-balance-eq",
+    prompt: "解方程：2x + 10 = 30，求 x 的值。",
+    moduleId: "equation-balance"
+  };
+  const vBalance = QuestionVisualizer.createQuestionVisual(qBalance, { status: "retry" });
+  assert.equal(vBalance.dataset.visualType, "balance");
+  const textBalance = getMockText(vBalance);
+  assert.ok(textBalance.includes("x ＝ 10") || textBalance.includes("x = 10"), "Should solve 2x + 10 = 30 to x = 10");
+
+  // 9. Short division ladder with grade noise
+  const qShortDiv = {
+    id: "test-short-div-grade",
+    moduleId: "factors-multiples",
+    prompt: "五年级(1)班同学做操，按 24 人一排或 36 人一排都正好排完，求两数的最大公因数和最小公倍数。",
+    answer: "72"
+  };
+  const vShortDiv = QuestionVisualizer.createQuestionVisual(qShortDiv);
+  assert.equal(vShortDiv.dataset.visualType, "factor-tree");
+  const textShortDiv = getMockText(vShortDiv);
+  assert.ok(textShortDiv.includes("24") && textShortDiv.includes("36"), "Should extract 24 and 36 ignoring grade 5 and class 1");
+  assert.ok(textShortDiv.includes("12") && textShortDiv.includes("72"), "GCD is 12, LCM is 72");
+});

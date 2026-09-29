@@ -228,12 +228,16 @@ function createQuestionVisual(question, options = {}) {
     visual = renderBarModel(question, options);
   } else if (
     // 13. 角度计算
-    moduleId === "angles" ||
+    ["angles", "triangle-angles", "angle-measurement"].includes(moduleId) ||
     prompt.includes("内角和") ||
     prompt.includes("补角") ||
     prompt.includes("平角") ||
     prompt.includes("余角") ||
-    (prompt.includes("角") && (prompt.includes("度") || prompt.includes("射出")) && !prompt.includes("长方形") && !prompt.includes("三角形") && !prompt.includes("四边形"))
+    prompt.includes("锐角") ||
+    prompt.includes("钝角") ||
+    prompt.includes("顶角") ||
+    prompt.includes("底角") ||
+    (prompt.includes("角") && (prompt.includes("度") || prompt.includes("°") || prompt.includes("射出")) && !prompt.includes("面积") && !prompt.includes("周长"))
   ) {
     visual = renderAngleVisual(question, options);
   } else if (

@@ -1548,8 +1548,12 @@ export function renderMinimalTacticalCard(review = {}, question = {}) {
   const motionCard = renderMotionCard(
     {
       methodId: question.thinkingMethodId || review.method,
+      moduleId: question.moduleId,
+      questionId: question.id,
       prompt: question.prompt,
-      method: review.method
+      method: review.method,
+      title: question.title,
+      thinkingMethodLabel: question.thinkingMethodLabel
     },
     { compact: true, title: `${question.thinkingMethodLabel || "核心解题模型"} · 动图演示` }
   );

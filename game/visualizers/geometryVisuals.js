@@ -1,4 +1,4 @@
-const { SVG_NS, createSvg, parseNumbers, safeAddListener, createControlBtn, safeClassAdd, safeClassRemove } = require('./visualizerCore.js');
+const { SVG_NS, createSvg, parseNumbers, cleanPrompt, cleanParseNumbers, extractLabeledParams, extractSolutionContext, safeAddListener, createControlBtn, safeClassAdd, safeClassRemove } = require('./visualizerCore.js');
 
 function renderRouteMap(question) {
   const prompt = question.prompt || "";
@@ -798,16 +798,20 @@ function renderAngleVisual(question, options = {}) {
   card.className = "question-visual question-visual--angle";
   card.dataset.visualType = "angle";
 
-  const nums = parseNumbers(prompt);
-  const isTriangleSum = prompt.includes("内角和") || (prompt.includes("三角形") && (prompt.includes("度") || prompt.includes("角")));
+  const cleaned = cleanPrompt(prompt);
+  const cleanNums = cleanParseNumbers(prompt);
+
+  const isRightTriangle = prompt.includes("直角三角形") || (prompt.includes("直角") && prompt.includes("三角形"));
+  const isIsosceles = prompt.includes("等腰");
+  const isTriangleSum = isRightTriangle || isIsosceles || prompt.includes("内角和") || (prompt.includes("三角形") && (prompt.includes("度") || prompt.includes("角")));
   const isSupplementary = prompt.includes("补角") || prompt.includes("平角");
-  const isComplementary = prompt.includes("余角") || prompt.includes("直角");
+  const isComplementary = !isRightTriangle && (prompt.includes("余角") || prompt.includes("直角"));
 
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
     <span class="question-visual__badge">📐 角度度量与空间方位模型</span>
-    <span class="question-visual__subbadge">${isTriangleSum ? "三角形内角和定理 (180°)" : isSupplementary ? "平角与邻补角模型 (180°)" : "射线张角与量角标尺"}</span>
+    <span class="question-visual__subbadge">${isRightTriangle ? "直角三角形模型：两锐角互余 (和为90°)" : isTriangleSum ? "三角形内角和定理 (180°)" : isSupplementary ? "平角与邻补角模型 (180°)" : "射线张角与量角标尺"}</span>
   `;
   card.append(header);
 
@@ -816,9 +820,53 @@ function renderAngleVisual(question, options = {}) {
   const svg = createSvg(svgWidth, svgHeight, `0 0 ${svgWidth} ${svgHeight}`);
 
   if (isTriangleSum) {
-    const a1 = nums[0] || 60;
-    const a2 = nums[1] || 50;
-    const a3 = 180 - a1 - a2 > 0 ? 180 - a1 - a2 : 70;
+    let a1 = 60, a2 = 50, a3 = 70;
+    let formulaDesc = "";
+
+    if (isRightTriangle) {
+      a1 = 90;
+      const acuteGiven = cleanNums.find(n => n > 0 && n < 90) || 35;
+      a2 = acuteGiven;
+      a3 = 90 - a2;
+      formulaDesc = isRevealed
+        ? `直角三角形锐角互余: 90° － ${a2}° ＝ ${a3}° (总内角和 180°)`
+        : `直角三角形锐角互余: 90° － ${a2}° ＝ ?°`;
+    } else if (isIsosceles) {
+      const topMatch = cleaned.match(/顶角(?:为|是)?\s*(\d+)/);
+      const baseMatch = cleaned.match(/底角(?:为|是)?\s*(\d+)/);
+      if (topMatch) {
+        a1 = Number(topMatch[1]);
+        a2 = Math.round((180 - a1) / 2);
+        a3 = a2;
+        formulaDesc = isRevealed
+          ? `等腰两底角相等: (180° － ${a1}°) ÷ 2 ＝ ${a2}°`
+          : `等腰两底角相等: (180° － ${a1}°) ÷ 2 ＝ ?°`;
+      } else if (baseMatch) {
+        a2 = Number(baseMatch[1]);
+        a3 = a2;
+        a1 = 180 - 2 * a2;
+        formulaDesc = isRevealed
+          ? `等腰求顶角: 180° － ${a2}° × 2 ＝ ${a1}°`
+          : `等腰求顶角: 180° － ${a2}° × 2 ＝ ?°`;
+      } else {
+        a1 = 80; a2 = 50; a3 = 50;
+        formulaDesc = `等腰两底角相等: ∠B ＝ ∠C ＝ 50°`;
+      }
+    } else {
+      const angles = cleanNums.filter(n => n > 0 && n < 180);
+      if (angles.length >= 2) {
+        a1 = angles[0];
+        a2 = angles[1];
+        a3 = Math.max(1, 180 - a1 - a2);
+      } else if (angles.length === 1) {
+        a1 = angles[0];
+        a2 = Math.round((180 - a1) * 0.6);
+        a3 = 180 - a1 - a2;
+      }
+      formulaDesc = isRevealed
+        ? `内角和定理: 180° － ${a1}° － ${a2}° ＝ ${a3}°`
+        : `内角和定理: 180° － ${a1}° － ${a2}° ＝ ?°`;
+    }
 
     const pA = { x: 230, y: 35 };
     const pB = { x: 90, y: 125 };
@@ -855,11 +903,11 @@ function renderAngleVisual(question, options = {}) {
     sumTag.setAttribute("text-anchor", "middle");
     sumTag.setAttribute("font-size", "12"); sumTag.setAttribute("font-weight", "bold");
     sumTag.setAttribute("fill", "#f8fafc");
-    sumTag.textContent = isRevealed ? `内角和定理: ${a1}° + ${a2}° + ${a3}° = 180°` : "内角和定理: ∠A + ∠B + ∠C = 180°";
+    sumTag.textContent = formulaDesc;
     svg.append(sumTag);
   } else {
     const ox = 230, oy = 115;
-    const deg = nums.find(n => n > 0 && n < 180) || 45;
+    const deg = cleanNums.find(n => n > 0 && n < 180) || 45;
 
     const arcPath = document.createElementNS(SVG_NS, "path");
     arcPath.setAttribute("d", `M ${ox - 90} ${oy} A 90 90 0 0 1 ${ox + 90} ${oy}`);
@@ -919,7 +967,9 @@ function renderAngleVisual(question, options = {}) {
 
   const legend = document.createElement("p");
   legend.className = "question-visual__legend";
-  legend.textContent = isTriangleSum
+  legend.textContent = isRightTriangle
+    ? "📐 直角三角形特性：直角为 90°，两锐角之和恒为 90°（互余）。"
+    : isTriangleSum
     ? "📐 核心性质：任意三角形内角和恒为 180°；已知两个角，第三角 = 180° - 另外两角之和。"
     : "📐 角度性质：锐角 < 90°，直角 = 90°，钝角在 90° 到 180° 之间，平角 = 180°。";
   card.append(legend);
@@ -938,16 +988,22 @@ function renderPolygonVisual(question, options = {}) {
   card.className = "question-visual question-visual--polygon";
   card.dataset.visualType = "polygon";
 
-  const nums = parseNumbers(prompt);
+  const cleaned = cleanPrompt(prompt);
+  const cleanNums = cleanParseNumbers(prompt);
   const isTriangle = prompt.includes("三角形");
   const isTrapezoid = prompt.includes("梯形");
   const isParallelogram = prompt.includes("平行四边形");
+
+  const areaMatch = cleaned.match(/(?:面积是|面积为|面积)\s*(\d+)\s*(?:平方厘米|平方米|平方分米|cm²|m²|平方)?/) || cleaned.match(/(\d+)\s*(?:平方厘米|平方米|平方分米|cm²|m²)/);
+  const baseMatch = cleaned.match(/(?:底是|底长|底为|底)\s*(\d+)/);
+  const heightMatch = cleaned.match(/(?:高是|高为|高)\s*(\d+)/);
+  const isGivenArea = !!areaMatch;
 
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
     <span class="question-visual__badge">📏 平面几何图形与面积模型</span>
-    <span class="question-visual__subbadge">${isTrapezoid ? "梯形底高面积" : isTriangle ? "三角形底高对应" : isParallelogram ? "平行四边形割补法" : "长方形与正方形度量"}</span>
+    <span class="question-visual__subbadge">${isTrapezoid ? "梯形底高面积" : isTriangle ? (isGivenArea ? "三角形已知面积逆求高/底" : "三角形底高面积") : isParallelogram ? "平行四边形割补法" : "长方形与正方形度量"}</span>
   `;
   card.append(header);
 
@@ -956,9 +1012,33 @@ function renderPolygonVisual(question, options = {}) {
   const svg = createSvg(svgWidth, svgHeight, `0 0 ${svgWidth} ${svgHeight}`);
 
   if (isTriangle) {
-    const base = nums[0] || 8;
-    const height = nums[1] || 5;
-    const area = Math.round((base * height) / 2);
+    let base = 8;
+    let height = 5;
+    let area = 20;
+    let formulaDesc = "";
+
+    if (isGivenArea) {
+      area = Number(areaMatch[1]);
+      if (baseMatch) {
+        base = Number(baseMatch[1]);
+        height = Math.round((area * 2) / base);
+        formulaDesc = isRevealed ? `三角形高 h ＝ 面积 × 2 ÷ 底 ＝ ${area} × 2 ÷ ${base} ＝ ${height}` : `三角形高 h ＝ 面积 × 2 ÷ 底 ＝ ?`;
+      } else if (heightMatch) {
+        height = Number(heightMatch[1]);
+        base = Math.round((area * 2) / height);
+        formulaDesc = isRevealed ? `三角形底 a ＝ 面积 × 2 ÷ 高 ＝ ${area} × 2 ÷ ${height} ＝ ${base}` : `三角形底 a ＝ 面积 × 2 ÷ 高 ＝ ?`;
+      } else {
+        const other = cleanNums.find(n => n !== area) || 8;
+        base = other;
+        height = Math.round((area * 2) / base);
+        formulaDesc = isRevealed ? `三角形高 h ＝ 面积 × 2 ÷ 底 ＝ ${area} × 2 ÷ ${base} ＝ ${height}` : `三角形高 h ＝ 面积 × 2 ÷ 底 ＝ ?`;
+      }
+    } else {
+      base = baseMatch ? Number(baseMatch[1]) : (cleanNums[0] || 8);
+      height = heightMatch ? Number(heightMatch[1]) : (cleanNums[1] || 5);
+      area = Math.round((base * height) / 2);
+      formulaDesc = isRevealed ? `三角形面积 S ＝ 底 × 高 ÷ 2 ＝ ${base} × ${height} ÷ 2 ＝ ${area}` : `三角形面积 S ＝ 底 × 高 ÷ 2 ＝ ?`;
+    }
 
     const poly = document.createElementNS(SVG_NS, "polygon");
     poly.setAttribute("points", "130,120 330,120 250,40");
@@ -991,12 +1071,12 @@ function renderPolygonVisual(question, options = {}) {
     fText.setAttribute("text-anchor", "middle");
     fText.setAttribute("font-size", "12"); fText.setAttribute("font-weight", "bold");
     fText.setAttribute("fill", "#22c55e");
-    fText.textContent = isRevealed ? `三角形面积 S = 底 × 高 ÷ 2 = ${base} × ${height} ÷ 2 = ${area}` : `三角形面积 S = 底 × 高 ÷ 2 = ${base} × ${height} ÷ 2 = ?`;
+    fText.textContent = formulaDesc;
     svg.append(fText);
   } else if (isTrapezoid) {
-    const top = nums[0] || 4;
-    const btm = nums[1] || 8;
-    const h = nums[2] || 5;
+    const top = cleanNums[0] || 4;
+    const btm = cleanNums[1] || 8;
+    const h = cleanNums[2] || 5;
     const area = Math.round(((top + btm) * h) / 2);
 
     const poly = document.createElementNS(SVG_NS, "polygon");
@@ -1034,9 +1114,22 @@ function renderPolygonVisual(question, options = {}) {
     fText.textContent = isRevealed ? `梯形面积 S = (上底 + 下底) × 高 ÷ 2 = (${top} + ${btm}) × ${h} ÷ 2 = ${area}` : `梯形面积 S = (上底 + 下底) × 高 ÷ 2 = (${top} + ${btm}) × ${h} ÷ 2 = ?`;
     svg.append(fText);
   } else if (isParallelogram) {
-    const base = nums[0] || 10;
-    const h = nums[1] || 6;
-    const area = base * h;
+    let base = 10;
+    let h = 6;
+    let area = 60;
+    let formulaDesc = "";
+
+    if (isGivenArea) {
+      area = Number(areaMatch[1]);
+      base = baseMatch ? Number(baseMatch[1]) : (cleanNums.find(n => n !== area) || 10);
+      h = Math.round(area / base);
+      formulaDesc = isRevealed ? `平行四边形高 h ＝ 面积 ÷ 底 ＝ ${area} ÷ ${base} ＝ ${h}` : `平行四边形高 h ＝ 面积 ÷ 底 ＝ ?`;
+    } else {
+      base = baseMatch ? Number(baseMatch[1]) : (cleanNums[0] || 10);
+      h = heightMatch ? Number(heightMatch[1]) : (cleanNums[1] || 6);
+      area = base * h;
+      formulaDesc = isRevealed ? `平行四边形面积 S ＝ 底 × 高 ＝ ${base} × ${h} ＝ ${area}` : `平行四边形面积 S ＝ 底 × 高 ＝ ?`;
+    }
 
     const poly = document.createElementNS(SVG_NS, "polygon");
     poly.setAttribute("points", "160,45 340,45 300,120 120,120");
@@ -1056,11 +1149,11 @@ function renderPolygonVisual(question, options = {}) {
     fText.setAttribute("text-anchor", "middle");
     fText.setAttribute("font-size", "12"); fText.setAttribute("font-weight", "bold");
     fText.setAttribute("fill", "#22c55e");
-    fText.textContent = isRevealed ? `平行四边形面积 S = 底 × 高 = ${base} × ${h} = ${area}` : `平行四边形面积 S = 底 × 高 = ${base} × ${h} = ?`;
+    fText.textContent = formulaDesc;
     svg.append(fText);
   } else {
-    const w = nums[0] || 9;
-    const h = nums[1] || 4;
+    const w = cleanNums[0] || 9;
+    const h = cleanNums[1] || 4;
     const isPerimeter = prompt.includes("周长");
     const res = isPerimeter ? (w + h) * 2 : w * h;
 
