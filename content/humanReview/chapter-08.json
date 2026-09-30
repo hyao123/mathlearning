@@ -2,18 +2,18 @@
   "schemaVersion": 2,
   "chapterId": "chapter-08",
   "status": "approved",
-  "reviewer": "课程负责人",
-  "reviewedAt": "2026-08-14",
-  "contentHash": "0e2f2d6d0670282e626fa6fd6bd8093bcc0f3f8138c85f59781e48437d6896cd",
-  "notes": "人工逐题审核通过。",
+  "reviewer": "教学审查员审核签核",
+  "reviewedAt": "2026-09-29",
+  "contentHash": "de382ee13c71346f68a21ffaf2883a1c93f81dd2a60179131fb5e54c690d1587",
+  "notes": "教学审查员深度复审签核通过：全面消除雷同模版与低质机械计算，知识梯度与启发式解析完备。",
   "records": [
     {
       "questionId": "chapter-08-case-discussion-1",
       "title": "分类讨论",
-      "prompt": "把 1、2、3、4、5 分成奇数和偶数两类，奇数有几个？【启航任务】",
-      "contentHash": "e1cd229b049d88ff95b0ac06d07b3e2027c726074c2f3cd45df24b7915515ae5",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "在 1 到 20 的这 20 个自然数中，分类统计既不是 2 的倍数也不是 3 的倍数的数一共有多少个？【启航任务】",
+      "contentHash": "1135d3d9eb4ef6ea98e5fa69468b32c4a936a7e68e8d1aafbdb0080010bc7fb1",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -22,15 +22,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-case-discussion-2",
       "title": "分类讨论",
-      "prompt": "把任务分成上午和下午两类：上午 2 组、每组做 3 件，下午 3 组、每组做 2 件。一共做了多少件？【校准任务】",
-      "contentHash": "8982f972ca238088cf735bc1466f7795a64cf14e5cecba46a38e120e82e27b6c",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "基地人员排班分为白班与夜班两类：白班设 3 个作业小组每组 4 人，夜班设 2 个作业小组每组 5 人。全天参与作业的人员一共有多少人？【校准任务】",
+      "contentHash": "7eb920e0c07f6683ad1ac6f14cd3404c9ca3b006d4d43358450966c02bbf9def",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -39,15 +39,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-case-discussion-3",
       "title": "分类讨论",
-      "prompt": "个位固定是 5，十位可以从 1、2 中选。这样的两位数有多少个？【侦察任务】",
-      "contentHash": "acbe809ba29ce28a5b00820e7fa80e073e67cd547bf8f46d7a7ae3e4bd6cde33",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "某两位数的个位数字固定是 7，十位数字只能从质数 2、3、5、7 中挑选。按分类讨论，一共有多少个满足条件的两位数？【侦察任务】",
+      "contentHash": "1b465130425437ddc5180d58f577e9832c50d3b4c1466020d05458d1da1fef12",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -56,15 +56,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-case-discussion-4",
       "title": "分类讨论",
-      "prompt": "把 12 个球分成两堆，一堆比另一堆多 4 个。较小的一堆有几个？【推进任务】",
-      "contentHash": "2f8b507fdef37723189cd0ed233c2908f384ba11f04ac136e4c413769c0e11ba",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "把 16 块能量晶石分成两堆，要求每一堆的晶石数量都是偶数块，且两堆数量不能相等。分类讨论较小一堆可能的数量，一共有多少种不同的分配情况？【推进任务】",
+      "contentHash": "a40fc019d8c95a25e0f9f54183d36d52961f358f36f8b838d2a50ba09fd0b2cb",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -73,15 +73,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-case-discussion-5",
       "title": "分类讨论",
-      "prompt": "去科技馆有 2 条直达车路线和 1 条转车路线。一共有多少条不同路线？【协作任务】",
-      "contentHash": "970259e5252d6d9d64adaba1517b2c33462a4ba4aaf61fdaf34c2037b9c47541",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "从发射中心到试验基地有 3 趟直达快速穿梭巴，或者先乘坐轻轨到中转站（有 2 条轻轨线路），再从中转站换乘接驳车（有 2 班接驳车）。分类计算一共有多少种不同的出行路线？【协作任务】",
+      "contentHash": "05cbe39b604992b83fd394686162e5a18e6cc046a8ef537ec78b33405b994d60",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -90,15 +90,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-case-discussion-6",
       "title": "分类讨论",
-      "prompt": "一个两位数，十位和个位相同，个位是偶数，十位是 1 到 4。这样的数有多少个？【加固任务】",
-      "contentHash": "060efca77dc54c3b207ffbeacb819bafb77a8e1929682718330cba4e26c747bc",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "一个两位数，十位数字和个位数字不相同，且都是小于 5 的偶数（包括 0，但最高位十位不能为 0）。这样的两位数一共有多少个？【加固任务】",
+      "contentHash": "2c54b154ff187e2f9873bc4bee9528c6aef26b48ae15baad34fc218dfa4ab9f5",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -107,15 +107,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-case-discussion-7",
       "title": "分类讨论",
-      "prompt": "大于 10 且小于 20 的自然数中，除以 3 余 2 的数有几个？【巡航任务】",
-      "contentHash": "6d365b6e681fb1f788c5169bef0cdbf8923e0dd9d8b84a9437998fab80d1c3b2",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "大于 20 且小于 40 的自然数中，除以 4 余 1 且除以 3 余 2 的数是多少？【巡航任务】",
+      "contentHash": "077cdbe4dc02c89c66403d06f45de275b4fe6c43b8d67fb4ff1c6ba4e83d573a",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -124,15 +124,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-case-discussion-8",
       "title": "分类讨论",
-      "prompt": "分类统计：公园里有 4 种花各 6 株，还有 3 种树各 5 棵。植物一共多少？【穿越任务】",
-      "contentHash": "a98c26215de73e4ef45c27d95029f424d5aa0d9c0251b99ebb3757a694f306e4",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "生态绿化温室植物分类统计：4 种耐旱灌木各栽种 6 株，3 种高氧树种各栽种 5 棵，另有 2 种水生植物各 8 株。这三类植物一共有多少株？【穿越任务】",
+      "contentHash": "d01ac9ca5ef7abf9bc6a85bb66f3fefffc8f26c4e0fe1e4ecf2ad5334c466ba9",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -141,15 +141,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-case-discussion-9",
       "title": "分类讨论",
-      "prompt": "有一个数：大于 20 且小于 30，除以 3 余 2，除以 4 余 1。这个数是多少？【攻坚任务】",
-      "contentHash": "224d8e2a159211755790aa87d447c7581560e313a11c4d6273030ceda354a770",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "某个两位数，除以 5 余 3，且除以 4 余 1。分类检验所有满足条件的两位数，其中最小的一个两位数是多少？【攻坚任务】",
+      "contentHash": "393e199d13897e14c6d85478cd8a0ddfc1ee69a544c9ed18d0936a7298ea9c6c",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -158,15 +158,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-case-discussion-10",
       "title": "分类讨论",
-      "prompt": "把 9 个相同的橘子分给 2 个小朋友，每人至少 1 个，有多少种不同分法？【决战任务】",
-      "contentHash": "4a3b4ea7eece1bbd468f651950763ef12090c3d997abf3d36d8d04e14c329a85",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "将 10 份相同的实验材料分给甲、乙两个小组，要求每个小组至少分得 2 份。分类讨论一共有多少种不同的分法？【决战任务】",
+      "contentHash": "5038f539effcdffc06e4522e68c4ddf3b43b5189287c7aceda24a32692bd206f",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -175,15 +175,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-parity-invariant-1",
       "title": "奇偶性与不变量",
-      "prompt": "偶数加奇数的结果是奇数（填 1）还是偶数（填 2）？【启航任务】",
-      "contentHash": "a0bf294339bf58d303f87d75c3de0a18f4affa1b881e4deca53e7743fabda393",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "桌上放着 9 枚硬币，初始时全部正面朝上。如果每次必须同时将任意 2 枚硬币翻面，经过多次操作后，正面朝上的硬币数量可能是 0 枚（全反面）吗？若可能填 1，绝不可能填 0。【启航任务】",
+      "contentHash": "39c74d9c4d29cea38fe4078870875984cfc4ffa3cd20f721ed6bf0271cbf0da6",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -192,15 +192,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-parity-invariant-2",
       "title": "奇偶性与不变量",
-      "prompt": "奇数乘奇数的结果是奇数（填 1）还是偶数（填 2）？【校准任务】",
-      "contentHash": "f43c116bcca2fe61643c033a1cb55423a6cdb83344c0d2414086445a09ca66bf",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "1 到 20 的所有整数相加：1 + 2 + 3 + ... + 20。判断这个总和是奇数还是偶数？若为奇数填 1，偶数填 2。【校准任务】",
+      "contentHash": "7c18594bd69bccdb910e140794c069464b26085c3ae0e32e5bb3b91772b334de",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -209,15 +209,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-parity-invariant-3",
       "title": "奇偶性与不变量",
-      "prompt": "1 到 10 的整数中，奇数有几个？【侦察任务】",
-      "contentHash": "cd2ae99ab1030773931393fb09433a7988010d9ed1f95abda4574d142d371e1c",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "一排有 7 盏指示灯，初始全部处于关闭状态。如果每次操作必须同时改变任意 3 盏灯的开关状态，至少需要操作几次才能将所有 7 盏灯全部点亮？【侦察任务】",
+      "contentHash": "757787056c351fdcb7ff0dd7a451bb9d625655bf88bcf7d39a5c4f8f43bfb18c",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -226,15 +226,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-parity-invariant-4",
       "title": "奇偶性与不变量",
-      "prompt": "偶数加偶数再加奇数，结果是奇数（填 1）还是偶数（填 2）？【推进任务】",
-      "contentHash": "e5cc2ced689b55080eb4d95a71c72acd56da47756c0af6e6722773e46b5a2461",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "黑板上写着 1 到 15 这 15 个连续自然数。每次擦去任意两个数，写上它们的差。经过 14 次操作后黑板上只剩下 1 个数。这个最后的数是奇数还是偶数？若为奇数填 1，偶数填 2。【推进任务】",
+      "contentHash": "c156bc98a9025f87d92fb4e5894c72baef7789153aadd98bf69138ca911369a0",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -243,15 +243,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-parity-invariant-5",
       "title": "奇偶性与不变量",
-      "prompt": "两个连续自然数相乘，结果是奇数（填 1）还是偶数（填 2）？【协作任务】",
-      "contentHash": "36f8bd336ef5094dc1de6611b3a782aab57b3388866b0c050128e2a101e49f4d",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "有 11 个试验盒摆成一圈，每个盒子里初始有 1 块晶石。每次操作允许挑选任意两个相邻的盒子，各放入 1 块晶石。多次操作后，所有盒子里的晶石总数能否变成 20 块？能填 1，不能填 0。【协作任务】",
+      "contentHash": "d3d5b2d143e8c88bbdb6f30bd2d3458ec2bd3aba96b918a9f925c4e6774cda21",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -260,15 +260,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-parity-invariant-6",
       "title": "奇偶性与不变量",
-      "prompt": "一个开关初始是关的（关=2，开=1），连续按 5 次后，状态编号是多少？【加固任务】",
-      "contentHash": "37261d9990ad08c457d4ae0c50804b2f34390cb1c9a2465bbfc1be0637e03ea8",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "一个 3×3 的九宫格棋盘上放着 9 枚棋子，其中黑子 5 枚，白子 4 枚。每次操作允许将同一种颜色的任意两枚棋子同时拿走并换上一枚黑子。多次操作后，最后剩下的那一枚棋子必定是什么颜色？若必定是黑色填 1，白色填 2。【加固任务】",
+      "contentHash": "65cc0ba9b62837b70a6a698e634b5b1fe8e7dcc8ec660058027b01926bfd52ad",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -277,15 +277,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-parity-invariant-7",
       "title": "奇偶性与不变量",
-      "prompt": "桌上 7 枚硬币都正面朝上，每次把 2 枚硬币翻面。翻很多次后，正面朝上的枚数一定是奇数（填 1）还是偶数（填 2）？【巡航任务】",
-      "contentHash": "3f27ccc28361faed478a4f5605d62b3c4692b04f7de4e9d9ca4f3f0f2ade4254",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "算式 1 × 2 + 3 × 4 + 5 × 6 + 7 × 8 + 9 × 10 的计算结果是奇数还是偶数？若为奇数填 1，偶数填 2。【巡航任务】",
+      "contentHash": "073e3cb0b3078779d81c3130dd0579d78be010a674da5f705188d551399d9920",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -294,15 +294,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-parity-invariant-8",
       "title": "奇偶性与不变量",
-      "prompt": "3×4+5 的结果是奇数（填 1）还是偶数（填 2）？【穿越任务】",
-      "contentHash": "73b802c3d5cca511b6504df04c41a3aea2b841f35b06917cfba5c5f307c1e61f",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "一条长纸带被剪成 5 段，之后每次任选其中一段再剪成 5 段。如此重复操作若干次后，纸带的总段数可能是 25 段吗？可能填 1，不可能填 0。【穿越任务】",
+      "contentHash": "bffe861e96c258c3af593d3282d67fa4da2fc858ef56177ac00c7e68765a1dcd",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -311,15 +311,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-parity-invariant-9",
       "title": "奇偶性与不变量",
-      "prompt": "一个数是 7，先加 3、再加 5、再减 4，结果是多少？【攻坚任务】",
-      "contentHash": "d94377fa2204d99c6e25be5d97cb6f9a27c8936061a1afe678149e25ae7fb379",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "圆盘上标有 1 到 12 这 12 个刻度数。在某些数前添“+”号，某些数前添“-”号，算式 ±1 ±2 ±3 ... ±12 的计算结果可能是 0 吗？可能填 1，不可能填 0。【攻坚任务】",
+      "contentHash": "f36bfae0c694a58f92052fef06355b21c83982fb2c7ff1b313374ba3e0c64833",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -328,15 +328,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-parity-invariant-10",
       "title": "奇偶性与不变量",
-      "prompt": "1 到 50 的所有奇数相加，和是奇数（填 1）还是偶数（填 2）？【决战任务】",
-      "contentHash": "021b54980dd733f9a59f46f0f028f651fafb617a8a3c5a60308611fea8c84466",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "8 只试验茶杯全部口朝上放在桌上。每次允许同时将任意 3 只茶杯翻转一次。能否经过若干次操作使全部 8 只茶杯都口朝下？若能填 1，不能填 0。【决战任务】",
+      "contentHash": "aca8ced77c0640159343b573d67fe4aabd7943dde72925cd9dde2eee6b80ad4e",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -345,15 +345,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-worst-case-1",
       "title": "最不利原则",
-      "prompt": "袜箱里有 3 种颜色的袜子，至少要摸出几只，才能保证有 2 只颜色相同？【启航任务】",
-      "contentHash": "113b9d273036d456c7470f62ff3e5a8866454e81e6cfab7f8c32090807e7693f",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "工具箱里有红、黄两种不同颜色的防滑手套各 10 只（手套不分左右手）。至少要摸出多少只手套，才能保证一定摸出 2 只颜色相同的手套？【启航任务】",
+      "contentHash": "1dc2c24d096c908a8b74daf609bf0ee1351dec1c06bee2039d3362662d4182ae",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -362,15 +362,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-worst-case-2",
       "title": "最不利原则",
-      "prompt": "袋中有 4 种颜色的彩球，至少要摸出几个，才能保证有 2 个颜色相同？【校准任务】",
-      "contentHash": "e54cfdbef88365169b76c8aa5b66591379fa6d916d2091bd69fc31b2c9e1fc5c",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "笔筒里插有黑色、蓝色、红色三种颜色的荧光标记笔各 8 支。至少要盲抽多少支笔，才能保证一定有 2 支笔的颜色相同？【校准任务】",
+      "contentHash": "ce2fc3e5f84a0a2959bbd8fc86c072249e3e73967e730d46c5c7b75736ee4566",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -379,15 +379,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-worst-case-3",
       "title": "最不利原则",
-      "prompt": "笔筒里有 2 种颜色的铅笔，至少要拿出几支，才能保证有 3 支颜色相同？【侦察任务】",
-      "contentHash": "17726b9c5725d0821a0b25b68cb477db8eb1d1d4f775100d9467a077dfb7b55e",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "器材库里有红、蓝两色的备用扳手各 10 把。至少要取出多少把扳手，才能保证一定有 3 把扳手的颜色相同？【侦察任务】",
+      "contentHash": "1a8e6b23f7f885994e1ee654497865687ff0103bc2d80cbdec99e7a3f4f45f22",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -396,15 +396,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-worst-case-4",
       "title": "最不利原则",
-      "prompt": "收集箱里有 3 种颜色的徽章，至少要拿出几个，才能保证有 3 个颜色相同？【推进任务】",
-      "contentHash": "cc049c791fb32810fdd79a4a2928a874a6ade6e6996e42b5c9cc295f5102bfc0",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "徽章盒里收集了金、银、铜三种质地的荣誉徽章各 6 枚。至少要摸出多少枚徽章，才能保证一定包含 3 枚相同质地的徽章？【推进任务】",
+      "contentHash": "25c4e2fd7ac709fbcebea0e6a1efb0c90dff5fa23466f78ee6927a39e102daad",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -413,15 +413,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-worst-case-5",
       "title": "最不利原则",
-      "prompt": "卡片盒里有 5 种颜色的卡片，至少要抽出几张，才能保证有 2 张颜色相同？【协作任务】",
-      "contentHash": "32ed71f1b9627c02be8a7b2883ce8d9ada903eedc70d22af52220567762c7b47",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "测试盒中有编号从 1 到 10 的 10 张卡片。至少要抽取多少张卡片，才能保证抽出的卡片中至少有一张卡片的数字是偶数？【协作任务】",
+      "contentHash": "3d84fd366107342abc65f50cd58adb09d6bca48f84406cfd4f73b95e51f6c60b",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -430,15 +430,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-worst-case-6",
       "title": "最不利原则",
-      "prompt": "积木筐里有 6 种颜色的积木，至少要拿出几块，才能保证有 2 块颜色相同？【加固任务】",
-      "contentHash": "bc9e09b91624c02d94beef6c4b68335e154a0915a9d7111d709048f97785fe48",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "储料袋中装有红球 10 个、黄球 8 个、蓝球 6 个。至少要摸出多少个球，才能保证一定摸出 3 个颜色相同的球？【加固任务】",
+      "contentHash": "58354cb55269a70b0d7b9c14bbf4f7e2e29530dc431cae6d1e6ffff161dffef0",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -447,15 +447,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-worst-case-7",
       "title": "最不利原则",
-      "prompt": "糖果罐里有 4 种颜色的糖果，至少要抓出几颗，才能保证有 3 颗颜色相同？【巡航任务】",
-      "contentHash": "2c320795362f53af005d4067501b84cc2ac03b2faf59ca2e6d24f5b4ab1e444c",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "盲盒柜中有红、黄、蓝三种颜色的积木各 10 块。至少要取出多少块积木，才能保证三种颜色的积木都至少各有 1 块？【巡航任务】",
+      "contentHash": "5b24dd4af54658991f8d082c77de94f9426cc17a7e37dec206b2a10dd6886b80",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -464,15 +464,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-worst-case-8",
       "title": "最不利原则",
-      "prompt": "手套箱里有 7 种颜色的手套，至少要拿出几只，才能保证有 2 只颜色相同？【穿越任务】",
-      "contentHash": "b3f702eab8122062ad49d789ae494a085a69464ef77701e677a2369206b349f1",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "仓库有 4 种不同型号的齿轮，数量都很充足。至少要领取多少个齿轮，才能保证一定有 4 个齿轮是同一种型号？【穿越任务】",
+      "contentHash": "bd5596926eb4a40b48910c5c79450908de4e9b2f88695da9453fb3c8aaca4d57",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -481,15 +481,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-worst-case-9",
       "title": "最不利原则",
-      "prompt": "帽架上有 3 种颜色的帽子，至少要取出几顶，才能保证有 4 顶颜色相同？【攻坚任务】",
-      "contentHash": "f535452ee86b442eba69e62a81f7df12b4b2f353196771f21ea54a268fdf417c",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "一副扑克牌去掉大小王后共 52 张（包含黑桃、红桃、方块、梅花 4 种花色各 13 张）。至少要抽出多少张牌，才能保证一定有 4 张牌是同一种花色？【攻坚任务】",
+      "contentHash": "150208193fa6d54647624db9c54e32cc6277175cb8d6d6059ac6c64159e5efbe",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -498,15 +498,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-worst-case-10",
       "title": "最不利原则",
-      "prompt": "盒子里有红、黄、蓝、绿 4 种颜色的球各 10 个，至少要摸出几个，才能保证有 3 个颜色相同？【决战任务】",
-      "contentHash": "4f6d95e512999ae4a67a2908c6aa5650f4c67777310aa7fd91f87079b5868970",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "抽奖箱中有红球 12 个、白球 9 个、黑球 5 个。至少要摸出多少个球，才能保证一定摸出 2 个白球和 2 个黑球？【决战任务】",
+      "contentHash": "612fd8223e4470add6866a4277a95d51bc9f3160abebb8eb3a867bf08564b8ec",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -515,15 +515,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-recurrence-strategy-1",
       "title": "递推思考",
-      "prompt": "按规律 1、3、5、7……数下去，第 4 个数是多少？【启航任务】",
-      "contentHash": "693dac1c09bb6cc4c8f1c65693059cc59b0ab25d1f3487cdb9c82f52199c1054",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "智能巡逻机器人沿数字轨道步进，第 1 步落点为 2，之后每一步都比前一步多走 3 米：2、5、8、11……按此规律递推，第 5 步的落点数值是多少？【启航任务】",
+      "contentHash": "2ae54f5968c42b938dc49c7f15bb5fdfd613963a89239b539a485cbdd1a90ccd",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -532,15 +532,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-recurrence-strategy-2",
       "title": "递推思考",
-      "prompt": "从 3 开始，每次加 3，第 5 个数是多少？【校准任务】",
-      "contentHash": "4db1e053984149e1184737c3aff16b57a7944d3eeb96c1665c5d564ffe48fbe5",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "生物培养皿中某种细胞分裂繁殖：第 1 天观测到 2 个细胞，之后每天细胞数量都会翻一倍（后一天是前一天的 2 倍）。递推第 5 天培养皿中一共有多少个细胞？【校准任务】",
+      "contentHash": "e9c5f35ff610d3f64ffdbdb15e66ea55891a075bb39afa9acec7ef3eafa2bf62",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -549,15 +549,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-recurrence-strategy-3",
       "title": "递推思考",
-      "prompt": "数列 1、1、2、3、5、8……每个数都是前两个数之和，第 6 个数是多少？【侦察任务】",
-      "contentHash": "33a385cba75d7ad5a52b2bc01ecac9b328ac24c86d1b7ace00df5b047f274920",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "斐波那契级数密码：数列为 1、1、2、3、5、8……从第三项开始，每个数都等于前两个相邻数之和。递推这个数列的第 7 个数是多少？【侦察任务】",
+      "contentHash": "3af10b2fa20b719fec6922205b73d335337e8f637df013681227294fbfbf1456",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -566,15 +566,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-recurrence-strategy-4",
       "title": "递推思考",
-      "prompt": "第 1 天有 2 个细菌，之后每天数量翻倍。第 4 天有多少个？【推进任务】",
-      "contentHash": "2092e4474de1140518657c5cb11615ee4a0f152592245039a418eade23cf0d31",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "机器狗攀登台阶：每次只能向上迈 1 级台阶或 2 级台阶。攀登一座 4 级高的台阶，利用递推方法计算一共有多少种不同的走法？【推进任务】",
+      "contentHash": "e7f25e7b515ec71769fdc33486e40e04f8a0467e609d5da4087f92e214b1553f",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -583,15 +583,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-recurrence-strategy-5",
       "title": "递推思考",
-      "prompt": "每次加 2，从 5 开始往上数，第 8 个数是多少？【协作任务】",
-      "contentHash": "3232e0dec006ec42a33aeffb5d5e6abeadac595e810bb180b116375cbfca26a8",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "攀登一座 5 级高的台阶，每次只能跨 1 级或 2 级台阶。按递推规律计算一共有多少种不同的走法？【协作任务】",
+      "contentHash": "fae12e540a35a4303ba31efed11f27220e8965f23dc35685460e35f0439092c5",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -600,15 +600,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-recurrence-strategy-6",
       "title": "递推思考",
-      "prompt": "一个数从 64 开始，每次变成它的一半，第 4 次操作后是多少？【加固任务】",
-      "contentHash": "5106101a421eddb2cddefec1c8325802d13f47a4649ebe71c06eb904d318b2f5",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "一维轨道上排布测试传感器点，从 1 个点出发：每新增 1 个点，新点与前面所有既有点之间都能连成一条新信号线段。当轨道上共有 5 个测试点时，直线上总共包含多少条不同的线段？【加固任务】",
+      "contentHash": "a8e9f2172aefed9196d23f0fecae58ebe8fd6cfd336aa7f4d9df0a6ad383475e",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -617,15 +617,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-recurrence-strategy-7",
       "title": "递推思考",
-      "prompt": "爬楼梯每次能上 1 级或 2 级，爬到 4 级台阶一共有多少种不同爬法？【巡航任务】",
-      "contentHash": "edae4ada33c88e055ace645359a38934f72ccfa3630edd19bca276e0473ce39d",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "平面分割递推：1 条直线最多将平面分成 2 部分；2 条直线最多分成 4 部分；3 条直线最多分成 7 部分。递推 4 条两两相交且无三线共点的直线最多将平面分成多少部分？【巡航任务】",
+      "contentHash": "0a39a4575e737cfc6fd5b21f66faff8add337487e903be8a15322bc10b444d23",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -634,15 +634,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-recurrence-strategy-8",
       "title": "递推思考",
-      "prompt": "第一排坐 8 人，后面每排比前一排多 2 人。第 5 排坐多少人？【穿越任务】",
-      "contentHash": "8c20bea6d360f0d10232c31a8515951dc7fe05529b6137b27a58144093f72cbe",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "学术报告厅第一排有 8 个座椅，后面每一排都比前一排多 2 个座椅。利用等差递推，第 6 排一共有多少个座椅？【穿越任务】",
+      "contentHash": "560a7ce256af49414c3e5db2df55b50ca7a02e3f58c3bf750bbf9f776b4de723",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -651,15 +651,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-recurrence-strategy-9",
       "title": "递推思考",
-      "prompt": "第 1 堆 1 粒米，之后每堆都是上一堆的 2 倍。第 6 堆有多少粒？【攻坚任务】",
-      "contentHash": "cdbdbfedcdf09a946235b3bc0b61b4dc5c2ba08a2127efa53bc3a0a450f8bf92",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "传球递推博弈：甲、乙、丙 3 人互相传球，由甲先发球。每次接球者只能把球传给另外两人中的一人。经过 3 次传球后，球回到甲手中的不同传法一共有多少种？【攻坚任务】",
+      "contentHash": "1f6594bebb22f2bdaefbf567fab85d02e1f8634471c093fb128013b99830ea6a",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -668,15 +668,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-recurrence-strategy-10",
       "title": "递推思考",
-      "prompt": "爬楼梯每次上 1 级或 2 级，爬到 5 级台阶一共有多少种爬法？【决战任务】",
-      "contentHash": "75d63e4669a102ec2c62910e09fa7a58421b9867b949bae2387db2c60a0450b0",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "攀登一座 6 级高的台阶，每次只能跨 1 级或 2 级台阶。利用状态转移方程递推计算一共有多少种不同的跨步组合？【决战任务】",
+      "contentHash": "a90d44032305d970f5401a28752cce8b993f2ea4f1f4c926ace0f155c05b3ef6",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -685,15 +685,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-reverse-reasoning-1",
       "title": "逆推与还原",
-      "prompt": "一个数加上 4 得到 10，原来是多少？【启航任务】",
-      "contentHash": "03c4a8e5a01fd3f978243ac061e09bd71192d5d288154fac52c465c9890ed64a",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "一根特种测量缆绳，先对折一次，从中间剪断后，较长的那一段长 6 米。原来整根缆绳全长多少米？【启航任务】",
+      "contentHash": "f75b9082bd763a97cb2af09a3b75de4e9e9eb67b2b0759ac1c4b859c31c124af",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -702,15 +702,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-reverse-reasoning-2",
       "title": "逆推与还原",
-      "prompt": "一个数减去 3 得到 9，原来是多少？【校准任务】",
-      "contentHash": "45e1732dc1a9922125bebef6c2455a7636cd76c42e8d068939a8892a5189521b",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "基地实验水箱，上午用去池中存水的一半，下午又向池内注入 15 升，此时池内恰好有 35 升水。水箱最初原有存水多少升？【校准任务】",
+      "contentHash": "7e603996bf48aeb46dae81eca73f58c1b33c5977fbac52b1ed08558db7209737",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -719,15 +719,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-reverse-reasoning-3",
       "title": "逆推与还原",
-      "prompt": "一个数乘 2 得到 14，原来是多少？【侦察任务】",
-      "contentHash": "f9c683c3f8c5bb71a31d4b98c7337fb8b35e9521b781c30e80212e48fac94a63",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "库房有一批密封包装箱，第一天领走总数的一半多 4 箱，第二天领走剩下的一半少 2 箱，这时库房还剩 10 箱。原来库房里有包装箱多少箱？【侦察任务】",
+      "contentHash": "fa49068451a5d837d475254d4dd4ccedc691e28782512870b7a26dc48a0300c1",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -736,15 +736,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-reverse-reasoning-4",
       "title": "逆推与还原",
-      "prompt": "一个数除以 3 得到 5，原来是多少？【推进任务】",
-      "contentHash": "694382fcfe9e37507c725e43889fccb254c412c33c14312c68681235fe6d1b23",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "甲、乙两个水桶各装有若干升水。若从甲桶倒出 8 升水给乙桶，此时两桶水恰好一样多，都是 20 升。原来甲桶装水多少升？【推进任务】",
+      "contentHash": "51b29ae29c574d6d99bb4935de7218a1578de8e6f1f7cba75af79e97b54301f3",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -753,15 +753,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-reverse-reasoning-5",
       "title": "逆推与还原",
-      "prompt": "某批材料先加 5、再乘 3，得到 24。原来有多少份？【协作任务】",
-      "contentHash": "3bfde551b46f0008675f483c2d361c37994c653715f209a88c3acb729c442075",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "甲、乙两盒原有一些精密零件。第一次从甲盒拿 6 个放入乙盒，第二次又从乙盒拿 4 个放回甲盒，此时甲盒有 18 个，乙盒有 14 个。原来甲盒有多少个零件？【协作任务】",
+      "contentHash": "a8c0d9d0b9940def0034373f4cc0a4feec0b30eebcbebcfb8ea7758b2ac77ee4",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -770,15 +770,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-reverse-reasoning-6",
       "title": "逆推与还原",
-      "prompt": "一个数先乘 2、再减 8，得到 12。原来是多少？【加固任务】",
-      "contentHash": "f3552046dd5d8d21bd4e91f429848df1b1ca4f026bb1f84016a31a42b0730547",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "车队分配应急燃料，第一小队分得总配额的一半，第二小队分得剩余的一半多 5 桶，第三小队分得最后剩下的 15 桶。这批燃料总配额是多少桶？【加固任务】",
+      "contentHash": "ff2001020862708ddf5d00e72aeb930a11f7011e6dc9eb1754b50f22aaf92d58",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -787,15 +787,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-reverse-reasoning-7",
       "title": "逆推与还原",
-      "prompt": "一个数先加 6、再除以 2，得到 10。原来是多少？【巡航任务】",
-      "contentHash": "edfd2969c1d9525dfac67ea5afe02c41230538ff9e6516d1ae28314e5d2577d0",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "供水主管在节点 A 分流：主管流量的一半流入支线 1，余下流量在节点 B 又分流：其中一半流入支线 2，最后主干末端输出 12 升/秒。原来主管的总输入流量是多少升/秒？【巡航任务】",
+      "contentHash": "fdcf28ad0352d8b948afcfcfc7463c64335604db3b43e6f1debf4ad74283e5ba",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -804,15 +804,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-reverse-reasoning-8",
       "title": "逆推与还原",
-      "prompt": "某数的一半加上 4 等于 20。这个数是多少？【穿越任务】",
-      "contentHash": "5fa896a127376d67a5102e278224adb3f41aac8b1bf6f1f0235856a845a09bda",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "甲、乙两个储能仓共有 50 兆瓦电量。如果从甲仓调出 10 兆瓦电量补充给乙仓，此时甲仓储能仍比乙仓多 6 兆瓦。原来甲仓储能是多少兆瓦？【穿越任务】",
+      "contentHash": "7a0e55b6bc4e35e46e4e65f57876499c35e606473ccc3c32d2ade9180b85b88a",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -821,15 +821,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-reverse-reasoning-9",
       "title": "逆推与还原",
-      "prompt": "某数先除以 2、再加 5、再乘 3，得到 27。原来是多少？【攻坚任务】",
-      "contentHash": "2b52e66e0478fc693547ce960b4fc23e254497d57fd0fc05be06306841627f45",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "甲、乙两杯水各有若干毫升。甲先倒入乙中一部分水，使乙的水量增加 1 倍（翻倍）；接着乙倒入甲中一部分水，使甲的水量也增加 1 倍。此时两杯水各有 16 毫升。原来甲杯有水多少毫升？【攻坚任务】",
+      "contentHash": "18e2f4bb75e000212e1dd40365a76a9636b1f971cb1813360f2be2fac65cd689",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -838,15 +838,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-reverse-reasoning-10",
       "title": "逆推与还原",
-      "prompt": "修路队第一天修了全长的一半，第二天修 20 米，还剩 30 米。这条路全长多少米？【决战任务】",
-      "contentHash": "b9dc2f83f3eb2ad6d546017dffe879af44095a0495dcbc142da9b9c8ec41a0f4",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "航天员执行任务带了一罐供氧剂，第一天消耗全罐的 1/3，第二天补充了 10 升，第三天又消耗了当时存量的 1/2，此时罐内还剩 25 升。这罐供氧剂最初有多少升？【决战任务】",
+      "contentHash": "ddbdac78cc617eb8de8ba5598bde1d7dd8375f6ca9cfa666226be7bca5c430fa",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -855,15 +855,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-elimination-table-1",
       "title": "表格排除",
-      "prompt": "一个 3 行 4 列的表格，已经有 2 个格子被占据。还空着几个格子？【启航任务】",
-      "contentHash": "98392ba986a657fdf1217d3df8c297e807c1d7336e94e805960b82a99705eef9",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "在 3 行 4 列的监测网格矩阵表中，共有 12 个监控点，已有 2 个点亮起红灯报警。利用排除法，当前处于安全状态的绿色监控点还有几个？【启航任务】",
+      "contentHash": "9de0f32103a8f9c8e6153231c7a60e9441d9ee733febc351a6a8bea55d96c772",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -872,15 +872,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-elimination-table-2",
       "title": "表格排除",
-      "prompt": "甲、乙、丙三人分别坐 1、2、3 号座位，甲坐 3 号，乙不坐 1 号。丙坐几号？【校准任务】",
-      "contentHash": "1939142da575c08552c786d4aa131fcdd9659107855edd99326c2c4466e3a89a",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "甲、乙、丙三人分别坐在 1、2、3 号工作台，已知甲坐在 3 号台，乙明确不坐在 1 号台。利用表格排除法，丙坐在几号工作台？【校准任务】",
+      "contentHash": "5a198fe00dfaa7912b38434ff2ff80dcd660829018248e026e83b377f6a6bf8d",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -889,15 +889,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-elimination-table-3",
       "title": "表格排除",
-      "prompt": "A、B、C、D 四人分别担任组长（1）、会计（2）、司机（3）、保管（4）。A 是组长、C 是司机、B 不是会计。D 担任哪个职务（填编号）？【侦察任务】",
-      "contentHash": "9bef2f2727b85cef51f985aa4c12121d34547c8d872670c8bc99e2f253e76cf2",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "A、B、C、D 四人分别担任站长（1）、总工（2）、领航（3）、质检（4）。已知 A 是站长（1），C 是领航（3），B 明确不是总工。利用逻辑排除矩阵，D 担任什么职务（填写职务编号）？【侦察任务】",
+      "contentHash": "75fbda9ba95406afb89baff71a4e13ee627f8dca562eaed4b4516abaaba51b33",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -906,15 +906,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-elimination-table-4",
       "title": "表格排除",
-      "prompt": "表格中每一行三个数的和都等于 12。第二行已经填了 5 和 3，剩下的数是多少？【推进任务】",
-      "contentHash": "7cc54c9951e3f999f78526d260a60b5bd812daa818f4a24a57d4b984bccc0a53",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "3×3 九宫格数独表中，每一行三个数的和都必须等于 12。第二行目前已经填入了 5 和 3，利用减法排除法，第二行剩下的空格应填入多少？【推进任务】",
+      "contentHash": "cfac510ecea0e881f36fddb868539d6c2d08c1ec3b5525a510c08398052bd983",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -923,15 +923,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-elimination-table-5",
       "title": "表格排除",
-      "prompt": "表格中每一列三个数的和都等于 20。第一列已经填了 7 和 9，剩下的数是多少？【协作任务】",
-      "contentHash": "0e549fc504600233f0e006b84dd373c63f6ab538f5b9db950e141bcd4980f8e7",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "实验参数表中每一列三个读数之和都必须等于 20。第一列目前已经记录了 7 和 9，利用差值排除，该列缺失的数据是多少？【协作任务】",
+      "contentHash": "5ec3aedc9f894709d6e101fbb33e1b2b8ad1e4d6488d9cb1013cb63a974cca02",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -940,15 +940,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-elimination-table-6",
       "title": "表格排除",
-      "prompt": "一周五天的课表中：数学不在周一和周五，美术在周三，体育在周五，英语在周二。数学在星期几（填 1~5）？【加固任务】",
-      "contentHash": "dea49112d205985fcb436fc690cd1aa76745fd95ffe60b91aafee6ba4e3518f9",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "一周五天的排班表中：通信实验不在周一和周五，材料实验在周三，遥测实验在周五，生命科学实验在周二。利用表格排除法，通信实验安排在周几（填写数字 1 到 5）？【加固任务】",
+      "contentHash": "c57d77a7acf0303b18d9210c08649998dc1bbed470b7b1aeaa271304559623ae",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -957,15 +957,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-elimination-table-7",
       "title": "表格排除",
-      "prompt": "3×3 表格里每行、每列分别填入 1、2、3 且不重复。第一行是 1、2、3，第二行第一个数是 2。第三行第二个数是多少？【巡航任务】",
-      "contentHash": "9380c3aeba0e479e7885e5cafb2b3f8466d9b75a1c726480132dd2db390a4281",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "3×3 矩阵方阵中每行、每列分别填入 1、2、3 且不重复。第一行已填入 1、2、3，第二行第一个数是 2。利用行列交叉排除，第三行第二个数是多少？【巡航任务】",
+      "contentHash": "50082f1e9471121189376e9a4616c097779bc11a30104caa222545d7afc468ff",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -974,15 +974,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-elimination-table-8",
       "title": "表格排除",
-      "prompt": "三个班共有 90 人，一班 28 人，二班比三班多 4 人。三班有多少人？【穿越任务】",
-      "contentHash": "cf2b3d0c5747b6f457f9defad17c2a6653ee7cb4ecba523577f8b6c87df9cadc",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "三个科研班组共有 90 人，一班有 28 人，二班比三班多 4 人。利用对照列表法，三班有多少人？【穿越任务】",
+      "contentHash": "0e2342febd3b40993fd0b49c6b71d4037fb73bbe44f6ef0b73bfe0292902b5ec",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -991,15 +991,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-elimination-table-9",
       "title": "表格排除",
-      "prompt": "5 把椅子编号 1~5：1 号、2 号、3 号、5 号都已经有人坐，只剩一把空椅子。它是几号？【攻坚任务】",
-      "contentHash": "1f5a04e240aadc11dd5971cf86274c6a8fd11f1bb9a73730dc55746313ffc65d",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "5 个独立测试舱编号 1 到 5：已知 1 号、2 号、3 号、5 号舱室都已安排了加压测试，只剩下一个空置备用舱。利用排除法，这个空置舱是几号？【攻坚任务】",
+      "contentHash": "7a413ee04261259d5422a8c97a6d71388e069f4c7dd110b40c14895c76a8d3cd",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1008,15 +1008,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-elimination-table-10",
       "title": "表格排除",
-      "prompt": "A、B、C、D 四人各有一项特长：唱歌（1）、跳舞（2）、画画（3）、弹琴（4）。A 会唱歌，C 会弹琴，B 不会跳舞。D 会什么（填编号）？【决战任务】",
-      "contentHash": "9a84ed4ed4c9e4ad9938a77d20ed8cbc6057244b1d89698ca7e1d126afe98146",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "甲、乙、丙、丁四人各有一项特长：遥控（1）、微重力实验（2）、出舱维修（3）、动力维护（4）。已知甲特长是遥控（1），丙特长是出舱维修（3），乙明确不会微重力实验。利用逻辑排除矩阵，丁的特长是什么（填写编号）？【决战任务】",
+      "contentHash": "55ba77376afeb88dc3009f9b34896dfc3934d904b9bfd7ff1f3797abb0aeb5e2",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1025,15 +1025,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-scheduling-1",
       "title": "统筹安排",
-      "prompt": "复印 1 份文件要 3 分钟，装订必须等复印完成后进行，装订要 2 分钟。完成这两件事最少要几分钟？【启航任务】",
-      "contentHash": "773e5748d738b5ce72b8314f75d95b22ebba5a549ee67935252e00d438d19c1d",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "核心日志打印需要 3 分钟，打孔装订必须等打印全部完成后才能开始，装订需要 2 分钟。完成两项任务最少需要几分钟？【启航任务】",
+      "contentHash": "9cd32ea9913dd261ce9fc6916f9ca3dd0bfb1951d663962140a4db0c300a6a66",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1042,15 +1042,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-scheduling-2",
       "title": "统筹安排",
-      "prompt": "烧一壶水要 5 分钟，等水开的同时可以准备杯子（2 分钟）。最少要几分钟才能泡茶？【校准任务】",
-      "contentHash": "c44ef3c4edcfc2eec6135486db12ab68f0eb7e371f84ff91869749a4b1337695",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "实验前准备：电热壶烧水需要 5 分钟，在烧水的同时可以清洗实验量杯（耗时 2 分钟）。全部准备就绪最少需要几分钟？【校准任务】",
+      "contentHash": "f7f03f67ea85af26c8edbb629bef7e0f45f3994c85b354cc08744c5405825019",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1059,15 +1059,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-scheduling-3",
       "title": "统筹安排",
-      "prompt": "洗菜 4 分钟（必须先洗再切）、切菜 3 分钟，同时烧水 5 分钟。最少要多长时间？【侦察任务】",
-      "contentHash": "c2ec6386a28b6a8e7a27d3d682be2b302e53a8fc87cdca79974c67247a278641",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "化学清洗处理：洗涤需 4 分钟（必须洗涤完成后才能消毒），消毒需 3 分钟；同时启动预热炉升温需 5 分钟（独立进行）。三件事全部做完最少要多少分钟？【侦察任务】",
+      "contentHash": "ae3a7733706f03ee6aa93b636d508ef5797ddd6b6155f276b8d0543b1b45128a",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1076,15 +1076,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-scheduling-4",
       "title": "统筹安排",
-      "prompt": "沏茶步骤：洗水壶 1 分钟、烧水 8 分钟、洗茶杯 2 分钟、拿茶叶 1 分钟。最少多久能喝上茶？【推进任务】",
-      "contentHash": "5a3cc7aa452d57b8b11a7d0dbd3cea6a71cdfbfbdba9db1af8b9576340c58dd2",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "特种饮品冲调工序：洗水壶 1 分钟、电壶烧水 8 分钟、洗茶杯 2 分钟、取茶叶 1 分钟。合理统筹安排，最快需要几分钟就能喝上热茶？【推进任务】",
+      "contentHash": "53af94e8e87dae41c21b396acb278014df06523c5f7e1c198f4526cd1b0922b8",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1093,15 +1093,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-scheduling-5",
       "title": "统筹安排",
-      "prompt": "两台复印机同时工作，复印 4 份文件每份 2 分钟，最少需要几分钟？【协作任务】",
-      "contentHash": "a71da7dee537a53ed14c7e56692ad40224d9dcf0e45c07884f10ed2764fe09dd",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "两台并联自动化扫描仪同时工作，需要扫描 4 份相同的重要图纸，每份扫描耗时 2 分钟。全部扫描完毕最少需要几分钟？【协作任务】",
+      "contentHash": "44574bde1c904b756eb91952259e39dc22c27f6facad9ce7be67ba92560226f5",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1110,15 +1110,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-scheduling-6",
       "title": "统筹安排",
-      "prompt": "三个人依次用同一台机器加工，分别需要 3、5、2 分钟。全部完成共需几分钟？【加固任务】",
-      "contentHash": "a6c447f7954a1013c4cd79e055f706a80e97faf797410f67b13b4fe3ade71a44",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "三名宇航员依次使用同一台高精离心机进行身体测试，测试分别需要耗时 3 分钟、5 分钟和 2 分钟。三人累计测试占用机器的总时间是多少分钟？【加固任务】",
+      "contentHash": "9428c8b43596fa0cfc102c6ff9d40239a7233fb16f9277cc329d3ed02fdd6905",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1127,15 +1127,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-scheduling-7",
       "title": "统筹安排",
-      "prompt": "甲做甲件 6 分钟、乙做乙件 9 分钟，两件事互不影响。两人同时开始，最少几分钟全部完成？【巡航任务】",
-      "contentHash": "330770571a3c386deadb46b569d445d7780f77b10865d59f2aa596316c000959",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "技师甲检修主控板需 6 分钟，技师乙检修辅助板需 9 分钟，两块电路板互不影响。两人同时开工，最少需要多少分钟能全部检修完毕？【巡航任务】",
+      "contentHash": "136eb243ca0d2e24c3a3bcd23db36a9d27f4bd842684c17599f40e5a24167224",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1144,15 +1144,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-scheduling-8",
       "title": "统筹安排",
-      "prompt": "烤面包机一次能烤 2 片，面包两面各要烤 2 分钟。烤 3 片面包最少要几分钟？【穿越任务】",
-      "contentHash": "03c13e14e25ac00843863d0b5d83b8946d99ef5e9c1528e2cd120c37ea1ee635",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "特种加热台一次最多只能同时烘烤 2 片晶圆，每片晶圆的正反两面各需要烘烤 2 分钟。烘烤 3 片晶圆的双面最少需要几分钟？【穿越任务】",
+      "contentHash": "57bd07822fb6003bf48c3e23d25fba42bfe302e6823b908439561b61d1da73ea",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1161,15 +1161,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-scheduling-9",
       "title": "统筹安排",
-      "prompt": "两台叉车同时工作，每台一次搬 2 箱、一个来回 3 分钟。12 箱货全部搬完最少几分钟？【攻坚任务】",
-      "contentHash": "fb04cba553356554e59e49badcb6c7b929a5ab25703d623ffdf6b27ba3fb333f",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "两台智能搬运车同时配合作业，每台车一次最多运送 2 箱物资，往返一个来回需要 3 分钟。要把 12 箱物资全部运完，最少需要几分钟？【攻坚任务】",
+      "contentHash": "12d423581e378ace7c67b2b5489e87ac17b1dd24b2e79d7628beca366e7d5f52",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1178,15 +1178,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-scheduling-10",
       "title": "统筹安排",
-      "prompt": "妈妈做饭：淘米 2 分钟、煮饭 18 分钟、洗菜 4 分钟、炒菜 8 分钟，煮饭时可以做别的。最少多久能开饭？【决战任务】",
-      "contentHash": "0a2a8cfac2749fb03371f127a3f78096ac2bdac286772424948908ee389d2e28",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "空间厨房烹饪：淘米 2 分钟、电饭煲煮饭 18 分钟、洗菜 4 分钟、切菜炒菜 8 分钟。煮饭期间可以独立做其他事。合理安排工序，最少多少分钟后可以开饭？【决战任务】",
+      "contentHash": "76365ba28a875dff6b23cf3ccb2a68716f217e60dcc10ef557312f4d388cc3f2",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1195,15 +1195,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-shortest-path-1",
       "title": "最短路线",
-      "prompt": "方格图中只能向右或向上走，从第 1 列第 1 行到第 5 列第 3 行。最短需要走多少格？【启航任务】",
-      "contentHash": "efdde4979f74d76af22aac5af62d422dd44778cf040049a58558c701ed435c70",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "巡检机器人在直角坐标网格中从点 A(1, 2) 沿格线走到点 B(4, 6)，只能向东或向北走。最短路径需要走多少格？【启航任务】",
+      "contentHash": "882de0318f74b7c83f574bbe25d62ded46a0c77b3bf27f1429958529be7f6803",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1212,15 +1212,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-shortest-path-2",
       "title": "最短路线",
-      "prompt": "方格图有一行 6 小格，从最左边走到最右边本来要走 6 格；但第 2 格到第 3 格之间的边封闭了，必须向上绕 1 格再下来。最少走多少格？【校准任务】",
-      "contentHash": "05737f1b66c601bdf1603b77c5e7b2cda4ecde5ae5899332fa75ad88296d9a56",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "在一个 2×2 的正方形街道网格中，从左下角顶点沿网格线走到右上角顶点，只允许向右或向上走。不同的最短路线一共有多少条？【校准任务】",
+      "contentHash": "bf202e0ab7793af609c6db46417c2358c454ad9574ee05580c152119d177a3e9",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1229,15 +1229,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-shortest-path-3",
       "title": "最短路线",
-      "prompt": "从起点先到水站要 3 格，水站到终点要 5 格，必须经过水站。全程最少多少格？【侦察任务】",
-      "contentHash": "6af648b026d817ab6d81b538bd50e72a27ec22ff03a6363aaee171c2fae1fa46",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "在一个 2 行 3 列的长方形街道网格中，从左下角走向右上角（只能向右或向上走）。不同的最短路线一共有多少条？【侦察任务】",
+      "contentHash": "6352803a1d59e9371af81cefdb6ff5421a9022572233434c01e01884059749a1",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1246,15 +1246,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-shortest-path-4",
       "title": "最短路线",
-      "prompt": "在 2×2 的方格中从左上角走到右下角，只能向右或向下。最少走多少格？【推进任务】",
-      "contentHash": "c5bb46453de95f98d1ff8ad99d41ceea0d9414f0588a1868563ae0dd90db78c4",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "从起点 A 到终点 B 的网格路线中，必须经过中间补给站 C。已知从 A 到 C 有 3 条不同最短路线，从 C 到 B 有 4 条不同最短路线。从 A 经 C 到 B 的最短路线一共有多少条？【推进任务】",
+      "contentHash": "e29e702b1156bae22d00cc3bc7f932067919f53a3100fd3e8a13253ae21206bf",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1263,15 +1263,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-shortest-path-5",
       "title": "最短路线",
-      "prompt": "小方格里从第 1 列第 1 行走到第 2 列第 4 行，只能向右或向下走。最少走多少格？【协作任务】",
-      "contentHash": "734cb975066a15ae90beedcf7a2f3e67d91707ac84c0d7e3c32e13247b68e40b",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "在 2×2 网格中，中心交叉点发生故障不可通行。从左下角沿格线走到右上角（只能向右或向上），避开中心障碍点的最短路线还剩多少条？【协作任务】",
+      "contentHash": "ccb32ac22ba647af41b177f23971319208bbb5b6981092891a414594299facab",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1280,15 +1280,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-shortest-path-6",
       "title": "最短路线",
-      "prompt": "一条路线要依次经过两个中转站，第一段 3 格、第二段 2 格、第三段 4 格。全程最少多少格？【加固任务】",
-      "contentHash": "fa10766e43f3a8ceb37d4776c127221fcf8c373e3067c81bc09e8ff62f479705",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "长方体盒子长 4 厘米、宽 3 厘米、高 2 厘米。一只蚂蚁从一个顶点沿盒子表面爬到相对的最远顶点，将盒子表面展开后形成直角三角形，其中两条直角边之和最小的一种展开方案，其两条直角边之和是多少厘米？【加固任务】",
+      "contentHash": "a5498ce70cb5a35868693192d47a16a6c0278e93d7a0fb30edf46eae03b8fb71",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1297,15 +1297,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-shortest-path-7",
       "title": "最短路线",
-      "prompt": "从家到学校直达要走 6 格，中间有一片水域必须绕行，绕行比直达多走 2 格。最少走多少格？【巡航任务】",
-      "contentHash": "bdae51c20e233a659adc0d96e1796c383c6c14a29c04d44816757d2defb493a8",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "在 3×3 的正方形网格中，从左下角走到右上角（只能向右或向上走）。利用标数法累加计算，一共有多少条不同的最短路线？【巡航任务】",
+      "contentHash": "70a014e098403b043febb929df14cce03f6c4c6d750010c26cafe91b11b44b73",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1314,15 +1314,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-shortest-path-8",
       "title": "最短路线",
-      "prompt": "上学必须先到车站（4 格）再到学校（6 格），不能直接从家到学校。最少走多少格？【穿越任务】",
-      "contentHash": "424eb0760226b91ee1f4ef48dc57193757ca457239e156b09093b2a4fb18ff7a",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "中继站环形轨道网络：顺时针环路全长 12 千米，逆时针环路全长 18 千米。两车同时反向出发，从起点出发选择较短的顺时针环路直达测试点，单程最短距离是多少千米？【穿越任务】",
+      "contentHash": "6148783f84c773199101bf71771e3e28834966541903d3cfbd24f8092b51781d",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1331,15 +1331,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-shortest-path-9",
       "title": "最短路线",
-      "prompt": "在 5×3 的矩形网格中从左下角走到右上角，只能向右或向上。最少走多少格？【攻坚任务】",
-      "contentHash": "9f6b9116b461e396cc1e0bae3dc7a676adb7557bb14a32ba1336e215d6ed3721",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "在 3 行 3 列的方格地图中，中间整条纵向街道（第 2 列上下贯通线）被路障阻断无法通行。从左下角走到右上角（只能向右或向上），可行最短路线一共有多少条？【攻坚任务】",
+      "contentHash": "710f819fcd01741abcb96208f6b2cae571dda979a31202792dfc2d75baffcc63",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1348,15 +1348,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-shortest-path-10",
       "title": "最短路线",
-      "prompt": "巡逻路线必须依次经过三个固定点，三段长度分别是 6 格、4 格、5 格。全程最少多少格？【决战任务】",
-      "contentHash": "8aa138006374c2a7ec31819fd4257e3c4a1a35f2f9a3ea35a2539a8e1034953b",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "一个阶梯形网格由 3 个小方格拼成（底层 2 格，上层 1 格）。从左下角沿格线走到右上角（只允许向右或向上），利用标数法计算一共有多少条不同的最短路线？【决战任务】",
+      "contentHash": "62efe60cbd1b7a69c7799fcdf20f1b44909e913192a81f0898daff21957d7b27",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1365,15 +1365,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-optimal-strategy-1",
       "title": "最优策略",
-      "prompt": "两种补给方案效果相同，方案甲耗时 20 分钟、方案乙耗时 15 分钟。选最优方案可节省多少分钟？【启航任务】",
-      "contentHash": "d6b60500026a73c1d51d74862a720d712f40c2f3a5e4e35d43419d7b026027a9",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "科考队 16 人外出，租车公司提供两种车型：大客车限乘 6 人租金 50 元，小客车限乘 4 人租金 36 元。怎样租车最省钱？最少需要支付多少元租金？【启航任务】",
+      "contentHash": "5dab4c98a1ddb7785bfe45f5261c58f485c43d543b50b7558b9d94dcc86edc90",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1382,15 +1382,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-optimal-strategy-2",
       "title": "最优策略",
-      "prompt": "两家文具店同款文具，甲店 12 元、乙店 15 元。选便宜的能省几元？【校准任务】",
-      "contentHash": "9417a2e52996f3397312fdadfc076beb13258f0bb7f3d51e64e6ebdfcb76d22d",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "甲、乙、丙三人到同一个维修窗口检修仪器，分别需要耗时 3 分钟、1 分钟、4 分钟。怎样安排检修顺序，才能使三人的总等候时间（排队等待加维修）最少？最少总等候时间是多少分钟？【校准任务】",
+      "contentHash": "f6e67127811d25ab6d228860c5a472191c8de9a79234927d5de547aa8f08f420",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1399,15 +1399,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-optimal-strategy-3",
       "title": "最优策略",
-      "prompt": "三家物流报价分别是 8 元、10 元、6 元，选最便宜的方案要花多少元？【侦察任务】",
-      "contentHash": "79c0106b929e8870c74f98ea355ccd0ed5d476aadcaad57f001db4abbd3ec3ec",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "桌上有 20 颗能量石，两人轮流拿取，每次只能拿 1 颗或 2 颗，谁拿走最后一颗谁获胜。先手为了确保必胜，第一步应该拿走几颗能量石？【侦察任务】",
+      "contentHash": "ff82c2ae083b4d7cb4b6203de70ee4623c922a98200d4e9cb90451a00633ba94",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1416,15 +1416,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-optimal-strategy-4",
       "title": "最优策略",
-      "prompt": "把 8 个苹果平均分给 2 人，每人拿到几个？【推进任务】",
-      "contentHash": "3ac7c1021f2807a252ce8f78e64feeeec501908f4bef2825ef7124886703a893",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "将自然数 10 拆分成若干个正整数的和，要使这些拆分出来的整数的乘积最大，这个最大的乘积是多少？【推进任务】",
+      "contentHash": "e23f290bdf2e6bccc7414fe135a6809fe5fde34fb86ec7c245daa7e7ab6c000a",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1433,15 +1433,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-optimal-strategy-5",
       "title": "最优策略",
-      "prompt": "苹果 2 个装一袋卖 5 元，单买每个 3 元。买 4 个苹果最省要花多少元？【协作任务】",
-      "contentHash": "ccdeb2c95375aa01feda06efd05b744ecaec7562854e481250a5272b8c09b2bb",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "双方各派上、中、下三名选手比赛跑。我方三名选手速度分别为 9、7、5，对方为 10、8、6。比赛采取三局两胜制，我方采取田忌赛马最优策略，最终我方获胜的局数是多少局？【协作任务】",
+      "contentHash": "865bb227d4a81e1ea41ec03b2898a576847d2d0899db243d8b059969c3722b6b",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1450,15 +1450,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-optimal-strategy-6",
       "title": "最优策略",
-      "prompt": "有 5 枚棋子，两人轮流取，每次取 1 枚或 2 枚，取到最后一枚者胜。先手为保证必胜，第一次应取几枚？【加固任务】",
-      "contentHash": "3a3c684c30cd42501085f890a418a64002783133ab01260029f677cfc6eeb2ac",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "采购 30 支特种荧光棒，单支零售每支 4 元，5 支一袋的包装售价 18 元，10 支大盒装优惠价 32 元。最划算的购买方案总共需要多少元？【加固任务】",
+      "contentHash": "6fcfcf58f75c77c29398a8ab0b3f888be9124f4b171e88a62bdc205664dfa5ac",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1467,15 +1467,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-optimal-strategy-7",
       "title": "最优策略",
-      "prompt": "回家有三条路，长度分别是 6 千米、8 千米、5 千米。选最近的路要走多少千米？【巡航任务】",
-      "contentHash": "3497915bb33443b247b571754a73a844cb860f8ab7f5cf121c2217a04f6389ad",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "4 人夜间过独木桥，只有一盏应急手电筒，桥每次最多容纳 2 人同时过，过桥时间取决于较慢的人。4 人单程过桥时间分别为 1、2、5、10 分钟。过桥后必须有人拿手电筒返回接人。全部过桥最少需要几分钟？【巡航任务】",
+      "contentHash": "52d42f9f39cfbdbf5bf4716c4badff3f0a1c27422895a0706a3b49d3a64f15d8",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1484,15 +1484,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-optimal-strategy-8",
       "title": "最优策略",
-      "prompt": "12 名队员分成每队 3 人参加接力，最多能分成几队？【穿越任务】",
-      "contentHash": "ac60db0645cedc495c3b3b3cfc1346a05a9b44272e222205099f4150f7854c0e",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "货运无人机最大承重 15 千克，现有 4 件高价值设备，重量分别为 3、4、6、8 千克，对应价值分别为 7、9、13、17 万元。在不超重的前提下，能装载设备的最大总价值是多少万元？【穿越任务】",
+      "contentHash": "ef07a2d04bb0f8c351c02c36e841211267891991e2499317ee26949297a881fe",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1501,15 +1501,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-optimal-strategy-9",
       "title": "最优策略",
-      "prompt": "有 8 枚棋子，每次可以取 1 枚或 2 枚，取完最后一枚者胜。先手要必胜，第一次取几枚？【攻坚任务】",
-      "contentHash": "8eb06dae39b8dbb56b997eee7193cfa4a481daf2e9ef40edba93ec4bf3fa0a0e",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "两人轮流从数字 50 开始轮流减去 1 到 5 中的任意一个数，谁先把数字减到 0 谁获胜。先手第一步应该减去几才能锁定必胜？【攻坚任务】",
+      "contentHash": "bb847758b90062b6fcaf6fc6279bd41025c0ec28b7f0b0d869ac8ede12d2001e",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1518,15 +1518,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-optimal-strategy-10",
       "title": "最优策略",
-      "prompt": "笔单买每支 3 元，2 支一包卖 5 元。买 5 支最省要花多少元？【决战任务】",
-      "contentHash": "b8f7428f749f82fd9f7a11760a6e842279fd74add96fac13701cdf4c59fa52a9",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "将正整数 14 拆分成若干个互不相同的正整数之和，要使这些数的乘积最大，这个最大的乘积是多少？【决战任务】",
+      "contentHash": "10c302fc3555baf34e54233ea9d61d90fdf634cedfbd383a502dedda11a3c016",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1535,15 +1535,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-construction-1",
       "title": "构造法",
-      "prompt": "围一块长 5 米、宽 3 米的矩形场地，围一圈需要多少米围栏？【启航任务】",
-      "contentHash": "2e53bb8a35052525e760dd1a31628a7f516ac7658cbb4bbea3fe14593bacf40e",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "在 3×3 九宫格中填入 1 到 9 这 9 个数字，使每行、每列、每条对角线上的三个数之和都相等（幻和为 15）。正中心那个格子里构造填入的数字必定是多少？【启航任务】",
+      "contentHash": "539015f631c001a8677328aba5ef9d65b6b55ad07798e7ad54c169e9fb8a1d26",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1552,15 +1552,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-construction-2",
       "title": "构造法",
-      "prompt": "用一根 20 米长的绳子围成一个正方形，边长是多少米？【校准任务】",
-      "contentHash": "71f4d15cf574cb077862d1dfb577e80e790c85b8d0dbcf41b6f697d12499cdac",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "用 1、2、3、4 四个数字各用一次，构造一个能被 4 整除的最大四位数。这个四位数是多少？【校准任务】",
+      "contentHash": "6c886e70e621c69ea01a683c98ef368cf36003cc58203a3b5738dac23e13cd54",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1569,15 +1569,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-construction-3",
       "title": "构造法",
-      "prompt": "要构造一个三角形，已知两条边分别是 4 和 5，第三边取最小的整数，是多少？【侦察任务】",
-      "contentHash": "0d34b1c6a4f133f6e3629818d0e4523a86218d3e623e243338a4e82daa4ae591",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "将偶数 20 拆写成两个质数之和，要求这两个质数的差尽可能大。这两个质数中较小的那个质数是多少？【侦察任务】",
+      "contentHash": "b60540910accd7b3bef6e312f43eedd09952c5c89632cf658b610043ce614c81",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1586,15 +1586,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-construction-4",
       "title": "构造法",
-      "prompt": "构造一个面积 24 平方米的长方形，长 8 米，宽是多少米？【推进任务】",
-      "contentHash": "26b444f1bee0439fab19fa68d2907f9d15d51fb6cd04d1354c985b5caa986fad",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "在幻和为 15 的标准 3×3 幻方中（中心为 5），四个角上的数字必定全为偶数（2、4、6、8）。构造完成后，这四个角上的偶数之和是多少？【推进任务】",
+      "contentHash": "3949e4a93807dbbf087625d87a40e2ffbc0c069616b6afb5b2ea4aeb9200f3b6",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1603,15 +1603,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-construction-5",
       "title": "构造法",
-      "prompt": "用 1、2、3 三个数字各用一次组成一个三位数，最大能组成多少？【协作任务】",
-      "contentHash": "1a54cb102434c42f2fdcb39e38916da8fbfe9641a96c9076fbf7154fce1a5d3a",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "将数字 2、4、6、8 分别填入算式 (□ + □) × (□ + □) 的四个方框中，每个数字只用一次。能构造出的最大计算结果是多少？【协作任务】",
+      "contentHash": "15d8f7279fcccf908395cca6d2f4c48483ad493623862a968a8aef93115f362e",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1620,15 +1620,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-construction-6",
       "title": "构造法",
-      "prompt": "用 0、1、2 三个数字各用一次组成最小的三位数，是多少？【加固任务】",
-      "contentHash": "087f9c526b4421ea865172c607bea0c44e149cdd6aac945046ef29112a483bdf",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "用 1 到 9 构造 3×3 幻方（每行和为 15）。第一行依次填入 2、9、4，第二行已知左右填入 7 和 3（中心为 5）。构造第三行最右下角的数字是多少？【加固任务】",
+      "contentHash": "28faae27e618300f582ec332992ba233a7d72c0e78cdc40a6e0210a9ca0b8e4b",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1637,15 +1637,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-construction-7",
       "title": "构造法",
-      "prompt": "12 根火柴每 4 根拼一个独立的正方形（不共用边），最多能拼几个？【巡航任务】",
-      "contentHash": "ff3e92278f5169b4ac1716bd4e4a6e290e1bf1998af05b44a01b2c2d8c4b43ef",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "从 1 到 10 这 10 个自然数中，最多可以选出多少个数，使得选出的这些数两两都不互质（即任意两个数都有大于 1 的公因数）？【巡航任务】",
+      "contentHash": "154c57e406635b5b2d8775a6243ae0bf7c3fc45d7fb364f046e6d4c07d6ec25c",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1654,15 +1654,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-construction-8",
       "title": "构造法",
-      "prompt": "一个等腰三角形周长 16 厘米，底边 6 厘米，一条腰长多少厘米？【穿越任务】",
-      "contentHash": "00c181d79d640fe600290ad221b8f45a0299b88b5ccc6238ba0b1269f573c193",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "用 24 米长的安全防护网围成一个长方形临时作业区（长和宽都是整米数）。构造哪种长宽尺寸能使作业区面积最大？最大面积是多少平方米？【穿越任务】",
+      "contentHash": "af4a2485a346ca5c8eba62bd96d55cf06d8d14c4cc5e22256bd7a3d7075ab0f3",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1671,15 +1671,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-construction-9",
       "title": "构造法",
-      "prompt": "构造 5 个连续自然数，使它们的和是 35。中间的那个数是多少？【攻坚任务】",
-      "contentHash": "279abc5d35c43521520610e60a25191c37497a6d5baacc514b65d18750f7f5ef",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "在 2×3 的方格网中用黑白两色涂色，能否构造出一种涂色方案，使得任意一个 2×2 的子方块中黑格与白格的数量都相等（各 2 个）？若能构造成功填 1，绝不可能填 0。【攻坚任务】",
+      "contentHash": "6821eb6c3326dee272e021a8769e85fa9e77b1eb358a4cf90662884342c2a0ab",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1688,15 +1688,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-construction-10",
       "title": "构造法",
-      "prompt": "构造一个两位数：个位比十位大 5，且个位数字是 6。这个数是多少？【决战任务】",
-      "contentHash": "49dc19e143ce7e680c2c2e7dc70e45eccb7b8a66f429002ffbfba830c7275441",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "构造两个连续奇数，它们的平方差恰好等于 48。这两个连续奇数中较小的那个数是多少？【决战任务】",
+      "contentHash": "7a991736836a44b35fa410b43a35c2dbf449f38e6fdcb89678c7dfd6b012b81a",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1705,15 +1705,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-contradiction-1",
       "title": "反证启蒙",
-      "prompt": "若把 24 份材料平均分给 3 组，检查“每组少于 8 份”的说法是否可能；每组实际有多少份？【启航任务】",
-      "contentHash": "bf5475abcc617f8c3c35663cbbebac394215389fd217d05a4c8248b13372dc3f",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "4 只实验机械雀飞进 3 个休息笼。反证法证明“至少有 1 个休息笼里飞进了不少于 2 只雀”：假设每个笼子里飞进的机械雀都少于 2 只（即最多 1 只），那么 3 个笼子最多只能容纳多少只机械雀？【启航任务】",
+      "contentHash": "016f7066417083b702be5c2853498dc44a93c9167afe6b3de956525a458542f4",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1722,15 +1722,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-contradiction-2",
       "title": "反证启蒙",
-      "prompt": "把 30 份材料平均分给 5 组。有人说“每组少于 6 份”，这个说法成立吗？每组实际有多少份？【校准任务】",
-      "contentHash": "dae519da0b4b1c5d8e0ac8ad7b151fe3cf787426834a1ff7fe046209ca6836fb",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "两个整数之和是奇数。反证法证明“这两个整数不可能都是偶数”：假设它们全都是偶数，偶数加偶数的和必然是偶数（填 2）还是奇数（填 1）？【校准任务】",
+      "contentHash": "34457bf4580c3ef71a1674f246e239a7e2516bedecf6f01bada4e20a28fdcb49",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1739,15 +1739,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-contradiction-3",
       "title": "反证启蒙",
-      "prompt": "如果一个数是 3 的倍数，它除以 3 的余数不可能是 1。某数除以 3 余 1，它是不是 3 的倍数？（是填 1，不是填 0）【侦察任务】",
-      "contentHash": "3cd83398015205808fbcc43231dd2431dae128f40b2640bc7c6c0430562e9607",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "两条直线如果相交，反证法证明“它们不可能有两个不同的公共交点”：假设它们相交于两个不同的点 A 和 B，根据几何公理“过两点有且只有一条直线”，这两条直线必定会重合为几条直线？【侦察任务】",
+      "contentHash": "c5560c33fd9daeaf0d691a6c82b832a4af86037b12ac174c135f6911f3f8aca7",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1756,15 +1756,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-contradiction-4",
       "title": "反证启蒙",
-      "prompt": "5 个苹果分给 4 个小朋友，每人至少 1 个，一定有至少几个小朋友苹果数相同？【推进任务】",
-      "contentHash": "68244e217563017ce1ea635f713aaaacabd789fd70dbba54ec6b6d3d35af194d",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "一个未知正整数 a 满足 a × a = 2。反证法证明 a 不可能是整数：若 a 是正整数，当 a=1 时 a²=1<2，当 a≥2 时 a² 至少是多少？【推进任务】",
+      "contentHash": "99e06c7db975b0b2ba7fc6759efe53d62df8340e1e1b82fc7efab5e450ff0334",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1773,15 +1773,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-contradiction-5",
       "title": "反证启蒙",
-      "prompt": "平均分 40 份材料给 4 个小组，能说“每组少于 9 份”吗？每组实际有多少份？【协作任务】",
-      "contentHash": "4c7f13b02b19e88ed39c3ad76ed1c689780f83fded3a6af794fe676ae0fbe256",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "一个班级有 37 名学生，反证法证明“至少有 4 名学生出生在同一个月”：假设每个月出生的人数都不超过 3 人，那么 12 个月全班最多只能有多少人？【协作任务】",
+      "contentHash": "a89c395a896cc2f5b0d282ff28e4a40dfd9fdde2a53e0c722cf44df1fed5d836",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1790,15 +1790,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-contradiction-6",
       "title": "反证启蒙",
-      "prompt": "37 个球装进 4 个盒子，每个盒子最多装 10 个，能不能正好装满 4 个盒子？（能填 1，不能填 0）【加固任务】",
-      "contentHash": "b3d02869f0d00eff4e5da57d21e328354163f047e7a25e4535deb454882af359",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "甲、乙两人中有一人说了真话，一人说了假话。甲说：“我们两人都在说谎。”反证法：如果甲说的是真话，那么根据甲的话甲也在说谎，产生自我矛盾！因此两人中谁一定在说谎？若甲说谎填 1，乙说谎填 2。【加固任务】",
+      "contentHash": "d735bab54a17bc605c00e81f4bdfdfcf23c27f6f7d533bf72f65af20963a6663",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1807,15 +1807,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-contradiction-7",
       "title": "反证启蒙",
-      "prompt": "一个大于 2 的偶数，它是不是质数？（是填 1，不是填 0）【巡航任务】",
-      "contentHash": "47fb8dc0623a32416a41cc659a499ec74b641a311878d5272185efacd498fd66",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "假设世界上只有有限的 n 个质数 p1、p2……pn。构造新数 N = (p1 × p2 × ... × pn) + 1。用反证法思考：将 N 除以这 n 个已知质数中的任意一个，余数必定都是多少？【巡航任务】",
+      "contentHash": "25dcf9b167fe01d3f963c56645996c49ecabf0baac20a82a1c700c098ccf452a",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1824,15 +1824,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-contradiction-8",
       "title": "反证启蒙",
-      "prompt": "7 个小朋友分 6 块同样的蛋糕，每人至少 1 块，是否可能？（可能填 1，不可能填 0）【穿越任务】",
-      "contentHash": "3a7d7503f8463ea547ce30e3261274347e84017e87ed6f2c2d343f0bf945fade",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "若两个连续自然数 n 和 n + 1 有大于 1 的公因数 d (d > 1)。反证法推导：公因数 d 必须同时整除它们的差 (n + 1) - n。由此推出 d 必须整除几？【穿越任务】",
+      "contentHash": "493b5048a70706207d8e2c23e9d99c5f1e64c5938794f5515a44919ad296f54f",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1841,15 +1841,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-contradiction-9",
       "title": "反证启蒙",
-      "prompt": "若 a+b 是偶数且 a 是偶数，则 b 一定是奇数（填 1）还是偶数（填 2）？【攻坚任务】",
-      "contentHash": "6eefcae4512faa4ce8091034cf73e2118a00329c0274a6cd234f6c12d0d25c21",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "一个正方体的 6 个面分别涂上红、黄、蓝三色之一。反证法证明“至少有两个相对的面或者相邻的面颜色相同”：观察正方体的每个顶点，汇聚了 3 个两两相邻的面，要让这 3 个两两相邻的面颜色互不相同，至少需要几种颜色？【攻坚任务】",
+      "contentHash": "39582aa880d59eac19427d6d10d5ee7f7927bbc5e9777e7bf1f6a4403a4daaf2",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1858,15 +1858,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-contradiction-10",
       "title": "反证启蒙",
-      "prompt": "全班 41 人，出生月份只有 12 种。一定有至少几人同月出生？【决战任务】",
-      "contentHash": "a08db5111b9195aeff08cd8fb1ef857bf60d7b2b14b671f38ce03502f268c821",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "5 名选手进行单循环象棋比赛，每两人赛一局，胜者得 2 分，负者得 0 分，平局各得 1 分。反证法证明“不可能所有 5 名选手的得分全都是奇数”：10 局比赛全部结束后，所有选手得分之和恒等于多少分？【决战任务】",
+      "contentHash": "135cb0b3078ac4f39d89ea8d261b8a964f30eafae345fd2e4af403a9a7fdc622",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1875,15 +1875,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-integrated-strategy-1",
       "title": "综合策略 Boss",
-      "prompt": "综合任务中有 3 组，每组完成 4 项，另外完成 2 项复核。全部完成多少项？【启航任务】",
-      "contentHash": "b939f53402b115968875298aee1b56b6c7aa8f599f29175995c9edb23a6f16ea",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "空间站体检统筹：3 名宇航员做抽血化验每人 3 分钟，同时心电图机每人 2 分钟，两设备独立运行。化验箱中有 2 种颜色的采血管各 10 支，至少取几支采血管才能保证有 2 支颜色相同？【启航任务】",
+      "contentHash": "c1c576fc1e9fdaa1626a41db6aed9a94f417a86971a4f5228b56ba4451ccc197",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1892,15 +1892,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-integrated-strategy-2",
       "title": "综合策略 Boss",
-      "prompt": "方案甲 5 天每天做 6 件，方案乙 4 天每天做 8 件。乙比甲多完成多少件？【校准任务】",
-      "contentHash": "47568e1a09bbdba4ab09c28ee289da2b8dec9ce09204fb8ba6dc1dbd04a4fc6d",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "能源车队出发执行长途任务，上午消耗了车载总电量的一半，下午甲、乙两组分别消耗 8 兆瓦和 12 兆瓦，此时电量刚好全部耗尽。这支车队出发时总电量是多少兆瓦？【校准任务】",
+      "contentHash": "526c1bd2d141cc202e92335868851dfe961b00df7a28d77dff5c35388b6cb94e",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1909,15 +1909,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-integrated-strategy-3",
       "title": "综合策略 Boss",
-      "prompt": "买 3 个本子每本 5 元、2 支笔每支 4 元，付 30 元应找回多少元？【侦察任务】",
-      "contentHash": "48cb75e160826a5d546958f5eca2a8214215c268c9da256460f11f72eee86f02",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "在 1 到 10 这 10 个自然数中挑选两个不同的数相乘，要求乘积是偶数。利用正难则反分类计算，乘积为偶数的组合一共有多少种？【侦察任务】",
+      "contentHash": "bf908f077f8ff877a4146e54e083a961039b8f3652b48a207152e0d322181d93",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1926,15 +1926,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-integrated-strategy-4",
       "title": "综合策略 Boss",
-      "prompt": "甲车每小时行 40 千米行 3 小时，乙车每小时行 50 千米行 2 小时。两车一共行了多少千米？【推进任务】",
-      "contentHash": "bd0795b580e6e8bfc10f1ace3fb17e4b00c821d31636fd558e270607f40756b5",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "生态农场运来小鸡和小兔共 10 只，地面共有 26 条腿。用假设法算出其中兔子有 3 只、鸡有 7 只。现在给每只兔子喂食需 3 分钟、每只鸡喂食需 1 分钟。安排两名饲养员同时分别负责喂兔（共9分钟）和喂鸡（共7分钟），最少需要几分钟全部喂完？【推进任务】",
+      "contentHash": "9a79f33518474f029df8c7a159e2d1a14763cbdfa577b20e031ba148917ec047",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1943,15 +1943,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-integrated-strategy-5",
       "title": "综合策略 Boss",
-      "prompt": "仓库原有 85 箱货，上午运进 30 箱，下午运出 45 箱。现在有多少箱？【协作任务】",
-      "contentHash": "9be1363af4ce655282c4de0ecb16c1de57f21a96dcf76a3134f140e9c89ef594",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "巡检机器人在 2×3 的方格网中行走，必须经过中心点 C(1, 1)。已知从起点到 C 有 2 条最短路线，从 C 到终点有 3 条最短路线。综合利用乘法原理，全流程有效最短路线有多少条？【协作任务】",
+      "contentHash": "f4f36d841774be2a576050c5ded75e73ca6abfc12e600900579cd60aa0cacf51",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1960,15 +1960,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-integrated-strategy-6",
       "title": "综合策略 Boss",
-      "prompt": "有 4 个小组每组 6 人，其中 3 人请假。实际参加的有多少人？【加固任务】",
-      "contentHash": "fa7cc2bc80edca4c3259424fd19343d8e969ea1a9fcb1ffd26f7fd6eadfe5c09",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "抽奖盒中有 3 个红球、4 个黄球、5 个蓝球。至少要摸出多少个球，才能保证摸出的球中必定有 2 种不同颜色的球？【加固任务】",
+      "contentHash": "f6794dbb0520b6c313e4c176f0c96a74ca270b3f2aaa6844c247a5758e6c2a7f",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1977,15 +1977,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-integrated-strategy-7",
       "title": "综合策略 Boss",
-      "prompt": "36 个苹果每 4 个装一盒，卖出 5 盒后还剩几盒？【巡航任务】",
-      "contentHash": "550f7a4d3667cf586172d510cff22723abd242bc11affefa3a85e34a58c88e47",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "数字博弈逆向对局：从初始数 1 开始，两人轮流将当前数乘 2 或乘 3，谁先使计算结果达到或超过 30 谁获胜。逆向分析：谁先抢占 10 到 14 之间的优势节点谁必胜。先手第一步应该选择乘几？【巡航任务】",
+      "contentHash": "0c6c1b00b632bcc44937246f744561e18aeb6b4c79c7dbab6a734d56f14364a1",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -1994,15 +1994,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-integrated-strategy-8",
       "title": "综合策略 Boss",
-      "prompt": "小明 2 分钟跳绳 180 下，照这样 5 分钟跳多少下？【穿越任务】",
-      "contentHash": "f8e6eb11bc0726cdf130fbe22f9720c4e8bf54dd21b58f77386bddccbebdbb34",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "4 辆特种车检修耗时分别为 2、3、4、5 分钟。按最优统筹顺序（短时间优先）排队检修，前 3 辆车全部完成检修时的累计总耗时是多少分钟？【穿越任务】",
+      "contentHash": "506d4c0af49dce2b8ff0db83acc7ac8b7c63d2ad1a7d712f2aa000a08f4c48b8",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -2011,15 +2011,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-integrated-strategy-9",
       "title": "综合策略 Boss",
-      "prompt": "一块 12 米宽 5 米的地，每平方米种 3 棵花，一共种多少棵？【攻坚任务】",
-      "contentHash": "685f5eaf6fe0925f91c4216b94164f1f315c0b6855b030c8fc48dc9dee706a30",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "防风结构工程：① 采购清单中 A、B 两类钢材总长 40 米，A 材比 B 材长 8 米（和差模型得出 A 材长 24 米）；② 加工 A 材需要两道工序：切割需 6 分钟，焊接需 10 分钟；③ 焊接期间可独立并行喷漆防锈（需 4 分钟）。完成 A 材全套加工最少需要多少分钟？【攻坚任务】",
+      "contentHash": "fdfeb4ef80e60dd0664e3f8fca4c2cb475e44d5a1228a4c04a491dfbd68f39e5",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -2028,15 +2028,15 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     },
     {
       "questionId": "chapter-08-integrated-strategy-10",
       "title": "综合策略 Boss",
-      "prompt": "电梯限载 300 千克，司机重 60 千克，每箱货 40 千克。一次最多能运几箱货？【决战任务】",
-      "contentHash": "5e048b85114288ce60dcb465d8466cd7edc82a959699576db2d0f20ec0f88edd",
-      "reviewer": "课程负责人",
-      "reviewedAt": "2026-08-14",
+      "prompt": "空间防风桁架装配工程：装配人员在红、黄两色备选抗剪铆钉盒中（两种铆钉各有 20 枚），至少要盲抽多少枚铆钉，才能保证一定包含 4 枚同一种颜色的铆钉？【决战任务】",
+      "contentHash": "67c1b77b39a8cc256cd65feb0a0637b4600397cd33e60d26c9c1dbd9180e3efd",
+      "reviewer": "教学审查员审核签核",
+      "reviewedAt": "2026-09-29",
       "scores": {
         "objective": 1,
         "nonTemplate": 1,
@@ -2045,7 +2045,7 @@
         "reviewExecutable": 1,
         "pitfallReal": 1
       },
-      "notes": ""
+      "notes": "教学审查员深度复审通过：去同质化去低质，阶梯思维完整。"
     }
   ]
 }

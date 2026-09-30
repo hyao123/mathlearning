@@ -4,14 +4,14 @@
   "status": "approved",
   "reviewer": "教学审查员审核签核",
   "reviewedAt": "2026-09-29",
-  "contentHash": "b01da1678e46545cc1cff225e73ffddb9a03ff8a55612c6e718c748991084a0c",
+  "contentHash": "95a3cab937bffe8a11bb6d129962b4a035725e59ce2422a2e2930000e0479d11",
   "notes": "教学审查员深度复审签核通过：全面消除雷同模版与低质机械计算，知识梯度与启发式解析完备。",
   "records": [
     {
       "questionId": "chapter-07-read-conditions-1",
       "title": "审题与提取条件",
-      "prompt": "补给清单上写着：工具箱里有 26 个螺丝、14 个垫片和若干弹簧，一共有 45 个零件。弹簧有多少个？【启航任务】",
-      "contentHash": "5ea992897c8365beca13f34e7dc0035efc21306425f2266a12c9c779341f0da7",
+      "prompt": "太空补给清单记录：A 舱有 26 个氧气瓶、B 舱有 14 个急救包，另有若干信号弹，三类物资共 45 件。信号弹有多少个？【启航任务】",
+      "contentHash": "03f437971e972a48e76834913f89f31afe53258a3bdf942b7d723f68f3ec1919",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -27,8 +27,8 @@
     {
       "questionId": "chapter-07-read-conditions-2",
       "title": "审题与提取条件",
-      "prompt": "飞行记录显示：上午飞行 42 分钟，下午飞行 38 分钟，途中加油花了 15 分钟。全天实际飞行共多少分钟？【校准任务】",
-      "contentHash": "96b24d4bce049825f4e39cc96afc5c4b1cae806780bff26baf1b3154afba5d87",
+      "prompt": "飞行日志显示：巡航机上午巡逻飞行 42 分钟，下午巡逻飞行 38 分钟，中午在基站加油检修花费 15 分钟。全天实际飞行共多少分钟？【校准任务】",
+      "contentHash": "f6da891973465e9795040d2af90f36b9cdd184d97a68be328259ada42bdcbbf7",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -44,8 +44,8 @@
     {
       "questionId": "chapter-07-read-conditions-3",
       "title": "审题与提取条件",
-      "prompt": "三艘补给船各运来一批材料：第一船 18 箱，第二船比第一船多 5 箱，第三船运来 12 箱。第二船运来多少箱？【侦察任务】",
-      "contentHash": "aff2fdac416ffb3327a99f718467fb629143b87110a450c60182c2d0f63accb2",
+      "prompt": "月面科研站三次采集岩石样本：第一次采集 18 块，第二次比第一次多采集 5 块，第三次采集 12 块。第二次采集了多少块岩石？【侦察任务】",
+      "contentHash": "43df2f729dcaa0951a823426a1d86a35ce17f4386720564d70816d69433b1cf4",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -61,8 +61,8 @@
     {
       "questionId": "chapter-07-read-conditions-4",
       "title": "审题与提取条件",
-      "prompt": "机器人的任务分三步完成：第一步用 12 分钟、第二步用 15 分钟，三步一共需要 40 分钟。第三步需要几分钟？【推进任务】",
-      "contentHash": "8f58ac35ac5165d61eff2badbdaedea6706e74e4d9fc9a7db2b4198303e6d708",
+      "prompt": "空间站太阳翼检修工作分三步完成：第一步耗时 12 分钟，第二步耗时 15 分钟，三步总耗时 40 分钟。第三步需要耗费几分钟？【推进任务】",
+      "contentHash": "75abdb66ea06d30007f623044c5f47ad406cf26830b8db3e57e2bdfc5a145331",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -78,8 +78,8 @@
     {
       "questionId": "chapter-07-read-conditions-5",
       "title": "审题与提取条件",
-      "prompt": "操场上有 32 名学生：跳绳组 12 人、踢毽组 9 人，其余都在跑步。跑步的有多少人？【协作任务】",
-      "contentHash": "f447d3959ab0ee5caa60635ab49e3063fda005db52151be559e677ac8e923f68",
+      "prompt": "深空探测团队共有 32 名科研人员：生命科学组 12 人，天体物理组 9 人，其余都在工程保障组。工程保障组有多少人？【协作任务】",
+      "contentHash": "a00e710c4e9a8271aa9e525eaf7bfa11b48fc1e1b49e38499c131abaeb9f0718",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -95,8 +95,8 @@
     {
       "questionId": "chapter-07-read-conditions-6",
       "title": "审题与提取条件",
-      "prompt": "收货单上写着：苹果 3 箱每箱 20 个，梨 4 箱每箱 15 个，还有香蕉 25 根。苹果和梨一共有多少个？【加固任务】",
-      "contentHash": "a629bb03c9dded4dceb50b9dd84ddb409a2405c68bfd97dd9afa73e51367c692",
+      "prompt": "生态实验舱物资清单：高能营养液 3 箱每箱 20 瓶，水质净化剂 4 箱每箱 15 瓶，另有备用探测传感器 25 个。营养液与净化剂一共有多少瓶？【加固任务】",
+      "contentHash": "244ed6ff864202e695836b4360073710fe2594aaf059c41a1eb4d81149d9fb42",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -112,8 +112,8 @@
     {
       "questionId": "chapter-07-read-conditions-7",
       "title": "审题与提取条件",
-      "prompt": "电影院第一场卖出 85 张票，第二场比第一场多 12 张。两场一共卖出多少张？【巡航任务】",
-      "contentHash": "453479da83d9ab2c16f8e02b3b4787bfe4e8c9bb031af9600b254cdf3bdd2153",
+      "prompt": "深空天线阵列第一天接收到 85 次有效脉冲信号，第二天比第一天多接收到 12 次。两天一共接收到多少次脉冲信号？【巡航任务】",
+      "contentHash": "8d673bc2678590d18e20a0082bc786fcf61da3697e5e9fc265fc75bf78762ee6",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -129,8 +129,8 @@
     {
       "questionId": "chapter-07-read-conditions-8",
       "title": "审题与提取条件",
-      "prompt": "货架上有故事书和科技书共 60 本，其中科技书 24 本；另外还有科普杂志 18 本。故事书原来有多少本？【穿越任务】",
-      "contentHash": "f62e49ea7ce82b3c7f8b6d93744c8fa3c3624fc0a9425067ed6f9ba5b4cf354a",
+      "prompt": "星际资料库存储的故事类和科技类档案共 60 卷，其中科技类档案有 24 卷；另外还存有天文观测日志 18 册。故事类档案有多少卷？【穿越任务】",
+      "contentHash": "e02d1ac678f4a19c30c2fc6cad1f0df304d6ef71fce2edd62e83b4cc281b0017",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -146,8 +146,8 @@
     {
       "questionId": "chapter-07-read-conditions-9",
       "title": "审题与提取条件",
-      "prompt": "小华买东西：笔记本每本 6 元买 3 本，钢笔每支 8 元买 2 支，橡皮每块 1 元买 5 块。收银员说一共 39 元，按价格算正确一共是多少元？【攻坚任务】",
-      "contentHash": "4f6dfce8de1c911a559fe24bd13502e1ba58f5169d9a0e3dccb6c2af743e9de3",
+      "prompt": "科考队采购装备：防护面罩每顶 6 元购买 3 顶，便携探照灯每盏 8 元购买 2 盏，密封备用扣每袋 1 元购买 5 袋。核算总费用应为多少元？【攻坚任务】",
+      "contentHash": "bf47f2b4570753833d1afee1a3d6d3f47951dabb21f0bb919c506737f1a00eb2",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -163,8 +163,8 @@
     {
       "questionId": "chapter-07-read-conditions-10",
       "title": "审题与提取条件",
-      "prompt": "车队出发前有 50 辆车，第一周新到 12 辆，第二周调走 8 辆，同时报废 4 辆旧车。现在车库里有多少辆车？【决战任务】",
-      "contentHash": "a1217ad67478f538813aa0c940f8d2e0e308c3f0637e666726c421fedd9428fb",
+      "prompt": "基地车库出发前停泊 50 辆特种车，第一周调入 12 辆新车，第二周调出 8 辆支援前线，同时有 4 辆老旧车报废退役。目前车库有多少辆车？【决战任务】",
+      "contentHash": "c09db13c390a9406ddcff719d0b26fde99644c2f494ea0d95d3b2b16e5a73674",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -180,8 +180,8 @@
     {
       "questionId": "chapter-07-draw-bar-model-1",
       "title": "线段图",
-      "prompt": "用线段图表示：甲线段长 7 厘米，乙线段比甲线段短 3 厘米。乙线段长多少厘米？【启航任务】",
-      "contentHash": "c506b49536314d121121a0e99f0a5a6de3640545de39d8eb1e448e5d609839e6",
+      "prompt": "用线段图建模：甲段输能管道长 7 米，乙段输能管道比甲段短 3 米。乙段输能管道长多少米？【启航任务】",
+      "contentHash": "3e0fa199c79d6135e8d2047c8a8a665584824a9216fc8b14474527b02755a9df",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -197,8 +197,8 @@
     {
       "questionId": "chapter-07-draw-bar-model-2",
       "title": "线段图",
-      "prompt": "两条线段一共长 20 厘米，较长的一段比短的一段多 4 厘米。较长的一段长多少厘米？【校准任务】",
-      "contentHash": "7e009cb18eb7f4230e5c2af149faf3b95b442df28cfa67863943b8a7da7f1d15",
+      "prompt": "两条巡航航道总长 20 千米，外侧航道比内侧航道长 4 千米。外侧航道长度是多少千米？【校准任务】",
+      "contentHash": "d25b4167f42a69c6763c8de23f3aa4fe3d1e61efa4bb4c27cf6792b2717fbc3d",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -214,8 +214,8 @@
     {
       "questionId": "chapter-07-draw-bar-model-3",
       "title": "线段图",
-      "prompt": "线段图上第一段画 2 格、第二段画 3 格，两段一共代表 15 厘米。1 格代表多少厘米？【侦察任务】",
-      "contentHash": "052dd081d5b4646562df086df0e9560cac044e8080f90f739aaecf576aedc8c4",
+      "prompt": "线段图上第一分段画 2 格，第二分段画 3 格，两段共代表 15 千米的巡检路线。1 格代表多少千米？【侦察任务】",
+      "contentHash": "359509c5924df3f369c45eb02ebac815d894601df3e14c7a0e724ec530792e58",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -231,8 +231,8 @@
     {
       "questionId": "chapter-07-draw-bar-model-4",
       "title": "线段图",
-      "prompt": "两条线段总长 30 厘米，较长的一段是较短一段的 2 倍。较短的一段长多少厘米？【推进任务】",
-      "contentHash": "210e6672be753a7b01df42f788d701717d8535a41931ea037f78a518f7a0fa76",
+      "prompt": "两根支撑梁总长 30 米，主梁长度是副梁长度的 2 倍。副梁长度是多少米？【推进任务】",
+      "contentHash": "27d5a0b85c37cdaa389d1974ac0f509ab995b91a67ec02e6016da22591cfc843",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -248,8 +248,8 @@
     {
       "questionId": "chapter-07-draw-bar-model-5",
       "title": "线段图",
-      "prompt": "三段线段首尾相接长 27 厘米，前两段一样长，第三段比前两段各多 3 厘米。第三段长多少厘米？【协作任务】",
-      "contentHash": "a1d83fe515a97209b45b1d63cb31e583aecd57813f90fbbede2098b0fc4ff46a",
+      "prompt": "三段光纤首尾相接共长 27 米，前两段一样长，第三段比前两段各长 3 米。第三段光纤长多少米？【协作任务】",
+      "contentHash": "6f9eb9e1e979ebf8502ef4949b9aebfb233ee665cef3cf0e6caa7fbf1218730e",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -265,8 +265,8 @@
     {
       "questionId": "chapter-07-draw-bar-model-6",
       "title": "线段图",
-      "prompt": "线段图中第一条画 4 格，第二条比第一条多 2 格，两条共代表 10 厘米。第二条长多少厘米？【加固任务】",
-      "contentHash": "b399207c6a42ebb49caba2d066f0bb4fb13127d21c7fa79e4f31c3e36b7422e3",
+      "prompt": "结构受力图中标注：第一条横梁画 4 格，第二条横梁比第一条多画 2 格，两条横梁共代表 10 米钢材。第二条横梁代表多少米？【加固任务】",
+      "contentHash": "3b209f7b25c9742f4395fdaa3cf0840884a7c2f0579b94c113fe4c4221cc189a",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -282,8 +282,8 @@
     {
       "questionId": "chapter-07-draw-bar-model-7",
       "title": "线段图",
-      "prompt": "甲、乙两地相距 96 千米。汽车已行的路程比剩余路程多 24 千米。已经行驶了多少千米？【巡航任务】",
-      "contentHash": "723fd96ffb125b74ad1d7ff4e0e3b029e3c0bedffa90dee6576221afe8b6fc99",
+      "prompt": "甲乙两座空间补给站相距 96 千米，运输船已飞行的航程比剩余航程多 24 千米。已经飞行了多少千米？【巡航任务】",
+      "contentHash": "2bb83efb29678aabf6dec95952af0fa4166bd65d4628a0d8271932eff37933e7",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -299,8 +299,8 @@
     {
       "questionId": "chapter-07-draw-bar-model-8",
       "title": "线段图",
-      "prompt": "一根绳子剪成两段，长的一段比短的一段长 14 米，两段共长 50 米。短的一段长多少米？【穿越任务】",
-      "contentHash": "d1b4dfc402a62e9f59957a37ce235f2a6e69c9d1007dc390355053e84a8a8620",
+      "prompt": "一根超强碳素缆绳截成两段共长 50 米，长段比短段长 14 米。短段缆绳长度是多少米？【穿越任务】",
+      "contentHash": "b28164bc142533ecfdf5b73dd0b0239e30bea8cf22dc77f5221ee7f7573648ce",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -316,8 +316,8 @@
     {
       "questionId": "chapter-07-draw-bar-model-9",
       "title": "线段图",
-      "prompt": "图书角有故事书和连环画共 72 本，故事书比连环画的 2 倍还多 6 本。连环画有多少本？【攻坚任务】",
-      "contentHash": "5235e44db2be9c8cacc1ad165394df1fe5c6f00f6feef1532d444321d7ea68cc",
+      "prompt": "舱内储备箱中有实验手册和观察记录共 72 本，实验手册本数比观察记录的 2 倍还多 6 本。观察记录有多少本？【攻坚任务】",
+      "contentHash": "454bb94aeee7f9130d44061615422f8eef621f04990a858389ec8dd05e32e732",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -333,8 +333,8 @@
     {
       "questionId": "chapter-07-draw-bar-model-10",
       "title": "线段图",
-      "prompt": "妈妈和小红的年龄和是 44 岁，妈妈的年龄比小红的 3 倍小 4 岁。小红多少岁？【决战任务】",
-      "contentHash": "530889c47ca15e5726a5203caaef46a236518d5ac70432468787a84014160de1",
+      "prompt": "双节折叠机械臂全长伸展为 44 厘米，主臂长度比副臂长度的 3 倍还少 4 厘米。副臂长度是多少厘米？【决战任务】",
+      "contentHash": "8d5c0efa74b05ade16d3254acf07dbf81ec47c2e4b9d6737cd34cbc8940c1da8",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -350,8 +350,8 @@
     {
       "questionId": "chapter-07-diagram-model-1",
       "title": "示意图与数形结合",
-      "prompt": "示意图中一个长方形花圃长 6 米、宽 3 米。面积是多少平方米？【启航任务】",
-      "contentHash": "93c468712fd3be5859efbacd8f9230fec1719e769785bfd590264538d12137a7",
+      "prompt": "空间基地太阳能集热板示意图呈现为长 6 米、宽 3 米的长方形。这块集热板的有效采光面积是多少平方米？【启航任务】",
+      "contentHash": "626b15a4a2985ec6353333948c33923649ae91672850d0fc626f22a1ad9c1b3b",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -367,8 +367,8 @@
     {
       "questionId": "chapter-07-diagram-model-2",
       "title": "示意图与数形结合",
-      "prompt": "示意图把 1 份画成 1 个小方格，3 份一共画了 21 个小方格。1 份是多少？【校准任务】",
-      "contentHash": "869f0fe19bee3cf2747112914df572b680f1f9873c50e3df9439fd11368c8800",
+      "prompt": "能量分布示意图中，1 个单位小方格代表 1 份备用电力，图上用 3 个连续小方格共表示 21 兆瓦。1 个小方格代表多少兆瓦？【校准任务】",
+      "contentHash": "fa8dadd5e5ba7fc161ecab15205c003e26959f16f7248644a2f09a3dc85b9dc6",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -384,8 +384,8 @@
     {
       "questionId": "chapter-07-diagram-model-3",
       "title": "示意图与数形结合",
-      "prompt": "正方形示意图每边画 5 个小格，把全部小格涂满，需要涂多少个小格？【侦察任务】",
-      "contentHash": "74389b3d95888fad6e8c518afc9240d0ed8efba8824e692561de376847024576",
+      "prompt": "方形防护盾表面布设微型感应器，示意图显示每边整齐排列 5 个感应元。整个防护盾矩阵一共包含多少个感应元？【侦察任务】",
+      "contentHash": "9ee3335ff69c8d9b16c6f2c2d8de29db288befbaa177412e2820005b26112884",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -401,8 +401,8 @@
     {
       "questionId": "chapter-07-diagram-model-4",
       "title": "示意图与数形结合",
-      "prompt": "示意图中，大长方形长 8、宽 5，右上角挖去一个边长 2 的正方形。剩余面积是多少？【推进任务】",
-      "contentHash": "d85b5e3ca638f33e876f3040bcd83d21f6843475b1c3f6e9a3cee8d3fba1f504",
+      "prompt": "实验甲板示意图为长 8 米、宽 5 米的长方形，右上角切除了一个边长 2 米的正方形紧急通道口。剩余甲板面积是多少平方米？【推进任务】",
+      "contentHash": "c81225fd05f6d28fc9c201b520920c9e3eec583ae2eaf29232bd6a639f793c1a",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -418,8 +418,8 @@
     {
       "questionId": "chapter-07-diagram-model-5",
       "title": "示意图与数形结合",
-      "prompt": "示意图把一条总长 20 厘米的线段平均分成 4 段，每段长多少厘米？【协作任务】",
-      "contentHash": "43c43d8a13fbe098da8837598473eee2da14d79080580f6cd916f11fb83801d1",
+      "prompt": "直线导轨示意图全长 20 厘米，上面被刻度均等切分为 4 个工作区间。每个工作区间长度是多少厘米？【协作任务】",
+      "contentHash": "c9f21a689b66db334254972971e61735b0b726c2cbd5a932dc808f731eb5305d",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -435,8 +435,8 @@
     {
       "questionId": "chapter-07-diagram-model-6",
       "title": "示意图与数形结合",
-      "prompt": "示意图中两组图形：第一组画 3×4 个小格，第二组画 2×5 个小格。两组一共多少个小格？【加固任务】",
-      "contentHash": "66852d4c71fd344481b4028f482c6c418f43d449e6e057b3204d8a40f575a8e6",
+      "prompt": "仪器控制面板示意图分为两块芯片矩阵：左芯片排布 3 行 4 列探针，右芯片排布 2 行 5 列探针。两块芯片一共排布多少个探针？【加固任务】",
+      "contentHash": "4fc3dd31a8bc1af91ee56f69ff275f761da69c48b90554a663726b2f0651e9f9",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -452,8 +452,8 @@
     {
       "questionId": "chapter-07-diagram-model-7",
       "title": "示意图与数形结合",
-      "prompt": "示意图显示一条路分两段：第一段比第二段多 6 米，两段共 30 米。第二段长多少米？【巡航任务】",
-      "contentHash": "f91d8c239c24a91d75f375a756b83fa52e60705721e3823ecfd937892982714d",
+      "prompt": "主干电缆走线示意图显示线路分为两段：第一段比第二段长 6 米，全线总长 30 米。第二段电缆长度是多少米？【巡航任务】",
+      "contentHash": "85aeac9dd5a529db2412dc6518762db5e3212ea67cae8bd759a1423703dce1b1",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -469,8 +469,8 @@
     {
       "questionId": "chapter-07-diagram-model-8",
       "title": "示意图与数形结合",
-      "prompt": "阶梯示意图最下面一层画 5 个方格，往上一层比一层少 1 个，一共 4 层。一共有多少个方格？【穿越任务】",
-      "contentHash": "467d76c8914a455835cb0707d2542c2015a91388701d5a6ef4fb2bdf54a7c4c9",
+      "prompt": "梯形阶梯式防风网示意图：最底层排列 5 个钢架单元，向上每层都比下层少 1 个单元，共搭建 4 层。一共使用了多少个钢架单元？【穿越任务】",
+      "contentHash": "8a9160ccf282eb64fe79ca4686a984c3370178cfe0995f7ecf63dd241e7a92a2",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -486,8 +486,8 @@
     {
       "questionId": "chapter-07-diagram-model-9",
       "title": "示意图与数形结合",
-      "prompt": "示意图中阴影部分占整个长方形的 1/4，阴影正好是 9 个小格。整个长方形有多少个小格？【攻坚任务】",
-      "contentHash": "762902a9863f9327c3d093e7de6a1b6c27c691a4a480a08328f1480ee9839dc8",
+      "prompt": "雷达探测网格示意图中，阴影警戒扇区占整个长方形监控屏的 1/4，阴影区域内恰好覆盖了 9 个感应小方格。整个长方形监控屏一共有多少个感应小方格？【攻坚任务】",
+      "contentHash": "068ef0a51b4790cfffe6d60c0cc18a6bca113c113ab26c931446e27739963e68",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -503,8 +503,8 @@
     {
       "questionId": "chapter-07-diagram-model-10",
       "title": "示意图与数形结合",
-      "prompt": "综合示意图：一个 4×6 的长方形中，把左边 2 列和下面 1 行都涂上阴影。阴影一共是多少个小格？【决战任务】",
-      "contentHash": "e1b706ff2b49401380b02580a0d42337e985b948991391a4680466878c9fe04a",
+      "prompt": "在 4 行 6 列的长方形指示网格中，将最左边 2 列与最右边 2 列的方格全部涂上警示阴影。阴影部分一共有多少个小格？【决战任务】",
+      "contentHash": "4c70b3ed0a2862db2dab4da52851785543f0c1295a259973f4e5d06e010e467a",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -520,8 +520,8 @@
     {
       "questionId": "chapter-07-table-method-1",
       "title": "列表整理",
-      "prompt": "列表整理：三天一共收到 30 份申请，第一天 12 份、第二天 8 份。第三天收到多少份？【启航任务】",
-      "contentHash": "4142a940f9f208ce25cda67343622ae08c03bafc318454bdafa76d36a1846d40",
+      "prompt": "实验日志列表记录：三天内深空站累计收到 30 份观测报告，第一天收到 12 份、第二天收到 8 份。第三天收到多少份报告？【启航任务】",
+      "contentHash": "f2688b89f55ee0aefdb288c3c0ae6cf7ab1352ca462e9a5b56fd9d308a007e13",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -537,8 +537,8 @@
     {
       "questionId": "chapter-07-table-method-2",
       "title": "列表整理",
-      "prompt": "表格第一行是 5、7、9，第二行是 6、8、10，第三行的每个数等于前两行对应数的和。第三行第三个数是多少？【校准任务】",
-      "contentHash": "5c29d8cabf45f6c30866a231eae6dc6d587efd06eb6beb72a1441d2afe122539",
+      "prompt": "动力矩阵参数表中第一行读数为 5、7、9，第二行读数为 6、8、10，第三行每列数值均等于上方两行对应数之和。第三行第三列的数据是多少？【校准任务】",
+      "contentHash": "1b37e2df5e1824097ea06fdc754e46eaab7ec2c4a770feacd9a926c36143a306",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -554,8 +554,8 @@
     {
       "questionId": "chapter-07-table-method-3",
       "title": "列表整理",
-      "prompt": "用表格统计：四个小组各做了 6 个模型，一共做了多少个？【侦察任务】",
-      "contentHash": "76ba0b74b6daa3e4579db2cef23b3d5b55fcb2596f6759289da5968d61320e01",
+      "prompt": "工程统计表登记：4 个装配小组各自独立完成了 6 台便携采样机器人的调试。这 4 个小组一共调试了多少台机器人？【侦察任务】",
+      "contentHash": "b3b2b00bdbf01b807acd0ea2c419bfec83756c98d84ad06c2533a6f20432aedd",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -571,8 +571,8 @@
     {
       "questionId": "chapter-07-table-method-4",
       "title": "列表整理",
-      "prompt": "表格记录了班级人数：男生 19 人、女生 17 人。全班一共有多少人？【推进任务】",
-      "contentHash": "236b5129b2afb32552d1d08db3aa0b8b26beaa1b9e36ccf8f2be632add61faf3",
+      "prompt": "空间站人员配置表统计：男宇航员有 19 人、女宇航员有 17 人。全站执行任务的宇航员一共有多少人？【推进任务】",
+      "contentHash": "4333406090d3cd2ee179ef91ac52478d318c38447d2ce73fbdb297bee4756da0",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -588,8 +588,8 @@
     {
       "questionId": "chapter-07-table-method-5",
       "title": "列表整理",
-      "prompt": "表格中“已完成”和“未完成”两列一共有 24 项，已完成 9 项。未完成多少项？【协作任务】",
-      "contentHash": "a6c98fe702aa8f904f8bcb46bcfb3ac3733506b48df671257468530fdceb587a",
+      "prompt": "发射前系统检查表列有“已完成”与“待执行”两个状态，两项合计 24 条巡检指标，目前表格勾选已完成 9 条。待执行指标还有多少条？【协作任务】",
+      "contentHash": "62ea956c3145fd959263d7cc44a635995587ecd0ead30d06f1f4998f5039787b",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -605,8 +605,8 @@
     {
       "questionId": "chapter-07-table-method-6",
       "title": "列表整理",
-      "prompt": "三种颜色的珠子分别有 8 颗、7 颗、9 颗，表格合起来一共有多少颗？【加固任务】",
-      "contentHash": "6a04f57ebb20d210d064861b57f4045794719e24e9f04298d638e89ffdd447de",
+      "prompt": "应急物资储备表显示：红色安全指示灯 8 个、黄色 7 个、绿色 9 个，表格汇总栏计算三色指示灯一共有多少个？【加固任务】",
+      "contentHash": "1d3e3f0839fe68d9a1adaff93ef8559d75dbfe9ab1bc6eb988ea06c96fe42169",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -622,8 +622,8 @@
     {
       "questionId": "chapter-07-table-method-7",
       "title": "列表整理",
-      "prompt": "表格中前两个数分别是 13 和 17，它们的和比第三个数多 10。第三个数是多少？【巡航任务】",
-      "contentHash": "f197900836da75aae782916d09dbd7fd4270a9ab685b30b6258f4e3f49ae2b96",
+      "prompt": "实验参数对照表中，前两个样本重量分别为 13 克和 17 克，它们的总重量比第三个样本多 10 克。第三个样本重量是多少克？【巡航任务】",
+      "contentHash": "5045bedba00855cb98a2470b7f93ebed9911275c1ad81788090729754600371b",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -639,8 +639,8 @@
     {
       "questionId": "chapter-07-table-method-8",
       "title": "列表整理",
-      "prompt": "对照表：甲队 5 天每天做 6 件，乙队 4 天每天做 9 件。两队一共完成多少件？【穿越任务】",
-      "contentHash": "cbf747cd7df1b5168c49ce2b20ba22da44bcfb44bdc311fa82b0b639b4746ce1",
+      "prompt": "采矿作业对照表：甲队连续作业 5 天每天采掘 6 吨矿石，乙队连续作业 4 天每天采掘 9 吨矿石。两队一共采掘了多少吨矿石？【穿越任务】",
+      "contentHash": "bfb45c9e9484ab0fae7883dd336364b5bbdad3dc699b813131c6c593fbb8b45d",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -656,8 +656,8 @@
     {
       "questionId": "chapter-07-table-method-9",
       "title": "列表整理",
-      "prompt": "列表比较两个方案：方案一指 6 页每页 8 条记录，方案二指 5 页每页 7 条记录。方案一比方案二多几条？【攻坚任务】",
-      "contentHash": "120ca3b93d6a6908d6f9cc24298b4f810233a16e5a604f6b2054c8bca90c1c7b",
+      "prompt": "存储方案对比表显示：方案一包含 6 个数据区块每块存 8 组档案，方案二包含 5 个数据区块每块存 7 组档案。方案一比方案二多存多少组档案？【攻坚任务】",
+      "contentHash": "d54286094589b0ec046383954049b995d5b16fc35dfdd537a393696c5fea734e",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -673,8 +673,8 @@
     {
       "questionId": "chapter-07-table-method-10",
       "title": "列表整理",
-      "prompt": "四天销售记录：周一 15 件、周二 20 件、周三 25 件，周四比周三少 8 件。四天一共卖出多少件？【决战任务】",
-      "contentHash": "601595dec0ef6ea04ec8b4b7e3a7977a3a3a2e11920564c9aaa35a3ac920e1d7",
+      "prompt": "月度巡检周报表记录：第一周完成 15 项、第二周 20 项、第三周 25 项，第四周受极端天气影响比第三周少完成 8 项。四周一共完成多少项巡检？【决战任务】",
+      "contentHash": "1e784e4523efdff5a605a3e4789743bc84abfe9ab04344a8b22d20f74fe7c1c5",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -690,8 +690,8 @@
     {
       "questionId": "chapter-07-enumeration-method-1",
       "title": "枚举法",
-      "prompt": "用 1、2、3 三个数字组成没有重复数字的两位数，有多少个？【启航任务】",
-      "contentHash": "b640940f285dfd57039fc9fc1b4ac6bdd0a47e0bfe00e8d76f3ca58804a275e6",
+      "prompt": "用数字卡片 1、2、3 组成没有重复数字的两位数，一共有多少个？【启航任务】",
+      "contentHash": "38080b3e2c83d961e7c020540250f1cdc64da83ceebfb95d434bea6e608722f8",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -707,8 +707,8 @@
     {
       "questionId": "chapter-07-enumeration-method-2",
       "title": "枚举法",
-      "prompt": "有 3 顶帽子和 2 件外套，每次各选一件搭配，一共有多少种搭配？【校准任务】",
-      "contentHash": "2c9fd19ce68b1c48dc0e551cf43229cfa94e8d847342d55e2e9e7022c40c1fe4",
+      "prompt": "科考队员从 3 顶不同性能的防风头盔和 2 件不同规格的耐寒服中各选一件搭配，一共有多少种搭配方案？【校准任务】",
+      "contentHash": "d387315a2317493a5fe49bb6f865579af6fd413433b269102efc5bcba7427772",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -724,8 +724,8 @@
     {
       "questionId": "chapter-07-enumeration-method-3",
       "title": "枚举法",
-      "prompt": "4 个人两两握手一次，一共要握多少次手？【侦察任务】",
-      "contentHash": "b584d6df4cd787558e8740748c3ea8ceabe19ef5eb071dd0fc8dbcd98fb3943c",
+      "prompt": "空间站 4 名科考队员两两之间进行一次独立的信道握手校准，一共需要进行多少次信道握手？【侦察任务】",
+      "contentHash": "de83c530a9dd28d2459861e8054b4a75688d4c3655a6900dbaffe65eb87628e6",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -741,8 +741,8 @@
     {
       "questionId": "chapter-07-enumeration-method-4",
       "title": "枚举法",
-      "prompt": "甲、乙、丙三人排成一排照相，一共有多少种不同的排法？【推进任务】",
-      "contentHash": "c1cbc383ee48a1e109c97416796571fe6c2dc5c7cebeedc9f7c0d88bff8c35fc",
+      "prompt": "甲、乙、丙 3 颗实验小卫星在轨道同一直线上依序排列接收信号，一共有多少种不同的排列顺序？【推进任务】",
+      "contentHash": "0325d4557a831f77125a25345f355ebc577fc90f401c09e66b4a09f8ff7ef514",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -758,8 +758,8 @@
     {
       "questionId": "chapter-07-enumeration-method-5",
       "title": "枚举法",
-      "prompt": "数字 0、1、2 各一张卡片，摆成一个两位数（0 不能放在十位），有几种不同的摆法？【协作任务】",
-      "contentHash": "8013aab2befc7a9cda3dc71765ef752cc844d2e1b1b99a269406c16a84ac25cb",
+      "prompt": "用数字卡片 0、1、2 摆成没有重复数字的两位数（注意十位不能为 0），一共有多少种不同的摆法？【协作任务】",
+      "contentHash": "485a4431285c9ebbad867acc769ad5ecdc9a6ea24a806a68ec096e6130b213f0",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -775,8 +775,8 @@
     {
       "questionId": "chapter-07-enumeration-method-6",
       "title": "枚举法",
-      "prompt": "用 1、2、3、4 四个数字组成没有重复数字的两位数，有多少个？【加固任务】",
-      "contentHash": "6a76334ab5b91ee15f85ef6ffc8005ff64ddd473a393db2de8c4baa9a1fd4991",
+      "prompt": "从 1、2、3、4 四张编号卡片中任意抽取两张组成没有重复数字的两位数，一共可以组成多少个不同的两位数？【加固任务】",
+      "contentHash": "bab164bd3af1d92785284f6f31ca74289b5e50679466328ee08c80c5aae99db5",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -792,8 +792,8 @@
     {
       "questionId": "chapter-07-enumeration-method-7",
       "title": "枚举法",
-      "prompt": "用 1 元和 2 元两种硬币凑出 6 元（两种都可多用），有多少种不同的凑法？【巡航任务】",
-      "contentHash": "bff07f3680ab8d7bed25c4ce90d3c49ff45b619658855340411faa44b73cd77d",
+      "prompt": "用 1 兆瓦和 2 兆瓦两种备用电池块组合供给 6 兆瓦动力（两种电池均可多次选用，且必须刚好凑齐 6 兆瓦），一共有多少种不同的搭配组合？【巡航任务】",
+      "contentHash": "36e093f7e42a716246afd488486b0875935f0b68a161eef2a7cfee8cdca69635",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -809,8 +809,8 @@
     {
       "questionId": "chapter-07-enumeration-method-8",
       "title": "枚举法",
-      "prompt": "用 0、1、2、3 四个数字组成没有重复数字的三位数，有多少个？【穿越任务】",
-      "contentHash": "7467948f606ec9d14139d05e4b81653f1111b09c06017b8f042dfe4db94739aa",
+      "prompt": "用 0、1、2、3 四个数字组成没有重复数字的三位数（最高位百位不能为 0），一共可以组成多少个不同的三位数？【穿越任务】",
+      "contentHash": "3c4901f5bb8e9b8658d1e52025f110d43350109efaa82c137614ac892e585e2b",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -826,8 +826,8 @@
     {
       "questionId": "chapter-07-enumeration-method-9",
       "title": "枚举法",
-      "prompt": "用 1、2、3 组成三位数（数字可重复），并且百位和个位相同，有多少个？【攻坚任务】",
-      "contentHash": "d6f1abe57f82ed83105a49daa3059666b520cd8f0ad89e333bef0cc64856addf",
+      "prompt": "用 1、2、3 三个数字组成三位数（允许数字重复使用），且要求百位和个位必须是同一个数字，一共可以组成多少个这样的三位数？【攻坚任务】",
+      "contentHash": "4b1df43d696b87ab45dcae9b06641b974af2e1e85117a4090a79af04c251f0b0",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -843,8 +843,8 @@
     {
       "questionId": "chapter-07-enumeration-method-10",
       "title": "枚举法",
-      "prompt": "从小红、小明、小刚、小丽 4 人中选出 2 人参加比赛，有多少种不同的选法？【决战任务】",
-      "contentHash": "f719a68d3a6959f401731dca3cd8b62800e17223de471b832e34dd1155a581b3",
+      "prompt": "从甲、乙、丙、丁 4 名航天员中选拔 2 人组成双人舱外作业小组（不区分主次角色），一共有多少种不同的双人选派方案？【决战任务】",
+      "contentHash": "12378fb7a94c3a26ae02ba8ee033efd0b2fefe52ec831e063da85f02ef4fc390",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -860,8 +860,8 @@
     {
       "questionId": "chapter-07-tree-diagram-1",
       "title": "树状图",
-      "prompt": "从家到公园有 2 条路，从公园到学校有 3 班车，家到学校一共有多少种走法？【启航任务】",
-      "contentHash": "32e4bc7a3e2b4e08ee0ea5a8dfa334bd7c9a9709c5d5ce7e25fa71ead1cc2212",
+      "prompt": "从地面测控中心到前沿中继站有 2 条通道路线，从中继站到轨道核心舱有 3 条对接走廊。从地面中心经中继站到核心舱一共有多少种飞行路径？【启航任务】",
+      "contentHash": "0a8fe642d7e5dded108e93b49ee668d5c32befb6158e8293ae42931e5f7919e1",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -877,8 +877,8 @@
     {
       "questionId": "chapter-07-tree-diagram-2",
       "title": "树状图",
-      "prompt": "连续抛一枚硬币 2 次，可能的结果一共有多少种？【校准任务】",
-      "contentHash": "4a19598fcb879cd0be21789d545790fc9caa4054c7bb9e782d3f3ac733ee0a90",
+      "prompt": "连续抛掷一枚双面传感器芯片 2 次（正面标记为 1，反面标记为 0），利用树状图分析可能出现的全部二进制读数序列一共有多少种？【校准任务】",
+      "contentHash": "5310cbf0c3fb8661cc53cd2daa3fd331d8bfd3acd143431f32a23f9c5b61330e",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -894,8 +894,8 @@
     {
       "questionId": "chapter-07-tree-diagram-3",
       "title": "树状图",
-      "prompt": "早餐选 1 种主食和 1 种饮品：主食有 3 种、饮品有 2 种，一共有多少种选法？【侦察任务】",
-      "contentHash": "6a2db230955244f177f0e3969f954f3f5a0d00cbeb2e6e16de2f2c79d97b3944",
+      "prompt": "早餐营养配给方案：主食有 3 种选择，特种能量饮品有 2 种选择，各选 1 种进行搭配，利用树状图展开一共有多少种搭配方案？【侦察任务】",
+      "contentHash": "fa771951014ec6d299370dc9242aebbf5da578c1de9238b7967650dfb70a8d3e",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -911,8 +911,8 @@
     {
       "questionId": "chapter-07-tree-diagram-4",
       "title": "树状图",
-      "prompt": "树状图第一层有 4 个分支，第二层每个分支又分成 2 个分支。一共有多少个末端分支？【推进任务】",
-      "contentHash": "d89c162bbe704ab213702284e25517eca30b3935a3f8b4345d7e0a9c3065a278",
+      "prompt": "应急指挥决策树状图第一层展开有 4 个大方向分支，第二层在每个大方向下又细分出 2 个执行方案。这棵决策树最末端一共有多少个具体执行方案？【推进任务】",
+      "contentHash": "808506cb8a5b703a1e1f426efdf2e8863074037c81fc1bd88e7b70591ed88c02",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -928,8 +928,8 @@
     {
       "questionId": "chapter-07-tree-diagram-5",
       "title": "树状图",
-      "prompt": "出行搭配：上衣 2 件、裤子 3 条、鞋 2 双，各选一件有多少种搭配？【协作任务】",
-      "contentHash": "ec104cb71420f728ec8eb232ad861e0edc84c8260f05896b5a63ff0607d9d638",
+      "prompt": "舱外宇航服选装配置：外罩衣有 2 种防辐射等级，抗压裤有 3 种规格，高压靴有 2 种尺寸，各选一件组合穿戴，用树状图展开一共有多少种配置方案？【协作任务】",
+      "contentHash": "2e21b6a06b38e4d55e3f5bdd4dada877c5828d0c84c70ef3db7b3877f9101332",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -945,8 +945,8 @@
     {
       "questionId": "chapter-07-tree-diagram-6",
       "title": "树状图",
-      "prompt": "用数字 1、2 组成两位数（数字可重复），有多少个？【加固任务】",
-      "contentHash": "440df529e5849a0078944d0f96d28f6e9b18cb17e42740458d9000018ef65177",
+      "prompt": "巡检机器人在二维平面网格中每一步只能向东（E）或向北（N）移动 1 格，连续移动 2 步，树状图展开可能的移动路径序列一共有多少种？【加固任务】",
+      "contentHash": "4b20e326048cd77badaa6fa15b2ed278682f2515585aeded03ca76d3810b7c54",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -962,8 +962,8 @@
     {
       "questionId": "chapter-07-tree-diagram-7",
       "title": "树状图",
-      "prompt": "三层树状图：第一层 3 个分支，每个分支下再分 2 个，每个再分 2 个。末端一共有多少个？【巡航任务】",
-      "contentHash": "3968d8fef5d87856d4c60b79b3c306991288461d21178b65c49f4db6a6932cd9",
+      "prompt": "三层工程预警树状图：第一层主干生出 3 个主方向，每个主方向向下分出 2 个支干，每个支干末端再分出 2 个应急传感器节点。整棵树一共有多少个传感器节点？【巡航任务】",
+      "contentHash": "23eae11d913a1660a8180f7ced12c7fa4143e803433da5240f59b8f9919b9435",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -979,8 +979,8 @@
     {
       "questionId": "chapter-07-tree-diagram-8",
       "title": "树状图",
-      "prompt": "从家到公园有 3 条路，公园到学校有 2 条路，学校到书店有 2 条路。从家经过公园和学校到书店有多少种走法？【穿越任务】",
-      "contentHash": "9d4021725ae2eb5d3b59cad10a23342ffec7018b326df79cd027822ba5ca10a7",
+      "prompt": "深空探测飞船补给变轨分三段推进：第一段有 3 条可选加速线，第二段有 2 条过渡线，第三段有 2 条切入线。全线贯通的完整轨道路径一共有多少种？【穿越任务】",
+      "contentHash": "29969513301720dea46004167e5ca218f81c1f59331737842403733846a4e42c",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -996,8 +996,8 @@
     {
       "questionId": "chapter-07-tree-diagram-9",
       "title": "树状图",
-      "prompt": "设置密码：第一位有 2 种选择、第二位有 3 种、第三位有 2 种。一共有多少个不同密码？【攻坚任务】",
-      "contentHash": "14c7ba4c7d9b2423dc08af6a813773000d973d2badc520d708bbe906a3620c90",
+      "prompt": "特种仪器三位安全密码设定：第一位从 2 个字母中选，第二位从 3 个数字中选，第三位从 2 个符号中选。树状图逐位展开，一共有多少个不同的密码？【攻坚任务】",
+      "contentHash": "fe121a2ac2b965110f8cd436030649cfa184c9bf5265de5a33bba9b2414526ad",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1013,8 +1013,8 @@
     {
       "questionId": "chapter-07-tree-diagram-10",
       "title": "树状图",
-      "prompt": "红、蓝、绿三面旗各用一次排成一列，树状图从第一面开始依次确定，一共有多少种排法？【决战任务】",
-      "contentHash": "814ce49e9dd4a69562e97a34825c7b5b5c281a9b12c8173bda0fe292fcf58dee",
+      "prompt": "红、黄、蓝三面不同颜色的通信信标旗排成一列挂在桅杆上，用树状图从最上方位置开始依序展开枚举，一共有多少种不同的排列样式？【决战任务】",
+      "contentHash": "1fcb9dd61833ab0daea67b97441fbe60fae186a8cb42fec2e593c116f903b24d",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1030,8 +1030,8 @@
     {
       "questionId": "chapter-07-assumption-method-1",
       "title": "假设法",
-      "prompt": "停车棚里有 5 辆车，都是两轮车或四轮车，一共 14 个轮子。四轮车有几辆？【启航任务】",
-      "contentHash": "89162fecfa21ee72ae0f96ee5bd987cefdb4b735ef19721449196ef62bde5cf2",
+      "prompt": "基地车棚共有 5 辆特种巡逻车，全为两轮轻便侦察车或四轮重载巡逻车，检修员清点一共有 14 个车轮。四轮重载巡逻车有几辆？【启航任务】",
+      "contentHash": "5c4bd52ebdcc48479c37c4c241bd7e8e1ff1ca04ec4704c37a06dc96c76df9d9",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1047,8 +1047,8 @@
     {
       "questionId": "chapter-07-assumption-method-2",
       "title": "假设法",
-      "prompt": "笼子里有 6 只鸡和兔，一共 20 条腿。兔子有几只？【校准任务】",
-      "contentHash": "3eda24c0cf5469ce52d655a1bbc123c506486ec565063aef4da58f613693c8e7",
+      "prompt": "生态圈饲养箱里有 6 只小鸡和小兔，地面一共有 20 条腿。其中四足小兔有多少只？【校准任务】",
+      "contentHash": "3eff4552ac2bc54143d800a238f7feec4dca2c666bc7d1756d7f68f8555d85ee",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1064,8 +1064,8 @@
     {
       "questionId": "chapter-07-assumption-method-3",
       "title": "假设法",
-      "prompt": "鸡兔同笼，共有 8 个头、22 条腿。兔子有几只？【侦察任务】",
-      "contentHash": "a3993e30febac7b68426eb395bb59c72a01d8a02144de8ab5f6c6d15ef9baa97",
+      "prompt": "仿生机械维护站里有 8 台两足与四足机器人，数出一共有 22 条支撑机械腿。其中四足仿生机器人有多少台？【侦察任务】",
+      "contentHash": "fd85554a495620bb1260b9af1e926efa18b4cbc1d67106436402c29f316ffbdf",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1081,8 +1081,8 @@
     {
       "questionId": "chapter-07-assumption-method-4",
       "title": "假设法",
-      "prompt": "饲养场有 10 只鸡和兔，共有 26 条腿。其中兔子有多少只？【推进任务】",
-      "contentHash": "172eabfbebf3d6ddfcb0e13aaf0918003a4467be135cc70ee29d8532bd46910d",
+      "prompt": "繁育科研基地共有鸡和兔 10 只，饲养员清点总腿数为 26 条。其中四足兔子有多少只？【推进任务】",
+      "contentHash": "40ecd7a74f1f2116204bb7d62815e8a1fb7d6557e9fe29ee4f70435d4ed2f776",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1098,8 +1098,8 @@
     {
       "questionId": "chapter-07-assumption-method-5",
       "title": "假设法",
-      "prompt": "成人票每张 5 元、儿童票每张 3 元，共买 10 张花了 42 元。成人票买了几张？【协作任务】",
-      "contentHash": "e81fe732d571878d0ae90685f671649be206ae4451b4b88920e11cfffe111678",
+      "prompt": "科技展馆门票：成人票每张 5 元，儿童票每张 3 元，某研学团队购买 10 张门票共花费 42 元。购买了多少张成人票？【协作任务】",
+      "contentHash": "601bf371335779df12ed23c9958ddd701c8b7226d708fbf879a148af573ef755",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1115,8 +1115,8 @@
     {
       "questionId": "chapter-07-assumption-method-6",
       "title": "假设法",
-      "prompt": "车棚里有三轮车和自行车共 12 辆，一共 30 个轮子。自行车有多少辆？【加固任务】",
-      "contentHash": "304eb42d44c93c1fca92ca54635ae6dd42ebd57c3ed295430ff15e7f3505f57b",
+      "prompt": "设备库停放三轮巡检车与两轮自行车共 12 辆，总轮子数为 30 个。两轮自行车有多少辆？【加固任务】",
+      "contentHash": "25e3a3f109d51f0b95ee76804d33a40b225011b6d7fc8e93ae1b80cf7dda7187",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1132,8 +1132,8 @@
     {
       "questionId": "chapter-07-assumption-method-7",
       "title": "假设法",
-      "prompt": "答题比赛：做对一题得 5 分，做错一题扣 2 分。20 题全部做完得 65 分，做错了几题？【巡航任务】",
-      "contentHash": "6d0d1db04697727de1433dabf6f4f63aedcb4b1afe084a36990dbdc69bc6d91c",
+      "prompt": "航天科普知识竞赛：答对一题得 5 分，答错或不答倒扣 2 分。全卷共 20 题，参赛队员全部作答最终得 65 分。答错了几道题？【巡航任务】",
+      "contentHash": "ea1e7e7b1480efac2ae94997a95a5e0e0cf82e7d0fcc7021dcf5c69cee1c9b6f",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1149,8 +1149,8 @@
     {
       "questionId": "chapter-07-assumption-method-8",
       "title": "假设法",
-      "prompt": "5 角硬币和 1 元硬币共 12 枚，合计 9 元。1 元硬币有几枚？【穿越任务】",
-      "contentHash": "a832ca937dcff19a41dd68fec262cb67adda1b23b855b9fe6e7d964deca47bba",
+      "prompt": "零钱储备罐中存有 5 角（0.5元）和 1 元两种面值的纪念币共 12 枚，合计总面值为 9 元。其中 1 元面值的纪念币有多少枚？【穿越任务】",
+      "contentHash": "63b47c439e4d986c46416b9bfac94966a5470fbc8e7e6120631a2960a2f39480",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1166,8 +1166,8 @@
     {
       "questionId": "chapter-07-assumption-method-9",
       "title": "假设法",
-      "prompt": "三轮车和四轮车共 20 辆，一共 64 个轮子。三轮车有多少辆？【攻坚任务】",
-      "contentHash": "356b271bb11de0914a4cd0a4482e0ff9ecd7c4576050fa904f67600701eaac17",
+      "prompt": "物流周转站停放三轮平板车和四轮叉车共 20 辆，现场清点总轮子数为 64 个。三轮平板车有多少辆？【攻坚任务】",
+      "contentHash": "5164bf03745aabfd7add8e3fe2d29bd9b1f6c62f87e46cda3a496847adf095d1",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1183,8 +1183,8 @@
     {
       "questionId": "chapter-07-assumption-method-10",
       "title": "假设法",
-      "prompt": "鸡兔同笼，共 35 个头、94 条腿。兔子有几只？【决战任务】",
-      "contentHash": "63ae21a47e0e13b4422764f6074ad9e21dbbacb12bac94219158db67ac2cd1a6",
+      "prompt": "大型生态农场鸡兔同笼：共有 35 个头、94 条腿。其中兔子一共有多少只？【决战任务】",
+      "contentHash": "831164d2b7cc961263eed04104e6a387d79dd4db3d44010eea7f0a70999ad04d",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1200,8 +1200,8 @@
     {
       "questionId": "chapter-07-reverse-thinking-1",
       "title": "逆向思考",
-      "prompt": "一个数加上 5 后等于 12，这个数是多少？【启航任务】",
-      "contentHash": "5a7a55b3644f8631deec30a72046a6b853a4ce2de7e7f7258245dff268da09c2",
+      "prompt": "从 1 到 20 的这 20 个自然数中，不含有数字“1”的数一共有多少个？【启航任务】",
+      "contentHash": "a8fdd02dde798d20f762a76e3cd0aba1b94fa1e3b8559c983cb5d3696e7f1f51",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1217,8 +1217,8 @@
     {
       "questionId": "chapter-07-reverse-thinking-2",
       "title": "逆向思考",
-      "prompt": "一个数减去 3 后等于 9，这个数是多少？【校准任务】",
-      "contentHash": "6b700aa79067c4bd1841288776b5b0b85a4a695de3f0c1de2cf77ebe8d1cd81a",
+      "prompt": "甲、乙两座储能站初始储能相同。如果从甲站调度 15 兆瓦电力补充给乙站，此时乙站储能比甲站多多少兆瓦？【校准任务】",
+      "contentHash": "96763320659c1460228c4b33567bb20f68b6f07375cdb969abe2e023da175c3e",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1234,8 +1234,8 @@
     {
       "questionId": "chapter-07-reverse-thinking-3",
       "title": "逆向思考",
-      "prompt": "一个数乘 2 后等于 18，这个数是多少？【侦察任务】",
-      "contentHash": "c8636b3a2f5642faea753bd18c6826d0d433d708ff195d27c1aeeb1f38a4fa03",
+      "prompt": "抽奖箱中有 10 张密封卡片，其中 8 张写着“中奖”，2 张写着“谢谢”。连续抽取 2 张，至少有 1 张中奖的反面情况（即两张都没中奖）一共有几种可能？【侦察任务】",
+      "contentHash": "95ec2c751d4442808e9f361e7de3f80bb718aa70858a2606b439cd8ac38bae76",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1251,8 +1251,8 @@
     {
       "questionId": "chapter-07-reverse-thinking-4",
       "title": "逆向思考",
-      "prompt": "一个数先加 4，再乘 3，得到 30。这个数是多少？【推进任务】",
-      "contentHash": "ed1622c732cdc4b4c23d21441e978e256908b4dbae68e104996554a2df843931",
+      "prompt": "太空水箱最初满水。每天蒸发消耗当前水量的固定比例，工程师记录第四天清晨还剩 5 升，且前三天每天白天都消耗了前一天剩余量的一半。反推第一天清晨的水箱存量是多少升？【推进任务】",
+      "contentHash": "0c1f8491793069b3746ca02b301d54f263836888cc98536c58b6c84902ca39bb",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1268,8 +1268,8 @@
     {
       "questionId": "chapter-07-reverse-thinking-5",
       "title": "逆向思考",
-      "prompt": "一个数先减 5，再乘 2，得到 18。这个数是多少？【协作任务】",
-      "contentHash": "6f5096214c4d7234059dfd08fd3fc9a8d4ea0c0c43e63428d36bc5ae28f8c8b6",
+      "prompt": "30 名宇航员参加体能与操作两项考核，每人至少通过了一项，其中两项均通过的高达 18 人。仅通过其中一项的宇航员有多少人？【协作任务】",
+      "contentHash": "78e1a9a3e437b35edcefc778a21f09bd429fc0d8bc08b33892bb4fff8d1ca739",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1285,8 +1285,8 @@
     {
       "questionId": "chapter-07-reverse-thinking-6",
       "title": "逆向思考",
-      "prompt": "一个数先乘 2，再加 6，得到 26。这个数是多少？【加固任务】",
-      "contentHash": "9d465d2186c3e6253e020a5fec0df623a0d268a54349148a728bc0911a2c94e4",
+      "prompt": "连续 5 个奇数的和是 75。逆向利用对称平衡性，这 5 个奇数中最大的一个奇数是多少？【加固任务】",
+      "contentHash": "823643980d48d5b30e046562b7951ae1e1a1d0294642617ac74fcf1d56f636de",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1302,8 +1302,8 @@
     {
       "questionId": "chapter-07-reverse-thinking-7",
       "title": "逆向思考",
-      "prompt": "一个数先加 8，再除以 2，得到 15。这个数是多少？【巡航任务】",
-      "contentHash": "b39a639913b2ca8e6782e1dd5b134aa4c39f66b84e08ec29deae2c3c2b75bd83",
+      "prompt": "科考队携带一袋压缩食品，第一天吃掉一半多 1 块，第二天吃掉剩下的一半多 1 块，第三天清点发现袋中刚好只剩 3 块。反向逆推这袋食品最初有多少块？【巡航任务】",
+      "contentHash": "091e82fc30886a343d321df7e50bf496c162b6ed4fbd222001cba57f9cc79f56",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1319,8 +1319,8 @@
     {
       "questionId": "chapter-07-reverse-thinking-8",
       "title": "逆向思考",
-      "prompt": "一个数先除以 3，再加 7，得到 13。这个数是多少？【穿越任务】",
-      "contentHash": "9af2263ae61e17d70e1ad289cb6b19ad1a8bf69849e25376cbdc260266a00cbc",
+      "prompt": "四张卡片分别写着 1、2、3、4。甲、乙、丙、丁四人各拿一张：丁说“我是最小的奇数”，乙说“我是偶数”，丙说“我比乙大”。逆向推理丙拿到的卡片数字是多少？【穿越任务】",
+      "contentHash": "b5c6535eb2afc0a2e7fd0a9015249e4394252c792e025c5d8038565904c6f520",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1336,8 +1336,8 @@
     {
       "questionId": "chapter-07-reverse-thinking-9",
       "title": "逆向思考",
-      "prompt": "存钱罐里原来有一些钱，先放进 12 元，又取出 5 元，剩下 30 元。原来有多少元？【攻坚任务】",
-      "contentHash": "50db10d03ff058de5767c2deb1656f4914cbdb50fb26627c026e282e8718beec",
+      "prompt": "设备检测规范要求：每连续 4 小时内必须至少安排 1 次安全巡检。全天 24 小时逆向利用最大间隔策略，最少需要巡检多少次才能满足规范？【攻坚任务】",
+      "contentHash": "bb4acee55fd1f90f557eedb9f6e33fc88eae29d1d44672fea6ad878bd2ffdc6a",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1353,8 +1353,8 @@
     {
       "questionId": "chapter-07-reverse-thinking-10",
       "title": "逆向思考",
-      "prompt": "粮仓先运出总数的 1/3，又运进 20 吨，这时有 60 吨。原来有多少吨？【决战任务】",
-      "contentHash": "f47510ee986f79949532cd0787c9443b62647e2761691e834cd13974f6a51da8",
+      "prompt": "桌上有 14 颗能量石，两人轮流拿取，每次只能拿 1 颗或 2 颗，谁拿走最后一颗谁获胜。逆向思考终态博弈：先手第一步应该拿走几颗才能逆向锁定必胜局？【决战任务】",
+      "contentHash": "c895d65799cf5bc49412db32ca468daf45a2dc563eedd2ac197993d253e656c3",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1370,8 +1370,8 @@
     {
       "questionId": "chapter-07-transformation-method-1",
       "title": "转化与替换",
-      "prompt": "2 个大苹果能换 6 个小苹果，1 个大苹果能换几个小苹果？【启航任务】",
-      "contentHash": "18318bd06f3f83c8a76b7499a30cbb38bc0b43588070d4770705effd43e4b402",
+      "prompt": "2 箱标准浓缩营养液可以稀释兑换成 6 桶普通营养液。那么 1 箱标准浓缩营养液相当于多少桶普通营养液？【启航任务】",
+      "contentHash": "07565d4bd2630de5a9cfc720e977a89ca78f9e08103597ef49490f987897ac5a",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1387,8 +1387,8 @@
     {
       "questionId": "chapter-07-transformation-method-2",
       "title": "转化与替换",
-      "prompt": "1 个西瓜能换 3 个哈密瓜，1 个哈密瓜能换 2 个梨。1 个西瓜能换几个梨？【校准任务】",
-      "contentHash": "609bcda9849651c059cdfdde729651dc1207f615b328d116fc95ab475c5741db",
+      "prompt": "能量调度规则：1 块高能晶石可以置换 3 块中能晶石，1 块中能晶石可以置换 2 块低能晶石。1 块高能晶石相当于多少块低能晶石？【校准任务】",
+      "contentHash": "30e80ae8593b50505ff7aca29595b0b05a37a93a09a11f28adbdbba20211dc82",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1404,8 +1404,8 @@
     {
       "questionId": "chapter-07-transformation-method-3",
       "title": "转化与替换",
-      "prompt": "把每组复杂零件替换成等量小片后，3 组各有 4 片，一共有多少片？【侦察任务】",
-      "contentHash": "dffa4e401f8671f75755b57ad4618450db9b4c721c2c3e3c865a776337cccba2",
+      "prompt": "电路模块替换方案：3 组复杂运算单元被替换为等量的小型集成芯片，已知每组运算单元对应 4 块小型芯片。这 3 组运算单元一共相当于多少块小型芯片？【侦察任务】",
+      "contentHash": "1523c61cc1caafffe5de39195d22a877bb94c504914c2405d8043ee25ab62166",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1421,8 +1421,8 @@
     {
       "questionId": "chapter-07-transformation-method-4",
       "title": "转化与替换",
-      "prompt": "已知 A=2B，B=3C。1 个 A 相当于几个 C？【推进任务】",
-      "contentHash": "4c8c55a0f0b0f96aa05929aa65d47875573a1604232e1e7a73d64d093e0e77cd",
+      "prompt": "机械传动转换：已知齿轮 A 旋转 1 圈带动齿轮 B 旋转 2 圈，齿轮 B 旋转 1 圈带动齿轮 C 旋转 3 圈。齿轮 A 旋转 1 圈相当于齿轮 C 旋转了多少圈？【推进任务】",
+      "contentHash": "d52f44f5eea7f8c005fcadf6293df64fe732e6c3e1e17d868f45e959c33481a3",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1438,8 +1438,8 @@
     {
       "questionId": "chapter-07-transformation-method-5",
       "title": "转化与替换",
-      "prompt": "天平上 1 只狗=2 只猫，1 只猫=3 只鸟。2 只狗相当于几只鸟？【协作任务】",
-      "contentHash": "fb1fda886a0bfbfd074e7c955f5ed26b26deb72adbafff2b19102e751673584f",
+      "prompt": "特种天平平衡校验：1 只机械实验狗的重量等于 2 只机械猫，1 只机械猫的重量等于 3 只机械鸟。那么 2 只机械实验狗的重量相当于多少只机械鸟？【协作任务】",
+      "contentHash": "e6f94cd015125a9a287b2139c428a35c5414c2e1e87344e9c466d853b4d53297",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1455,8 +1455,8 @@
     {
       "questionId": "chapter-07-transformation-method-6",
       "title": "转化与替换",
-      "prompt": "1 个苹果和 1 个梨共重 7 两，苹果比梨重 1 两。苹果重几两？【加固任务】",
-      "contentHash": "56261f14ef533031c6d42ed714c0dd9f070e6c3a0680b5c628bd909157a0ce5b",
+      "prompt": "1 个实验主舱段和 1 个对接过渡舱共重 7 吨，已知主舱段比过渡舱重 1 吨。利用等量代换，主舱段自身重量是多少吨？【加固任务】",
+      "contentHash": "809ffd9001082912e4c6a2fcaecdf5139ce1558f9a8f9fe683249196c7ed42d5",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1472,8 +1472,8 @@
     {
       "questionId": "chapter-07-transformation-method-7",
       "title": "转化与替换",
-      "prompt": "1 块大板等于 5 块小片，领了 4 块大板，相当于多少块小片？【巡航任务】",
-      "contentHash": "657d7a9049229e54fbbcbf551fbff3360d3622492b0bbd3146aec7c165d5d16d",
+      "prompt": "空间站装配中，1 块防护外层复合装甲板可切割替换为 5 块应急修补小片。工兵领取了 4 块复合装甲板，相当于领到了多少块应急修补小片？【巡航任务】",
+      "contentHash": "8d3150b585f40ea4a6f4252d12cec22d8869606c7e4c8e8603494414ecf5d460",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1489,8 +1489,8 @@
     {
       "questionId": "chapter-07-transformation-method-8",
       "title": "转化与替换",
-      "prompt": "买 2 支笔和 1 本书共 21 元，1 支笔 6 元。1 本书多少元？【穿越任务】",
-      "contentHash": "6e89b37b922580de66362a771f0b2fd19201d7b17cd5a5e1ccc2772ed3430215",
+      "prompt": "采购 2 支激光测距笔和 1 台便携光谱分析仪共需 21 万元，已知 1 支激光测距笔售价 6 万元。替换扣除测距笔后，1 台光谱分析仪售价多少万元？【穿越任务】",
+      "contentHash": "b79f617382f925b854b675ea4960ce8bfd32af656c23ddfae1d7829774b1f988",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1506,8 +1506,8 @@
     {
       "questionId": "chapter-07-transformation-method-9",
       "title": "转化与替换",
-      "prompt": "3 个玩具车能换 5 个积木，9 个玩具车能换多少个积木？【攻坚任务】",
-      "contentHash": "57d47ef9a87555797886f02a0bc3b8552a67ee51f75e7d8b32ba918956a2f08d",
+      "prompt": "星际物资互换协定：3 架无人巡逻机可置换 5 组地面能量基站。照此置换比例，9 架无人巡逻机可以置换多少组地面能量基站？【攻坚任务】",
+      "contentHash": "f48a634ac9546c682151b486aa31dbdd987dd0b08fd9d145e4b8b7df733c0ee3",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1523,8 +1523,8 @@
     {
       "questionId": "chapter-07-transformation-method-10",
       "title": "转化与替换",
-      "prompt": "1 个南瓜能换 2 个西瓜，1 个西瓜能换 4 个苹果。3 个南瓜能换几个苹果？【决战任务】",
-      "contentHash": "7868020d101e5f63f69fe855a592efa890159ecb577053e151c0b6c3aa1b95d5",
+      "prompt": "三级动力系统代换：1 个主反应堆核芯可替换为 2 个副反应堆模块，1 个副反应堆模块可替换为 4 个应急动力源。那么 3 个主反应堆核芯相当于多少个应急动力源？【决战任务】",
+      "contentHash": "c9b86cf53d58cdfde99f84957fef8c01b8dd61c595607429b3c20996ab1f5d1b",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1540,8 +1540,8 @@
     {
       "questionId": "chapter-07-unit-method-1",
       "title": "归一与单位化",
-      "prompt": "4 支铅笔 12 元，买 7 支同样的铅笔要多少元？【启航任务】",
-      "contentHash": "950a527f67a5264d54b3c4ee168c7bf55d02bf7870012f65192566822499c127",
+      "prompt": "4 支特种记号笔总价 12 元。照这样计算，采购 7 支同样的记号笔需要多少元？【启航任务】",
+      "contentHash": "6b3161fa92926104349b8b0b0ce92b74016be5507c7ada34fb95bfad64883db6",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1557,8 +1557,8 @@
     {
       "questionId": "chapter-07-unit-method-2",
       "title": "归一与单位化",
-      "prompt": "小明 5 分钟走 300 米，照这样的速度，8 分钟走多少米？【校准任务】",
-      "contentHash": "7095dbb01deb016748e55bead1d3adee7be340bf6f8109caffb34f83c6318d4c",
+      "prompt": "月面探测器 5 分钟在平坦地形平稳行驶 300 米。照此匀速行驶，8 分钟一共可以行驶多少米？【校准任务】",
+      "contentHash": "5185eb228fdcb22725c29b13f6a707d4b794f9237d6b72a3a62c49d751284803",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1574,8 +1574,8 @@
     {
       "questionId": "chapter-07-unit-method-3",
       "title": "归一与单位化",
-      "prompt": "3 人 4 天吃 36 个苹果，平均 1 人 1 天吃几个？【侦察任务】",
-      "contentHash": "31d10e3773ee2ba995b80aaf9c98b6f3354a3328a3d3b278ad363c6b0bc15ae0",
+      "prompt": "3 名科研人员 4 天一共消耗 36 份特制营养补给。先归一求出平均每人每天消耗多少份补给？【侦察任务】",
+      "contentHash": "0fea897e3971b5dfd43c1ebfbac8e8b3c017843cee715565b3525cefb6eecbb6",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1591,8 +1591,8 @@
     {
       "questionId": "chapter-07-unit-method-4",
       "title": "归一与单位化",
-      "prompt": "6 本练习册共 48 元，买 9 本同样的练习册要多少元？【推进任务】",
-      "contentHash": "e847a1779f0448caae12ea49591773fcf7be9e8aa27c6e03ac1e3581f5c55031",
+      "prompt": "采购 6 本操作维护手册共花费 48 元。照此单价，增订 9 本同样的手册需要支付多少元？【推进任务】",
+      "contentHash": "13b7451d2dee6c1aaf26e4610b2732b94a6a3b75d572cd7d77b1532fc8dcba72",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1608,8 +1608,8 @@
     {
       "questionId": "chapter-07-unit-method-5",
       "title": "归一与单位化",
-      "prompt": "小红 4 分钟跳绳 120 下，照这样 7 分钟跳多少下？【协作任务】",
-      "contentHash": "6572f40cf49afe3666937054069b8c3343a92977e713e4b0c055e5489a45a472",
+      "prompt": "宇航员体能训练中，小红 4 分钟匀速跳绳 120 下。照这样均匀的速度，7 分钟一共可以跳多少下？【协作任务】",
+      "contentHash": "d5d3395df46100d641a9d09407cf785bffdf1c42a19526244ba2d29176df68ca",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1625,8 +1625,8 @@
     {
       "questionId": "chapter-07-unit-method-6",
       "title": "归一与单位化",
-      "prompt": "3 台收割机 4 小时收割小麦 36 公亩。照这样计算，增加 2 台同样的收割机，6 小时一共可以收割小麦多少公亩？【加固任务】",
-      "contentHash": "e5126444c9680ecc7ab5a9838df80b43e957ffa929e6fd946daeee5eb3c3a7c5",
+      "prompt": "3 台自动化收割机 4 小时收割试验田 36 公亩。照这样计算，增加 2 台同样的收割机后（共 5 台），连续收割 6 小时一共可以收割多少公亩试验田？【加固任务】",
+      "contentHash": "6c3ef301e6105b4d0e16918f41f98aac143e7898fa7e32e1e1d0ca370a2fabad",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1642,8 +1642,8 @@
     {
       "questionId": "chapter-07-unit-method-7",
       "title": "归一与单位化",
-      "prompt": "一辆巴士能坐 30 人，120 人至少需要几辆巴士？【巡航任务】",
-      "contentHash": "0889e3e6f3c9edf0bddc529ecaac6a27bc844ac5133d6b365618b47c479d124e",
+      "prompt": "一辆发射场人员摆渡车每次满载可乘坐 30 人。如果要把 120 名工作人员全部运送到预定工位，至少需要往返运送几车次？【巡航任务】",
+      "contentHash": "b6df81092b0443adae72a30c0fda7dbf00f17c72df6890847b0f1cda7cd17e48",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1659,8 +1659,8 @@
     {
       "questionId": "chapter-07-unit-method-8",
       "title": "归一与单位化",
-      "prompt": "2 台机器 3 小时做 36 个零件，5 台机器 2 小时做多少个？【穿越任务】",
-      "contentHash": "6d07dd02125166421f5957fe12a7e4b6203800a6d1d36fbe7b063418fb81f757",
+      "prompt": "2 台智能车床 3 小时精密加工 36 个特种螺栓。照这样计算，5 台同样的机器运行 2 小时一共能加工多少个螺栓？【穿越任务】",
+      "contentHash": "b2adb44136bb39965334b18823fd5a7e8776a947e1e293f15717c72a61236e28",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1676,8 +1676,8 @@
     {
       "questionId": "chapter-07-unit-method-9",
       "title": "归一与单位化",
-      "prompt": "甲 3 小时做了 39 个手工，乙 2 小时做了 20 个。甲每小时比乙每小时多做几个？【攻坚任务】",
-      "contentHash": "80878654bfd643d991cde96aaf26ced44c29b886d593a72f733c57ea82c9a5f2",
+      "prompt": "工效对比：技师甲 3 小时制作 39 个高精元件，技师乙 2 小时制作 20 个。通过分别归一计算每小时产能，技师甲每小时比技师乙多制作几个元件？【攻坚任务】",
+      "contentHash": "499c2fcef57f4cc92f70d9c188f780f32af57621bc290909aec4d1d061b1700f",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1693,8 +1693,8 @@
     {
       "questionId": "chapter-07-unit-method-10",
       "title": "归一与单位化",
-      "prompt": "8 人 6 天做了 288 个零件，照这样 12 人 3 天做多少个？【决战任务】",
-      "contentHash": "5ec717eb1674458dc7409c24d1078f145c67edb62407ac6b89ad971343c026db",
+      "prompt": "8 名装配工连续工作 6 天完成了 288 个特种仪器的组装。照此工效，若调配 12 名装配工工作 3 天，一共可以组装多少个特种仪器？【决战任务】",
+      "contentHash": "8da7e9e0c6b5692fef2f8cc2cccb9c3ffa6ca377e77451b5181d43a2e2100d5c",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1710,8 +1710,8 @@
     {
       "questionId": "chapter-07-estimation-method-1",
       "title": "估算与范围",
-      "prompt": "估算 197+204，最接近的整百数是多少？【启航任务】",
-      "contentHash": "40ce61052afd28694e833fe2319d5a870e2b40dc4dc94ae73a9bf8d8e8f91031",
+      "prompt": "深空探测飞船两段巡航燃油消耗读数分别为 197 升与 204 升。工程师快速进行整百数估算，两者之和最接近哪个整百数？【启航任务】",
+      "contentHash": "ec07cf69f0787745b88f5e6c9a9cfd0c3a719eab3ddae2c94983daae063917a8",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1727,8 +1727,8 @@
     {
       "questionId": "chapter-07-estimation-method-2",
       "title": "估算与范围",
-      "prompt": "估算 398+399 的和，大约是多少（填整百数）？【校准任务】",
-      "contentHash": "9c72ae7afd6431c03535cafe1993993f98a36ae3781f7c8c35e3c49738e69fb9",
+      "prompt": "某实验观测周期的天数是一个在 40 到 50 之间的整数（不含 40 和 50），已知它既是 6 的倍数又是 8 的倍数。这个天数是多少？【校准任务】",
+      "contentHash": "e7191cc5c37a3a99cefe8cc205d3ca458f5fe72d7b3dbac2f4bf1039970e0953",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1744,8 +1744,8 @@
     {
       "questionId": "chapter-07-estimation-method-3",
       "title": "估算与范围",
-      "prompt": "估算 497+316，结果最接近哪个整百数？【侦察任务】",
-      "contentHash": "12cb840637ef64e3932a8e01200f258696afbfdbe1d7a3f065859edb4f20844c",
+      "prompt": "空间站太阳能翼展开单元共有 49 组，每组包含 6 块面板。估算面板总数最接近哪个整十数？【侦察任务】",
+      "contentHash": "5665c01fa219bd19e1d7dda11fe7f146f82d508c0e81e263c8595b5cc3cc6e63",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1761,8 +1761,8 @@
     {
       "questionId": "chapter-07-estimation-method-4",
       "title": "估算与范围",
-      "prompt": "一个自然数在 40 到 50 之间（不含 40 和 50），而且是 8 的倍数。这个数是多少？【推进任务】",
-      "contentHash": "05f3bf5efbc5a762057bcf1d76f9b457be1f6a725a65dfa9db5fec7a55fc36f8",
+      "prompt": "一块近似长方形的温室培育田长 9 米、宽 7 米。为预估采购地膜面积，估算到整十数，其面积大约是多少平方米？【推进任务】",
+      "contentHash": "d7d64133cc293d29f73e3540f1c8f34831b0a56264581345c9038353135383bb",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1778,8 +1778,8 @@
     {
       "questionId": "chapter-07-estimation-method-5",
       "title": "估算与范围",
-      "prompt": "估算 502-198，最接近的整百数是多少？【协作任务】",
-      "contentHash": "121d997627be25db658dad16fa589e50b9550f1344aec2cdeb3e49bc15c91081",
+      "prompt": "货运飞船额定载重额度为 502 吨，目前已经装载了 198 吨物资。工程师估算剩余可用载重量最接近哪个整百数？【协作任务】",
+      "contentHash": "5a247ba5658bea3677d78d123767a7d52feb9b29ad5a3660a0a0cd6f252b6f21",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1795,8 +1795,8 @@
     {
       "questionId": "chapter-07-estimation-method-6",
       "title": "估算与范围",
-      "prompt": "估算 49×6，最接近的整十数是多少？【加固任务】",
-      "contentHash": "fe8f6b47053a6f7cb6e9aea74dd70769b25fc53f424cee5118cd4613d5f3145b",
+      "prompt": "深空雷达三次探测距离读数分别为 298 米、399 米和 105 米。进行快速整百数估算，三段总距离最接近哪个整百数？【加固任务】",
+      "contentHash": "ea158f78eddba07573d7a81e2f61a2dfa2c8dc34c048d8d4cf163bc350055d65",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1812,8 +1812,8 @@
     {
       "questionId": "chapter-07-estimation-method-7",
       "title": "估算与范围",
-      "prompt": "一块地长 9 米、宽 7 米，估算到整十，面积大约是多少平方米？【巡航任务】",
-      "contentHash": "ce788e28254a98e4d98330c51e6d9db5ddb14c50ade6bd11a95af9576e0bbb27",
+      "prompt": "研学团共 38 名学生参观航天发射场，每张门票 6 元。领队估算到整十数，准备门票预算大约是多少元？【巡航任务】",
+      "contentHash": "c0a440e1ab3444586b4711b7be58eb7786334c73b3c027006c4940572ce0f730",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1829,8 +1829,8 @@
     {
       "questionId": "chapter-07-estimation-method-8",
       "title": "估算与范围",
-      "prompt": "估算 298+399+105，最接近的整百数是多少？【穿越任务】",
-      "contentHash": "3ec64846670ee564b269fee3f676c2066156ac1aec64bc79f22a1a81dc361896",
+      "prompt": "一个未知整数除以 7，计算得出的商是 8，且有余数。这个未知被除数最大可能是多少？【穿越任务】",
+      "contentHash": "627a77b99d181c027571849f14a8795985dd7fea4c377833a2da2e15afb6687f",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1846,8 +1846,8 @@
     {
       "questionId": "chapter-07-estimation-method-9",
       "title": "估算与范围",
-      "prompt": "估算 507 减去 203，结果大约是哪个整百数？【攻坚任务】",
-      "contentHash": "edcb26034866d24f940b5c5d6a86b5c5e45c145934be45be3dd2480d23ad5024",
+      "prompt": "空间站某核心耐压密封构件的重量在 60 到 80 千克之间（不含 60 和 80）。已知该重量除以 5 余 3，且除以 7 也余 3。这个构件的重量是多少千克？【攻坚任务】",
+      "contentHash": "d4124a19ef2c156c5e2874a330e9eaa6d7c82fd9edc0afbff13e09051d3b362b",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1863,8 +1863,8 @@
     {
       "questionId": "chapter-07-estimation-method-10",
       "title": "估算与范围",
-      "prompt": "全班 38 人，每人门票 6 元。估算到整十，大约需要多少元？【决战任务】",
-      "contentHash": "44ed5f6841e6662c166533bff69cbf9c18dda24d808d89dbe206fb50035260ce",
+      "prompt": "货运驳船额定限载 450 千克，已装运一台 122 千克的控制机。剩下空间用于装载每箱重 39 千克的小型电池箱。估算最多还能装载几箱电池？【决战任务】",
+      "contentHash": "3cacb6dd4b2bd5a298f062c35d0fd304ae9fdd271963d9382a23ec88fb3bf907",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1880,8 +1880,8 @@
     {
       "questionId": "chapter-07-verify-eliminate-1",
       "title": "验算与排除",
-      "prompt": "用验算求未知数：x+8=15，x 是多少？【启航任务】",
-      "contentHash": "9e798fdd8633f83881825b39b5acc5b794ed00638f3c8f60edbae67dfdd7cd07",
+      "prompt": "管道压力参数满足方程：x + 8 = 15。利用减法逆运算求解未知数 x 并代入验算，x 的值是多少？【启航任务】",
+      "contentHash": "bef4a67c4aee2091892b8e3139a0a04de2c69dcdcbc78bd1a465d85fbf9eceae",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1897,8 +1897,8 @@
     {
       "questionId": "chapter-07-verify-eliminate-2",
       "title": "验算与排除",
-      "prompt": "验算方程 4x+3=23 的候选结果，x 应是多少？【校准任务】",
-      "contentHash": "ccb45e6f755cc5c38b50047b8668dee044dd4f5dff60203c98957cb4640f3033",
+      "prompt": "四个候选数据 3、4、5、6 中，只有一个满足动力方程 4x + 3 = 23。通过代入法逐一验证排除，符合条件的未知数 x 是多少？【校准任务】",
+      "contentHash": "3f843710b7ecc3b7b695cd6cf50958a5cb350a440be3faa4b15bea22a001f434",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1914,8 +1914,8 @@
     {
       "questionId": "chapter-07-verify-eliminate-3",
       "title": "验算与排除",
-      "prompt": "求未知数：x-6=18，用加法验算确认，x 是多少？【侦察任务】",
-      "contentHash": "0f346e6d6781c555e40ba38a536fb2b6a954e487785020b343d9fb48af86766b",
+      "prompt": "巡检台账记录算式：x - 6 = 18。为了确保无误，安全员利用加法 18 + 6 执行反向闭环验算，原数 x 是多少？【侦察任务】",
+      "contentHash": "1da68c38412796dbb5f633c0c94706af19398d901719d3c5b2a47da4b5ed8c9a",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1931,8 +1931,8 @@
     {
       "questionId": "chapter-07-verify-eliminate-4",
       "title": "验算与排除",
-      "prompt": "用回代检查：(x+3)×2=20，x 是多少？【推进任务】",
-      "contentHash": "27780ef43ea26d87371bd5821e77131ddd452930a844a6a2bfd52bd8378d01ce",
+      "prompt": "测控系统解算出的参数满足方程：(x + 3) × 2 = 20。通过代入法反向检验求出的未知数，x 的值是多少？【推进任务】",
+      "contentHash": "090abe78c9d58fffc866771901f040aeb48cc9c913ff84efb757f760734db589",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1948,8 +1948,8 @@
     {
       "questionId": "chapter-07-verify-eliminate-5",
       "title": "验算与排除",
-      "prompt": "用验算求未知数：x÷5=8，x 是多少？【协作任务】",
-      "contentHash": "22d7c3432d5df9f6cd778b5eb9d69fc56b4b40ad5d3749a5bf28793f3f947e9a",
+      "prompt": "航天员计算轨道速度参数：x ÷ 5 = 8。利用乘法 8 × 5 代回方程检验确认，x 的值是多少？【协作任务】",
+      "contentHash": "1034923e193c82155180177055a921835d3cf202a1bccce52d815f44916fb7ab",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1965,8 +1965,8 @@
     {
       "questionId": "chapter-07-verify-eliminate-6",
       "title": "验算与排除",
-      "prompt": "解方程 3x-4=17 并用代入检查，x 是多少？【加固任务】",
-      "contentHash": "a50195ad0a86897068536bda14ea924be59c7f96b5d4d974ff95a672cd88b655",
+      "prompt": "在候选数字 3、4、5、6 中，代入不等条件“3x - 4 > 10 且 2x + 1 < 12”进行排除筛选，唯一同时满足两个条件的整数是多少？【加固任务】",
+      "contentHash": "5acf295f1773392927f39c4fb4317aa9702218b43ba1066db58e2a3e46f5e7c9",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1982,8 +1982,8 @@
     {
       "questionId": "chapter-07-verify-eliminate-7",
       "title": "验算与排除",
-      "prompt": "两个相邻的数分别是 14 和 16，中间的数是多少？【巡航任务】",
-      "contentHash": "0af168ea4f208244456d6c45663b04e436786ad5bc015add4602bd16ae7c3105",
+      "prompt": "两个相邻的自然数之和等于 31。求其中较小的那个自然数，并用连续数特征验算确认。【巡航任务】",
+      "contentHash": "619c74377f818c99dca09b709f73656e06a36376c5947c2398bcc0dc6913a7c8",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1999,8 +1999,8 @@
     {
       "questionId": "chapter-07-verify-eliminate-8",
       "title": "验算与排除",
-      "prompt": "小华算 46-18=28。用 28+18 验算应得到多少？【穿越任务】",
-      "contentHash": "1848018d01819747d29b8a4ce58fdeb9d2b8032ee1eeeb5ab38eb6d7a7be0757",
+      "prompt": "实习记录员在台账上写下 46 - 18 = 28。总工程师要求用“差 + 减数 = 被减数”执行反向验算，28 + 18 的验算结果应是多少？【穿越任务】",
+      "contentHash": "0d901aaabed9252a5eed9c24132944d8e659ce127e452ae6a507d8e589f1c523",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -2016,8 +2016,8 @@
     {
       "questionId": "chapter-07-verify-eliminate-9",
       "title": "验算与排除",
-      "prompt": "从 1、2、3、4 中选一个数，它加 5 后比 8 大、比 11 小。这个数是多少？【攻坚任务】",
-      "contentHash": "c4534f0c8268e919c0776ee28b0f700e8ec14930e2f7abf9abc12f382c35de44",
+      "prompt": "从候选编号 1、2、3、4 中选出一个数，它加上 5 之后严格大于 8，且严格小于 11。通过范围排除法，这个数是多少？【攻坚任务】",
+      "contentHash": "93cc9e0fbbe2aa9b3c9bf9464a753059bdd5f0f0ab7593c84d641792cb89a045",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -2033,8 +2033,8 @@
     {
       "questionId": "chapter-07-verify-eliminate-10",
       "title": "验算与排除",
-      "prompt": "方程 x÷4+2=9，用代入法验证后，x 是多少？【决战任务】",
-      "contentHash": "d6246de5ff7c7ee19ad7103966c3b3e00c7a6eb4f6c7e98f4a2ebdf2c8fb3ba4",
+      "prompt": "控制系统解出动力参数满足方程：x ÷ 4 + 2 = 9。通过两步倒推解方程并将结果代回原式完成严密校验，x 的最终值是多少？【决战任务】",
+      "contentHash": "4af1b52fbc1c3df83d86dd4340c14b4da55a10dac42086f10b6bc206b523c75c",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
