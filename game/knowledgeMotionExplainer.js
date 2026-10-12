@@ -192,8 +192,8 @@ export const MOTION_MODELS = Object.freeze({
     id: "factors-multiples",
     title: "短除梯级 · 因倍数分解模型",
     spark: "公质因数连续除，左列乘GCD，L型环乘LCM！",
-    formula: "左侧竖列相乘 = 最大公因数(GCD)；“L”型回路整环连乘 = 最小公倍数(LCM)",
-    keywords: ["短除梯级", "质因数分解与短除法", "短除法", "最大公因数", "最小公倍数", "最大公约数", "公倍数", "公因数", "质因数", "因数", "倍数", "互质", "分解质因数", "factors-multiples", "prime-factorization", "factor-decomposition", "gcd", "lcm"],
+    formula: "左侧竖列相乘 = 最大公因数(GCD)；“L”型回路整环连乘 = 最小公倍数(LCM)；各质因数指数加1连乘 = 因数个数",
+    keywords: ["短除梯级", "质因数分解与短除法", "短除法", "最大公因数", "最小公倍数", "最大公约数", "公倍数", "公因数", "质因数", "因数", "倍数", "互质", "分解质因数", "因数个数", "正因数", "factors-multiples", "prime-factorization", "factor-decomposition", "gcd", "lcm"],
     type: "factors-multiples"
   },
   "general-logic": {
@@ -203,6 +203,54 @@ export const MOTION_MODELS = Object.freeze({
     formula: "二维表格打叉排除 ➔ 锁定唯一对勾真相",
     keywords: ["网格矩阵排除", "表格排除", "侦探", "推理", "真话", "假话", "逻辑", "猜测", "logic", "elimination-table", "verify-eliminate", "case-discussion"],
     type: "general-logic"
+  },
+  "square-array": {
+    id: "square-array",
+    title: "洋葱剥皮 · 方阵切角模型",
+    spark: "四个角被两边抢，扣掉四个角得一圈！",
+    formula: "最外层总数 = (每边数 - 1) × 4 = 每边数 × 4 - 4；内层每边 = 外层每边 - 2",
+    keywords: ["方阵切角", "方阵问题", "方阵", "最外层", "实心方阵", "空心方阵", "四周", "每边", "square-array"],
+    type: "square-array"
+  },
+  "concentration": {
+    id: "concentration",
+    title: "溶质守恒 · 糖水稀释模型",
+    spark: "白糖克数锁死不动，稀释变淡抓溶质！",
+    formula: "浓度 = 溶质(纯糖) ÷ 溶液(糖+水)；溶质 = 溶液 × 浓度",
+    keywords: ["溶质守恒", "糖水模型", "浓度问题", "浓度", "糖水", "盐水", "稀释", "配比", "concentration", "concentration-configuration"],
+    type: "concentration"
+  },
+  "ratio-proportion": {
+    id: "ratio-proportion",
+    title: "份数对齐 · 配方切块模型",
+    spark: "大蛋糕按比切块，一份多少乘回去！",
+    formula: "总份数 = 前项 + 后项；1份量 = 总量 ÷ 总份数",
+    keywords: ["份数对齐", "比例分配", "比和比例", "按比分配", "比例", "分配", "按比", "份数", "比", "ratio-proportion", "ratio-model"],
+    type: "ratio-proportion"
+  },
+  "geometry-counting": {
+    id: "geometry-counting",
+    title: "双向握手 · 序数求和模型",
+    spark: "排队握手不回头，点数乘(点数-1)除以2！",
+    formula: "线段数(角数) = n × (n - 1) ÷ 2 = (n - 1) + ... + 1",
+    keywords: ["双向握手", "图形计数", "数线段", "数角", "数三角形", "线段", "握手", "geometry-counting"],
+    type: "geometry-counting"
+  },
+  "shortest-path": {
+    id: "shortest-path",
+    title: "顺风汇流 · 节点标数模型",
+    spark: "只能向右向上走，两路汇合数字加！",
+    formula: "当前路口标数 = 左路口数 + 下路口数",
+    keywords: ["节点标数", "最短路径", "标数法", "最短路线", "走格子", "最短走法", "shortest-path", "coordinates-routes"],
+    type: "shortest-path"
+  },
+  "scheduling": {
+    id: "scheduling",
+    title: "并联满载 · 统筹排程模型",
+    spark: "平底锅一分不空闲，多任务搭积木最省时！",
+    formula: "最优时间 = 总工时 ÷ 满载并行能力 (余数合理轮换)",
+    keywords: ["并联满载", "统筹优化", "统筹排程", "烙饼", "排程", "统筹", "排队", "煎饼", "scheduling", "optimal-strategy"],
+    type: "scheduling"
   }
 });
 
@@ -210,9 +258,10 @@ export const MOTION_MODELS = Object.freeze({
  * 识别题目或模块对应的最佳解题动图模型
  */
 export function matchMotionModel(hint = {}) {
-  const methodId = String(hint.methodId || hint.moduleId || hint.thinkingMethodId || "").toLowerCase().trim();
-  const methodLabel = String(hint.method || hint.thinkingMethodLabel || "").trim();
-  const prompt = String(hint.prompt || hint.title || "").toLowerCase();
+  const hintObj = typeof hint === "string" ? { prompt: hint } : (hint || {});
+  const methodId = String(hintObj.methodId || hintObj.moduleId || hintObj.thinkingMethodId || "").toLowerCase().trim();
+  const methodLabel = String(hintObj.method || hintObj.thinkingMethodLabel || "").trim();
+  const prompt = String(hintObj.prompt || hintObj.title || "").toLowerCase();
   const combined = `${methodId} ${methodLabel} ${prompt}`.toLowerCase();
 
   // 1. 最高优先级：精确 ID 匹配（传入已知准确的 moduleId / methodId 时零误判）
@@ -242,8 +291,14 @@ export function matchMotionModel(hint = {}) {
   if (methodId.includes("quick") || methodId.includes("calc")) return MOTION_MODELS["quick-calculation"];
   if (methodId.includes("series") || methodId.includes("arithmetic") || methodId.includes("gauss")) return MOTION_MODELS["arithmetic-series"];
   if (methodId.includes("period") || methodId.includes("cycle")) return MOTION_MODELS["periodicity"];
+  if (methodId.includes("square") || methodId.includes("array")) return MOTION_MODELS["square-array"];
+  if (methodId.includes("concentrat")) return MOTION_MODELS["concentration"];
+  if (methodId.includes("ratio") || methodId.includes("proportion")) return MOTION_MODELS["ratio-proportion"];
+  if (methodId.includes("geometry-count") || methodId.includes("counting-transfer")) return MOTION_MODELS["geometry-counting"];
+  if (methodId.includes("shortest") || methodId.includes("route") || methodId.includes("path")) return MOTION_MODELS["shortest-path"];
+  if (methodId.includes("schedul")) return MOTION_MODELS["scheduling"];
   if (methodId.includes("enumeration") || methodId.includes("table-method") || methodId.includes("enum")) return MOTION_MODELS["enumeration"];
-  if (methodId.includes("add-multiply") || methodId.includes("tree-diagram") || methodId.includes("counting-transfer")) return MOTION_MODELS["add-multiply-principle"];
+  if (methodId.includes("add-multiply") || methodId.includes("tree-diagram") || methodId.includes("counting")) return MOTION_MODELS["add-multiply-principle"];
   if (methodId.includes("venn") || methodId.includes("overlap") || methodId.includes("inclusion") || methodId.includes("exclusion") || methodId.includes("set")) return MOTION_MODELS["venn-diagram"];
   if (methodId.includes("surplus") || methodId.includes("deficit")) return MOTION_MODELS["surplus-deficit"];
   if (methodId.includes("sum-diff") || methodId.includes("draw-bar") || methodId.includes("difference")) return MOTION_MODELS["sum-diff"];
@@ -1466,6 +1521,242 @@ function renderFactorsMultiplesAnimation() {
 }
 
 /**
+ * 25. 方阵切角动图：5x5实心网格，4个角落发光高亮提示重复数，向内剥洋葱层
+ */
+function renderSquareArrayAnimation() {
+  const svg = createMotionSvg("0 0 360 170");
+  svg.innerHTML = `
+    <rect width="360" height="170" rx="8" fill="#131b2e" />
+    <g transform="translate(30, 20)">
+      <rect x="0" y="0" width="120" height="120" rx="8" fill="#1e293b" stroke="#334155" stroke-dasharray="3,3" />
+      <rect x="4" y="4" width="112" height="112" rx="6" fill="none" stroke="#38bdf8" stroke-width="2" />
+      ${Array.from({ length: 5 }, (_, r) =>
+        Array.from({ length: 5 }, (_, c) => {
+          const isCorner = (r === 0 || r === 4) && (c === 0 || c === 4);
+          const isOuter = r === 0 || r === 4 || c === 0 || c === 4;
+          const fill = isCorner ? "#f59e0b" : isOuter ? "#38bdf8" : "#64748b";
+          const rSize = isCorner ? 5.5 : 4;
+          return `<circle cx="${14 + c * 23}" cy="${14 + r * 23}" r="${rSize}" fill="${fill}" />`;
+        }).join("")
+      ).join("")}
+      <circle cx="14" cy="14" r="8" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2,2" />
+      <circle cx="106" cy="14" r="8" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2,2" />
+      <circle cx="14" cy="106" r="8" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2,2" />
+      <circle cx="106" cy="106" r="8" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2,2" />
+    </g>
+    <g transform="translate(170, 20)">
+      <rect x="0" y="0" width="175" height="42" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2" />
+      <text x="8" y="18" fill="#f59e0b" font-size="11" font-weight="bold">🟡 4个角点：被两条边数了两次！</text>
+      <text x="8" y="34" fill="#f8fafc" font-size="10">最外层 ＝ (5 － 1) × 4 ＝ <tspan fill="#38bdf8" font-weight="bold">16 颗</tspan></text>
+
+      <rect x="0" y="48" width="175" height="42" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" />
+      <text x="8" y="66" fill="#38bdf8" font-size="11" font-weight="bold">🧅 洋葱剥皮：每向内一层边长减2</text>
+      <text x="8" y="82" fill="#94a3b8" font-size="10">次外层边长 ＝ 5 － 2 ＝ 3 颗</text>
+
+      <rect x="0" y="96" width="175" height="26" rx="4" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="1" />
+      <text x="87" y="113" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle">✨ 实心总数 ＝ 边长 × 边长 ＝ 25</text>
+    </g>
+    <text x="180" y="156" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">
+      方阵口诀：最外层四周扣4角，剥开一层边长减2 🧅
+    </text>
+  `;
+  return svg;
+}
+
+/**
+ * 26. 浓度糖水稀释动图：量杯底部纯糖沉淀金色锁死，加水稀释，纯溶质不变
+ */
+function renderConcentrationAnimation() {
+  const svg = createMotionSvg("0 0 360 170");
+  svg.innerHTML = `
+    <rect width="360" height="170" rx="8" fill="#131b2e" />
+    <g transform="translate(35, 15)">
+      <path d="M 15 15 L 15 115 Q 15 125 25 125 L 85 125 Q 95 125 95 115 L 95 15" fill="none" stroke="#94a3b8" stroke-width="2.5" />
+      <rect x="17" y="55" width="76" height="68" fill="rgba(56, 189, 248, 0.25)" />
+      <path d="M 17 55 Q 36 50 55 55 T 93 55" fill="none" stroke="#38bdf8" stroke-width="2" />
+      <rect x="25" y="105" width="60" height="18" rx="3" fill="#f59e0b" stroke="#fef08a" stroke-width="1" />
+      <text x="55" y="118" fill="#78350f" font-size="10" font-weight="bold" text-anchor="middle">纯糖 20g 🔒</text>
+      <path d="M 55 10 L 55 45" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3,2" />
+      <polygon points="50,43 55,51 60,43" fill="#38bdf8" />
+      <text x="55" y="8" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">加水只稀释</text>
+    </g>
+    <g transform="translate(155, 20)">
+      <rect x="0" y="0" width="190" height="42" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2" />
+      <text x="8" y="18" fill="#f59e0b" font-size="11" font-weight="bold">🔒 黄金铁律：纯糖克数锁死不变</text>
+      <text x="8" y="34" fill="#f8fafc" font-size="10">纯糖(溶质) ＝ 溶液 × 浓度</text>
+
+      <rect x="0" y="48" width="190" height="42" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" />
+      <text x="8" y="66" fill="#38bdf8" font-size="11" font-weight="bold">💧 糖水总量 ＝ 纯糖 ＋ 水</text>
+      <text x="8" y="82" fill="#94a3b8" font-size="10">切勿把分母只算作纯水！</text>
+
+      <rect x="0" y="96" width="190" height="26" rx="4" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="1" />
+      <text x="95" y="113" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle">✨ 新浓度 ＝ 不变纯糖 ÷ 新糖水总重</text>
+    </g>
+    <text x="180" y="156" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">
+      浓度口诀：加水水变多糖不变，紧盯溶质算浓度 🍬
+    </text>
+  `;
+  return svg;
+}
+
+/**
+ * 27. 比和比例切蛋糕动图：长条积木切成 3+2 份，1份是多少
+ */
+function renderRatioProportionAnimation() {
+  const svg = createMotionSvg("0 0 360 170");
+  svg.innerHTML = `
+    <rect width="360" height="170" rx="8" fill="#131b2e" />
+    <g transform="translate(25, 30)">
+      <text x="155" y="0" fill="#f8fafc" font-size="11" font-weight="bold" text-anchor="middle">大蛋糕总量 100 ➔ 3 + 2 ＝ 5 份 (1份＝20)</text>
+      <rect x="0" y="15" width="60" height="32" rx="4" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" />
+      <text x="30" y="35" fill="#f8fafc" font-size="11" font-weight="bold" text-anchor="middle">20</text>
+      <rect x="63" y="15" width="60" height="32" rx="4" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" />
+      <text x="93" y="35" fill="#f8fafc" font-size="11" font-weight="bold" text-anchor="middle">20</text>
+      <rect x="126" y="15" width="60" height="32" rx="4" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5" />
+      <text x="156" y="35" fill="#f8fafc" font-size="11" font-weight="bold" text-anchor="middle">20</text>
+      <rect x="189" y="15" width="60" height="32" rx="4" fill="#d97706" stroke="#f59e0b" stroke-width="1.5" />
+      <text x="219" y="35" fill="#f8fafc" font-size="11" font-weight="bold" text-anchor="middle">20</text>
+      <rect x="252" y="15" width="60" height="32" rx="4" fill="#d97706" stroke="#f59e0b" stroke-width="1.5" />
+      <text x="282" y="35" fill="#f8fafc" font-size="11" font-weight="bold" text-anchor="middle">20</text>
+      <text x="93" y="65" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">甲分 3 份 ＝ 60</text>
+      <text x="252" y="65" fill="#f59e0b" font-size="11" font-weight="bold" text-anchor="middle">乙分 2 份 ＝ 40</text>
+    </g>
+    <g transform="translate(25, 105)">
+      <rect x="0" y="0" width="310" height="28" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1" />
+      <text x="155" y="18" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">🎂 第一步：总量 ÷ 总份数 ＝ 1份量；第二步：1份量 × 对应份数</text>
+    </g>
+    <text x="180" y="156" fill="#10b981" font-size="12" font-weight="bold" text-anchor="middle">
+      比例口诀：按比把蛋糕切小份，先算1份再乘回 🍰
+    </text>
+  `;
+  return svg;
+}
+
+/**
+ * 28. 图形计数握手彩虹动图：5点连线，彩色弧线握手除以2
+ */
+function renderGeometryCountingAnimation() {
+  const svg = createMotionSvg("0 0 360 170");
+  svg.innerHTML = `
+    <rect width="360" height="170" rx="8" fill="#131b2e" />
+    <g transform="translate(30, 25)">
+      <line x1="20" y1="80" x2="260" y2="80" stroke="#475569" stroke-width="2.5" />
+      ${[0, 1, 2, 3, 4].map((i) => {
+        const x = 20 + i * 60;
+        const labels = ["A", "B", "C", "D", "E"];
+        return `
+          <circle cx="${x}" cy="80" r="6" fill="#38bdf8" stroke="#f8fafc" stroke-width="1.5" />
+          <text x="${x}" y="98" fill="#f8fafc" font-size="11" font-weight="bold" text-anchor="middle">${labels[i]}</text>
+        `;
+      }).join("")}
+      <path d="M 20 80 Q 50 40 80 80" fill="none" stroke="#38bdf8" stroke-width="1.8" />
+      <path d="M 20 80 Q 80 20 140 80" fill="none" stroke="#38bdf8" stroke-width="1.8" />
+      <path d="M 20 80 Q 110 5 200 80" fill="none" stroke="#38bdf8" stroke-width="1.8" />
+      <path d="M 20 80 Q 140 -10 260 80" fill="none" stroke="#38bdf8" stroke-width="1.8" />
+      <path d="M 80 80 Q 110 45 140 80" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="3,2" />
+      <path d="M 80 80 Q 140 25 200 80" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="3,2" />
+      <path d="M 80 80 Q 170 10 260 80" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="3,2" />
+      <path d="M 140 80 Q 170 50 200 80" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2,2" />
+      <path d="M 140 80 Q 200 30 260 80" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2,2" />
+      <path d="M 200 80 Q 230 55 260 80" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+    </g>
+    <text x="180" y="132" fill="#f8fafc" font-size="11" font-weight="bold" text-anchor="middle">
+      线段总数 ＝ 4 ＋ 3 ＋ 2 ＋ 1 ＝ <tspan fill="#f59e0b">5 × 4 ÷ 2 ＝ 10 条</tspan>
+    </text>
+    <text x="180" y="156" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">
+      握手口诀：两两连线像握手，点乘(点减1)除以2 🤝
+    </text>
+  `;
+  return svg;
+}
+
+/**
+ * 29. 顺风标数法动图：网格汇流，左路 + 下路 = 当前路口
+ */
+function renderShortestPathAnimation() {
+  const svg = createMotionSvg("0 0 360 170");
+  svg.innerHTML = `
+    <rect width="360" height="170" rx="8" fill="#131b2e" />
+    <g transform="translate(40, 20)">
+      <line x1="20" y1="90" x2="160" y2="90" stroke="#334155" stroke-width="2" />
+      <line x1="20" y1="50" x2="160" y2="50" stroke="#334155" stroke-width="2" />
+      <line x1="20" y1="10" x2="160" y2="10" stroke="#334155" stroke-width="2" />
+      <line x1="20" y1="10" x2="20" y2="90" stroke="#334155" stroke-width="2" />
+      <line x1="90" y1="10" x2="90" y2="90" stroke="#334155" stroke-width="2" />
+      <line x1="160" y1="10" x2="160" y2="90" stroke="#334155" stroke-width="2" />
+      <circle cx="20" cy="90" r="10" fill="#0284c7" />
+      <text x="20" y="94" fill="#f8fafc" font-size="11" font-weight="bold" text-anchor="middle">起</text>
+      <circle cx="160" cy="10" r="10" fill="#10b981" />
+      <text x="160" y="14" fill="#f8fafc" font-size="11" font-weight="bold" text-anchor="middle">终</text>
+      <text x="90" y="94" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">1</text>
+      <text x="160" y="94" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">1</text>
+      <text x="20" y="54" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">1</text>
+      <text x="20" y="14" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">1</text>
+      <circle cx="90" cy="50" r="12" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
+      <text x="90" y="54" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="middle">2</text>
+      <circle cx="160" cy="50" r="12" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
+      <text x="160" y="54" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="middle">3</text>
+      <circle cx="90" cy="10" r="12" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
+      <text x="90" y="14" fill="#f59e0b" font-size="12" font-weight="bold" text-anchor="middle">3</text>
+      <rect x="180" y="0" width="130" height="40" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
+      <text x="245" y="18" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">终点方法数 ＝ 6</text>
+      <text x="245" y="32" fill="#f8fafc" font-size="10" text-anchor="middle">3 (下) ＋ 3 (左) ＝ 6</text>
+    </g>
+    <text x="180" y="132" fill="#f8fafc" font-size="11" font-weight="bold" text-anchor="middle">
+      每个十字路口的方法数 ＝ 紧邻的【左路口数 ＋ 下路口数】
+    </text>
+    <text x="180" y="156" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">
+      标数口诀：小蜜蜂顺风飞，两路汇合数字加 🐝
+    </text>
+  `;
+  return svg;
+}
+
+/**
+ * 30. 烙饼统筹排程动图：平底锅双工位时刻满载，3分钟3张饼
+ */
+function renderSchedulingAnimation() {
+  const svg = createMotionSvg("0 0 360 170");
+  svg.innerHTML = `
+    <rect width="360" height="170" rx="8" fill="#131b2e" />
+    <g transform="translate(25, 20)">
+      <text x="60" y="12" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">第 1 分钟</text>
+      <text x="150" y="12" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">第 2 分钟</text>
+      <text x="240" y="12" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">第 3 分钟</text>
+      <text x="0" y="38" fill="#38bdf8" font-size="11" font-weight="bold">锅位1</text>
+      <rect x="25" y="24" width="70" height="24" rx="4" fill="#0284c7" stroke="#38bdf8" />
+      <text x="60" y="40" fill="#f8fafc" font-size="10" font-weight="bold" text-anchor="middle">饼A 正面</text>
+
+      <rect x="115" y="24" width="70" height="24" rx="4" fill="#0284c7" stroke="#38bdf8" />
+      <text x="150" y="40" fill="#f8fafc" font-size="10" font-weight="bold" text-anchor="middle">饼A 反面(熟)</text>
+
+      <rect x="205" y="24" width="70" height="24" rx="4" fill="#d97706" stroke="#f59e0b" />
+      <text x="240" y="40" fill="#f8fafc" font-size="10" font-weight="bold" text-anchor="middle">饼B 反面(熟)</text>
+
+      <text x="0" y="74" fill="#f59e0b" font-size="11" font-weight="bold">锅位2</text>
+      <rect x="25" y="60" width="70" height="24" rx="4" fill="#d97706" stroke="#f59e0b" />
+      <text x="60" y="76" fill="#f8fafc" font-size="10" font-weight="bold" text-anchor="middle">饼B 正面</text>
+
+      <rect x="115" y="60" width="70" height="24" rx="4" fill="#10b981" stroke="#34d399" />
+      <text x="150" y="76" fill="#f8fafc" font-size="10" font-weight="bold" text-anchor="middle">饼C 正面</text>
+
+      <rect x="205" y="60" width="70" height="24" rx="4" fill="#10b981" stroke="#34d399" />
+      <text x="240" y="76" fill="#f8fafc" font-size="10" font-weight="bold" text-anchor="middle">饼C 反面(熟)</text>
+    </g>
+    <g transform="translate(25, 110)">
+      <rect x="0" y="0" width="310" height="24" rx="4" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="1" />
+      <text x="155" y="16" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle">
+        ✨ 锅里时刻放满 2 张饼，总面数 6 ÷ 2 ＝ 3 分钟完全搞定！
+      </text>
+    </g>
+    <text x="180" y="156" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">
+      统筹口诀：平底锅时刻满负荷，多任务轮换最省时 🥞
+    </text>
+  `;
+  return svg;
+}
+
+/**
  * 渲染趣味动态动图卡片组件
  * @param {Object} hint - 题型或模块提示
  * @param {Object} options - 可选配置 (title, compact, autoplay)
@@ -1522,6 +1813,12 @@ export function renderMotionCard(hint = {}, options = {}) {
     case "parity-divisibility": svgElement = renderParityDivisibilityAnimation(); break;
     case "factors-multiples": svgElement = renderFactorsMultiplesAnimation(); break;
     case "general-logic": svgElement = renderGeneralLogicAnimation(); break;
+    case "square-array": svgElement = renderSquareArrayAnimation(); break;
+    case "concentration": svgElement = renderConcentrationAnimation(); break;
+    case "ratio-proportion": svgElement = renderRatioProportionAnimation(); break;
+    case "geometry-counting": svgElement = renderGeometryCountingAnimation(); break;
+    case "shortest-path": svgElement = renderShortestPathAnimation(); break;
+    case "scheduling": svgElement = renderSchedulingAnimation(); break;
     default: svgElement = renderPatternsAnimation(); break;
   }
   visualWrapper.append(svgElement);
@@ -1571,6 +1868,36 @@ export function renderMinimalTacticalCard(review = {}, question = {}) {
   );
   container.append(motionCard);
 
+  // 1.5 生活妙趣锦囊（儿童通俗具象比喻与草稿纸图示指引）
+  let getAnalogyFn = null;
+  if (typeof HintScaffold !== "undefined" && typeof HintScaffold.getConcreteAnalogy === "function") {
+    getAnalogyFn = HintScaffold.getConcreteAnalogy;
+  } else if (typeof globalThis !== "undefined" && typeof globalThis.HintScaffold?.getConcreteAnalogy === "function") {
+    getAnalogyFn = globalThis.HintScaffold.getConcreteAnalogy;
+  } else if (typeof require === "function") {
+    try {
+      const hs = require("./hintScaffold.js");
+      if (hs && typeof hs.getConcreteAnalogy === "function") getAnalogyFn = hs.getConcreteAnalogy;
+    } catch (_) {}
+  }
+  const analogy = getAnalogyFn ? getAnalogyFn(question) : null;
+  if (analogy) {
+    const analogyCard = document.createElement("div");
+    analogyCard.className = "tactical-analogy-capsule";
+    analogyCard.innerHTML = `
+      <div class="tactical-analogy-capsule__header">
+        <span class="tactical-analogy-capsule__icon">🎨</span>
+        <strong class="tactical-analogy-capsule__name">生活妙趣锦囊 · 【${analogy.name}】</strong>
+      </div>
+      <p class="tactical-analogy-capsule__desc">${analogy.analogy}</p>
+      <div class="tactical-analogy-capsule__sketch">
+        <span class="tactical-analogy-capsule__sketch-tag">✏️ 动笔画画看</span>
+        <span>${analogy.sketch}</span>
+      </div>
+    `;
+    container.append(analogyCard);
+  }
+
   // 2. 极简三拍流程卡片
   const stepsGrid = document.createElement("div");
   stepsGrid.className = "minimal-tactical-beats";
@@ -1610,8 +1937,8 @@ export function renderMinimalTacticalCard(review = {}, question = {}) {
     const trapCard = document.createElement("div");
     trapCard.className = "tactical-pitfall-alert";
     trapCard.innerHTML = `
-      <span class="tactical-pitfall__icon">🚨</span>
-      <strong class="tactical-pitfall__label">避坑警示：</strong>
+      <span class="tactical-pitfall__icon">🌟</span>
+      <strong class="tactical-pitfall__label">小侦探避坑锦囊：</strong>
       <span class="tactical-pitfall__text">${trapText}</span>
     `;
     container.append(trapCard);

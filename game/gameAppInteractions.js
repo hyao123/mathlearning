@@ -111,11 +111,68 @@ export function createGameInteractions(app) {
       app.render();
       return;
     }
+    if (event.target.classList?.contains("knowledge-nexus-modal-overlay")) {
+      app.showKnowledgeNexusModal = false;
+      SoundEngine?.playClick?.();
+      app.render();
+      return;
+    }
     const target = event.target.closest("button");
     if (!target || !app.root.contains(target)) return;
     if (target.matches("[data-sound-toggle], [data-toggle-sound]")) {
       SoundEngine.toggleMute();
       app.render();
+      return;
+    }
+    if (target.matches("[data-open-knowledge-nexus]") || target.closest("[data-open-knowledge-nexus]")) {
+      app.showKnowledgeNexusModal = true;
+      SoundEngine?.playClick?.();
+      app.render();
+      return;
+    }
+    if (target.matches("[data-close-knowledge-nexus]") || target.closest("[data-close-knowledge-nexus]")) {
+      app.showKnowledgeNexusModal = false;
+      SoundEngine?.playClick?.();
+      app.render();
+      return;
+    }
+    if (target.matches("[data-nexus-tab]") || target.closest("[data-nexus-tab]")) {
+      const tabBtn = target.matches("[data-nexus-tab]") ? target : target.closest("[data-nexus-tab]");
+      app.knowledgeNexusTab = tabBtn.dataset.nexusTab || "axes";
+      SoundEngine?.playClick?.();
+      app.render();
+      return;
+    }
+    if (target.matches("[data-nexus-jump-level]") || target.closest("[data-nexus-jump-level]")) {
+      const jumpBtn = target.matches("[data-nexus-jump-level]") ? target : target.closest("[data-nexus-jump-level]");
+      const chapterId = jumpBtn.dataset.chapterId;
+      const levelId = jumpBtn.dataset.levelId;
+      app.showKnowledgeNexusModal = false;
+      const targetChapter = app.chaptersById[chapterId];
+      if (targetChapter) {
+        app.campaign = {
+          ...app.campaign,
+          activeChapterId: chapterId,
+          chapterStates: { ...app.campaign.chapterStates, [app.chapter.chapterId]: app.state }
+        };
+        app.chapter = targetChapter;
+        app.state = app.campaign.chapterStates[chapterId];
+        const targetLevel = app.chapter.levels?.find((l) => l.levelId === levelId);
+        if (targetLevel && (app.state.unlockedLevelIds.includes(levelId) || app.state.freePractice)) {
+          app.answerDraft = "";
+          app.answerFeedback = null;
+          app.rewardReveal = null;
+          app.craftingFeedback = null;
+          app.state = ProgressionModel.startLevel(app.state, levelId);
+          app.screen = "challenge";
+        } else {
+          app.pendingFocusKey = levelId;
+          app.screen = "map";
+        }
+        SoundEngine?.playClick?.();
+        app.persist();
+        app.render();
+      }
       return;
     }
     if (target.matches("[data-open-achievements]") || target.closest("[data-open-achievements]")) {
@@ -658,6 +715,12 @@ export function createGameInteractions(app) {
     }
     if (event.key === "Escape" && app.showAchievementsModal) {
       app.showAchievementsModal = false;
+      SoundEngine.playClick?.();
+      app.render();
+      return;
+    }
+    if (event.key === "Escape" && app.showKnowledgeNexusModal) {
+      app.showKnowledgeNexusModal = false;
       SoundEngine.playClick?.();
       app.render();
       return;

@@ -56,11 +56,12 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
   let answerFeedback = null;
   let rewardReveal = null;
   let craftingFeedback = null;
-  let missionFeedback = [];
   let saveFeedback = null;
   let activeAssemblySequence = null;
   let showAchievementsModal = false;
   let showSaveModal = false;
+  let showKnowledgeNexusModal = false;
+  let knowledgeNexusTab = "axes";
   let saveModalFeedback = null;
   let unlockedAchievementIds = [];
   let inventoryZone = "assembly";
@@ -81,7 +82,6 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
         inventory: missionResult.inventory,
         claimedMissionRewards: missionResult.claimedMissionRewards
       }), chapter);
-      missionFeedback = missionResult.transactions;
     }
     campaign = { ...campaign, chapterStates: { ...campaign.chapterStates, [chapter.chapterId]: state } };
     campaign = CampaignModel.synchronizeInventory(campaign, allChapters, state.inventory);
@@ -118,7 +118,6 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
   const appContext = {
     dependencies,
     allChapters,
-    chaptersById,
     getLevel,
     render: () => render(),
     persist,
@@ -139,6 +138,8 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
     activeAssemblySequence: { get: () => activeAssemblySequence, set: (value) => { activeAssemblySequence = value; } },
     showAchievementsModal: { get: () => showAchievementsModal, set: (value) => { showAchievementsModal = value; } },
     showSaveModal: { get: () => showSaveModal, set: (value) => { showSaveModal = value; } },
+    showKnowledgeNexusModal: { get: () => showKnowledgeNexusModal, set: (value) => { showKnowledgeNexusModal = value; } },
+    knowledgeNexusTab: { get: () => knowledgeNexusTab, set: (value) => { knowledgeNexusTab = value; } },
     saveModalFeedback: { get: () => saveModalFeedback, set: (value) => { saveModalFeedback = value; } },
     saveStore: { get: () => saveStore || stateStore },
     unlockedAchievementIds: { get: () => unlockedAchievementIds, set: (value) => { unlockedAchievementIds = value; } },
@@ -182,7 +183,7 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
   }
 
   function updateOverlaysOnly() {
-    root.querySelectorAll(".achievements-modal-overlay, .save-modal-overlay, .assembly-modal, .save-feedback, [data-live-status]").forEach((el) => el.remove());
+    root.querySelectorAll(".achievements-modal-overlay, .save-modal-overlay, .knowledge-nexus-modal-overlay, .assembly-modal, .save-feedback, [data-live-status]").forEach((el) => el.remove());
     renderers.renderStatusOverlays();
     const soundMuted = dependencies.SoundEngine?.isMuted?.() || false;
     const soundBtn = root.querySelector("[data-sound-toggle]");
@@ -227,13 +228,13 @@ function mount({ root, chapter: initialChapter, chapters, stateStore, saveStore,
 
   function handlePostRenderFocus() {
     const activeAnswer = root.querySelector("[data-answer-input]:not([disabled])");
-    if (activeAnswer && !showAchievementsModal && !showSaveModal && !activeAssemblySequence) {
+    if (activeAnswer && !showAchievementsModal && !showSaveModal && !showKnowledgeNexusModal && !activeAssemblySequence) {
       activeAnswer.focus({ preventScroll: true });
       pendingFocusKey = null;
       return;
     }
     const primaryAction = root.querySelector("[data-continue-resolved]:not([disabled]), [data-continue-recovery-resolved]:not([disabled]), [data-next-level]:not([disabled])");
-    if (primaryAction && !showAchievementsModal && !showSaveModal && !activeAssemblySequence) {
+    if (primaryAction && !showAchievementsModal && !showSaveModal && !showKnowledgeNexusModal && !activeAssemblySequence) {
       primaryAction.focus({ preventScroll: true });
       pendingFocusKey = null;
       return;

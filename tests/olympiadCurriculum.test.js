@@ -172,3 +172,45 @@ test("KnowledgeTopology exports four Olympiad spiral axes with complete mileston
     });
   });
 });
+
+test("KnowledgeTopology exports INTRINSIC_LOGIC_BRIDGES and advanced continuation modules without grade tags", () => {
+  const bridges = KnowledgeTopology.intrinsicLogicBridges;
+  assert.ok(Array.isArray(bridges) && bridges.length >= 6);
+
+  bridges.forEach((bridge) => {
+    assert.equal(typeof bridge.id, "string");
+    assert.equal(typeof bridge.title, "string");
+    assert.equal(typeof bridge.bridgeType, "string");
+    assert.equal(typeof bridge.insight, "string");
+    assert.equal(typeof bridge.sourceModule, "string");
+    assert.equal(typeof bridge.targetModule, "string");
+  });
+
+  const advModuleIds = [
+    "rational-axis",
+    "polynomial-geometry",
+    "factoring-structures",
+    "linear-elimination",
+    "rational-equations",
+    "inequality-systems",
+    "similarity-triangles",
+    "congruence-auxiliary",
+    "pythagoras-trig",
+    "circle-locus",
+    "cartesian-plane",
+    "linear-functions",
+    "inverse-functions",
+    "quadratic-extremum"
+  ];
+
+  advModuleIds.forEach((id) => {
+    const mod = KnowledgeTopology.knowledgeTopologyByModule[id];
+    assert.ok(mod, `Module ${id} should exist in topology`);
+    assert.ok(mod.strand, `Module ${id} should have a strand`);
+    assert.ok(mod.stage, `Module ${id} should have a stage`);
+    assert.ok(Array.isArray(mod.prerequisiteIds), `Module ${id} should have prerequisiteIds`);
+    assert.ok(Array.isArray(mod.nextIds), `Module ${id} should have nextIds`);
+    assert.ok(!mod.stage.includes("初一") && !mod.stage.includes("初二") && !mod.stage.includes("初三"), `Module ${id} stage should not contain grade labels`);
+  });
+});
+

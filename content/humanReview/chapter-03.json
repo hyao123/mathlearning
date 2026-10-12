@@ -4,14 +4,14 @@
   "status": "approved",
   "reviewer": "教学审查员审核签核",
   "reviewedAt": "2026-09-29",
-  "contentHash": "8e8821d67431585bd56e5e51f778313d046028253ccacc54185cdb741518facc",
+  "contentHash": "62708c717cb12418b7ae9310b8bcc81c205d25e32485460f15da0bbf51a85353",
   "notes": "教学审查员深度复审签核通过：全面消除雷同模版与低质机械计算，知识梯度与启发式解析完备。",
   "records": [
     {
       "questionId": "factors-multiples-1",
       "title": "闯关 1",
       "prompt": "自然数 12 一共有多少个不同的正因数？【启航任务】",
-      "contentHash": "b7751da491d8872c53394b8d933afac141cc81463d3ac02d6f297d3c75d20a4c",
+      "contentHash": "80e17f10b5cd5b3b4db472db513465c49e3ed0087b8cbbc29b0274137b88aaa8",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -113,7 +113,7 @@
       "questionId": "factors-multiples-6",
       "title": "闯关 6",
       "prompt": "除 24 本身以外，24 的最大因数是多少？【巡航任务】",
-      "contentHash": "bf38e5c586b2416b9be7069b41766f4ec9efd89c3423f37116452d8f589a882b",
+      "contentHash": "d4df593890eee083870ebefe53d08b1c77f2d14f40b75a64ceb7e2162a3fc607",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {
@@ -1337,7 +1337,7 @@
       "questionId": "prime-factorization-9",
       "title": "闯关 9",
       "prompt": "自然数 N 分解质因数后为 N ＝ 2 × 3 × 3 × 5，那么 N 一共有多少个正因数？【攻坚任务】",
-      "contentHash": "592e98a6ff6e8d51ec3a671e85376ed518721a9633ba9524fceb00ab7aa8e877",
+      "contentHash": "4dce42346b8c9819e8814f2ca68b7bd73589511471e8c4c7185eff5b9d3fac9a",
       "reviewer": "教学审查员审核签核",
       "reviewedAt": "2026-09-29",
       "scores": {

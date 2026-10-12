@@ -123,13 +123,14 @@ function createQuestionVisual(question, options = {}) {
     // 2. 针对纯文字且无数学建模特征的题目严格返回 null（满足单元测试契约）
     return null;
   } else if (
-    // 3. 路线地图与网格坐标 (Route Map & Coordinates)
-    ["coordinates-routes", "shortest-path"].includes(moduleId) ||
+    // 3. 路线地图与网格坐标 (Route Map & Coordinates) - 排除蚂蚁在长方体表面展开的最短路径
+    !(prompt.includes("蚂蚁") && prompt.includes("长方体")) &&
+    (["coordinates-routes", "shortest-path"].includes(moduleId) ||
     prompt.includes("坐标点") ||
     prompt.includes("最短走多少格") ||
     prompt.includes("最少走多少格") ||
     prompt.includes("沿水平和竖直航线走") ||
-    (prompt.includes("第") && prompt.includes("列") && prompt.includes("行"))
+    (prompt.includes("第") && prompt.includes("列") && prompt.includes("行")))
   ) {
     visual = renderRouteMap(question, options);
   } else if (
@@ -151,9 +152,12 @@ function createQuestionVisual(question, options = {}) {
   ) {
     visual = renderConcentrationVisual(question, options);
   } else if (
-    // 6. 容积度量与液体换算 (Capacity)
-    moduleId === "capacity" ||
-    ((prompt.includes("升") || prompt.includes("毫升")) && (prompt.includes("水箱") || prompt.includes("水壶") || prompt.includes("水袋") || prompt.includes("融雪水") || prompt.includes("容积") || prompt.includes("等于多少毫升") || prompt.includes("等于多少升") || prompt.includes("装入") || prompt.includes("制水机") || prompt.includes("保温瓶")))
+    // 6. 容积度量与液体换算 (Capacity) - 严格排除体积问题与“水面升高/温度上升”等字样误匹配
+    !["volume", "surface-area", "spatial-geometry"].includes(moduleId) &&
+    (moduleId === "capacity" ||
+    ((/(?:[0-9]|多少|几)\s*(?:升|毫升|L|mL)/i.test(prompt) || prompt.includes("毫升") || prompt.includes("等于多少升") || prompt.includes("等于几升")) &&
+     !prompt.includes("水面升高") && !prompt.includes("水面上升") && !prompt.includes("温度上升") && !prompt.includes("上升") &&
+     (prompt.includes("水箱") || prompt.includes("水壶") || prompt.includes("水袋") || prompt.includes("融雪水") || prompt.includes("容积") || prompt.includes("等于多少毫升") || prompt.includes("等于多少升") || prompt.includes("装入") || prompt.includes("制水机") || prompt.includes("保温瓶"))))
   ) {
     visual = renderCapacityVisual(question, options);
   } else if (
@@ -169,6 +173,9 @@ function createQuestionVisual(question, options = {}) {
     prompt.includes("实心方阵") ||
     prompt.includes("空心方阵") ||
     prompt.includes("最外层") ||
+    prompt.includes("九宫格") ||
+    prompt.includes("幻方") ||
+    prompt.includes("方格网") ||
     (prompt.includes("正方形") && (prompt.includes("定位点") || prompt.includes("每边放") || (prompt.includes("顶点") && prompt.includes("每边"))))
   ) {
     visual = renderSquareArrayVisual(question, options);
@@ -207,8 +214,9 @@ function createQuestionVisual(question, options = {}) {
   ) {
     visual = renderEnumerationTree(question, options);
   } else if (
-    // 11. 可能性与概率事件模型 (Probability & Possibility) - 优先于通用统计条形图
-    ["possibility-basics", "probability-fractions", "probability-risk", "statistics-probability-boss"].includes(moduleId) ||
+    // 11. 可能性与概率事件模型 (Probability & Possibility) - 排除统计图表模块避免被章节名“概率远征”误劫持
+    !["bar-charts", "data-collection", "frequency-tables", "line-charts"].includes(moduleId) &&
+    (["possibility-basics", "probability-fractions", "probability-risk", "statistics-probability-boss"].includes(moduleId) ||
     prompt.includes("转盘") ||
     prompt.includes("指针") ||
     prompt.includes("可能性") ||
@@ -216,7 +224,7 @@ function createQuestionVisual(question, options = {}) {
     prompt.includes("概率") ||
     prompt.includes("信标") ||
     (prompt.includes("抽签") && prompt.includes("签")) ||
-    (prompt.includes("骰子") && prompt.includes("面"))
+    (prompt.includes("骰子") && prompt.includes("面")))
   ) {
     visual = renderProbabilitySpinnerVisual(question, options);
   } else if (
@@ -227,7 +235,7 @@ function createQuestionVisual(question, options = {}) {
   ) {
     visual = renderBarModel(question, options);
   } else if (
-    // 13. 角度计算
+    // 13. 角度计算 (包含多边形内角和、平行线折线转折角、扇形圆心角等)
     ["angles", "triangle-angles", "angle-measurement"].includes(moduleId) ||
     prompt.includes("内角和") ||
     prompt.includes("补角") ||
@@ -237,12 +245,29 @@ function createQuestionVisual(question, options = {}) {
     prompt.includes("钝角") ||
     prompt.includes("顶角") ||
     prompt.includes("底角") ||
+    (prompt.includes("扇形") && prompt.includes("圆心角")) ||
+    (prompt.includes("平行") && (prompt.includes("折线") || prompt.includes("内折角") || prompt.includes("尖角"))) ||
     (prompt.includes("角") && (prompt.includes("度") || prompt.includes("°") || prompt.includes("射出")) && !prompt.includes("面积") && !prompt.includes("周长"))
   ) {
     visual = renderAngleVisual(question, options);
   } else if (
-    // 14. 多边形几何、周长与面积
-    (["triangles", "quadrilaterals", "perimeter", "area", "construction", "composite-figures", "geometry-decomposition"].includes(moduleId) ||
+    // 14. 立体几何与表面积体积 (必须优先于多边形，包含蚂蚁爬行表面展开最短路径)
+    ["volume", "surface-area", "spatial-geometry"].includes(moduleId) ||
+    (prompt.includes("蚂蚁") && prompt.includes("长方体")) ||
+    prompt.includes("长方体") ||
+    prompt.includes("正方体") ||
+    prompt.includes("棱长") ||
+    prompt.includes("表面积") ||
+    prompt.includes("展开图") ||
+    prompt.includes("立方米") ||
+    prompt.includes("立方分米") ||
+    prompt.includes("立方厘米") ||
+    (prompt.includes("体积") && !prompt.includes("等于多少升"))
+  ) {
+    visual = renderSolid3DVisual(question, options);
+  } else if (
+    // 15. 多边形几何、周长与面积
+    (["triangles", "quadrilaterals", "perimeter", "area", "composite-figures", "geometry-decomposition"].includes(moduleId) ||
     prompt.includes("三角形") ||
     prompt.includes("梯形") ||
     prompt.includes("平行四边形") ||
@@ -254,23 +279,11 @@ function createQuestionVisual(question, options = {}) {
     prompt.includes("圆的面积") ||
     prompt.includes("圆环") ||
     prompt.includes("围栏") ||
-    prompt.includes("火柴") ||
-    (prompt.includes("长方形") && (prompt.includes("面积") || prompt.includes("宽") || prompt.includes("长")))) &&
+    (prompt.includes("长方形") && (prompt.includes("面积") || prompt.includes("宽") || prompt.includes("长") || prompt.includes("周长")))) &&
     !prompt.includes("定位点") &&
     !prompt.includes("每边放")
   ) {
     visual = renderPolygonVisual(question, options);
-  } else if (
-    // 15. 立体几何与表面积体积
-    ["volume", "surface-area"].includes(moduleId) ||
-    prompt.includes("长方体") ||
-    prompt.includes("正方体") ||
-    prompt.includes("棱长") ||
-    prompt.includes("表面积") ||
-    (prompt.includes("体积") && !prompt.includes("等于多少升")) ||
-    prompt.includes("展开图")
-  ) {
-    visual = renderSolid3DVisual(question, options);
   } else if (
     // 16. 折线走势
     ["line-charts"].includes(moduleId) ||

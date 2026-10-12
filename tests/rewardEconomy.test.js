@@ -77,3 +77,33 @@ test("advanced questions add a non-mainline random bonus without gating fixed re
   assert.equal(result.transactions.some((transaction) => transaction.rewardType === "fixed"), true);
   assert.equal(result.transactions.some((transaction) => transaction.rewardType === "random"), true);
 });
+
+test("first-correct bonus fires on the initial correct attempt", () => {
+  const result = economy.settleResolution(settlementArgs({ attemptId: "fc-1" }));
+  assert.equal(result.transactions.some((t) => t.rewardType === "first-correct" && t.status === "awarded"), true);
+  assert.equal(result.claimedFixedRewards["level-1-question-1:first-correct"], true);
+});
+
+test("first-correct bonus does not fire on a repeated correct attempt", () => {
+  const first = economy.settleResolution(settlementArgs({ attemptId: "fc-1" }));
+  const replay = economy.settleResolution(settlementArgs({
+    ...first,
+    attemptId: "fc-2"
+  }));
+  assert.equal(replay.transactions.some((t) => t.rewardType === "first-correct"), false);
+});
+
+test("HOT_STREAK_THRESHOLD is exported and marks isStreakHot boundary correctly", () => {
+  assert.equal(typeof economy.HOT_STREAK_THRESHOLD, "number");
+  const belowHot = economy.getStreakProgress(economy.HOT_STREAK_THRESHOLD - 1);
+  const atHot = economy.getStreakProgress(economy.HOT_STREAK_THRESHOLD);
+  assert.equal(belowHot.isStreakHot, false);
+  assert.equal(atHot.isStreakHot, true);
+});
+
+test("pity progress reflects PITY_THRESHOLD boundary correctly", () => {
+  const below = economy.getPityProgress(economy.PITY_THRESHOLD - 1);
+  const at = economy.getPityProgress(economy.PITY_THRESHOLD);
+  assert.equal(below.isOverloaded, false);
+  assert.equal(at.isOverloaded, true);
+});

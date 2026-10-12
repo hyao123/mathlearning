@@ -4,7 +4,7 @@ const AchievementModel = require("../game/achievementModel.js");
 
 test("AchievementModel exports definitions and helper functions", () => {
   assert.equal(Array.isArray(AchievementModel.ACHIEVEMENT_DEFINITIONS), true);
-  assert.equal(AchievementModel.ACHIEVEMENT_DEFINITIONS.length, 10);
+  assert.equal(AchievementModel.ACHIEVEMENT_DEFINITIONS.length, 13);
   assert.equal(typeof AchievementModel.evaluateAchievements, "function");
   assert.equal(typeof AchievementModel.getNewlyUnlockedAchievements, "function");
 });
@@ -20,7 +20,7 @@ test("AchievementModel starts locked with clean state", () => {
   const result = AchievementModel.evaluateAchievements(state, null, customSaved);
   assert.equal(result.unlockCount, 0);
   assert.equal(result.totalPoints, 0);
-  assert.equal(result.totalCount, 10);
+  assert.equal(result.totalCount, 13);
   assert.equal(result.unlockedIds.length, 0);
 });
 

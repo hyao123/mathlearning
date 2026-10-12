@@ -163,11 +163,19 @@ test("advanced questions award their fixed material plus one random bonus", () =
   state = model.submitAnswer(state, getCurrentAnswer(state, chapter), matcher, { random: () => 0.99 });
 
   assert.equal(state.inventory["oak-log"], 1);
+  assert.equal(state.inventory["coal"], 1);
   assert.equal(state.inventory["iron-ingot"], 1);
   assert.deepEqual(state.activeRun.rewardTransactions, [{
     questionId: "level-1-question-3",
     rewardType: "fixed",
     itemId: "oak-log",
+    requestedQuantity: 1,
+    awardedQuantity: 1,
+    status: "awarded"
+  }, {
+    questionId: "level-1-question-3",
+    rewardType: "first-correct",
+    itemId: "coal",
     requestedQuantity: 1,
     awardedQuantity: 1,
     status: "awarded"
@@ -182,7 +190,7 @@ test("advanced questions award their fixed material plus one random bonus", () =
 
   const hydrated = model.hydrate(model.serialize(state), chapter);
   assert.deepEqual(hydrated.activeRun.rewardTransactions, state.activeRun.rewardTransactions);
-  assert.deepEqual(hydrated.activeRun.earnedItems, [{ itemId: "oak-log", quantity: 1 }, { itemId: "iron-ingot", quantity: 1 }]);
+  assert.deepEqual(hydrated.activeRun.earnedItems, [{ itemId: "oak-log", quantity: 1 }, { itemId: "coal", quantity: 1 }, { itemId: "iron-ingot", quantity: 1 }]);
 });
 
 test("active questions expose only learner-safe prompt data through retry and skip", () => {
@@ -348,7 +356,7 @@ test("a solved replay does not duplicate first-claim materials", () => {
 
   assert.equal(replay.activeRun, null);
   assert.equal(replay.inventory["oak-log"], 10);
-  assert.equal(replay.inventory.coal, 6, "three streak chests per completed run remain extra rewards");
+  assert.equal(replay.inventory.coal, 16, "three streak chests per completed run remain extra rewards");
   assert.equal(model.getSettlement(replay).starCount, 3);
   assert.deepEqual(model.getSettlement(replay).earnedItems, [{ itemId: "coal", quantity: 3 }]);
   assert.equal(model.getSettlement(replay).rewardTransactions.every((transaction) => transaction.rewardType === "streak-chest"), true);
@@ -372,17 +380,25 @@ test("settlement reports only current-run earnings and all-skip replay reports n
 
 test("stack-capped rewards are explicit and never appear as newly earned", () => {
   const chapter = createChapter();
-  const hydrated = model.hydrate(JSON.stringify({ inventory: { "oak-log": 999 } }), chapter);
+  const hydrated = model.hydrate(JSON.stringify({ inventory: { "oak-log": 999, "coal": 999 } }), chapter);
   let state = model.startLevel(hydrated, "chapter-01-level-1");
 
   state = model.submitAnswer(state, getCurrentAnswer(state, chapter), matcher);
 
   assert.equal(state.inventory["oak-log"], 999);
+  assert.equal(state.inventory["coal"], 999);
   assert.deepEqual(state.activeRun.earnedItems, []);
   assert.deepEqual(state.activeRun.rewardTransactions, [{
     questionId: "level-1-question-1",
     rewardType: "fixed",
     itemId: "oak-log",
+    requestedQuantity: 1,
+    awardedQuantity: 0,
+    status: "stack-capped"
+  }, {
+    questionId: "level-1-question-1",
+    rewardType: "first-correct",
+    itemId: "coal",
     requestedQuantity: 1,
     awardedQuantity: 0,
     status: "stack-capped"
@@ -447,7 +463,10 @@ test("fixed-claim and attempt ledgers survive reload without exposing review tex
   assert.deepEqual(serialized.attemptSettlements["chapter-01-level-1:level-1-question-1:1"], {
     questionId: "level-1-question-1",
     resolution: "correct",
-    transactionIds: ["chapter-01-level-1:level-1-question-1:1:0"]
+    transactionIds: [
+      "chapter-01-level-1:level-1-question-1:1:0",
+      "chapter-01-level-1:level-1-question-1:1:1"
+    ]
   });
   assert.equal(JSON.stringify(serialized).includes("Observation 1"), false);
 

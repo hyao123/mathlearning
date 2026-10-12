@@ -169,3 +169,70 @@ test("分层阶梯提示与智能错因诊断：精准识别 GCD 与 LCM 混淆"
   assert.ok(diagLCM);
   assert.match(diagLCM, /最大公因数/);
 });
+
+test("短除法与因数个数定理可视化器：单数求因数个数（如12）呈现质因数幂次、因数个数公式、乘法原理与成对列举验证", () => {
+  const q12 = {
+    id: "factors-multiples-1",
+    prompt: "自然数 12 一共有多少个不同的正因数？",
+    answer: "6"
+  };
+  const visual = QuestionVisualizer.createQuestionVisual(q12);
+  assert.ok(visual);
+  assert.equal(visual.dataset.visualType, "factor-tree");
+
+  const text = getMockText(visual);
+  // 必须完整包含：质因数分解、标准幂次、因数个数定理、乘法原理、成对列举验证与双法口诀
+  assert.ok(text.includes("因数个数定理"), "Should show factor count theorem title/badge");
+  assert.ok(text.includes("12") && text.includes("2² × 3¹"), "Should show standard power formula");
+  assert.ok(text.includes("(2 + 1) × (1 + 1)") || text.includes("(2+1) × (1+1)") || text.includes("6"), "Should show formula calculation");
+  assert.ok(text.includes("乘法原理"), "Should explain why +1 comes from multiplication principle");
+  assert.ok(text.includes("成对列举验证"), "Should provide pairwise factor listing verification");
+  assert.ok(text.includes("1×12") && text.includes("2×6") && text.includes("3×4"), "Should list all pairs");
+  assert.ok(text.includes("黄金双法"), "Should include the two golden methods legend");
+});
+
+test("短除法与因数分解可视化器：支持输入给定质因数分解连乘形式（如 N ＝ 2 × 3 × 3 × 5）准确求出因数个数 12 与完整定理", () => {
+  const qPrimeComp = {
+    id: "prime-factorization-9",
+    prompt: "自然数 N 分解质因数后为 N ＝ 2 × 3 × 3 × 5，那么 N 一共有多少个正因数？",
+    answer: "12"
+  };
+  const visual = QuestionVisualizer.createQuestionVisual(qPrimeComp);
+  assert.ok(visual);
+  assert.equal(visual.dataset.visualType, "factor-tree");
+
+  const text = getMockText(visual);
+  // 检验正确解析为单数因数个数分解而非误判为两数求GCD
+  assert.ok(!text.includes("最大公因数 (GCD)"), "Should not misroute to two-number GCD");
+  assert.ok(text.includes("因数个数定理"), "Should show factor count theorem");
+  assert.ok(text.includes("2¹ × 3² × 5¹"), "Should group primes into standard power form");
+  assert.ok(text.includes("12") && (text.includes("(1 + 1) × (2 + 1) × (1 + 1)") || text.includes("(1+1)")), "Should show complete factor count calculation");
+  assert.ok(text.includes("乘法原理"), "Should explain multiplication principle");
+});
+
+test("分层阶梯提示与智能错因诊断：精准识别求因数个数审题、因数个数定理与错因（遗漏加1、只填因数对数、混淆质因数种类）", () => {
+  const qFactorCount = {
+    prompt: "自然数 12 一共有多少个不同的正因数？",
+    answer: "6"
+  };
+  const hints = HintScaffold.buildTieredHints(qFactorCount);
+  assert.equal(hints.length, 3);
+  assert.match(hints[0].text, /全部正因数|成对列举|因数个数定理/);
+  assert.match(hints[1].text, /质因数分解|因数个数定理|乘法原理/);
+  assert.match(hints[2].text, /因数个数 ＝ \(指数1 ＋ 1\)|成对列举/);
+
+  // 学生把 6 填成 3（只算了 3 对）
+  const diagPairs = HintScaffold.diagnoseMistake(qFactorCount, "3");
+  assert.ok(diagPairs);
+  assert.match(diagPairs, /成对遗漏|对数/);
+
+  // 学生把 6 填成 2（只填了不同质因数个数 2 和 3，或指数相乘 2*1=2）
+  const diagPrimes = HintScaffold.diagnoseMistake(qFactorCount, "2");
+  assert.ok(diagPrimes);
+  assert.match(diagPrimes, /不同质因数的种数|分别加 1 后再连乘/);
+
+  // 思维方法路由验证
+  const method = MathThinkingMethods.getEffectiveThinkingMethod(qFactorCount);
+  assert.equal(method.id, "factor-decomposition");
+});
+

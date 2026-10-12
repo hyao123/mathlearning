@@ -28,7 +28,7 @@ function getRewardPresentation(transactions, getItem) {
   const awarded = awardedTransactions(transactions);
   const hasSpecialReward = awarded.some((transaction) => {
     const item = getItem(transaction.itemId);
-    return transaction.rewardType !== "fixed" || FULL_REVEAL_RARITIES.has(item?.rarity);
+    return (transaction.rewardType !== "fixed" && transaction.rewardType !== "first-correct") || FULL_REVEAL_RARITIES.has(item?.rarity);
   });
   return {
     mode: hasSpecialReward ? "reveal" : "toast",

@@ -403,7 +403,7 @@ async function main() {
     await page.locator("[data-game-screen='challenge']").waitFor({ state: "visible" });
     assert.match(await page.locator("[data-question-prompt]").textContent(), /极地破冰船任务/);
     assert.equal((await page.locator("[data-reward-preview]").textContent()).includes("冰晶碎片"), true, "polar challenge should preview its own fixed material");
-    await page.locator("[data-answer-input]").fill("55");
+    await page.locator("[data-answer-input]").fill("56");
     await page.locator("[data-submit-answer]").click();
     await page.locator("[data-answer-feedback='correct']").waitFor({ state: "visible" });
     assert.equal(await page.locator("[data-tactical-review]").count(), 1, "polar answers should provide the standard collapsed tactical review");
@@ -458,7 +458,7 @@ async function main() {
     assert.match(await page.locator("[data-question-prompt]").textContent(), /装甲突击演练任务/);
     assert.equal((await page.locator("[data-reward-preview]").textContent()).includes("碳钛复合板"), true, "armored challenge should preview its own fixed material");
     assert.equal(await page.locator("[data-answer-input]").evaluate((input) => document.activeElement === input), true, "challenge answer input should autofocus");
-    await page.locator("[data-answer-input]").fill("15");
+    await page.locator("[data-answer-input]").fill("32");
     await page.locator("[data-submit-answer]").click();
     await page.locator("[data-answer-feedback='correct']").waitFor({ state: "visible" });
     assert.equal(await page.locator("[data-tactical-review]").count(), 1, "99A answers should provide the standard collapsed tactical review");
@@ -518,7 +518,7 @@ async function main() {
     assert.match(await page.locator("[data-question-prompt]").textContent(), /星海数据与概率远征任务/);
     assert.equal((await page.locator("[data-reward-preview]").textContent()).includes("星光晶体"), true, "quantum challenge should preview its own fixed material");
     assert.equal(await page.locator("[data-answer-input]").evaluate((input) => document.activeElement === input), true, "quantum challenge answer input should autofocus");
-    await page.locator("[data-answer-input]").fill("20");
+    await page.locator("[data-answer-input]").fill("35");
     await page.locator("[data-submit-answer]").click();
     await page.locator("[data-answer-feedback='correct']").waitFor({ state: "visible" });
     assert.equal(await page.locator("[data-tactical-review]").count(), 1, "quantum answers should provide the standard collapsed tactical review");
@@ -673,13 +673,13 @@ async function main() {
   }, { port: process.env.GAME_UI_CHAPTER_FINALE_PORT || "4188" });
 
   await withPage(chromium, async ({ baseUrl, page, pageErrors }) => {
-    await page.goto(baseUrl, { waitUntil: "networkidle" });
+    await page.goto(baseUrl);
     await page.evaluate(() => localStorage.clear());
-    await page.reload({ waitUntil: "networkidle" });
+    await page.reload();
+    await page.locator("[data-game-screen='map']").waitFor({ state: "visible" });
     const answerGrid = await page.evaluate(() => globalThis.GameChapterBuilder
       .buildChapter(globalThis.GameChapterConfig.FIRST_CHAPTER_ID, globalThis.MATH_LEARNING_DATA)
       .levels.map((level) => level.questions.map((question) => String(question.answer))));
-    await page.locator("[data-game-screen='map']").waitFor({ state: "visible" });
     await page.locator("[data-level-id='chapter-01-level-1']").click();
 
     for (let levelIndex = 0; levelIndex < answerGrid.length; levelIndex += 1) {

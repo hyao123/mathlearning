@@ -96,6 +96,34 @@ test("human review records require six passed criteria for every question", () =
   assert.equal(quality.validateHumanReviewRecords([...records, { ...records[0], questionId: "unexpected" }], ["a"]).some((error) => /unexpected review/.test(error)), true);
 });
 
+test("quality validator flags a storyBeat that is too short", () => {
+  const errors = quality.validateQuestionQuality(validQuestion({ storyBeat: "短。" }));
+  assert.equal(errors.some((e) => /storyBeat is too short/.test(e)), true);
+  // A storyBeat of sufficient length should not trigger the error.
+  const ok = quality.validateQuestionQuality(validQuestion({ storyBeat: "校准两组雷达刻度。" }));
+  assert.equal(ok.some((e) => /storyBeat is too short/.test(e)), false);
+});
+
+test("validateReasoningRepresentationAlignment flags non-spatial reasoning with spatial representation", () => {
+  const badProfile = { steps: 2, conditions: 2, representation: "geometry", direction: "forward", transfer: "direct" };
+  const errors = quality.validateReasoningRepresentationAlignment({
+    reasoningType: "直接计算",
+    difficultyProfile: badProfile
+  });
+  assert.equal(errors.some((e) => /incompatible with spatial representation/.test(e)), true);
+  // Non-spatial reasoning with non-spatial representation should be clean.
+  const cleanErrors = quality.validateReasoningRepresentationAlignment({
+    reasoningType: "关系建模",
+    difficultyProfile: { ...badProfile, representation: "bar-model" }
+  });
+  assert.equal(cleanErrors.length, 0);
+});
+
+test("STORY_BEAT_MIN_LENGTH is exported and is a positive integer", () => {
+  assert.equal(Number.isInteger(quality.STORY_BEAT_MIN_LENGTH), true);
+  assert.ok(quality.STORY_BEAT_MIN_LENGTH > 0);
+});
+
 test("numeric answer contract accepts numbers, decimals, fractions, and percentages", () => {
   assert.equal(contract.isNumericAnswer("42"), true);
   assert.equal(contract.isNumericAnswer("7.65"), true);

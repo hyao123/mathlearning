@@ -31,6 +31,12 @@ export function createGameRenderers(app) {
       achButton.title = "查看军功勋章与成就陈列馆";
       achButton.setAttribute("aria-label", "查看军功勋章与成就陈列馆");
 
+      const nexusButton = appendText(controls, "button", "🌌 知识图谱", "pixel-button pixel-button--knowledge-nexus");
+      nexusButton.type = "button";
+      nexusButton.dataset.openKnowledgeNexus = "";
+      nexusButton.title = "查看战略数学思维知识全景图鉴与认知跃迁";
+      nexusButton.setAttribute("aria-label", "查看战略数学思维知识全景图鉴与认知跃迁");
+
       const saveButton = appendText(controls, "button", "💾 档案", "pixel-button pixel-button--save");
       saveButton.type = "button";
       saveButton.dataset.openSaveModal = "";
@@ -241,6 +247,53 @@ export function createGameRenderers(app) {
     parent.append(overlay);
   }
 
+  function renderKnowledgeNexusModal(parent) {
+    const modal = KnowledgeConstellationView.createKnowledgeNexusModal({
+      campaign: app.campaign,
+      allChapters: app.allChapters,
+      activeTab: app.knowledgeNexusTab || "axes",
+      onClose: () => {
+        app.showKnowledgeNexusModal = false;
+        SoundEngine?.playClick?.();
+        app.render();
+      },
+      onSwitchTab: (nextTab) => {
+        app.knowledgeNexusTab = nextTab;
+        SoundEngine?.playClick?.();
+        app.render();
+      },
+      onSelectLevel: (chapterId, levelId) => {
+        app.showKnowledgeNexusModal = false;
+        const targetChapter = app.chaptersById[chapterId];
+        if (targetChapter) {
+          app.campaign = {
+            ...app.campaign,
+            activeChapterId: chapterId,
+            chapterStates: { ...app.campaign.chapterStates, [app.chapter.chapterId]: app.state }
+          };
+          app.chapter = targetChapter;
+          app.state = app.campaign.chapterStates[chapterId];
+          const targetLevel = app.chapter.levels?.find((l) => l.levelId === levelId);
+          if (targetLevel && (app.state.unlockedLevelIds.includes(levelId) || app.state.freePractice)) {
+            app.answerDraft = "";
+            app.answerFeedback = null;
+            app.rewardReveal = null;
+            app.craftingFeedback = null;
+            app.state = ProgressionModel.startLevel(app.state, levelId);
+            app.screen = "challenge";
+          } else {
+            app.pendingFocusKey = levelId;
+            app.screen = "map";
+          }
+          SoundEngine?.playClick?.();
+          app.persist();
+          app.render();
+        }
+      }
+    });
+    parent.append(modal);
+  }
+
   function renderStatusOverlays() {
     const { root, chapter, state, campaign, screen, answerFeedback, rewardReveal, craftingFeedback, saveFeedback, answerDraft, allChapters, getLevel } = app;
     const status = document.createElement("p");
@@ -268,6 +321,9 @@ export function createGameRenderers(app) {
     }
     if (app.showSaveModal) {
       renderSaveModal(root);
+    }
+    if (app.showKnowledgeNexusModal) {
+      renderKnowledgeNexusModal(root);
     }
   }
 
@@ -659,6 +715,23 @@ export function createGameRenderers(app) {
     bulkToggleBtn.textContent = allFreePractice ? "🔒 关闭全部自由答题" : "⚡ 一键开启全部章节自由答题";
     header.append(bulkToggleBtn);
     overview.append(header);
+
+    const nexusBanner = document.createElement("div");
+    nexusBanner.className = "campaign-overview__nexus-banner";
+    nexusBanner.innerHTML = `
+      <div class="nexus-banner__left">
+        <span class="nexus-banner__icon">🌌</span>
+        <div class="nexus-banner__text">
+          <strong>战略数学思维知识全景图鉴与认知跃迁</strong>
+          <p>四大奥数螺旋演变主轴 · 7大跨学段底层逻辑跃迁 · 大国重器算力共振</p>
+        </div>
+      </div>
+    `;
+    const openNexusBtn = appendText(nexusBanner, "button", "查阅全景图鉴", "pixel-button pixel-button--primary nexus-banner__btn");
+    openNexusBtn.type = "button";
+    openNexusBtn.dataset.openKnowledgeNexus = "";
+    openNexusBtn.setAttribute("aria-label", "查阅战略数学思维知识全景图鉴");
+    overview.append(nexusBanner);
 
     const grid = document.createElement("div");
     grid.className = "campaign-overview__grid";
@@ -1387,6 +1460,59 @@ export function createGameRenderers(app) {
       `;
       details.append(transferCard);
 
+      // 知识结构脉络图鉴（前置基石 ➜ 本关武器 ➜ 认知跃迁）
+      const currentLevel = getLevel(run.levelId);
+      if (currentLevel) {
+        const lineage = KnowledgeTopologyAdapter.getModuleLineage(currentLevel.moduleId, chapter.chapterId);
+        if (lineage) {
+          const lineageCard = document.createElement("div");
+          lineageCard.className = "tactical-review__lineage-card";
+          lineageCard.innerHTML = `
+            <div class="lineage-card__header">
+              <span class="lineage-card__badge">🧬 知识脉络 · 认知演化链路</span>
+              <span class="lineage-card__strand" style="color: ${lineage.strand?.color || '#38bdf8'}">${lineage.strand?.icon || '🔷'} ${lineage.strand?.title || ''}</span>
+            </div>
+            <div class="lineage-card__flow">
+              <div class="lineage-card__node lineage-card__node--prereq">
+                <small>💎 前置基石</small>
+                <strong>${lineage.prerequisiteSummary || '熟练掌握基础数量关系'}</strong>
+              </div>
+              <div class="lineage-card__arrow">➔</div>
+              <div class="lineage-card__node lineage-card__node--current">
+                <small>⚔️ 本关武器</small>
+                <strong>${lineage.methodSummary?.label || currentLevel.title}</strong>
+              </div>
+              <div class="lineage-card__arrow">➔</div>
+              <div class="lineage-card__node lineage-card__node--horizon">
+                <small>🔭 认知跃迁</small>
+                <strong>${lineage.transferTarget?.targetTitle || '高阶复合数学建模'}</strong>
+              </div>
+            </div>
+          `;
+          if (lineage.engineeringAffinity) {
+            const engRow = document.createElement("div");
+            engRow.className = "lineage-card__engineering";
+            engRow.innerHTML = `<span>🚀 重器赋能：<strong>${lineage.engineeringAffinity.subsystem}</strong> — ${lineage.engineeringAffinity.algorithmRole}</span>`;
+            lineageCard.append(engRow);
+          }
+          if (lineage.relatedAxes?.length || lineage.relatedBridges?.length) {
+            const axesRow = document.createElement("div");
+            axesRow.className = "lineage-card__axes";
+            const axisNames = (lineage.relatedAxes || []).map((a) => `${a.icon} ${a.name}`).join(" · ");
+            const bridgeNames = (lineage.relatedBridges || []).map((b) => `${b.icon} ${b.name}`).join(" · ");
+            axesRow.innerHTML = `
+              <div class="lineage-card__axis-text">
+                ${axisNames ? `<span>螺旋主轴：${axisNames}</span>` : ""}
+                ${bridgeNames ? `<span>跃迁桥梁：${bridgeNames}</span>` : ""}
+              </div>
+              <button type="button" class="pixel-button pixel-button--quiet lineage-card__nexus-btn" data-open-knowledge-nexus="" title="打开知识全景图鉴">🌌 查看全景</button>
+            `;
+            lineageCard.append(axesRow);
+          }
+          details.append(lineageCard);
+        }
+      }
+
       const effectiveMethod = MathThinkingMethods?.getEffectiveThinkingMethod?.(run.question);
       const thinkingMethodLabel = effectiveMethod?.label || run.question.thinkingMethodLabel;
       const methodReview = effectiveMethod?.review || run.question.methodReview;
@@ -1596,7 +1722,7 @@ export function createGameRenderers(app) {
     }
 
     if (run.status === "retry") {
-      const feedback = appendText(challenge, "p", "这次没有通过。可以参考下方的阶梯思路再试一次，或跳过继续前进。", "retry-message");
+      const feedback = appendText(challenge, "p", "🌱 没关系，这道题很有分量！做错是发现思维盲盒的好机会。参考下方为你准备的通俗小阶梯，一步一步搭积木就能攻克它～", "retry-message");
       feedback.setAttribute("role", "status");
 
       const studentAns = app.lastSubmittedAnswer || answerDraft;
@@ -1606,7 +1732,7 @@ export function createGameRenderers(app) {
         diagCard.className = "diagnostic-feedback-card";
         diagCard.dataset.diagnosticFeedback = "";
         diagCard.innerHTML = `
-          <strong class="diagnostic-feedback__badge">💡 名师思维诊断</strong>
+          <strong class="diagnostic-feedback__badge">🌱 思维小向导 · 暖心点拨</strong>
           <p class="diagnostic-feedback__text">${diag}</p>
         `;
         challenge.append(diagCard);
@@ -1616,7 +1742,7 @@ export function createGameRenderers(app) {
       hintPanel.className = "tiered-hints";
       hintPanel.dataset.tieredHints = "";
       hintPanel.open = true;
-      const hintSummary = appendText(hintPanel, "summary", "💡 展开阶梯思路与解题脚手架", "tiered-hints__summary");
+      const hintSummary = appendText(hintPanel, "summary", "💡 展开阶梯思路与解题脚手架（通俗易懂 · 循序渐进）", "tiered-hints__summary");
       hintSummary.setAttribute("aria-label", "展开阶梯思路与解题脚手架");
       const hints = HintScaffold.buildTieredHints(run.question);
       const hintList = document.createElement("div");
@@ -1816,7 +1942,7 @@ export function createGameRenderers(app) {
       card.append(form);
     }
     if (run.status === "retry") {
-      appendText(card, "p", "答案还没对上。可以参考下方的阶梯思路再试一次，也可以跳过继续补给。", "retry-message");
+      appendText(card, "p", "🌱 没关系，这道题很有分量！做错是发现思维盲盒的好机会。参考下方为你准备的通俗小阶梯，一步一步搭积木就能攻克它～", "retry-message");
 
       const studentAns = app.lastSubmittedAnswer || answerDraft;
       const diag = HintScaffold.diagnoseMistake?.(run.question, studentAns);
@@ -1825,7 +1951,7 @@ export function createGameRenderers(app) {
         diagCard.className = "diagnostic-feedback-card";
         diagCard.dataset.diagnosticFeedback = "";
         diagCard.innerHTML = `
-          <strong class="diagnostic-feedback__badge">💡 名师思维诊断</strong>
+          <strong class="diagnostic-feedback__badge">🌱 思维小向导 · 暖心点拨</strong>
           <p class="diagnostic-feedback__text">${diag}</p>
         `;
         card.append(diagCard);
@@ -1835,7 +1961,7 @@ export function createGameRenderers(app) {
       hintPanel.className = "tiered-hints";
       hintPanel.dataset.tieredHints = "";
       hintPanel.open = true;
-      appendText(hintPanel, "summary", "💡 展开阶梯思路与解题脚手架", "tiered-hints__summary");
+      appendText(hintPanel, "summary", "💡 展开阶梯思路与解题脚手架（通俗易懂 · 循序渐进）", "tiered-hints__summary");
       const hints = HintScaffold.buildTieredHints(run.question);
       const hintList = document.createElement("div");
       hintList.className = "tiered-hints__list";

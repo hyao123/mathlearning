@@ -175,7 +175,7 @@ function createGeneratedProfile(module) {
     : { mission: "轨道科学站正在整理观测任务", representation: "mission-log", reasoningType: /recurrence|square/.test(id) ? "规律归纳" : /case|plan/.test(id) ? "策略选择" : "关系建模" };
   const guidance = getTopicGuidance(id, module?.title, context);
   return {
-    objective: thinkingMethod.objective || `??${module?.title || "???"}???????`,
+    objective: thinkingMethod.objective || `理解并运用${module?.title || "本专题"}的核心方法解决问题`,
     reasoningType: thinkingMethod.reasoningType || context.reasoningType,
     representation: thinkingMethod.representation || guidance.typicalModel || context.representation,
     observation: thinkingMethod.prompt || guidance.observation,
@@ -186,7 +186,7 @@ function createGeneratedProfile(module) {
     methodPrompt: thinkingMethod.prompt,
     methodReview: thinkingMethod.review,
     mission: context.mission,
-    goals: SLOT_PHASES.map((phase, index) => `${phase}???? ${index + 1} ?????`)
+    goals: SLOT_PHASES.map((phase, index) => `${phase}：完成第 ${index + 1} 阶段${module?.title || "专题"}任务`)
   };
 }
 

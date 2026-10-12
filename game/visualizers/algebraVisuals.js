@@ -969,6 +969,91 @@ function computeSingleNumberLadder(num) {
   };
 }
 
+function analyzeNumberFactors(numOrPrimes) {
+  let val = 12;
+  let allPrimes = [];
+
+  if (Array.isArray(numOrPrimes)) {
+    allPrimes = [...numOrPrimes].filter(p => Number.isFinite(p) && p > 1);
+    val = allPrimes.reduce((acc, v) => acc * v, 1);
+  } else {
+    val = Math.abs(Math.round(Number(numOrPrimes))) || 12;
+    const ladder = computeSingleNumberLadder(val);
+    allPrimes = [...ladder.primeFactors];
+    if (ladder.finalVal > 1 && (ladder.steps.length === 0 || ladder.finalVal !== ladder.primeFactors[ladder.primeFactors.length - 1] || isPrimeNumber(ladder.finalVal))) {
+      allPrimes.push(ladder.finalVal);
+    }
+  }
+
+  // Count prime powers
+  const freqMap = {};
+  for (const p of allPrimes) {
+    freqMap[p] = (freqMap[p] || 0) + 1;
+  }
+  const uniquePrimes = Object.keys(freqMap).map(Number).sort((a, b) => a - b);
+  const primePowers = uniquePrimes.map(p => ({ prime: p, exp: freqMap[p] }));
+
+  // Superscript mapping
+  const superscripts = { 0: "⁰", 1: "¹", 2: "²", 3: "³", 4: "⁴", 5: "⁵", 6: "⁶", 7: "⁷", 8: "⁸", 9: "⁹" };
+  const toSup = (n) => String(n).split("").map(c => superscripts[c] || c).join("");
+
+  // Standard power formula string, e.g. "2² × 3¹"
+  const powerFormula = primePowers.length > 0 
+    ? primePowers.map(item => `${item.prime}${toSup(item.exp)}`).join(" × ")
+    : String(val);
+
+  // Factor count steps
+  const expTerms = primePowers.map(item => `(${item.exp} + 1)`);
+  const expValues = primePowers.map(item => item.exp + 1);
+  const totalCount = expValues.reduce((acc, v) => acc * v, 1);
+
+  let countFormula = "";
+  if (primePowers.length > 0) {
+    countFormula = `${expTerms.join(" × ")} ＝ ${expValues.join(" × ")} ＝ ${totalCount}`;
+  } else {
+    countFormula = "1";
+  }
+
+  // Factor pairs for verification
+  const factorPairs = [];
+  const factorsSet = [];
+  const limit = Math.floor(Math.sqrt(val));
+  for (let d = 1; d <= limit; d++) {
+    if (val % d === 0) {
+      const other = val / d;
+      factorPairs.push([d, other]);
+      factorsSet.push(d);
+      if (other !== d) {
+        factorsSet.push(other);
+      }
+    }
+  }
+  factorsSet.sort((a, b) => a - b);
+
+  const pairsStr = factorPairs.length <= 6
+    ? factorPairs.map(([a, b]) => `${a}×${b}`).join("，")
+    : factorPairs.slice(0, 5).map(([a, b]) => `${a}×${b}`).join("，") + " 等";
+
+  const factorsListStr = factorsSet.length <= 12
+    ? factorsSet.join("、")
+    : factorsSet.slice(0, 10).join("、") + ` 等共 ${factorsSet.length} 个`;
+
+  return {
+    val,
+    allPrimes,
+    primePowers,
+    powerFormula,
+    expTerms,
+    expValues,
+    countFormula,
+    totalCount,
+    factorPairs,
+    pairsStr,
+    factorsListStr,
+    factorsCount: factorsSet.length
+  };
+}
+
 function renderFactorTreeVisual(question) {
   const prompt = question.prompt || "";
   const card = document.createElement("div");
@@ -977,11 +1062,31 @@ function renderFactorTreeVisual(question) {
 
   const cleaned = cleanPrompt(prompt);
   const parsed = cleanParseNumbers(cleaned);
+
+  // 1. Detect explicit prime factorization product in prompt, e.g. "N ＝ 2 × 3 × 3 × 5" or "2 × 2 × 3"
+  const primeProductMatch = prompt.match(/(?:[Nn]|数|为|是)?\s*[=＝]?\s*([2-9](?:\s*[*×]\s*[2-9])+)/);
+  let explicitPrimes = null;
+  if (primeProductMatch) {
+    const rawFactors = primeProductMatch[1].split(/[×*]/).map(s => parseInt(s.trim(), 10)).filter(n => Number.isFinite(n) && n > 1);
+    if (rawFactors.length >= 2) {
+      explicitPrimes = rawFactors;
+    }
+  }
+
+  // 2. Detect factor count intent
+  const isFactorCount = /因数个数|多少个(?:不同)?(?:的正)?因数|因数一共有多少个|正因数有几个|多少个正因数/.test(prompt);
+
   let n1 = 24;
   let n2 = 36;
   let isSingle = false;
 
-  if (parsed.length >= 2) {
+  if (explicitPrimes) {
+    isSingle = true;
+    n1 = explicitPrimes.reduce((acc, v) => acc * v, 1);
+  } else if (isFactorCount && parsed.length >= 1) {
+    isSingle = true;
+    n1 = parsed[0];
+  } else if (parsed.length >= 2) {
     // If prompt contains multiple numbers like "30 以内既是 2 的倍数又是 3 的倍数"
     if (cleaned.includes("既是") && cleaned.includes("又是") && parsed.length >= 3) {
       n1 = parsed[1];
@@ -1004,34 +1109,33 @@ function renderFactorTreeVisual(question) {
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
-    <span class="question-visual__badge">🔢 质因数阶梯短除法 (Short Division Ladder)</span>
-    <span class="question-visual__subbadge">${isSingle ? `合数 ${n1} 的质因数结构分解` : `求 ${n1} 与 ${n2} 的最大公因数 (GCD) 与 最小公倍数 (LCM)`}</span>
+    <span class=\"question-visual__badge\">${isFactorCount ? "🔢 因数个数定理与结构分解 (Factor Count Theorem)" : "🔢 质因数阶梯短除法 (Short Division Ladder)"}</span>
+    <span class=\"question-visual__subbadge\">${isSingle ? (isFactorCount ? `自然数 ${n1} 的质因数幂次、乘法原理与因数总数推导` : `合数 ${n1} 的质因数结构分解`) : `求 ${n1} 与 ${n2} 的最大公因数 (GCD) 与 最小公倍数 (LCM)`}</span>
   `;
   card.append(header);
 
   if (isSingle) {
-    // 单数质因数分解阶梯
-    const singleData = computeSingleNumberLadder(n1);
+    const factorInfo = analyzeNumberFactors(explicitPrimes || n1);
+    const singleData = computeSingleNumberLadder(factorInfo.val);
     const steps = singleData.steps;
     const rowCount = Math.max(steps.length, 1);
     const rowHeight = 32;
     const startY = 36;
-    const totalHeight = Math.max(160, startY + rowCount * rowHeight + 35);
-    const svgWidth = 520;
+    const svgWidth = 540;
+    const totalHeight = Math.max(225, startY + rowCount * rowHeight + 45);
     const svg = createSvg(svgWidth, totalHeight, `0 0 ${svgWidth} ${totalHeight}`);
 
-    // 背景卡片
+    // 背景底板
     const bg = document.createElementNS(SVG_NS, "rect");
     bg.setAttribute("width", String(svgWidth));
     bg.setAttribute("height", String(totalHeight));
-    bg.setAttribute("rx", "8");
+    bg.setAttribute("rx", "10");
     bg.setAttribute("fill", "#0b1329");
     svg.append(bg);
 
-    // 阶梯绘制
+    // 左侧短除法阶梯
     steps.forEach((st, idx) => {
       const curY = startY + idx * rowHeight;
-      // 阶梯折线 L 形
       const path = document.createElementNS(SVG_NS, "path");
       path.setAttribute("d", `M 65 ${curY - 14} L 65 ${curY + 8} L 155 ${curY + 8}`);
       path.setAttribute("stroke", "#38bdf8");
@@ -1073,44 +1177,71 @@ function renderFactorTreeVisual(question) {
         svg.append(outText);
 
         const badge = document.createElementNS(SVG_NS, "text");
-        badge.setAttribute("x", "140");
+        badge.setAttribute("x", "135");
         badge.setAttribute("y", String(outY + 2));
         badge.setAttribute("font-size", "11");
         badge.setAttribute("fill", "#10b981");
-        badge.textContent = "✔ 质数底 (短除终止)";
+        badge.textContent = "✔ 质数底";
         svg.append(badge);
       }
     });
 
-    // 右侧原理说明
-    const rx = 200;
-    const factorFormula = singleData.primeFactors.join(" × ") + (singleData.finalVal > 1 && singleData.finalVal !== singleData.primeFactors[singleData.primeFactors.length - 1] ? ` × ${singleData.finalVal}` : "");
+    // 右侧算理解析卡片
+    const rx = 185;
+    const rw = 340;
+
+    // 1. 标准质因数分解
+    const rawFormula = factorInfo.allPrimes.join(" × ");
     const titleText = document.createElementNS(SVG_NS, "text");
     titleText.setAttribute("x", String(rx));
-    titleText.setAttribute("y", "42");
-    titleText.setAttribute("font-size", "13");
+    titleText.setAttribute("y", "30");
+    titleText.setAttribute("font-size", "12.5");
     titleText.setAttribute("font-weight", "bold");
     titleText.setAttribute("fill", "#38bdf8");
-    titleText.textContent = `🎯 质因数分解：${n1} = ${factorFormula}`;
+    titleText.textContent = `🎯 质因数分解：${factorInfo.val} ＝ ${rawFormula} ＝ ${factorInfo.powerFormula}`;
     svg.append(titleText);
 
-    const desc1 = document.createElementNS(SVG_NS, "text");
-    desc1.setAttribute("x", String(rx));
-    desc1.setAttribute("y", "72");
-    desc1.setAttribute("font-size", "12");
-    desc1.setAttribute("fill", "#cbd5e1");
-    desc1.textContent = "💡 数理本质：算术基本定理（唯一质因数分解定理）";
-    svg.append(desc1);
+    // 2. 因数个数定理核心公式卡片 (强调求解个数全流程)
+    const theoremCard = document.createElementNS(SVG_NS, "g");
+    theoremCard.innerHTML = `
+      <rect x="${rx}" y="42" width="${rw}" height="56" rx="6" fill="rgba(56, 189, 248, 0.12)" stroke="#38bdf8" stroke-width="1" />
+      <text x="${rx + 10}" y="61" fill="#38bdf8" font-size="12" font-weight="bold">✨ 因数个数定理：各质因数指数分别加 1 后连乘</text>
+      <text x="${rx + 10}" y="84" fill="#10b981" font-size="13" font-weight="bold">因数总个数 ＝ ${factorInfo.countFormula} 个</text>
+    `;
+    svg.append(theoremCard);
 
-    const desc2 = document.createElementNS(SVG_NS, "text");
-    desc2.setAttribute("x", String(rx));
-    desc2.setAttribute("y", "98");
-    desc2.setAttribute("font-size", "11");
-    desc2.setAttribute("fill", "#94a3b8");
-    desc2.textContent = "合数由质数像积木一样乘积构成，短除法能逐层提取这些基础原子。";
-    svg.append(desc2);
+    // 3. 乘法原理本质解释（为什么指数加1？）
+    const descGroup = document.createElementNS(SVG_NS, "g");
+    descGroup.innerHTML = `
+      <text x="${rx}" y="116" fill="#f59e0b" font-size="11" font-weight="bold">💡 为什么指数加 1？（数论与乘法原理）</text>
+      <text x="${rx}" y="133" fill="#cbd5e1" font-size="11">每个质因数可选择出现 0 次（即贡献因数 1）到其最高指数次；</text>
+      <text x="${rx}" y="149" fill="#94a3b8" font-size="10.5">例如质因数 p 的指数为 a，可选 0~a 次共 (a+1) 种，分步独立组合相乘。</text>
+    `;
+    svg.append(descGroup);
+
+    // 4. 成对列举验证卡片（直观验算）
+    const pairGroup = document.createElementNS(SVG_NS, "g");
+    pairGroup.innerHTML = `
+      <line x1="${rx}" y1="160" x2="${rx + rw}" y2="160" stroke="#334155" stroke-dasharray="3,3" />
+      <text x="${rx}" y="176" fill="#a78bfa" font-size="11" font-weight="bold">🔍 成对列举验证：${factorInfo.pairsStr}</text>
+      <text x="${rx}" y="194" fill="#cbd5e1" font-size="10.5">全部正因数：${factorInfo.factorsListStr}（共 ${factorInfo.totalCount} 个，不漏不重）</text>
+    `;
+    svg.append(pairGroup);
 
     card.append(svg);
+
+    // 底部提炼总结口诀
+    const legend = document.createElement("div");
+    legend.className = "question-visual__legend factor-ladder-legend";
+    legend.innerHTML = `
+      <div class="factor-ladder-legend__summary">
+        <strong>🔢 求因数个数黄金双法：</strong>
+        <span>① <strong>因数个数定理</strong>：质因数分解 $N = p_1^{a_1} p_2^{a_2} \\dots$，正因数个数 ＝ $(a_1+1)(a_2+1)\\dots$（源于乘法原理，适用于任意合数）；</span>
+        <span>② <strong>成对相乘列举</strong>：从 1 开始成对寻找 $1 \\times N, 2 \\times \\dots$，两数靠拢即止（直观验算，杜绝遗漏）。</span>
+      </div>
+    `;
+    card.append(legend);
+
     return card;
   }
 

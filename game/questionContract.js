@@ -1,7 +1,9 @@
 const AnswerPolicy = require("./curriculum/answerPolicy.js");
 
 const LEGACY_ANSWER_FORMATS = Object.freeze(["integer", "decimal", "fraction", "percent"]);
-const ANSWER_FORMATS = Object.freeze([...LEGACY_ANSWER_FORMATS, "quotient-remainder", "multi-number"]);
+const ADVANCED_ANSWER_FORMATS = Object.freeze(["coordinate", "radical", "algebraic", "solution-set"]);
+const ANSWER_FORMATS = Object.freeze([...LEGACY_ANSWER_FORMATS, "quotient-remainder", "multi-number", ...ADVANCED_ANSWER_FORMATS]);
+const VALID_ANSWER_TYPES = new Set(["numeric", "algebraic", "coordinate", "solution-set"]);
 
 const INTEGER_PATTERN = /^[+-]?\d+$/;
 const DECIMAL_PATTERN = /^[+-]?(?:\d+\.\d+|\.\d+)$/;
@@ -31,7 +33,7 @@ function validateQuestionContract(question) {
   if (!question || typeof question !== "object" || Array.isArray(question)) {
     return ["question must be an object"];
   }
-  if (question.answerType !== "numeric") errors.push("answerType must be numeric");
+  if (!VALID_ANSWER_TYPES.has(question.answerType)) errors.push("answerType must be numeric");
 
   if (question.schemaVersion === 3) {
     if (!question.answerPolicy || typeof question.answerPolicy !== "object" || Array.isArray(question.answerPolicy)) {
@@ -61,6 +63,7 @@ function validateQuestionContract(question) {
 }
 
 module.exports = {
+  ADVANCED_ANSWER_FORMATS,
   ANSWER_FORMATS,
   LEGACY_ANSWER_FORMATS,
   normalizeAnswer,

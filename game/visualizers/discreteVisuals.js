@@ -1307,14 +1307,15 @@ function renderProbabilitySpinnerVisual(question, options = {}) {
   card.dataset.visualType = "spinner";
 
   const nums = parseNumbers(prompt);
-  const isBallOrBag = prompt.includes("球") || prompt.includes("信标") || prompt.includes("芯片") || prompt.includes("袋中") || prompt.includes("盒中") || prompt.includes("抽签") || prompt.includes("签");
-  const isSpinner = prompt.includes("转盘") || prompt.includes("指针") || prompt.includes("扇区");
+  const isDice = prompt.includes("骰子");
+  const isBallOrBag = !isDice && (prompt.includes("球") || prompt.includes("信标") || prompt.includes("芯片") || prompt.includes("袋中") || prompt.includes("盒中") || prompt.includes("抽签") || prompt.includes("签"));
+  const isSpinner = !isDice && (prompt.includes("转盘") || prompt.includes("指针") || prompt.includes("扇区"));
 
   const header = document.createElement("div");
   header.className = "question-visual__header";
   header.innerHTML = `
     <span class="question-visual__badge">🎯 概率事件与可能性模型</span>
-    <span class="question-visual__subbadge">${isBallOrBag ? "随机抽取样本空间模型" : isSpinner ? "几何测度转盘面积占比模型" : "古典概型等可能样本空间"}</span>
+    <span class="question-visual__subbadge">${isDice ? "骰子多面等可能样本空间与事件频数模型" : isBallOrBag ? "随机抽取样本空间模型" : isSpinner ? "几何测度转盘面积占比模型" : "古典概型等可能样本空间"}</span>
   `;
   card.append(header);
 
@@ -1322,7 +1323,57 @@ function renderProbabilitySpinnerVisual(question, options = {}) {
   const svgHeight = 155;
   const svg = createSvg(svgWidth, svgHeight, `0 0 ${svgWidth} ${svgHeight}`);
 
-  if (isBallOrBag) {
+  if (isDice) {
+    // 绘制 6 个面的骰子展开分布
+    const faces = [1, 2, 2, 3, 3, 3];
+    const dx = 28, dy = 32, sz = 34, gap = 8;
+    for (let i = 0; i < 6; i++) {
+      const col = i % 3;
+      const row = Math.floor(i / 3);
+      const bx = dx + col * (sz + gap);
+      const by = dy + row * (sz + gap);
+      const val = faces[i];
+
+      const box = document.createElementNS(SVG_NS, "rect");
+      box.setAttribute("x", String(bx)); box.setAttribute("y", String(by));
+      box.setAttribute("width", String(sz)); box.setAttribute("height", String(sz));
+      box.setAttribute("rx", "6");
+      box.setAttribute("fill", val === 3 ? "rgba(34, 197, 94, 0.25)" : val === 2 ? "rgba(56, 189, 248, 0.2)" : "rgba(245, 158, 11, 0.2)");
+      box.setAttribute("stroke", val === 3 ? "#22c55e" : val === 2 ? "#38bdf8" : "#f59e0b");
+      box.setAttribute("stroke-width", val === 3 ? "2" : "1.5");
+      svg.append(box);
+
+      const numTxt = document.createElementNS(SVG_NS, "text");
+      numTxt.setAttribute("x", String(bx + sz / 2)); numTxt.setAttribute("y", String(by + sz / 2 + 5));
+      numTxt.setAttribute("text-anchor", "middle");
+      numTxt.setAttribute("font-size", "15"); numTxt.setAttribute("font-weight", "bold");
+      numTxt.setAttribute("fill", val === 3 ? "#22c55e" : val === 2 ? "#38bdf8" : "#f59e0b");
+      numTxt.textContent = String(val);
+      svg.append(numTxt);
+    }
+
+    const rx = 165;
+    const t1 = document.createElementNS(SVG_NS, "text");
+    t1.setAttribute("x", String(rx)); t1.setAttribute("y", "42");
+    t1.setAttribute("font-size", "11"); t1.setAttribute("font-weight", "bold");
+    t1.setAttribute("fill", "#38bdf8");
+    t1.textContent = "▪ 骰子各数字面数: 1 (1个面), 2 (2个面), 3 (3个面)";
+    svg.append(t1);
+
+    const t2 = document.createElementNS(SVG_NS, "text");
+    t2.setAttribute("x", String(rx)); t2.setAttribute("y", "72");
+    t2.setAttribute("font-size", "11"); t2.setAttribute("font-weight", "bold");
+    t2.setAttribute("fill", "#a78bfa");
+    t2.textContent = "▪ 出现概率: P(1)=1/6，P(2)=2/6=1/3，P(3)=3/6=1/2";
+    svg.append(t2);
+
+    const t3 = document.createElementNS(SVG_NS, "text");
+    t3.setAttribute("x", String(rx)); t3.setAttribute("y", "106");
+    t3.setAttribute("font-size", "12"); t3.setAttribute("font-weight", "bold");
+    t3.setAttribute("fill", isRevealed ? "#22c55e" : "#f59e0b");
+    t3.textContent = isRevealed ? "▪ 决策判定: 数字 3 占 3 个面 (最多)，出现可能性最大！" : "▪ 决策判定: 面数最多的数字出现可能性最大 (？)";
+    svg.append(t3);
+  } else if (isBallOrBag) {
     // Draw Urn / Jar with colored spheres
     const jx = 45, jy = 22, jw = 95, jh = 110;
     const jar = document.createElementNS(SVG_NS, "rect");

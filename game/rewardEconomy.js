@@ -5,6 +5,8 @@ const LevelRewardConfig = require("./levelRewardConfig.js");
 const DIFFICULTY_RANK = Object.freeze({ "基础": 1, "练习": 1, "进阶": 2, "提高": 3, "挑战": 4 });
 const RARE_RARITIES = new Set(["rare", "epic", "legendary", "mythic"]);
 const PITY_THRESHOLD = 5;
+// How many consecutive corrects before a "hot streak" visual indicator activates.
+const HOT_STREAK_THRESHOLD = 3;
 
 function cloneObject(value) {
   return value && typeof value === "object" && !Array.isArray(value) ? { ...value } : {};
@@ -77,11 +79,26 @@ function settleResolution(args) {
   const rewardTrack = LevelRewardConfig.getQuestionRewardTrack(args.levelId, args.questionSlot);
   const fixedReward = rewardTrack?.fixedReward;
   let nextInventory = inventory;
+  // ── Fixed mainline reward (one-time per question across all replays) ──
   if (fixedReward && !claimedFixedRewards[questionId]) {
     const result = grantReward(nextInventory, fixedReward, "fixed", questionId);
     nextInventory = result.inventory;
     transactions.push(result.transaction);
     claimedFixedRewards[questionId] = true;
+  }
+
+  // ── First-correct bonus: fires once per question slot, on the very first
+  //    successful attempt. Uses the chapter streak item so the economy stays
+  //    balanced (same item class, not an extra rare roll).
+  const isFirstEverCorrect = !claimedFixedRewards[`${questionId}:first-correct`];
+  if (isFirstEverCorrect) {
+    const firstCorrectItemId = rewardTrack?.streakItemId || GameItemCatalog.getStreakRewardItem(args.chapterId || LevelRewardConfig.FIRST_CHAPTER_ID);
+    if (firstCorrectItemId) {
+      const result = grantReward(nextInventory, { itemId: firstCorrectItemId, quantity: 1 }, "first-correct", questionId);
+      nextInventory = result.inventory;
+      transactions.push(result.transaction);
+      claimedFixedRewards[`${questionId}:first-correct`] = true;
+    }
   }
 
   let nextPityEnergy = pityEnergy;
@@ -131,13 +148,14 @@ function getStreakProgress(streak) {
   return {
     count,
     nextChestIn: remainder === 0 && count > 0 ? 3 : 3 - remainder,
-    isStreakHot: count >= 3
+    isStreakHot: count >= HOT_STREAK_THRESHOLD
   };
 }
 
 module.exports = {
   DIFFICULTY_RANK,
   PITY_THRESHOLD,
+  HOT_STREAK_THRESHOLD,
   settleResolution,
   getPityProgress,
   getStreakProgress

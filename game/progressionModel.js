@@ -676,7 +676,7 @@ function sanitizeRewardTransactions(transactions, permittedQuestionIds) {
     const rewardKey = `${transaction.questionId}:${rewardType}:${transaction.itemId}`;
     const validStatus = transaction.status === "awarded" || transaction.status === "already-owned" || transaction.status === "stack-capped";
     const expectedAwarded = transaction.status === "awarded" ? transaction.requestedQuantity : 0;
-    if (!item || !permittedQuestionIds.has(transaction.questionId) || !["fixed", "random", "streak-chest"].includes(rewardType) || seen.has(rewardKey) || !positiveInteger(transaction.requestedQuantity) || !validStatus || transaction.awardedQuantity !== expectedAwarded) return [];
+    if (!item || !permittedQuestionIds.has(transaction.questionId) || !["fixed", "first-correct", "random", "streak-chest"].includes(rewardType) || seen.has(rewardKey) || !positiveInteger(transaction.requestedQuantity) || !validStatus || transaction.awardedQuantity !== expectedAwarded) return [];
     seen.add(rewardKey);
     return [{
       questionId: transaction.questionId,

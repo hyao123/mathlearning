@@ -58,3 +58,43 @@ test("V3 answer contracts delegate to structured answer policies", () => {
 test("policy matcher declines to replace legacy matching without an explicit policy", () => {
   assert.equal(policy.matchesAnswerPolicy("0.5", "1/2"), null);
 });
+
+test("coordinate answer policy validates and matches points with various formats", () => {
+  assert.deepEqual(policy.validateAnswerPolicy("(3, -2)", { kind: "coordinate" }), []);
+  assert.deepEqual(policy.validateAnswerPolicy("3，-2", { kind: "coordinate" }), []);
+  assert.deepEqual(policy.validateAnswerPolicy("invalid", { kind: "coordinate" }), ["coordinate answer must be in format (x, y)"]);
+
+  assert.equal(policy.matchesAnswerPolicy("(3, -2)", "3,-2", { kind: "coordinate" }), true);
+  assert.equal(policy.matchesAnswerPolicy("（-1/2, 4）", "(-0.5, 4)", { kind: "coordinate" }), true);
+  assert.equal(policy.matchesAnswerPolicy("(3, 2)", "(3, -2)", { kind: "coordinate" }), false);
+});
+
+test("radical answer policy validates, simplifies and matches square roots", () => {
+  assert.deepEqual(policy.validateAnswerPolicy("2√3", { kind: "radical", simplified: true }), []);
+  assert.deepEqual(policy.validateAnswerPolicy("2*sqrt(3)", { kind: "radical" }), []);
+  assert.deepEqual(policy.validateAnswerPolicy("√12", { kind: "radical", simplified: true }), ["radical answer must be simplified"]);
+
+  assert.equal(policy.matchesAnswerPolicy("2√3", "2sqrt(3)", { kind: "radical" }), true);
+  assert.equal(policy.matchesAnswerPolicy("√3", "1√3", { kind: "radical" }), true);
+  assert.equal(policy.matchesAnswerPolicy("2√3", "3√2", { kind: "radical" }), false);
+});
+
+test("algebraic answer policy validates and matches polynomial expressions via substitution", () => {
+  assert.deepEqual(policy.validateAnswerPolicy("2x + 3", { kind: "algebraic" }), []);
+  assert.deepEqual(policy.validateAnswerPolicy("x^2 - 4", { kind: "algebraic" }), []);
+
+  assert.equal(policy.matchesAnswerPolicy("3 + 2x", "2x + 3", { kind: "algebraic" }), true);
+  assert.equal(policy.matchesAnswerPolicy("(x-2)*(x+2)", "x^2 - 4", { kind: "algebraic" }), true);
+  assert.equal(policy.matchesAnswerPolicy("2x + 1", "2x + 3", { kind: "algebraic" }), false);
+});
+
+test("solution-set answer policy validates and matches inequalities and root lists", () => {
+  assert.deepEqual(policy.validateAnswerPolicy("x >= 5", { kind: "solution-set" }), []);
+  assert.deepEqual(policy.validateAnswerPolicy("x=2, x=-3", { kind: "solution-set" }), []);
+  assert.deepEqual(policy.validateAnswerPolicy("2, -3", { kind: "solution-set" }), []);
+
+  assert.equal(policy.matchesAnswerPolicy("x >= 5", "x >= 5", { kind: "solution-set" }), true);
+  assert.equal(policy.matchesAnswerPolicy("x=-3, x=2", "x=2, x=-3", { kind: "solution-set" }), true);
+  assert.equal(policy.matchesAnswerPolicy("-3, 2", "2, -3", { kind: "solution-set" }), true);
+  assert.equal(policy.matchesAnswerPolicy("x > 5", "x >= 5", { kind: "solution-set" }), false);
+});

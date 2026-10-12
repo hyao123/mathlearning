@@ -205,6 +205,78 @@ const ACHIEVEMENT_DEFINITIONS = [
       }
       return { unlocked: totalSolved >= 30, current: Math.min(totalSolved, 30), max: 30 };
     }
+  },
+  {
+    id: "no_skip_level",
+    title: "战术执行",
+    description: "完整通关一个关卡且全程不跳过任何题目，展现透彻执行的战斗意志",
+    icon: "🛡️",
+    badgeClass: "badge-silver",
+    category: "combat",
+    points: 35,
+    check: (state, campaign, context) => {
+      const checkNoSkip = (st) => {
+        if (!st?.levelRecords) return false;
+        return Object.values(st.levelRecords).some(
+          (r) => (r?.correctCount || 0) >= 7 && (r?.skippedCount || 0) === 0
+        );
+      };
+      let achieved = checkNoSkip(state);
+      if (!achieved && campaign?.chapterStates) {
+        achieved = Object.values(campaign.chapterStates).some(checkNoSkip);
+      }
+      if (context?.hasNoSkipLevel) achieved = true;
+      return { unlocked: achieved, current: achieved ? 1 : 0, max: 1 };
+    }
+  },
+  {
+    id: "all_stars_chapter",
+    title: "全章三星",
+    description: "在任一主题战区的所有关卡均获得三星展示，证明深度掌握",
+    icon: "🌟",
+    badgeClass: "badge-gold",
+    category: "academic",
+    points: 70,
+    check: (state, campaign, context) => {
+      const checkAllThreeStars = (st) => {
+        if (!st?.levelRecords) return false;
+        const records = Object.values(st.levelRecords);
+        return records.length >= 10 && records.every(
+          (r) => (r?.correctCount || 0) >= 9 && (r?.skippedCount || 0) === 0
+        );
+      };
+      let achieved = checkAllThreeStars(state);
+      if (!achieved && campaign?.chapterStates) {
+        achieved = Object.values(campaign.chapterStates).some(checkAllThreeStars);
+      }
+      if (context?.hasAllStarsChapter) achieved = true;
+      return { unlocked: achieved, current: achieved ? 1 : 0, max: 1 };
+    }
+  },
+  {
+    id: "first_correct_bonus",
+    title: "初战告捷",
+    description: "累计获得 5 个首次答对奖励，证明你在每个题目上都能做到首战告捷",
+    icon: "⚡",
+    badgeClass: "badge-bronze",
+    category: "combat",
+    points: 25,
+    check: (state, campaign, context) => {
+      const countFirstCorrect = (st) => {
+        if (!st?.claimedFixedRewards) return 0;
+        return Object.keys(st.claimedFixedRewards).filter((key) => key.endsWith(":first-correct")).length;
+      };
+      let total = 0;
+      if (campaign?.chapterStates) {
+        Object.values(campaign.chapterStates).forEach((cs) => { total += countFirstCorrect(cs); });
+      } else {
+        total = countFirstCorrect(state);
+      }
+      if (context?.firstCorrectBonusCount) {
+        total = Math.max(total, context.firstCorrectBonusCount);
+      }
+      return { unlocked: total >= 5, current: Math.min(total, 5), max: 5 };
+    }
   }
 ];
 

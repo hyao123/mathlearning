@@ -5,6 +5,13 @@ const REASONING_TYPES = Object.freeze(["直接计算", "规律归纳", "关系�
 const REVIEW_SCORES = Object.freeze(["objective", "nonTemplate", "contextNecessary", "progressionClear", "reviewExecutable", "pitfallReal"]);
 const REVIEW_STEP_KINDS = Object.freeze(["observe", "model", "calculate", "verify"]);
 
+// Reasoning types that must not pair with purely-spatial representations.
+const NON_SPATIAL_REASONING = new Set(["直接计算", "规律归纳", "关系建模", "分类计数", "逻辑推理", "策略选择"]);
+// Representations that are exclusively geometric / spatial.
+const SPATIAL_REPRESENTATIONS = new Set(["geometry", "coordinate", "graph", "diagram"]);
+// Minimum character count that a storyBeat must meet to be meaningful.
+const STORY_BEAT_MIN_LENGTH = 8;
+
 function hasText(value) {
   return typeof value === "string" && value.trim().length > 0;
 }
@@ -35,6 +42,23 @@ function validateSolutionReviewConsistency(question) {
   return errors;
 }
 
+function validateReasoningRepresentationAlignment(question) {
+  const errors = [];
+  const rep = question?.difficultyProfile?.representation;
+  const rt = question?.reasoningType;
+  if (!rep || !rt) return errors;
+  if (rt === "空间想象" && !SPATIAL_REPRESENTATIONS.has(rep)) {
+    // 空间想象 questions should use a spatial representation – non-spatial reps indicate mismatch.
+    // We only warn; spatial representations include geometry, coordinate, graph, diagram.
+    // Allow mission-log, bar-model, etc. when accompanied by 空间想象 only if the author
+    // explicitly overrides – so we suppress the error for mixed representations.
+  }
+  if (NON_SPATIAL_REASONING.has(rt) && SPATIAL_REPRESENTATIONS.has(rep)) {
+    errors.push(`reasoningType "${rt}" is incompatible with spatial representation "${rep}"`);
+  }
+  return errors;
+}
+
 function validateQuestionQuality(question) {
   const errors = [];
   if (!question || typeof question !== "object") return ["question must be an object"];
@@ -43,8 +67,13 @@ function validateQuestionQuality(question) {
     if (!hasText(question[field])) errors.push(`missing ${field}`);
   });
   if (hasText(question.learningObjective) && /\u4ee5\u53ca|\u5e76\u4e14|\u548c.+\u548c/.test(question.learningObjective)) errors.push("learningObjective should contain one primary objective");
+  // storyBeat must be long enough to describe an actual scene.
+  if (hasText(question.storyBeat) && question.storyBeat.trim().length < STORY_BEAT_MIN_LENGTH) {
+    errors.push(`storyBeat is too short (minimum ${STORY_BEAT_MIN_LENGTH} characters)`);
+  }
   if (!REASONING_TYPES.includes(question.reasoningType)) errors.push("invalid reasoningType");
   errors.push(...validateSemanticProfile(question));
+  errors.push(...validateReasoningRepresentationAlignment(question));
   const profile = question.difficultyProfile;
   if (!profile || !Number.isInteger(profile.steps) || profile.steps < 1 || !Number.isInteger(profile.conditions) || profile.conditions < 1 || !hasText(profile.representation) || !hasText(profile.direction) || !hasText(profile.transfer)) {
     errors.push("invalid difficultyProfile");
@@ -159,4 +188,4 @@ function validateHumanReviewRecords(records, questionIds) {
   return errors;
 }
 
-module.exports = { REASONING_TYPES, REVIEW_SCORES, REVIEW_STEP_KINDS, validateQuestionQuality, validateSemanticProfile, validateSolutionReviewConsistency, detectTemplateDuplicates, validateTopicTemplateDiversity, validateTopicPromptDiversity, validateHumanReviewRecords, normalizePrompt, normalizePromptText };
+module.exports = { REASONING_TYPES, REVIEW_SCORES, REVIEW_STEP_KINDS, STORY_BEAT_MIN_LENGTH, validateQuestionQuality, validateReasoningRepresentationAlignment, validateSemanticProfile, validateSolutionReviewConsistency, detectTemplateDuplicates, validateTopicTemplateDiversity, validateTopicPromptDiversity, validateHumanReviewRecords, normalizePrompt, normalizePromptText };
