@@ -169,7 +169,7 @@ export function createGameRenderers(app) {
     statsCard.innerHTML = `
       <div class="save-modal__stat-item">
         <span class="save-modal__stat-label">现役战役</span>
-        <strong class="save-modal__stat-value">${chapter?.title || "启程试炼"}</strong>
+        <strong class="save-modal__stat-value">${chapter?.title || chapter?.name || "第一章 · 基础思维模型"}</strong>
       </div>
       <div class="save-modal__stat-item">
         <span class="save-modal__stat-label">已解锁关卡</span>
@@ -1212,7 +1212,6 @@ export function createGameRenderers(app) {
     main.dataset.gameScreen = "map";
     renderAchievementBanner(main);
     renderHeader(main, "知识远征", chapter.name);
-    renderSuperProjectQuickHub(main);
     renderCampaignOverview(main);
 
     const summary = document.createElement("section");
@@ -1576,53 +1575,9 @@ export function createGameRenderers(app) {
     app.scratchpad.element.hidden = run.status === "retry";
     challenge.append(app.scratchpad.element);
 
-    const hudBar = document.createElement("div");
-    hudBar.className = "challenge-tactical-hud";
-
-    const streakCount = state.streak || 0;
-    const streakHud = document.createElement("div");
-    streakHud.className = `streak-hud ${streakCount >= 3 ? "streak-hud--hot" : ""}`;
-    streakHud.dataset.streakHud = String(streakCount);
-    streakHud.innerHTML = `
-      <span class="streak-hud__icon">${streakCount >= 3 ? "🔥" : "⚡"}</span>
-      <span class="streak-hud__label">连胜心流</span>
-      <strong class="streak-hud__count">x${streakCount}</strong>
-      ${streakCount >= 3 ? `<span class="streak-hud__flare">MAX</span>` : ""}
-    `;
-    streakHud.title = streakCount >= 3 ? `🔥 连胜心流爆发中！每 3 连胜空投专属宝箱` : `达成 3 连胜即可激活专属空投补给箱`;
-    hudBar.append(streakHud);
-
-    const pityEnergy = state.pityEnergy || 0;
-    const isOverloaded = pityEnergy >= 5;
-    const pityHud = document.createElement("div");
-    pityHud.className = `pity-hud ${isOverloaded ? "is-overloaded" : ""}`;
-    pityHud.dataset.pityHud = String(pityEnergy);
-    const cells = Array.from({ length: 5 }, (_, i) => `<span class="pity-hud__cell ${i < pityEnergy ? "is-filled" : ""}"></span>`).join("");
-    pityHud.innerHTML = `
-      <span class="pity-hud__icon">${isOverloaded ? "⚡" : "🔋"}</span>
-      <span class="pity-hud__label">${isOverloaded ? "核心过载" : "核心充能"}</span>
-      <span class="pity-hud__meter">${cells}</span>
-      <span class="pity-hud__val">${pityEnergy}/5</span>
-      ${isOverloaded ? `<span class="pity-hud__badge">必出稀有!</span>` : ""}
-    `;
-    pityHud.title = isOverloaded
-      ? `🔋 核心充能已达到 5/5 满载过载状态！下一题答对必出稀有/史诗核心构件！`
-      : `保底充能 ${pityEnergy}/5：未出稀有材料时持续聚能，满格 5/5 必出稀有/史诗核心构件`;
-    hudBar.append(pityHud);
-
-    challenge.append(hudBar);
-
     const heading = appendText(challenge, "h2", `第 ${getLevelNumber(chapter, level.levelId)} 关 · ${level.title}`, "challenge-card__heading");
     heading.dataset.levelHeading = "";
-    const hasRandomBonus = ["进阶", "提高", "挑战"].includes(run.question.difficulty);
-    const rewardLabel = appendText(challenge, "p", hasRandomBonus ? "本题固定材料 · 额外随机补给" : "本题固定材料", "challenge-card__label");
-    rewardLabel.id = "reward-preview-label";
-    const rewardPreview = document.createElement("div");
-    rewardPreview.dataset.rewardPreview = "";
-    rewardPreview.className = "reward-preview";
-    rewardPreview.setAttribute("aria-labelledby", rewardLabel.id);
-    renderRewardPreview(rewardPreview, run);
-    challenge.append(rewardPreview);
+
     if (run.status !== "retry") {
       renderMindCompassBanner(challenge, level, chapter);
     }
@@ -1630,7 +1585,7 @@ export function createGameRenderers(app) {
     const storyBeat = appendText(
       challenge,
       "p",
-      run.question.storyBeat || "工程小队正在整理这条线索。",
+      run.question.storyBeat || "仔细审题，理清数量关系。",
       "question-story-beat"
     );
     storyBeat.dataset.questionStoryBeat = "";
@@ -1737,6 +1692,22 @@ export function createGameRenderers(app) {
       hintPanel.append(hintList);
       challenge.append(hintPanel);
     }
+
+    // 奖励系统与做题卡片彻底解耦，独立移至底部专属副区域
+    const rewardDock = document.createElement("div");
+    rewardDock.className = "challenge-card__reward-dock";
+    rewardDock.setAttribute("aria-label", "关卡附赠通关奖励");
+    const hasRandomBonus = ["进阶", "提高", "挑战"].includes(run.question.difficulty);
+    const rewardLabel = appendText(rewardDock, "p", hasRandomBonus ? "🎁 本题通关附赠奖励预览（答对后存入背包）：" : "🎁 本题通关附赠奖励预览（答对后存入背包）：", "challenge-card__reward-dock-label");
+    rewardLabel.id = "reward-preview-label";
+    const rewardPreview = document.createElement("div");
+    rewardPreview.dataset.rewardPreview = "";
+    rewardPreview.className = "reward-preview";
+    rewardPreview.setAttribute("aria-labelledby", rewardLabel.id);
+    renderRewardPreview(rewardPreview, run);
+    rewardDock.append(rewardPreview);
+    challenge.append(rewardDock);
+
     renderRewardPopover(challenge);
     main.append(challenge);
     root.append(main);

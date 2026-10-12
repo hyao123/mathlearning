@@ -38,7 +38,7 @@ function createLevels(chapterId, moduleIds) {
 const CHAPTERS = Object.freeze({
   [FIRST_CHAPTER_ID]: {
     id: FIRST_CHAPTER_ID,
-    name: "启程试炼",
+    name: "第一章 · 基础思维模型",
     rewardTheme: "expedition-materials",
     prerequisiteChapterId: null,
     projectId: "j20-sky-fighter",

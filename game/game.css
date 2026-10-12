@@ -1388,6 +1388,22 @@ input:focus-visible {
   border-radius: 2px;
 }
 
+.challenge-card__reward-dock {
+  margin-top: 24px;
+  padding: 14px 18px;
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px dashed rgba(148, 163, 184, 0.25);
+  border-radius: 14px;
+}
+
+.challenge-card__reward-dock-label {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}
+
 .challenge-card .reward-preview {
   display: flex;
   flex-wrap: wrap;
@@ -1397,7 +1413,7 @@ input:focus-visible {
   background: rgba(15, 23, 42, 0.7);
   border: 1px solid rgba(56, 189, 248, 0.25);
   border-radius: 12px;
-  margin-bottom: 14px;
+  margin-bottom: 0;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
