@@ -895,13 +895,6 @@ export function createGameRenderers(app) {
 
     banner.append(steps);
 
-    if (topo.engineeringAffinity) {
-      const tech = document.createElement("div");
-      tech.className = "mind-compass-tech-line";
-      appendText(tech, "span", `🚀 【${chapter.name}】工程算力驱动：${topo.engineeringAffinity.subsystem} — ${topo.engineeringAffinity.algorithmRole}`);
-      banner.append(tech);
-    }
-
     // 动态动图解密抽屉（拒绝文字说教，动图秒懂）
     const motionBtn = document.createElement("button");
     motionBtn.type = "button";
@@ -942,13 +935,6 @@ export function createGameRenderers(app) {
     const methodLabel = topo.learningBridge?.methodSummary?.label || "思维建模";
     appendText(card, "h3", `✨ 思维武器点亮 · 【${methodLabel}】`, "settlement-mind-card__title");
     appendText(card, "p", topo.learningBridge?.methodSummary?.description || "掌握本关核心思维模型", "settlement-mind-card__desc");
-
-    if (topo.engineeringAffinity) {
-      const tech = appendText(card, "p", `🚀 工程算法算力赋能：${topo.engineeringAffinity.subsystem}（已注入 100% 算法算力）`, "settlement-mind-card__tech");
-      tech.style.color = "#f5d06f";
-      tech.style.fontWeight = "700";
-      tech.style.margin = "0 0 8px";
-    }
 
     const transfer = topo.learningBridge?.transferTargets?.[0];
     if (transfer) {
@@ -1489,12 +1475,6 @@ export function createGameRenderers(app) {
               </div>
             </div>
           `;
-          if (lineage.engineeringAffinity) {
-            const engRow = document.createElement("div");
-            engRow.className = "lineage-card__engineering";
-            engRow.innerHTML = `<span>🚀 重器赋能：<strong>${lineage.engineeringAffinity.subsystem}</strong> — ${lineage.engineeringAffinity.algorithmRole}</span>`;
-            lineageCard.append(engRow);
-          }
           if (lineage.relatedAxes?.length || lineage.relatedBridges?.length) {
             const axesRow = document.createElement("div");
             axesRow.className = "lineage-card__axes";

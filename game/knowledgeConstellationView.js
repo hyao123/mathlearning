@@ -181,7 +181,7 @@ function getNodeCoordinates(chapterId, index, total) {
  * 彻底消除文字说教，以【趣味动图演示】与【极简三拍口诀】为核心
  */
 export function createMindCompassBriefing(levelData, chapter, onStart) {
-  const { learningBridge, engineeringAffinity, strand, title, levelNumber, moduleId } = levelData;
+  const { learningBridge, strand, title, levelNumber, moduleId } = levelData;
   const overlay = document.createElement("div");
   overlay.className = "mind-compass-overlay";
   overlay.setAttribute("role", "dialog");
@@ -220,12 +220,13 @@ export function createMindCompassBriefing(levelData, chapter, onStart) {
   appendText(methodPill, "p", learningBridge?.methodSummary?.description || "识别核心变量建立模型", "mind-compass-box__desc");
   tacticalPills.append(methodPill);
 
-  if (engineeringAffinity) {
-    const techPill = document.createElement("div");
-    techPill.className = "mind-compass-box mind-compass-box--transfer";
-    appendText(techPill, "div", `🚀 重器赋能 · ${engineeringAffinity.subsystem}`, "mind-compass-box__tag");
-    appendText(techPill, "p", engineeringAffinity.algorithmRole, "mind-compass-box__desc");
-    tacticalPills.append(techPill);
+  const transfer = learningBridge?.transferTargets?.[0];
+  if (transfer) {
+    const transferPill = document.createElement("div");
+    transferPill.className = "mind-compass-box mind-compass-box--transfer";
+    appendText(transferPill, "div", "🔭 思维跃迁", "mind-compass-box__tag");
+    appendText(transferPill, "p", transfer.reason, "mind-compass-box__desc");
+    tacticalPills.append(transferPill);
   }
 
   card.append(tacticalPills);
