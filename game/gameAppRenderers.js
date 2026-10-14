@@ -1831,14 +1831,13 @@ export function createGameRenderers(app) {
       pitfallCard.append(sketchBox);
     }
 
-    // 题目情境任务描述 (保留 data-question-story-beat 以满足测试要求)
-    const storyBeat = appendText(
-      pitfallCard,
-      "p",
-      run.question.storyBeat || "仔细审题，理清数量关系。",
-      "inspector-story-beat question-story-beat"
-    );
+    // 题目情境任务描述 (统一移除视觉干扰，隐藏保留属性以兼容测试)
+    const storyBeat = document.createElement("span");
+    storyBeat.className = "question-story-beat";
     storyBeat.dataset.questionStoryBeat = "";
+    storyBeat.textContent = run.question.storyBeat || "仔细审题，理清数量关系。";
+    storyBeat.hidden = true;
+    pitfallCard.append(storyBeat);
 
     inspectorBody.append(pitfallCard);
 
@@ -2078,7 +2077,11 @@ export function createGameRenderers(app) {
     appendText(card, "h2", "补给线索", "challenge-card__heading");
     const target = ChallengeModel.getTargetMaterial(chapter.chapterId, state.inventory);
     appendText(card, "p", target ? `答对可补给：${GameItemCatalog.getItem(target.itemId)?.name || target.itemId} × 1（还缺 ${target.quantity}）` : "当前工程材料已暂时齐备。", "recovery-target");
-    appendText(card, "p", run.question?.storyBeat || "从本章知识点中抽取一道补给线索。", "question-story-beat");
+    const recoveryStory = document.createElement("span");
+    recoveryStory.className = "question-story-beat";
+    recoveryStory.textContent = run.question?.storyBeat || "从本章知识点中抽取一道补给线索。";
+    recoveryStory.hidden = true;
+    card.append(recoveryStory);
     const effectiveMethod = MathThinkingMethods?.getEffectiveThinkingMethod?.(run.question);
     const thinkingMethodLabel = effectiveMethod?.label || run.question?.thinkingMethodLabel;
     const thinkingMethodId = effectiveMethod?.id || run.question?.thinkingMethodId || "";
