@@ -1534,18 +1534,75 @@ export function createGameRenderers(app) {
     renderAchievementBanner(main);
     renderHeader(main, `第 ${getLevelNumber(chapter, level.levelId)} 关`, level.title, run.status !== "retry");
 
-    const challenge = document.createElement("section");
-    challenge.className = "challenge-card";
-    const returnMap = appendText(challenge, "button", "返回地图", "pixel-button pixel-button--quiet challenge-return");
+    const tierInfo = getDifficultyTier(run.question, run.questionIndex);
+
+    const stage = document.createElement("div");
+    stage.className = "challenge-stage";
+
+    // 1. 左侧导航栏 (Sidebar)
+    const sidebar = document.createElement("aside");
+    sidebar.className = "challenge-sidebar";
+    sidebar.setAttribute("aria-label", "关卡导航与工具");
+
+    const returnMap = appendText(sidebar, "button", "⬅️ 返回地图", "pixel-button pixel-button--quiet challenge-return");
     returnMap.type = "button";
     returnMap.dataset.challengeReturnMap = "";
     returnMap.hidden = run.status === "retry";
-    renderSubmissionFeedback(challenge);
-    const meta = document.createElement("div");
-    meta.className = "challenge-meta";
-    const counter = appendText(meta, "p", `第 ${run.questionIndex + 1} / 10 题`, "question-counter");
+
+    const sidebarCard = document.createElement("div");
+    sidebarCard.className = "challenge-sidebar__card";
+
+    const counter = appendText(sidebarCard, "p", `第 ${run.questionIndex + 1} / 10 题`, "question-counter");
     counter.dataset.questionCounter = "";
-    const tierInfo = getDifficultyTier(run.question, run.questionIndex);
+
+    const ladder = document.createElement("div");
+    ladder.className = "challenge-progress-ladder";
+    ladder.setAttribute("aria-label", `关卡进度：第 ${run.questionIndex + 1} / 10 题`);
+    for (let i = 0; i < 10; i++) {
+      const step = document.createElement("div");
+      step.className = `ladder-step ${i < run.questionIndex ? "is-completed" : i === run.questionIndex ? "is-current" : "is-upcoming"}`;
+      step.title = `第 ${i + 1} 题${i < run.questionIndex ? "（已完成）" : i === run.questionIndex ? "（当前作答）" : ""}`;
+      step.innerHTML = i < run.questionIndex ? "✓" : `${i + 1}`;
+      ladder.append(step);
+    }
+    sidebarCard.append(ladder);
+
+    const scratchpadToggle = appendText(sidebarCard, "button", "📝 草稿纸", "pixel-button pixel-button--quiet scratchpad-toggle-btn");
+    scratchpadToggle.type = "button";
+    scratchpadToggle.dataset.toggleScratchpad = "";
+    scratchpadToggle.title = "打开/收起奥数手绘草稿纸 (快捷键 D)";
+    scratchpadToggle.hidden = run.status === "retry";
+
+    if (state.streak > 0) {
+      const streakHud = document.createElement("div");
+      streakHud.className = "challenge-sidebar__hud streak-hud";
+      streakHud.innerHTML = `🔥 <strong>${state.streak}</strong> 连胜中`;
+      sidebarCard.append(streakHud);
+    }
+
+    sidebar.append(sidebarCard);
+    if (run.status === "retry") {
+      sidebar.hidden = true;
+    }
+    stage.append(sidebar);
+
+    // 2. 中间答题区 (Workspace) - 纯粹、无干扰，只保留核心题目与答题交互
+    const workspace = document.createElement("section");
+    workspace.className = "challenge-workspace challenge-card";
+    workspace.setAttribute("aria-label", "核心答题区");
+
+    if (tierInfo.tier === 5) {
+      workspace.classList.add("challenge-card--boss");
+    }
+
+    renderSubmissionFeedback(workspace);
+
+    const workspaceHeader = document.createElement("div");
+    workspaceHeader.className = "challenge-workspace__header";
+
+    const heading = appendText(workspaceHeader, "h2", `第 ${getLevelNumber(chapter, level.levelId)} 关 · ${level.title}`, "challenge-card__heading");
+    heading.dataset.levelHeading = "";
+
     const difficulty = document.createElement("div");
     difficulty.className = `difficulty-badge difficulty-badge--${tierInfo.code}`;
     difficulty.dataset.difficulty = tierInfo.code;
@@ -1556,56 +1613,14 @@ export function createGameRenderers(app) {
       <span class="difficulty-badge__focus">${tierInfo.cognitiveFocus}</span>
     `;
     difficulty.title = `难度梯级【${tierInfo.title}】：${tierInfo.summaryText} (${tierInfo.stepLabel} · ${tierInfo.conditionLabel})`;
-    meta.append(difficulty);
+    workspaceHeader.append(difficulty);
+    workspace.append(workspaceHeader);
 
-    if (tierInfo.tier === 5) {
-      challenge.classList.add("challenge-card--boss");
-    }
-
-    const scratchpadToggle = appendText(meta, "button", "📝 草稿纸", "pixel-button pixel-button--quiet scratchpad-toggle-btn");
-    scratchpadToggle.type = "button";
-    scratchpadToggle.dataset.toggleScratchpad = "";
-    scratchpadToggle.title = "打开/收起奥数手绘草稿纸 (快捷键 D)";
-    scratchpadToggle.hidden = run.status === "retry";
-    challenge.append(meta);
-
-    if (!app.scratchpad) {
-      app.scratchpad = createScratchpad();
-    }
-    app.scratchpad.element.hidden = run.status === "retry";
-    challenge.append(app.scratchpad.element);
-
-    const heading = appendText(challenge, "h2", `第 ${getLevelNumber(chapter, level.levelId)} 关 · ${level.title}`, "challenge-card__heading");
-    heading.dataset.levelHeading = "";
-
-    if (run.status !== "retry") {
-      renderMindCompassBanner(challenge, level, chapter);
-    }
-
-    const storyBeat = appendText(
-      challenge,
-      "p",
-      run.question.storyBeat || "仔细审题，理清数量关系。",
-      "question-story-beat"
-    );
-    storyBeat.dataset.questionStoryBeat = "";
-    const effectiveMethod = MathThinkingMethods?.getEffectiveThinkingMethod?.(run.question);
-    const thinkingMethodLabel = effectiveMethod?.label || run.question.thinkingMethodLabel;
-    const thinkingMethodId = effectiveMethod?.id || run.question.thinkingMethodId || "";
-    const methodPrompt = effectiveMethod?.prompt || run.question.methodPrompt;
-    if (thinkingMethodLabel) {
-      const methodHint = document.createElement("div");
-      methodHint.className = "thinking-method-hint";
-      methodHint.dataset.thinkingMethod = thinkingMethodId;
-      appendText(methodHint, "strong", `🧭 思维方法：${thinkingMethodLabel}`, "thinking-method-hint__label");
-      if (methodPrompt) appendText(methodHint, "span", methodPrompt, "thinking-method-hint__prompt");
-      challenge.append(methodHint);
-    }
-    renderCognitiveBlueprint(challenge, run.question, tierInfo);
-    const prompt = appendText(challenge, "p", run.question.prompt, "question-prompt");
+    // 核心题目视窗（清爽、大字号、沉浸阅读）
+    const prompt = appendText(workspace, "p", run.question.prompt, "question-prompt");
     prompt.dataset.questionPrompt = "";
 
-    // 题目视觉图解：作答时不泄题，提交错误重试(retry)或复盘(resolved)时展示深度解析
+    // 题目视觉图解（直接辅助题目审题）
     const visual = QuestionVisualizer.createQuestionVisual(run.question, { status: run.status });
     if (visual) {
       if (run.status === "resolved") {
@@ -1615,18 +1630,19 @@ export function createGameRenderers(app) {
       } else {
         visual.classList.add("is-active");
       }
-      challenge.append(visual);
+      workspace.append(visual);
     }
 
-    if (run.status === "active") {
-      const activeScaffold = HintScaffold.renderActiveThinkingScaffold?.(run.question);
-      if (activeScaffold) {
-        challenge.append(activeScaffold);
-      }
+    // 草稿纸
+    if (!app.scratchpad) {
+      app.scratchpad = createScratchpad();
     }
+    app.scratchpad.element.hidden = run.status === "retry";
+    workspace.append(app.scratchpad.element);
 
+    // 答题输入表单
     if (run.status === "resolved") {
-      renderTacticalReview(challenge, run);
+      renderTacticalReview(workspace, run);
     } else {
       const form = document.createElement("div");
       form.className = "answer-controls";
@@ -1653,11 +1669,12 @@ export function createGameRenderers(app) {
       skip.type = "button";
       skip.dataset.skipQuestion = "";
       skip.hidden = run.status !== "retry";
-      challenge.append(form);
+      workspace.append(form);
     }
 
+    // 错题反馈与阶梯脚手架
     if (run.status === "retry") {
-      const feedback = appendText(challenge, "p", "🌱 没关系，这道题很有分量！做错是发现思维盲盒的好机会。参考下方为你准备的通俗小阶梯，一步一步搭积木就能攻克它～", "retry-message");
+      const feedback = appendText(workspace, "p", "🌱 没关系，这道题很有分量！做错是发现思维盲盒的好机会。参考下方为你准备的通俗小阶梯，一步一步搭积木就能攻克它～", "retry-message");
       feedback.setAttribute("role", "status");
 
       const studentAns = app.lastSubmittedAnswer || answerDraft;
@@ -1670,7 +1687,7 @@ export function createGameRenderers(app) {
           <strong class="diagnostic-feedback__badge">🌱 思维小向导 · 暖心点拨</strong>
           <p class="diagnostic-feedback__text">${diag}</p>
         `;
-        challenge.append(diagCard);
+        workspace.append(diagCard);
       }
 
       const hintPanel = document.createElement("details");
@@ -1690,15 +1707,74 @@ export function createGameRenderers(app) {
         hintList.append(item);
       });
       hintPanel.append(hintList);
-      challenge.append(hintPanel);
+      workspace.append(hintPanel);
+    }
+    stage.append(workspace);
+
+    // 3. 右侧讲解区 (Inspector) - 纯粹辅助支撑，需要时展开
+    const inspector = document.createElement("aside");
+    inspector.className = "challenge-inspector";
+    inspector.setAttribute("aria-label", "解题讲解与思维辅助");
+
+    const inspectorHeader = document.createElement("div");
+    inspectorHeader.className = "challenge-inspector__header";
+    appendText(inspectorHeader, "h3", "💡 讲解与思维支持", "challenge-inspector__title");
+    appendText(inspectorHeader, "p", "按需查阅思维模型、锦囊与通关奖励", "challenge-inspector__subtitle");
+    inspector.append(inspectorHeader);
+
+    // 讲解抽屉（默认折叠，需要时随时展开）
+    const explainDrawer = document.createElement("details");
+    explainDrawer.className = "challenge-inspector-drawer";
+    explainDrawer.open = false; // 初始隐藏，需要时展开
+    const explainSummary = appendText(explainDrawer, "summary", "🧭 思维罗盘与解法导引", "challenge-inspector-drawer__summary");
+    explainSummary.setAttribute("aria-label", "展开思维罗盘与解法导引");
+
+    const explainBody = document.createElement("div");
+    explainBody.className = "challenge-inspector-drawer__body";
+
+    const storyBeat = appendText(
+      explainBody,
+      "p",
+      run.question.storyBeat || "仔细审题，理清数量关系。",
+      "question-story-beat"
+    );
+    storyBeat.dataset.questionStoryBeat = "";
+
+    const effectiveMethod = MathThinkingMethods?.getEffectiveThinkingMethod?.(run.question);
+    const thinkingMethodLabel = effectiveMethod?.label || run.question.thinkingMethodLabel;
+    const thinkingMethodId = effectiveMethod?.id || run.question.thinkingMethodId || "";
+    const methodPrompt = effectiveMethod?.prompt || run.question.methodPrompt;
+    if (thinkingMethodLabel) {
+      const methodHint = document.createElement("div");
+      methodHint.className = "thinking-method-hint";
+      methodHint.dataset.thinkingMethod = thinkingMethodId;
+      appendText(methodHint, "strong", `🧭 思维方法：${thinkingMethodLabel}`, "thinking-method-hint__label");
+      if (methodPrompt) appendText(methodHint, "span", methodPrompt, "thinking-method-hint__prompt");
+      explainBody.append(methodHint);
     }
 
-    // 奖励系统与做题卡片彻底解耦，独立移至底部专属副区域
+    renderCognitiveBlueprint(explainBody, run.question, tierInfo);
+
+    if (run.status !== "retry") {
+      renderMindCompassBanner(explainBody, level, chapter);
+    }
+    explainDrawer.append(explainBody);
+    inspector.append(explainDrawer);
+
+    // 通俗小锦囊 (Active Scaffold)
+    if (run.status === "active") {
+      const activeScaffold = HintScaffold.renderActiveThinkingScaffold?.(run.question);
+      if (activeScaffold) {
+        inspector.append(activeScaffold);
+      }
+    }
+
+    // 关卡附赠通关奖励
     const rewardDock = document.createElement("div");
-    rewardDock.className = "challenge-card__reward-dock";
+    rewardDock.className = "challenge-card__reward-dock challenge-inspector__reward-dock";
     rewardDock.setAttribute("aria-label", "关卡附赠通关奖励");
     const hasRandomBonus = ["进阶", "提高", "挑战"].includes(run.question.difficulty);
-    const rewardLabel = appendText(rewardDock, "p", hasRandomBonus ? "🎁 本题通关附赠奖励预览（答对后存入背包）：" : "🎁 本题通关附赠奖励预览（答对后存入背包）：", "challenge-card__reward-dock-label");
+    const rewardLabel = appendText(rewardDock, "p", "🎁 本题通关附赠奖励预览：", "challenge-card__reward-dock-label");
     rewardLabel.id = "reward-preview-label";
     const rewardPreview = document.createElement("div");
     rewardPreview.dataset.rewardPreview = "";
@@ -1706,10 +1782,16 @@ export function createGameRenderers(app) {
     rewardPreview.setAttribute("aria-labelledby", rewardLabel.id);
     renderRewardPreview(rewardPreview, run);
     rewardDock.append(rewardPreview);
-    challenge.append(rewardDock);
+    inspector.append(rewardDock);
 
-    renderRewardPopover(challenge);
-    main.append(challenge);
+    renderRewardPopover(inspector);
+
+    if (run.status === "retry") {
+      inspector.hidden = true;
+    }
+    stage.append(inspector);
+
+    main.append(stage);
     root.append(main);
     if (run.status === "active") root.querySelector("[data-answer-input]")?.focus({ preventScroll: true });
   }
