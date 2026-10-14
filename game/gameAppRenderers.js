@@ -25,29 +25,29 @@ export function createGameRenderers(app) {
       soundButton.title = soundMuted ? "开启音效" : "静音";
       soundButton.setAttribute("aria-label", soundMuted ? "开启音效" : "静音");
 
-      const achButton = appendText(controls, "button", "🎖️ 军功勋章", "pixel-button pixel-button--achievements");
+      const achButton = appendText(controls, "button", "🎖️ 成就勋章", "pixel-button pixel-button--achievements");
       achButton.type = "button";
       achButton.dataset.openAchievements = "";
-      achButton.title = "查看军功勋章与成就陈列馆";
-      achButton.setAttribute("aria-label", "查看军功勋章与成就陈列馆");
+      achButton.title = "查看成就勋章陈列馆";
+      achButton.setAttribute("aria-label", "查看成就勋章陈列馆");
 
       const nexusButton = appendText(controls, "button", "🌌 知识图谱", "pixel-button pixel-button--knowledge-nexus");
       nexusButton.type = "button";
       nexusButton.dataset.openKnowledgeNexus = "";
-      nexusButton.title = "查看战略数学思维知识全景图鉴与认知跃迁";
-      nexusButton.setAttribute("aria-label", "查看战略数学思维知识全景图鉴与认知跃迁");
+      nexusButton.title = "查看数学思维知识全景图鉴与认知跃迁";
+      nexusButton.setAttribute("aria-label", "查看数学思维知识全景图鉴与认知跃迁");
 
       const saveButton = appendText(controls, "button", "💾 档案", "pixel-button pixel-button--save");
       saveButton.type = "button";
       saveButton.dataset.openSaveModal = "";
-      saveButton.title = "指挥官远征档案管理与备份恢复";
-      saveButton.setAttribute("aria-label", "指挥官远征档案管理与备份恢复");
+      saveButton.title = "学习档案管理与备份恢复";
+      saveButton.setAttribute("aria-label", "学习档案管理与备份恢复");
 
-      const button = appendText(controls, "button", "🎒 军备总装", "pixel-button pixel-button--inventory");
+      const button = appendText(controls, "button", "🎒 收集背包", "pixel-button pixel-button--inventory");
       button.type = "button";
       button.dataset.openInventory = "";
       button.dataset.focusKey = "open-inventory";
-      button.setAttribute("aria-label", "打开军备总装");
+      button.setAttribute("aria-label", "打开收集背包");
     }
     header.append(controls);
     parent.append(header);
