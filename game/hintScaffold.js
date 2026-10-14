@@ -129,6 +129,11 @@ const CONCRETE_ANALOGIES = Object.freeze({
     name: "柯南办案打叉叉法",
     analogy: "列一张方格大表格，横排写嫌疑人，竖列写线索道具。根据‘小明不带钥匙’在格子里画大红叉❌，根据‘小红肯定带钥匙’画对勾✔，同行同列立刻全画叉！排除所有不可能，剩下的唯一空格就是真相！",
     sketch: "画一个 3×3 的九宫格，用 ✔ 和 ❌ 逐格排查，找出唯一的答案。"
+  },
+  "patterns": {
+    name: "跳房子阶梯法",
+    analogy: "就像玩跳房子游戏：从一个数跳到下一个数，观察每一步跳跃的固定步长！每一步增加或减少相同差额，按相同节奏再跳一步就能命中目标！",
+    sketch: "在草稿纸上把数字排开，在相邻两数之间画出跳跃小弧线，标出每次增加或减少的固定步长（如 +3）。"
   }
 });
 
@@ -138,6 +143,9 @@ function getConcreteAnalogy(question) {
   const mod = String(question.moduleId || "");
   const method = String(question.thinkingMethodId || question.typicalModel || "");
 
+  if (/规律|等差|数列|递增|递减|推进|下一格/.test(prompt) || mod.includes("patterns") || method.includes("patterns")) {
+    return CONCRETE_ANALOGIES["patterns"];
+  }
   if (/鸡|兔|头|腿|足|门票|大船小船/.test(prompt) || mod.includes("chicken-rabbit") || method.includes("chicken-rabbit")) {
     return CONCRETE_ANALOGIES["chicken-rabbit"];
   }
@@ -165,7 +173,7 @@ function getConcreteAnalogy(question) {
   if (/年龄|几年前|几年后|岁/.test(prompt) || mod.includes("age")) {
     return CONCRETE_ANALOGIES["age"];
   }
-  if (/工程|修路|注水|排水|合作|工效/.test(prompt) || mod.includes("engineering")) {
+  if (/(?:工程队|大工程|工程合作|工程总量|修路|注水|排水|合作|工效)/.test(prompt) || (mod.includes("engineering") && !/工程尺/.test(prompt))) {
     return CONCRETE_ANALOGIES["engineering"];
   }
   if (/倒推|逆推|反推|还原|原来|又放入|又拿走|倒着算|(?:一个数.*等于.*求这个数)/.test(prompt) || mod.includes("reverse-thinking")) {
@@ -635,9 +643,255 @@ function renderActiveThinkingScaffold(question) {
   return container;
 }
 
+function getVariantTransferGuide(question) {
+  if (!question || typeof question !== "object") return null;
+  const prompt = String(question.prompt || "");
+  const mod = String(question.moduleId || "");
+  const method = String(question.thinkingMethodId || question.typicalModel || "");
+  const pitfall = question.commonPitfall || question.solutionReview?.pitfall || question.solutionReview?.errorTrap;
+  const analogy = getConcreteAnalogy(question);
+
+  let category = "default";
+  if (/鸡|兔|头|腿|足|门票|大船小船/.test(prompt) || /(chicken-rabbit)/.test(mod) || /(chicken-rabbit)/.test(method)) {
+    category = "chicken-rabbit";
+  } else if (/方阵|四周|实心方阵|空心方阵/.test(prompt) || /(square-array)/.test(mod) || /(square-array)/.test(method)) {
+    category = "square-array";
+  } else if (/植树|间隔|锯木|爬楼|电线杆|路灯|敲钟/.test(prompt) || /(tree-planting)/.test(mod) || /(tree-planting)/.test(method)) {
+    category = "tree-planting";
+  } else if (/列车|火车|客车|货车|动车|高铁|过桥|隧道|车身|车长|顺水|逆水|相遇|追及|速度|路程/.test(prompt) || /(motion|speed|train-bridge|river-flow)/.test(mod) || /(motion|speed|train-bridge|river-flow)/.test(method)) {
+    category = "motion";
+  } else if (/容斥|韦恩|重叠|两样都|都参加|都喜欢|集合/.test(prompt) || /(inclusion|venn)/.test(mod) || /(inclusion|venn)/.test(method)) {
+    category = "inclusion-exclusion";
+  } else if (/年龄|和差|和倍|差倍|大数|小数/.test(prompt) || /(sum-diff|age)/.test(mod) || /(sum-diff|age)/.test(method)) {
+    category = "sum-diff";
+  } else if (/周期|循环|规律|等差|数列|递增|递减|推进|下一格|第几个/.test(prompt) || /(periodicity|patterns|arithmetic-series|sequence)/.test(mod) || /(periodicity|patterns|arithmetic-series|sequence)/.test(method)) {
+    category = "periodicity";
+  } else if (/盈|亏|剩余|不足|多出|还差/.test(prompt) || /(surplus-deficit)/.test(mod) || /(surplus-deficit)/.test(method)) {
+    category = "surplus-deficit";
+  } else if (/因数|倍数|最大公因|最小公倍|短除|质因数/.test(prompt) || /(factors|multiples|prime)/.test(mod) || /(factors|multiples|prime)/.test(method)) {
+    category = "factors-multiples";
+  } else if (/加乘原理|加法原理|乘法原理|搭配|分步|选法/.test(prompt) || /(add-multiply|tree-counting)/.test(mod) || /(add-multiply|tree-counting)/.test(method)) {
+    category = "add-multiply-principle";
+  } else if (/平均数|均值|平均分|平均重量/.test(prompt) || /(average)/.test(mod) || /(average)/.test(method)) {
+    category = "average";
+  } else if (/数线段|数角|数三角形|握手/.test(prompt) || /(geometry-counting)/.test(mod) || /(geometry-counting)/.test(method)) {
+    category = "geometry-counting";
+  } else if (/浓度|糖水|盐水|稀释/.test(prompt) || /(concentration)/.test(mod) || /(concentration)/.test(method)) {
+    category = "concentration";
+  } else if (/抽屉|鸽巢|最不利|至少|保证/.test(prompt) || /(pigeonhole)/.test(mod) || /(pigeonhole)/.test(method)) {
+    category = "pigeonhole-principle";
+  }
+
+  const GUIDES = {
+    "chicken-rabbit": {
+      modelTitle: "假设替换模型 · 吹哨抬脚法",
+      coreEssence: "假定全部属于某一种对象，计算整体特征差额，再除以单体替换产生的单位差量。",
+      difficultyBreakthrough: "难点在于两种未知对象相互交织，无法直接除尽。先假设全是其中一种，再把总差额除以单差，一步锁定数量！",
+      defaultPitfall: "不要把每只兔子多出的脚算成 4 只，兔子比鸡多出的是 (4 - 2 = 2) 只腿！",
+      sketchGuide: analogy?.sketch || "在草稿纸上画两排圆圈代表头，先每只点两只脚，再把剩下的脚分配给兔子。",
+      variants: [
+        { tag: "变式 1 · 车轮与机器", desc: "三轮车与自行车共 10 辆，轮子共 24 个。把三轮车看作兔子，自行车看作鸡！" },
+        { tag: "变式 2 · 得分与倒扣", desc: "答对加5分，答错倒扣2分。答错不仅没拿5分还倒扣2分，单题差额是 5 + 2 = 7 分！" },
+        { tag: "变式 3 · 租船与包装", desc: "大船坐6人小船坐4人。换一艘大船比小船多坐 2 人，用差额迅速定数量！" }
+      ],
+      generalizationTip: "只要题目出现【两种对象、两种特征量、已知总数】，不管外衣是鸡兔、车轮还是租船，全部套用假设替换法！"
+    },
+    "tree-planting": {
+      modelTitle: "点与间隔模型 · 手掌指缝法",
+      coreEssence: "伸出小手看手指与指缝：物体数量与相邻间隔段数的对应关系。分清两端都种、只种一端与封闭环形。",
+      difficultyBreakthrough: "难点在于容易把间隔数直接当成棵数。两端都植树时，树的棵数永远比间隔段数多 1 棵！",
+      defaultPitfall: "两端都植树时，千万别忘了加 1；敲钟问题钟声次数比间隔数多 1！",
+      sketchGuide: analogy?.sketch || "画一条线段，用小竖线标出每一棵树，数一数小树和它们中间的空格段数。",
+      variants: [
+        { tag: "变式 1 · 木头锯段", desc: "把木头锯成 5 段只需锯 4 次，锯木耗时按锯次（段数 - 1）计算。" },
+        { tag: "变式 2 · 楼层攀登", desc: "从 1 楼爬到 5 楼只爬了 4 层楼梯（层数 = 目标楼层 - 1）。" },
+        { tag: "变式 3 · 钟楼敲钟", desc: "敲 6 下钟声之间只有 5 个时间间隔，每个间隔时长保持恒定。" }
+      ],
+      generalizationTip: "分清‘点’与‘段’：两端都种多1棵，只种一端正好等，封闭环形点段平！"
+    },
+    "square-array": {
+      modelTitle: "方阵角点去重 · 洋葱剥皮法",
+      coreEssence: "四周边界排布时，四个角上的顶点被相邻两条边重复占用，计算周界必须扣除重复。",
+      difficultyBreakthrough: "最外层四周人数 = (每边人数 - 1) × 4 或 每边人数 × 4 - 4，切勿直接边长乘以 4！",
+      defaultPitfall: "角上的 4 个小朋友被两条边重复计算，四周总人数切记减去 4 个角！",
+      sketchGuide: analogy?.sketch || "在草稿纸上画正方形网格，圈出 4 个角落的小圆圈，一眼看清两条边抢夺角点。",
+      variants: [
+        { tag: "变式 1 · 剥层看内层", desc: "方阵向内剥去一层，每边人数少 2，外层人数比相邻内层永远多 8 人。" },
+        { tag: "变式 2 · 空心方阵", desc: "空心方阵总人数 = 大实心方阵总数减去内部中空实心方阵总数。" },
+        { tag: "变式 3 · 花坛四周摆花", desc: "正方形花坛四周摆花盆，4个拐角摆花同样被两条边共享，切记去重。" }
+      ],
+      generalizationTip: "遇到多边形四周排布，先圈出角点，防止拐角重复计算！"
+    },
+    "motion": {
+      modelTitle: "相对运动模型 · 位移叠加法",
+      coreEssence: "相向而行距离快速缩短（速度和），同向追及后车拉近差距（速度差）。物体有长时路程叠加身长。",
+      difficultyBreakthrough: "火车过桥路程不是单纯桥长，而是【桥长 + 车长】；相遇是合走总路程，追及是缩短路程差。",
+      defaultPitfall: "相遇速度相加，追及速度相减；火车过桥别漏了车身自己的长度！",
+      sketchGuide: analogy?.sketch || "画一条笔直跑道线段图，用箭头标出两人起点、运动方向与相对速度。",
+      variants: [
+        { tag: "变式 1 · 环形跑道", desc: "同向跑是追及（快车多跑一圈拉开差距），反向跑是相遇（两人合跑一整圈）。" },
+        { tag: "变式 2 · 两车错车", desc: "两列火车迎面错过，相对路程等于两车车长之和，相对速度为两车速度相加。" },
+        { tag: "变式 3 · 顺逆水行船", desc: "顺水速度 = 船速 + 水速；逆水速度 = 船速 - 水速；水速 = (顺水速 - 逆水速) ÷ 2。" }
+      ],
+      generalizationTip: "画跑道线段图，标出相对距离与速度箭头，路程公式一目了然！"
+    },
+    "inclusion-exclusion": {
+      modelTitle: "集合容斥模型 · 韦恩重叠法",
+      coreEssence: "把两个交叠集合合并时，中间重叠的交集被数了两次，必须扣除一份重复。",
+      difficultyBreakthrough: "总人数 = A组人数 + B组人数 - 两组都参加人数；若有两组都不参加的，最后补加上。",
+      defaultPitfall: "两类人数直接相加后，中间两样都参加的小朋友被多算了一次，必须减去一份！",
+      sketchGuide: analogy?.sketch || "画两个交叠的圆圈（韦恩图），左月牙、中间交集、右月牙分别标上数字。",
+      variants: [
+        { tag: "变式 1 · 双科竞赛", desc: "语文及格人数 + 数学及格人数 - 双科及格人数 = 至少一科及格人数。" },
+        { tag: "变式 2 · 买书订报", desc: "只订A刊人数 + 只订B刊人数 + 两样都订人数 = 全体订户总数。" },
+        { tag: "变式 3 · 三集合容斥", desc: "三圈相加，减去三对两两交集，再加上中间重叠的三重交集。" }
+      ],
+      generalizationTip: "在草稿纸上画韦恩图，把每个月牙和交集区域分别标数，不重不漏！"
+    },
+    "sum-diff": {
+      modelTitle: "和差差倍模型 · 积木截齐法",
+      coreEssence: "利用差量把长线段截齐或短线段补齐，使多个未知量转化为单一等量基准份数。",
+      difficultyBreakthrough: "较小数 = (和 - 差) ÷ 2；较大数 = (和 + 差) ÷ 2；年龄差永远锁死不变。",
+      defaultPitfall: "先求出较小量后，还要用和或差检查另一个量，算年龄差时差额永远恒定！",
+      sketchGuide: analogy?.sketch || "画一长一短两条线段，在长线段末尾用虚线画出多出的差额，一目了然。",
+      variants: [
+        { tag: "变式 1 · 年龄不变量", desc: "无论经过多少年，两人的年龄差永远不变，将动态问题转化为静态差倍。" },
+        { tag: "变式 2 · 移多补少", desc: "甲给乙 5 本后两人相等，说明甲原本比乙多 5×2=10 本。" },
+        { tag: "变式 3 · 绳子对折", desc: "绳子对折或剪去一段，对比剩余长度与倍数差，求全长。" }
+      ],
+      generalizationTip: "画一长一短线段，截齐除以2得小数，补齐除以2得大数！"
+    },
+    "periodicity": {
+      modelTitle: "周期余数模型 · 规律阶梯法",
+      coreEssence: "将循环节打包成整周期，用除法求整圈数与余数，余数精准定位最终项。",
+      difficultyBreakthrough: "余数为 0 时对应周期的最后一项，而不是第一项；等差数列项数 = (末项 - 首项) ÷ 公差 + 1。",
+      defaultPitfall: "余数为 0 时对应周期的最后一项，不是第一项；算等差项数切记最后要加 1！",
+      sketchGuide: analogy?.sketch || "画一个圆圈标出周期图案，或者在数字间画跳跃小弧线标出步长。",
+      variants: [
+        { tag: "变式 1 · 彩灯与排队", desc: "红绿黄灯不断循环，计算整周期次数，看余数几步决定对应颜色。" },
+        { tag: "变式 2 · 星期推算", desc: "经过天数除以 7，看余数是几，从今天开始往后数几天。" },
+        { tag: "变式 3 · 等差数列求和", desc: "求和 = (首项 + 末项) × 项数 ÷ 2，倒序相加凑成相同的大配对。" }
+      ],
+      generalizationTip: "抓住不变的循环节长度或固定公差步长，整圈打包后只看余数定位！"
+    },
+    "surplus-deficit": {
+      modelTitle: "盈亏差额模型 · 分糖比差法",
+      coreEssence: "比较两种分配方案的盈亏状态，两次总差额除以两次单体分配量之差，求分配对象数。",
+      difficultyBreakthrough: "一盈一亏时总差额为两者相加（多出的 + 还差的）；两盈或两亏时总差额为大数减小数。",
+      defaultPitfall: "一盈一亏总差额要相加，同盈同亏总差额要相减；别混淆分配对象和分配总量！",
+      sketchGuide: analogy?.sketch || "在草稿纸上画出两次分糖果的对比，用天平或方框看清楚总差额。",
+      variants: [
+        { tag: "变式 1 · 租车租船", desc: "每车坐40人空出2车，每车坐30人差10个座位，两次分配差额定车辆数。" },
+        { tag: "变式 2 · 买书购物", desc: "买5本差8元，买3本余12元，总差额 8+12=20 元除以单本差 5-3=2 元。" },
+        { tag: "变式 3 · 修路排班", desc: "每天修20米提前2天，每天修15米推迟3天，转化成总量盈亏。" }
+      ],
+      generalizationTip: "总差额（一盈一亏相加，同盈同亏相减）÷ 两次每份之差 = 分配对象总数！"
+    },
+    "factors-multiples": {
+      modelTitle: "因数倍数模型 · 短除阶梯法",
+      coreEssence: "质因数是数理底层积木。短除法左竖列乘积为最大公因数(GCD)，整圈连乘为最小公倍数(LCM)。",
+      difficultyBreakthrough: "短除必须除到商互质为止；求全部因数个数时，质因数指数分别加 1 再相乘。",
+      defaultPitfall: "求最大公约数只乘左侧公质因数，求最小公倍数必须乘到底部互质商！",
+      sketchGuide: analogy?.sketch || "画倒过来的除号阶梯，左边放公因数，底边放商，一清二楚。",
+      variants: [
+        { tag: "变式 1 · 等长裁木裁纸", desc: "把两根不同长木条截成同样长的小段且不浪费，求最长小段长度（求最大公因数）。" },
+        { tag: "变式 2 · 班车同站相遇", desc: "两路公交车分别每6分钟和每8分钟发车，下一次同时发车时间（求最小公倍数）。" },
+        { tag: "变式 3 · 积木方砖拼正方形", desc: "用长12宽8的长方形拼成最小的正方形（求两边长最小公倍数）。" }
+      ],
+      generalizationTip: "分东西不剩余求最大公约数(半边乘)；排队转圈重遇求最小公倍数(一圈乘)！"
+    },
+    "add-multiply-principle": {
+      modelTitle: "加乘计数模型 · 分类分步法",
+      coreEssence: "分类互斥用加法，分步连续用乘法。同一任务看是一步搞定还是多步接力。",
+      difficultyBreakthrough: "容易混淆加与乘。选了上衣还要选裤子必须用乘法；几件T恤任选一件互斥用加法。",
+      defaultPitfall: "同一件事不能同时既加又乘；分步完成用乘法，分类任选用加法！",
+      sketchGuide: analogy?.sketch || "画树状分支图：从每件上衣伸出小树枝连到不同的裤子上，数清末端叶子数。",
+      variants: [
+        { tag: "变式 1 · 穿衣搭配", desc: "3件上衣配4条裤子，分步完成，搭配数 3×4=12 种。" },
+        { tag: "变式 2 · 路线走法", desc: "从甲地经乙地到丙地，甲到乙有2条路，乙到丙有3条路，共 2×3=6 种走法。" },
+        { tag: "变式 3 · 组数填空", desc: "用 1, 2, 3 组成无重复两位数，百位有3种选法，十位有2种选法，共 3×2=6 个。" }
+      ],
+      generalizationTip: "做一件事：一步到位用加法，多步接力用乘法！"
+    },
+    "average": {
+      modelTitle: "均值平移模型 · 移多补少法",
+      coreEssence: "平均数代表整体平衡水平。移高补低使各份齐平，总和 = 平均数 × 总份数。",
+      difficultyBreakthrough: "平均数不能直接简单相加再除以2；必须牢牢抓住总和守恒与总份数。",
+      defaultPitfall: "平均数不一定是原数据中的某一个数，不能只找中间值，牢牢抓住总和！",
+      sketchGuide: analogy?.sketch || "画几个不同高低的柱子，画一条横线看看多出的部分能不能填补凹陷的部分。",
+      variants: [
+        { tag: "变式 1 · 补齐目标总分", desc: "前四门平均85，想让五门平均达到88，第五门必须考 88×5 - 85×4 分。" },
+        { tag: "变式 2 · 基准数法", desc: "一组数在90上下波动，以90为基准，算超出与不足的差额再均摊。" },
+        { tag: "变式 3 · 加权平均", desc: "两班人数不同求总平均分，必须算出两班总分之和再除以两班总人数。" }
+      ],
+      generalizationTip: "平均数就像水面找平，牢牢盯住【总数 = 均值 × 份数】！"
+    },
+    "geometry-counting": {
+      modelTitle: "图形计数模型 · 握手排队法",
+      coreEssence: "一条线上 n 个点产生线段数 = n×(n-1)÷2。数角、数三角形底边完全相同。",
+      difficultyBreakthrough: "从A到B和从B到A是同一条线段，往返算一次必须除以 2 消除重复。",
+      defaultPitfall: "从A到B与从B到A是同一条线段，只算一次，最后千万别忘了除以 2！",
+      sketchGuide: analogy?.sketch || "画一条线段和上面的点，像小彩虹一样在每两个点之间画彩色弧线连接。",
+      variants: [
+        { tag: "变式 1 · 互通电话与握手", desc: "6个同学互相通电话一次，通话总次数 = 6×5÷2 = 15 次。" },
+        { tag: "变式 2 · 单循环球赛", desc: "8支球队打单循环比赛，总比赛场数 = 8×7÷2 = 28 场。" },
+        { tag: "变式 3 · 车站车票印制", desc: "一条铁路线有5个车站，需要准备多少种不同的往返车票。" }
+      ],
+      generalizationTip: "握手公式记心中：点数 × (点数 - 1) ÷ 2，数线段数角一把抓！"
+    },
+    "concentration": {
+      modelTitle: "浓度溶质守恒 · 纯糖不变量",
+      coreEssence: "加水稀释只变淡、纯糖一粒没少；蒸发水分只变浓、纯糖质量锁死。",
+      difficultyBreakthrough: "浓度分母是【糖水总重（溶质 + 水）】，切勿只拿水当分母。",
+      defaultPitfall: "浓度计算的分母必须是糖水总重（纯糖 + 水），不能只拿水作分母！",
+      sketchGuide: analogy?.sketch || "画一个量杯，底部沉淀的是纯糖，上面是水，合在一起是总糖水。",
+      variants: [
+        { tag: "变式 1 · 加水稀释", desc: "往糖水里加水，纯糖质量不变，用原来纯糖质量除以新浓度求新糖水总重。" },
+        { tag: "变式 2 · 加糖增浓", desc: "往糖水里加糖，水分质量保持不变，抓住不变的水克数反向求解。" },
+        { tag: "变式 3 · 两种溶液混合", desc: "两杯糖水混合，将两份纯糖相加除以两份总糖水质量求新浓度。" }
+      ],
+      generalizationTip: "做浓度题先找不变量：加水盯纯糖，加糖盯纯水！"
+    },
+    "pigeonhole-principle": {
+      modelTitle: "抽屉极端模型 · 最倒霉摸球法",
+      coreEssence: "往最倒霉的情况逼近。先把每种单色全摸一只，再多摸 1 只必定成双凑对。",
+      difficultyBreakthrough: "保证必定发生，必须考虑极端最不利情况，最倒霉总数加 1 即是底线。",
+      defaultPitfall: "求【至少】能保证的情况，必须往最倒霉的极限情况考虑，不能侥幸！",
+      sketchGuide: analogy?.sketch || "画几个小抽屉，先给每个抽屉分 1 个苹果，多出来的苹果必定挤进某个抽屉。",
+      variants: [
+        { tag: "变式 1 · 摸袜摸手套", desc: "黑白红袜子各5只，在黑暗中至少摸出多少只才能保证有一双同色袜子。" },
+        { tag: "变式 2 · 月份与生日", desc: "班里至少有几人才能保证有 2 人同月出生（12个月+1人 = 13人）。" },
+        { tag: "变式 3 · 同色扑克牌", desc: "一副扑克牌抽多少张才能保证有4张同一花色。" }
+      ],
+      generalizationTip: "闭上眼睛想最倒霉：把不同花样摸个遍，最后再多摸 1 只必中大奖！"
+    },
+    "default": {
+      modelTitle: "数理关系模型 · 等量转换法",
+      coreEssence: "理清已知条件与待求问题的数量联系，画图或列表建立对应等量关系。",
+      difficultyBreakthrough: "先圈出已知条件，分步推演中间过渡量，最后验算所求量是否与题目单位一致。",
+      defaultPitfall: "不要省略最后的验算，核对题目所求数量与单位是否完全一致！",
+      sketchGuide: analogy?.sketch || "在草稿纸上标出已知数据，画出对应线段或表格，逐步推演。",
+      variants: [
+        { tag: "变式 1 · 逆向倒推", desc: "从最终结果倒着推回去，加变减、乘变除，顺藤摸瓜找回原数。" },
+        { tag: "变式 2 · 条件代换", desc: "把较复杂的对象用简单的等价对象替换，化繁为简。" },
+        { tag: "变式 3 · 表格排查", desc: "将多条件列成二维表格，逐项排除不可能的情况。" }
+      ],
+      generalizationTip: "审题圈已知，动笔画草稿，把复杂大题拆解成两三个简单小步骤！"
+    }
+  };
+
+  const item = GUIDES[category] || GUIDES["default"];
+  return {
+    ...item,
+    category,
+    pitfallWarning: pitfall || item.defaultPitfall
+  };
+}
+
 const HintScaffold = {
   CONCRETE_ANALOGIES,
   getConcreteAnalogy,
+  getVariantTransferGuide,
   buildTieredHints,
   diagnoseMistake,
   renderActiveThinkingScaffold

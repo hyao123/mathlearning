@@ -1711,69 +1711,184 @@ export function createGameRenderers(app) {
     }
     stage.append(workspace);
 
-    // 3. 右侧讲解区 (Inspector) - 纯粹辅助支撑，需要时展开
+    // 3. 右侧区域 (Inspector) - 错点难点强调与举一反三变式拓展
     const inspector = document.createElement("aside");
     inspector.className = "challenge-inspector";
-    inspector.setAttribute("aria-label", "解题讲解与思维辅助");
+    inspector.setAttribute("aria-label", "错点难点强调与举一反三");
 
     const inspectorHeader = document.createElement("div");
     inspectorHeader.className = "challenge-inspector__header";
-    appendText(inspectorHeader, "h3", "💡 讲解与思维支持", "challenge-inspector__title");
-    appendText(inspectorHeader, "p", "按需查阅思维模型、锦囊与通关奖励", "challenge-inspector__subtitle");
+
+    const titleRow = document.createElement("div");
+    titleRow.className = "challenge-inspector__title-row";
+    appendText(titleRow, "h3", "💡 错点突破 · 举一反三", "challenge-inspector__title");
+
+    const effectiveMethod = MathThinkingMethods?.getEffectiveThinkingMethod?.(run.question);
+    const thinkingMethodLabel = effectiveMethod?.label || run.question.thinkingMethodLabel || "专项建模";
+    const thinkingMethodId = effectiveMethod?.id || run.question.thinkingMethodId || "read-conditions";
+
+    const methodBadge = document.createElement("span");
+    methodBadge.className = "challenge-inspector__method-badge";
+    methodBadge.dataset.thinkingMethod = thinkingMethodId;
+    methodBadge.textContent = `🧭 ${thinkingMethodLabel}`;
+    titleRow.append(methodBadge);
+    inspectorHeader.append(titleRow);
+
+    appendText(inspectorHeader, "p", "核心难点剖析 · 变式题型迁移 · 避坑指引", "challenge-inspector__subtitle");
     inspector.append(inspectorHeader);
 
-    // 讲解抽屉（默认折叠，需要时随时展开）
-    const explainDrawer = document.createElement("details");
-    explainDrawer.className = "challenge-inspector-drawer";
-    explainDrawer.open = false; // 初始隐藏，需要时展开
-    const explainSummary = appendText(explainDrawer, "summary", "🧭 思维罗盘与解法导引", "challenge-inspector-drawer__summary");
-    explainSummary.setAttribute("aria-label", "展开思维罗盘与解法导引");
+    const inspectorBody = document.createElement("div");
+    inspectorBody.className = "challenge-inspector__body";
 
-    const explainBody = document.createElement("div");
-    explainBody.className = "challenge-inspector-drawer__body";
+    // 获取专业举一反三与错点难点导引
+    const transferGuide = HintScaffold.getVariantTransferGuide?.({
+      ...run.question,
+      moduleId: run.question.moduleId || level?.moduleId
+    });
 
+    // ==========================================
+    // 模块 1：🌟 错点难点核心强调 (Pitfall & Difficulties)
+    // ==========================================
+    const pitfallCard = document.createElement("div");
+    pitfallCard.className = "inspector-card inspector-card--pitfall-focus";
+    const pitfallHeader = document.createElement("div");
+    pitfallHeader.className = "inspector-card__header";
+    appendText(pitfallHeader, "span", "🌟", "inspector-card__icon");
+    appendText(pitfallHeader, "strong", "错点难点重点警示", "inspector-card__title");
+    pitfallCard.append(pitfallHeader);
+
+    // 高频错点警示
+    const pitfallBox = document.createElement("div");
+    pitfallBox.className = "inspector-pitfall-alert";
+    appendText(pitfallBox, "span", "⚠️ 高频易错点", "inspector-pitfall-alert__badge");
+    appendText(pitfallBox, "p", transferGuide?.pitfallWarning || "先圈出已知量和待求量，注意题目单位与正负关系。", "inspector-pitfall-alert__text");
+    pitfallCard.append(pitfallBox);
+
+    // 核心难点突破
+    if (transferGuide?.difficultyBreakthrough) {
+      const diffBox = document.createElement("div");
+      diffBox.className = "inspector-difficulty-breakthrough";
+      appendText(diffBox, "span", "🔍 难点突破", "inspector-difficulty-breakthrough__badge");
+      appendText(diffBox, "p", transferGuide.difficultyBreakthrough, "inspector-difficulty-breakthrough__text");
+      pitfallCard.append(diffBox);
+    }
+
+    // 草稿画法指引
+    if (transferGuide?.sketchGuide) {
+      const sketchBox = document.createElement("div");
+      sketchBox.className = "inspector-sketch-pill";
+      appendText(sketchBox, "span", "✏️ 草稿实战", "inspector-sketch-pill__badge");
+      appendText(sketchBox, "span", transferGuide.sketchGuide, "inspector-sketch-pill__text");
+      pitfallCard.append(sketchBox);
+    }
+
+    // 题目情境任务描述 (保留 data-question-story-beat 以满足测试要求)
     const storyBeat = appendText(
-      explainBody,
+      pitfallCard,
       "p",
       run.question.storyBeat || "仔细审题，理清数量关系。",
-      "question-story-beat"
+      "inspector-story-beat question-story-beat"
     );
     storyBeat.dataset.questionStoryBeat = "";
 
-    const effectiveMethod = MathThinkingMethods?.getEffectiveThinkingMethod?.(run.question);
-    const thinkingMethodLabel = effectiveMethod?.label || run.question.thinkingMethodLabel;
-    const thinkingMethodId = effectiveMethod?.id || run.question.thinkingMethodId || "";
-    const methodPrompt = effectiveMethod?.prompt || run.question.methodPrompt;
-    if (thinkingMethodLabel) {
-      const methodHint = document.createElement("div");
-      methodHint.className = "thinking-method-hint";
-      methodHint.dataset.thinkingMethod = thinkingMethodId;
-      appendText(methodHint, "strong", `🧭 思维方法：${thinkingMethodLabel}`, "thinking-method-hint__label");
-      if (methodPrompt) appendText(methodHint, "span", methodPrompt, "thinking-method-hint__prompt");
-      explainBody.append(methodHint);
+    inspectorBody.append(pitfallCard);
+
+    // ==========================================
+    // 模块 2：🚀 举一反三 · 变式模型拓展 (Model Transfer & Variants)
+    // ==========================================
+    const variantCard = document.createElement("div");
+    variantCard.className = "inspector-card inspector-card--variants";
+    const variantHeader = document.createElement("div");
+    variantHeader.className = "inspector-card__header";
+    appendText(variantHeader, "span", "🚀", "inspector-card__icon");
+    appendText(variantHeader, "strong", `举一反三 · 【${transferGuide?.modelTitle || thinkingMethodLabel}】`, "inspector-card__title");
+    variantCard.append(variantHeader);
+
+    if (transferGuide?.coreEssence) {
+      appendText(variantCard, "p", `💡 底层本质：${transferGuide.coreEssence}`, "inspector-essence-text");
     }
 
-    renderCognitiveBlueprint(explainBody, run.question, tierInfo);
-
-    if (run.status !== "retry") {
-      renderMindCompassBanner(explainBody, level, chapter);
+    // 经典变式列表
+    if (Array.isArray(transferGuide?.variants) && transferGuide.variants.length > 0) {
+      const variantList = document.createElement("div");
+      variantList.className = "inspector-variant-list";
+      transferGuide.variants.forEach((v) => {
+        const vItem = document.createElement("div");
+        vItem.className = "inspector-variant-item";
+        appendText(vItem, "span", v.tag, "inspector-variant-item__tag");
+        appendText(vItem, "span", v.desc, "inspector-variant-item__desc");
+        variantList.append(vItem);
+      });
+      variantCard.append(variantList);
     }
-    explainDrawer.append(explainBody);
-    inspector.append(explainDrawer);
 
-    // 通俗小锦囊 (Active Scaffold)
-    if (run.status === "active") {
-      const activeScaffold = HintScaffold.renderActiveThinkingScaffold?.(run.question);
-      if (activeScaffold) {
-        inspector.append(activeScaffold);
+    // 一通百通秘笈
+    if (transferGuide?.generalizationTip) {
+      const tipBox = document.createElement("div");
+      tipBox.className = "inspector-generalization-tip";
+      appendText(tipBox, "strong", "🎯 一通百通：", "inspector-generalization-tip__label");
+      appendText(tipBox, "span", transferGuide.generalizationTip, "inspector-generalization-tip__text");
+      variantCard.append(tipBox);
+    }
+
+    inspectorBody.append(variantCard);
+
+    // ==========================================
+    // 模块 3：🪜 三阶解题微步导引 (Tiered Scaffold)
+    // ==========================================
+    const hints = HintScaffold.buildTieredHints?.(run.question) || [];
+    if (hints.length > 0) {
+      const scaffoldDetails = document.createElement("details");
+      scaffoldDetails.className = "inspector-scaffold-details";
+      const scaffoldSummary = appendText(scaffoldDetails, "summary", "🪜 展开三阶解题微步导引", "inspector-scaffold-details__summary");
+      scaffoldSummary.setAttribute("aria-label", "展开三阶解题微步导引");
+
+      const scaffoldList = document.createElement("div");
+      scaffoldList.className = "inspector-scaffold-list";
+      const stepNames = ["第 1 阶 · 读题圈已知", "第 2 阶 · 寻思维模型", "第 3 阶 · 算式慢镜头"];
+      hints.forEach((hint, idx) => {
+        const stepItem = document.createElement("div");
+        stepItem.className = `inspector-scaffold-item inspector-scaffold-item--tier${hint.tier || idx + 1}`;
+        appendText(stepItem, "div", stepNames[idx] || hint.label, "inspector-scaffold-item__tag");
+        const stepText = document.createElement("p");
+        stepText.className = "inspector-scaffold-item__text";
+        stepText.textContent = hint.text;
+        stepItem.append(stepText);
+        scaffoldList.append(stepItem);
+      });
+      scaffoldDetails.append(scaffoldList);
+      inspectorBody.append(scaffoldDetails);
+    }
+
+    // ==========================================
+    // 模块 4：🎬 动态解题演示 (Motion Visual Card)
+    // ==========================================
+    if (KnowledgeMotionExplainer?.renderMotionCard) {
+      const motionWrapper = document.createElement("div");
+      motionWrapper.className = "inspector-motion-wrapper";
+      const motionCard = KnowledgeMotionExplainer.renderMotionCard(
+        {
+          methodId: run.question.thinkingMethodId || level.moduleId,
+          moduleId: run.question.moduleId || level.moduleId,
+          questionId: run.question.id,
+          prompt: run.question.prompt,
+          title: run.question.title || level.title,
+          thinkingMethodLabel
+        },
+        { compact: true, title: `🎬 ${thinkingMethodLabel} · 动态模型演示` }
+      );
+      if (motionCard) {
+        motionWrapper.append(motionCard);
+        inspectorBody.append(motionWrapper);
       }
     }
 
-    // 关卡附赠通关奖励
+    // ==========================================
+    // 模块 5：🎁 关卡附赠通关奖励预览
+    // ==========================================
     const rewardDock = document.createElement("div");
     rewardDock.className = "challenge-card__reward-dock challenge-inspector__reward-dock";
     rewardDock.setAttribute("aria-label", "关卡附赠通关奖励");
-    const hasRandomBonus = ["进阶", "提高", "挑战"].includes(run.question.difficulty);
     const rewardLabel = appendText(rewardDock, "p", "🎁 本题通关附赠奖励预览：", "challenge-card__reward-dock-label");
     rewardLabel.id = "reward-preview-label";
     const rewardPreview = document.createElement("div");
@@ -1782,8 +1897,9 @@ export function createGameRenderers(app) {
     rewardPreview.setAttribute("aria-labelledby", rewardLabel.id);
     renderRewardPreview(rewardPreview, run);
     rewardDock.append(rewardPreview);
-    inspector.append(rewardDock);
+    inspectorBody.append(rewardDock);
 
+    inspector.append(inspectorBody);
     renderRewardPopover(inspector);
 
     if (run.status === "retry") {
