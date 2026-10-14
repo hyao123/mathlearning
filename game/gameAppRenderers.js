@@ -1519,6 +1519,32 @@ export function createGameRenderers(app) {
     parent.append(reviewPanel);
   }
 
+  function formatQuestionPromptHTML(promptText) {
+    if (!promptText || typeof promptText !== "string") return "";
+    const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+    // Trailing mission/phase tag 【...】
+    const trailMatch = promptText.match(/^(.*?)(\s*【(.*?)】\s*)$/s);
+    if (trailMatch) {
+      const mainBody = trailMatch[1];
+      const tagText = trailMatch[2];
+      const formatted = esc(mainBody).replace(/\b\d+(?:\.\d+)?\b/g, (num) => `<span class="math-entity">${num}</span>`);
+      return `<span class="question-prompt__body">${formatted}</span><span class="question-prompt__mission-badge">${esc(tagText)}</span>`;
+    }
+
+    // Leading mission/phase tag 【...】
+    const leadMatch = promptText.match(/^(\s*【(.*?)】\s*)(.*)$/s);
+    if (leadMatch) {
+      const tagText = leadMatch[1];
+      const mainBody = leadMatch[3];
+      const formatted = esc(mainBody).replace(/\b\d+(?:\.\d+)?\b/g, (num) => `<span class="math-entity">${num}</span>`);
+      return `<span class="question-prompt__mission-badge">${esc(tagText)}</span><span class="question-prompt__body">${formatted}</span>`;
+    }
+
+    const formatted = esc(promptText).replace(/\b\d+(?:\.\d+)?\b/g, (num) => `<span class="math-entity">${num}</span>`);
+    return `<span class="question-prompt__body">${formatted}</span>`;
+  }
+
   function renderChallenge() {
     const { root, chapter, state, campaign, screen, answerFeedback, rewardReveal, craftingFeedback, saveFeedback, answerDraft, allChapters, getLevel } = app;
     const run = state.activeRun;
@@ -1617,8 +1643,11 @@ export function createGameRenderers(app) {
     workspace.append(workspaceHeader);
 
     // 核心题目视窗（清爽、大字号、沉浸阅读）
-    const prompt = appendText(workspace, "p", run.question.prompt, "question-prompt");
+    const prompt = document.createElement("p");
+    prompt.className = "question-prompt";
     prompt.dataset.questionPrompt = "";
+    prompt.innerHTML = formatQuestionPromptHTML(run.question.prompt);
+    workspace.append(prompt);
 
     // 题目视觉图解（直接辅助题目审题）
     const visual = QuestionVisualizer.createQuestionVisual(run.question, { status: run.status });
@@ -1646,6 +1675,24 @@ export function createGameRenderers(app) {
     } else {
       const form = document.createElement("div");
       form.className = "answer-controls";
+
+      // 答题引导（清晰指引输入类型，无任何冒号禁词）
+      let guidanceText = "✍️ 请直接输入计算得数";
+      if (run.question?.answerFormat === "fraction") {
+        guidanceText = "✍️ 分数得数请以 a/b 格式填入（如 3/4）";
+      } else if (run.question?.answerFormat === "decimal") {
+        guidanceText = "✍️ 小数得数请填入带小数点的数值";
+      } else if (run.question?.answerFormat === "percent") {
+        guidanceText = "✍️ 百分数请以数值加 % 填入";
+      }
+      const guidance = document.createElement("div");
+      guidance.className = "answer-controls__guidance";
+      guidance.textContent = guidanceText;
+      form.append(guidance);
+
+      const inputGroup = document.createElement("div");
+      inputGroup.className = "answer-controls__group";
+
       const input = document.createElement("input");
       input.type = "text";
       input.inputMode = "text";
@@ -1655,20 +1702,22 @@ export function createGameRenderers(app) {
       input.dataset.answerInput = "";
       input.disabled = run.status === "retry";
       if (run.status === "active") input.value = answerDraft;
-      form.append(input);
+      inputGroup.append(input);
 
-      const submit = appendText(form, "button", "提交", "pixel-button pixel-button--primary");
+      const submit = appendText(inputGroup, "button", "提交", "pixel-button pixel-button--primary");
       submit.type = "button";
       submit.dataset.submitAnswer = "";
       submit.hidden = run.status === "retry";
-      const retry = appendText(form, "button", "再试一次", "pixel-button pixel-button--primary");
+      const retry = appendText(inputGroup, "button", "再试一次", "pixel-button pixel-button--primary");
       retry.type = "button";
       retry.dataset.retryQuestion = "";
       retry.hidden = run.status !== "retry";
-      const skip = appendText(form, "button", "跳过", "pixel-button pixel-button--quiet");
+      const skip = appendText(inputGroup, "button", "跳过", "pixel-button pixel-button--quiet");
       skip.type = "button";
       skip.dataset.skipQuestion = "";
       skip.hidden = run.status !== "retry";
+
+      form.append(inputGroup);
       workspace.append(form);
     }
 
@@ -2043,7 +2092,11 @@ export function createGameRenderers(app) {
       card.append(methodHint);
     }
     renderCognitiveBlueprint(card, run.question, tierInfo);
-    appendText(card, "p", run.question?.prompt || "读取补给线索中……", "question-prompt");
+    const recoveryPrompt = document.createElement("p");
+    recoveryPrompt.className = "question-prompt";
+    recoveryPrompt.dataset.questionPrompt = "";
+    recoveryPrompt.innerHTML = formatQuestionPromptHTML(run.question?.prompt || "读取补给线索中……");
+    card.append(recoveryPrompt);
     const visual = QuestionVisualizer.createQuestionVisual(run.question, { status: run.status });
     if (visual) {
       if (run.status === "resolved") {
